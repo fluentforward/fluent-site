@@ -6,9 +6,14 @@ import '@/styles/tailwind.css'
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - Studio',
-    default: 'Studio - Award winning developer studio based in Denmark',
+    template: '%s - Orchestrate Legal',
+    default: 'Orchestrate Legal - Legal Agent Orchestration',
   },
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ]
+  }
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {
