@@ -500,8 +500,7 @@ export default async function Home() {
         The team at Orchestrate Legal went above and beyond with our implementation, creating a truly integrated system that has transformed how our firm operates.
       </Testimonial>
 
-      <GetStarted />
-      <ContactSection />
+      <GetStarted />      
     </>
   )
 }

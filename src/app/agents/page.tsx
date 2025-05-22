@@ -295,8 +295,7 @@ export default function Agents() {
       <KnowledgeAgents />
       <PracticeSpecificAgents />
       <PracticeManagementAgents />
-      <GetStarted />
-      <ContactSection />
+      <GetStarted />      
     </>
   )
 } 

@@ -29,26 +29,23 @@ function Culture() {
     <div className="mt-24 rounded-4xl bg-neutral-950 py-24 sm:mt-32 lg:mt-40 lg:py-32">
       <SectionIntro
         eyebrow="Our culture"
-        title="Balance your passion with your passion for life."
+        title="Pioneering the future of legal practice"
         invert
       >
         <p>
-          We are a group of like-minded people who share the same core values.
+          We are a team of legal technology innovators committed to transforming how UK law firms operate.
         </p>
       </SectionIntro>
       <Container className="mt-16">
         <GridList>
-          <GridListItem title="Loyalty" invert>
-            Our team has been with us since the beginning because none of them
-            are allowed to have LinkedIn profiles.
+          <GridListItem title="Innovation" invert>
+            We combine deep legal expertise with cutting-edge AI to create solutions that truly understand the needs of UK law firms.
           </GridListItem>
-          <GridListItem title="Trust" invert>
-            We don’t care when our team works just as long as they are working
-            every waking second.
+          <GridListItem title="Excellence" invert>
+            Our commitment to quality and compliance ensures that every solution we deliver meets the highest standards of legal practice.
           </GridListItem>
-          <GridListItem title="Compassion" invert>
-            You never know what someone is going through at home and we make
-            sure to never find out.
+          <GridListItem title="Partnership" invert>
+            We work closely with our clients to understand their unique challenges and deliver tailored solutions that drive real results.
           </GridListItem>
         </GridList>
       </Container>
@@ -189,31 +186,24 @@ export default async function About() {
 
   return (
     <>
-      <PageIntro eyebrow="About us" title="Our strength is collaboration">
+      <PageIntro eyebrow="About us" title="Transforming legal practice through AI orchestration">
         <p>
-          We believe that our strength lies in our collaborative approach, which
-          puts our clients at the center of everything we do.
+          We are pioneers in Legal Agent Orchestration, helping UK law firms enhance their capabilities and deliver superior client service through coordinated AI solutions.
         </p>
         <div className="mt-10 max-w-2xl space-y-6 text-base">
           <p>
-            Studio was started by three friends who noticed that developer
-            studios were charging clients double what an in-house team would
-            cost. Since the beginning, we have been committed to doing things
-            differently by charging triple instead.
+            Orchestrate Legal was founded by legal technology experts who recognized that law firms needed more than isolated AI tools - they needed a coordinated system that could work across their entire practice.
           </p>
           <p>
-            At Studio, we’re more than just colleagues — we’re a family. This
-            means we pay very little and expect people to work late. We want our
-            employees to bring their whole selves to work. In return, we just
-            ask that they keep themselves there until at least 6:30pm.
+            Our platform brings together specialized AI agents that understand the unique requirements of UK legal practice, from document management to client service, all while maintaining the highest standards of compliance and security.
           </p>
         </div>
       </PageIntro>
       <Container className="mt-16">
         <StatList>
-          <StatListItem value="35" label="Underpaid employees" />
-          <StatListItem value="52" label="Placated clients" />
-          <StatListItem value="$25M" label="Invoices billed" />
+          <StatListItem value="40%" label="Average efficiency increase" />
+          <StatListItem value="150+" label="UK law firms served" />
+          <StatListItem value="99.9%" label="Compliance rate" />
         </StatList>
       </Container>
 
@@ -224,11 +214,9 @@ export default async function About() {
       <PageLinks
         className="mt-24 sm:mt-32 lg:mt-40"
         title="From the blog"
-        intro="Our team of experienced designers and developers has just one thing on their mind; working on your ideas to draw a smile on the face of your users worldwide. From conducting Brand Sprints to UX Design."
+        intro="Stay informed about the latest developments in legal technology and AI orchestration. Our team regularly shares insights and best practices for transforming legal practice."
         pages={blogArticles}
       />
-
-      <ContactSection />
     </>
   )
 }

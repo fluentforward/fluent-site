@@ -282,8 +282,7 @@ export default function Implementation() {
       <OrchestratePhase />
       <AmplifyPhase />
       <Timeline />
-      <GetStarted />
-      <ContactSection />
+      <GetStarted />      
     </>
   )
 } 
