@@ -30,15 +30,17 @@ export function BlogPostList({ posts }: BlogPostListProps) {
               <article key={fields.slug} className="flex flex-col">
                 <Border className="flex flex-col flex-1 p-2 rounded-xl">
                   {fields.featuredImage?.fields?.file?.url && (
-                    <div className="relative aspect-[16/9] overflow-hidden">
-                      <Image
-                        alt=""
-                        src={`https:${fields.featuredImage.fields.file.url}`}
-                        className="object-cover rounded-xl"
-                        fill
-                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      />
-                    </div>
+                    <Link href={`/blog/${fields.slug}`}>
+                      <div className="relative aspect-[16/9] overflow-hidden">
+                        <Image
+                          alt=""
+                          src={`https:${fields.featuredImage.fields.file.url}`}
+                          className="object-cover rounded-xl"
+                          fill
+                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        />
+                      </div>
+                    </Link>
                   )}
                   <div className="flex flex-1 flex-col p-6">
                     <time
