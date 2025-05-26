@@ -3,24 +3,23 @@ import glob from 'fast-glob'
 
 async function loadEntries<T extends { date: string }>(
   directory: string,
-  metaName: string,
 ): Promise<Array<MDXEntry<T>>> {
-  return (
-    await Promise.all(
-      (await glob('**/page.mdx', { cwd: `src/app/${directory}` })).map(
-        async (filename) => {
-          let metadata = (await import(`../app/${directory}/${filename}`))[
-            metaName
-          ] as T
-          return {
-            ...metadata,
-            metadata,
-            href: `/${directory}/${filename.replace(/\/page\.mdx$/, '')}`,
-          }
-        },
-      ),
-    )
-  ).sort((a, b) => b.date.localeCompare(a.date))
+  const entries = await Promise.all(
+    (await glob('**/page.mdx', { cwd: `src/app/${directory}` })).map(
+      async (filename) => {
+        // Import the MDX file and get its frontmatter
+        const mod = await import(`../app/${directory}/${filename}`)
+        const metadata = mod.frontmatter as T
+        return {
+          ...metadata,
+          metadata,
+          href: `/${directory}/${filename.replace(/\/page\.mdx$/, '')}`,
+        }
+      },
+    ),
+  )
+  // Filter out entries without a date
+  return entries.filter(entry => entry.date).sort((a, b) => b.date.localeCompare(a.date))
 }
 
 type ImagePropsWithOptionalAlt = Omit<ImageProps, 'alt'> & { alt?: string }
@@ -34,7 +33,7 @@ export interface Article {
   author: {
     name: string
     role: string
-    image: ImagePropsWithOptionalAlt
+    image: ImagePropsWithOptionalAlt | string
   }
 }
 
@@ -57,9 +56,9 @@ export interface CaseStudy {
 }
 
 export function loadArticles() {
-  return loadEntries<Article>('blog', 'article')
+  return loadEntries<Article>('blog')
 }
 
 export function loadCaseStudies() {
-  return loadEntries<CaseStudy>('work', 'caseStudy')
+  return loadEntries<CaseStudy>('work')
 }

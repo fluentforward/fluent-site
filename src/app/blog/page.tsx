@@ -4,7 +4,6 @@ import Link from 'next/link'
 
 import { Border } from '@/components/Border'
 import { Button } from '@/components/Button'
-import { ContactSection } from '@/components/ContactSection'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { PageIntro } from '@/components/PageIntro'
@@ -14,7 +13,7 @@ import { loadArticles } from '@/lib/mdx'
 export const metadata: Metadata = {
   title: 'Blog',
   description:
-    'Stay up-to-date with the latest industry news as our marketing teams finds new ways to re-purpose old CSS tricks articles.',
+    "Insights and analysis on legal technology, AI orchestration, and the future of legal practice in the UK."
 }
 
 export default async function Blog() {
@@ -22,10 +21,9 @@ export default async function Blog() {
 
   return (
     <>
-      <PageIntro eyebrow="Blog" title="The latest articles and news">
+      <PageIntro eyebrow="Blog" title="Insights on Legal Technology and AI">
         <p>
-          Stay up-to-date with the latest industry news as our marketing teams
-          finds new ways to re-purpose old CSS tricks articles.
+          Stay informed about the latest developments in legal technology, AI orchestration, and how UK law firms are transforming their practice through innovative solutions.
         </p>
       </PageIntro>
 
@@ -52,7 +50,7 @@ export default async function Blog() {
                           <div className="flex-none overflow-hidden rounded-xl bg-neutral-100">
                             <Image
                               alt=""
-                              {...article.author.image}
+                              src={typeof article.author.image === 'string' ? article.author.image : article.author.image.src}
                               className="h-12 w-12 object-cover grayscale"
                             />
                           </div>
@@ -83,7 +81,6 @@ export default async function Blog() {
         </div>
       </Container>
 
-      <ContactSection />
     </>
   )
 }

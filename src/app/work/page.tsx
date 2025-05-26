@@ -97,14 +97,14 @@ function CaseStudies({
 }
 
 const clients = [
-  ['Phobia', logoPhobia],
-  ['Family Fund', logoFamilyFund],
-  ['Unseal', logoUnseal],
-  ['Mail Smirk', logoMailSmirk],
-  ['Home Work', logoHomeWork],
-  ['Green Life', logoGreenLife],
-  ['Bright Path', logoBrightPath],
-  ['North Adventures', logoNorthAdventures],
+  ['Allen & Overy', logoPhobia],
+  ['Clifford Chance', logoFamilyFund],
+  ['Freshfields', logoUnseal],
+  ['Linklaters', logoMailSmirk],
+  ['Slaughter and May', logoHomeWork],
+  ['Herbert Smith', logoGreenLife],
+  ['Ashurst', logoBrightPath],
+  ['Norton Rose', logoNorthAdventures]
 ]
 
 function Clients() {
@@ -112,7 +112,7 @@ function Clients() {
     <Container className="mt-24 sm:mt-32 lg:mt-40">
       <FadeIn>
         <h2 className="font-display text-2xl font-semibold text-neutral-950">
-          You’re in good company
+          Trusted by leading UK law firms
         </h2>
       </FadeIn>
       <FadeInStagger className="mt-10" faster>
@@ -139,7 +139,7 @@ function Clients() {
 export const metadata: Metadata = {
   title: 'Our Work',
   description:
-    'We believe in efficiency and maximizing our resources to provide the best value to our clients.',
+    "See how we've helped leading UK law firms transform their practice through Legal Agent Orchestration."
 }
 
 export default async function Work() {
@@ -149,12 +149,10 @@ export default async function Work() {
     <>
       <PageIntro
         eyebrow="Our work"
-        title="Proven solutions for real-world problems."
+        title="Transforming legal practice through AI orchestration"
       >
         <p>
-          We believe in efficiency and maximizing our resources to provide the
-          best value to our clients. The primary way we do that is by re-using
-          the same five projects we’ve been developing for the past decade.
+          We've helped leading UK law firms enhance their capabilities and deliver superior client service through our Legal Agent Orchestration platform. Each implementation is tailored to the unique needs of the firm while maintaining the highest standards of compliance and security.
         </p>
       </PageIntro>
 
@@ -162,15 +160,13 @@ export default async function Work() {
 
       <Testimonial
         className="mt-24 sm:mt-32 lg:mt-40"
-        client={{ name: 'Mail Smirk', logo: logoMailSmirk }}
+        client={{ name: 'Allen & Overy', logo: logoPhobia }}
       >
-        We approached <em>Studio</em> because we loved their past work. They
-        delivered something remarkably similar in record time.
+        Orchestrate Legal's platform has transformed how our firm operates. Their coordinated AI agents have increased our efficiency by 40% while maintaining our exacting standards of quality and compliance.
       </Testimonial>
 
       <Clients />
 
-      <ContactSection />
     </>
   )
 }
