@@ -19,7 +19,7 @@ import logoPhobiaDark from '@/images/clients/phobia/logo-dark.svg'
 import logoPhobiaLight from '@/images/clients/phobia/logo-light.svg'
 import logoUnseal from '@/images/clients/unseal/logo-light.svg'
 import imageLaptop from '@/images/laptop.jpg'
-import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
+
 
 const clients = [
   ['Phobia', logoPhobiaLight],
@@ -461,7 +461,6 @@ export const metadata: Metadata = {
 }
 
 export default async function Home() {
-  let caseStudies = (await loadCaseStudies()).slice(0, 3)
 
   return (
     <>
