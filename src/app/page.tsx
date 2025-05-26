@@ -9,6 +9,8 @@ import { List, ListItem } from '@/components/List'
 import { SectionIntro } from '@/components/SectionIntro'
 import { StylizedImage } from '@/components/StylizedImage'
 import { Testimonial } from '@/components/Testimonial'
+import { BlogPostList } from '@/components/BlogPostList'
+import { getBlogPosts } from '@/lib/contentful'
 import logoBrightPath from '@/images/clients/bright-path/logo-light.svg'
 import logoFamilyFund from '@/images/clients/family-fund/logo-light.svg'
 import logoGreenLife from '@/images/clients/green-life/logo-light.svg'
@@ -461,6 +463,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Home() {
+  const latestPosts = await getBlogPosts(3)  
 
   return (
     <>
@@ -499,7 +502,10 @@ export default async function Home() {
         The team at Orchestrate Legal went above and beyond with our implementation, creating a truly integrated system that has transformed how our firm operates.
       </Testimonial>
 
-      <GetStarted />      
+      <GetStarted />
+
+      <BlogPostList posts={latestPosts} />
+      <ContactSection />
     </>
   )
 }

@@ -15,11 +15,12 @@ export const contentfulClient = createClient({
 })
 
 
-export async function getBlogPosts(): Promise<Array<IPageBlogPost>> {
+export async function getBlogPosts(limit?: number): Promise<Array<IPageBlogPost>> {
   const response = await contentfulClient.getEntries<IPageBlogPostSkeleton>({
     content_type: 'pageBlogPost',
     // @ts-ignore
     order: ['-fields.publishedDate'],
+    limit: limit,
   })
 
   return response.items
