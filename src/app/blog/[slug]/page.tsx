@@ -52,6 +52,18 @@ export default async function BlogPost({ params }: Props) {
             <Border className="pt-16">
               <div className="relative lg:-mx-4 lg:flex lg:justify-end">
                 <div className="pt-10 lg:w-2/3 lg:flex-none lg:px-4 lg:pt-0">
+                  {blogPostFields.featuredImage?.fields?.file?.url && (
+                    <div className="mb-8 overflow-hidden rounded-xl bg-neutral-100">
+                      <Image
+                        alt=""
+                        src={`https:${blogPostFields.featuredImage.fields.file.url}`}
+                        className="aspect-[16/9] w-full object-cover"
+                        width={1200}
+                        height={675}
+                        priority
+                      />
+                    </div>
+                  )}
                   <h1 className="font-display text-4xl font-semibold text-neutral-950">
                     {blogPostFields.title}
                   </h1>
@@ -81,7 +93,7 @@ export default async function BlogPost({ params }: Props) {
                     </dd>
                     }
                   </dl>
-                  <div className="mt-6 max-w-2xl prose prose-neutral-600">
+                  <div className="mt-6 max-w-2xl space-y-6 text-base text-neutral-600 typography">
                     {documentToReactComponents(blogPostFields.content)}
                   </div>
                 </div>
