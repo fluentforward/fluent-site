@@ -68,6 +68,15 @@ export function BlogPostList({ posts }: BlogPostListProps) {
             )
           })}
         </div>
+        <div className="mt-12 text-center">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 rounded-xl bg-neutral-950 px-8 py-4 text-sm font-semibold text-white hover:bg-neutral-800 transition"
+          >
+            See all posts
+            <span aria-hidden="true">→</span>
+          </Link>
+        </div>
       </FadeIn>
     </Container>
   )
