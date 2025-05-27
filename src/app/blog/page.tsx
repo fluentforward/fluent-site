@@ -11,6 +11,7 @@ import { formatDate } from '@/lib/formatDate'
 import { getBlogPosts } from '@/lib/contentful'
 import { IComponentAuthorFields, IPageBlogPost, IPageBlogPostFields } from '@/lib/contentful-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { calculateReadingTime } from '@/lib/calculateReadingTime'
 
 
 export const metadata: Metadata = {
@@ -49,6 +50,9 @@ export default async function Blog() {
                           <time dateTime={blogPostFields.publishedDate}>
                             {formatDate(blogPostFields.publishedDate)}
                           </time>
+                          <div className="mt-1 text-sm text-neutral-600">
+                            {calculateReadingTime(blogPostFields.content)} min read
+                          </div>
                         </dd>
                         <dt className="sr-only">Author</dt>
                         {authorFields && <dd className="mt-6 flex gap-x-4">
