@@ -1,4 +1,4 @@
-import { Document } from '@contentful/rich-text-types';
+import { Document, BLOCKS, type Paragraph, type Text as RichTextText } from '@contentful/rich-text-types';
 
 export function calculateReadingTime(content: Document): number {
   // Average reading speed (words per minute)
@@ -6,11 +6,12 @@ export function calculateReadingTime(content: Document): number {
   
   // Extract text content from the rich text document
   const textContent = content.content
-    .filter(node => node.nodeType === 'paragraph')
-    .map(node => node.content
-      .filter(content => content.nodeType === 'text')
-      .map(text => text.value)
-      .join(' ')
+    .filter((node): node is Paragraph => node.nodeType === BLOCKS.PARAGRAPH)
+    .map((paragraph) =>
+      paragraph.content
+        .filter((child): child is RichTextText => child.nodeType === 'text')
+        .map((textNode) => textNode.value)
+        .join(' ')
     )
     .join(' ');
   
