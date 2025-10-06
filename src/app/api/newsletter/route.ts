@@ -1,45 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Resend } from 'resend'
-
-const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: NextRequest) {
   try {
-    const { email } = await request.json()
-
-    // Validate email
-    if (!email) {
-      return NextResponse.json(
-        { error: 'Email address is required' },
-        { status: 400 }
-      )
-    }
-
-    // Basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: 'Invalid email address' },
-        { status: 400 }
-      )
-    }
-
-    // Add subscriber to Resend audience
-    const { data, error } = await resend.contacts.create({
-      email: email,
-      audienceId: process.env.RESEND_AUDIENCE_ID!,
-    })
-
-    if (error) {
-      console.error('Resend API error:', error)
-      return NextResponse.json(
-        { error: 'Failed to subscribe to newsletter' },
-        { status: 500 }
-      )
-    }
-
+    // Temporarily disabled in pre-launch: accept request but do nothing
+    const body = await request.json().catch(() => ({}))
+    const email = body?.email
     return NextResponse.json(
-      { message: 'Successfully subscribed to newsletter', data },
+      { message: 'Newsletter subscription is disabled during pre-launch', email },
       { status: 200 }
     )
   } catch (error) {
