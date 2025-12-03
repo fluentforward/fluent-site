@@ -29,13 +29,20 @@
 
   --radius-4xl: 2.5rem;
 
-  --font-sans: Mona Sans, ui-sans-serif, system-ui, sans-serif,
+  --font-sans: 'Inter', Mona Sans, ui-sans-serif, system-ui, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
-  --font-display: Mona Sans, ui-sans-serif, system-ui, sans-serif,
+  --font-display: 'Inter', Mona Sans, ui-sans-serif, system-ui, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
   --font-display--font-variation-settings: 'wdth' 125;
 
   --font-display-length: 2;
+
+  /* Custom color overrides to match mockup */
+  --color-purple-600: #7C3AED;
+  --color-indigo-600: #4338CA;
+  --color-indigo-500: #6366F1;
+  --color-lime-500: #84CC16;
+  --color-lime-600: #65A30D;
 }

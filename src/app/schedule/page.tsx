@@ -10,52 +10,35 @@ export const metadata: Metadata = {
 export default function Schedule() {
   return (
     <>
-      {/* Header Section with matching gradient background */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-[#102542] via-[#0047AB] to-[#1e3a5f] py-16 sm:py-20">
-        {/* Decorative background pattern elements */}
-        <div className="absolute inset-0 -z-10">
-          {/* Gradient orbs */}
-          <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 blur-3xl opacity-20" aria-hidden="true">
-            <div className="aspect-square w-[40rem] rounded-full bg-gradient-to-br from-blue-400 to-cyan-300" />
-          </div>
-          <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 blur-3xl opacity-20" aria-hidden="true">
-            <div className="aspect-square w-[35rem] rounded-full bg-gradient-to-tr from-purple-400 to-blue-300" />
-          </div>
-          {/* Grid pattern overlay */}
-          <div 
-            className="absolute inset-0 opacity-[0.15]"
-            style={{
-              backgroundImage: `
-                linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)
-              `,
-              backgroundSize: '60px 60px'
-            }}
-          />
-          {/* Dot pattern */}
-          <div 
-            className="absolute inset-0 opacity-10"
-            style={{
-              backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px)',
-              backgroundSize: '30px 30px'
-            }}
-          />
-        </div>
+      {/* Header Section with new branding style */}
+      <div className="relative min-h-[60vh] flex items-center pt-20 overflow-hidden bg-gradient-to-b from-white via-slate-50 to-slate-100">
+        {/* Background gradient orbs matching hero section */}
+        <div
+          className="absolute top-0 right-0 -translate-y-[30%] translate-x-[-10%] w-[600px] h-[600px] rounded-full opacity-80"
+          style={{
+            background: 'radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 70%)',
+          }}
+          aria-hidden="true"
+        />
+        <div
+          className="absolute bottom-0 left-0 translate-y-[20%] -translate-x-[5%] w-[500px] h-[500px] rounded-full opacity-60"
+          style={{
+            background: 'radial-gradient(circle, rgba(132, 204, 22, 0.06) 0%, transparent 70%)',
+          }}
+          aria-hidden="true"
+        />
 
-        <Container>
+        <Container className="relative z-10">
           <FadeIn className="max-w-4xl mx-auto text-center">
-            {/* Brand name with modern styling */}
-            <div className="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-semibold bg-white/10 text-white ring-1 ring-inset ring-white/20 mb-6 backdrop-blur-sm">
-              Cognify Legal
-            </div>
+            <span className="inline-block bg-gradient-to-br from-purple-600/10 to-lime-500/10 text-[#166534] px-4 py-2 rounded-full text-sm font-semibold mb-8 border border-lime-500/30">
+              Book Your Demo
+            </span>
             
-            {/* Page title */}
-            <h1 className="font-display text-4xl font-bold tracking-tight text-balance text-white sm:text-5xl lg:text-6xl">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight mb-6 tracking-tight">
               Schedule a Demonstration
             </h1>
             
-            {/* Description */}
-            <p className="mt-6 text-lg leading-8 text-blue-100 max-w-2xl mx-auto">
+            <p className="text-xl sm:text-2xl text-slate-500 mb-10 max-w-2xl mx-auto leading-relaxed">
               See Cognify Legal in action. Book a personalized demo to explore how conversational intelligence can transform your firm's decision-making.
             </p>
           </FadeIn>
@@ -63,19 +46,22 @@ export default function Schedule() {
       </div>
 
       {/* Booking Form Section */}
-      <Container className="py-16 sm:py-20">
-        <FadeIn>
-          <div className="relative w-full bg-white rounded-2xl shadow-xl overflow-hidden" style={{ minHeight: '800px' }}>
-            <iframe 
-              src='https://outlook.office.com/book/CognifyLegalDemo@fluentforward.co/?ismsaljsauthenabled' 
-              width='100%' 
-              height='800' 
-              scrolling='yes' 
-              style={{ border: 0 }}
-            />
-          </div>
-        </FadeIn>
-      </Container>
+      <div className="relative bg-slate-50 py-16 sm:py-24">
+        <Container>
+          <FadeIn>
+            <div className="relative w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200" style={{ minHeight: '800px' }}>
+              <iframe 
+                src='https://outlook.office.com/book/CognifyLegalDemo@fluentforward.co/?ismsaljsauthenabled' 
+                width='100%' 
+                height='800' 
+                scrolling='yes' 
+                style={{ border: 0 }}
+                title="Schedule a demo"
+              />
+            </div>
+          </FadeIn>
+        </Container>
+      </div>
     </>
   )
 }
