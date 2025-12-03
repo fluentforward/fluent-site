@@ -1,4 +1,5 @@
 import { type Metadata } from 'next'
+import Script from 'next/script'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 
@@ -49,19 +50,21 @@ export default function Schedule() {
       <div className="relative bg-slate-50 py-16 sm:py-24">
         <Container>
           <FadeIn>
-            <div className="relative w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200" style={{ minHeight: '800px' }}>
-              <iframe 
-                src='https://outlook.office.com/book/CognifyLegalDemo@fluentforward.co/?ismsaljsauthenabled' 
-                width='100%' 
-                height='800' 
-                scrolling='yes' 
-                style={{ border: 0 }}
-                title="Schedule a demo"
+            <div className="relative w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200 p-4">
+              <div 
+                className="calendly-inline-widget" 
+                data-url="https://calendly.com/matt-fluentforward/cognify-legal-demo?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=84cc16" 
+                style={{ minWidth: '320px', height: '700px' }}
               />
             </div>
           </FadeIn>
         </Container>
       </div>
+
+      <Script
+        src="https://assets.calendly.com/assets/external/widget.js"
+        strategy="lazyOnload"
+      />
     </>
   )
 }
