@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognify Teams Chat Mockup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .teams-container {
+            width: 1100px;
+            height: 700px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Teams Header */
+        .teams-header {
+            background: #464775;
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .bot-avatar {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #4F46E5, #84CC16);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .header-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .header-status {
+            font-size: 12px;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #84CC16;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* Chat Area */
+        .chat-area {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            background: #fafafa;
+        }
+        
+        /* Message Bubbles */
+        .message {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 12px;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .message.user {
+            flex-direction: row-reverse;
+        }
+        
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .message.user .message-avatar {
+            background: #6264A7;
+            color: white;
+        }
+        
+        .message.bot .message-avatar {
+            background: linear-gradient(135deg, #4F46E5, #84CC16);
+            color: white;
+        }
+        
+        .message-content {
+            flex: 1;
+            max-width: 650px;
+        }
+        
+        .message-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        
+        .message-author {
+            font-size: 14px;
+            font-weight: 600;
+            color: #242424;
+        }
+        
+        .message-time {
+            font-size: 12px;
+            color: #616161;
+        }
+        
+        .message-bubble {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+        }
+        
+        .message.user .message-bubble {
+            background: #E8EBFA;
+        }
+        
+        .message-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #242424;
+        }
+        
+        /* Utilization Card */
+        .utilization-card {
+            background: white;
+            border: 2px solid #E0E7FF;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 12px;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .card-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #4F46E5;
+        }
+        
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        
+        .status-badge.good {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+        
+        .status-badge.warning {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+        
+        .main-metric {
+            text-align: center;
+            padding: 16px;
+            background: linear-gradient(to bottom, #F9FAFB, white);
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .metric-value {
+            font-size: 48px;
+            font-weight: 700;
+            color: #4F46E5;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        
+        .metric-label {
+            font-size: 13px;
+            color: #6B7280;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .metric-comparison {
+            font-size: 14px;
+            font-weight: 600;
+            color: #10B981;
+        }
+        
+        .breakdown-section {
+            margin-top: 16px;
+        }
+        
+        .breakdown-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #374151;
+            margin-bottom: 12px;
+        }
+        
+        .fee-earner-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #F3F4F6;
+        }
+        
+        .fee-earner-item:last-child {
+            border-bottom: none;
+        }
+        
+        .fee-earner-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .mini-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #E0E7FF;
+            color: #4338CA;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        
+        .fee-earner-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #323130;
+        }
+        
+        .fee-earner-role {
+            font-size: 11px;
+            color: #6B7280;
+        }
+        
+        .utilization-value {
+            font-size: 16px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 4px;
+        }
+        
+        .util-high {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+        
+        .util-good {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+        
+        .util-low {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+        
+        /* Follow-up Questions */
+        .follow-up-section {
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid #E5E7EB;
+        }
+        
+        .follow-up-title {
+            font-size: 12px;
+            color: #6B7280;
+            margin-bottom: 8px;
+        }
+        
+        .follow-up-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .follow-up-button {
+            background: #F3F4F6;
+            border: 1px solid #E5E7EB;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            color: #4F46E5;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+        
+        .follow-up-button:hover {
+            background: #E0E7FF;
+            border-color: #4F46E5;
+        }
+        
+        /* Context Indicator */
+        .context-indicator {
+            background: #F0F9FF;
+            border: 1px solid #BFDBFE;
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin-top: 12px;
+            font-size: 12px;
+            color: #1E40AF;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        /* Typing Indicator */
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #616161;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.7;
+            }
+            30% {
+                transform: translateY(-8px);
+                opacity: 1;
+            }
+        }
+        
+        /* Input Area */
+        .input-area {
+            padding: 16px 20px;
+            background: white;
+            border-top: 1px solid #E0E0E0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .input-box {
+            flex: 1;
+            background: #F5F5F5;
+            border: 1px solid #E0E0E0;
+            border-radius: 4px;
+            padding: 10px 14px;
+            font-size: 14px;
+            color: #616161;
+        }
+        
+        .send-button {
+            background: #4F46E5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* Scrollbar */
+        .chat-area::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .chat-area::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        .chat-area::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="teams-container">
+        <!-- Teams Header -->
+        <div class="teams-header">
+            <div class="header-left">
+                <div class="bot-avatar">C</div>
+                <div>
+                    <div class="header-title">Cognify Intelligence</div>
+                    <div class="header-status">
+                        <span class="status-dot"></span>
+                        <span>Active</span>
+                    </div>
+                </div>
+            </div>
+            <div style="font-size: 12px; opacity: 0.9;">Microsoft Teams</div>
+        </div>
+        
+        <!-- Chat Area -->
+        <div class="chat-area">
+            <!-- Initial User Message -->
+            <div class="message user">
+                <div class="message-avatar">SM</div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <span class="message-author">Sarah Mitchell</span>
+                        <span class="message-time">2:15 PM</span>
+                    </div>
+                    <div class="message-bubble">
+                        <div class="message-text">What's our litigation team's utilization this month?</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bot Response -->
+            <div class="message bot">
+                <div class="message-avatar">C</div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <span class="message-author">Cognify</span>
+                        <span class="message-time">2:15 PM</span>
+                    </div>
+                    <div class="message-bubble">
+                        <div class="message-text">Here's the utilization data for your Litigation team for November 2024:</div>
+                        
+                        <div class="utilization-card">
+                            <div class="card-header">
+                                <div class="card-title">LITIGATION TEAM UTILIZATION</div>
+                                <div class="status-badge good">ABOVE TARGET</div>
+                            </div>
+                            
+                            <div class="main-metric">
+                                <div class="metric-value">82.4%</div>
+                                <div class="metric-label">Team Average Utilization</div>
+                                <div class="metric-comparison">↑ 10.4% above target (72%)</div>
+                            </div>
+                            
+                            <div class="breakdown-section">
+                                <div class="breakdown-title">Breakdown by Fee Earner:</div>
+                                
+                                <div class="fee-earner-item">
+                                    <div class="fee-earner-info">
+                                        <div class="mini-avatar">JS</div>
+                                        <div>
+                                            <div class="fee-earner-name">Julia Stevens</div>
+                                            <div class="fee-earner-role">Partner</div>
+                                        </div>
+                                    </div>
+                                    <div class="utilization-value util-high">89.2%</div>
+                                </div>
+                                
+                                <div class="fee-earner-item">
+                                    <div class="fee-earner-info">
+                                        <div class="mini-avatar">MT</div>
+                                        <div>
+                                            <div class="fee-earner-name">Michael Thompson</div>
+                                            <div class="fee-earner-role">Senior Associate</div>
+                                        </div>
+                                    </div>
+                                    <div class="utilization-value util-high">86.7%</div>
+                                </div>
+                                
+                                <div class="fee-earner-item">
+                                    <div class="fee-earner-info">
+                                        <div class="mini-avatar">RP</div>
+                                        <div>
+                                            <div class="fee-earner-name">Rachel Patterson</div>
+                                            <div class="fee-earner-role">Associate</div>
+                                        </div>
+                                    </div>
+                                    <div class="utilization-value util-good">79.8%</div>
+                                </div>
+                                
+                                <div class="fee-earner-item">
+                                    <div class="fee-earner-info">
+                                        <div class="mini-avatar">AK</div>
+                                        <div>
+                                            <div class="fee-earner-name">Alex Kumar</div>
+                                            <div class="fee-earner-role">Associate</div>
+                                        </div>
+                                    </div>
+                                    <div class="utilization-value util-good">78.3%</div>
+                                </div>
+                                
+                                <div class="fee-earner-item">
+                                    <div class="fee-earner-info">
+                                        <div class="mini-avatar">LC</div>
+                                        <div>
+                                            <div class="fee-earner-name">Laura Chen</div>
+                                            <div class="fee-earner-role">Trainee Solicitor</div>
+                                        </div>
+                                    </div>
+                                    <div class="utilization-value util-low">68.4%</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="follow-up-section">
+                            <div class="follow-up-title">You might also want to know:</div>
+                            <div class="follow-up-buttons">
+                                <button class="follow-up-button">Compare to last month</button>
+                                <button class="follow-up-button">Show by matter type</button>
+                                <button class="follow-up-button">View billable hours breakdown</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Follow-up User Message -->
+            <div class="message user">
+                <div class="message-avatar">SM</div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <span class="message-author">Sarah Mitchell</span>
+                        <span class="message-time">2:16 PM</span>
+                    </div>
+                    <div class="message-bubble">
+                        <div class="message-text">Compare to last month</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bot Follow-up Response -->
+            <div class="message bot">
+                <div class="message-avatar">C</div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <span class="message-author">Cognify</span>
+                        <span class="message-time">2:16 PM</span>
+                    </div>
+                    <div class="message-bubble">
+                        <div class="message-text">Great! Here's how your Litigation team's utilization compares to October 2024:</div>
+                        
+                        <div class="utilization-card">
+                            <div class="card-header">
+                                <div class="card-title">MONTH-OVER-MONTH COMPARISON</div>
+                                <div class="status-badge good">IMPROVING</div>
+                            </div>
+                            
+                            <div class="breakdown-section" style="margin-top: 0;">
+                                <div class="fee-earner-item">
+                                    <div class="fee-earner-info">
+                                        <div>
+                                            <div class="fee-earner-name">November 2024</div>
+                                            <div class="fee-earner-role">Current month</div>
+                                        </div>
+                                    </div>
+                                    <div class="utilization-value util-high">82.4%</div>
+                                </div>
+                                
+                                <div class="fee-earner-item">
+                                    <div class="fee-earner-info">
+                                        <div>
+                                            <div class="fee-earner-name">October 2024</div>
+                                            <div class="fee-earner-role">Previous month</div>
+                                        </div>
+                                    </div>
+                                    <div class="utilization-value util-good">78.9%</div>
+                                </div>
+                                
+                                <div class="fee-earner-item" style="background: #F0F9FF; margin: 8px -16px -16px -16px; padding: 12px 16px; border-bottom: none;">
+                                    <div class="fee-earner-info">
+                                        <div>
+                                            <div class="fee-earner-name" style="color: #1E40AF;">Change</div>
+                                            <div class="fee-earner-role">Month-over-month</div>
+                                        </div>
+                                    </div>
+                                    <div class="utilization-value" style="background: transparent; color: #10B981; font-size: 18px;">↑ 3.5%</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="context-indicator">
+                            <span>💡</span>
+                            <span>Your litigation team's utilization has improved consistently over the past 3 months, up from 74.2% in September.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Another User Question -->
+            <div class="message user">
+                <div class="message-avatar">SM</div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <span class="message-author">Sarah Mitchell</span>
+                        <span class="message-time">2:17 PM</span>
+                    </div>
+                    <div class="message-bubble">
+                        <div class="message-text">Why is Laura's utilization lower than the others?</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bot Contextual Response -->
+            <div class="message bot">
+                <div class="message-avatar">C</div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <span class="message-author">Cognify</span>
+                        <span class="message-time">2:17 PM</span>
+                    </div>
+                    <div class="message-bubble">
+                        <div class="message-text">Looking at Laura Chen's activity this month:</div>
+                        
+                        <div class="utilization-card">
+                            <div class="card-header">
+                                <div class="card-title">LAURA CHEN - NOVEMBER 2024</div>
+                            </div>
+                            
+                            <div class="breakdown-section" style="margin-top: 0;">
+                                <div class="fee-earner-item">
+                                    <div class="fee-earner-info">
+                                        <span style="font-size: 12px;">📊</span>
+                                        <div class="fee-earner-role">Billable hours logged</div>
+                                    </div>
+                                    <div style="font-weight: 700; color: #323130;">112.5 hrs</div>
+                                </div>
+                                
+                                <div class="fee-earner-item">
+                                    <div class="fee-earner-info">
+                                        <span style="font-size: 12px;">📚</span>
+                                        <div class="fee-earner-role">Training & development</div>
+                                    </div>
+                                    <div style="font-weight: 700; color: #323130;">28.0 hrs</div>
+                                </div>
+                                
+                                <div class="fee-earner-item">
+                                    <div class="fee-earner-info">
+                                        <span style="font-size: 12px;">🎯</span>
+                                        <div class="fee-earner-role">Status</div>
+                                    </div>
+                                    <div style="font-size: 12px; color: #6B7280;">Trainee - 1st year</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="context-indicator">
+                            <span>💡</span>
+                            <span>Laura's lower utilization is expected for a first-year trainee. She's spending appropriate time on training (28 hours this month) while maintaining healthy billable hours. Her 68.4% is actually above the firm's trainee target of 60%.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Input Area -->
+        <div class="input-area">
+            <input type="text" class="input-box" placeholder="Ask Cognify anything about your firm data..." readonly>
+            <button class="send-button">Send</button>
+        </div>
+    </div>
+</body>
+</html>

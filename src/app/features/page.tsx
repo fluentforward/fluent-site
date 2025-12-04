@@ -1,4 +1,5 @@
 import { type Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
@@ -13,6 +14,8 @@ import excelIntegration from '@/images/app/excel-integration.png'
 import powerpointIntegration from '@/images/app/powerpoint-integration.png'
 import outlookIntegration from '@/images/app/outlook-integration.png'
 import performanceDashboard from '@/images/app/performance-dashboard.png'
+import intelligenceFeed from '@/images/app/intelligence-feed.png'
+import teamsChat from '@/images/app/teams-chat.png'
 
 
 export const metadata: Metadata = {
@@ -106,9 +109,10 @@ const copilotFeatures = [
       { text: 'Cross-system queries: Data from practice management, finance, HR, and CRM' },
       { text: 'Shareable insights: Export answers to other M365 apps with one click' },
     ],
-    screenshotTitle: 'TEAMS CHAT',
-    screenshotDescription:
-      'Screenshot showing Teams chat with Cognify bot. Natural conversation showing query "What\'s our litigation team\'s utilization this month?" followed by clear response with percentage, comparison to target, and breakdown by fee earner. Shows conversational interface with multi-turn context.',
+    screenshot: {
+      image: teamsChat,
+      alt: 'Teams chat with Cognify bot',
+    },
   },
 ]
 
@@ -358,15 +362,14 @@ export default function Features() {
           </div>
 
           <FadeIn delay={0.4}>
-            <div className="bg-white/5 rounded-xl p-12 border border-white/10">
-              <div className="bg-white/5 border-2 border-dashed border-white/20 rounded-xl p-12 text-center min-h-[300px] flex flex-col justify-center items-center">
-                <strong className="block text-xl text-white mb-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                  INTELLIGENCE FEED INTERFACE
-                </strong>
-                <small className="block text-sm text-white/70 max-w-[90%]" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                  Screenshot showing Microsoft Teams Intelligence Feed tab with clean card-based interface. Shows 5-6 prioritized alerts with clear visual hierarchy (red/amber/green status indicators), timestamps, and action buttons ("Investigate", "Snooze", "Mark Resolved", "Share with Team"). Demonstrates how critical insights interrupt workflow at the right time.
-                </small>
-              </div>
+            <div className="relative w-full h-[500px] overflow-hidden rounded-xl">
+              <Image
+                src={intelligenceFeed}
+                alt="Intelligence feed showing prioritized alerts"
+                className="shadow-2xl bg-white object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, 100vw"
+              />
             </div>
           </FadeIn>
         </Container>
@@ -392,13 +395,14 @@ export default function Features() {
 
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 mb-16 items-center">
             <FadeIn>
-              <div className="bg-gradient-to-br from-indigo-100 to-purple-100 border-2 border-dashed border-indigo-600 rounded-xl p-12 text-center min-h-[400px] flex flex-col justify-center items-center">
-                <strong className="block text-xl text-slate-900 mb-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                  PERFORMANCE DASHBOARD
-                </strong>
-                <small className="block text-sm text-slate-700 max-w-[90%]" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                  Screenshot showing clean Teams dashboard with KPI cards in grid layout. Each card shows: metric name, current value, target, variance indicator (green/amber/red), sparkline trend, and "View Details" link. Shows metrics like "Revenue Per Partner: £387K (Target: £400K, -3.25%)", "Utilization Rate: 82% (Target: 75%, +9.3%)", "Collection Rate: 94%". Professional but not overwhelming.
-                </small>
+              <div className="relative w-full h-[500px] overflow-hidden rounded-xl">
+                <Image
+                  src={performanceDashboard}
+                  alt="Performance dashboard showing key metrics"
+                  className="shadow-2xl bg-white object-cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 60vw"
+                />
               </div>
             </FadeIn>
             <div>
