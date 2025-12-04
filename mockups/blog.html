@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Cognify Legal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --indigo: #4F46E5;
+            --lime: #84CC16;
+            --navy: #1E293B;
+            --charcoal: #0F172A;
+            --grey-light: #F8FAFC;
+            --grey-mid: #E2E8F0;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--navy);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--grey-mid);
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+        
+        .logo-accent {
+            color: var(--indigo);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--indigo);
+        }
+        
+        .nav-cta {
+            background: var(--lime);
+            color: var(--charcoal);
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(132, 204, 22, 0.25);
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(132, 204, 22, 0.35);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 50%, #7C3AED 100%);
+            padding: 5rem 5% 4rem;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="1" cy="1" r="1" fill="white" opacity="0.1"/></svg>');
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-60px); }
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+        
+        /* Categories Section */
+        .categories-section {
+            padding: 2rem 5%;
+            background: var(--white);
+            border-bottom: 1px solid var(--grey-mid);
+            position: sticky;
+            top: 80px;
+            z-index: 50;
+        }
+        
+        .categories-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .category-tag {
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            background: var(--grey-light);
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+        
+        .category-tag:hover,
+        .category-tag.active {
+            background: var(--indigo);
+            color: var(--white);
+            border-color: var(--indigo);
+        }
+        
+        /* Featured Post Section */
+        .featured-section {
+            padding: 4rem 5%;
+            background: var(--grey-light);
+        }
+        
+        .featured-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--indigo);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .featured-post {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 0;
+        }
+        
+        .featured-image {
+            background: linear-gradient(135deg, #E0E7FF 0%, #F3E8FF 100%);
+            border-right: 4px solid var(--lime);
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--navy);
+            padding: 3rem;
+            text-align: center;
+        }
+        
+        .featured-image strong {
+            font-size: 1.5rem;
+            color: var(--charcoal);
+        }
+        
+        .featured-content-text {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .post-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .post-category {
+            background: var(--lime);
+            color: var(--charcoal);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .post-date {
+            color: var(--navy);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        .post-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        
+        .post-excerpt {
+            color: var(--navy);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .read-more {
+            color: var(--indigo);
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+        
+        .read-more:hover {
+            color: var(--lime);
+            gap: 0.75rem;
+        }
+        
+        /* Posts Grid Section */
+        .posts-section {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+        
+        .posts-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .post-card {
+            background: var(--white);
+            border: 2px solid var(--grey-mid);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .post-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            border-color: var(--indigo);
+        }
+        
+        .post-image {
+            background: linear-gradient(135deg, #E0E7FF 0%, #F3E8FF 100%);
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--navy);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 3px solid var(--lime);
+        }
+        
+        .post-image strong {
+            font-size: 1rem;
+            color: var(--charcoal);
+        }
+        
+        .post-body {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .post-card .post-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .post-card .post-excerpt {
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        /* Coming Soon Section */
+        .coming-soon-section {
+            padding: 6rem 5%;
+            background: var(--lime);
+        }
+        
+        .coming-soon-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .coming-soon-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+        
+        .coming-soon-content p {
+            font-size: 1.15rem;
+            color: var(--navy);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .topic-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: left;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .topic-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .topic-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+        
+        .topic-card p {
+            color: var(--navy);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .subscribe-form {
+            background: var(--charcoal);
+            padding: 2.5rem;
+            border-radius: 12px;
+            color: var(--white);
+        }
+        
+        .subscribe-form h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .subscribe-form p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .form-group input {
+            flex-grow: 1;
+            padding: 0.875rem 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-size: 1rem;
+            font-family: 'DM Sans', sans-serif;
+        }
+        
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--lime);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .subscribe-button {
+            background: var(--lime);
+            color: var(--charcoal);
+            padding: 0.875rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .subscribe-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(132, 204, 22, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            padding: 4rem 5% 2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            line-height: 1.7;
+        }
+        
+        .footer-links h4 {
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--lime);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--lime);
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .featured-post {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-image {
+                border-right: none;
+                border-bottom: 4px solid var(--lime);
+            }
+            
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            nav {
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 4rem 5% 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .categories-content {
+                gap: 0.75rem;
+            }
+            
+            .category-tag {
+                font-size: 0.85rem;
+                padding: 0.4rem 1rem;
+            }
+            
+            .form-group {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="logo">
+            <span class="logo-accent">Cognify</span> Legal
+        </a>
+        <ul class="nav-links">
+            <li><a href="/#solution">Solution</a></li>
+            <li><a href="/#how-it-works">How It Works</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a class="nav-cta" href="/book-demo">Book a Demo</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Insights on Legal Tech & BI</h1>
+            <p>Perspectives on business intelligence, law firm operations, and the future of data-driven decision making in professional services.</p>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories-section">
+        <div class="categories-content">
+            <a href="#" class="category-tag active">All Posts</a>
+            <a href="#" class="category-tag">Legal Tech</a>
+            <a href="#" class="category-tag">Business Intelligence</a>
+            <a href="#" class="category-tag">Product Updates</a>
+            <a href="#" class="category-tag">Law Firm Operations</a>
+            <a href="#" class="category-tag">Case Studies</a>
+        </div>
+    </section>
+
+    <!-- Featured Post -->
+    <section class="featured-section">
+        <div class="featured-content">
+            <div class="section-label">Featured Post</div>
+            <div class="featured-post">
+                <div class="featured-image">
+                    <strong>FEATURED POST IMAGE<br><br>Hero image for "Why Traditional BI Fails in Law Firms"</strong>
+                </div>
+                <div class="featured-content-text">
+                    <div class="post-meta">
+                        <span class="post-category">Business Intelligence</span>
+                        <span class="post-date">December 1, 2024</span>
+                    </div>
+                    <h2 class="post-title">Why Traditional BI Fails in Law Firms: The £100K Problem</h2>
+                    <p class="post-excerpt">After witnessing dozens of failed BI implementations across enterprises, one pattern became clear: law firms invest heavily in Power BI and Tableau, achieve single-digit adoption rates, and waste massive resources. Here's why it happens—and what needs to change.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Posts -->
+    <section class="posts-section">
+        <div class="posts-content">
+            <div class="posts-grid">
+                <article class="post-card">
+                    <div class="post-image">
+                        <strong>POST IMAGE<br><br>"The Two Failure Modes of Business Intelligence"</strong>
+                    </div>
+                    <div class="post-body">
+                        <div class="post-meta">
+                            <span class="post-category">Business Intelligence</span>
+                            <span class="post-date">November 28, 2024</span>
+                        </div>
+                        <h3 class="post-title">The Two Failure Modes of Business Intelligence</h3>
+                        <p class="post-excerpt">People don't go look at dashboards. And when they do, they don't know what questions to ask. Understanding these two fundamental problems is essential to building BI that actually works.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-image">
+                        <strong>POST IMAGE<br><br>"Intelligence Where You Work: The Microsoft 365 Advantage"</strong>
+                    </div>
+                    <div class="post-body">
+                        <div class="post-meta">
+                            <span class="post-category">Product Updates</span>
+                            <span class="post-date">November 25, 2024</span>
+                        </div>
+                        <h3 class="post-title">Intelligence Where You Work: The Microsoft 365 Advantage</h3>
+                        <p class="post-excerpt">Why embedding intelligence into Word, Excel, PowerPoint, and Outlook eliminates the adoption problem that plagues standalone BI platforms. Zero training overhead, instant value.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-image">
+                        <strong>POST IMAGE<br><br>"Proactive vs. Reactive Intelligence in Law Firms"</strong>
+                    </div>
+                    <div class="post-body">
+                        <div class="post-meta">
+                            <span class="post-category">Legal Tech</span>
+                            <span class="post-date">November 22, 2024</span>
+                        </div>
+                        <h3 class="post-title">Proactive vs. Reactive Intelligence in Law Firms</h3>
+                        <p class="post-excerpt">The difference between answering questions when asked versus surfacing critical issues before they're problems. Why the Intelligence Feed concept changes everything for busy partners.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-image">
+                        <strong>POST IMAGE<br><br>"From ActionStep to Insights: Practice Management Integration"</strong>
+                    </div>
+                    <div class="post-body">
+                        <div class="post-meta">
+                            <span class="post-category">Product Updates</span>
+                            <span class="post-date">November 18, 2024</span>
+                        </div>
+                        <h3 class="post-title">From ActionStep to Insights: Practice Management Integration</h3>
+                        <p class="post-excerpt">How we built our ActionStep integration to pull matter data, time entries, invoices, and client information in real-time. Technical deep dive into the architecture.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-image">
+                        <strong>POST IMAGE<br><br>"The Founder-Market Fit Story"</strong>
+                    </div>
+                    <div class="post-body">
+                        <div class="post-meta">
+                            <span class="post-category">Company</span>
+                            <span class="post-date">November 15, 2024</span>
+                        </div>
+                        <h3 class="post-title">The Founder-Market Fit Story: 10 Years of BI Failures</h3>
+                        <p class="post-excerpt">Why a decade of enterprise consulting witnessing the same BI implementation failures led to building Cognify. The pattern recognition that created this company.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-image">
+                        <strong>POST IMAGE<br><br>"Data-Driven Law Firm Leadership"</strong>
+                    </div>
+                    <div class="post-body">
+                        <div class="post-meta">
+                            <span class="post-category">Law Firm Operations</span>
+                            <span class="post-date">November 12, 2024</span>
+                        </div>
+                        <h3 class="post-title">Data-Driven Law Firm Leadership: Beyond Gut Feel</h3>
+                        <p class="post-excerpt">How mid-market law firms can transition from intuition-based decisions to data-informed strategy without requiring data teams or technical expertise.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coming Soon / Newsletter -->
+    <section class="coming-soon-section">
+        <div class="coming-soon-content">
+            <h2>More Content Coming Soon</h2>
+            <p>We're building out our content library covering everything from BI best practices to law firm operations. Here are some topics we'll be exploring:</p>
+
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <div class="topic-icon">📊</div>
+                    <h3>BI Implementation Playbooks</h3>
+                    <p>Step-by-step guides for implementing business intelligence without the typical failure patterns</p>
+                </div>
+
+                <div class="topic-card">
+                    <div class="topic-icon">⚖️</div>
+                    <h3>Law Firm KPIs Explained</h3>
+                    <p>Deep dives into the metrics that actually matter: realization rates, utilization, lock-up, and more</p>
+                </div>
+
+                <div class="topic-card">
+                    <div class="topic-icon">🤖</div>
+                    <h3>AI in Legal Operations</h3>
+                    <p>How artificial intelligence is transforming practice management and decision-making</p>
+                </div>
+
+                <div class="topic-card">
+                    <div class="topic-icon">🚀</div>
+                    <h3>Building in Public</h3>
+                    <p>Our journey building Cognify: product decisions, customer learnings, and startup realities</p>
+                </div>
+            </div>
+
+            <div class="subscribe-form">
+                <h3>Get Notified About New Posts</h3>
+                <p>Subscribe to receive updates when we publish new content on legal tech and business intelligence.</p>
+                <form action="#" method="POST" class="form-group">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="subscribe-button">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Cognify Legal</h3>
+                <p>Intelligence, not dashboards. Purpose-built for mid-market UK law firms seeking data-driven decision making without the complexity of traditional BI.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="/features">Features</a></li>
+                    <li><a href="/integrations">Integrations</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/security">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/careers">Careers</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/docs">Documentation</a></li>
+                    <li><a href="/case-studies">Case Studies</a></li>
+                    <li><a href="/support">Support</a></li>
+                    <li><a href="/book-demo">Book Demo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Cognify Legal. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+        </div>
+    </footer>
+</body>
+</html>

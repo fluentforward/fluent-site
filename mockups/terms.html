@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Cognify Legal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --indigo: #4F46E5;
+            --lime: #84CC16;
+            --navy: #1E293B;
+            --charcoal: #0F172A;
+            --grey-light: #F8FAFC;
+            --grey-mid: #E2E8F0;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--navy);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--grey-mid);
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+        
+        .logo-accent {
+            color: var(--indigo);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--indigo);
+        }
+        
+        .nav-cta {
+            background: var(--lime);
+            color: var(--charcoal);
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(132, 204, 22, 0.25);
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(132, 204, 22, 0.35);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 50%, #7C3AED 100%);
+            padding: 4rem 5% 3rem;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="1" cy="1" r="1" fill="white" opacity="0.1"/></svg>');
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-60px); }
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        .last-updated {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+        }
+        
+        /* Content Section */
+        .content-section {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+        
+        .content-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 4rem;
+        }
+        
+        /* Sidebar TOC */
+        .toc-sidebar {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+            background: var(--grey-light);
+            padding: 2rem;
+            border-radius: 12px;
+        }
+        
+        .toc-sidebar h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+        
+        .toc-list {
+            list-style: none;
+        }
+        
+        .toc-list li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .toc-list a {
+            color: var(--navy);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            display: block;
+        }
+        
+        .toc-list a:hover {
+            color: var(--indigo);
+            padding-left: 0.5rem;
+        }
+        
+        /* Main Content */
+        .terms-content {
+            max-width: 900px;
+        }
+        
+        .intro-text {
+            background: var(--lime);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+        }
+        
+        .intro-text p {
+            color: var(--navy);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .intro-text p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .intro-text strong {
+            color: var(--charcoal);
+        }
+        
+        .terms-section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+        
+        .terms-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--grey-mid);
+        }
+        
+        .terms-section:first-of-type h2 {
+            border-top: none;
+            padding-top: 0;
+        }
+        
+        .terms-section h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin: 2rem 0 1rem;
+        }
+        
+        .terms-section p {
+            color: var(--navy);
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+        }
+        
+        .terms-section ul,
+        .terms-section ol {
+            margin: 1.25rem 0 1.25rem 2rem;
+        }
+        
+        .terms-section li {
+            margin-bottom: 0.75rem;
+            color: var(--navy);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        
+        .terms-section strong {
+            color: var(--charcoal);
+            font-weight: 700;
+        }
+        
+        .highlight-box {
+            background: var(--grey-light);
+            border-left: 4px solid var(--indigo);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        
+        .highlight-box p {
+            margin-bottom: 0.75rem;
+        }
+        
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: var(--charcoal);
+            padding: 4rem;
+            border-radius: 12px;
+            margin-top: 4rem;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .contact-section h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-section p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .contact-email {
+            color: var(--lime);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        
+        .contact-email:hover {
+            color: var(--white);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            padding: 4rem 5% 2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            line-height: 1.7;
+        }
+        
+        .footer-links h4 {
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--lime);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--lime);
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .content-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .toc-sidebar {
+                position: static;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            nav {
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 3rem 5% 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="logo">
+            <span class="logo-accent">Cognify</span> Legal
+        </a>
+        <ul class="nav-links">
+            <li><a href="/#solution">Solution</a></li>
+            <li><a href="/#how-it-works">How It Works</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a class="nav-cta" href="/book-demo">Book a Demo</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Terms of Service</h1>
+            <p class="last-updated">Last Updated: December 1, 2024</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <div class="content-container">
+            <!-- Sidebar TOC -->
+            <aside class="toc-sidebar">
+                <h3>Quick Navigation</h3>
+                <ul class="toc-list">
+                    <li><a href="#acceptance">1. Acceptance of Terms</a></li>
+                    <li><a href="#definitions">2. Definitions</a></li>
+                    <li><a href="#service-description">3. Service Description</a></li>
+                    <li><a href="#account">4. Account & Registration</a></li>
+                    <li><a href="#subscription">5. Subscription & Billing</a></li>
+                    <li><a href="#use-restrictions">6. Acceptable Use</a></li>
+                    <li><a href="#data">7. Customer Data</a></li>
+                    <li><a href="#ip">8. Intellectual Property</a></li>
+                    <li><a href="#warranties">9. Warranties</a></li>
+                    <li><a href="#liability">10. Limitation of Liability</a></li>
+                    <li><a href="#termination">11. Termination</a></li>
+                    <li><a href="#changes">12. Changes to Terms</a></li>
+                    <li><a href="#governing-law">13. Governing Law</a></li>
+                    <li><a href="#contact">14. Contact Information</a></li>
+                </ul>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="terms-content">
+                <div class="intro-text">
+                    <p><strong>Welcome to Cognify Legal.</strong> These Terms of Service ("Terms") govern your access to and use of the Cognify Legal platform and services.</p>
+                    <p>By accessing or using our Service, you agree to be bound by these Terms. If you disagree with any part of these Terms, you may not access the Service.</p>
+                    <p><strong>For questions about these Terms, please contact us at legal@cognifylegal.com</strong></p>
+                </div>
+
+                <div id="acceptance" class="terms-section">
+                    <h2>1. Acceptance of Terms</h2>
+                    <p>By creating an account, accessing, or using the Cognify Legal platform ("Service"), you agree to be bound by these Terms of Service and all applicable laws and regulations. If you are entering into these Terms on behalf of a company or other legal entity, you represent that you have the authority to bind such entity to these Terms.</p>
+                    <p>These Terms constitute a legally binding agreement between you or the entity you represent ("Customer", "you", or "your") and Cognify Legal Limited ("Cognify", "we", "us", or "our").</p>
+                </div>
+
+                <div id="definitions" class="terms-section">
+                    <h2>2. Definitions</h2>
+                    <ul>
+                        <li><strong>Service:</strong> The Cognify Legal software platform, including all features, applications, integrations, and associated services.</li>
+                        <li><strong>Customer Data:</strong> All data, content, and information submitted, uploaded, or transmitted by you or your authorized users through the Service.</li>
+                        <li><strong>Authorized Users:</strong> Your employees, contractors, or agents who are authorized to use the Service under your subscription.</li>
+                        <li><strong>Practice Management System (PMS):</strong> Third-party legal practice management software that integrates with the Service, such as ActionStep or Clio.</li>
+                        <li><strong>Subscription Plan:</strong> The specific tier of Service (Starter, Professional, or Enterprise) you have selected and are billed for.</li>
+                        <li><strong>Microsoft 365:</strong> Microsoft's cloud productivity platform with which the Service integrates.</li>
+                    </ul>
+                </div>
+
+                <div id="service-description" class="terms-section">
+                    <h2>3. Service Description</h2>
+                    <p>Cognify provides a business intelligence platform purpose-built for law firms that:</p>
+                    <ul>
+                        <li>Integrates with your Practice Management System to access and analyze firm data</li>
+                        <li>Embeds intelligence capabilities into Microsoft 365 applications (Word, Excel, PowerPoint, Outlook, Teams)</li>
+                        <li>Delivers proactive intelligence through an Intelligence Feed</li>
+                        <li>Provides performance dashboards with customizable KPIs</li>
+                    </ul>
+                    <p>The Service is provided on a subscription basis. Features, functionality, and availability may vary depending on your Subscription Plan.</p>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Beta Features:</strong> From time to time, we may offer features in beta or early access. These features are provided "as is" and may be modified, discontinued, or removed at any time without notice. Beta features are not subject to SLA commitments.</p>
+                    </div>
+                </div>
+
+                <div id="account" class="terms-section">
+                    <h2>4. Account Registration & Security</h2>
+                    
+                    <h3>4.1 Account Creation</h3>
+                    <p>To use the Service, you must create an account by providing accurate, current, and complete information. You agree to update this information as necessary to keep it accurate and complete.</p>
+                    
+                    <h3>4.2 Account Security</h3>
+                    <p>You are responsible for:</p>
+                    <ul>
+                        <li>Maintaining the confidentiality of your account credentials</li>
+                        <li>All activities that occur under your account</li>
+                        <li>Immediately notifying us of any unauthorized access or security breach</li>
+                        <li>Ensuring that Authorized Users comply with these Terms</li>
+                    </ul>
+                    
+                    <h3>4.3 Authorized Users</h3>
+                    <p>You may designate Authorized Users based on your Subscription Plan's user limits. You are responsible for all actions taken by your Authorized Users and must ensure they comply with these Terms. Each user must have a unique login; sharing credentials is prohibited.</p>
+                </div>
+
+                <div id="subscription" class="terms-section">
+                    <h2>5. Subscription Plans, Billing & Payment</h2>
+                    
+                    <h3>5.1 Subscription Plans</h3>
+                    <p>The Service is offered in three tiers: Starter, Professional, and Enterprise. Each plan includes different features, user limits, and support levels as described on our pricing page. Enterprise plans may include custom terms negotiated separately.</p>
+                    
+                    <h3>5.2 Billing</h3>
+                    <p>Subscription fees are billed monthly or annually in advance, based on your selected billing cycle. All fees are in British Pounds Sterling (GBP) unless otherwise agreed in writing.</p>
+                    
+                    <h3>5.3 Payment Terms</h3>
+                    <ul>
+                        <li>Payment is due at the start of each billing period</li>
+                        <li>You authorize us to charge your designated payment method automatically</li>
+                        <li>Failed payments may result in service suspension after 7 days</li>
+                        <li>Late payments may incur interest at 1.5% per month or the maximum rate permitted by law</li>
+                    </ul>
+                    
+                    <h3>5.4 Price Changes</h3>
+                    <p>We may change subscription prices with 30 days' notice. Price changes will take effect at the start of your next billing cycle. Founding Client Program participants are exempt from price increases for the duration of their lifetime discount.</p>
+                    
+                    <h3>5.5 Refunds</h3>
+                    <p>Subscription fees are non-refundable except as required by law or as explicitly stated in these Terms. If you cancel during a billing period, you will retain access until the end of that period, but no refund will be issued for unused time.</p>
+                    
+                    <h3>5.6 Taxes</h3>
+                    <p>All fees are exclusive of applicable taxes, duties, and similar charges. You are responsible for all such charges in addition to the subscription fees.</p>
+                </div>
+
+                <div id="use-restrictions" class="terms-section">
+                    <h2>6. Acceptable Use Policy</h2>
+                    
+                    <h3>6.1 Permitted Use</h3>
+                    <p>You may use the Service only for lawful purposes and in accordance with these Terms. The Service is designed for use by law firms and legal professionals for business intelligence and practice management purposes.</p>
+                    
+                    <h3>6.2 Prohibited Activities</h3>
+                    <p>You agree not to:</p>
+                    <ul>
+                        <li>Violate any applicable laws or regulations</li>
+                        <li>Infringe on intellectual property rights of Cognify or third parties</li>
+                        <li>Upload viruses, malware, or malicious code</li>
+                        <li>Attempt to gain unauthorized access to the Service or related systems</li>
+                        <li>Interfere with or disrupt the Service or servers</li>
+                        <li>Reverse engineer, decompile, or disassemble any part of the Service</li>
+                        <li>Use the Service to develop competing products or services</li>
+                        <li>Remove or obscure proprietary notices or labels</li>
+                        <li>Share your account credentials or allow unauthorized access</li>
+                        <li>Use the Service to store or transmit content that is illegal, defamatory, or violates third-party rights</li>
+                        <li>Resell, sublicense, or otherwise commercialize access to the Service without our written permission</li>
+                    </ul>
+                    
+                    <h3>6.3 Enforcement</h3>
+                    <p>We reserve the right to investigate and take appropriate action against anyone who violates this policy, including suspending or terminating accounts and reporting illegal activity to law enforcement.</p>
+                </div>
+
+                <div id="data" class="terms-section">
+                    <h2>7. Customer Data & Privacy</h2>
+                    
+                    <h3>7.1 Your Data</h3>
+                    <p>You retain all rights, title, and interest in your Customer Data. We claim no ownership rights over your data. You are solely responsible for the accuracy, quality, and legality of your Customer Data and the means by which you acquired it.</p>
+                    
+                    <h3>7.2 Our Use of Your Data</h3>
+                    <p>We will use Customer Data only to:</p>
+                    <ul>
+                        <li>Provide, maintain, and improve the Service</li>
+                        <li>Respond to your support requests</li>
+                        <li>Generate aggregated, anonymized analytics (never for training AI models or sharing with third parties)</li>
+                        <li>Comply with legal obligations</li>
+                    </ul>
+                    
+                    <h3>7.3 Data Security</h3>
+                    <p>We implement industry-standard security measures to protect Customer Data, including encryption at rest and in transit. However, no method of transmission or storage is 100% secure. See our <a href="/security" style="color: var(--indigo); font-weight: 700;">Security & Compliance page</a> for detailed information.</p>
+                    
+                    <h3>7.4 Data Processing</h3>
+                    <p>We process Customer Data in accordance with applicable data protection laws, including GDPR. Our data processing practices are detailed in our <a href="/privacy" style="color: var(--indigo); font-weight: 700;">Privacy Policy</a>, which is incorporated into these Terms by reference.</p>
+                    
+                    <h3>7.5 Data Portability & Deletion</h3>
+                    <p>You may export your Customer Data at any time through the Service. Upon termination, you have 90 days to export your data before it is permanently deleted. We will permanently delete all Customer Data within 90 days of termination unless legal obligations require longer retention.</p>
+                </div>
+
+                <div id="ip" class="terms-section">
+                    <h2>8. Intellectual Property Rights</h2>
+                    
+                    <h3>8.1 Cognify Property</h3>
+                    <p>The Service, including all software, algorithms, designs, text, graphics, interfaces, and other content, is owned by Cognify and protected by copyright, trademark, and other intellectual property laws. These Terms do not grant you any ownership rights in the Service.</p>
+                    
+                    <h3>8.2 License to Use</h3>
+                    <p>Subject to these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to access and use the Service during your subscription period solely for your internal business purposes.</p>
+                    
+                    <h3>8.3 Feedback</h3>
+                    <p>If you provide feedback, suggestions, or ideas about the Service, you grant us a worldwide, perpetual, irrevocable, royalty-free license to use such feedback without any obligation to you.</p>
+                    
+                    <h3>8.4 Trademarks</h3>
+                    <p>"Cognify Legal," the Cognify logo, and other marks are trademarks of Cognify Legal Limited. You may not use these marks without our prior written permission.</p>
+                </div>
+
+                <div id="warranties" class="terms-section">
+                    <h2>9. Warranties & Disclaimers</h2>
+                    
+                    <h3>9.1 Service Availability</h3>
+                    <p>We strive to provide reliable service availability. Enterprise plans include specific SLA commitments as detailed in your agreement. For Starter and Professional plans, we target 99.5% uptime but do not guarantee specific availability levels.</p>
+                    
+                    <h3>9.2 Disclaimer of Warranties</h3>
+                    <p>EXCEPT AS EXPRESSLY PROVIDED IN THESE TERMS, THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.</p>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Important:</strong> Cognify is a business intelligence tool. We do not provide legal advice. The insights and analytics provided by the Service are for informational purposes only and should not be relied upon as legal, financial, or professional advice. You are responsible for making your own independent judgments based on the information provided.</p>
+                    </div>
+                    
+                    <h3>9.3 Third-Party Services</h3>
+                    <p>The Service integrates with third-party systems (e.g., Microsoft 365, practice management systems). We are not responsible for the availability, performance, or security of these third-party services. Changes to third-party APIs or services may affect functionality.</p>
+                </div>
+
+                <div id="liability" class="terms-section">
+                    <h2>10. Limitation of Liability</h2>
+                    
+                    <h3>10.1 Limitation of Damages</h3>
+                    <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL COGNIFY BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, REVENUE, DATA, OR USE, WHETHER IN AN ACTION IN CONTRACT, TORT, OR OTHERWISE, EVEN IF COGNIFY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+                    
+                    <h3>10.2 Cap on Liability</h3>
+                    <p>COGNIFY'S TOTAL LIABILITY ARISING OUT OF OR RELATED TO THESE TERMS OR THE SERVICE SHALL NOT EXCEED THE AMOUNT PAID BY YOU TO COGNIFY IN THE 12 MONTHS PRECEDING THE EVENT GIVING RISE TO LIABILITY, OR £1,000, WHICHEVER IS GREATER.</p>
+                    
+                    <h3>10.3 Exceptions</h3>
+                    <p>The limitations in this section do not apply to:</p>
+                    <ul>
+                        <li>Our indemnification obligations</li>
+                        <li>Your payment obligations</li>
+                        <li>Your breach of intellectual property rights</li>
+                        <li>Liability that cannot be excluded under applicable law</li>
+                    </ul>
+                </div>
+
+                <div id="termination" class="terms-section">
+                    <h2>11. Term, Termination & Suspension</h2>
+                    
+                    <h3>11.1 Term</h3>
+                    <p>These Terms begin when you first access the Service and continue until terminated by either party.</p>
+                    
+                    <h3>11.2 Termination by You</h3>
+                    <p>You may cancel your subscription at any time through your account settings or by contacting support. Cancellation takes effect at the end of your current billing period. No refunds will be provided for partial months.</p>
+                    
+                    <h3>11.3 Termination by Us</h3>
+                    <p>We may terminate or suspend your access immediately, without prior notice, if:</p>
+                    <ul>
+                        <li>You breach these Terms</li>
+                        <li>Your payment fails and remains unpaid for 30 days</li>
+                        <li>Your use poses a security risk to the Service or other users</li>
+                        <li>We are required to do so by law</li>
+                        <li>We decide to discontinue the Service (with 90 days' notice)</li>
+                    </ul>
+                    
+                    <h3>11.4 Effect of Termination</h3>
+                    <p>Upon termination:</p>
+                    <ul>
+                        <li>Your right to access the Service immediately ceases</li>
+                        <li>You must cease all use of the Service</li>
+                        <li>You have 90 days to export your Customer Data</li>
+                        <li>All fees owed remain due and payable</li>
+                        <li>Sections that by their nature should survive termination will continue to apply</li>
+                    </ul>
+                </div>
+
+                <div id="changes" class="terms-section">
+                    <h2>12. Changes to Terms</h2>
+                    <p>We may modify these Terms at any time. We will provide notice of material changes via email or through the Service at least 30 days before they take effect. Your continued use of the Service after changes take effect constitutes acceptance of the modified Terms.</p>
+                    <p>If you do not agree to the modified Terms, you must stop using the Service and cancel your subscription before the changes take effect.</p>
+                </div>
+
+                <div id="governing-law" class="terms-section">
+                    <h2>13. Governing Law & Dispute Resolution</h2>
+                    
+                    <h3>13.1 Governing Law</h3>
+                    <p>These Terms are governed by and construed in accordance with the laws of England and Wales, without regard to conflict of law principles.</p>
+                    
+                    <h3>13.2 Jurisdiction</h3>
+                    <p>You agree that any dispute arising out of or relating to these Terms or the Service shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+                    
+                    <h3>13.3 Dispute Resolution</h3>
+                    <p>Before initiating any formal proceedings, you agree to first attempt to resolve any dispute informally by contacting us at legal@cognifylegal.com. We will attempt to resolve disputes in good faith.</p>
+                </div>
+
+                <div id="general" class="terms-section">
+                    <h2>14. General Provisions</h2>
+                    
+                    <h3>14.1 Entire Agreement</h3>
+                    <p>These Terms, together with our Privacy Policy and any additional terms specific to your Subscription Plan, constitute the entire agreement between you and Cognify regarding the Service.</p>
+                    
+                    <h3>14.2 Severability</h3>
+                    <p>If any provision of these Terms is found to be unenforceable, the remaining provisions will remain in full effect.</p>
+                    
+                    <h3>14.3 Waiver</h3>
+                    <p>Our failure to enforce any right or provision of these Terms will not be deemed a waiver of such right or provision.</p>
+                    
+                    <h3>14.4 Assignment</h3>
+                    <p>You may not assign or transfer these Terms or your account without our prior written consent. We may assign these Terms without restriction.</p>
+                    
+                    <h3>14.5 Force Majeure</h3>
+                    <p>Neither party shall be liable for any failure to perform due to causes beyond its reasonable control, including acts of God, war, terrorism, internet failures, or government actions.</p>
+                    
+                    <h3>14.6 Export Compliance</h3>
+                    <p>You agree to comply with all applicable export and import laws and regulations in your use of the Service.</p>
+                    
+                    <h3>14.7 No Agency</h3>
+                    <p>Nothing in these Terms creates any agency, partnership, or joint venture between you and Cognify.</p>
+                </div>
+
+                <div id="contact" class="terms-section">
+                    <h2>15. Contact Information</h2>
+                    <p>If you have questions about these Terms, please contact us:</p>
+                    <ul>
+                        <li><strong>Email:</strong> legal@cognifylegal.com</li>
+                        <li><strong>General Inquiries:</strong> hello@cognifylegal.com</li>
+                        <li><strong>Support:</strong> support@cognifylegal.com</li>
+                    </ul>
+                    <p><strong>Company Information:</strong><br>
+                    Cognify Legal Limited<br>
+                    Registered in England and Wales<br>
+                    Company Number: [To be assigned]</p>
+                </div>
+
+                <!-- Contact CTA -->
+                <div class="contact-section">
+                    <h3>Questions About These Terms?</h3>
+                    <p>If you have questions or need clarification about any part of our Terms of Service, we're here to help.</p>
+                    <a href="mailto:legal@cognifylegal.com" class="contact-email">legal@cognifylegal.com</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Cognify Legal</h3>
+                <p>Intelligence, not dashboards. Purpose-built for mid-market UK law firms seeking data-driven decision making without the complexity of traditional BI.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="/features">Features</a></li>
+                    <li><a href="/integrations">Integrations</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/security">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/careers">Careers</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/docs">Documentation</a></li>
+                    <li><a href="/case-studies">Case Studies</a></li>
+                    <li><a href="/support">Support</a></li>
+                    <li><a href="/book-demo">Book Demo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Cognify Legal. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+        </div>
+    </footer>
+</body>
+</html>

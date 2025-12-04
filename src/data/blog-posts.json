@@ -1,0 +1,92 @@
+{
+  "categories": [
+    "All Posts",
+    "Legal Tech",
+    "Business Intelligence",
+    "Product Updates",
+    "Law Firm Operations",
+    "Case Studies",
+    "Company"
+  ],
+  "featuredPost": {
+    "slug": "why-traditional-bi-fails-in-law-firms",
+    "title": "Why Traditional BI Fails in Law Firms: The £100K Problem",
+    "excerpt": "After witnessing dozens of failed BI implementations across enterprises, one pattern became clear: law firms invest heavily in Power BI and Tableau, achieve single-digit adoption rates, and waste massive resources. Here's why it happens—and what needs to change.",
+    "category": "Business Intelligence",
+    "date": "December 1, 2024",
+    "imageAlt": "FEATURED POST IMAGE\n\nHero image for \"Why Traditional BI Fails in Law Firms\""
+  },
+  "posts": [
+    {
+      "slug": "two-failure-modes-of-business-intelligence",
+      "title": "The Two Failure Modes of Business Intelligence",
+      "excerpt": "People don't go look at dashboards. And when they do, they don't know what questions to ask. Understanding these two fundamental problems is essential to building BI that actually works.",
+      "category": "Business Intelligence",
+      "date": "November 28, 2024",
+      "imageAlt": "POST IMAGE\n\n\"The Two Failure Modes of Business Intelligence\""
+    },
+    {
+      "slug": "intelligence-where-you-work-microsoft-365",
+      "title": "Intelligence Where You Work: The Microsoft 365 Advantage",
+      "excerpt": "Why embedding intelligence into Word, Excel, PowerPoint, and Outlook eliminates the adoption problem that plagues standalone BI platforms. Zero training overhead, instant value.",
+      "category": "Product Updates",
+      "date": "November 25, 2024",
+      "imageAlt": "POST IMAGE\n\n\"Intelligence Where You Work: The Microsoft 365 Advantage\""
+    },
+    {
+      "slug": "proactive-vs-reactive-intelligence",
+      "title": "Proactive vs. Reactive Intelligence in Law Firms",
+      "excerpt": "The difference between answering questions when asked versus surfacing critical issues before they're problems. Why the Intelligence Feed concept changes everything for busy partners.",
+      "category": "Legal Tech",
+      "date": "November 22, 2024",
+      "imageAlt": "POST IMAGE\n\n\"Proactive vs. Reactive Intelligence in Law Firms\""
+    },
+    {
+      "slug": "actionstep-to-insights-integration",
+      "title": "From ActionStep to Insights: Practice Management Integration",
+      "excerpt": "How we built our ActionStep integration to pull matter data, time entries, invoices, and client information in real-time. Technical deep dive into the architecture.",
+      "category": "Product Updates",
+      "date": "November 18, 2024",
+      "imageAlt": "POST IMAGE\n\n\"From ActionStep to Insights: Practice Management Integration\""
+    },
+    {
+      "slug": "founder-market-fit-story",
+      "title": "The Founder-Market Fit Story: 10 Years of BI Failures",
+      "excerpt": "Why a decade of enterprise consulting witnessing the same BI implementation failures led to building Cognify. The pattern recognition that created this company.",
+      "category": "Company",
+      "date": "November 15, 2024",
+      "imageAlt": "POST IMAGE\n\n\"The Founder-Market Fit Story\""
+    },
+    {
+      "slug": "data-driven-law-firm-leadership",
+      "title": "Data-Driven Law Firm Leadership: Beyond Gut Feel",
+      "excerpt": "How mid-market law firms can transition from intuition-based decisions to data-informed strategy without requiring data teams or technical expertise.",
+      "category": "Law Firm Operations",
+      "date": "November 12, 2024",
+      "imageAlt": "POST IMAGE\n\n\"Data-Driven Law Firm Leadership\""
+    }
+  ],
+  "upcomingTopics": [
+    {
+      "icon": "📊",
+      "title": "BI Implementation Playbooks",
+      "description": "Step-by-step guides for implementing business intelligence without the typical failure patterns"
+    },
+    {
+      "icon": "⚖️",
+      "title": "Law Firm KPIs Explained",
+      "description": "Deep dives into the metrics that actually matter: realization rates, utilization, lock-up, and more"
+    },
+    {
+      "icon": "🤖",
+      "title": "AI in Legal Operations",
+      "description": "How artificial intelligence is transforming practice management and decision-making"
+    },
+    {
+      "icon": "🚀",
+      "title": "Building in Public",
+      "description": "Our journey building Cognify: product decisions, customer learnings, and startup realities"
+    }
+  ]
+}
+

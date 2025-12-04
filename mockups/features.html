@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - Cognify Legal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --indigo: #4F46E5;
+            --lime: #84CC16;
+            --navy: #1E293B;
+            --charcoal: #0F172A;
+            --grey-light: #F8FAFC;
+            --grey-mid: #E2E8F0;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--navy);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--grey-mid);
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+        
+        .logo-accent {
+            color: var(--indigo);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--indigo);
+        }
+        
+        .nav-cta {
+            background: var(--lime);
+            color: var(--charcoal);
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(132, 204, 22, 0.25);
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(132, 204, 22, 0.35);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 50%, #7C3AED 100%);
+            padding: 5rem 5% 4rem;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="1" cy="1" r="1" fill="white" opacity="0.1"/></svg>');
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-60px); }
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+        
+        /* Overview Section */
+        .overview-section {
+            padding: 6rem 5%;
+            background: var(--grey-light);
+        }
+        
+        .overview-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .overview-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+        
+        .overview-content > p {
+            font-size: 1.15rem;
+            color: var(--navy);
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            line-height: 1.7;
+        }
+        
+        .feature-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .pillar-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .pillar-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .pillar-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .pillar-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+        
+        .pillar-card p {
+            color: var(--navy);
+            line-height: 1.7;
+        }
+        
+        /* Feature Section Base */
+        .feature-section {
+            padding: 6rem 5%;
+        }
+        
+        .feature-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--indigo);
+            margin-bottom: 1rem;
+        }
+        
+        .section-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .section-header p {
+            font-size: 1.15rem;
+            color: var(--navy);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        /* Co-Pilot Features */
+        .copilot-section {
+            background: var(--white);
+        }
+        
+        .app-feature {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 5rem;
+            align-items: center;
+        }
+        
+        .app-feature:last-child {
+            margin-bottom: 0;
+        }
+        
+        .app-feature.reverse {
+            direction: rtl;
+        }
+        
+        .app-feature.reverse > * {
+            direction: ltr;
+        }
+        
+        .feature-visual {
+            position: relative;
+        }
+        
+        .screenshot-placeholder {
+            background: linear-gradient(135deg, #E0E7FF 0%, #F3E8FF 100%);
+            border: 2px dashed var(--indigo);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--navy);
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .screenshot-placeholder strong {
+            display: block;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+        
+        .screenshot-placeholder small {
+            display: block;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            max-width: 90%;
+            line-height: 1.5;
+        }
+        
+        .feature-details h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-description {
+            font-size: 1.1rem;
+            color: var(--navy);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        
+        .capability-list {
+            list-style: none;
+        }
+        
+        .capability-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+            align-items: start;
+        }
+        
+        .capability-icon {
+            background: var(--lime);
+            color: var(--charcoal);
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+        
+        .capability-item strong {
+            color: var(--charcoal);
+            font-weight: 700;
+        }
+        
+        /* Intelligence Feed Section */
+        .feed-section {
+            background: var(--charcoal);
+            color: var(--white);
+        }
+        
+        .feed-section .section-label {
+            color: var(--lime);
+        }
+        
+        .feed-section .section-header h2 {
+            color: var(--white);
+        }
+        
+        .feed-section .section-header p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .feed-categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .category-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .category-icon {
+            font-size: 2rem;
+        }
+        
+        .category-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+        
+        .alert-examples {
+            list-style: none;
+        }
+        
+        .alert-example {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .alert-example:last-child {
+            border-bottom: none;
+        }
+        
+        .alert-example:before {
+            content: "→";
+            color: var(--lime);
+            margin-right: 0.75rem;
+            font-weight: 700;
+        }
+        
+        .feed-visual-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 3rem;
+        }
+        
+        .feed-visual-section .screenshot-placeholder {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Dashboard Section */
+        .dashboard-section {
+            background: var(--grey-light);
+        }
+        
+        .dashboard-showcase {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .kpi-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+        
+        .kpi-category {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--indigo);
+            margin-bottom: 1rem;
+        }
+        
+        .kpi-list {
+            list-style: none;
+        }
+        
+        .kpi-list li {
+            padding: 0.5rem 0;
+            color: var(--navy);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .kpi-list li:before {
+            content: "•";
+            color: var(--lime);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .dashboard-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .dashboard-feature-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+        
+        .feature-icon-large {
+            background: linear-gradient(135deg, var(--indigo), var(--lime));
+            color: var(--white);
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1.25rem;
+        }
+        
+        .dashboard-feature-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.75rem;
+        }
+        
+        .dashboard-feature-card p {
+            color: var(--navy);
+            line-height: 1.6;
+        }
+        
+        /* Platform Features */
+        .platform-section {
+            background: var(--white);
+        }
+        
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .platform-card {
+            background: var(--grey-light);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--indigo);
+        }
+        
+        .platform-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.75rem;
+        }
+        
+        .platform-card p {
+            color: var(--navy);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .platform-details {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+        
+        .platform-details li {
+            padding: 0.4rem 0;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .platform-details li:before {
+            content: "✓";
+            color: var(--lime);
+            font-weight: 700;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: var(--lime);
+            padding: 6rem 5%;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .cta-content p {
+            font-size: 1.25rem;
+            color: var(--navy);
+            margin-bottom: 2.5rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-secondary {
+            background: var(--white);
+            color: var(--charcoal);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 2px solid var(--charcoal);
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--charcoal);
+            color: var(--white);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            padding: 4rem 5% 2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            line-height: 1.7;
+        }
+        
+        .footer-links h4 {
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--lime);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--lime);
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .feature-pillars,
+            .feed-categories,
+            .dashboard-features,
+            .platform-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .app-feature,
+            .dashboard-showcase {
+                grid-template-columns: 1fr;
+            }
+            
+            .app-feature.reverse {
+                direction: ltr;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            nav {
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 4rem 5% 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .feature-details h3 {
+                font-size: 1.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="logo">
+            <span class="logo-accent">Cognify</span> Legal
+        </a>
+        <ul class="nav-links">
+            <li><a href="/#solution">Solution</a></li>
+            <li><a href="/#how-it-works">How It Works</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a class="nav-cta" href="/book-demo">Book a Demo</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Features Built for Law Firms</h1>
+            <p>Everything you need to make data-driven decisions without the complexity of traditional BI. Intelligence where you work, when you need it.</p>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="overview-section">
+        <div class="overview-content">
+            <h2>Three Pillars of Intelligence</h2>
+            <p>Cognify delivers intelligence through three integrated components designed to eliminate the adoption problems of traditional BI platforms.</p>
+            
+            <div class="feature-pillars">
+                <div class="pillar-card">
+                    <div class="pillar-icon">💬</div>
+                    <h3>Co-Pilot Integration</h3>
+                    <p>Reactive intelligence embedded in Word, Excel, PowerPoint, Outlook, and Teams. Get answers in the context of your actual work.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">🔔</div>
+                    <h3>Intelligence Feed</h3>
+                    <p>Proactive alerts that surface critical insights before they become problems. Never miss revenue leaks or client risks again.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">📊</div>
+                    <h3>Performance Dashboard</h3>
+                    <p>Clean, prebuilt KPI dashboard for management teams. No configuration nightmare, no data expertise required.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Co-Pilot Features -->
+    <section class="feature-section copilot-section">
+        <div class="feature-content">
+            <div class="section-header">
+                <div class="section-label">Reactive Intelligence</div>
+                <h2>Microsoft Co-Pilot Integration</h2>
+                <p>Cognify works as an intelligent agent inside Microsoft 365, providing instant access to your firm's data without leaving your workflow.</p>
+            </div>
+
+            <!-- Word Integration -->
+            <div class="app-feature">
+                <div class="feature-visual">
+                    <div class="screenshot-placeholder">
+                        <strong>WORD INTEGRATION</strong>
+                        <small>Screenshot showing Microsoft Word document with Cognify Co-Pilot sidebar. User is drafting a client proposal and has asked "Insert billing history for Client ABC for the last 6 months." Sidebar shows formatted table ready to insert into document with one click. Demonstrates seamless document creation workflow.</small>
+                    </div>
+                </div>
+                <div class="feature-details">
+                    <h3>Work in Word</h3>
+                    <p class="feature-description">Draft proposals, reports, and client communications with live data from your practice management system at your fingertips.</p>
+                    <ul class="capability-list">
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Insert live data:</strong> Matter status, billing history, team assignments, client details—formatted and ready</span>
+                        </li>
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Template population:</strong> Auto-fill proposal templates with current matter data</span>
+                        </li>
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Natural language queries:</strong> Ask in plain English, get formatted tables and text</span>
+                        </li>
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Contextual suggestions:</strong> Based on document content, Cognify suggests relevant data</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Excel Integration -->
+            <div class="app-feature reverse">
+                <div class="feature-visual">
+                    <div class="screenshot-placeholder">
+                        <strong>EXCEL INTEGRATION</strong>
+                        <small>Screenshot showing Excel spreadsheet being populated by Cognify. Natural language query "Show me revenue by practice area, last 6 months with month-over-month comparison" resulting in automatically generated table with data, formulas, and conditional formatting. Shows the power of instant data analysis.</small>
+                    </div>
+                </div>
+                <div class="feature-details">
+                    <h3>Analyze in Excel</h3>
+                    <p class="feature-description">Build financial models and perform deep analysis with data that flows directly from your practice management system.</p>
+                    <ul class="capability-list">
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Structured data queries:</strong> Revenue projections, matter profitability, client concentration—instantly</span>
+                        </li>
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Pivot tables & analysis:</strong> Create dynamic reports from live practice management data</span>
+                        </li>
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Financial modeling:</strong> Real-time revenue and cost data for accurate forecasting</span>
+                        </li>
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Refresh on demand:</strong> Keep analysis current as data changes throughout the day</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PowerPoint Integration -->
+            <div class="app-feature">
+                <div class="feature-visual">
+                    <div class="screenshot-placeholder">
+                        <strong>POWERPOINT INTEGRATION</strong>
+                        <small>Screenshot showing PowerPoint with Cognify generating a board presentation slide. Command "Create practice area performance slide with Q3 results" generates professional slide with charts showing revenue, utilization, and growth metrics. Perfect for executive presentations with current data.</small>
+                    </div>
+                </div>
+                <div class="feature-details">
+                    <h3>Present in PowerPoint</h3>
+                    <p class="feature-description">Create compelling board presentations and client decks with current KPIs and performance metrics that update automatically.</p>
+                    <ul class="capability-list">
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Insert live charts & KPIs:</strong> Practice area performance, pipeline analysis, financial metrics</span>
+                        </li>
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Generate slides:</strong> "Create practice area performance slide" → professional slide with current data</span>
+                        </li>
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Update presentations:</strong> Refresh data in existing decks with one command</span>
+                        </li>
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Template library:</strong> Pre-built slides for common board and client presentations</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Outlook Integration -->
+            <div class="app-feature reverse">
+                <div class="feature-visual">
+                    <div class="screenshot-placeholder">
+                        <strong>OUTLOOK INTEGRATION</strong>
+                        <small>Screenshot showing Outlook email composition with Cognify contextual sidebar. As user types email to "Client ABC", sidebar automatically shows: outstanding invoices (£15K overdue), current matter status (3 active matters), and relationship health score. Demonstrates contextual intelligence without user needing to ask.</small>
+                    </div>
+                </div>
+                <div class="feature-details">
+                    <h3>Context in Outlook</h3>
+                    <p class="feature-description">See critical client and matter intelligence right in your inbox—before you hit send on that email.</p>
+                    <ul class="capability-list">
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Contextual sidebar:</strong> Client intelligence appears automatically when composing emails</span>
+                        </li>
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Smart detection:</strong> Cognify identifies client names and surfaces relevant insights</span>
+                        </li>
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Critical alerts:</strong> "This client has £15K outstanding invoices" shown at the right moment</span>
+                        </li>
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Quick actions:</strong> Insert matter status or billing summary directly into email body</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Teams Integration -->
+            <div class="app-feature">
+                <div class="feature-visual">
+                    <div class="screenshot-placeholder">
+                        <strong>TEAMS CHAT</strong>
+                        <small>Screenshot showing Teams chat with Cognify bot. Natural conversation showing query "What's our litigation team's utilization this month?" followed by clear response with percentage, comparison to target, and breakdown by fee earner. Shows conversational interface with multi-turn context.</small>
+                    </div>
+                </div>
+                <div class="feature-details">
+                    <h3>Chat in Teams</h3>
+                    <p class="feature-description">Ask questions in natural language and get instant answers from all connected systems. No special commands or syntax required.</p>
+                    <ul class="capability-list">
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Conversational interface:</strong> Ask questions like you're talking to a colleague</span>
+                        </li>
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Multi-turn conversations:</strong> Follow-up questions maintain context</span>
+                        </li>
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Cross-system queries:</strong> Data from practice management, finance, HR, and CRM</span>
+                        </li>
+                        <li class="capability-item">
+                            <span class="capability-icon">✓</span>
+                            <span><strong>Shareable insights:</strong> Export answers to other M365 apps with one click</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intelligence Feed -->
+    <section class="feature-section feed-section">
+        <div class="feature-content">
+            <div class="section-header">
+                <div class="section-label">Proactive Intelligence</div>
+                <h2>Intelligence Feed</h2>
+                <p>Continuous monitoring across all systems surfacing insights, alerts, and recommendations before issues become crises.</p>
+            </div>
+
+            <div class="feed-categories">
+                <div class="category-card">
+                    <div class="category-header">
+                        <span class="category-icon">💰</span>
+                        <h3>Revenue Protection</h3>
+                    </div>
+                    <ul class="alert-examples">
+                        <li class="alert-example">Client ABC hasn't been invoiced in 45 days despite 12.5 hours of unbilled time—potential £4,800 revenue leak</li>
+                        <li class="alert-example">Invoice #1847 to Client XYZ is 60 days overdue (£23,500)—collection risk increasing</li>
+                        <li class="alert-example">Matter #2341 has £18K unbilled time—approaching write-off risk threshold</li>
+                        <li class="alert-example">Unusual billing pattern detected: Partner Sarah's realization rate dropped 15% this month</li>
+                    </ul>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-header">
+                        <span class="category-icon">📊</span>
+                        <h3>Utilization & Capacity</h3>
+                    </div>
+                    <ul class="alert-examples">
+                        <li class="alert-example">Litigation team utilization dropped 8% this week—three matters went quiet simultaneously</li>
+                        <li class="alert-example">Associate Tom has recorded no billable time in 5 days—check for capacity or assignment issues</li>
+                        <li class="alert-example">Commercial team at 95% capacity—consider resource reallocation or hiring</li>
+                        <li class="alert-example">Matter velocity declining: 12 matters showing no activity for 14+ days</li>
+                    </ul>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-header">
+                        <span class="category-icon">⚠️</span>
+                        <h3>Risk Management</h3>
+                    </div>
+                    <ul class="alert-examples">
+                        <li class="alert-example">Partner Sarah has 5 matters approaching statute of limitations in next 30 days</li>
+                        <li class="alert-example">Matter #4523 exceeded budget by 35%—client notification recommended</li>
+                        <li class="alert-example">Compliance deadline: 3 regulatory filings due within 7 days</li>
+                        <li class="alert-example">Potential conflict detected: New matter intake involves existing adverse party</li>
+                    </ul>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-header">
+                        <span class="category-icon">🤝</span>
+                        <h3>Client Relationship</h3>
+                    </div>
+                    <ul class="alert-examples">
+                        <li class="alert-example">Client XYZ: No contact in 90 days, annual retainer renews in 45 days—schedule check-in</li>
+                        <li class="alert-example">Client ABC has 3 matters with budget overruns—satisfaction risk detected</li>
+                        <li class="alert-example">Cross-sell opportunity: Client using only commercial services, has corporate structure suggesting M&A needs</li>
+                        <li class="alert-example">Top client concentration risk: Top 3 clients represent 67% of revenue</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feed-visual-section">
+                <div class="screenshot-placeholder">
+                    <strong>INTELLIGENCE FEED INTERFACE</strong>
+                    <small>Screenshot showing Microsoft Teams Intelligence Feed tab with clean card-based interface. Shows 5-6 prioritized alerts with clear visual hierarchy (red/amber/green status indicators), timestamps, and action buttons ("Investigate", "Snooze", "Mark Resolved", "Share with Team"). Demonstrates how critical insights interrupt workflow at the right time.</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Dashboard -->
+    <section class="feature-section dashboard-section">
+        <div class="feature-content">
+            <div class="section-header">
+                <div class="section-label">Executive View</div>
+                <h2>Performance Dashboard</h2>
+                <p>Clean, prebuilt KPI dashboard for management teams. No configuration expertise required—just answer simple questions to set targets.</p>
+            </div>
+
+            <div class="dashboard-showcase">
+                <div class="feature-visual">
+                    <div class="screenshot-placeholder">
+                        <strong>PERFORMANCE DASHBOARD</strong>
+                        <small>Screenshot showing clean Teams dashboard with KPI cards in grid layout. Each card shows: metric name, current value, target, variance indicator (green/amber/red), sparkline trend, and "View Details" link. Shows metrics like "Revenue Per Partner: £387K (Target: £400K, -3.25%)", "Utilization Rate: 82% (Target: 75%, +9.3%)", "Collection Rate: 94%". Professional but not overwhelming.</small>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 2rem; margin-bottom: 2rem; color: var(--charcoal);">Prebuilt KPIs</h3>
+                    <div class="kpi-grid">
+                        <div class="kpi-card">
+                            <div class="kpi-category">Financial Metrics</div>
+                            <ul class="kpi-list">
+                                <li>Revenue (total, by practice area, by partner)</li>
+                                <li>Revenue per partner/lawyer</li>
+                                <li>Collection rates & AR aging</li>
+                                <li>Matter profitability</li>
+                                <li>Lock-up (work to cash)</li>
+                            </ul>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-category">Operational Metrics</div>
+                            <ul class="kpi-list">
+                                <li>Utilization by fee earner</li>
+                                <li>Realization rates</li>
+                                <li>Matter velocity</li>
+                                <li>WIP aging</li>
+                                <li>New matter intake</li>
+                            </ul>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-category">Client Metrics</div>
+                            <ul class="kpi-list">
+                                <li>Client concentration</li>
+                                <li>Lifetime value & retention</li>
+                                <li>Matter volume per client</li>
+                                <li>Client acquisition cost</li>
+                            </ul>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-category">People Metrics</div>
+                            <ul class="kpi-list">
+                                <li>Headcount by role</li>
+                                <li>Leverage ratios</li>
+                                <li>Productivity per fee earner</li>
+                                <li>Capacity utilization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-features">
+                <div class="dashboard-feature-card">
+                    <div class="feature-icon-large">💬</div>
+                    <h4>Guided Setup</h4>
+                    <p>Cognify asks simple questions to configure your dashboard: "What's your target revenue per partner?" No data modeling expertise needed.</p>
+                </div>
+                <div class="dashboard-feature-card">
+                    <div class="feature-icon-large">🎯</div>
+                    <h4>Smart Defaults</h4>
+                    <p>Pre-populated targets based on firm size, practice areas, and legal industry benchmarks. Customize or accept recommendations.</p>
+                </div>
+                <div class="dashboard-feature-card">
+                    <div class="feature-icon-large">🔔</div>
+                    <h4>Proactive Maintenance</h4>
+                    <p>Intelligence Feed reminds you to review targets near year-end, adjust tolerances quarterly, update thresholds when conditions change.</p>
+                </div>
+                <div class="dashboard-feature-card">
+                    <div class="feature-icon-large">👥</div>
+                    <h4>Role-Based Views</h4>
+                    <p>Managing partners see firm-wide metrics. Practice heads see their department. Partners see their portfolio. Everyone sees what matters to them.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Features -->
+    <section class="feature-section platform-section">
+        <div class="feature-content">
+            <div class="section-header">
+                <div class="section-label">Platform</div>
+                <h2>Enterprise-Grade Foundation</h2>
+                <p>Built for security, scalability, and reliability from day one.</p>
+            </div>
+
+            <div class="platform-grid">
+                <div class="platform-card">
+                    <h4>Multi-Tenant Architecture</h4>
+                    <p>Complete data isolation between firms with tenant-specific configuration and customization.</p>
+                    <ul class="platform-details">
+                        <li>Dedicated data partitions</li>
+                        <li>Independent configuration</li>
+                        <li>Scalable per tenant</li>
+                    </ul>
+                </div>
+
+                <div class="platform-card">
+                    <h4>Real-Time Synchronization</h4>
+                    <p>Webhooks and intelligent polling keep your data current across all connected systems.</p>
+                    <ul class="platform-details">
+                        <li>Sub-second data updates</li>
+                        <li>Conflict resolution</li>
+                        <li>Automatic retry logic</li>
+                    </ul>
+                </div>
+
+                <div class="platform-card">
+                    <h4>Security & Encryption</h4>
+                    <p>Bank-level security protecting your most sensitive client and matter data.</p>
+                    <ul class="platform-details">
+                        <li>AES-256 encryption (in transit & at rest)</li>
+                        <li>SOC 2 Type II (in progress)</li>
+                        <li>GDPR compliant</li>
+                    </ul>
+                </div>
+
+                <div class="platform-card">
+                    <h4>Access Controls</h4>
+                    <p>Granular role-based permissions with support for Chinese walls and conflict separation.</p>
+                    <ul class="platform-details">
+                        <li>Role-based permissions</li>
+                        <li>Matter-level access control</li>
+                        <li>Audit logging</li>
+                    </ul>
+                </div>
+
+                <div class="platform-card">
+                    <h4>API Gateway</h4>
+                    <p>Unified interface for all external integrations with intelligent caching and rate limiting.</p>
+                    <ul class="platform-details">
+                        <li>REST API access (Enterprise)</li>
+                        <li>Webhook notifications</li>
+                        <li>Query optimization</li>
+                    </ul>
+                </div>
+
+                <div class="platform-card">
+                    <h4>Reliability & Uptime</h4>
+                    <p>Built on enterprise cloud infrastructure with redundancy and monitoring.</p>
+                    <ul class="platform-details">
+                        <li>99.9% uptime SLA (Enterprise)</li>
+                        <li>Automated backups</li>
+                        <li>24/7 monitoring</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>See These Features in Action</h2>
+            <p>Book a personalized demo to see how Cognify delivers intelligence where your team actually works.</p>
+            <div class="cta-buttons">
+                <a href="/book-demo" class="btn-primary">Book a Demo</a>
+                <a href="/pricing" class="btn-secondary">View Pricing</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Cognify Legal</h3>
+                <p>Intelligence, not dashboards. Purpose-built for mid-market UK law firms seeking data-driven decision making without the complexity of traditional BI.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="/features">Features</a></li>
+                    <li><a href="/integrations">Integrations</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/security">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/careers">Careers</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/docs">Documentation</a></li>
+                    <li><a href="/case-studies">Case Studies</a></li>
+                    <li><a href="/support">Support</a></li>
+                    <li><a href="/book-demo">Book Demo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Cognify Legal. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+        </div>
+    </footer>
+</body>
+</html>

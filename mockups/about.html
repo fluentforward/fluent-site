@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Cognify Legal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --indigo: #4F46E5;
+            --lime: #84CC16;
+            --navy: #1E293B;
+            --charcoal: #0F172A;
+            --grey-light: #F8FAFC;
+            --grey-mid: #E2E8F0;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--navy);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--grey-mid);
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+        
+        .logo-accent {
+            color: var(--indigo);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--indigo);
+        }
+        
+        .nav-cta {
+            background: var(--lime);
+            color: var(--charcoal);
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(132, 204, 22, 0.25);
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(132, 204, 22, 0.35);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 50%, #7C3AED 100%);
+            padding: 5rem 5% 4rem;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="1" cy="1" r="1" fill="white" opacity="0.1"/></svg>');
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-60px); }
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+        
+        /* Mission Section */
+        .mission-section {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+        
+        .mission-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .mission-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+        
+        .mission-statement {
+            font-size: 1.35rem;
+            color: var(--navy);
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 3rem;
+        }
+        
+        .mission-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .pillar {
+            background: var(--grey-light);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .pillar-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .pillar h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.75rem;
+        }
+        
+        .pillar p {
+            color: var(--navy);
+            line-height: 1.7;
+        }
+        
+        /* Story Section */
+        .story-section {
+            padding: 6rem 5%;
+            background: var(--grey-light);
+        }
+        
+        .story-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--indigo);
+            margin-bottom: 1rem;
+        }
+        
+        .section-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .section-header p {
+            font-size: 1.15rem;
+            color: var(--navy);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        
+        .story-text {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+        
+        .story-text h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+        
+        .story-text p {
+            color: var(--navy);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+        
+        .story-text p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .story-highlight {
+            background: var(--lime);
+            padding: 3rem;
+            border-radius: 12px;
+            color: var(--charcoal);
+        }
+        
+        .story-highlight h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .insight-list {
+            list-style: none;
+        }
+        
+        .insight-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: start;
+        }
+        
+        .insight-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .insight-icon {
+            background: var(--charcoal);
+            color: var(--lime);
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 0.15rem;
+        }
+        
+        .insight-item p {
+            color: var(--navy);
+            line-height: 1.7;
+        }
+        
+        /* Founder Section */
+        .founder-section {
+            padding: 6rem 5%;
+            background: var(--charcoal);
+            color: var(--white);
+        }
+        
+        .founder-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .founder-section .section-label {
+            color: var(--lime);
+        }
+        
+        .founder-section .section-header h2 {
+            color: var(--white);
+        }
+        
+        .founder-section .section-header p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .founder-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        
+        .founder-profile {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .founder-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--indigo), var(--lime));
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        
+        .founder-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+        
+        .founder-title {
+            color: var(--lime);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .founder-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 1.25rem;
+        }
+        
+        .social-link:hover {
+            color: var(--lime);
+        }
+        
+        .founder-bio {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .founder-bio h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+        
+        .founder-bio p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+        
+        .founder-bio p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .experience-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        
+        .experience-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+        
+        .experience-item strong {
+            color: var(--lime);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        
+        .experience-item span {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Values Section */
+        .values-section {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+        
+        .values-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .value-card {
+            background: var(--grey-light);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border-top: 4px solid var(--indigo);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .value-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+        
+        .value-card p {
+            color: var(--navy);
+            line-height: 1.7;
+        }
+        
+        /* Founding Client Section */
+        .founding-section {
+            padding: 6rem 5%;
+            background: var(--lime);
+        }
+        
+        .founding-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .founding-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+        
+        .founding-content p {
+            font-size: 1.15rem;
+            color: var(--navy);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+        
+        .founding-benefits {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .founding-benefit {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: left;
+            display: flex;
+            gap: 1rem;
+            align-items: start;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .benefit-icon {
+            font-size: 1.75rem;
+            flex-shrink: 0;
+        }
+        
+        .founding-benefit strong {
+            display: block;
+            color: var(--charcoal);
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        
+        .founding-benefit p {
+            color: var(--navy);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .founding-cta {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-block;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+        }
+        
+        .founding-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 50%, #7C3AED 100%);
+            padding: 6rem 5%;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .cta-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: var(--lime);
+            color: var(--charcoal);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(132, 204, 22, 0.3);
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(132, 204, 22, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            padding: 4rem 5% 2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            line-height: 1.7;
+        }
+        
+        .footer-links h4 {
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--lime);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--lime);
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .mission-pillars,
+            .values-grid,
+            .founding-benefits {
+                grid-template-columns: 1fr;
+            }
+            
+            .story-grid,
+            .founder-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            nav {
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 4rem 5% 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-header h2,
+            .mission-content h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="logo">
+            <span class="logo-accent">Cognify</span> Legal
+        </a>
+        <ul class="nav-links">
+            <li><a href="/#solution">Solution</a></li>
+            <li><a href="/#how-it-works">How It Works</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a class="nav-cta" href="/book-demo">Book a Demo</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Building the Future of Legal Intelligence</h1>
+            <p>We're on a mission to solve the widespread failure of traditional BI in law firms—replacing unused dashboards with intelligence that meets lawyers where they work.</p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="mission-content">
+            <h2>Our Mission</h2>
+            <p class="mission-statement">
+                "To eliminate the £100K+ waste that law firms experience with traditional business intelligence by delivering intelligence where lawyers actually work—making data-driven decision making effortless, not burdensome."
+            </p>
+
+            <div class="mission-pillars">
+                <div class="pillar">
+                    <div class="pillar-icon">✨</div>
+                    <h3>Zero Friction</h3>
+                    <p>Intelligence appears in the tools lawyers use daily. No new apps, no training, no dashboards to remember.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon">🎯</div>
+                    <h3>Proactive, Not Reactive</h3>
+                    <p>Critical insights surface automatically before issues become crises. Stop asking what to look for.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon">🚀</div>
+                    <h3>Built for Law Firms</h3>
+                    <p>Purpose-designed for mid-market UK law firms, not adapted from generic enterprise BI.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="story-content">
+            <div class="section-header">
+                <div class="section-label">Our Story</div>
+                <h2>Why Cognify Exists</h2>
+                <p>Born from witnessing the same BI implementation failure pattern across dozens of enterprises over more than a decade.</p>
+            </div>
+
+            <div class="story-grid">
+                <div class="story-text">
+                    <h3>The Pattern Recognition</h3>
+                    <p>After more than a decade as an enterprise consultant, I watched the same story unfold repeatedly across industries: organizations invest £100K+ in BI platforms like Power BI and Tableau, spend 6-12 months building dashboards, and achieve single-digit adoption rates.</p>
+                    <p>The problem wasn't the technology. It was the fundamental assumption that people would open another application, know what questions to ask, and check dashboards regularly. They don't. They're too busy doing their actual jobs.</p>
+                    <p>But nowhere was this failure more pronounced—and more costly—than in law firms. Partners are billing at £400/hour. They're not spending time navigating BI tools. And yet, firms kept making the same investment, experiencing the same disappointment.</p>
+                </div>
+
+                <div class="story-highlight">
+                    <h3>Key Insights from a Decade of BI Failures</h3>
+                    <ul class="insight-list">
+                        <li class="insight-item">
+                            <div class="insight-icon">→</div>
+                            <p><strong>People don't go look:</strong> No matter how good your dashboards are, users won't open them regularly. They need intelligence in their workflow.</p>
+                        </li>
+                        <li class="insight-item">
+                            <div class="insight-icon">→</div>
+                            <p><strong>People don't know what to ask:</strong> Even when they check dashboards, users don't know which metrics matter. Critical issues go unnoticed.</p>
+                        </li>
+                        <li class="insight-item">
+                            <div class="insight-icon">→</div>
+                            <p><strong>Context matters:</strong> Generic BI tools don't understand law firm workflows, KPIs, or practice management systems.</p>
+                        </li>
+                        <li class="insight-item">
+                            <div class="insight-icon">→</div>
+                            <p><strong>Adoption is everything:</strong> The best insights are worthless if nobody sees them. Technology must adapt to users, not vice versa.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section class="founder-section">
+        <div class="founder-content">
+            <div class="section-header">
+                <div class="section-label">Leadership</div>
+                <h2>Meet the Founder</h2>
+                <p>Cognify was founded by someone who's seen both sides: the promise of BI and its consistent failure.</p>
+            </div>
+
+            <div class="founder-grid">
+                <div class="founder-profile">
+                    <div class="founder-image">👤</div>
+                    <h3 class="founder-name">Matt</h3>
+                    <p class="founder-title">Founder & CEO</p>
+                    <div class="founder-social">
+                        <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
+                        <a href="https://twitter.com" class="social-link" target="_blank">Twitter</a>
+                        <a href="mailto:matt@cognifylegal.com" class="social-link">Email</a>
+                    </div>
+                </div>
+
+                <div class="founder-bio">
+                    <h3>Founder-Market Fit</h3>
+                    <p>I spent over a decade as an enterprise consultant working with organizations across multiple sectors. My specialty? Implementing business intelligence systems and digital transformation initiatives. I was the person firms hired to "finally get their data working for them."</p>
+                    
+                    <p>The uncomfortable truth I discovered: the vast majority of these implementations failed to deliver value. Not because of technical issues, but because of human behavior. Partners wouldn't open dashboards. Fee earners wouldn't check reports. Critical insights sat unused while firms continued operating on gut feel.</p>
+                    
+                    <p>I saw this pattern most acutely in law firms. Despite investing enormous sums in BI platforms, adoption remained abysmal. Meanwhile, partners were making decisions worth millions based on incomplete information. Revenue leaked. Risks went unnoticed. Opportunities were missed.</p>
+                    
+                    <p>Cognify exists to solve this problem at its root. Not by building better dashboards, but by eliminating the need for dashboards entirely. By embedding intelligence into the Microsoft 365 tools lawyers already use and proactively surfacing what matters before they need to ask.</p>
+
+                    <ul class="experience-list">
+                        <li class="experience-item">
+                            <strong>Enterprise Consulting</strong>
+                            <span>10+ years implementing BI systems across industries</span>
+                        </li>
+                        <li class="experience-item">
+                            <strong>Legal Tech Expertise</strong>
+                            <span>Deep experience with practice management systems and law firm operations</span>
+                        </li>
+                        <li class="experience-item">
+                            <strong>Product Development</strong>
+                            <span>Building solutions that actually get adopted, not just deployed</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="values-content">
+            <div class="section-header">
+                <div class="section-label">Our Values</div>
+                <h2>How We Build</h2>
+                <p>The principles that guide every decision, from product design to customer relationships.</p>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3>Adoption Over Features</h3>
+                    <p>The best feature is worthless if nobody uses it. We prioritize making Cognify effortless to adopt over adding complexity. Zero training, zero friction, zero excuses.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Partner Success</h3>
+                    <p>Our founding clients aren't just customers—they're partners shaping the future of legal intelligence. Their feedback directly influences our roadmap.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <h3>Speed to Value</h3>
+                    <p>Traditional BI takes 6-12 months to deploy. We get firms live in 2 weeks. Fast implementation, immediate results, measurable outcomes.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🔍</div>
+                    <h3>Transparency</h3>
+                    <p>We're honest about what we can and can't do. Clear pricing, realistic timelines, transparent security practices. No overpromising.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🏗️</div>
+                    <h3>Built for Purpose</h3>
+                    <p>We don't adapt generic tools for law firms. Cognify is purpose-built from the ground up for legal practice management and law firm workflows.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">📊</div>
+                    <h3>Outcomes, Not Outputs</h3>
+                    <p>We measure success by business impact—revenue protected, time saved, risks avoided—not by feature count or usage metrics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founding Client Section -->
+    <section class="founding-section">
+        <div class="founding-content">
+            <h2>Join Us as a Founding Client</h2>
+            <p>We're looking for forward-thinking law firms who see the opportunity to move beyond traditional BI and are willing to help shape the future of legal intelligence platforms.</p>
+
+            <div class="founding-benefits">
+                <div class="founding-benefit">
+                    <div class="benefit-icon">💰</div>
+                    <div>
+                        <strong>Lifetime Pricing Lock</strong>
+                        <p>50% discount locked in permanently—your rates never increase</p>
+                    </div>
+                </div>
+                <div class="founding-benefit">
+                    <div class="benefit-icon">🎯</div>
+                    <div>
+                        <strong>Roadmap Influence</strong>
+                        <p>Direct input on feature priorities and product direction</p>
+                    </div>
+                </div>
+                <div class="founding-benefit">
+                    <div class="benefit-icon">🤝</div>
+                    <div>
+                        <strong>White-Glove Support</strong>
+                        <p>Dedicated implementation and priority support throughout your journey</p>
+                    </div>
+                </div>
+                <div class="founding-benefit">
+                    <div class="benefit-icon">⚡</div>
+                    <div>
+                        <strong>Early Access</strong>
+                        <p>First to see and test new features before general release</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="/founding-clients" class="founding-cta">Learn About Founding Client Program →</a>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Let's Talk</h2>
+            <p>Want to learn more about our story, vision, or founding client opportunities? We'd love to hear from you.</p>
+            <div class="cta-buttons">
+                <a href="/book-demo" class="btn-primary">Book a Demo</a>
+                <a href="/contact" class="btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Cognify Legal</h3>
+                <p>Intelligence, not dashboards. Purpose-built for mid-market UK law firms seeking data-driven decision making without the complexity of traditional BI.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="/features">Features</a></li>
+                    <li><a href="/integrations">Integrations</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/security">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/careers">Careers</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/docs">Documentation</a></li>
+                    <li><a href="/case-studies">Case Studies</a></li>
+                    <li><a href="/support">Support</a></li>
+                    <li><a href="/book-demo">Book Demo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Cognify Legal. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+        </div>
+    </footer>
+</body>
+</html>

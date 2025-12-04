@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Cognify Legal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --indigo: #4F46E5;
+            --lime: #84CC16;
+            --navy: #1E293B;
+            --charcoal: #0F172A;
+            --grey-light: #F8FAFC;
+            --grey-mid: #E2E8F0;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--navy);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--grey-mid);
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+        
+        .logo-accent {
+            color: var(--indigo);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--indigo);
+        }
+        
+        .nav-cta {
+            background: var(--lime);
+            color: var(--charcoal);
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(132, 204, 22, 0.25);
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(132, 204, 22, 0.35);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 50%, #7C3AED 100%);
+            padding: 5rem 5% 4rem;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="1" cy="1" r="1" fill="white" opacity="0.1"/></svg>');
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-60px); }
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+        
+        /* Quick Contact Section */
+        .quick-contact-section {
+            padding: 4rem 5%;
+            background: var(--white);
+            border-bottom: 1px solid var(--grey-mid);
+        }
+        
+        .quick-contact-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .contact-card {
+            background: var(--grey-light);
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+            border-top: 4px solid var(--indigo);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .contact-icon {
+            background: linear-gradient(135deg, var(--indigo), var(--lime));
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .contact-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-card p {
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .contact-link {
+            color: var(--indigo);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+        
+        .contact-link:hover {
+            color: var(--lime);
+        }
+        
+        /* Main Contact Section */
+        .main-contact-section {
+            padding: 6rem 5%;
+            background: var(--grey-light);
+        }
+        
+        .main-contact-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+        }
+        
+        .contact-info {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            height: fit-content;
+        }
+        
+        .contact-info h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 2rem;
+        }
+        
+        .info-section {
+            margin-bottom: 2.5rem;
+        }
+        
+        .info-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .info-section h3 {
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .info-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            align-items: start;
+        }
+        
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .info-icon {
+            color: var(--lime);
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            margin-top: 0.15rem;
+        }
+        
+        .info-item a {
+            color: var(--indigo);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .info-item a:hover {
+            color: var(--lime);
+        }
+        
+        .office-hours {
+            background: var(--grey-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+        
+        .office-hours h4 {
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+        
+        .office-hours p {
+            color: var(--navy);
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+        
+        .contact-form h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+        
+        .form-description {
+            color: var(--navy);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .required {
+            color: var(--indigo);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--grey-mid);
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            color: var(--navy);
+            transition: all 0.2s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--indigo);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-help {
+            font-size: 0.85rem;
+            color: var(--navy);
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+        
+        .submit-button {
+            background: var(--indigo);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+        }
+        
+        .submit-button:hover {
+            background: var(--charcoal);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+        }
+        
+        .form-note {
+            font-size: 0.9rem;
+            color: var(--navy);
+            opacity: 0.7;
+            margin-top: 1.5rem;
+        }
+        
+        /* Departments Section */
+        .departments-section {
+            padding: 6rem 5%;
+            background: var(--charcoal);
+            color: var(--white);
+        }
+        
+        .departments-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--lime);
+            margin-bottom: 1rem;
+        }
+        
+        .section-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .section-header p {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        .departments-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .department-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .dept-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .department-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .department-card p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .dept-email {
+            color: var(--lime);
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+        
+        .dept-email:hover {
+            color: var(--white);
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+        
+        .faq-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .faq-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .faq-item {
+            background: var(--grey-light);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .faq-question {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+        
+        .faq-answer {
+            color: var(--navy);
+            line-height: 1.7;
+        }
+        
+        .faq-answer a {
+            color: var(--indigo);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .faq-answer a:hover {
+            color: var(--lime);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: var(--lime);
+            padding: 6rem 5%;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .cta-content p {
+            font-size: 1.25rem;
+            color: var(--navy);
+            margin-bottom: 2.5rem;
+        }
+        
+        .cta-button {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-block;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            padding: 4rem 5% 2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            line-height: 1.7;
+        }
+        
+        .footer-links h4 {
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--lime);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--lime);
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .contact-methods,
+            .departments-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            nav {
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 4rem 5% 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="logo">
+            <span class="logo-accent">Cognify</span> Legal
+        </a>
+        <ul class="nav-links">
+            <li><a href="/#solution">Solution</a></li>
+            <li><a href="/#how-it-works">How It Works</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a class="nav-cta" href="/book-demo">Book a Demo</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Get in Touch</h1>
+            <p>Whether you're ready to book a demo, have questions about our platform, or want to explore founding client opportunities—we'd love to hear from you.</p>
+        </div>
+    </section>
+
+    <!-- Quick Contact -->
+    <section class="quick-contact-section">
+        <div class="quick-contact-content">
+            <div class="contact-methods">
+                <div class="contact-card">
+                    <div class="contact-icon">📅</div>
+                    <h3>Book a Demo</h3>
+                    <p>See Cognify in action with a personalized demonstration tailored to your firm's needs.</p>
+                    <a href="/book-demo" class="contact-link">Schedule Demo →</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Email Us</h3>
+                    <p>Send us a message and we'll get back to you within 24 hours during business days.</p>
+                    <a href="mailto:hello@cognifylegal.com" class="contact-link">hello@cognifylegal.com</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">💬</div>
+                    <h3>Connect on LinkedIn</h3>
+                    <p>Follow us for product updates, legal tech insights, and company news.</p>
+                    <a href="https://linkedin.com/company/cognify-legal" class="contact-link" target="_blank">Follow Us →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Contact Section -->
+    <section class="main-contact-section">
+        <div class="main-contact-content">
+            <!-- Contact Info Sidebar -->
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                
+                <div class="info-section">
+                    <h3>General Inquiries</h3>
+                    <div class="info-item">
+                        <span class="info-icon">✉️</span>
+                        <div>
+                            <a href="mailto:hello@cognifylegal.com">hello@cognifylegal.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h3>Sales & Demos</h3>
+                    <div class="info-item">
+                        <span class="info-icon">📧</span>
+                        <div>
+                            <a href="mailto:sales@cognifylegal.com">sales@cognifylegal.com</a>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📅</span>
+                        <div>
+                            <a href="/book-demo">Book a demo directly</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h3>Customer Support</h3>
+                    <div class="info-item">
+                        <span class="info-icon">🛟</span>
+                        <div>
+                            <a href="mailto:support@cognifylegal.com">support@cognifylegal.com</a>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📚</span>
+                        <div>
+                            <a href="/docs">Documentation</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h3>Security & Compliance</h3>
+                    <div class="info-item">
+                        <span class="info-icon">🔐</span>
+                        <div>
+                            <a href="mailto:security@cognifylegal.com">security@cognifylegal.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="office-hours">
+                    <h4>Response Times</h4>
+                    <p><strong>Email:</strong> Within 24 hours (business days)</p>
+                    <p><strong>Demo Requests:</strong> Within 12 hours</p>
+                    <p><strong>Customer Support:</strong> Based on your plan tier</p>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>Send Us a Message</h2>
+                <p class="form-description">Fill out the form below and we'll get back to you as soon as possible. For demo requests, we recommend using our <a href="/book-demo" style="color: var(--indigo); font-weight: 700;">direct booking calendar</a>.</p>
+
+                <form action="#" method="POST">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="first-name">First Name <span class="required">*</span></label>
+                            <input type="text" id="first-name" name="first-name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="last-name">Last Name <span class="required">*</span></label>
+                            <input type="text" id="last-name" name="last-name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="firm-name">Firm Name <span class="required">*</span></label>
+                            <input type="text" id="firm-name" name="firm-name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="firm-size">Firm Size</label>
+                            <select id="firm-size" name="firm-size">
+                                <option value="">Select size</option>
+                                <option value="1-20">1-20 people</option>
+                                <option value="21-50">21-50 people</option>
+                                <option value="51-100">51-100 people</option>
+                                <option value="101-200">101-200 people</option>
+                                <option value="200+">200+ people</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inquiry-type">Inquiry Type <span class="required">*</span></label>
+                            <select id="inquiry-type" name="inquiry-type" required>
+                                <option value="">Select type</option>
+                                <option value="demo">Request a Demo</option>
+                                <option value="sales">Sales Question</option>
+                                <option value="support">Customer Support</option>
+                                <option value="founding">Founding Client Program</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="press">Press Inquiry</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="message">Message <span class="required">*</span></label>
+                            <textarea id="message" name="message" required></textarea>
+                            <span class="form-help">Please provide as much detail as possible so we can direct your inquiry appropriately.</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-button">Send Message</button>
+                    
+                    <p class="form-note">By submitting this form, you agree to our <a href="/privacy" style="color: var(--indigo); font-weight: 600;">Privacy Policy</a>. We'll only use your information to respond to your inquiry.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Departments -->
+    <section class="departments-section">
+        <div class="departments-content">
+            <div class="section-header">
+                <div class="section-label">Departments</div>
+                <h2>Direct Department Contact</h2>
+                <p>Reach the right team directly for specialized inquiries.</p>
+            </div>
+
+            <div class="departments-grid">
+                <div class="department-card">
+                    <div class="dept-icon">💼</div>
+                    <h3>Sales</h3>
+                    <p>Product demonstrations, pricing questions, founding client program, and implementation planning.</p>
+                    <a href="mailto:sales@cognifylegal.com" class="dept-email">sales@cognifylegal.com</a>
+                </div>
+
+                <div class="department-card">
+                    <div class="dept-icon">🛟</div>
+                    <h3>Customer Success</h3>
+                    <p>Onboarding support, training, feature questions, and general account management for existing customers.</p>
+                    <a href="mailto:support@cognifylegal.com" class="dept-email">support@cognifylegal.com</a>
+                </div>
+
+                <div class="department-card">
+                    <div class="dept-icon">🔧</div>
+                    <h3>Technical Support</h3>
+                    <p>Integration issues, technical troubleshooting, API questions, and system performance concerns.</p>
+                    <a href="mailto:support@cognifylegal.com" class="dept-email">support@cognifylegal.com</a>
+                </div>
+
+                <div class="department-card">
+                    <div class="dept-icon">🔐</div>
+                    <h3>Security</h3>
+                    <p>Security audits, compliance questions, vulnerability reports, and data protection inquiries.</p>
+                    <a href="mailto:security@cognifylegal.com" class="dept-email">security@cognifylegal.com</a>
+                </div>
+
+                <div class="department-card">
+                    <div class="dept-icon">🤝</div>
+                    <h3>Partnerships</h3>
+                    <p>Integration partnerships, practice management system vendors, referral programs, and strategic alliances.</p>
+                    <a href="mailto:partnerships@cognifylegal.com" class="dept-email">partnerships@cognifylegal.com</a>
+                </div>
+
+                <div class="department-card">
+                    <div class="dept-icon">📰</div>
+                    <h3>Press & Media</h3>
+                    <p>Press releases, media inquiries, interview requests, and brand assets.</p>
+                    <a href="mailto:press@cognifylegal.com" class="dept-email">press@cognifylegal.com</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="faq-content">
+            <h2>Common Questions</h2>
+
+            <div class="faq-item">
+                <h3 class="faq-question">How quickly will I hear back?</h3>
+                <p class="faq-answer">We respond to all inquiries within 24 hours during business days (Monday-Friday). Demo requests typically receive a response within 12 hours. For urgent matters, please mention "urgent" in your subject line.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">What's the best way to schedule a demo?</h3>
+                <p class="faq-answer">The fastest way is to use our <a href="/book-demo">direct booking calendar</a>, where you can see available time slots and schedule immediately. Alternatively, you can request a demo through this contact form or email sales@cognifylegal.com.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">Do you offer custom integrations for Enterprise clients?</h3>
+                <p class="faq-answer">Yes! Enterprise clients can request custom integrations with their practice management systems or other internal tools. Contact our sales team to discuss your specific requirements.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">Can I get pricing information without a demo?</h3>
+                <p class="faq-answer">Our standard pricing is available on our <a href="/pricing">pricing page</a>. For custom Enterprise pricing or founding client program details, we recommend booking a brief call with our sales team.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">I'm having technical issues as a current customer. Who should I contact?</h3>
+                <p class="faq-answer">Current customers should email support@cognifylegal.com for technical issues. Your response time depends on your plan tier (Starter: 24hr, Professional: 4hr, Enterprise: 1hr).</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">How do I report a security vulnerability?</h3>
+                <p class="faq-answer">Please email security@cognifylegal.com immediately with details of the vulnerability. We take security reports very seriously and will respond within 24 hours with next steps.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to See Cognify in Action?</h2>
+            <p>The fastest way to understand how Cognify works is to see it live. Book a demo today.</p>
+            <a href="/book-demo" class="cta-button">Book Your Demo</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Cognify Legal</h3>
+                <p>Intelligence, not dashboards. Purpose-built for mid-market UK law firms seeking data-driven decision making without the complexity of traditional BI.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="/features">Features</a></li>
+                    <li><a href="/integrations">Integrations</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/security">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/careers">Careers</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/docs">Documentation</a></li>
+                    <li><a href="/case-studies">Case Studies</a></li>
+                    <li><a href="/support">Support</a></li>
+                    <li><a href="/book-demo">Book Demo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Cognify Legal. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+        </div>
+    </footer>
+</body>
+</html>

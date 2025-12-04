@@ -5,19 +5,19 @@ import { FadeIn } from './FadeIn'
 const footerLinks = {
   product: [
     { title: 'Features', href: '/features' },
-    { title: 'Integrations', href: '#solution' },
+    { title: 'Integrations', href: '/integrations' },
     { title: 'Pricing', href: '/pricing' },
-    { title: 'Security', href: '/contact' },
+    { title: 'Security', href: '/security' },
   ],
   company: [
     { title: 'About', href: '/about' },
     { title: 'Blog', href: '/blog' },
-    { title: 'Careers', href: '/contact' },
+    { title: 'Careers', href: '/careers' },
     { title: 'Contact', href: '/contact' },
   ],
   resources: [
-    { title: 'Documentation', href: '/contact' },
-    { title: 'Case Studies', href: '/work' },
+    // { title: 'Documentation', href: '/contact' },
+    // { title: 'Case Studies', href: '/work' },
     { title: 'Support', href: '/contact' },
     { title: 'Book Demo', href: '/book-demo' },
   ],
@@ -98,11 +98,11 @@ export function Footer() {
           <div className="border-t border-white/10 pt-8 text-center text-sm" style={{ fontFamily: "'DM Sans', sans-serif" }}>
             <p>
               © {new Date().getFullYear()} Cognify Legal. All rights reserved. |{' '}
-              <Link href="/contact" className="hover:text-lime-500 transition-colors">
+              <Link href="/privacy" className="hover:text-lime-500 transition-colors">
                 Privacy Policy
               </Link>{' '}
               |{' '}
-              <Link href="/contact" className="hover:text-lime-500 transition-colors">
+              <Link href="/terms" className="hover:text-lime-500 transition-colors">
                 Terms of Service
               </Link>
             </p>

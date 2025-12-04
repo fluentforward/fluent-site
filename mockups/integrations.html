@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrations - Cognify Legal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --indigo: #4F46E5;
+            --lime: #84CC16;
+            --navy: #1E293B;
+            --charcoal: #0F172A;
+            --grey-light: #F8FAFC;
+            --grey-mid: #E2E8F0;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--navy);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--grey-mid);
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+        
+        .logo-accent {
+            color: var(--indigo);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--indigo);
+        }
+        
+        .nav-cta {
+            background: var(--lime);
+            color: var(--charcoal);
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(132, 204, 22, 0.25);
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(132, 204, 22, 0.35);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 50%, #7C3AED 100%);
+            padding: 5rem 5% 4rem;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="1" cy="1" r="1" fill="white" opacity="0.1"/></svg>');
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-60px); }
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+        
+        /* Microsoft 365 Section */
+        .m365-section {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+        
+        .m365-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--indigo);
+            margin-bottom: 1rem;
+        }
+        
+        .section-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .section-header p {
+            font-size: 1.15rem;
+            color: var(--navy);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        .m365-apps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .app-card {
+            background: var(--grey-light);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border-top: 4px solid var(--indigo);
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .app-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .app-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .app-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+        
+        .app-card p {
+            color: var(--navy);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .integration-features {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .integration-features li {
+            padding: 0.5rem 0;
+            color: var(--navy);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: start;
+            gap: 0.5rem;
+        }
+        
+        .integration-features li:before {
+            content: "✓";
+            color: var(--lime);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+        
+        /* Practice Management Section */
+        .pms-section {
+            padding: 6rem 5%;
+            background: var(--grey-light);
+        }
+        
+        .pms-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .pms-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .pms-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s;
+        }
+        
+        .pms-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .pms-header {
+            background: linear-gradient(135deg, var(--indigo), var(--lime));
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .pms-header h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pms-status {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .pms-body {
+            padding: 2rem;
+        }
+        
+        .pms-body h4 {
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .data-points {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+        
+        .data-points li {
+            color: var(--navy);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .data-points li:before {
+            content: "→";
+            color: var(--lime);
+            font-weight: 700;
+        }
+        
+        .learn-more {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: var(--indigo);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        
+        .learn-more:hover {
+            color: var(--lime);
+        }
+        
+        /* Coming Soon Section */
+        .coming-soon-section {
+            background: var(--white);
+            padding: 6rem 5%;
+        }
+        
+        .coming-soon-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .coming-soon-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .coming-soon-card {
+            background: var(--grey-light);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px dashed var(--grey-mid);
+            text-align: center;
+            position: relative;
+        }
+        
+        .coming-soon-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--indigo);
+            color: var(--white);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .coming-soon-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.6;
+        }
+        
+        .coming-soon-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.75rem;
+        }
+        
+        .coming-soon-card p {
+            color: var(--navy);
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+        
+        /* Setup Process Section */
+        .setup-section {
+            padding: 6rem 5%;
+            background: var(--charcoal);
+            color: var(--white);
+        }
+        
+        .setup-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .setup-section .section-header h2 {
+            color: var(--white);
+        }
+        
+        .setup-section .section-header p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .setup-section .section-label {
+            color: var(--lime);
+        }
+        
+        .setup-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-number {
+            background: var(--lime);
+            color: var(--charcoal);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .timeline-item:not(:last-child) .timeline-number:after {
+            content: '';
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 80px;
+            background: var(--lime);
+            opacity: 0.3;
+        }
+        
+        .timeline-content {
+            padding-top: 0.5rem;
+        }
+        
+        .timeline-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+        }
+        
+        .timeline-duration {
+            display: inline-block;
+            background: rgba(132, 204, 22, 0.2);
+            color: var(--lime);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-content p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-details {
+            list-style: none;
+        }
+        
+        .timeline-details li {
+            padding: 0.5rem 0;
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+        }
+        
+        .timeline-details li:before {
+            content: "→";
+            color: var(--lime);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        /* API Section */
+        .api-section {
+            padding: 6rem 5%;
+            background: var(--grey-light);
+        }
+        
+        .api-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .api-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .api-features {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+        
+        .api-features h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: start;
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, var(--indigo), var(--lime));
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .feature-list-item strong {
+            color: var(--charcoal);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        
+        .feature-list-item p {
+            color: var(--navy);
+            line-height: 1.6;
+        }
+        
+        .api-cta {
+            background: var(--indigo);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .api-cta:hover {
+            background: var(--charcoal);
+            transform: translateY(-2px);
+        }
+        
+        .api-visual {
+            background: var(--charcoal);
+            padding: 3rem;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            color: var(--lime);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            overflow-x: auto;
+        }
+        
+        .api-visual .comment {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .api-visual .keyword {
+            color: #FF6B9D;
+        }
+        
+        .api-visual .string {
+            color: #FFE66D;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: var(--lime);
+            padding: 6rem 5%;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .cta-content p {
+            font-size: 1.25rem;
+            color: var(--navy);
+            margin-bottom: 2.5rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-secondary {
+            background: var(--white);
+            color: var(--charcoal);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 2px solid var(--charcoal);
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--charcoal);
+            color: var(--white);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            padding: 4rem 5% 2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            line-height: 1.7;
+        }
+        
+        .footer-links h4 {
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--lime);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--lime);
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .m365-apps,
+            .pms-grid,
+            .coming-soon-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .api-grid,
+            .timeline-item {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-number {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .timeline-item:not(:last-child) .timeline-number:after {
+                display: none;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            nav {
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 4rem 5% 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .data-points {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="logo">
+            <span class="logo-accent">Cognify</span> Legal
+        </a>
+        <ul class="nav-links">
+            <li><a href="/#solution">Solution</a></li>
+            <li><a href="/#how-it-works">How It Works</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a class="nav-cta" href="/book-demo">Book a Demo</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Connects to Your Entire Tech Stack</h1>
+            <p>Cognify integrates seamlessly with your practice management system, Microsoft 365, and the tools you already use—no rip-and-replace required.</p>
+        </div>
+    </section>
+
+    <!-- Microsoft 365 Section -->
+    <section class="m365-section">
+        <div class="m365-content">
+            <div class="section-header">
+                <div class="section-label">Core Integration</div>
+                <h2>Microsoft 365 & Co-Pilot</h2>
+                <p>Cognify embeds directly into your Microsoft 365 environment through Co-Pilot integration, delivering intelligence where you already work.</p>
+            </div>
+
+            <div class="m365-apps">
+                <div class="app-card">
+                    <div class="app-icon">📄</div>
+                    <h3>Word</h3>
+                    <p>Insert live data from practice management into proposals, reports, and client documents.</p>
+                    <ul class="integration-features">
+                        <li>Matter status & billing history</li>
+                        <li>Template auto-population</li>
+                        <li>Formatted tables & charts</li>
+                        <li>Natural language queries</li>
+                    </ul>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon">📊</div>
+                    <h3>Excel</h3>
+                    <p>Build financial models and analysis with real-time data from all connected systems.</p>
+                    <ul class="integration-features">
+                        <li>Revenue & profitability data</li>
+                        <li>Pivot tables from live data</li>
+                        <li>Dynamic dashboards</li>
+                        <li>One-click refresh</li>
+                    </ul>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon">📊</div>
+                    <h3>PowerPoint</h3>
+                    <p>Generate professional presentations with current KPIs and performance metrics.</p>
+                    <ul class="integration-features">
+                        <li>Board presentation slides</li>
+                        <li>Practice area performance</li>
+                        <li>Pipeline & forecast charts</li>
+                        <li>Auto-updating data</li>
+                    </ul>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon">✉️</div>
+                    <h3>Outlook</h3>
+                    <p>Contextual client intelligence appears automatically when you need it most.</p>
+                    <ul class="integration-features">
+                        <li>Client name detection</li>
+                        <li>Outstanding invoice alerts</li>
+                        <li>Matter status sidebar</li>
+                        <li>Relationship health scores</li>
+                    </ul>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon">💬</div>
+                    <h3>Teams</h3>
+                    <p>Chat interface for natural language queries and Intelligence Feed notifications.</p>
+                    <ul class="integration-features">
+                        <li>Conversational queries</li>
+                        <li>Intelligence Feed alerts</li>
+                        <li>Performance Dashboard</li>
+                        <li>Share insights with team</li>
+                    </ul>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon">🤖</div>
+                    <h3>Co-Pilot</h3>
+                    <p>Cognify works as an intelligent agent across all M365 apps via Co-Pilot.</p>
+                    <ul class="integration-features">
+                        <li>Unified intelligence layer</li>
+                        <li>Cross-app consistency</li>
+                        <li>Zero training overhead</li>
+                        <li>Seamless experience</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practice Management Systems -->
+    <section class="pms-section">
+        <div class="pms-content">
+            <div class="section-header">
+                <div class="section-label">Practice Management</div>
+                <h2>Connect Your Core Systems</h2>
+                <p>Cognify pulls data from your practice management platform to power intelligence across all M365 applications.</p>
+            </div>
+
+            <div class="pms-grid">
+                <div class="pms-card">
+                    <div class="pms-header">
+                        <h3>ActionStep</h3>
+                        <span class="pms-status">✓ Available Now</span>
+                    </div>
+                    <div class="pms-body">
+                        <h4>Data Integration</h4>
+                        <ul class="data-points">
+                            <li>Matters & cases</li>
+                            <li>Time entries</li>
+                            <li>Invoices & billing</li>
+                            <li>Client records</li>
+                            <li>Financial transactions</li>
+                            <li>Document metadata</li>
+                            <li>Staff assignments</li>
+                            <li>Custom fields</li>
+                        </ul>
+                        <a href="/actionstep" class="learn-more">Learn more about ActionStep integration →</a>
+                    </div>
+                </div>
+
+                <div class="pms-card">
+                    <div class="pms-header">
+                        <h3>Clio</h3>
+                        <span class="pms-status">✓ Available Now</span>
+                    </div>
+                    <div class="pms-body">
+                        <h4>Data Integration</h4>
+                        <ul class="data-points">
+                            <li>Matters & contacts</li>
+                            <li>Time tracking</li>
+                            <li>Bills & invoices</li>
+                            <li>Trust accounting</li>
+                            <li>Calendar & tasks</li>
+                            <li>Documents</li>
+                            <li>Communication logs</li>
+                            <li>Custom fields</li>
+                        </ul>
+                        <a href="/clio" class="learn-more">Learn more about Clio integration →</a>
+                    </div>
+                </div>
+
+                <div class="pms-card">
+                    <div class="pms-header">
+                        <h3>LEAP</h3>
+                        <span class="pms-status">Coming Q2 2025</span>
+                    </div>
+                    <div class="pms-body">
+                        <h4>Planned Data Integration</h4>
+                        <ul class="data-points">
+                            <li>Matter management</li>
+                            <li>Time recording</li>
+                            <li>Billing & accounts</li>
+                            <li>Client database</li>
+                            <li>Document assembly</li>
+                            <li>Workflows</li>
+                            <li>Reporting data</li>
+                            <li>Practice analytics</li>
+                        </ul>
+                        <a href="/book-demo" class="learn-more">Join the waitlist →</a>
+                    </div>
+                </div>
+
+                <div class="pms-card">
+                    <div class="pms-header">
+                        <h3>Custom Integration</h3>
+                        <span class="pms-status">Enterprise Plan</span>
+                    </div>
+                    <div class="pms-body">
+                        <h4>Your System</h4>
+                        <p style="margin-bottom: 1rem;">Using a different practice management system? We can build custom integrations for Enterprise clients.</p>
+                        <ul class="data-points">
+                            <li>API assessment</li>
+                            <li>Custom connector development</li>
+                            <li>Data mapping & testing</li>
+                            <li>Ongoing maintenance</li>
+                        </ul>
+                        <a href="/contact" class="learn-more">Contact us about custom integration →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coming Soon Integrations -->
+    <section class="coming-soon-section">
+        <div class="coming-soon-content">
+            <div class="section-header">
+                <div class="section-label">Roadmap</div>
+                <h2>Additional Integrations Coming Soon</h2>
+                <p>Expand Cognify's intelligence layer across your entire tech stack with upcoming integrations.</p>
+            </div>
+
+            <div class="coming-soon-grid">
+                <div class="coming-soon-card">
+                    <div class="coming-soon-badge">Q2 2025</div>
+                    <div class="coming-soon-icon">💰</div>
+                    <h4>Accounting Systems</h4>
+                    <p>Xero, QuickBooks, Sage for comprehensive financial intelligence and reconciliation.</p>
+                </div>
+
+                <div class="coming-soon-card">
+                    <div class="coming-soon-badge">Q3 2025</div>
+                    <div class="coming-soon-icon">📞</div>
+                    <h4>CRM Platforms</h4>
+                    <p>Salesforce, HubSpot for client development, pipeline tracking, and marketing insights.</p>
+                </div>
+
+                <div class="coming-soon-card">
+                    <div class="coming-soon-badge">Q3 2025</div>
+                    <div class="coming-soon-icon">👥</div>
+                    <h4>HR Systems</h4>
+                    <p>BambooHR, Workday for people analytics, capacity planning, and resource optimization.</p>
+                </div>
+
+                <div class="coming-soon-card">
+                    <div class="coming-soon-badge">Q4 2025</div>
+                    <div class="coming-soon-icon">📁</div>
+                    <h4>Document Management</h4>
+                    <p>iManage, NetDocuments for matter document intelligence and metadata extraction.</p>
+                </div>
+
+                <div class="coming-soon-card">
+                    <div class="coming-soon-badge">2026</div>
+                    <div class="coming-soon-icon">📧</div>
+                    <h4>E-Signature Platforms</h4>
+                    <p>DocuSign, Adobe Sign for contract lifecycle insights and completion tracking.</p>
+                </div>
+
+                <div class="coming-soon-card">
+                    <div class="coming-soon-badge">2026</div>
+                    <div class="coming-soon-icon">🔍</div>
+                    <h4>Legal Research</h4>
+                    <p>LexisNexis, Westlaw for research cost analysis and citation intelligence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Setup Process -->
+    <section class="setup-section">
+        <div class="setup-content">
+            <div class="section-header">
+                <div class="section-label">Implementation</div>
+                <h2>Simple, Fast Setup Process</h2>
+                <p>Most firms are live within 2 weeks. No complex data modeling, no dashboard building, no training required.</p>
+            </div>
+
+            <div class="setup-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-content">
+                        <h3>Connect Your Systems</h3>
+                        <span class="timeline-duration">Day 1-2</span>
+                        <p>We connect Cognify to your practice management system and Microsoft 365 environment using secure OAuth authentication.</p>
+                        <ul class="timeline-details">
+                            <li>OAuth authentication setup (no passwords shared)</li>
+                            <li>API permissions configuration</li>
+                            <li>Initial data sync (historical data import)</li>
+                            <li>Connection validation and testing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-content">
+                        <h3>Configure Your Dashboard</h3>
+                        <span class="timeline-duration">Day 3-5</span>
+                        <p>Through simple conversational questions, we set up your Performance Dashboard with targets, tolerances, and role-based views.</p>
+                        <ul class="timeline-details">
+                            <li>Guided setup conversation (no technical knowledge required)</li>
+                            <li>Target setting for key metrics</li>
+                            <li>Tolerance band configuration</li>
+                            <li>Role-based view customization</li>
+                            <li>Intelligence Feed rule configuration</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-content">
+                        <h3>Deploy to Your Team</h3>
+                        <span class="timeline-duration">Day 6-10</span>
+                        <p>We activate Cognify for your team with Microsoft Co-Pilot integration. Zero training required—it works just like their other M365 tools.</p>
+                        <ul class="timeline-details">
+                            <li>User provisioning via Azure AD sync</li>
+                            <li>Co-Pilot plugin activation</li>
+                            <li>Teams app installation</li>
+                            <li>Role assignment and permissions</li>
+                            <li>Initial walkthrough session</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">4</div>
+                    <div class="timeline-content">
+                        <h3>Go Live & Optimize</h3>
+                        <span class="timeline-duration">Day 11-14</span>
+                        <p>Your team starts using Cognify immediately. We monitor adoption, gather feedback, and refine configurations during the first week.</p>
+                        <ul class="timeline-details">
+                            <li>Go-live announcement and support</li>
+                            <li>Usage monitoring and feedback collection</li>
+                            <li>Configuration refinement based on actual usage</li>
+                            <li>Additional Intelligence Feed rules as needed</li>
+                            <li>Ongoing support and optimization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Access -->
+    <section class="api-section">
+        <div class="api-content">
+            <div class="section-header">
+                <div class="section-label">Enterprise</div>
+                <h2>API Access for Custom Integrations</h2>
+                <p>Build custom workflows and integrations with Cognify's REST API. Available on Enterprise plans.</p>
+            </div>
+
+            <div class="api-grid">
+                <div class="api-features">
+                    <h3>API Capabilities</h3>
+                    <ul class="feature-list">
+                        <li class="feature-list-item">
+                            <div class="feature-icon">📊</div>
+                            <div>
+                                <strong>Query Intelligence</strong>
+                                <p>Programmatically query your firm's data and receive structured responses</p>
+                            </div>
+                        </li>
+                        <li class="feature-list-item">
+                            <div class="feature-icon">🔔</div>
+                            <div>
+                                <strong>Webhook Notifications</strong>
+                                <p>Receive real-time alerts when Intelligence Feed triggers important events</p>
+                            </div>
+                        </li>
+                        <li class="feature-list-item">
+                            <div class="feature-icon">🎯</div>
+                            <div>
+                                <strong>Custom KPI Management</strong>
+                                <p>Define and track custom metrics specific to your firm's unique needs</p>
+                            </div>
+                        </li>
+                        <li class="feature-list-item">
+                            <div class="feature-icon">🔗</div>
+                            <div>
+                                <strong>Third-Party Integration</strong>
+                                <p>Connect Cognify to your custom internal tools and workflows</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="/contact" class="api-cta">Contact Sales for API Access</a>
+                </div>
+
+                <div class="api-visual">
+<span class="comment">// Example: Query firm revenue data</span>
+<span class="keyword">const</span> response = <span class="keyword">await</span> fetch(<span class="string">'https://api.cognifylegal.com/v1/query'</span>, {
+  method: <span class="string">'POST'</span>,
+  headers: {
+    <span class="string">'Authorization'</span>: <span class="string">'Bearer YOUR_API_KEY'</span>,
+    <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>
+  },
+  body: JSON.stringify({
+    query: <span class="string">'revenue by practice area, last 6 months'</span>,
+    format: <span class="string">'structured'</span>
+  })
+});
+
+<span class="keyword">const</span> data = <span class="keyword">await</span> response.json();
+<span class="comment">// Returns: structured revenue data</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Connect Your Systems?</h2>
+            <p>Book a demo to see how Cognify integrates with your tech stack and delivers intelligence where you work.</p>
+            <div class="cta-buttons">
+                <a href="/book-demo" class="btn-primary">Book a Demo</a>
+                <a href="/contact" class="btn-secondary">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Cognify Legal</h3>
+                <p>Intelligence, not dashboards. Purpose-built for mid-market UK law firms seeking data-driven decision making without the complexity of traditional BI.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="/features">Features</a></li>
+                    <li><a href="/integrations">Integrations</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/security">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/careers">Careers</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/docs">Documentation</a></li>
+                    <li><a href="/case-studies">Case Studies</a></li>
+                    <li><a href="/support">Support</a></li>
+                    <li><a href="/book-demo">Book Demo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Cognify Legal. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+        </div>
+    </footer>
+</body>
+</html>

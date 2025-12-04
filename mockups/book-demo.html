@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Demo - Cognify Legal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --indigo: #4F46E5;
+            --lime: #84CC16;
+            --navy: #1E293B;
+            --charcoal: #0F172A;
+            --grey-light: #F8FAFC;
+            --grey-mid: #E2E8F0;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--navy);
+            background: var(--grey-light);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--grey-mid);
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+        
+        .logo-accent {
+            color: var(--indigo);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--indigo);
+        }
+        
+        .nav-cta {
+            background: var(--lime);
+            color: var(--charcoal);
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(132, 204, 22, 0.25);
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(132, 204, 22, 0.35);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 50%, #7C3AED 100%);
+            padding: 5rem 5% 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="1" cy="1" r="1" fill="white" opacity="0.1"/></svg>');
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-60px); }
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 4rem 5%;
+            background: var(--grey-light);
+        }
+        
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        
+        /* Benefits Sidebar */
+        .benefits-sidebar {
+            position: sticky;
+            top: 120px;
+        }
+        
+        .benefits-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            margin-bottom: 2rem;
+        }
+        
+        .benefits-card h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+        
+        .benefit-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: start;
+        }
+        
+        .benefit-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .benefit-icon {
+            background: linear-gradient(135deg, var(--indigo), var(--lime));
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        
+        .benefit-text h3 {
+            font-weight: 700;
+            color: var(--charcoal);
+            font-size: 1.05rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .benefit-text p {
+            color: var(--navy);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .trust-indicators {
+            background: var(--grey-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--lime);
+        }
+        
+        .trust-indicators h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+        
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--navy);
+        }
+        
+        .trust-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .trust-icon {
+            color: var(--lime);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        
+        /* Calendly Container */
+        .calendly-container {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            border: 1px solid var(--grey-mid);
+        }
+        
+        .calendly-header {
+            background: linear-gradient(135deg, #F8FAFC 0%, #EEF2FF 100%);
+            padding: 2rem;
+            border-bottom: 1px solid var(--grey-mid);
+        }
+        
+        .calendly-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+        
+        .calendly-header p {
+            color: var(--navy);
+            font-size: 1rem;
+        }
+        
+        .calendly-wrapper {
+            padding: 2rem;
+        }
+        
+        .calendly-inline-widget {
+            min-width: 320px;
+            height: 700px;
+        }
+        
+        /* What to Expect Section */
+        .expect-section {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--grey-light);
+            border-radius: 8px;
+        }
+        
+        .expect-section h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+        
+        .expect-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            align-items: start;
+        }
+        
+        .timeline-number {
+            background: var(--indigo);
+            color: var(--white);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+        
+        .timeline-content h4 {
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.25rem;
+        }
+        
+        .timeline-content p {
+            color: var(--navy);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Alternative Contact */
+        .alt-contact {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--charcoal);
+            border-radius: 8px;
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .alt-contact h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        
+        .alt-contact p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.25rem;
+        }
+        
+        .alt-contact a {
+            color: var(--lime);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        
+        .alt-contact a:hover {
+            color: var(--white);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            padding: 4rem 5% 2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            line-height: 1.7;
+        }
+        
+        .footer-links h4 {
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--lime);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--lime);
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+            
+            .benefits-sidebar {
+                position: static;
+            }
+            
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            nav {
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 4rem 5% 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .main-content {
+                padding: 2rem 5%;
+            }
+            
+            .calendly-header,
+            .calendly-wrapper {
+                padding: 1.5rem;
+            }
+            
+            .benefits-card {
+                padding: 1.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="logo">
+            <span class="logo-accent">Cognify</span> Legal
+        </a>
+        <ul class="nav-links">
+            <li><a href="/#solution">Solution</a></li>
+            <li><a href="/#how-it-works">How It Works</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a class="nav-cta" href="/book-demo">Book a Demo</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>See Cognify in Action</h1>
+            <p>Book a 30-minute demo to see how Cognify delivers intelligence where your team actually works—in Word, Excel, PowerPoint, Outlook, and Teams. No dashboards required.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="content-wrapper">
+            <!-- Benefits Sidebar -->
+            <div class="benefits-sidebar">
+                <div class="benefits-card">
+                    <h2>What You'll See</h2>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💬</div>
+                        <div class="benefit-text">
+                            <h3>Live Platform Walkthrough</h3>
+                            <p>See Cognify working in real Microsoft 365 apps with your practice management data</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🎯</div>
+                        <div class="benefit-text">
+                            <h3>Tailored to Your Firm</h3>
+                            <p>We'll discuss your specific challenges, systems, and use cases</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">📊</div>
+                        <div class="benefit-text">
+                            <h3>Integration Overview</h3>
+                            <p>Learn how Cognify connects with ActionStep, Clio, or your practice management system</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">⚡</div>
+                        <div class="benefit-text">
+                            <h3>Implementation Timeline</h3>
+                            <p>Understand setup process, timeline, and what's required from your team</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💷</div>
+                        <div class="benefit-text">
+                            <h3>Pricing & ROI Discussion</h3>
+                            <p>Clear pricing structure and expected return on investment for your firm size</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="trust-indicators">
+                    <h3>Why Law Firms Choose Cognify</h3>
+                    <div class="trust-item">
+                        <span class="trust-icon">✓</span>
+                        <span>Purpose-built for mid-market UK law firms</span>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-icon">✓</span>
+                        <span>Zero training required—works in M365</span>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-icon">✓</span>
+                        <span>Bank-level security & data encryption</span>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-icon">✓</span>
+                        <span>Live in 2 weeks, not 6 months</span>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-icon">✓</span>
+                        <span>Founding client program available</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calendly Section -->
+            <div>
+                <div class="calendly-container">
+                    <div class="calendly-header">
+                        <h2>Choose Your Time</h2>
+                        <p>Select a convenient time for your personalized demo. All times are shown in your local timezone.</p>
+                    </div>
+                    <div class="calendly-wrapper">
+                        <div 
+                            class="calendly-inline-widget" 
+                            data-url="https://calendly.com/matt-fluentforward/cognify-legal-demo?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=84cc16"
+                        ></div>
+                    </div>
+                </div>
+                
+                <div class="expect-section">
+                    <h3>What to Expect During Your Demo</h3>
+                    <div class="expect-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-number">1</div>
+                            <div class="timeline-content">
+                                <h4>Discovery (5 mins)</h4>
+                                <p>We'll start by understanding your firm's current challenges with business intelligence and data access</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-number">2</div>
+                            <div class="timeline-content">
+                                <h4>Live Platform Demo (15 mins)</h4>
+                                <p>See Cognify working in Microsoft 365—asking questions in Teams, pulling data into Word and Excel, Intelligence Feed alerts</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-number">3</div>
+                            <div class="timeline-content">
+                                <h4>Integration & Implementation (5 mins)</h4>
+                                <p>Review how Cognify connects with your practice management system and what the setup process looks like</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-number">4</div>
+                            <div class="timeline-content">
+                                <h4>Q&A & Next Steps (5 mins)</h4>
+                                <p>Answer your questions about pricing, security, rollout, and determine if Cognify is the right fit for your firm</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="alt-contact">
+                    <h3>Prefer to Talk First?</h3>
+                    <p>Have questions before booking? Want to discuss founding client opportunities?</p>
+                    <p>Email us at <a href="mailto:matt@cognifylegal.com">matt@cognifylegal.com</a> or call <a href="tel:+44XXXXXXXXXX">+44 XXX XXX XXXX</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Cognify Legal</h3>
+                <p>Intelligence, not dashboards. Purpose-built for mid-market UK law firms seeking data-driven decision making without the complexity of traditional BI.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="/features">Features</a></li>
+                    <li><a href="/integrations">Integrations</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/security">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/careers">Careers</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/docs">Documentation</a></li>
+                    <li><a href="/case-studies">Case Studies</a></li>
+                    <li><a href="/support">Support</a></li>
+                    <li><a href="/book-demo">Book Demo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Cognify Legal. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <!-- Calendly Script -->
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+</body>
+</html>

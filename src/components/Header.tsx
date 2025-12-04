@@ -4,8 +4,10 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 const navigation = [
-  { name: 'Solution', href: '#solution' },
-  { name: 'How It Works', href: '#how-it-works' },
+  { name: 'Home', href: '/' },
+  { name: 'How It Works', href: '/how-it-works' },
+  { name: 'Pricing', href: '/pricing' },
+  { name: 'Blog', href: '/blog' },
 ]
 
 export function Header() {

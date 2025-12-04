@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognify Legal - Intelligence, Not Dashboards</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --indigo: #4F46E5;
+            --lime: #84CC16;
+            --navy: #1E293B;
+            --charcoal: #0F172A;
+            --grey-light: #F8FAFC;
+            --grey-mid: #E2E8F0;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--navy);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--grey-mid);
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+        }
+        
+        .logo-accent {
+            color: var(--indigo);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--indigo);
+        }
+        
+        .nav-cta {
+            background: var(--lime);
+            color: var(--charcoal);
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(132, 204, 22, 0.25);
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(132, 204, 22, 0.35);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 50%, #7C3AED 100%);
+            padding: 8rem 5% 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="1" cy="1" r="1" fill="white" opacity="0.1"/></svg>');
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-60px); }
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-text h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-text p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+        
+        .hero-cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: var(--lime);
+            color: var(--charcoal);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(132, 204, 22, 0.3);
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(132, 204, 22, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .hero-visual {
+            position: relative;
+        }
+        
+        .screenshot-placeholder {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .screenshot-placeholder strong {
+            display: block;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+        
+        .screenshot-placeholder small {
+            display: block;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            max-width: 80%;
+        }
+        
+        /* Problem Section - Lime Block */
+        .problem-section {
+            background: var(--lime);
+            padding: 6rem 5%;
+            position: relative;
+        }
+        
+        .problem-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .problem-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--charcoal);
+            opacity: 0.6;
+            margin-bottom: 1rem;
+        }
+        
+        .problem-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .problem-header p {
+            font-size: 1.25rem;
+            color: var(--navy);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .failure-modes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .failure-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        }
+        
+        .failure-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--indigo);
+            margin-bottom: 1rem;
+        }
+        
+        .failure-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+        
+        .failure-card p {
+            color: var(--navy);
+            line-height: 1.7;
+        }
+        
+        .stat-bar {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .stat-bar-content {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+        
+        .stat {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--lime);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Solution Section - Reactive Intelligence */
+        .solution-reactive {
+            background: var(--grey-light);
+            padding: 6rem 5%;
+        }
+        
+        .solution-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .solution-header {
+            margin-bottom: 4rem;
+        }
+        
+        .solution-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .solution-header p {
+            font-size: 1.25rem;
+            color: var(--navy);
+            max-width: 800px;
+        }
+        
+        .app-showcase {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .app-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s;
+        }
+        
+        .app-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .app-screenshot {
+            background: linear-gradient(135deg, #E0E7FF 0%, #F3E8FF 100%);
+            padding: 2rem;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 3px solid var(--indigo);
+        }
+        
+        .app-screenshot .screenshot-placeholder {
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px dashed var(--indigo);
+            color: var(--navy);
+            width: 100%;
+            height: 100%;
+            min-height: 200px;
+        }
+        
+        .app-info {
+            padding: 2rem;
+        }
+        
+        .app-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .app-info h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.75rem;
+        }
+        
+        .app-info p {
+            color: var(--navy);
+            line-height: 1.7;
+        }
+        
+        /* Solution Section - Proactive Intelligence */
+        .solution-proactive {
+            background: var(--charcoal);
+            padding: 6rem 5%;
+            color: var(--white);
+        }
+        
+        .solution-proactive .solution-header h2 {
+            color: var(--white);
+        }
+        
+        .solution-proactive .solution-header p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .intelligence-demo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .alert-examples {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        
+        .alert-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--lime);
+            padding: 1.5rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        
+        .alert-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(4px);
+        }
+        
+        .alert-type {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--lime);
+            margin-bottom: 0.5rem;
+        }
+        
+        .alert-card p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+        
+        .feed-visual {
+            position: relative;
+        }
+        
+        .feed-visual .screenshot-placeholder {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Performance Dashboard Section */
+        .dashboard-section {
+            background: var(--grey-light);
+            padding: 6rem 5%;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .dashboard-visual .screenshot-placeholder {
+            background: var(--white);
+            border: 2px dashed var(--grey-mid);
+            color: var(--navy);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+        
+        .dashboard-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            gap: 1rem;
+            align-items: start;
+        }
+        
+        .feature-icon {
+            background: var(--indigo);
+            color: var(--white);
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .feature-content h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-content p {
+            color: var(--navy);
+            line-height: 1.6;
+        }
+        
+        /* Value Proposition Summary - Lime Block */
+        .value-summary {
+            background: var(--lime);
+            padding: 6rem 5%;
+        }
+        
+        .value-summary-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .value-summary h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+        
+        .value-points {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .value-point {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: left;
+        }
+        
+        .value-point-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--indigo);
+            margin-bottom: 1rem;
+        }
+        
+        .value-point p {
+            color: var(--navy);
+            line-height: 1.7;
+        }
+        
+        .positioning-statement {
+            background: var(--charcoal);
+            padding: 3rem;
+            border-radius: 12px;
+            color: var(--white);
+            font-size: 1.35rem;
+            font-style: italic;
+            line-height: 1.7;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 50%, #7C3AED 100%);
+            padding: 6rem 5%;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .cta-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            padding: 4rem 5% 2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            line-height: 1.7;
+        }
+        
+        .footer-links h4 {
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--lime);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .failure-modes,
+            .app-showcase,
+            .intelligence-demo,
+            .dashboard-grid,
+            .value-points {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            nav {
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 5rem 5% 4rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .problem-header h2,
+            .solution-header h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <span class="logo-accent">Cognify</span> Legal
+        </div>
+        <ul class="nav-links">
+            <li><a href="#solution">Solution</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a class="nav-cta" href="#book-demo">Book a Demo</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Intelligence, Not Dashboards</h1>
+                <p>Get instant insights from your practice management systems—right where you work. No dashboards to check. No training required. Just answers when you need them.</p>
+                <div class="hero-cta-group">
+                    <a href="#book-demo" class="btn-primary">Book a Demo</a>
+                    <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="screenshot-placeholder">
+                    <strong>HERO IMAGE PLACEHOLDER</strong>
+                    <small>Screenshot: Microsoft Teams chat interface showing a natural language query ("What's our utilization this month?") with Cognify's response showing clear metrics and insights. Clean, conversational interface demonstrating zero learning curve.</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="problem-content">
+            <div class="problem-header">
+                <div class="section-label">The Problem</div>
+                <h2>Traditional BI Fails Law Firms</h2>
+                <p>Despite investing £50-150K in business intelligence platforms, mid-market law firms achieve single-digit adoption rates. Your data team builds dashboards nobody uses.</p>
+            </div>
+            
+            <div class="failure-modes">
+                <div class="failure-card">
+                    <div class="failure-number">01</div>
+                    <h3>People Don't Go Look</h3>
+                    <p>Partners are too busy serving clients to remember to check dashboards. Traditional BI requires users to open another app, know what to ask, and navigate complex interfaces. It never becomes part of their workflow.</p>
+                </div>
+                <div class="failure-card">
+                    <div class="failure-number">02</div>
+                    <h3>People Don't Know What to Look For</h3>
+                    <p>Even when users check dashboards, they don't know which metrics matter or what questions to ask. Critical issues—revenue leaks, utilization drops, client risks—fall through the cracks because nobody thought to look.</p>
+                </div>
+            </div>
+            
+            <div class="stat-bar">
+                <div class="stat-bar-content">
+                    <div class="stat">
+                        <span class="stat-number">&lt;10%</span>
+                        <span class="stat-label">Average BI adoption rate in law firms</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">£100K+</span>
+                        <span class="stat-label">Wasted on unused dashboards</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">Zero</span>
+                        <span class="stat-label">ROI from traditional BI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution: Reactive Intelligence -->
+    <section class="solution-reactive" id="solution">
+        <div class="solution-content">
+            <div class="solution-header">
+                <div class="section-label">Reactive Intelligence</div>
+                <h2>Answers Where You Work</h2>
+                <p>Cognify embeds into Microsoft 365 through Co-Pilot integration. When you need data, it's immediately available—in Word, Excel, PowerPoint, Outlook, and Teams. No context switching. No separate apps.</p>
+            </div>
+            
+            <div class="app-showcase">
+                <div class="app-card">
+                    <div class="app-screenshot">
+                        <div class="screenshot-placeholder">
+                            <strong>WORD INTEGRATION</strong>
+                            <small>Screenshot: Microsoft Word document with Cognify sidebar showing. User typing in document, Co-Pilot panel on right showing "Insert billing history for Client ABC" with formatted table ready to insert. Demonstrates seamless document creation workflow.</small>
+                        </div>
+                    </div>
+                    <div class="app-info">
+                        <div class="app-icon">📄</div>
+                        <h3>In Word</h3>
+                        <p>Drafting a client proposal? Ask Cognify to insert matter status, billing history, or team utilization directly into your document. No copy-paste, no manual formatting.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-screenshot">
+                        <div class="screenshot-placeholder">
+                            <strong>EXCEL INTEGRATION</strong>
+                            <small>Screenshot: Excel spreadsheet being populated by Cognify. Shows natural language query "Show me revenue by practice area, last 6 months" resulting in automatically generated table with data and formatting. Demonstrates data analysis power.</small>
+                        </div>
+                    </div>
+                    <div class="app-info">
+                        <div class="app-icon">📊</div>
+                        <h3>In Excel</h3>
+                        <p>Building a financial model? Request revenue projections, matter profitability, or client concentration data that populates automatically with current figures.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-screenshot">
+                        <div class="screenshot-placeholder">
+                            <strong>POWERPOINT INTEGRATION</strong>
+                            <small>Screenshot: PowerPoint presentation with Cognify creating a slide. Shows command "Create practice area performance slide" generating professional slide with charts and KPIs. Perfect for board presentations.</small>
+                        </div>
+                    </div>
+                    <div class="app-info">
+                        <div class="app-icon">📊</div>
+                        <h3>In PowerPoint</h3>
+                        <p>Preparing a board presentation? Pull in real-time KPIs, practice area performance, or pipeline analysis. Your slides stay current with live data.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-screenshot">
+                        <div class="screenshot-placeholder">
+                            <strong>OUTLOOK INTEGRATION</strong>
+                            <small>Screenshot: Outlook email composition with Cognify contextual sidebar. Email to "Client ABC" triggers sidebar showing outstanding invoices, matter status, relationship health. Demonstrates contextual intelligence.</small>
+                        </div>
+                    </div>
+                    <div class="app-info">
+                        <div class="app-icon">✉️</div>
+                        <h3>In Outlook</h3>
+                        <p>Emailing a client? See contextual intelligence about outstanding invoices, matter status, or relationship health without leaving your inbox. Smart context, zero effort.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution: Proactive Intelligence -->
+    <section class="solution-proactive">
+        <div class="solution-content">
+            <div class="solution-header">
+                <div class="section-label">Proactive Intelligence</div>
+                <h2>Alerts for What You're Not Thinking About</h2>
+                <p>The Intelligence Feed continuously monitors all connected systems and surfaces insights, recommendations, and alerts. It tells you what matters before problems become crises.</p>
+            </div>
+            
+            <div class="intelligence-demo">
+                <div class="alert-examples">
+                    <div class="alert-card">
+                        <div class="alert-type">Revenue Protection</div>
+                        <p>"Client ABC hasn't been invoiced in 45 days despite 12.5 hours of unbilled time—potential £4,800 revenue leak."</p>
+                    </div>
+                    <div class="alert-card">
+                        <div class="alert-type">Utilization Monitoring</div>
+                        <p>"Your litigation team's utilization dropped 8% this week—three matters went quiet. Investigate?"</p>
+                    </div>
+                    <div class="alert-card">
+                        <div class="alert-type">Risk Management</div>
+                        <p>"Partner Sarah has five matters approaching statute of limitations in the next 30 days."</p>
+                    </div>
+                    <div class="alert-card">
+                        <div class="alert-type">Performance Insights</div>
+                        <p>"Q4 revenue trending 15% below target—current forecast shows £127K shortfall by year-end."</p>
+                    </div>
+                    <div class="alert-card">
+                        <div class="alert-type">Client Relationship</div>
+                        <p>"Client XYZ last contacted 90 days ago. Their annual retainer renews in 45 days—schedule a check-in?"</p>
+                    </div>
+                </div>
+                
+                <div class="feed-visual">
+                    <div class="screenshot-placeholder">
+                        <strong>INTELLIGENCE FEED</strong>
+                        <small>Screenshot: Microsoft Teams showing the Cognify Intelligence tab with a feed of prioritized alerts. Clean card-based interface showing alerts with action buttons ("Investigate", "Snooze", "Mark Resolved"). Shows time-based organization and visual priority indicators.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Dashboard -->
+    <section class="dashboard-section">
+        <div class="solution-content">
+            <div class="solution-header">
+                <div class="section-label">Performance Dashboard</div>
+                <h2>Simplified Executive View</h2>
+                <p>For management teams who want at-a-glance firm performance, the Performance tab provides a clean dashboard—without the configuration nightmare of traditional BI.</p>
+            </div>
+            
+            <div class="dashboard-grid">
+                <div class="dashboard-visual">
+                    <div class="screenshot-placeholder">
+                        <strong>PERFORMANCE DASHBOARD</strong>
+                        <small>Screenshot: Clean dashboard interface showing key metrics in card format. Revenue, utilization, collection rates, WIP aging—all with clear visual indicators (green/amber/red status). Shows drill-down capability and "Last updated: Real-time" indicator. Professional but not overwhelming.</small>
+                    </div>
+                </div>
+                
+                <div class="dashboard-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">💬</div>
+                        <div class="feature-content">
+                            <h4>Guided Setup</h4>
+                            <p>Cognify asks simple questions to configure targets and tolerances. "What's your target revenue per partner?" No data expertise required.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📈</div>
+                        <div class="feature-content">
+                            <h4>Prebuilt KPIs</h4>
+                            <p>Core metrics defined using legal industry best practices. Customize targets without needing to understand data modeling.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔔</div>
+                        <div class="feature-content">
+                            <h4>Proactive Maintenance</h4>
+                            <p>Intelligence Feed reminds you to update targets near year-end, review tolerances quarterly, adjust thresholds when conditions change.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">👥</div>
+                        <div class="feature-content">
+                            <h4>Role-Based Views</h4>
+                            <p>Managing partners see firm-wide metrics. Practice heads see their department. Partners see their portfolio. Everyone sees what matters to them.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Summary -->
+    <section class="value-summary">
+        <div class="value-summary-content">
+            <h2>Why Traditional BI Fails and Cognify Succeeds</h2>
+            
+            <div class="value-points">
+                <div class="value-point">
+                    <div class="value-point-number">01</div>
+                    <p><strong>Zero friction adoption:</strong> Intelligence appears in tools lawyers use daily. No new applications, no training, no separate logins.</p>
+                </div>
+                <div class="value-point">
+                    <div class="value-point-number">02</div>
+                    <p><strong>Impossible to ignore:</strong> Proactive alerts interrupt workflow at the right moment. Users don't need to remember to check anything.</p>
+                </div>
+                <div class="value-point">
+                    <div class="value-point-number">03</div>
+                    <p><strong>Immediate value:</strong> The first time a partner pulls matter data into a proposal, the value is obvious and tangible.</p>
+                </div>
+                <div class="value-point">
+                    <div class="value-point-number">04</div>
+                    <p><strong>Solves both failures:</strong> Co-Pilot means they don't need to "go look." Intelligence Feed means they don't need to "know what to look for."</p>
+                </div>
+            </div>
+            
+            <div class="positioning-statement">
+                "Traditional BI expects partners to open dashboards and know what questions to ask. Cognify works the opposite way: When you're actively working, Cognify is right there with the answers. When you're not thinking about something, Cognify taps you on the shoulder to say 'this needs attention.' You never need to remember to check a dashboard again."
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-section" id="book-demo">
+        <div class="cta-content">
+            <h2>See Cognify in Action</h2>
+            <p>Book a 30-minute demo to see how Cognify delivers intelligence where your team actually works—no dashboards required.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn-primary">Book Your Demo</a>
+                <a href="#" class="btn-secondary">Talk to Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Cognify Legal</h3>
+                <p>Intelligence, not dashboards. Purpose-built for mid-market UK law firms seeking data-driven decision making without the complexity of traditional BI.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Integrations</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Book Demo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Cognify Legal. All rights reserved. | <a href="#" style="color: rgba(255, 255, 255, 0.7);">Privacy Policy</a> | <a href="#" style="color: rgba(255, 255, 255, 0.7);">Terms of Service</a></p>
+        </div>
+    </footer>
+</body>
+</html>

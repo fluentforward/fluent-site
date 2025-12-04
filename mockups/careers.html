@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - Cognify Legal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --indigo: #4F46E5;
+            --lime: #84CC16;
+            --navy: #1E293B;
+            --charcoal: #0F172A;
+            --grey-light: #F8FAFC;
+            --grey-mid: #E2E8F0;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--navy);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--grey-mid);
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+        
+        .logo-accent {
+            color: var(--indigo);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--indigo);
+        }
+        
+        .nav-cta {
+            background: var(--lime);
+            color: var(--charcoal);
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(132, 204, 22, 0.25);
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(132, 204, 22, 0.35);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 50%, #7C3AED 100%);
+            padding: 5rem 5% 4rem;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="1" cy="1" r="1" fill="white" opacity="0.1"/></svg>');
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-60px); }
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+        
+        /* Mission Section */
+        .mission-section {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+        
+        .mission-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .mission-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+        
+        .mission-content p {
+            font-size: 1.15rem;
+            color: var(--navy);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Stage Section */
+        .stage-section {
+            padding: 6rem 5%;
+            background: var(--lime);
+        }
+        
+        .stage-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .stage-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .stage-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+        
+        .stage-header p {
+            font-size: 1.15rem;
+            color: var(--navy);
+            line-height: 1.7;
+        }
+        
+        .stage-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .stage-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        }
+        
+        .stage-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .stage-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.75rem;
+        }
+        
+        .stage-card p {
+            color: var(--navy);
+            line-height: 1.7;
+        }
+        
+        /* Values Section */
+        .values-section {
+            padding: 6rem 5%;
+            background: var(--grey-light);
+        }
+        
+        .values-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--indigo);
+            margin-bottom: 1rem;
+        }
+        
+        .section-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .section-header p {
+            font-size: 1.15rem;
+            color: var(--navy);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .value-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .value-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+        
+        .value-card p {
+            color: var(--navy);
+            line-height: 1.7;
+        }
+        
+        /* Future Roles Section */
+        .future-roles-section {
+            padding: 6rem 5%;
+            background: var(--charcoal);
+            color: var(--white);
+        }
+        
+        .future-roles-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .future-roles-section .section-label {
+            color: var(--lime);
+        }
+        
+        .future-roles-section .section-header h2 {
+            color: var(--white);
+        }
+        
+        .future-roles-section .section-header p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .role-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .role-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .role-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .role-timing {
+            display: inline-block;
+            background: rgba(132, 204, 22, 0.2);
+            color: var(--lime);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .role-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+        
+        /* Current Openings Section */
+        .openings-section {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+        
+        .openings-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .no-openings-box {
+            background: var(--grey-light);
+            border: 2px dashed var(--grey-mid);
+            padding: 4rem 3rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+        }
+        
+        .no-openings-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .no-openings-box h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+        
+        .no-openings-box p {
+            font-size: 1.15rem;
+            color: var(--navy);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .no-openings-box p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Speculative Section */
+        .speculative-section {
+            padding: 6rem 5%;
+            background: var(--lime);
+        }
+        
+        .speculative-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .speculative-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .speculative-text h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .speculative-text p {
+            font-size: 1.1rem;
+            color: var(--navy);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .apply-button {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-block;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+        }
+        
+        .apply-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .speculative-checklist {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        }
+        
+        .speculative-checklist h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+        
+        .checklist {
+            list-style: none;
+        }
+        
+        .checklist-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+            align-items: start;
+        }
+        
+        .checklist-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .checklist-icon {
+            background: var(--lime);
+            color: var(--charcoal);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 0.15rem;
+        }
+        
+        .checklist-item p {
+            color: var(--navy);
+            line-height: 1.7;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            padding: 4rem 5% 2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            line-height: 1.7;
+        }
+        
+        .footer-links h4 {
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--lime);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--lime);
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .stage-grid,
+            .roles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .values-grid,
+            .speculative-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            nav {
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 4rem 5% 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-header h2,
+            .mission-content h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="logo">
+            <span class="logo-accent">Cognify</span> Legal
+        </a>
+        <ul class="nav-links">
+            <li><a href="/#solution">Solution</a></li>
+            <li><a href="/#how-it-works">How It Works</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a class="nav-cta" href="/book-demo">Book a Demo</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Join Us in Building the Future</h1>
+            <p>Help us eliminate the £100K+ waste that law firms experience with traditional BI by delivering intelligence where lawyers actually work.</p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="mission-content">
+            <h2>Why Cognify Exists</h2>
+            <p>We're solving a real problem that costs law firms millions collectively: traditional business intelligence platforms that nobody uses. After witnessing this same failure pattern across dozens of enterprises over more than a decade, we're building the solution—intelligence that embeds into daily workflow rather than sitting in forgotten dashboards.</p>
+            <p>This isn't about building another BI tool. It's about fundamentally rethinking how professional services firms access and act on data. If that mission resonates with you, we'd love to talk.</p>
+        </div>
+    </section>
+
+    <!-- Stage Section -->
+    <section class="stage-section">
+        <div class="stage-content">
+            <div class="stage-header">
+                <h2>Where We Are</h2>
+                <p>Early-stage startup with first paying customers, validated product-market fit, and clear path to revenue growth.</p>
+            </div>
+
+            <div class="stage-grid">
+                <div class="stage-card">
+                    <div class="stage-icon">🚀</div>
+                    <h3>Early Stage</h3>
+                    <p>Post-MVP with first customers onboarded. Preparing for pre-seed fundraising while maintaining focus on execution velocity.</p>
+                </div>
+
+                <div class="stage-card">
+                    <div class="stage-icon">💰</div>
+                    <h3>Revenue Generating</h3>
+                    <p>First paying customer at £1K/month with pipeline representing significant potential ARR. Product-market fit validated.</p>
+                </div>
+
+                <div class="stage-card">
+                    <div class="stage-icon">🎯</div>
+                    <h3>Focused Market</h3>
+                    <p>Clear target: mid-market UK law firms (20-200 staff) using ActionStep or Clio who've struggled with traditional BI.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="values-content">
+            <div class="section-header">
+                <div class="section-label">Our Values</div>
+                <h2>What We Believe</h2>
+                <p>The principles that guide how we build, who we hire, and how we treat customers and each other.</p>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3>Adoption Over Features</h3>
+                    <p>We measure success by whether people actually use what we build, not by feature count. The best technology is invisible—it just works.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <h3>Execution Velocity</h3>
+                    <p>We ship fast, learn quickly, and iterate based on real customer feedback. Perfection is the enemy of progress.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Customer Partnership</h3>
+                    <p>Our founding clients aren't just users—they're partners shaping the product. We build with them, not for them.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🔍</div>
+                    <h3>Radical Transparency</h3>
+                    <p>We're honest about what we can and can't do, our current stage, and our limitations. No overpromising, no BS.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">📊</div>
+                    <h3>Outcomes, Not Outputs</h3>
+                    <p>We care about business impact—revenue protected, time saved, risks avoided—not lines of code or features shipped.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🌱</div>
+                    <h3>Sustainable Growth</h3>
+                    <p>We're building for the long term. That means saying no to opportunities that don't align with our mission and maintaining work-life balance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Roles Section -->
+    <section class="future-roles-section">
+        <div class="future-roles-content">
+            <div class="section-header">
+                <div class="section-label">Future Hiring</div>
+                <h2>Roles We'll Be Hiring</h2>
+                <p>As we grow and secure funding, these are the areas where we'll need exceptional people.</p>
+            </div>
+
+            <div class="roles-grid">
+                <div class="role-card">
+                    <div class="role-icon">💻</div>
+                    <h3>Full-Stack Engineer</h3>
+                    <span class="role-timing">Q2 2025</span>
+                    <p>Generalist engineer comfortable with TypeScript, React, Node.js, and Azure/AWS. Experience with Microsoft 365 APIs and multi-tenant architecture a plus.</p>
+                </div>
+
+                <div class="role-card">
+                    <div class="role-icon">🎨</div>
+                    <h3>Product Designer</h3>
+                    <span class="role-timing">Q3 2025</span>
+                    <p>Designer who understands both B2B SaaS and AI-powered interfaces. Passionate about making complex systems feel simple and obvious.</p>
+                </div>
+
+                <div class="role-card">
+                    <div class="role-icon">📈</div>
+                    <h3>Growth Lead</h3>
+                    <span class="role-timing">Q3 2025</span>
+                    <p>Experienced in outbound sales to professional services firms. Comfortable with founder-led sales transitioning to scalable processes.</p>
+                </div>
+
+                <div class="role-card">
+                    <div class="role-icon">🤝</div>
+                    <h3>Customer Success</h3>
+                    <span class="role-timing">Q4 2025</span>
+                    <p>Former legal operations professional or practice management consultant who understands law firm workflows and challenges.</p>
+                </div>
+
+                <div class="role-card">
+                    <div class="role-icon">🔧</div>
+                    <h3>Integration Engineer</h3>
+                    <span class="role-timing">2026</span>
+                    <p>Specialist in building and maintaining integrations with practice management systems, accounting software, and enterprise platforms.</p>
+                </div>
+
+                <div class="role-card">
+                    <div class="role-icon">📝</div>
+                    <h3>Technical Writer</h3>
+                    <span class="role-timing">2026</span>
+                    <p>Someone who can translate complex technical concepts into clear documentation and help content for non-technical law firm users.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Current Openings Section -->
+    <section class="openings-section">
+        <div class="openings-content">
+            <div class="section-header">
+                <div class="section-label">Current Openings</div>
+                <h2>Open Positions</h2>
+            </div>
+
+            <div class="no-openings-box">
+                <div class="no-openings-icon">📭</div>
+                <h2>No Active Openings</h2>
+                <p>We're not actively hiring right now as we're in the early stages of building out our founding client base and preparing for fundraising.</p>
+                <p>However, if you're exceptional at what you do and passionate about our mission, we'd still love to hear from you. See below for how to reach out.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speculative Applications Section -->
+    <section class="speculative-section">
+        <div class="speculative-content">
+            <div class="speculative-grid">
+                <div class="speculative-text">
+                    <h2>Think You Can Add Value?</h2>
+                    <p>Even though we're not actively hiring, we're always interested in talking to exceptional people who are genuinely excited about what we're building.</p>
+                    <p>If you have relevant experience, unique skills, or insights that could help us solve the traditional BI adoption problem in law firms, we want to hear from you.</p>
+                    <a href="mailto:careers@cognifylegal.com" class="apply-button">Get in Touch</a>
+                </div>
+
+                <div class="speculative-checklist">
+                    <h3>Before You Reach Out</h3>
+                    <ul class="checklist">
+                        <li class="checklist-item">
+                            <div class="checklist-icon">✓</div>
+                            <p>You've read our <a href="/about" style="color: var(--indigo); font-weight: 700;">about page</a> and understand our mission and approach</p>
+                        </li>
+                        <li class="checklist-item">
+                            <div class="checklist-icon">✓</div>
+                            <p>You have specific ideas about how you could contribute to solving our customers' problems</p>
+                        </li>
+                        <li class="checklist-item">
+                            <div class="checklist-icon">✓</div>
+                            <p>You're comfortable with early-stage uncertainty and the reality that we may not have immediate opportunities</p>
+                        </li>
+                        <li class="checklist-item">
+                            <div class="checklist-icon">✓</div>
+                            <p>You can articulate why this specific problem (BI adoption in law firms) interests you</p>
+                        </li>
+                        <li class="checklist-item">
+                            <div class="checklist-icon">✓</div>
+                            <p>You're based in or willing to relocate to the UK (we're building a UK-focused team)</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Cognify Legal</h3>
+                <p>Intelligence, not dashboards. Purpose-built for mid-market UK law firms seeking data-driven decision making without the complexity of traditional BI.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="/features">Features</a></li>
+                    <li><a href="/integrations">Integrations</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/security">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/careers">Careers</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/docs">Documentation</a></li>
+                    <li><a href="/case-studies">Case Studies</a></li>
+                    <li><a href="/support">Support</a></li>
+                    <li><a href="/book-demo">Book Demo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Cognify Legal. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+        </div>
+    </footer>
+</body>
+</html>

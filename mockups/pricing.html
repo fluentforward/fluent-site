@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Cognify Legal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --indigo: #4F46E5;
+            --lime: #84CC16;
+            --navy: #1E293B;
+            --charcoal: #0F172A;
+            --grey-light: #F8FAFC;
+            --grey-mid: #E2E8F0;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--navy);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--grey-mid);
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+        
+        .logo-accent {
+            color: var(--indigo);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--indigo);
+        }
+        
+        .nav-cta {
+            background: var(--lime);
+            color: var(--charcoal);
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(132, 204, 22, 0.25);
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(132, 204, 22, 0.35);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 50%, #7C3AED 100%);
+            padding: 5rem 5% 4rem;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="1" cy="1" r="1" fill="white" opacity="0.1"/></svg>');
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-60px); }
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+        
+        /* Pricing Section */
+        .pricing-section {
+            padding: 6rem 5%;
+            background: var(--grey-light);
+        }
+        
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .pricing-toggle {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .pricing-toggle p {
+            font-size: 1.1rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+        
+        .toggle-switch {
+            display: inline-flex;
+            background: var(--white);
+            border-radius: 50px;
+            padding: 0.5rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .toggle-option {
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            background: transparent;
+            color: var(--navy);
+        }
+        
+        .toggle-option.active {
+            background: var(--indigo);
+            color: var(--white);
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .pricing-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--lime);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-4px);
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--lime);
+            color: var(--charcoal);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .card-header {
+            text-align: center;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--grey-light);
+            margin-bottom: 2rem;
+        }
+        
+        .plan-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+        
+        .plan-description {
+            color: var(--navy);
+            font-size: 0.95rem;
+        }
+        
+        .plan-price {
+            margin: 1.5rem 0;
+        }
+        
+        .price-amount {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            line-height: 1;
+        }
+        
+        .price-currency {
+            font-size: 1.5rem;
+            vertical-align: super;
+        }
+        
+        .price-period {
+            color: var(--navy);
+            font-size: 1rem;
+        }
+        
+        .price-note {
+            font-size: 0.85rem;
+            color: var(--navy);
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+        
+        .plan-features li {
+            padding: 0.75rem 0;
+            color: var(--navy);
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+        }
+        
+        .feature-icon {
+            color: var(--lime);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 0.15rem;
+        }
+        
+        .feature-icon.disabled {
+            color: var(--grey-mid);
+        }
+        
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 2px solid;
+        }
+        
+        .cta-button.primary {
+            background: var(--indigo);
+            color: var(--white);
+            border-color: var(--indigo);
+        }
+        
+        .cta-button.primary:hover {
+            background: var(--charcoal);
+            border-color: var(--charcoal);
+        }
+        
+        .cta-button.secondary {
+            background: transparent;
+            color: var(--indigo);
+            border-color: var(--indigo);
+        }
+        
+        .cta-button.secondary:hover {
+            background: var(--indigo);
+            color: var(--white);
+        }
+        
+        .cta-button.featured {
+            background: var(--lime);
+            color: var(--charcoal);
+            border-color: var(--lime);
+            box-shadow: 0 4px 14px rgba(132, 204, 22, 0.25);
+        }
+        
+        .cta-button.featured:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(132, 204, 22, 0.35);
+        }
+        
+        /* Founding Client Section */
+        .founding-client {
+            background: var(--lime);
+            padding: 4rem 5%;
+            margin-top: 2rem;
+        }
+        
+        .founding-client-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .founding-client h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .founding-client p {
+            font-size: 1.15rem;
+            color: var(--navy);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        
+        .founding-benefits {
+            list-style: none;
+        }
+        
+        .founding-benefits li {
+            background: var(--white);
+            padding: 1.25rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .benefit-icon-large {
+            font-size: 1.75rem;
+            flex-shrink: 0;
+        }
+        
+        .founding-benefits strong {
+            color: var(--charcoal);
+            font-weight: 700;
+        }
+        
+        .founding-cta {
+            display: inline-block;
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 1.25rem 2.5rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+        }
+        
+        .founding-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* ROI Comparison */
+        .roi-section {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+        
+        .roi-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .roi-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+        
+        .roi-content > p {
+            font-size: 1.15rem;
+            color: var(--navy);
+            margin-bottom: 3rem;
+        }
+        
+        .comparison-table {
+            background: var(--grey-light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+        
+        .comparison-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--grey-mid);
+            align-items: center;
+        }
+        
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+        
+        .comparison-row:nth-child(even) {
+            background: var(--white);
+        }
+        
+        .comparison-label {
+            font-weight: 600;
+            color: var(--charcoal);
+            text-align: left;
+        }
+        
+        .comparison-value {
+            text-align: center;
+            color: var(--navy);
+        }
+        
+        .comparison-value.highlight {
+            color: var(--lime);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .comparison-total {
+            background: var(--indigo);
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .comparison-total .comparison-label {
+            color: var(--white);
+        }
+        
+        .comparison-total .comparison-value {
+            color: var(--white);
+        }
+        
+        .comparison-total .comparison-value.highlight {
+            color: var(--lime);
+            font-size: 1.5rem;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 6rem 5%;
+            background: var(--grey-light);
+        }
+        
+        .faq-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .faq-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .faq-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+        
+        .faq-question {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+        
+        .faq-answer {
+            color: var(--navy);
+            line-height: 1.7;
+        }
+        
+        .faq-answer strong {
+            color: var(--charcoal);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 50%, #7C3AED 100%);
+            padding: 6rem 5%;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .cta-section-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .cta-section p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: var(--lime);
+            color: var(--charcoal);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(132, 204, 22, 0.3);
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(132, 204, 22, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            padding: 4rem 5% 2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            line-height: 1.7;
+        }
+        
+        .footer-links h4 {
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--lime);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--lime);
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-4px);
+            }
+            
+            .founding-client-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-header,
+            .comparison-row {
+                grid-template-columns: 2fr 1fr 1fr;
+                font-size: 0.9rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            nav {
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 4rem 5% 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .pricing-section,
+            .roi-section,
+            .faq-section {
+                padding: 3rem 5%;
+            }
+            
+            .roi-content h2,
+            .faq-content h2,
+            .founding-client h2 {
+                font-size: 2rem;
+            }
+            
+            .comparison-header,
+            .comparison-row {
+                font-size: 0.8rem;
+                padding: 1rem;
+            }
+            
+            .comparison-label {
+                font-size: 0.85rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="logo">
+            <span class="logo-accent">Cognify</span> Legal
+        </a>
+        <ul class="nav-links">
+            <li><a href="/#solution">Solution</a></li>
+            <li><a href="/#how-it-works">How It Works</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a class="nav-cta" href="/book-demo">Book a Demo</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Simple, Transparent Pricing</h1>
+            <p>Choose the plan that fits your firm. No hidden fees. No per-user surprise charges. Cancel anytime.</p>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="pricing-container">
+            <!-- Pricing Cards -->
+            <div class="pricing-cards">
+                <!-- Starter Plan -->
+                <div class="pricing-card">
+                    <div class="card-header">
+                        <h3 class="plan-name">Starter</h3>
+                        <p class="plan-description">Perfect for small firms testing the waters</p>
+                        <div class="plan-price">
+                            <span class="price-amount">
+                                <span class="price-currency">£</span>750
+                            </span>
+                            <div class="price-period">/month</div>
+                            <p class="price-note">Up to 10 users</p>
+                        </div>
+                    </div>
+                    
+                    <ul class="plan-features">
+                        <li><span class="feature-icon">✓</span> Microsoft Teams chat interface</li>
+                        <li><span class="feature-icon">✓</span> Intelligence Feed (proactive alerts)</li>
+                        <li><span class="feature-icon">✓</span> Performance Dashboard</li>
+                        <li><span class="feature-icon">✓</span> 1 practice management integration</li>
+                        <li><span class="feature-icon">✓</span> Co-Pilot integration (Word, Excel, PowerPoint)</li>
+                        <li><span class="feature-icon">✓</span> Email support (24hr response)</li>
+                        <li><span class="feature-icon">✓</span> Core KPIs & metrics</li>
+                        <li><span class="feature-icon disabled">✗</span> Custom KPI configuration</li>
+                        <li><span class="feature-icon disabled">✗</span> API access</li>
+                        <li><span class="feature-icon disabled">✗</span> Priority support</li>
+                    </ul>
+                    
+                    <a href="/book-demo" class="cta-button secondary">Book a Demo</a>
+                </div>
+
+                <!-- Professional Plan (Featured) -->
+                <div class="pricing-card featured">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="card-header">
+                        <h3 class="plan-name">Professional</h3>
+                        <p class="plan-description">For growing firms ready to scale</p>
+                        <div class="plan-price">
+                            <span class="price-amount">
+                                <span class="price-currency">£</span>1,500
+                            </span>
+                            <div class="price-period">/month</div>
+                            <p class="price-note">Up to 30 users</p>
+                        </div>
+                    </div>
+                    
+                    <ul class="plan-features">
+                        <li><span class="feature-icon">✓</span> Everything in Starter, plus:</li>
+                        <li><span class="feature-icon">✓</span> Outlook contextual intelligence</li>
+                        <li><span class="feature-icon">✓</span> Custom KPI configuration</li>
+                        <li><span class="feature-icon">✓</span> Multiple system integrations</li>
+                        <li><span class="feature-icon">✓</span> Advanced Intelligence Feed rules</li>
+                        <li><span class="feature-icon">✓</span> Role-based dashboard views</li>
+                        <li><span class="feature-icon">✓</span> Priority email support (4hr response)</li>
+                        <li><span class="feature-icon">✓</span> Quarterly business reviews</li>
+                        <li><span class="feature-icon">✓</span> Dedicated onboarding</li>
+                        <li><span class="feature-icon disabled">✗</span> API access</li>
+                    </ul>
+                    
+                    <a href="/book-demo" class="cta-button featured">Book a Demo</a>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="pricing-card">
+                    <div class="card-header">
+                        <h3 class="plan-name">Enterprise</h3>
+                        <p class="plan-description">For large firms with complex needs</p>
+                        <div class="plan-price">
+                            <span class="price-amount">Custom</span>
+                            <div class="price-period">Contact us</div>
+                            <p class="price-note">Unlimited users</p>
+                        </div>
+                    </div>
+                    
+                    <ul class="plan-features">
+                        <li><span class="feature-icon">✓</span> Everything in Professional, plus:</li>
+                        <li><span class="feature-icon">✓</span> Unlimited users</li>
+                        <li><span class="feature-icon">✓</span> API access for custom integrations</li>
+                        <li><span class="feature-icon">✓</span> Custom feature development</li>
+                        <li><span class="feature-icon">✓</span> Dedicated account manager</li>
+                        <li><span class="feature-icon">✓</span> 99.9% SLA guarantee</li>
+                        <li><span class="feature-icon">✓</span> Phone & chat support (1hr response)</li>
+                        <li><span class="feature-icon">✓</span> Advanced security & compliance</li>
+                        <li><span class="feature-icon">✓</span> Data residency options</li>
+                        <li><span class="feature-icon">✓</span> Custom training & workshops</li>
+                    </ul>
+                    
+                    <a href="/book-demo" class="cta-button primary">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founding Client Section -->
+    <section class="founding-client">
+        <div class="founding-client-content">
+            <div>
+                <h2>Founding Client Program</h2>
+                <p>Join our founding client program and get exclusive benefits while helping shape the future of legal intelligence platforms.</p>
+                <a href="/founding-clients" class="founding-cta">Learn More →</a>
+            </div>
+            <ul class="founding-benefits">
+                <li>
+                    <span class="benefit-icon-large">💰</span>
+                    <div>
+                        <strong>50% off for life:</strong> Lock in founding rates permanently
+                    </div>
+                </li>
+                <li>
+                    <span class="benefit-icon-large">🎯</span>
+                    <div>
+                        <strong>Influence the roadmap:</strong> Direct input on feature priorities
+                    </div>
+                </li>
+                <li>
+                    <span class="benefit-icon-large">🤝</span>
+                    <div>
+                        <strong>White-glove service:</strong> Dedicated support & onboarding
+                    </div>
+                </li>
+                <li>
+                    <span class="benefit-icon-large">⚡</span>
+                    <div>
+                        <strong>Early access:</strong> New features before general release
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ROI Comparison -->
+    <section class="roi-section">
+        <div class="roi-content">
+            <h2>The True Cost of Business Intelligence</h2>
+            <p>Compare Cognify's total cost of ownership against traditional BI implementations</p>
+            
+            <div class="comparison-table">
+                <div class="comparison-header">
+                    <div>First Year Costs</div>
+                    <div>Traditional BI</div>
+                    <div>Cognify</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-label">Software licenses</div>
+                    <div class="comparison-value">£12,000</div>
+                    <div class="comparison-value">£18,000</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-label">Implementation & consulting</div>
+                    <div class="comparison-value">£35,000</div>
+                    <div class="comparison-value">£0</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-label">Training & change management</div>
+                    <div class="comparison-value">£15,000</div>
+                    <div class="comparison-value">£0</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-label">Data team time (building dashboards)</div>
+                    <div class="comparison-value">£25,000</div>
+                    <div class="comparison-value">£0</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-label">Ongoing maintenance</div>
+                    <div class="comparison-value">£18,000</div>
+                    <div class="comparison-value">£0</div>
+                </div>
+                <div class="comparison-row comparison-total">
+                    <div class="comparison-label">Total First Year Cost</div>
+                    <div class="comparison-value">£105,000</div>
+                    <div class="comparison-value highlight">£18,000</div>
+                </div>
+            </div>
+
+            <p style="margin-top: 2rem; font-weight: 600; color: var(--charcoal);">With Cognify, you save £87,000 in year one—and you actually get adoption.</p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-content">
+            <h2>Pricing FAQs</h2>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">What happens when I exceed user limits?</h3>
+                <p class="faq-answer">You can upgrade to the next tier or add users at <strong>£75/user/month</strong> on Starter and Professional plans. We'll notify you when you're approaching your limit so there are no surprises.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">Are there setup or onboarding fees?</h3>
+                <p class="faq-answer"><strong>No.</strong> All plans include setup and onboarding at no additional cost. We'll have you live within 2 weeks with full data integration and user training.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">What's included in the practice management integration?</h3>
+                <p class="faq-answer">We connect to your ActionStep, Clio, or other practice management system to pull matter data, time entries, invoices, client information, and financial metrics. All data syncs automatically in real-time.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">Can I cancel anytime?</h3>
+                <p class="faq-answer"><strong>Yes.</strong> All plans are month-to-month with no long-term contracts. Cancel with 30 days notice. Your data remains accessible for 90 days after cancellation.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">Do I need Microsoft Co-Pilot licenses?</h3>
+                <p class="faq-answer">Co-Pilot integration provides the best experience, but it's not required. You'll still get full Intelligence Feed, Performance Dashboard, and Teams chat functionality. We recommend Co-Pilot for maximum value.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">What about data security and compliance?</h3>
+                <p class="faq-answer">All plans include bank-level encryption (AES-256), SOC 2 Type II compliance (in progress), GDPR compliance, and role-based access controls. Enterprise plans offer additional security features and custom data residency options.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">How long does implementation take?</h3>
+                <p class="faq-answer">Most firms are live within <strong>2 weeks</strong>. This includes connecting your systems, configuring your Performance Dashboard, and training your team. No complex data modeling or dashboard building required.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">What if I need features from a higher tier?</h3>
+                <p class="faq-answer">You can upgrade anytime, and we'll pro-rate your billing. We can also create custom plans combining features from different tiers—just ask during your demo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-section">
+        <div class="cta-section-content">
+            <h2>Ready to Get Started?</h2>
+            <p>Book a demo to see Cognify in action and find the right plan for your firm.</p>
+            <div class="cta-buttons">
+                <a href="/book-demo" class="btn-primary">Book Your Demo</a>
+                <a href="/contact" class="btn-secondary">Talk to Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Cognify Legal</h3>
+                <p>Intelligence, not dashboards. Purpose-built for mid-market UK law firms seeking data-driven decision making without the complexity of traditional BI.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="/features">Features</a></li>
+                    <li><a href="/integrations">Integrations</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/security">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/careers">Careers</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/docs">Documentation</a></li>
+                    <li><a href="/case-studies">Case Studies</a></li>
+                    <li><a href="/support">Support</a></li>
+                    <li><a href="/book-demo">Book Demo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Cognify Legal. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+        </div>
+    </footer>
+</body>
+</html>
