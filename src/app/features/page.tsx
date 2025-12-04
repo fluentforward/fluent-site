@@ -8,6 +8,9 @@ import { IntelligenceFeedCategory } from '@/components/IntelligenceFeedCategory'
 import { KPICard } from '@/components/KPICard'
 import { DashboardFeatureCard } from '@/components/DashboardFeatureCard'
 import { PlatformCard } from '@/components/PlatformCard'
+import wordIntegration from '@/images/app/word-integration.png'
+import performanceDashboard from '@/images/app/performance-dashboard.png'
+
 
 export const metadata: Metadata = {
   title: 'Features',
@@ -42,9 +45,10 @@ const copilotFeatures = [
       { text: 'Natural language queries: Ask in plain English, get formatted tables and text' },
       { text: 'Contextual suggestions: Based on document content, Cognify suggests relevant data' },
     ],
-    screenshotTitle: 'WORD INTEGRATION',
-    screenshotDescription:
-      'Screenshot showing Microsoft Word document with Cognify Co-Pilot sidebar. User is drafting a client proposal and has asked "Insert billing history for Client ABC for the last 6 months." Sidebar shows formatted table ready to insert into document with one click. Demonstrates seamless document creation workflow.',
+    screenshot: {
+      image: wordIntegration,
+      alt: 'Microsoft Word document with Cognify Co-Pilot sidebar',
+    },
   },
   {
     title: 'Analyze in Excel',

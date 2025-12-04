@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognify Word Integration Mockup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .word-container {
+            width: 1400px;
+            height: 800px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Word Title Bar */
+        .word-titlebar {
+            background: #2B579A;
+            color: white;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+        }
+        
+        .titlebar-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .word-icon {
+            width: 20px;
+            height: 20px;
+            background: white;
+            color: #2B579A;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12px;
+        }
+        
+        .titlebar-title {
+            font-weight: 600;
+        }
+        
+        /* Word Ribbon */
+        .word-ribbon {
+            background: #F3F2F1;
+            border-bottom: 1px solid #EDEBE9;
+            padding: 0;
+        }
+        
+        .ribbon-tabs {
+            display: flex;
+            gap: 0;
+            padding: 0 16px;
+        }
+        
+        .ribbon-tab {
+            padding: 8px 16px;
+            font-size: 13px;
+            color: #323130;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .ribbon-tab.active {
+            background: white;
+            border-bottom-color: #2B579A;
+        }
+        
+        .ribbon-controls {
+            background: white;
+            padding: 8px 16px;
+            border-bottom: 1px solid #EDEBE9;
+            display: flex;
+            gap: 24px;
+            font-size: 12px;
+        }
+        
+        .ribbon-group {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+        
+        .ribbon-button {
+            padding: 4px 8px;
+            background: #F3F2F1;
+            border: 1px solid #E1DFDD;
+            border-radius: 2px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+        
+        /* Main Content Area */
+        .word-content {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+        
+        /* Document Area */
+        .document-area {
+            flex: 1;
+            background: #E1DFDD;
+            padding: 40px;
+            overflow-y: auto;
+        }
+        
+        .document-page {
+            background: white;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 80px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            min-height: 100%;
+        }
+        
+        .doc-header {
+            margin-bottom: 40px;
+        }
+        
+        .firm-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2B579A;
+            margin-bottom: 8px;
+        }
+        
+        .doc-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #323130;
+            margin-bottom: 20px;
+        }
+        
+        .doc-meta {
+            font-size: 12px;
+            color: #605E5C;
+            line-height: 1.6;
+        }
+        
+        .doc-content {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #323130;
+        }
+        
+        .doc-content p {
+            margin-bottom: 16px;
+        }
+        
+        .doc-content h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 24px 0 12px;
+            color: #323130;
+        }
+        
+        .cursor-blink {
+            display: inline-block;
+            width: 2px;
+            height: 16px;
+            background: #323130;
+            animation: blink 1s infinite;
+            margin-left: 2px;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        /* Cognify Sidebar */
+        .cognify-sidebar {
+            width: 380px;
+            background: white;
+            border-left: 1px solid #EDEBE9;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar-header {
+            background: linear-gradient(135deg, #4F46E5, #6366F1);
+            color: white;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .sidebar-title-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cognify-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        
+        .sidebar-title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+        
+        .close-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .sidebar-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #FAFAFA;
+        }
+        
+        .query-box {
+            background: white;
+            border: 2px solid #E0E7FF;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .query-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #4F46E5;
+            margin-bottom: 8px;
+        }
+        
+        .query-text {
+            font-size: 14px;
+            color: #323130;
+            font-weight: 500;
+        }
+        
+        .response-box {
+            background: white;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .response-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        
+        .response-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #323130;
+        }
+        
+        .status-badge {
+            background: #D1FAE5;
+            color: #065F46;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .data-table th {
+            background: #F3F4F6;
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 700;
+            color: #374151;
+            border-bottom: 2px solid #E5E7EB;
+        }
+        
+        .data-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #E5E7EB;
+            color: #1F2937;
+        }
+        
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .table-total {
+            background: #F9FAFB;
+            font-weight: 700;
+        }
+        
+        .insert-button {
+            width: 100%;
+            background: #4F46E5;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .insert-button:hover {
+            background: #4338CA;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+        
+        .helper-text {
+            font-size: 12px;
+            color: #6B7280;
+            margin-top: 12px;
+            line-height: 1.5;
+            text-align: center;
+        }
+        
+        .suggestions {
+            margin-top: 20px;
+        }
+        
+        .suggestions-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #323130;
+            margin-bottom: 12px;
+        }
+        
+        .suggestion-item {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #4F46E5;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .suggestion-item:hover {
+            border-color: #4F46E5;
+            background: #F5F3FF;
+        }
+        
+        /* Scrollbar */
+        .document-area::-webkit-scrollbar,
+        .sidebar-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .document-area::-webkit-scrollbar-track,
+        .sidebar-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        .document-area::-webkit-scrollbar-thumb,
+        .sidebar-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+        
+        .document-area::-webkit-scrollbar-thumb:hover,
+        .sidebar-content::-webkit-scrollbar-thumb:hover {
+            background: #a1a1a1;
+        }
+    </style>
+</head>
+<body>
+    <div class="word-container">
+        <!-- Title Bar -->
+        <div class="word-titlebar">
+            <div class="titlebar-left">
+                <div class="word-icon">W</div>
+                <span class="titlebar-title">Client Proposal - ABC Corporation.docx</span>
+            </div>
+            <div>Microsoft Word</div>
+        </div>
+        
+        <!-- Ribbon -->
+        <div class="word-ribbon">
+            <div class="ribbon-tabs">
+                <div class="ribbon-tab">File</div>
+                <div class="ribbon-tab active">Home</div>
+                <div class="ribbon-tab">Insert</div>
+                <div class="ribbon-tab">Layout</div>
+                <div class="ribbon-tab">References</div>
+                <div class="ribbon-tab">Review</div>
+                <div class="ribbon-tab">View</div>
+            </div>
+            <div class="ribbon-controls">
+                <div class="ribbon-group">
+                    <button class="ribbon-button">📋 Paste</button>
+                </div>
+                <div class="ribbon-group">
+                    <button class="ribbon-button">✂️ Cut</button>
+                    <button class="ribbon-button">📄 Copy</button>
+                </div>
+                <div class="ribbon-group">
+                    <button class="ribbon-button"><strong>B</strong></button>
+                    <button class="ribbon-button"><em>I</em></button>
+                    <button class="ribbon-button"><u>U</u></button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="word-content">
+            <!-- Document Area -->
+            <div class="document-area">
+                <div class="document-page">
+                    <div class="doc-header">
+                        <div class="firm-name">HENDERSON & ASSOCIATES LLP</div>
+                        <div class="doc-title">Legal Services Proposal</div>
+                        <div class="doc-meta">
+                            <strong>Client:</strong> ABC Corporation Limited<br>
+                            <strong>Date:</strong> December 4, 2024<br>
+                            <strong>Prepared by:</strong> Sarah Mitchell, Partner
+                        </div>
+                    </div>
+                    
+                    <div class="doc-content">
+                        <h3>Executive Summary</h3>
+                        <p>Thank you for considering Henderson & Associates for your ongoing legal needs. We are pleased to present this proposal outlining our approach to supporting ABC Corporation's continued growth and success.</p>
+                        
+                        <p>Our firm has enjoyed a strong partnership with ABC Corporation over the past 18 months, and we believe our deep understanding of your business positions us uniquely to provide exceptional value going forward.</p>
+                        
+                        <h3>Our Track Record with ABC Corporation</h3>
+                        <p>Since beginning our relationship in June 2023, we have successfully supported ABC Corporation across multiple practice areas, including corporate restructuring, commercial contracts, and employment matters. Below is a summary of our billing history for the last 6 months:<span class="cursor-blink"></span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cognify Sidebar -->
+            <div class="cognify-sidebar">
+                <div class="sidebar-header">
+                    <div class="sidebar-title-group">
+                        <div class="cognify-icon">C</div>
+                        <div class="sidebar-title">Cognify Co-Pilot</div>
+                    </div>
+                    <button class="close-button">×</button>
+                </div>
+                
+                <div class="sidebar-content">
+                    <!-- Query Box -->
+                    <div class="query-box">
+                        <div class="query-label">Your Query</div>
+                        <div class="query-text">Insert billing history for Client ABC for the last 6 months</div>
+                    </div>
+                    
+                    <!-- Response Box -->
+                    <div class="response-box">
+                        <div class="response-header">
+                            <div class="response-title">Billing History Retrieved</div>
+                            <div class="status-badge">✓ Ready to Insert</div>
+                        </div>
+                        
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Month</th>
+                                    <th>Hours</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>June 2024</td>
+                                    <td>42.5</td>
+                                    <td>£12,450</td>
+                                </tr>
+                                <tr>
+                                    <td>July 2024</td>
+                                    <td>38.0</td>
+                                    <td>£11,280</td>
+                                </tr>
+                                <tr>
+                                    <td>August 2024</td>
+                                    <td>51.5</td>
+                                    <td>£15,340</td>
+                                </tr>
+                                <tr>
+                                    <td>September 2024</td>
+                                    <td>46.0</td>
+                                    <td>£13,720</td>
+                                </tr>
+                                <tr>
+                                    <td>October 2024</td>
+                                    <td>55.5</td>
+                                    <td>£16,580</td>
+                                </tr>
+                                <tr>
+                                    <td>November 2024</td>
+                                    <td>48.0</td>
+                                    <td>£14,320</td>
+                                </tr>
+                                <tr class="table-total">
+                                    <td><strong>Total</strong></td>
+                                    <td><strong>281.5</strong></td>
+                                    <td><strong>£83,690</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <button class="insert-button">
+                            <span>📄</span>
+                            <span>Insert into Document</span>
+                        </button>
+                        
+                        <div class="helper-text">
+                            This formatted table will be inserted at your cursor position. You can continue editing after insertion.
+                        </div>
+                    </div>
+                    
+                    <!-- Suggestions -->
+                    <div class="suggestions">
+                        <div class="suggestions-title">You might also want to:</div>
+                        <div class="suggestion-item">📊 Show practice area breakdown for ABC Corp</div>
+                        <div class="suggestion-item">👥 List matters worked on for this client</div>
+                        <div class="suggestion-item">📈 Compare to previous 6-month period</div>
+                        <div class="suggestion-item">💰 Show outstanding invoices for ABC Corp</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

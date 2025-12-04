@@ -1,4 +1,6 @@
+import { StaticImport } from 'next/dist/shared/lib/get-img-props'
 import { FadeIn } from './FadeIn'
+import Image from 'next/image'
 
 type Capability = {
   text: string
@@ -8,10 +10,14 @@ type AppFeatureProps = {
   title: string
   description: string
   capabilities: Capability[]
-  screenshotTitle: string
-  screenshotDescription: string
+  screenshotTitle?: string
+  screenshotDescription?: string
   reverse?: boolean
   delay?: number
+  screenshot?: {
+    image: StaticImport
+    alt: string
+  }
 }
 
 export function AppFeature({
@@ -20,6 +26,7 @@ export function AppFeature({
   capabilities,
   screenshotTitle,
   screenshotDescription,
+  screenshot,
   reverse = false,
   delay = 0,
 }: AppFeatureProps) {
@@ -27,14 +34,28 @@ export function AppFeature({
     <FadeIn delay={delay}>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20 items-center">
         <div className={reverse ? 'lg:order-2' : ''}>
-          <div className="bg-gradient-to-br from-indigo-100 to-purple-100 border-2 border-dashed border-indigo-600 rounded-xl p-12 text-center min-h-[350px] flex flex-col justify-center items-center">
-            <strong className="block text-xl text-slate-900 mb-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-              {screenshotTitle}
-            </strong>
-            <small className="block text-sm text-slate-700 max-w-[90%]" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-              {screenshotDescription}
-            </small>
-          </div>
+          {screenshot ? (
+            <div className="relative">
+              <div className="relative w-full" style={{ minHeight: 400, maxHeight: 500 }}>
+                <Image
+                  src={screenshot.image}
+                  alt={screenshot.alt}
+                  className="rounded-xl shadow-2xl bg-white object-contain"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="bg-gradient-to-br from-indigo-100 to-purple-100 border-2 border-dashed border-indigo-600 rounded-xl p-12 text-center min-h-[350px] flex flex-col justify-center items-center">
+              <strong className="block text-xl text-slate-900 mb-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                {screenshotTitle}
+              </strong>
+              <small className="block text-sm text-slate-700 max-w-[90%]" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                {screenshotDescription}
+              </small>
+            </div>
+          )}
         </div>
         <div className={reverse ? 'lg:order-1' : ''}>
           <h3

@@ -1,5 +1,7 @@
+import Image from 'next/image'
 import { Container } from './Container'
 import { FadeIn } from './FadeIn'
+import wordIntegration from '@/images/app/word-integration.png'
 
 const apps = [
   {
@@ -66,16 +68,28 @@ export function ReactiveIntelligenceSection() {
           {apps.map((app, index) => (
             <FadeIn key={index} delay={index * 0.1}>
               <div className="bg-white rounded-xl overflow-hidden shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
-                <div className="bg-gradient-to-br from-indigo-100 to-purple-100 p-8 min-h-[250px] flex items-center justify-center border-b-4 border-indigo-600">
-                  <div className="bg-white/50 border-2 border-dashed border-indigo-600 rounded-lg p-8 text-center w-full min-h-[200px] flex flex-col justify-center items-center">
-                    <strong className="block text-lg text-slate-900 mb-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                      {app.screenshot.title}
-                    </strong>
-                    <small className="block text-sm text-slate-700" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                      {app.screenshot.description}
-                    </small>
+                {index === 0 ? (
+                  <div className="relative w-full h-[400px] overflow-hidden rounded-t-xl">
+                    <Image
+                      src={wordIntegration}
+                      alt={app.screenshot.description}
+                      className="shadow-2xl bg-white object-cover"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
                   </div>
-                </div>
+                ) : (
+                  <div className="bg-gradient-to-br from-indigo-100 to-purple-100 p-8 min-h-[250px] flex items-center justify-center border-b-4 border-indigo-600">
+                    <div className="bg-white/50 border-2 border-dashed border-indigo-600 rounded-lg p-8 text-center w-full min-h-[200px] flex flex-col justify-center items-center">
+                      <strong className="block text-lg text-slate-900 mb-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                        {app.screenshot.title}
+                      </strong>
+                      <small className="block text-sm text-slate-700" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                        {app.screenshot.description}
+                      </small>
+                    </div>
+                  </div>
+                )}
                 <div className="p-8">
                   <div className="text-4xl mb-4">{app.icon}</div>
                   <h3
