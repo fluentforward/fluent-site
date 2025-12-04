@@ -4,7 +4,7 @@ import { FadeIn } from './FadeIn'
 
 const benefits = [
   { text: 'Exclusive founding<br />client terms' },
-  { text: '8-week pilot<br />to prove value' },
+  { text: '8-week onboarding<br />to prove value' },
   { text: 'Influence product<br />roadmap' },
 ]
 

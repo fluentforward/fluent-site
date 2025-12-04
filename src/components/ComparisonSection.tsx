@@ -11,7 +11,7 @@ const oldBI = [
 
 const cognify = [
   { icon: '💬', text: 'Conversational interface - ask questions naturally' },
-  { icon: '🚀', text: '8-week pilot to full deployment' },
+  { icon: '🚀', text: '8-week onboarding to full deployment' },
   { icon: '💚', text: 'Founding client benefits and exclusive terms' },
   { icon: '✨', text: 'Zero training required - works in Teams' },
   { icon: '📈', text: 'Partners actually use it daily' },
