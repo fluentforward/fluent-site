@@ -6,8 +6,8 @@ import '@/styles/tailwind.css'
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - Orchestrate Legal',
-    default: 'Orchestrate Legal - Legal Agent Orchestration',
+    template: '%s - Cognify Legal',
+    default: 'Cognify Legal - Agentic Business Intelligence for Legal',
   },
   icons: {
     icon: [
