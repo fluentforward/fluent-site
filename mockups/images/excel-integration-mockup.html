@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognify Excel Integration Mockup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .excel-container {
+            width: 1400px;
+            height: 800px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Excel Title Bar */
+        .excel-titlebar {
+            background: #217346;
+            color: white;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+        }
+        
+        .titlebar-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .excel-icon {
+            width: 20px;
+            height: 20px;
+            background: white;
+            color: #217346;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12px;
+        }
+        
+        .titlebar-title {
+            font-weight: 600;
+        }
+        
+        /* Excel Ribbon */
+        .excel-ribbon {
+            background: #F3F2F1;
+            border-bottom: 1px solid #EDEBE9;
+        }
+        
+        .ribbon-tabs {
+            display: flex;
+            gap: 0;
+            padding: 0 16px;
+        }
+        
+        .ribbon-tab {
+            padding: 8px 16px;
+            font-size: 13px;
+            color: #323130;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .ribbon-tab.active {
+            background: white;
+            border-bottom-color: #217346;
+        }
+        
+        .ribbon-controls {
+            background: white;
+            padding: 8px 16px;
+            border-bottom: 1px solid #EDEBE9;
+            display: flex;
+            gap: 24px;
+            font-size: 12px;
+        }
+        
+        .ribbon-group {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+        
+        .ribbon-button {
+            padding: 4px 8px;
+            background: #F3F2F1;
+            border: 1px solid #E1DFDD;
+            border-radius: 2px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+        
+        /* Main Content */
+        .excel-content {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+        
+        /* Spreadsheet Area */
+        .spreadsheet-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #FAFAFA;
+        }
+        
+        .formula-bar {
+            background: white;
+            border-bottom: 1px solid #EDEBE9;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+        }
+        
+        .cell-ref {
+            font-weight: 700;
+            color: #217346;
+            min-width: 60px;
+        }
+        
+        .formula-input {
+            flex: 1;
+            border: 1px solid #D1D1D1;
+            padding: 4px 8px;
+            border-radius: 2px;
+            background: #FAFAFA;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 12px;
+        }
+        
+        .sheet-content {
+            flex: 1;
+            overflow: auto;
+            padding: 20px;
+        }
+        
+        .excel-table {
+            background: white;
+            border-collapse: collapse;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .excel-table th,
+        .excel-table td {
+            border: 1px solid #D1D1D1;
+            padding: 8px 12px;
+            text-align: left;
+            font-size: 13px;
+        }
+        
+        .excel-table th {
+            background: #217346;
+            color: white;
+            font-weight: 700;
+        }
+        
+        .excel-table .row-header {
+            background: #F3F2F1;
+            font-weight: 700;
+            text-align: right;
+        }
+        
+        .cell-number {
+            text-align: right;
+            font-family: 'Calibri', sans-serif;
+        }
+        
+        .cell-currency {
+            text-align: right;
+            font-family: 'Calibri', sans-serif;
+        }
+        
+        .cell-percentage {
+            text-align: right;
+            font-family: 'Calibri', sans-serif;
+            font-weight: 600;
+        }
+        
+        /* Conditional Formatting */
+        .positive-high {
+            background: #D1FAE5;
+            color: #065F46;
+            font-weight: 700;
+        }
+        
+        .positive-medium {
+            background: #D1FAE5;
+            color: #047857;
+            font-weight: 600;
+        }
+        
+        .positive-low {
+            background: #ECFDF5;
+            color: #059669;
+        }
+        
+        .negative {
+            background: #FEE2E2;
+            color: #991B1B;
+            font-weight: 700;
+        }
+        
+        .neutral {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+        
+        .total-row {
+            background: #F3F4F6 !important;
+            font-weight: 700;
+            border-top: 2px solid #217346;
+        }
+        
+        /* Cognify Sidebar */
+        .cognify-sidebar {
+            width: 380px;
+            background: white;
+            border-left: 1px solid #EDEBE9;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar-header {
+            background: linear-gradient(135deg, #4F46E5, #6366F1);
+            color: white;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .sidebar-title-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cognify-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        
+        .sidebar-title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+        
+        .close-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .sidebar-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #FAFAFA;
+        }
+        
+        .query-box {
+            background: white;
+            border: 2px solid #E0E7FF;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .query-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #4F46E5;
+            margin-bottom: 8px;
+        }
+        
+        .query-text {
+            font-size: 14px;
+            color: #323130;
+            font-weight: 500;
+        }
+        
+        .status-box {
+            background: white;
+            border: 2px solid #D1FAE5;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .status-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .status-icon {
+            width: 32px;
+            height: 32px;
+            background: #D1FAE5;
+            color: #065F46;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        
+        .status-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #065F46;
+        }
+        
+        .status-list {
+            list-style: none;
+            font-size: 13px;
+            color: #374151;
+        }
+        
+        .status-list li {
+            padding: 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .check-icon {
+            color: #10B981;
+            font-weight: 700;
+        }
+        
+        .info-box {
+            background: #F0F9FF;
+            border: 1px solid #BFDBFE;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .info-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1E40AF;
+            margin-bottom: 8px;
+        }
+        
+        .info-text {
+            font-size: 12px;
+            color: #1F2937;
+            line-height: 1.6;
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .action-button {
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: none;
+        }
+        
+        .action-button.primary {
+            background: #217346;
+            color: white;
+        }
+        
+        .action-button.primary:hover {
+            background: #1A5C37;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(33, 115, 70, 0.3);
+        }
+        
+        .action-button.secondary {
+            background: white;
+            color: #374151;
+            border: 2px solid #E5E7EB;
+        }
+        
+        .action-button.secondary:hover {
+            border-color: #4F46E5;
+            background: #F5F3FF;
+            color: #4F46E5;
+        }
+        
+        .suggestions {
+            margin-top: 20px;
+        }
+        
+        .suggestions-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #323130;
+            margin-bottom: 12px;
+        }
+        
+        .suggestion-item {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #4F46E5;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .suggestion-item:hover {
+            border-color: #4F46E5;
+            background: #F5F3FF;
+        }
+        
+        /* Scrollbar */
+        .sheet-content::-webkit-scrollbar,
+        .sidebar-content::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        .sheet-content::-webkit-scrollbar-track,
+        .sidebar-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        .sheet-content::-webkit-scrollbar-thumb,
+        .sidebar-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="excel-container">
+        <!-- Title Bar -->
+        <div class="excel-titlebar">
+            <div class="titlebar-left">
+                <div class="excel-icon">X</div>
+                <span class="titlebar-title">Revenue Analysis.xlsx</span>
+            </div>
+            <div>Microsoft Excel</div>
+        </div>
+        
+        <!-- Ribbon -->
+        <div class="excel-ribbon">
+            <div class="ribbon-tabs">
+                <div class="ribbon-tab">File</div>
+                <div class="ribbon-tab active">Home</div>
+                <div class="ribbon-tab">Insert</div>
+                <div class="ribbon-tab">Page Layout</div>
+                <div class="ribbon-tab">Formulas</div>
+                <div class="ribbon-tab">Data</div>
+                <div class="ribbon-tab">Review</div>
+            </div>
+            <div class="ribbon-controls">
+                <div class="ribbon-group">
+                    <button class="ribbon-button">📋 Paste</button>
+                </div>
+                <div class="ribbon-group">
+                    <button class="ribbon-button">✂️ Cut</button>
+                    <button class="ribbon-button">📄 Copy</button>
+                </div>
+                <div class="ribbon-group">
+                    <button class="ribbon-button"><strong>B</strong></button>
+                    <button class="ribbon-button"><em>I</em></button>
+                    <button class="ribbon-button"><u>U</u></button>
+                </div>
+                <div class="ribbon-group">
+                    <button class="ribbon-button">💷 Currency</button>
+                    <button class="ribbon-button">% Percent</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="excel-content">
+            <!-- Spreadsheet Area -->
+            <div class="spreadsheet-area">
+                <!-- Formula Bar -->
+                <div class="formula-bar">
+                    <span class="cell-ref">H3</span>
+                    <span style="color: #999;">fx</span>
+                    <div class="formula-input">=((G3-B3)/B3)*100</div>
+                </div>
+                
+                <!-- Sheet Content -->
+                <div class="sheet-content">
+                    <table class="excel-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 180px;">Practice Area</th>
+                                <th style="width: 100px;">Jun 2024</th>
+                                <th style="width: 100px;">Jul 2024</th>
+                                <th style="width: 100px;">Aug 2024</th>
+                                <th style="width: 100px;">Sep 2024</th>
+                                <th style="width: 100px;">Oct 2024</th>
+                                <th style="width: 100px;">Nov 2024</th>
+                                <th style="width: 110px;">6-Mo Change</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="row-header">Corporate & Commercial</td>
+                                <td class="cell-currency">£284,200</td>
+                                <td class="cell-currency">£296,800</td>
+                                <td class="cell-currency">£312,400</td>
+                                <td class="cell-currency">£298,600</td>
+                                <td class="cell-currency">£327,900</td>
+                                <td class="cell-currency">£342,100</td>
+                                <td class="cell-percentage positive-high">+20.4%</td>
+                            </tr>
+                            <tr>
+                                <td class="row-header">Litigation</td>
+                                <td class="cell-currency">£246,800</td>
+                                <td class="cell-currency">£258,300</td>
+                                <td class="cell-currency">£271,200</td>
+                                <td class="cell-currency">£265,900</td>
+                                <td class="cell-currency">£278,400</td>
+                                <td class="cell-currency">£287,600</td>
+                                <td class="cell-percentage positive-medium">+16.5%</td>
+                            </tr>
+                            <tr>
+                                <td class="row-header">Property</td>
+                                <td class="cell-currency">£152,400</td>
+                                <td class="cell-currency">£147,200</td>
+                                <td class="cell-currency">£156,800</td>
+                                <td class="cell-currency">£149,300</td>
+                                <td class="cell-currency">£151,700</td>
+                                <td class="cell-currency">£148,200</td>
+                                <td class="cell-percentage negative">-2.8%</td>
+                            </tr>
+                            <tr>
+                                <td class="row-header">Employment</td>
+                                <td class="cell-currency">£57,400</td>
+                                <td class="cell-currency">£62,800</td>
+                                <td class="cell-currency">£68,200</td>
+                                <td class="cell-currency">£64,900</td>
+                                <td class="cell-currency">£73,100</td>
+                                <td class="cell-currency">£70,000</td>
+                                <td class="cell-percentage positive-high">+22.0%</td>
+                            </tr>
+                            <tr>
+                                <td class="row-header">Family Law</td>
+                                <td class="cell-currency">£48,200</td>
+                                <td class="cell-currency">£51,900</td>
+                                <td class="cell-currency">£49,600</td>
+                                <td class="cell-currency">£52,800</td>
+                                <td class="cell-currency">£54,200</td>
+                                <td class="cell-currency">£55,800</td>
+                                <td class="cell-percentage positive-medium">+15.8%</td>
+                            </tr>
+                            <tr>
+                                <td class="row-header">Intellectual Property</td>
+                                <td class="cell-currency">£42,600</td>
+                                <td class="cell-currency">£45,200</td>
+                                <td class="cell-currency">£43,800</td>
+                                <td class="cell-currency">£47,100</td>
+                                <td class="cell-currency">£49,800</td>
+                                <td class="cell-currency">£44,700</td>
+                                <td class="cell-percentage positive-low">+4.9%</td>
+                            </tr>
+                            <tr class="total-row">
+                                <td class="row-header">TOTAL</td>
+                                <td class="cell-currency">£831,600</td>
+                                <td class="cell-currency">£862,200</td>
+                                <td class="cell-currency">£902,000</td>
+                                <td class="cell-currency">£878,600</td>
+                                <td class="cell-currency">£935,100</td>
+                                <td class="cell-currency">£948,400</td>
+                                <td class="cell-percentage positive-medium">+14.0%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Cognify Sidebar -->
+            <div class="cognify-sidebar">
+                <div class="sidebar-header">
+                    <div class="sidebar-title-group">
+                        <div class="cognify-icon">C</div>
+                        <div class="sidebar-title">Cognify Co-Pilot</div>
+                    </div>
+                    <button class="close-button">×</button>
+                </div>
+                
+                <div class="sidebar-content">
+                    <!-- Query Box -->
+                    <div class="query-box">
+                        <div class="query-label">Your Query</div>
+                        <div class="query-text">Show me revenue by practice area, last 6 months with month-over-month comparison</div>
+                    </div>
+                    
+                    <!-- Status Box -->
+                    <div class="status-box">
+                        <div class="status-header">
+                            <div class="status-icon">✓</div>
+                            <div class="status-title">Analysis Complete</div>
+                        </div>
+                        <ul class="status-list">
+                            <li><span class="check-icon">✓</span> Data retrieved from ActionStep</li>
+                            <li><span class="check-icon">✓</span> Table generated with formulas</li>
+                            <li><span class="check-icon">✓</span> Conditional formatting applied</li>
+                            <li><span class="check-icon">✓</span> Month-over-month calculations added</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Info Box -->
+                    <div class="info-box">
+                        <div class="info-title">📊 What Cognify Created:</div>
+                        <div class="info-text">
+                            • 6 practice areas × 6 months of revenue data<br>
+                            • Percentage change formulas (Jun → Nov)<br>
+                            • Conditional formatting (green = positive, red = negative)<br>
+                            • Total row with SUM formulas<br>
+                            • All values formatted as currency (£)
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="action-button primary">
+                            <span>📈</span>
+                            <span>Create Chart from Data</span>
+                        </button>
+                        <button class="action-button secondary">
+                            <span>📊</span>
+                            <span>Add Pivot Table</span>
+                        </button>
+                        <button class="action-button secondary">
+                            <span>💾</span>
+                            <span>Export to PowerPoint</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Suggestions -->
+                    <div class="suggestions">
+                        <div class="suggestions-title">Continue your analysis:</div>
+                        <div class="suggestion-item">📉 Show utilization rates by practice area</div>
+                        <div class="suggestion-item">💰 Break down by partner vs associate revenue</div>
+                        <div class="suggestion-item">📅 Compare to same period last year</div>
+                        <div class="suggestion-item">🎯 Show realization rates by practice area</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

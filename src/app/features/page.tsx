@@ -9,6 +9,7 @@ import { KPICard } from '@/components/KPICard'
 import { DashboardFeatureCard } from '@/components/DashboardFeatureCard'
 import { PlatformCard } from '@/components/PlatformCard'
 import wordIntegration from '@/images/app/word-integration.png'
+import excelIntegration from '@/images/app/excel-integration.png'
 import performanceDashboard from '@/images/app/performance-dashboard.png'
 
 
@@ -59,9 +60,10 @@ const copilotFeatures = [
       { text: 'Financial modeling: Real-time revenue and cost data for accurate forecasting' },
       { text: 'Refresh on demand: Keep analysis current as data changes throughout the day' },
     ],
-    screenshotTitle: 'EXCEL INTEGRATION',
-    screenshotDescription:
-      'Screenshot showing Excel spreadsheet being populated by Cognify. Natural language query "Show me revenue by practice area, last 6 months with month-over-month comparison" resulting in automatically generated table with data, formulas, and conditional formatting. Shows the power of instant data analysis.',
+    screenshot: {
+      image: excelIntegration,
+      alt: 'Excel spreadsheet being populated by Cognify',
+    },
     reverse: true,
   },
   {

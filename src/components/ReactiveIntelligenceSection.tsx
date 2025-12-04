@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { Container } from './Container'
 import { FadeIn } from './FadeIn'
 import wordIntegration from '@/images/app/word-integration.png'
+import excelIntegration from '@/images/app/excel-integration.png'
 
 const apps = [
   {
@@ -72,6 +73,16 @@ export function ReactiveIntelligenceSection() {
                   <div className="relative w-full h-[400px] overflow-hidden rounded-t-xl">
                     <Image
                       src={wordIntegration}
+                      alt={app.screenshot.description}
+                      className="shadow-2xl bg-white object-cover"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                ) : index === 1 ? (
+                  <div className="relative w-full h-[400px] overflow-hidden rounded-t-xl">
+                    <Image
+                      src={excelIntegration}
                       alt={app.screenshot.description}
                       className="shadow-2xl bg-white object-cover"
                       fill
