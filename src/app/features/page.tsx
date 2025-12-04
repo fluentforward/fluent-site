@@ -10,6 +10,8 @@ import { DashboardFeatureCard } from '@/components/DashboardFeatureCard'
 import { PlatformCard } from '@/components/PlatformCard'
 import wordIntegration from '@/images/app/word-integration.png'
 import excelIntegration from '@/images/app/excel-integration.png'
+import powerpointIntegration from '@/images/app/powerpoint-integration.png'
+import outlookIntegration from '@/images/app/outlook-integration.png'
 import performanceDashboard from '@/images/app/performance-dashboard.png'
 
 
@@ -75,9 +77,10 @@ const copilotFeatures = [
       { text: 'Update presentations: Refresh data in existing decks with one command' },
       { text: 'Template library: Pre-built slides for common board and client presentations' },
     ],
-    screenshotTitle: 'POWERPOINT INTEGRATION',
-    screenshotDescription:
-      'Screenshot showing PowerPoint with Cognify generating a board presentation slide. Command "Create practice area performance slide with Q3 results" generates professional slide with charts showing revenue, utilization, and growth metrics. Perfect for executive presentations with current data.',
+    screenshot: {
+      image: powerpointIntegration,
+      alt: 'PowerPoint with Cognify generating a board presentation slide',
+    },
   },
   {
     title: 'Context in Outlook',
@@ -88,9 +91,10 @@ const copilotFeatures = [
       { text: 'Critical alerts: "This client has £15K outstanding invoices" shown at the right moment' },
       { text: 'Quick actions: Insert matter status or billing summary directly into email body' },
     ],
-    screenshotTitle: 'OUTLOOK INTEGRATION',
-    screenshotDescription:
-      'Screenshot showing Outlook email composition with Cognify contextual sidebar. As user types email to "Client ABC", sidebar automatically shows: outstanding invoices (£15K overdue), current matter status (3 active matters), and relationship health score. Demonstrates contextual intelligence without user needing to ask.',
+    screenshot: {
+      image: outlookIntegration,
+      alt: 'Outlook email composition with Cognify contextual sidebar',
+    },
     reverse: true,
   },
   {

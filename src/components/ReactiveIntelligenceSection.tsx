@@ -3,6 +3,8 @@ import { Container } from './Container'
 import { FadeIn } from './FadeIn'
 import wordIntegration from '@/images/app/word-integration.png'
 import excelIntegration from '@/images/app/excel-integration.png'
+import powerpointIntegration from '@/images/app/powerpoint-integration.png'
+import outlookIntegration from '@/images/app/outlook-integration.png'
 
 const apps = [
   {
@@ -83,6 +85,26 @@ export function ReactiveIntelligenceSection() {
                   <div className="relative w-full h-[400px] overflow-hidden rounded-t-xl">
                     <Image
                       src={excelIntegration}
+                      alt={app.screenshot.description}
+                      className="shadow-2xl bg-white object-cover"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                ) : index === 2 ? (
+                  <div className="relative w-full h-[400px] overflow-hidden rounded-t-xl">
+                    <Image
+                      src={powerpointIntegration}
+                      alt={app.screenshot.description}
+                      className="shadow-2xl bg-white object-cover"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                ) : index === 3 ? (
+                  <div className="relative w-full h-[400px] overflow-hidden rounded-t-xl">
+                    <Image
+                      src={outlookIntegration}
                       alt={app.screenshot.description}
                       className="shadow-2xl bg-white object-cover"
                       fill

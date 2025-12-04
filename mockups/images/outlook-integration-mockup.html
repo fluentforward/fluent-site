@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognify Outlook Integration Mockup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .outlook-container {
+            width: 1400px;
+            height: 800px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Outlook Title Bar */
+        .outlook-titlebar {
+            background: #0078D4;
+            color: white;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+        }
+        
+        .titlebar-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .outlook-icon {
+            width: 20px;
+            height: 20px;
+            background: white;
+            color: #0078D4;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12px;
+        }
+        
+        .titlebar-title {
+            font-weight: 600;
+        }
+        
+        /* Outlook Ribbon */
+        .outlook-ribbon {
+            background: #F3F2F1;
+            border-bottom: 1px solid #EDEBE9;
+        }
+        
+        .ribbon-tabs {
+            display: flex;
+            gap: 0;
+            padding: 0 16px;
+        }
+        
+        .ribbon-tab {
+            padding: 8px 16px;
+            font-size: 13px;
+            color: #323130;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .ribbon-tab.active {
+            background: white;
+            border-bottom-color: #0078D4;
+        }
+        
+        .ribbon-controls {
+            background: white;
+            padding: 8px 16px;
+            border-bottom: 1px solid #EDEBE9;
+            display: flex;
+            gap: 24px;
+            font-size: 12px;
+        }
+        
+        .ribbon-group {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+        
+        .ribbon-button {
+            padding: 4px 8px;
+            background: #F3F2F1;
+            border: 1px solid #E1DFDD;
+            border-radius: 2px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+        
+        .send-button {
+            background: #0078D4;
+            color: white;
+            padding: 6px 20px;
+            border: none;
+            border-radius: 2px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* Main Content */
+        .outlook-content {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+        
+        /* Email Composition Area */
+        .email-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+        }
+        
+        .email-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid #EDEBE9;
+        }
+        
+        .email-field {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #F3F2F1;
+        }
+        
+        .field-label {
+            width: 80px;
+            font-size: 14px;
+            color: #605E5C;
+            font-weight: 600;
+        }
+        
+        .field-input {
+            flex: 1;
+            font-size: 14px;
+            color: #323130;
+            border: none;
+            outline: none;
+        }
+        
+        .recipient-chip {
+            background: #E1DFDD;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .recipient-name {
+            font-weight: 600;
+            color: #323130;
+        }
+        
+        .recipient-email {
+            color: #605E5C;
+        }
+        
+        .remove-chip {
+            color: #605E5C;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        
+        .email-body {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+        }
+        
+        .email-text {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #323130;
+        }
+        
+        .email-text p {
+            margin-bottom: 16px;
+        }
+        
+        .cursor-blink {
+            display: inline-block;
+            width: 2px;
+            height: 16px;
+            background: #323130;
+            animation: blink 1s infinite;
+            margin-left: 2px;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .email-signature {
+            margin-top: 32px;
+            padding-top: 16px;
+            border-top: 1px solid #E1DFDD;
+            font-size: 13px;
+            color: #605E5C;
+            line-height: 1.6;
+        }
+        
+        .signature-name {
+            font-weight: 700;
+            color: #323130;
+        }
+        
+        /* Cognify Sidebar */
+        .cognify-sidebar {
+            width: 380px;
+            background: white;
+            border-left: 1px solid #EDEBE9;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar-header {
+            background: linear-gradient(135deg, #4F46E5, #6366F1);
+            color: white;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .sidebar-title-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cognify-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        
+        .sidebar-title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+        
+        .auto-badge {
+            background: rgba(132, 204, 22, 0.3);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            border: 1px solid rgba(132, 204, 22, 0.5);
+        }
+        
+        .close-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .sidebar-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #FAFAFA;
+        }
+        
+        .context-box {
+            background: #E0E7FF;
+            border: 2px solid #C7D2FE;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .context-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .context-icon {
+            font-size: 16px;
+        }
+        
+        .context-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #4338CA;
+        }
+        
+        .context-text {
+            font-size: 12px;
+            color: #3730A3;
+            line-height: 1.5;
+        }
+        
+        .client-card {
+            background: white;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .client-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 12px;
+        }
+        
+        .client-info {
+            flex: 1;
+        }
+        
+        .client-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #323130;
+            margin-bottom: 4px;
+        }
+        
+        .client-id {
+            font-size: 12px;
+            color: #6B7280;
+        }
+        
+        .health-score {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        
+        .score-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #F59E0B;
+        }
+        
+        .score-label {
+            font-size: 11px;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .health-badge {
+            background: #FEF3C7;
+            color: #92400E;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+        
+        .alert-section {
+            background: #FEE2E2;
+            border-left: 4px solid #EF4444;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+        
+        .alert-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .alert-icon {
+            color: #EF4444;
+            font-size: 16px;
+        }
+        
+        .alert-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #991B1B;
+        }
+        
+        .alert-details {
+            font-size: 12px;
+            color: #7F1D1D;
+            line-height: 1.5;
+        }
+        
+        .alert-amount {
+            font-weight: 700;
+            font-size: 14px;
+        }
+        
+        .section-card {
+            background: white;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .section-header {
+            font-size: 13px;
+            font-weight: 700;
+            color: #374151;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .matter-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #F3F4F6;
+        }
+        
+        .matter-item:last-child {
+            border-bottom: none;
+        }
+        
+        .matter-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 4px;
+        }
+        
+        .matter-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #6B7280;
+        }
+        
+        .status-badge {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+        
+        .status-active {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+        
+        .quick-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        
+        .quick-action-button {
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            text-align: left;
+        }
+        
+        .quick-action-button.primary {
+            background: #4F46E5;
+            color: white;
+        }
+        
+        .quick-action-button.primary:hover {
+            background: #4338CA;
+        }
+        
+        .quick-action-button.secondary {
+            background: white;
+            color: #374151;
+            border: 2px solid #E5E7EB;
+        }
+        
+        .quick-action-button.secondary:hover {
+            border-color: #4F46E5;
+            background: #F5F3FF;
+            color: #4F46E5;
+        }
+        
+        .insights-section {
+            background: #F0F9FF;
+            border: 1px solid #BFDBFE;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+        
+        .insights-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1E40AF;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .insight-item {
+            font-size: 12px;
+            color: #1F2937;
+            line-height: 1.6;
+            margin-bottom: 8px;
+            padding-left: 16px;
+            position: relative;
+        }
+        
+        .insight-item::before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+            font-size: 12px;
+        }
+        
+        /* Scrollbar */
+        .email-body::-webkit-scrollbar,
+        .sidebar-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .email-body::-webkit-scrollbar-track,
+        .sidebar-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        .email-body::-webkit-scrollbar-thumb,
+        .sidebar-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outlook-container">
+        <!-- Title Bar -->
+        <div class="outlook-titlebar">
+            <div class="titlebar-left">
+                <div class="outlook-icon">O</div>
+                <span class="titlebar-title">New Message</span>
+            </div>
+            <div>Microsoft Outlook</div>
+        </div>
+        
+        <!-- Ribbon -->
+        <div class="outlook-ribbon">
+            <div class="ribbon-tabs">
+                <div class="ribbon-tab active">Message</div>
+                <div class="ribbon-tab">Insert</div>
+                <div class="ribbon-tab">Options</div>
+                <div class="ribbon-tab">Format Text</div>
+            </div>
+            <div class="ribbon-controls">
+                <div class="ribbon-group">
+                    <button class="send-button">Send</button>
+                </div>
+                <div class="ribbon-group">
+                    <button class="ribbon-button">📎 Attach File</button>
+                </div>
+                <div class="ribbon-group">
+                    <button class="ribbon-button"><strong>B</strong></button>
+                    <button class="ribbon-button"><em>I</em></button>
+                    <button class="ribbon-button"><u>U</u></button>
+                </div>
+                <div class="ribbon-group">
+                    <button class="ribbon-button">🔗 Insert Link</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="outlook-content">
+            <!-- Email Area -->
+            <div class="email-area">
+                <!-- Email Header -->
+                <div class="email-header">
+                    <div class="email-field">
+                        <div class="field-label">To:</div>
+                        <div class="field-input">
+                            <span class="recipient-chip">
+                                <span class="recipient-name">James Richardson</span>
+                                <span class="recipient-email">&lt;j.richardson@abccorp.com&gt;</span>
+                                <span class="remove-chip">×</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="email-field">
+                        <div class="field-label">Subject:</div>
+                        <input class="field-input" value="Following up on outstanding matters" readonly>
+                    </div>
+                </div>
+                
+                <!-- Email Body -->
+                <div class="email-body">
+                    <div class="email-text">
+                        <p>Hi James,</p>
+                        
+                        <p>I hope this email finds you well. I wanted to reach out to discuss a few items related to your current matters with our firm.</p>
+                        
+                        <p>First, I wanted to ensure you received our recent invoice for the Brighton Retail Lease Review matter. I understand there may have been some delays in processing, and I'm happy to discuss any questions you might have about the billing.</p>
+                        
+                        <p>Additionally, I wanted to provide you with an update on the three active matters we're currently handling for ABC Corporation. The Commercial Contract Review is progressing well and should be completed by the end of next week. The Employment Advisory matter is on schedule, and we're making excellent progress on the IP Licensing Agreement.<span class="cursor-blink"></span></p>
+                    </div>
+                    
+                    <div class="email-signature">
+                        <div class="signature-name">Sarah Mitchell</div>
+                        <div>Partner | Corporate & Commercial Law</div>
+                        <div>Henderson & Associates LLP</div>
+                        <div>📞 +44 20 1234 5678 | ✉️ s.mitchell@hendersonlaw.co.uk</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cognify Sidebar -->
+            <div class="cognify-sidebar">
+                <div class="sidebar-header">
+                    <div class="sidebar-title-group">
+                        <div class="cognify-icon">C</div>
+                        <div>
+                            <div class="sidebar-title">Cognify Intelligence</div>
+                            <div class="auto-badge">AUTO-DETECTED</div>
+                        </div>
+                    </div>
+                    <button class="close-button">×</button>
+                </div>
+                
+                <div class="sidebar-content">
+                    <!-- Context Notice -->
+                    <div class="context-box">
+                        <div class="context-header">
+                            <span class="context-icon">🤖</span>
+                            <span class="context-title">Contextual Intelligence Active</span>
+                        </div>
+                        <div class="context-text">
+                            Cognify detected you're emailing ABC Corporation and automatically retrieved relevant client information.
+                        </div>
+                    </div>
+                    
+                    <!-- Client Overview -->
+                    <div class="client-card">
+                        <div class="client-header">
+                            <div class="client-info">
+                                <div class="client-name">ABC Corporation Limited</div>
+                                <div class="client-id">Client ID: CLT-2847</div>
+                            </div>
+                            <div class="health-score">
+                                <div class="score-value">72</div>
+                                <div class="score-label">Health Score</div>
+                                <div class="health-badge">⚠️ Attention Needed</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Outstanding Invoice Alert -->
+                    <div class="alert-section">
+                        <div class="alert-header">
+                            <span class="alert-icon">⚠️</span>
+                            <span class="alert-title">Outstanding Invoice</span>
+                        </div>
+                        <div class="alert-details">
+                            Invoice <strong>INV-2847</strong> is <strong>31 days overdue</strong><br>
+                            <span class="alert-amount">Amount: £15,250</span><br>
+                            Matter: Brighton Retail Lease Review<br>
+                            Issued: October 4, 2024
+                        </div>
+                    </div>
+                    
+                    <!-- Active Matters -->
+                    <div class="section-card">
+                        <div class="section-header">
+                            📋 Active Matters (3)
+                        </div>
+                        
+                        <div class="matter-item">
+                            <div class="matter-name">Commercial Contract Review</div>
+                            <div class="matter-meta">
+                                <span>Matter #M-4821</span>
+                                <span class="status-badge status-active">ACTIVE</span>
+                            </div>
+                            <div class="matter-meta" style="margin-top: 4px;">
+                                <span>WIP: £8,450</span>
+                                <span>Partner: S. Mitchell</span>
+                            </div>
+                        </div>
+                        
+                        <div class="matter-item">
+                            <div class="matter-name">Employment Advisory</div>
+                            <div class="matter-meta">
+                                <span>Matter #M-4756</span>
+                                <span class="status-badge status-active">ACTIVE</span>
+                            </div>
+                            <div class="matter-meta" style="margin-top: 4px;">
+                                <span>WIP: £12,180</span>
+                                <span>Partner: E. Roberts</span>
+                            </div>
+                        </div>
+                        
+                        <div class="matter-item">
+                            <div class="matter-name">IP Licensing Agreement</div>
+                            <div class="matter-meta">
+                                <span>Matter #M-4893</span>
+                                <span class="status-badge status-active">ACTIVE</span>
+                            </div>
+                            <div class="matter-meta" style="margin-top: 4px;">
+                                <span>WIP: £6,320</span>
+                                <span>Partner: D. Chen</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div class="section-card">
+                        <div class="section-header">
+                            ⚡ Quick Actions
+                        </div>
+                        
+                        <div class="quick-actions">
+                            <button class="quick-action-button primary">
+                                <span>💷</span>
+                                <span>Attach Invoice Details</span>
+                            </button>
+                            <button class="quick-action-button secondary">
+                                <span>📊</span>
+                                <span>Insert Matter Summary</span>
+                            </button>
+                            <button class="quick-action-button secondary">
+                                <span>📅</span>
+                                <span>View Payment History</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Contextual Insights -->
+                    <div class="insights-section">
+                        <div class="insights-title">
+                            <span>💡</span>
+                            <span>Contextual Insights</span>
+                        </div>
+                        
+                        <div class="insight-item">
+                            Client has historically paid invoices within 21 days on average. Current delay may warrant a phone call.
+                        </div>
+                        
+                        <div class="insight-item">
+                            Total unbilled WIP across all ABC Corp matters: £26,950. Consider interim billing.
+                        </div>
+                        
+                        <div class="insight-item">
+                            Last face-to-face meeting: 47 days ago. Consider scheduling client review meeting.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
