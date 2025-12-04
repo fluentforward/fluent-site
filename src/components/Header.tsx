@@ -2,27 +2,27 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import clsx from 'clsx'
 
 const navigation = [
-  { name: 'Product', href: '/' },
-  { name: 'Why Cognify', href: '/why-cognify' },
+  { name: 'Solution', href: '#solution' },
+  { name: 'How It Works', href: '#how-it-works' },
 ]
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-6 lg:px-12 bg-white/90 backdrop-blur-md border-b border-slate-200">
-      <Link href="/" className="text-2xl font-extrabold text-slate-900">
-        Cognify <span className="font-normal opacity-70">Legal</span>
+    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-6 lg:px-12 bg-white/95 backdrop-blur-xl border-b border-slate-200">
+      <Link href="/" className="text-2xl font-bold text-slate-900" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+        <span className="text-indigo-600">Cognify</span> Legal
       </Link>
-      <ul className="hidden md:flex items-center gap-8 list-none">
+      <ul className="hidden md:flex items-center gap-10 list-none">
         {navigation.map((item) => (
           <li key={item.name}>
             <Link
               href={item.href}
-              className="text-slate-900 font-medium opacity-80 transition-all hover:opacity-100 hover:text-purple-600"
+              className="text-slate-700 font-medium transition-colors hover:text-indigo-600"
+              style={{ fontFamily: "'DM Sans', sans-serif" }}
             >
               {item.name}
             </Link>
@@ -31,8 +31,9 @@ export function Header() {
       </ul>
       <div className="flex items-center gap-4">
         <Link
-          href="/schedule"
-          className="hidden sm:inline-block bg-lime-500 text-slate-900 px-6 py-3 rounded-lg font-bold transition-all hover:-translate-y-0.5 shadow-lg shadow-lime-500/20 hover:shadow-lime-500/30"
+          href="/book-demo"
+          className="hidden sm:inline-block bg-lime-500 text-slate-900 px-7 py-3 rounded-lg font-bold transition-all hover:-translate-y-0.5 shadow-lg shadow-lime-500/25 hover:shadow-xl hover:shadow-lime-500/35"
+          style={{ fontFamily: "'DM Sans', sans-serif" }}
         >
           Book a Demo
         </Link>
@@ -59,13 +60,14 @@ export function Header() {
         </button>
       </div>
       {mobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white border-b border-slate-200 md:hidden">
+        <div className="absolute top-full left-0 right-0 bg-white border-b border-slate-200 md:hidden shadow-lg">
           <ul className="flex flex-col p-6 gap-4">
             {navigation.map((item) => (
               <li key={item.name}>
                 <Link
                   href={item.href}
-                  className="text-slate-900 font-medium opacity-80 transition-all hover:opacity-100 hover:text-purple-600 block"
+                  className="text-slate-700 font-medium transition-colors hover:text-indigo-600 block"
+                  style={{ fontFamily: "'DM Sans', sans-serif" }}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
@@ -74,8 +76,9 @@ export function Header() {
             ))}
             <li>
               <Link
-                href="/schedule"
+                href="/book-demo"
                 className="bg-lime-500 text-slate-900 px-6 py-3 rounded-lg font-bold transition-all inline-block text-center w-full"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Book a Demo
@@ -87,4 +90,3 @@ export function Header() {
     </nav>
   )
 }
-

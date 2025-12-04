@@ -1,23 +1,27 @@
 import { type Metadata } from 'next'
 
 import { HeroSection } from '@/components/HeroSection'
-import { LimeSection } from '@/components/LimeSection'
-import { ContentSection } from '@/components/ContentSection'
-import { ComparisonSection } from '@/components/ComparisonSection'
+import { ProblemSection } from '@/components/ProblemSection'
+import { ReactiveIntelligenceSection } from '@/components/ReactiveIntelligenceSection'
+import { ProactiveIntelligenceSection } from '@/components/ProactiveIntelligenceSection'
+import { PerformanceDashboardSection } from '@/components/PerformanceDashboardSection'
+import { ValueSummarySection } from '@/components/ValueSummarySection'
 import { CTASection } from '@/components/CTASection'
 
 export const metadata: Metadata = {
   description:
-    'Agentic Business Intelligence for Legal — conversational insights, autonomous actions, Teams-native.',
+    'Intelligence, Not Dashboards. Get instant insights from your practice management systems—right where you work.',
 }
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <LimeSection />
-      <ContentSection />
-      <ComparisonSection />
+      <ProblemSection />
+      <ReactiveIntelligenceSection />
+      <ProactiveIntelligenceSection />
+      <PerformanceDashboardSection />
+      <ValueSummarySection />
       <CTASection />
     </>
   )

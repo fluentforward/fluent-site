@@ -4,59 +4,60 @@ import { FadeIn } from './FadeIn'
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden bg-gradient-to-b from-white via-slate-50 to-slate-100">
-      {/* Background gradient orbs */}
+    <section className="relative mt-20 bg-gradient-to-br from-indigo-600 via-indigo-500 to-purple-600 py-32 px-6 lg:px-12 overflow-hidden">
+      {/* Animated background pattern */}
       <div
-        className="absolute top-0 right-0 -translate-y-[30%] translate-x-[-10%] w-[600px] h-[600px] rounded-full opacity-80"
+        className="absolute inset-0 opacity-10"
         style={{
-          background: 'radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 70%)',
-        }}
-        aria-hidden="true"
-      />
-      <div
-        className="absolute bottom-0 left-0 translate-y-[20%] -translate-x-[5%] w-[500px] h-[500px] rounded-full opacity-60"
-        style={{
-          background: 'radial-gradient(circle, rgba(132, 204, 22, 0.06) 0%, transparent 70%)',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='white' opacity='0.1'/%3E%3C/svg%3E")`,
+          animation: 'float 20s linear infinite',
         }}
         aria-hidden="true"
       />
 
       <Container className="relative z-10">
-        <FadeIn className="max-w-5xl">
-          <span className="inline-block bg-gradient-to-br from-purple-600/10 to-lime-500/10 text-[#166534] px-4 py-2 rounded-full text-sm font-semibold mb-8 border border-lime-500/30">
-            🚀 Now accepting founding clients
-          </span>
-          
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 leading-tight mb-6 tracking-tight">
-            Agentic Business<br />
-            Intelligence for<br />
-            <span className="bg-gradient-to-br from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-              Law Firms
-            </span>
-          </h1>
-          
-          <p className="text-xl sm:text-2xl text-slate-500 mb-10 max-w-3xl leading-relaxed">
-            Ask questions in Teams. Get instant insights. No dashboards, no training, no waiting. 
-            Transform your firm's data into conversational intelligence.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-            <Link
-              href="/schedule"
-              className="bg-gradient-to-br from-lime-500 to-lime-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all hover:-translate-y-0.5 shadow-xl shadow-lime-500/30 hover:shadow-2xl hover:shadow-lime-500/40"
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-16 items-center max-w-7xl mx-auto">
+          <FadeIn className="text-white">
+            <h1
+              className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
-              Book a Demo
-            </Link>
-            <Link
-              href="#how-it-works"
-              className="text-slate-900 px-8 py-4 font-semibold text-lg border-2 border-slate-300 rounded-lg transition-all hover:bg-slate-50 hover:border-purple-600 hover:text-purple-600 bg-white"
-            >
-              See How It Works
-            </Link>
-          </div>
-        </FadeIn>
+              Intelligence, Not Dashboards
+            </h1>
+            <p className="text-xl text-white/90 mb-10 leading-relaxed max-w-2xl" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+              Get instant insights from your practice management systems—right where you work. No dashboards to check. No training required. Just answers when you need them.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 flex-wrap">
+              <Link
+                href="/book-demo"
+                className="bg-lime-500 text-slate-900 px-8 py-4 rounded-lg font-bold text-lg transition-all hover:-translate-y-0.5 shadow-lg shadow-lime-500/30 hover:shadow-xl hover:shadow-lime-500/40"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+              >
+                Book a Demo
+              </Link>
+              <Link
+                href="#solution"
+                className="bg-white/15 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all border border-white/30 backdrop-blur-md hover:bg-white/25 hover:border-white/50"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+              >
+                See How It Works
+              </Link>
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <div className="relative">
+              <div className="bg-white/10 border-2 border-dashed border-white/30 rounded-xl p-12 text-center backdrop-blur-md min-h-[400px] flex flex-col justify-center items-center">
+                <strong className="block text-xl text-white mb-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                  HERO IMAGE PLACEHOLDER
+                </strong>
+                <small className="block text-sm text-white/80 max-w-[80%]" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                  Screenshot: Microsoft Teams chat interface showing a natural language query ("What's our utilization this month?") with Cognify's response showing clear metrics and insights. Clean, conversational interface demonstrating zero learning curve.
+                </small>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
       </Container>
     </section>
   )
 }
-

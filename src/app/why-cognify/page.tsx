@@ -408,7 +408,7 @@ export default function WhyCognify() {
               They'll be the ones whose partners can ask a question at 9am and make a decision by 9:05am.
             </p>
             <Link
-              href="/schedule"
+              href="/book-demo"
               className="inline-block bg-lime-500 text-slate-900 px-12 py-5 rounded-xl font-bold text-xl transition-all hover:-translate-y-1 shadow-2xl shadow-lime-500/40 hover:shadow-lime-500/60"
             >
               Book a Demo
@@ -443,7 +443,7 @@ export default function WhyCognify() {
             </div>
             <div className="mt-10">
               <Link
-                href="/schedule"
+                href="/book-demo"
                 className="inline-block bg-gradient-to-br from-lime-500 to-lime-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all hover:-translate-y-0.5 shadow-xl shadow-lime-500/30 hover:shadow-2xl hover:shadow-lime-500/40"
               >
                 Book a Demo
