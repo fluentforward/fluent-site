@@ -1,5 +1,7 @@
 import { Container } from './Container'
 import { FadeIn } from './FadeIn'
+import Image from 'next/image'
+import performanceDashboard from '@/images/app/performance-dashboard.png'
 
 const features = [
   {
@@ -49,13 +51,14 @@ export function PerformanceDashboardSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <FadeIn>
             <div className="relative">
-              <div className="bg-white border-2 border-dashed border-slate-300 rounded-xl p-12 text-center shadow-lg min-h-[400px] flex flex-col justify-center items-center">
-                <strong className="block text-xl text-slate-900 mb-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                  PERFORMANCE DASHBOARD
-                </strong>
-                <small className="block text-sm text-slate-700 max-w-[80%]" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                  Screenshot: Clean dashboard interface showing key metrics in card format. Revenue, utilization, collection rates, WIP aging—all with clear visual indicators (green/amber/red status). Shows drill-down capability and "Last updated: Real-time" indicator. Professional but not overwhelming.
-                </small>
+              <div className="relative w-full" style={{ minHeight: 400, maxHeight: 500 }}>
+                <Image
+                  src={performanceDashboard}
+                  alt="Performance dashboard showing key metrics"
+                  className="rounded-xl shadow-2xl bg-white object-contain"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
               </div>
             </div>
           </FadeIn>

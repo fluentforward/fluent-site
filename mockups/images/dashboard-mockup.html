@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognify Performance Dashboard Mockup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f7fa;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .dashboard-container {
+            width: 1200px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        
+        /* Dashboard Header */
+        .dashboard-header {
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+            color: white;
+            padding: 32px 40px;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .header-title {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .cognify-logo {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+        }
+        
+        .real-time-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(132, 204, 22, 0.2);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(132, 204, 22, 0.3);
+        }
+        
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #84CC16;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+        
+        .header-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        /* Dashboard Content */
+        .dashboard-content {
+            padding: 40px;
+        }
+        
+        .section-header {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #6B7280;
+            margin-bottom: 20px;
+        }
+        
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .metric-card {
+            background: white;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .metric-card:hover {
+            border-color: #4F46E5;
+            box-shadow: 0 8px 24px rgba(79, 70, 229, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .metric-card.status-good {
+            border-color: #10B981;
+            background: linear-gradient(to bottom right, white 0%, #F0FDF4 100%);
+        }
+        
+        .metric-card.status-warning {
+            border-color: #F59E0B;
+            background: linear-gradient(to bottom right, white 0%, #FFFBEB 100%);
+        }
+        
+        .metric-card.status-critical {
+            border-color: #EF4444;
+            background: linear-gradient(to bottom right, white 0%, #FEF2F2 100%);
+        }
+        
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .metric-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .status-indicator.good {
+            background: #10B981;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+        }
+        
+        .status-indicator.warning {
+            background: #F59E0B;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+        }
+        
+        .status-indicator.critical {
+            background: #EF4444;
+            box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
+        }
+        
+        .metric-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+        
+        .metric-change {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .metric-change.positive {
+            color: #10B981;
+        }
+        
+        .metric-change.negative {
+            color: #EF4444;
+        }
+        
+        .metric-change.neutral {
+            color: #6B7280;
+        }
+        
+        .change-arrow {
+            font-size: 16px;
+        }
+        
+        .metric-target {
+            font-size: 12px;
+            color: #6B7280;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #E5E7EB;
+        }
+        
+        .target-bar {
+            width: 100%;
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 3px;
+            margin-top: 6px;
+            overflow: hidden;
+        }
+        
+        .target-progress {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+        
+        .target-progress.good {
+            background: linear-gradient(90deg, #10B981, #34D399);
+        }
+        
+        .target-progress.warning {
+            background: linear-gradient(90deg, #F59E0B, #FBBF24);
+        }
+        
+        .target-progress.critical {
+            background: linear-gradient(90deg, #EF4444, #F87171);
+        }
+        
+        /* Detailed Metrics Section */
+        .detailed-section {
+            margin-top: 40px;
+        }
+        
+        .detailed-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        
+        .detailed-card {
+            background: white;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 24px;
+        }
+        
+        .detailed-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .detailed-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #111827;
+        }
+        
+        .drill-down-link {
+            font-size: 13px;
+            color: #4F46E5;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .drill-down-link:hover {
+            color: #6366F1;
+        }
+        
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #F3F4F6;
+        }
+        
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+        
+        .row-label {
+            font-size: 14px;
+            color: #6B7280;
+            font-weight: 500;
+        }
+        
+        .row-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: #111827;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .mini-badge {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        
+        .mini-badge.good {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+        
+        .mini-badge.warning {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+        
+        .mini-badge.critical {
+            background: #FEE2E2;
+            color: #991B1B;
+        }
+        
+        /* Footer */
+        .dashboard-footer {
+            padding: 24px 40px;
+            background: #F9FAFB;
+            border-top: 1px solid #E5E7EB;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #6B7280;
+        }
+        
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .data-source {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .source-icon {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #4F46E5, #84CC16);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <div class="header-top">
+                <div class="header-title">
+                    <div class="cognify-logo">C</div>
+                    Performance Dashboard
+                </div>
+                <div class="real-time-badge">
+                    <div class="pulse-dot"></div>
+                    Last updated: Real-time
+                </div>
+            </div>
+            <div class="header-subtitle">November 2024 • Your firm at a glance</div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="dashboard-content">
+            <!-- Key Metrics Section -->
+            <div class="section-header">Key Performance Indicators</div>
+            
+            <div class="metrics-grid">
+                <!-- Revenue Metric -->
+                <div class="metric-card status-good">
+                    <div class="metric-header">
+                        <div class="metric-label">Revenue (MTD)</div>
+                        <div class="status-indicator good"></div>
+                    </div>
+                    <div class="metric-value">£847K</div>
+                    <div class="metric-change positive">
+                        <span class="change-arrow">↑</span>
+                        <span>12.4% vs target</span>
+                    </div>
+                    <div class="metric-target">
+                        Target: £750K/month
+                        <div class="target-bar">
+                            <div class="target-progress good" style="width: 112.9%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Utilization Metric -->
+                <div class="metric-card status-good">
+                    <div class="metric-header">
+                        <div class="metric-label">Utilization</div>
+                        <div class="status-indicator good"></div>
+                    </div>
+                    <div class="metric-value">78.4%</div>
+                    <div class="metric-change positive">
+                        <span class="change-arrow">↑</span>
+                        <span>6.4% above target</span>
+                    </div>
+                    <div class="metric-target">
+                        Target: 72.0%
+                        <div class="target-bar">
+                            <div class="target-progress good" style="width: 108.9%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collection Rate Metric -->
+                <div class="metric-card status-warning">
+                    <div class="metric-header">
+                        <div class="metric-label">Collection Rate</div>
+                        <div class="status-indicator warning"></div>
+                    </div>
+                    <div class="metric-value">86.2%</div>
+                    <div class="metric-change negative">
+                        <span class="change-arrow">↓</span>
+                        <span>3.8% below target</span>
+                    </div>
+                    <div class="metric-target">
+                        Target: 90.0%
+                        <div class="target-bar">
+                            <div class="target-progress warning" style="width: 95.8%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- WIP Aging Metric -->
+                <div class="metric-card status-critical">
+                    <div class="metric-header">
+                        <div class="metric-label">WIP Aging >90d</div>
+                        <div class="status-indicator critical"></div>
+                    </div>
+                    <div class="metric-value">£124K</div>
+                    <div class="metric-change negative">
+                        <span class="change-arrow">↑</span>
+                        <span>31% increase</span>
+                    </div>
+                    <div class="metric-target">
+                        Target: <£50K
+                        <div class="target-bar">
+                            <div class="target-progress critical" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Detailed Metrics Section -->
+            <div class="detailed-section">
+                <div class="section-header">Detailed Breakdown</div>
+                
+                <div class="detailed-grid">
+                    <!-- Revenue Breakdown -->
+                    <div class="detailed-card">
+                        <div class="detailed-header">
+                            <div class="detailed-title">Revenue by Practice Area</div>
+                            <a href="#" class="drill-down-link">View Details →</a>
+                        </div>
+                        
+                        <div class="metric-row">
+                            <div class="row-label">Corporate & Commercial</div>
+                            <div class="row-value">
+                                £342K
+                                <span class="mini-badge good">+15%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="metric-row">
+                            <div class="row-label">Litigation</div>
+                            <div class="row-value">
+                                £287K
+                                <span class="mini-badge good">+8%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="metric-row">
+                            <div class="row-label">Property</div>
+                            <div class="row-value">
+                                £148K
+                                <span class="mini-badge warning">-3%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="metric-row">
+                            <div class="row-label">Employment</div>
+                            <div class="row-value">
+                                £70K
+                                <span class="mini-badge good">+22%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Realization Rates -->
+                    <div class="detailed-card">
+                        <div class="detailed-header">
+                            <div class="detailed-title">Realization Rates</div>
+                            <a href="#" class="drill-down-link">View Details →</a>
+                        </div>
+                        
+                        <div class="metric-row">
+                            <div class="row-label">Partners</div>
+                            <div class="row-value">
+                                94.2%
+                                <span class="mini-badge good">Strong</span>
+                            </div>
+                        </div>
+                        
+                        <div class="metric-row">
+                            <div class="row-label">Senior Associates</div>
+                            <div class="row-value">
+                                91.8%
+                                <span class="mini-badge good">Good</span>
+                            </div>
+                        </div>
+                        
+                        <div class="metric-row">
+                            <div class="row-label">Associates</div>
+                            <div class="row-value">
+                                88.4%
+                                <span class="mini-badge warning">Review</span>
+                            </div>
+                        </div>
+                        
+                        <div class="metric-row">
+                            <div class="row-label">Firm Average</div>
+                            <div class="row-value">
+                                91.5%
+                                <span class="mini-badge good">On Target</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Outstanding Invoices -->
+                    <div class="detailed-card">
+                        <div class="detailed-header">
+                            <div class="detailed-title">Outstanding Invoices</div>
+                            <a href="#" class="drill-down-link">View Details →</a>
+                        </div>
+                        
+                        <div class="metric-row">
+                            <div class="row-label">0-30 days</div>
+                            <div class="row-value">
+                                £287K
+                                <span class="mini-badge good">54%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="metric-row">
+                            <div class="row-label">31-60 days</div>
+                            <div class="row-value">
+                                £148K
+                                <span class="mini-badge good">28%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="metric-row">
+                            <div class="row-label">61-90 days</div>
+                            <div class="row-value">
+                                £62K
+                                <span class="mini-badge warning">12%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="metric-row">
+                            <div class="row-label">90+ days</div>
+                            <div class="row-value">
+                                £34K
+                                <span class="mini-badge critical">6%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Performance -->
+                    <div class="detailed-card">
+                        <div class="detailed-header">
+                            <div class="detailed-title">Team Performance</div>
+                            <a href="#" class="drill-down-link">View Details →</a>
+                        </div>
+                        
+                        <div class="metric-row">
+                            <div class="row-label">Revenue per Partner</div>
+                            <div class="row-value">
+                                £141K
+                                <span class="mini-badge good">+9%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="metric-row">
+                            <div class="row-label">Leverage Ratio</div>
+                            <div class="row-value">
+                                3.2:1
+                                <span class="mini-badge good">Optimal</span>
+                            </div>
+                        </div>
+                        
+                        <div class="metric-row">
+                            <div class="row-label">Billable Hours/Fee Earner</div>
+                            <div class="row-value">
+                                142.7
+                                <span class="mini-badge good">+5%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="metric-row">
+                            <div class="row-label">Average Rate</div>
+                            <div class="row-value">
+                                £247
+                                <span class="mini-badge good">+3%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="dashboard-footer">
+            <div class="footer-left">
+                <div class="data-source">
+                    <div class="source-icon"></div>
+                    <span>Data from ActionStep</span>
+                </div>
+                <span>•</span>
+                <span>Updated every 5 minutes</span>
+            </div>
+            <div>
+                <span>Powered by <strong style="color: #4F46E5;">Cognify Legal</strong></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognify Intelligence Feed Mockup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .teams-container {
+            width: 1100px;
+            height: 700px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Teams Header */
+        .teams-header {
+            background: #464775;
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .bot-avatar {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #4F46E5, #84CC16);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .header-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        /* Tab Navigation */
+        .tab-navigation {
+            background: #fafafa;
+            padding: 0 20px;
+            border-bottom: 2px solid #E0E0E0;
+            display: flex;
+            gap: 32px;
+        }
+        
+        .tab-item {
+            padding: 14px 4px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #616161;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            top: 2px;
+        }
+        
+        .tab-item.active {
+            color: #4F46E5;
+            border-bottom-color: #4F46E5;
+        }
+        
+        .tab-badge {
+            display: inline-block;
+            background: #EF4444;
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: 6px;
+        }
+        
+        /* Feed Header */
+        .feed-header {
+            padding: 20px 24px;
+            background: #fafafa;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        
+        .feed-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .feed-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #242424;
+        }
+        
+        .filter-group {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .filter-label {
+            font-size: 13px;
+            color: #616161;
+            font-weight: 600;
+        }
+        
+        .filter-button {
+            padding: 6px 14px;
+            border: 1px solid #D0D0D0;
+            background: white;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #424242;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .filter-button.active {
+            background: #4F46E5;
+            color: white;
+            border-color: #4F46E5;
+        }
+        
+        /* Feed Content */
+        .feed-content {
+            flex: 1;
+            padding: 20px 24px;
+            overflow-y: auto;
+            background: #fafafa;
+        }
+        
+        .time-section {
+            margin-bottom: 28px;
+        }
+        
+        .time-header {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #616161;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .alert-count {
+            background: #E0E0E0;
+            color: #424242;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+        }
+        
+        /* Alert Cards */
+        .alert-card {
+            background: white;
+            border: 2px solid #E0E0E0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        
+        .alert-card:hover {
+            border-color: #4F46E5;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
+        }
+        
+        .alert-card.priority-high {
+            border-left: 4px solid #EF4444;
+            background: linear-gradient(to right, #FEF2F2 0%, white 20%);
+        }
+        
+        .alert-card.priority-medium {
+            border-left: 4px solid #F59E0B;
+            background: linear-gradient(to right, #FFFBEB 0%, white 20%);
+        }
+        
+        .alert-card.priority-low {
+            border-left: 4px solid #3B82F6;
+            background: linear-gradient(to right, #EFF6FF 0%, white 20%);
+        }
+        
+        .alert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 12px;
+        }
+        
+        .alert-left {
+            flex: 1;
+        }
+        
+        .alert-priority {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        
+        .alert-priority.high {
+            background: #FEE2E2;
+            color: #991B1B;
+        }
+        
+        .alert-priority.medium {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+        
+        .alert-priority.low {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+        
+        .priority-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+        
+        .priority-dot.high {
+            background: #EF4444;
+        }
+        
+        .priority-dot.medium {
+            background: #F59E0B;
+        }
+        
+        .priority-dot.low {
+            background: #3B82F6;
+        }
+        
+        .alert-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #242424;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+        
+        .alert-description {
+            font-size: 13px;
+            color: #616161;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        
+        .alert-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+            color: #757575;
+            margin-bottom: 14px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .alert-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .action-button {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+        
+        .action-button.primary {
+            background: #4F46E5;
+            color: white;
+        }
+        
+        .action-button.primary:hover {
+            background: #4338CA;
+        }
+        
+        .action-button.secondary {
+            background: #F3F4F6;
+            color: #374151;
+            border: 1px solid #D1D5DB;
+        }
+        
+        .action-button.secondary:hover {
+            background: #E5E7EB;
+        }
+        
+        .action-button.tertiary {
+            background: transparent;
+            color: #6B7280;
+            border: 1px solid #D1D5DB;
+        }
+        
+        .action-button.tertiary:hover {
+            background: #F9FAFB;
+        }
+        
+        /* Empty State */
+        .empty-section {
+            text-align: center;
+            padding: 40px 20px;
+            color: #9CA3AF;
+        }
+        
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+        
+        .empty-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        /* Scrollbar */
+        .feed-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .feed-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        .feed-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+        
+        .feed-content::-webkit-scrollbar-thumb:hover {
+            background: #a1a1a1;
+        }
+    </style>
+</head>
+<body>
+    <div class="teams-container">
+        <!-- Teams Header -->
+        <div class="teams-header">
+            <div class="header-left">
+                <div class="bot-avatar">C</div>
+                <div>
+                    <div class="header-title">Cognify Intelligence</div>
+                </div>
+            </div>
+            <div style="font-size: 12px; opacity: 0.9;">Microsoft Teams</div>
+        </div>
+        
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <div class="tab-item active">
+                Intelligence Feed
+                <span class="tab-badge">5</span>
+            </div>
+            <div class="tab-item">Dashboard</div>
+            <div class="tab-item">Chat</div>
+            <div class="tab-item">Settings</div>
+        </div>
+        
+        <!-- Feed Header -->
+        <div class="feed-header">
+            <div class="feed-controls">
+                <div class="feed-title">Intelligence Feed</div>
+                <div class="filter-group">
+                    <span class="filter-label">Filter:</span>
+                    <button class="filter-button active">All</button>
+                    <button class="filter-button">High Priority</button>
+                    <button class="filter-button">Revenue</button>
+                    <button class="filter-button">Risk</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Feed Content -->
+        <div class="feed-content">
+            <!-- Today Section -->
+            <div class="time-section">
+                <div class="time-header">
+                    Today
+                    <span class="alert-count">3 alerts</span>
+                </div>
+                
+                <!-- High Priority Alert -->
+                <div class="alert-card priority-high">
+                    <div class="alert-header">
+                        <div class="alert-left">
+                            <div class="alert-priority high">
+                                <div class="priority-dot high"></div>
+                                High Priority
+                            </div>
+                            <div class="alert-title">£18,400 in unbilled time aging past 45 days</div>
+                            <div class="alert-description">
+                                Matter "Cornerstone Property Acquisition" has significant unbilled time at risk. Time entries from September are still not invoiced, putting £18.4K of revenue at risk of write-off.
+                            </div>
+                            <div class="alert-meta">
+                                <div class="meta-item">
+                                    <span>📊</span>
+                                    <span>Revenue Protection</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span>👤</span>
+                                    <span>Sarah Mitchell (Partner)</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span>🕐</span>
+                                    <span>2 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert-actions">
+                        <button class="action-button primary">Investigate</button>
+                        <button class="action-button secondary">Notify Partner</button>
+                        <button class="action-button tertiary">Snooze</button>
+                    </div>
+                </div>
+                
+                <!-- Medium Priority Alert -->
+                <div class="alert-card priority-medium">
+                    <div class="alert-header">
+                        <div class="alert-left">
+                            <div class="alert-priority medium">
+                                <div class="priority-dot medium"></div>
+                                Medium Priority
+                            </div>
+                            <div class="alert-title">Corporate team utilization dropped to 68.2%</div>
+                            <div class="alert-description">
+                                Your Corporate & Commercial practice area utilization is 9.8% below target this week. Three associates have utilization below 60%, indicating potential capacity for new work or need for matter reallocation.
+                            </div>
+                            <div class="alert-meta">
+                                <div class="meta-item">
+                                    <span>📈</span>
+                                    <span>Utilization & Capacity</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span>👥</span>
+                                    <span>Corporate Team (8 people)</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span>🕐</span>
+                                    <span>5 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert-actions">
+                        <button class="action-button primary">View Details</button>
+                        <button class="action-button secondary">Run Report</button>
+                        <button class="action-button tertiary">Mark Resolved</button>
+                    </div>
+                </div>
+                
+                <!-- Low Priority Alert -->
+                <div class="alert-card priority-low">
+                    <div class="alert-header">
+                        <div class="alert-left">
+                            <div class="alert-priority low">
+                                <div class="priority-dot low"></div>
+                                Low Priority
+                            </div>
+                            <div class="alert-title">New client "Nexus Technologies" reached £50K milestone</div>
+                            <div class="alert-description">
+                                Client onboarded in August 2024 has now generated £51.2K in revenue across 4 matters. Consider opportunity for relationship expansion and cross-selling into adjacent practice areas.
+                            </div>
+                            <div class="alert-meta">
+                                <div class="meta-item">
+                                    <span>🎯</span>
+                                    <span>Client Relationship</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span>👤</span>
+                                    <span>David Chen (Relationship Partner)</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span>🕐</span>
+                                    <span>8 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert-actions">
+                        <button class="action-button primary">View Client</button>
+                        <button class="action-button secondary">Schedule Review</button>
+                        <button class="action-button tertiary">Dismiss</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- This Week Section -->
+            <div class="time-section">
+                <div class="time-header">
+                    Earlier This Week
+                    <span class="alert-count">2 alerts</span>
+                </div>
+                
+                <!-- Medium Priority Alert -->
+                <div class="alert-card priority-medium">
+                    <div class="alert-header">
+                        <div class="alert-left">
+                            <div class="alert-priority medium">
+                                <div class="priority-dot medium"></div>
+                                Medium Priority
+                            </div>
+                            <div class="alert-title">Invoice #INV-2847 overdue by 31 days (£12,650)</div>
+                            <div class="alert-description">
+                                Payment for "Brighton Retail Lease Review" matter is now 31 days past due. Client has previously paid on time. This may warrant a follow-up call rather than formal collection action.
+                            </div>
+                            <div class="alert-meta">
+                                <div class="meta-item">
+                                    <span>💰</span>
+                                    <span>Revenue Protection</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span>🏢</span>
+                                    <span>Brighton Developments Ltd</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span>🕐</span>
+                                    <span>Monday</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert-actions">
+                        <button class="action-button primary">Send Reminder</button>
+                        <button class="action-button secondary">View Invoice</button>
+                        <button class="action-button tertiary">Mark Resolved</button>
+                    </div>
+                </div>
+                
+                <!-- High Priority Alert -->
+                <div class="alert-card priority-high">
+                    <div class="alert-header">
+                        <div class="alert-left">
+                            <div class="alert-priority high">
+                                <div class="priority-dot high"></div>
+                                High Priority
+                            </div>
+                            <div class="alert-title">Limitation deadline approaching: "Johnson Employment Claim"</div>
+                            <div class="alert-description">
+                                Statute of limitations deadline is in 14 days (December 18, 2024) for potential claim filing. Matter shows no recent activity. Recommend immediate partner review to confirm status.
+                            </div>
+                            <div class="alert-meta">
+                                <div class="meta-item">
+                                    <span>⚠️</span>
+                                    <span>Risk Management</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span>👤</span>
+                                    <span>Emma Roberts (Partner)</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span>🕐</span>
+                                    <span>Tuesday</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert-actions">
+                        <button class="action-button primary">Investigate</button>
+                        <button class="action-button secondary">Notify Partner</button>
+                        <button class="action-button tertiary">Snooze</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

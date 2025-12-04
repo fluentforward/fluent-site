@@ -1,5 +1,7 @@
 import { Container } from './Container'
 import { FadeIn } from './FadeIn'
+import intelligenceFeed from '@/images/app/intelligence-feed.png'
+import Image from 'next/image'
 
 const alerts = [
   {
@@ -71,12 +73,13 @@ export function ProactiveIntelligenceSection() {
           <FadeIn delay={0.2}>
             <div className="relative">
               <div className="bg-white/5 border-2 border-dashed border-white/20 rounded-xl p-12 text-center backdrop-blur-md min-h-[400px] flex flex-col justify-center items-center">
-                <strong className="block text-xl text-white mb-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                  INTELLIGENCE FEED
-                </strong>
-                <small className="block text-sm text-white/70 max-w-[80%]" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                  Screenshot: Microsoft Teams showing the Cognify Intelligence tab with a feed of prioritized alerts. Clean card-based interface showing alerts with action buttons ("Investigate", "Snooze", "Mark Resolved"). Shows time-based organization and visual priority indicators.
-                </small>
+                <Image
+                  src={intelligenceFeed}
+                  alt="Intelligence feed showing prioritized alerts"
+                  className="rounded-xl shadow-2xl bg-white object-contain"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
               </div>
             </div>
           </FadeIn>

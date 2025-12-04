@@ -1,6 +1,8 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { Container } from './Container'
 import { FadeIn } from './FadeIn'
+import teamsChat from '@/images/app/teams-chat.png'
 
 export function HeroSection() {
   return (
@@ -46,13 +48,14 @@ export function HeroSection() {
           </FadeIn>
           <FadeIn delay={0.2}>
             <div className="relative">
-              <div className="bg-white/10 border-2 border-dashed border-white/30 rounded-xl p-12 text-center backdrop-blur-md min-h-[400px] flex flex-col justify-center items-center">
-                <strong className="block text-xl text-white mb-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                  HERO IMAGE PLACEHOLDER
-                </strong>
-                <small className="block text-sm text-white/80 max-w-[80%]" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                  Screenshot: Microsoft Teams chat interface showing a natural language query ("What's our utilization this month?") with Cognify's response showing clear metrics and insights. Clean, conversational interface demonstrating zero learning curve.
-                </small>
+              <div className="relative w-full" style={{ minHeight: 400, maxHeight: 500 }}>
+                <Image
+                  src={teamsChat}
+                  alt="Microsoft Teams chat showing natural language query and Cognify's response"
+                  className="rounded-xl shadow-2xl bg-white object-contain"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
               </div>
             </div>
           </FadeIn>
