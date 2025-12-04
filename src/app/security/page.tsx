@@ -1,4 +1,5 @@
 import { type Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
@@ -7,6 +8,7 @@ import { SecurityCard } from '@/components/SecurityCard'
 import { ComplianceCard } from '@/components/ComplianceCard'
 import { PracticeCategory } from '@/components/PracticeCategory'
 import { IncidentProcessStep } from '@/components/IncidentProcessStep'
+import securityArchitectureDiagram from '@/images/security-architecture-diagram.png'
 
 export const metadata: Metadata = {
   title: 'Security & Compliance',
@@ -372,15 +374,15 @@ export default function Security() {
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <div className="bg-white p-12 rounded-xl shadow-lg mb-12">
-              <div className="bg-gradient-to-br from-indigo-100 to-purple-100 border-2 border-dashed border-indigo-600 rounded-xl p-16 text-center min-h-[400px] flex flex-col justify-center items-center">
-                <strong className="block text-2xl text-slate-900 mb-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                  SECURITY ARCHITECTURE DIAGRAM
-                </strong>
-                <small className="block text-sm text-slate-700 max-w-[90%]" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                  Visual diagram showing: (1) Your firm's Microsoft 365 tenant with user authentication via Azure AD, (2) Secure API gateway with TLS 1.3 encryption, (3) Multi-tenant application layer with logical data partitioning, (4) Encrypted database with separate schemas per tenant, (5) Practice management system integration with OAuth, (6) Backup and monitoring infrastructure. Use color coding to show data flow and security boundaries between tenants.
-                </small>
-              </div>
+            <div className="w-full mb-12">
+              <Image
+                src={securityArchitectureDiagram}
+                alt="Security architecture diagram showing data flow and security boundaries"
+                className="rounded-xl shadow-2xl w-full h-auto"
+                width={2500}
+                height={2100}
+                sizes="(max-width: 768px) 100vw, 100vw"
+              />
             </div>
           </FadeIn>
 
