@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "codegen": "contentful-typescript-codegen --output src/lib/contentful-types.ts"
+    "contentful-typescript-codegen": "contentful-typescript-codegen --output src/lib/contentful-types.ts"
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {

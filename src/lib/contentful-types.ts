@@ -3,255 +3,323 @@
 import { Asset, Entry } from "contentful";
 import { Document } from "@contentful/rich-text-types";
 
-export interface ICaseStudyFields {
-  /** Internal name */
-  internalName: string;
-
-  /** SEO fields */
-  seoFields?: IComponentSeo | undefined;
-
-  /** Slug */
-  slug: string;
-
-  /** Author */
-  author?: IComponentAuthor | undefined;
-
-  /** Published date */
-  publishedDate: string;
-
-  /** Title */
-  title: string;
-
-  /** Subtitle */
-  shortDescription?: string | undefined;
-
-  /** Featured image */
-  featuredImage: Asset;
-
-  /** Content */
-  content: Document;
-
-  /** Related blog posts */
-  relatedBlogPosts?: IPageBlogPost[] | undefined;
-}
-
-/** To create individual case studies */
-
-export interface ICaseStudySkeleton {
-  contentTypeId: 'caseStudy'
-  fields: ICaseStudyFields
-}
-
-export interface ICaseStudy extends Entry<ICaseStudySkeleton> {  
-}
-
-export interface IComponentAuthorFields {
-  /** Internal name */
-  internalName: string;
-
-  /** Name */
+export interface IAuthorFields {
+  /** name */
   name: string;
 
-  /** Avatar */
+  /** title */
+  title: string;
+
+  /** bio */
+  bio: string;
+
+  /** avatar */
   avatar?: Asset | undefined;
+
+  /** Learn More Href */
+  learnMoreHref?: string | undefined;
+
+  /** email */
+  email?: string | undefined;
+
+  /** Social Links */
+  socialLinks?: ISocialLink[] | undefined;
 }
 
-/** To have author-related properties */
-export interface IComponentAuthorSkeleton {
-  contentTypeId: 'componentAuthor'
-  fields: IComponentAuthorFields
+/** Content author */
+
+export interface IAuthor extends Entry<IAuthorFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "author";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
 }
 
-export interface IComponentAuthor extends Entry<IComponentAuthorSkeleton> {  
-}
-
-export interface IComponentRichImageFields {
-  /** Internal name */
-  internalName: string;
-
-  /** Image */
-  image: Asset;
-
-  /** Caption */
-  caption?: string | undefined;
-
-  /** Full width */
-  fullWidth?: boolean | undefined;
-}
-
-/** To describe an image used in rich text fields */
-
-export interface IComponentRichImageSkeleton {
-  contentTypeId: 'componentRichImage'
-  fields: IComponentRichImageFields
-}
-
-export interface IComponentRichImage extends Entry<IComponentRichImageSkeleton> {   
-}
-
-export interface IComponentSeoFields {
-  /** Internal name */
-  internalName: string;
-
-  /** Page title */
-  pageTitle: string;
-
-  /** Page description */
-  pageDescription?: string | undefined;
-
-  /** Canonical URL */
-  canonicalUrl?: string | undefined;
-
-  /** nofollow */
-  nofollow: boolean;
-
-  /** noindex */
-  noindex: boolean;
-
-  /** Share images */
-  shareImages?: Asset[] | undefined;
-}
-
-/** To have SEO-related properties to the pages we render */
-
-export interface IComponentSeoSkeleton {
-  contentTypeId: 'componentSeo'
-  fields: IComponentSeoFields
-}
-
-export interface IComponentSeo extends Entry<IComponentSeoSkeleton> {
-}
-
-export interface IPageBlogPostFields {
-  /** Internal name */
-  internalName: string;
-
-  /** SEO fields */
-  seoFields?: IComponentSeo | undefined;
-
-  /** Slug */
-  slug: string;
-
-  /** Author */
-  author?: IComponentAuthor | undefined;
-
-  /** Published date */
-  publishedDate: string;
-
-  /** Title */
-  title: string;
-
-  /** Subtitle */
-  shortDescription?: string | undefined;
-
-  /** Featured image */
-  featuredImage: Asset;
-
-  /** Content */
-  content: Document;
-
-  /** Related blog posts */
-  relatedBlogPosts?: IPageBlogPost[] | undefined;
-}
-
-/** To create individual blog posts */
-
-export interface IPageBlogPostSkeleton {
-  contentTypeId: 'pageBlogPost'
-  fields: IPageBlogPostFields
-}
-
-export interface IPageBlogPost extends Entry<IPageBlogPostSkeleton> {
-}
-
-export interface IPageLandingFields {
-  /** Internal name */
-  internalName: string;
-
-  /** SEO fields */
-  seoFields?: IComponentSeo | undefined;
-
-  /** Featured blog post */
-  featuredBlogPost?: IPageBlogPost | undefined;
-}
-
-/** To have an entry point for the app (e.g. Homepage) */
-
-export interface IPageLandingSkeleton {
-  contentTypeId: 'pageLanding'
-  fields: IPageLandingFields
-}
-
-export interface IPageLanding extends Entry<IPageLandingSkeleton> {
-}
-
-export interface IPublisherFields {
-  /** Name */
+export interface IBlogCategoryFields {
+  /** name */
   name: string;
 
-  /** URL */
-  url: string;
+  /** slug */
+  slug: string;
 
-  /** Image */
-  image?: Asset | undefined;
+  /** order */
+  order: number;
 }
 
-/** Publisher of learning resources */
+/** Category for a blog post */
 
-export interface IPublisherSkeleton {
-  contentTypeId: 'publisher'
-  fields: IPublisherFields
+export interface IBlogCategory extends Entry<IBlogCategoryFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "blogCategory";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
 }
 
-export interface IPublisher extends Entry<IPublisherSkeleton> {
+export interface IBlogConfigurationFields {
+  /** Hero Title */
+  heroTitle: string;
+
+  /** Hero Description */
+  heroDescription: string;
+
+  /** Featured Post */
+  featuredPost: IBlogPost;
 }
 
-export interface IResourceCollectionFields {
+export interface IBlogConfiguration extends Entry<IBlogConfigurationFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "blogConfiguration";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IBlogPostFields {
   /** Title */
   title: string;
 
-  /** Description */
-  description: string;
+  /** slug */
+  slug: string;
 
-  /** Children */
-  children?: IResourceCollection[] | undefined;
+  /** Exerpt */
+  exerpt: string;
 
-  /** Children */
-  parent?: IResourceCollection | undefined;
+  /** Category */
+  category: IBlogCategory;
 
-  /** Images */
-  images?: Asset[] | undefined;
+  /** Featured Image */
+  featuredImage: Asset;
+
+  /** Thumbnail Image */
+  thumbnailImage: Asset;
+
+  /** Introduction */
+  introduction?: Document | undefined;
+
+  /** Sections */
+  sections: IBlogPostSection[];
+
+  /** Author */
+  author: IAuthor;
+
+  /** SEO Title */
+  seoTitle?: string | undefined;
+
+  /** SEO Description */
+  seoDescription?: string | undefined;
+
+  /** SEO Keywords */
+  seoKeywords?: string[] | undefined;
 }
 
-/** Collection of learning resources */
-
-export interface IResourceCollectionSkeleton {
-  contentTypeId: 'resourceCollection'
-  fields: IResourceCollectionFields
+export interface IBlogPost extends Entry<IBlogPostFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "blogPost";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
 }
 
-export interface IResourceCollection extends Entry<IResourceCollectionSkeleton> {
+export interface IBlogPostSectionFields {
+  /** Title */
+  title: string;
+
+  /** slug */
+  slug: string;
+
+  /** Content Blocks */
+  contentBlocks: (ICalloutBlock | IRichTextBlock | ITestimonialBlock)[];
+}
+
+export interface IBlogPostSection extends Entry<IBlogPostSectionFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "blogPostSection";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface ICalloutBlockFields {
+  /** title */
+  title: string;
+
+  /** content */
+  content: Document;
+
+  /** variant */
+  variant: "lime" | "indigo" | "slate";
+}
+
+export interface ICalloutBlock extends Entry<ICalloutBlockFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "calloutBlock";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IRichTextBlockFields {
+  /** title */
+  title: string;
+
+  /** content */
+  content: Document;
+}
+
+/** Rich text content */
+
+export interface IRichTextBlock extends Entry<IRichTextBlockFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "richTextBlock";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface ISocialLinkFields {
+  /** title */
+  title: string;
+
+  /** platform */
+  platform: "x" | "linkedin" | "facebook" | "instagram";
+
+  /** url */
+  url: string;
+}
+
+export interface ISocialLink extends Entry<ISocialLinkFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "socialLink";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface ITestimonialBlockFields {
+  /** title */
+  title: string;
+
+  /** Quote Text */
+  quoteText: string;
+
+  /** Quote Attribution */
+  quoteAttribution?: string | undefined;
+}
+
+/** Testimonial with attribution */
+
+export interface ITestimonialBlock extends Entry<ITestimonialBlockFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "testimonialBlock";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
 }
 
 export type CONTENT_TYPE =
-  | "caseStudy"
-  | "componentAuthor"
-  | "componentRichImage"
-  | "componentSeo"
-  | "pageBlogPost"
-  | "pageLanding"
-  | "publisher"
-  | "resourceCollection";
+  | "author"
+  | "blogCategory"
+  | "blogConfiguration"
+  | "blogPost"
+  | "blogPostSection"
+  | "calloutBlock"
+  | "richTextBlock"
+  | "socialLink"
+  | "testimonialBlock";
 
 export type IEntry =
-  | ICaseStudy
-  | IComponentAuthor
-  | IComponentRichImage
-  | IComponentSeo
-  | IPageBlogPost
-  | IPageLanding
-  | IPublisher
-  | IResourceCollection;
+  | IAuthor
+  | IBlogCategory
+  | IBlogConfiguration
+  | IBlogPost
+  | IBlogPostSection
+  | ICalloutBlock
+  | IRichTextBlock
+  | ISocialLink
+  | ITestimonialBlock;
 
 export type LOCALE_CODE = "en-US";
 
