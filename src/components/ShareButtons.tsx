@@ -55,7 +55,8 @@ export function ShareButtons({ url, title, delay = 0 }: ShareButtonsProps) {
         </h4>
         <div className="space-y-3">
           {shareLinks.map((link, index) => {
-            const IconComponent = typeof link.icon === 'string' ? null : link.icon
+            const isStringIcon = typeof link.icon === 'string'
+            const IconComponent = isStringIcon ? null : link.icon
             return (
               <a
                 key={index}
@@ -68,7 +69,7 @@ export function ShareButtons({ url, title, delay = 0 }: ShareButtonsProps) {
                 {IconComponent ? (
                   <IconComponent className="h-5 w-5 fill-current group-hover:fill-white" />
                 ) : (
-                  <span>{link.icon}</span>
+                  <span>{isStringIcon ? link.icon : null}</span>
                 )}
                 {link.label}
               </a>
