@@ -1,3 +1,5 @@
+'use client'
+
 import { FadeIn } from './FadeIn'
 
 type TableOfContentsProps = {
@@ -6,6 +8,21 @@ type TableOfContentsProps = {
 }
 
 export function TableOfContents({ items, delay = 0 }: TableOfContentsProps) {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault()
+    const targetId = href.replace('#', '')
+    const targetElement = document.getElementById(targetId)
+    
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+      // Update URL hash without triggering scroll
+      window.history.pushState(null, '', href)
+    }
+  }
+
   return (
     <FadeIn delay={delay}>
       <div className="bg-slate-50 p-8 rounded-xl">
@@ -20,7 +37,8 @@ export function TableOfContents({ items, delay = 0 }: TableOfContentsProps) {
             <li key={index}>
               <a
                 href={item.href}
-                className="text-slate-700 text-sm hover:text-indigo-600 transition-colors block hover:pl-2"
+                onClick={(e) => handleClick(e, item.href)}
+                className="text-slate-700 text-sm hover:text-indigo-600 transition-colors block hover:pl-2 cursor-pointer"
                 style={{ fontFamily: "'DM Sans', sans-serif" }}
               >
                 {item.label}
