@@ -6,24 +6,36 @@ import type {
   IBlogPostSection,
 } from './contentful-types'
 
-if (!process.env.CONTENTFUL_SPACE_ID) {
-  throw new Error('CONTENTFUL_SPACE_ID is not defined')
-}
+let contentfulClient: ReturnType<typeof createClient> | null = null
 
-if (!process.env.CONTENTFUL_ACCESS_TOKEN) {
-  throw new Error('CONTENTFUL_ACCESS_TOKEN is not defined')
-}
+function getContentfulClient(): ReturnType<typeof createClient> {
+  if (!contentfulClient) {
+    const spaceId = process.env.CONTENTFUL_SPACE_ID
+    const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN
 
-export const contentfulClient = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-})
+    if (!spaceId) {
+      throw new Error('CONTENTFUL_SPACE_ID is not defined')
+    }
+
+    if (!accessToken) {
+      throw new Error('CONTENTFUL_ACCESS_TOKEN is not defined')
+    }
+
+    contentfulClient = createClient({
+      space: spaceId,
+      accessToken: accessToken,
+    })
+  }
+
+  return contentfulClient
+}
 
 /**
  * Fetch blog configuration singleton with featured post
  */
 export async function getBlogConfiguration(): Promise<IBlogConfiguration | null> {
-  const response = await contentfulClient.getEntries({
+  const client = getContentfulClient()
+  const response = await client.getEntries({
     content_type: 'blogConfiguration',
     limit: 1,
     include: 3, // Include featured post, its category, author, sections, content blocks
@@ -40,7 +52,8 @@ export async function getBlogConfiguration(): Promise<IBlogConfiguration | null>
  * Fetch all blog categories ordered by order field
  */
 export async function getBlogCategories(): Promise<IBlogCategory[]> {
-  const response = await contentfulClient.getEntries({
+  const client = getContentfulClient()
+  const response = await client.getEntries({
     content_type: 'blogCategory',
     order: ['fields.order'],
   })
@@ -66,7 +79,8 @@ export async function getBlogPosts(limit?: number, excludeSlug?: string): Promis
     query['fields.slug[ne]'] = excludeSlug
   }
 
-  const response = await contentfulClient.getEntries(query)
+  const client = getContentfulClient()
+  const response = await client.getEntries(query)
   return response.items as unknown as IBlogPost[]
 }
 
@@ -74,7 +88,8 @@ export async function getBlogPosts(limit?: number, excludeSlug?: string): Promis
  * Fetch a single blog post by slug with all nested content
  */
 export async function getBlogPostBySlug(slug: string): Promise<IBlogPost | null> {
-  const response = await contentfulClient.getEntries({
+  const client = getContentfulClient()
+  const response = await client.getEntries({
     content_type: 'blogPost',
     'fields.slug': slug,
     include: 3, // Include sections, content blocks, category, author, images
@@ -91,7 +106,8 @@ export async function getRelatedPosts(
   excludePostId: string,
   limit: number = 3
 ): Promise<IBlogPost[]> {
-  const response = await contentfulClient.getEntries({
+  const client = getContentfulClient()
+  const response = await client.getEntries({
     content_type: 'blogPost',
     'fields.category.sys.id': categoryId,
     'sys.id[ne]': excludePostId,
