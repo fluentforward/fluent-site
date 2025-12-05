@@ -25,6 +25,8 @@ import type {
 
 // ISR: Revalidate every hour (3600 seconds)
 export const revalidate = 3600
+// Skip static generation at build time - generate on-demand
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const post = await getBlogPostBySlug(params.slug)
