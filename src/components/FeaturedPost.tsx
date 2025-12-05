@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { FadeIn } from './FadeIn'
 
 type FeaturedPostProps = {
@@ -8,19 +9,33 @@ type FeaturedPostProps = {
   category: string
   date: string
   imageAlt: string
+  image?: string
   delay?: number
 }
 
-export function FeaturedPost({ slug, title, excerpt, category, date, imageAlt, delay = 0 }: FeaturedPostProps) {
+export function FeaturedPost({ slug, title, excerpt, category, date, imageAlt, image, delay = 0 }: FeaturedPostProps) {
   return (
     <FadeIn delay={delay}>
-      <div className="bg-white rounded-xl overflow-hidden shadow-lg grid grid-cols-1 lg:grid-cols-5 gap-0">
-        <div className="bg-gradient-to-br from-indigo-100 to-purple-100 lg:col-span-2 border-b-4 lg:border-b-0 lg:border-r-4 border-lime-500 min-h-[250px] sm:min-h-[300px] lg:min-h-[400px] flex items-center justify-center p-8 sm:p-12 text-center">
-          <strong className="text-lg text-slate-700" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-            {imageAlt}
-          </strong>
+      <div className="rounded-xl overflow-hidden shadow-lg grid grid-cols-1 lg:grid-cols-5 gap-0">
+        <div className="lg:col-span-2 border-b-4 lg:border-b-0 lg:border-r-4 border-lime-500 min-h-[250px] sm:min-h-[300px] lg:min-h-[400px] relative rounded-l-xl lg:rounded-l-xl">
+          {image ? (
+            <Image
+              src={image}
+              alt={imageAlt}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              priority
+            />
+          ) : (
+            <div className="bg-gradient-to-br from-indigo-100 to-purple-100 w-full h-full flex items-center justify-center p-8 sm:p-12 text-center">
+              <strong className="text-lg text-slate-700" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                {imageAlt}
+              </strong>
+            </div>
+          )}
         </div>
-        <div className="lg:col-span-3 p-12 flex flex-col justify-center">
+        <div className="lg:col-span-3 p-12 flex flex-col justify-center bg-white rounded-r-xl">
           <div className="flex gap-4 mb-4 flex-wrap">
             <span className="bg-lime-500 text-slate-900 px-3 py-1 rounded text-xs font-bold uppercase tracking-wide" style={{ fontFamily: "'DM Sans', sans-serif" }}>
               {category}

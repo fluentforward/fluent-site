@@ -80,7 +80,7 @@ export default function Blog() {
       </section>
 
       {/* Featured Post Section */}
-      <section className="relative bg-slate-50 py-24 px-6 lg:px-12">
+      <section className="relative bg-white py-24 px-6 lg:px-12">
         <Container className="max-w-7xl mx-auto">
           <FadeIn className="text-center mb-12">
             <div className="text-sm font-bold uppercase tracking-widest text-indigo-600 mb-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>

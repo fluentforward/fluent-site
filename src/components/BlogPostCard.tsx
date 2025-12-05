@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { FadeIn } from './FadeIn'
 
 type BlogPostCardProps = {
@@ -8,17 +9,30 @@ type BlogPostCardProps = {
   category: string
   date: string
   imageAlt: string
+  image?: string
   delay?: number
 }
 
-export function BlogPostCard({ slug, title, excerpt, category, date, imageAlt, delay = 0 }: BlogPostCardProps) {
+export function BlogPostCard({ slug, title, excerpt, category, date, imageAlt, image, delay = 0 }: BlogPostCardProps) {
   return (
     <FadeIn delay={delay}>
       <article className="bg-white border-2 border-slate-200 rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg hover:border-indigo-600 flex flex-col">
-        <div className="bg-gradient-to-br from-indigo-100 to-purple-100 h-48 flex items-center justify-center border-b-3 border-lime-500 p-8 text-center">
-          <strong className="text-sm text-slate-700" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-            {imageAlt}
-          </strong>
+        <div className="h-48 relative overflow-hidden border-b-3 border-lime-500">
+          {image ? (
+            <Image
+              src={image}
+              alt={imageAlt}
+              fill
+              className="object-cover w-full h-full"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
+          ) : (
+            <div className="bg-gradient-to-br from-indigo-100 to-purple-100 w-full h-full flex items-center justify-center p-8 text-center">
+              <strong className="text-sm text-slate-700" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                {imageAlt}
+              </strong>
+            </div>
+          )}
         </div>
         <div className="p-8 flex-grow flex flex-col">
           <div className="flex gap-4 mb-3 flex-wrap">

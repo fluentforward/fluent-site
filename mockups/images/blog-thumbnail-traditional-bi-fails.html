@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Thumbnail - Traditional BI Fails</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .thumbnail-container {
+            width: 800px;
+            height: 800px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Background gradient */
+        .thumbnail-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #1E293B 0%, #0F172A 50%, #1E293B 100%);
+        }
+        
+        /* Subtle pattern overlay */
+        .pattern-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(79, 70, 229, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(132, 204, 22, 0.1) 0%, transparent 50%);
+        }
+        
+        /* Dashboard mockup (centered) */
+        .dashboard-mockup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(5deg);
+            width: 500px;
+            height: 340px;
+            background: linear-gradient(to bottom, #2D3748, #1A202C);
+            border-radius: 12px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.35;
+        }
+        
+        /* Dashboard header */
+        .dashboard-header {
+            background: rgba(79, 70, 229, 0.2);
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .dashboard-title {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+        }
+        
+        .last-login {
+            font-size: 9px;
+            color: rgba(239, 68, 68, 0.8);
+            background: rgba(239, 68, 68, 0.1);
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+        
+        /* Dashboard content (charts) */
+        .dashboard-content {
+            padding: 16px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        
+        .chart-placeholder {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .chart-bars {
+            display: flex;
+            gap: 6px;
+            align-items: flex-end;
+            height: 60px;
+            opacity: 0.3;
+        }
+        
+        .bar {
+            width: 16px;
+            background: rgba(156, 163, 175, 0.3);
+            border-radius: 3px 3px 0 0;
+        }
+        
+        /* Warning badge on dashboard */
+        .warning-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: rgba(239, 68, 68, 0.2);
+            color: #FCA5A5;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 700;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        
+        /* Money drain visual */
+        .money-indicator {
+            position: absolute;
+            top: 300px;
+            left: 180px;
+            font-size: 120px;
+            opacity: 0.2;
+            transform: rotate(-15deg);
+            filter: drop-shadow(0 6px 20px rgba(239, 68, 68, 0.5));
+        }
+        
+        /* Content overlay */
+        .content-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px;
+            z-index: 10;
+        }
+        
+        /* Category badge */
+        .category-badge {
+            background: rgba(132, 204, 22, 0.2);
+            color: #84CC16;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 32px;
+            border: 1px solid rgba(132, 204, 22, 0.3);
+        }
+        
+        /* Main headline */
+        .thumbnail-headline {
+            font-size: 64px;
+            font-weight: 700;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            text-shadow: 0 6px 30px rgba(0, 0, 0, 0.7);
+            max-width: 650px;
+        }
+        
+        .headline-highlight {
+            color: #84CC16;
+        }
+        
+        .headline-problem {
+            color: #EF4444;
+            display: block;
+            margin-top: 12px;
+        }
+        
+        /* Subtitle */
+        .thumbnail-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+            max-width: 600px;
+            font-weight: 400;
+        }
+        
+        /* Branding footer */
+        .branding-footer {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #4F46E5, #84CC16);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 4px 16px rgba(79, 70, 229, 0.4);
+        }
+        
+        .logo-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        /* Floating warning icons */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+        
+        .floating-icon {
+            position: absolute;
+            font-size: 50px;
+            opacity: 0.12;
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        .icon-1 {
+            top: 120px;
+            right: 100px;
+            animation-delay: 0s;
+        }
+        
+        .icon-2 {
+            bottom: 180px;
+            right: 120px;
+            animation-delay: 2s;
+        }
+        
+        .icon-3 {
+            bottom: 200px;
+            left: 80px;
+            animation-delay: 4s;
+        }
+    </style>
+</head>
+<body>
+    <div class="thumbnail-container">
+        <!-- Background -->
+        <div class="thumbnail-background"></div>
+        <div class="pattern-overlay"></div>
+        
+        <!-- Floating warning icons -->
+        <div class="floating-icon icon-1">⚠️</div>
+        <div class="floating-icon icon-2">📉</div>
+        <div class="floating-icon icon-3">💸</div>
+        
+        <!-- Money drain indicator -->
+        <div class="money-indicator">💷</div>
+        
+        <!-- Abandoned Dashboard Mockup (background) -->
+        <div class="dashboard-mockup">
+            <div class="dashboard-header">
+                <div class="dashboard-title">Business Intelligence Dashboard</div>
+                <div class="last-login">Last login: 127 days ago</div>
+            </div>
+            <div class="dashboard-content">
+                <div class="chart-placeholder">
+                    <div class="chart-bars">
+                        <div class="bar" style="height: 60%;"></div>
+                        <div class="bar" style="height: 80%;"></div>
+                        <div class="bar" style="height: 45%;"></div>
+                        <div class="bar" style="height: 70%;"></div>
+                    </div>
+                </div>
+                <div class="chart-placeholder">
+                    <div class="chart-bars">
+                        <div class="bar" style="height: 40%;"></div>
+                        <div class="bar" style="height: 65%;"></div>
+                        <div class="bar" style="height: 50%;"></div>
+                        <div class="bar" style="height: 75%;"></div>
+                    </div>
+                </div>
+                <div class="chart-placeholder">
+                    <div class="chart-bars">
+                        <div class="bar" style="height: 55%;"></div>
+                        <div class="bar" style="height: 70%;"></div>
+                        <div class="bar" style="height: 35%;"></div>
+                        <div class="bar" style="height: 60%;"></div>
+                    </div>
+                </div>
+                <div class="chart-placeholder">
+                    <div class="chart-bars">
+                        <div class="bar" style="height: 50%;"></div>
+                        <div class="bar" style="height: 45%;"></div>
+                        <div class="bar" style="height: 70%;"></div>
+                        <div class="bar" style="height: 55%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="warning-badge">⚠️ 0% Usage</div>
+        </div>
+        
+        <!-- Content Overlay -->
+        <div class="content-overlay">
+            <div class="category-badge">Business Intelligence</div>
+            
+            <h1 class="thumbnail-headline">
+                Why Traditional BI Fails in <span class="headline-highlight">Law Firms</span>
+                <span class="headline-problem">The £100K Problem</span>
+            </h1>
+            
+            <p class="thumbnail-subtitle">
+                After a decade of watching firms waste six-figure investments on unused dashboards
+            </p>
+        </div>
+        
+        <!-- Branding -->
+        <div class="branding-footer">
+            <div class="logo-icon">C</div>
+            <div class="logo-text">Cognify Legal</div>
+        </div>
+    </div>
+</body>
+</html>

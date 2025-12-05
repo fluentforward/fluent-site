@@ -1,5 +1,6 @@
 import { type Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { AuthorSection } from '@/components/AuthorSection'
@@ -96,16 +97,29 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
       </section>
 
       {/* Featured Image */}
-      <section className="relative bg-slate-50 py-8 px-6 lg:px-12">
-        <Container className="max-w-7xl mx-auto">
+      <section className="relative bg-white py-8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <FadeIn delay={0.2}>
-            <div className="bg-gradient-to-br from-indigo-100 to-purple-100 border-2 border-dashed border-indigo-600 rounded-xl min-h-[250px] sm:min-h-[350px] lg:min-h-[500px] flex items-center justify-center p-8 sm:p-12 text-center">
-              <strong className="text-lg text-slate-700" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                {post.imageAlt}
-              </strong>
-            </div>
+            {post.slug === 'why-traditional-bi-fails-in-law-firms' ? (
+              <div className="relative w-full rounded-xl overflow-hidden" style={{ aspectRatio: '2288 / 1242' }}>
+                <Image
+                  src="/images/blog/traditional-bi-fails.png"
+                  alt={post.imageAlt}
+                  fill
+                  className="object-cover w-full h-full"
+                  sizes="100vw"
+                  priority
+                />
+              </div>
+            ) : (
+              <div className="bg-gradient-to-br from-indigo-100 to-purple-100 border-2 border-dashed border-indigo-600 rounded-xl min-h-[250px] sm:min-h-[350px] lg:min-h-[500px] flex items-center justify-center p-8 sm:p-12 text-center">
+                <strong className="text-lg text-slate-700" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                  {post.imageAlt}
+                </strong>
+              </div>
+            )}
           </FadeIn>
-        </Container>
+        </div>
       </section>
 
       {/* Article Body */}
@@ -133,7 +147,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 
                   <h2
                     id="typical-pattern"
-                    className="text-3xl font-bold text-slate-900 mb-6 mt-12"
+                    className="text-3xl font-bold text-slate-900 mb-6 mt-12 scroll-mt-24"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
                     The Typical BI Implementation Pattern
@@ -157,7 +171,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 
                   <h2
                     id="fundamental-problems"
-                    className="text-3xl font-bold text-slate-900 mb-6 mt-12"
+                    className="text-3xl font-bold text-slate-900 mb-6 mt-12 scroll-mt-24"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
                     The Two Fundamental Problems
@@ -246,7 +260,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 
                   <h2
                     id="law-firms"
-                    className="text-3xl font-bold text-slate-900 mb-6 mt-12"
+                    className="text-3xl font-bold text-slate-900 mb-6 mt-12 scroll-mt-24"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
                     Why Law Firms Are Particularly Affected
@@ -302,7 +316,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 
                   <h2
                     id="solution"
-                    className="text-3xl font-bold text-slate-900 mb-6 mt-12"
+                    className="text-3xl font-bold text-slate-900 mb-6 mt-12 scroll-mt-24"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
                     The Real Solution: Intelligence, Not Dashboards
@@ -344,7 +358,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 
                   <h2
                     id="your-firm"
-                    className="text-3xl font-bold text-slate-900 mb-6 mt-12"
+                    className="text-3xl font-bold text-slate-900 mb-6 mt-12 scroll-mt-24"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
                     What This Means for Your Firm
