@@ -33,7 +33,7 @@ export async function getBlogConfiguration(): Promise<IBlogConfiguration | null>
   if (!item) return null
 
   // Type assertion needed because Contentful's types don't always reflect resolved links
-  return item as IBlogConfiguration
+  return item as unknown as IBlogConfiguration
 }
 
 /**
@@ -45,7 +45,7 @@ export async function getBlogCategories(): Promise<IBlogCategory[]> {
     order: ['fields.order'],
   })
 
-  return response.items as IBlogCategory[]
+  return response.items as unknown as IBlogCategory[]
 }
 
 /**
@@ -67,7 +67,7 @@ export async function getBlogPosts(limit?: number, excludeSlug?: string): Promis
   }
 
   const response = await contentfulClient.getEntries(query)
-  return response.items as IBlogPost[]
+  return response.items as unknown as IBlogPost[]
 }
 
 /**
@@ -80,7 +80,7 @@ export async function getBlogPostBySlug(slug: string): Promise<IBlogPost | null>
     include: 3, // Include sections, content blocks, category, author, images
   })
 
-  return (response.items[0] as IBlogPost) || null
+  return (response.items[0] as unknown as IBlogPost) || null
 }
 
 /**
@@ -100,5 +100,5 @@ export async function getRelatedPosts(
     include: 2, // Include category, author, images
   })
 
-  return response.items as IBlogPost[]
+  return response.items as unknown as IBlogPost[]
 }

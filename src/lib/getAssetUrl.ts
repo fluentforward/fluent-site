@@ -9,7 +9,7 @@ export function getAssetUrl(asset: Asset | undefined): string | undefined {
   }
 
   // Contentful URLs may or may not include the protocol
-  const url = asset.fields.file.url
+  const url = typeof asset.fields.file.url === 'string' ? asset.fields.file.url : ''
   if (url.startsWith('//')) {
     return `https:${url}`
   }

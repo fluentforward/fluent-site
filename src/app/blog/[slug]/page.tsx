@@ -15,6 +15,13 @@ import { formatDate } from '@/lib/formatDate'
 import { getAssetUrl } from '@/lib/getAssetUrl'
 import { calculateReadingTime } from '@/lib/calculateReadingTime'
 import type { Document } from '@contentful/rich-text-types'
+import type {
+  IBlogPost,
+  IBlogPostFields,
+  IBlogPostSectionFields,
+  IBlogCategoryFields,
+  IAuthorFields,
+} from '@/lib/contentful-types'
 
 // ISR: Revalidate every hour (3600 seconds)
 export const revalidate = 3600
@@ -28,10 +35,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     }
   }
 
+  const fields = post.fields as IBlogPostFields
+
   return {
-    title: post.fields.seoTitle || post.fields.title,
-    description: post.fields.seoDescription || post.fields.excerpt,
-    keywords: post.fields.seoKeywords,
+    title: fields.seoTitle ?? fields.title,
+    description: fields.seoDescription ?? fields.excerpt,
+    keywords: fields.seoKeywords,
   }
 }
 
@@ -42,16 +51,23 @@ export default async function BlogPost({ params }: { params: { slug: string } })
     notFound()
   }
 
+  // Type assertion to fix TypeScript inference issues with Contentful types
+  const fields = post.fields as IBlogPostFields
+
   // Generate table of contents from sections
-  const tableOfContents = post.fields.sections.map((section) => ({
-    label: section.fields.title,
-    href: `#${section.fields.slug}`,
-  }))
+  const tableOfContents = fields.sections.map((section) => {
+    const sectionFields = section.fields as IBlogPostSectionFields
+    return {
+      label: sectionFields.title,
+      href: `#${sectionFields.slug}`,
+    }
+  })
 
   // Calculate reading time from introduction + all content blocks
-  const documentsToCount: (Document | undefined)[] = [post.fields.introduction]
-  post.fields.sections.forEach((section) => {
-    section.fields.contentBlocks.forEach((block) => {
+  const documentsToCount: (Document | undefined)[] = [fields.introduction]
+  fields.sections.forEach((section) => {
+    const sectionFields = section.fields as IBlogPostSectionFields
+    sectionFields.contentBlocks.forEach((block) => {
       const contentTypeId = block.sys.contentType.sys.id
       if (contentTypeId === 'richTextBlock') {
         documentsToCount.push((block as any).fields.content)
@@ -67,29 +83,34 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   const readTime = `${readTimeMinutes} min read`
 
   // Get image URLs
-  const featuredImageUrl = getAssetUrl(post.fields.featuredImage)
-  const imageAlt = post.fields.title
+  const featuredImageUrl = getAssetUrl(fields.featuredImage)
+  const imageAlt = fields.title
 
   // Get category name
-  const categoryName = post.fields.category.fields.name
+  const categoryFields = fields.category.fields as IBlogCategoryFields
+  const categoryName = categoryFields.name
 
   // Fetch related posts (3 most recent in same category, excluding current post)
   const relatedPosts = await getRelatedPosts(
-    post.fields.category.sys.id,
+    fields.category.sys.id,
     post.sys.id,
     3
   )
 
   // Transform related posts
-  const transformedRelatedPosts = relatedPosts.map((relatedPost) => ({
-    slug: relatedPost.fields.slug,
-    title: relatedPost.fields.title,
-    excerpt: relatedPost.fields.excerpt,
-    imageAlt: relatedPost.fields.title,
-  }))
+  const transformedRelatedPosts = relatedPosts.map((relatedPost) => {
+    const postFields = relatedPost.fields as IBlogPostFields
+    return {
+      slug: postFields.slug,
+      title: postFields.title,
+      excerpt: postFields.excerpt,
+      imageAlt: postFields.title,
+    }
+  })
 
   // Get author data
-  const author = post.fields.author.fields
+  const authorFields = fields.author.fields as IAuthorFields
+  const author = authorFields
 
   return (
     <>
@@ -121,10 +142,10 @@ export default async function BlogPost({ params }: { params: { slug: string } })
               className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6 leading-tight"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
-              {post.fields.title}
+              {fields.title}
             </h1>
             <p className="text-xl text-slate-700 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-              {post.fields.excerpt}
+              {fields.excerpt}
             </p>
           </FadeIn>
         </Container>
@@ -162,34 +183,37 @@ export default async function BlogPost({ params }: { params: { slug: string } })
               >
                 <FadeIn delay={0.2}>
                   {/* Introduction */}
-                  {post.fields.introduction && (
+                  {fields.introduction && (
                     <div className="mb-12">
-                      <RichTextRenderer content={post.fields.introduction} />
+                      <RichTextRenderer content={fields.introduction} />
                     </div>
                   )}
 
                   {/* Sections */}
-                  {post.fields.sections.map((section) => (
-                    <div key={section.sys.id} className="mb-12">
-                      <h2
-                        id={section.fields.slug}
-                        className="text-3xl font-bold text-slate-900 mb-6 mt-12 scroll-mt-24"
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                  >
-                        {section.fields.title}
-                  </h2>
-                      {section.fields.contentBlocks.map((block, blockIndex) => (
-                        <ContentBlockRenderer key={block.sys.id || blockIndex} block={block} />
-                      ))}
-                    </div>
-                  ))}
+                  {fields.sections.map((section) => {
+                    const sectionFields = section.fields as IBlogPostSectionFields
+                    return (
+                      <div key={section.sys.id} className="mb-12">
+                        <h2
+                          id={sectionFields.slug}
+                          className="text-3xl font-bold text-slate-900 mb-6 mt-12 scroll-mt-24"
+                          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                        >
+                          {sectionFields.title}
+                        </h2>
+                        {sectionFields.contentBlocks.map((block, blockIndex) => (
+                          <ContentBlockRenderer key={block.sys.id || blockIndex} block={block} />
+                        ))}
+                      </div>
+                    )
+                  })}
 
                   {/* Author Section */}
                   <AuthorSection
-                    name={author.name}
-                    title={author.title}
-                    bio={author.bio}
-                    learnMoreHref={author.learnMoreHref || '/about'}
+                    name={authorFields.name}
+                    title={authorFields.title}
+                    bio={authorFields.bio}
+                    learnMoreHref={authorFields.learnMoreHref || '/about'}
                     delay={0.3}
                   />
                 </FadeIn>
@@ -203,8 +227,8 @@ export default async function BlogPost({ params }: { params: { slug: string } })
                 <TableOfContents items={tableOfContents} delay={0.2} />
                 )}
                 <ShareButtons
-                  url={`https://cognifylegal.com/blog/${post.fields.slug}`}
-                  title={post.fields.title}
+                  url={`https://cognifylegal.com/blog/${fields.slug}`}
+                  title={fields.title}
                   delay={0.3}
                 />
                 <FadeIn delay={0.4}>

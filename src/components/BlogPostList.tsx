@@ -5,10 +5,10 @@ import { Border } from '@/components/Border'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { formatDate } from '@/lib/formatDate'
-import { IPageBlogPost, IPageBlogPostFields } from '@/lib/contentful-types'
+import { IBlogPost, IBlogPostFields } from '@/lib/contentful-types'
 
 interface BlogPostListProps {
-  posts: IPageBlogPost[]
+  posts: IBlogPost[]
 }
 
 export function BlogPostList({ posts }: BlogPostListProps) {
@@ -25,7 +25,7 @@ export function BlogPostList({ posts }: BlogPostListProps) {
         </div>
         <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => {
-            const fields = post.fields as IPageBlogPostFields
+            const fields = post.fields as IBlogPostFields
             return (
               <article key={fields.slug} className="flex flex-col">
                 <Border className="flex flex-col flex-1 p-2 rounded-xl">
@@ -44,16 +44,16 @@ export function BlogPostList({ posts }: BlogPostListProps) {
                   )}
                   <div className="flex flex-1 flex-col p-6">
                     <time
-                      dateTime={fields.publishedDate}
+                      dateTime={post.sys.createdAt}
                       className="text-sm text-neutral-600"
                     >
-                      {formatDate(fields.publishedDate)}
+                      {formatDate(post.sys.createdAt)}
                     </time>
                     <h3 className="mt-2 font-display text-xl font-semibold text-neutral-950">
                       <Link href={`/blog/${fields.slug}`}>{fields.title}</Link>
                     </h3>
                     <p className="mt-2 text-neutral-600 line-clamp-3">
-                      {fields.shortDescription}
+                      {fields.excerpt}
                     </p>
                     <Link
                       href={`/blog/${fields.slug}`}

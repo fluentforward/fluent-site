@@ -1,7 +1,10 @@
 import type {
   ICalloutBlock,
+  ICalloutBlockFields,
   IRichTextBlock,
+  IRichTextBlockFields,
   ITestimonialBlock,
+  ITestimonialBlockFields,
   IEntry,
 } from '@/lib/contentful-types'
 import { RichTextRenderer } from './RichTextRenderer'
@@ -18,20 +21,22 @@ export function ContentBlockRenderer({ block }: ContentBlockRendererProps) {
   // Render Rich Text Block
   if (contentTypeId === 'richTextBlock') {
     const richTextBlock = block as IRichTextBlock
-    return <RichTextRenderer content={richTextBlock.fields.content} />
+    const fields = richTextBlock.fields as IRichTextBlockFields
+    return <RichTextRenderer content={fields.content} />
   }
 
   // Render Testimonial Block
   if (contentTypeId === 'testimonialBlock') {
     const testimonialBlock = block as ITestimonialBlock
+    const fields = testimonialBlock.fields as ITestimonialBlockFields
     return (
       <blockquote className="bg-slate-50 border-l-4 border-lime-500 pl-8 py-6 my-8 italic text-lg text-slate-700">
-        {testimonialBlock.fields.quoteText}
-        {testimonialBlock.fields.quoteAttribution && (
+        {fields.quoteText}
+        {fields.quoteAttribution && (
           <>
             <br />
             <span className="not-italic font-semibold mt-2 block">
-              {testimonialBlock.fields.quoteAttribution}
+              {fields.quoteAttribution}
             </span>
           </>
         )}
@@ -42,11 +47,12 @@ export function ContentBlockRenderer({ block }: ContentBlockRendererProps) {
   // Render Callout Block
   if (contentTypeId === 'calloutBlock') {
     const calloutBlock = block as ICalloutBlock
+    const fields = calloutBlock.fields as ICalloutBlockFields
     const variantClass = {
       lime: 'bg-lime-500',
       indigo: 'bg-indigo-600',
       slate: 'bg-slate-600',
-    }[calloutBlock.fields.variant] || 'bg-lime-500'
+    }[fields.variant] || 'bg-lime-500'
 
     return (
       <div className={`${variantClass} p-8 rounded-xl my-12`}>
@@ -54,9 +60,9 @@ export function ContentBlockRenderer({ block }: ContentBlockRendererProps) {
           className="text-xl font-bold text-slate-900 mb-4"
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         >
-          {calloutBlock.fields.title}
+          {fields.title}
         </h4>
-        <RichTextRenderer content={calloutBlock.fields.content} />
+        <RichTextRenderer content={fields.content} />
       </div>
     )
   }

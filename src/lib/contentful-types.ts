@@ -28,7 +28,8 @@ export interface IAuthorFields {
 
 /** Content author */
 
-export interface IAuthor extends Entry<IAuthorFields> {
+export type IAuthor = Omit<Entry<any>, 'sys'> & {
+  fields: IAuthorFields;
   sys: {
     id: string;
     type: string;
@@ -58,7 +59,8 @@ export interface IBlogCategoryFields {
 
 /** Category for a blog post */
 
-export interface IBlogCategory extends Entry<IBlogCategoryFields> {
+export type IBlogCategory = Omit<Entry<any>, 'sys'> & {
+  fields: IBlogCategoryFields;
   sys: {
     id: string;
     type: string;
@@ -86,7 +88,8 @@ export interface IBlogConfigurationFields {
   featuredPost: IBlogPost;
 }
 
-export interface IBlogConfiguration extends Entry<IBlogConfigurationFields> {
+export type IBlogConfiguration = Omit<Entry<any>, 'sys'> & {
+  fields: IBlogConfigurationFields;
   sys: {
     id: string;
     type: string;
@@ -141,7 +144,8 @@ export interface IBlogPostFields {
   seoKeywords?: string[] | undefined;
 }
 
-export interface IBlogPost extends Entry<IBlogPostFields> {
+export type IBlogPost = Omit<Entry<any>, 'sys'> & {
+  fields: IBlogPostFields;
   sys: {
     id: string;
     type: string;
@@ -169,7 +173,8 @@ export interface IBlogPostSectionFields {
   contentBlocks: (ICalloutBlock | IRichTextBlock | ITestimonialBlock)[];
 }
 
-export interface IBlogPostSection extends Entry<IBlogPostSectionFields> {
+export type IBlogPostSection = Omit<Entry<any>, 'sys'> & {
+  fields: IBlogPostSectionFields;
   sys: {
     id: string;
     type: string;
@@ -197,7 +202,8 @@ export interface ICalloutBlockFields {
   variant: "lime" | "indigo" | "slate";
 }
 
-export interface ICalloutBlock extends Entry<ICalloutBlockFields> {
+export type ICalloutBlock = Omit<Entry<any>, 'sys'> & {
+  fields: ICalloutBlockFields;
   sys: {
     id: string;
     type: string;
@@ -224,7 +230,8 @@ export interface IRichTextBlockFields {
 
 /** Rich text content */
 
-export interface IRichTextBlock extends Entry<IRichTextBlockFields> {
+export type IRichTextBlock = Omit<Entry<any>, 'sys'> & {
+  fields: IRichTextBlockFields;
   sys: {
     id: string;
     type: string;
@@ -252,7 +259,8 @@ export interface ISocialLinkFields {
   url: string;
 }
 
-export interface ISocialLink extends Entry<ISocialLinkFields> {
+export type ISocialLink = Omit<Entry<any>, 'sys'> & {
+  fields: ISocialLinkFields;
   sys: {
     id: string;
     type: string;
@@ -282,7 +290,8 @@ export interface ITestimonialBlockFields {
 
 /** Testimonial with attribution */
 
-export interface ITestimonialBlock extends Entry<ITestimonialBlockFields> {
+export type ITestimonialBlock = Omit<Entry<any>, 'sys'> & {
+  fields: ITestimonialBlockFields;
   sys: {
     id: string;
     type: string;
