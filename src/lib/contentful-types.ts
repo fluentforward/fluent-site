@@ -110,8 +110,8 @@ export interface IBlogPostFields {
   /** slug */
   slug: string;
 
-  /** Exerpt */
-  exerpt: string;
+  /** Excerpt */
+  excerpt: string;
 
   /** Category */
   category: IBlogCategory;

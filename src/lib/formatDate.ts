@@ -1,11 +1,11 @@
-export function formatDate(dateString: string) {
-  let parts = dateString.split('-')
-  let hasDay = parts.length > 2
-
-  return new Date(`${dateString}Z`).toLocaleDateString('en-US', {
-    day: hasDay ? 'numeric' : undefined,
-    month: 'long',
+/**
+ * Format a Contentful date string to a readable format
+ */
+export function formatDate(dateString: string): string {
+  const date = new Date(dateString)
+  return date.toLocaleDateString('en-US', {
     year: 'numeric',
-    timeZone: 'UTC',
+    month: 'long',
+    day: 'numeric',
   })
 }
