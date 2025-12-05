@@ -11,6 +11,9 @@ import { BlogPostsClient } from './BlogPostsClient'
 import blogData from '@/data/blog-posts.json'
 import type { IBlogConfiguration, IBlogPost } from '@/lib/contentful-types'
 
+// ISR: Revalidate every hour (3600 seconds)
+export const revalidate = 3600
+
 export default async function Blog() {
   // Fetch data from Contentful
   const [config, categories, allPosts] = await Promise.all([

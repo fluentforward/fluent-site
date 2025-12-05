@@ -16,6 +16,9 @@ import { getAssetUrl } from '@/lib/getAssetUrl'
 import { calculateReadingTime } from '@/lib/calculateReadingTime'
 import type { Document } from '@contentful/rich-text-types'
 
+// ISR: Revalidate every hour (3600 seconds)
+export const revalidate = 3600
+
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const post = await getBlogPostBySlug(params.slug)
 
