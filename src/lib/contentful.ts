@@ -99,6 +99,24 @@ export async function getBlogPostBySlug(slug: string): Promise<IBlogPost | null>
 }
 
 /**
+ * Fetch a single blog post by slug with all nested content and return the full response
+ * This allows access to includes (assets) for rich text rendering
+ */
+export async function getBlogPostBySlugWithResponse(slug: string): Promise<{ post: IBlogPost | null; response: any }> {
+  const client = getContentfulClient()
+  const response = await client.getEntries({
+    content_type: 'blogPost',
+    'fields.slug': slug,
+    include: 3, // Include sections, content blocks, category, author, images
+  })
+
+  return {
+    post: (response.items[0] as unknown as IBlogPost) || null,
+    response,
+  }
+}
+
+/**
  * Fetch related posts (most recent in same category, excluding current post)
  */
 export async function getRelatedPosts(

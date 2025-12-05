@@ -7,22 +7,24 @@ import type {
   ITestimonialBlockFields,
   IEntry,
 } from '@/lib/contentful-types'
+import type { Asset } from 'contentful'
 import { RichTextRenderer } from './RichTextRenderer'
 
 type ContentBlock = ICalloutBlock | IRichTextBlock | ITestimonialBlock
 
 type ContentBlockRendererProps = {
   block: ContentBlock
+  linkedAssets?: Asset[]
 }
 
-export function ContentBlockRenderer({ block }: ContentBlockRendererProps) {
+export function ContentBlockRenderer({ block, linkedAssets = [] }: ContentBlockRendererProps) {
   const contentTypeId = block.sys.contentType.sys.id
 
   // Render Rich Text Block
   if (contentTypeId === 'richTextBlock') {
     const richTextBlock = block as IRichTextBlock
     const fields = richTextBlock.fields as IRichTextBlockFields
-    return <RichTextRenderer content={fields.content} />
+    return <RichTextRenderer content={fields.content} linkedAssets={linkedAssets} />
   }
 
   // Render Testimonial Block
@@ -62,7 +64,7 @@ export function ContentBlockRenderer({ block }: ContentBlockRendererProps) {
         >
           {fields.title}
         </h4>
-        <RichTextRenderer content={fields.content} />
+        <RichTextRenderer content={fields.content} linkedAssets={linkedAssets} />
       </div>
     )
   }

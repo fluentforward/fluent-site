@@ -1,13 +1,25 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import type { Document } from '@contentful/rich-text-types'
+import type { Asset } from 'contentful'
+import Image from 'next/image'
+import { getAssetUrl } from '@/lib/getAssetUrl'
 
 type RichTextRendererProps = {
   content: Document
   className?: string
+  linkedAssets?: Asset[]
 }
 
-export function RichTextRenderer({ content, className = '' }: RichTextRendererProps) {
+export function RichTextRenderer({ content, className = '', linkedAssets = [] }: RichTextRendererProps) {
+  // Create a map of assets by ID for quick lookup
+  const assetMap = new Map<string, Asset>()
+  linkedAssets.forEach((asset) => {
+    if (asset.sys?.id) {
+      assetMap.set(asset.sys.id, asset)
+    }
+  })
+
   const options = {
     renderNode: {
       [BLOCKS.PARAGRAPH]: (_node: any, children: React.ReactNode) => (
@@ -49,6 +61,60 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
           {children}
         </blockquote>
       ),
+      [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
+        // Try to get asset from node.data.target (if resolved by SDK)
+        let asset = node.data.target
+
+        // If node.data.target is a link object (not resolved), look it up from linkedAssets
+        if (asset && asset.sys && asset.sys.type === 'Link' && !asset.fields) {
+          // It's a link reference, not a resolved asset
+          const assetId = asset.sys.id
+          asset = assetMap.get(assetId) || linkedAssets.find((a) => a.sys?.id === assetId)
+        } else if (!asset || !asset.fields) {
+          // Asset not found or not fully resolved, try to look it up
+          const assetId = node.data.target?.sys?.id
+          if (assetId) {
+            asset = assetMap.get(assetId) || linkedAssets.find((a) => a.sys?.id === assetId)
+          }
+        }
+
+        if (!asset || !asset.fields) return null
+
+        const imageUrl = getAssetUrl(asset)
+        if (!imageUrl) return null
+
+        const alt = asset.fields?.title || asset.fields?.description || ''
+        const width = asset.fields?.file?.details?.image?.width
+        const height = asset.fields?.file?.details?.image?.height
+
+        // If we have dimensions, use Next.js Image component
+        if (width && height) {
+          return (
+            <div className="my-8">
+              <div className="relative w-full rounded-xl overflow-hidden" style={{ aspectRatio: `${width} / ${height}` }}>
+                <Image
+                  src={imageUrl}
+                  alt={alt}
+                  fill
+                  className="object-contain w-full h-full"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
+                />
+              </div>
+            </div>
+          )
+        }
+
+        // Fallback to regular img tag if dimensions aren't available
+        return (
+          <div className="my-8">
+            <img
+              src={imageUrl}
+              alt={alt}
+              className="w-full h-auto rounded-xl"
+            />
+          </div>
+        )
+      },
       [INLINES.HYPERLINK]: (node: any, children: React.ReactNode) => (
         <a
           href={node.data.uri}

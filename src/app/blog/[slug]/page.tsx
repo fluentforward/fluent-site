@@ -10,7 +10,7 @@ import { ShareButtons } from '@/components/ShareButtons'
 import { RelatedPostCard } from '@/components/RelatedPostCard'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import { ContentBlockRenderer } from '@/components/ContentBlockRenderer'
-import { getBlogPostBySlug, getRelatedPosts } from '@/lib/contentful'
+import { getBlogPostBySlugWithResponse, getRelatedPosts } from '@/lib/contentful'
 import { formatDate } from '@/lib/formatDate'
 import { getAssetUrl } from '@/lib/getAssetUrl'
 import { calculateReadingTime } from '@/lib/calculateReadingTime'
@@ -29,7 +29,7 @@ export const revalidate = 3600
 export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = await getBlogPostBySlug(params.slug)
+  const { post } = await getBlogPostBySlugWithResponse(params.slug)
 
   if (!post) {
     return {
@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
-  const post = await getBlogPostBySlug(params.slug)
+  const { post, response } = await getBlogPostBySlugWithResponse(params.slug)
 
   if (!post) {
     notFound()
@@ -55,6 +55,9 @@ export default async function BlogPost({ params }: { params: { slug: string } })
 
   // Type assertion to fix TypeScript inference issues with Contentful types
   const fields = post.fields as IBlogPostFields
+
+  // Extract linked assets from the response for rich text rendering
+  const linkedAssets = (response.includes?.Asset || []) as any[]
 
   // Generate table of contents from sections
   const tableOfContents = fields.sections.map((section) => {
@@ -187,7 +190,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
                   {/* Introduction */}
                   {fields.introduction && (
                     <div className="mb-12">
-                      <RichTextRenderer content={fields.introduction} />
+                      <RichTextRenderer content={fields.introduction} linkedAssets={linkedAssets} />
                     </div>
                   )}
 
@@ -204,7 +207,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
                           {sectionFields.title}
                         </h2>
                         {sectionFields.contentBlocks.map((block, blockIndex) => (
-                          <ContentBlockRenderer key={block.sys.id || blockIndex} block={block} />
+                          <ContentBlockRenderer key={block.sys.id || blockIndex} block={block} linkedAssets={linkedAssets} />
                         ))}
                       </div>
                     )
