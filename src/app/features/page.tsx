@@ -362,13 +362,13 @@ export default function Features() {
           </div>
 
           <FadeIn delay={0.4}>
-            <div className="relative w-full h-[500px] overflow-hidden rounded-xl">
+            <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden rounded-xl">
               <Image
                 src={intelligenceFeed}
                 alt="Intelligence feed showing prioritized alerts"
-                className="shadow-2xl bg-white object-cover"
+                className="shadow-2xl bg-white object-contain"
                 fill
-                sizes="(max-width: 768px) 100vw, 100vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
               />
             </div>
           </FadeIn>
@@ -395,13 +395,13 @@ export default function Features() {
 
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 mb-16 items-center">
             <FadeIn>
-              <div className="relative w-full h-[500px] overflow-hidden rounded-xl">
+              <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3] overflow-hidden rounded-xl">
                 <Image
                   src={performanceDashboard}
                   alt="Performance dashboard showing key metrics"
-                  className="shadow-2xl bg-white object-cover"
+                  className="shadow-2xl bg-white object-contain"
                   fill
-                  sizes="(max-width: 768px) 100vw, 60vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 60vw, 60vw"
                 />
               </div>
             </FadeIn>

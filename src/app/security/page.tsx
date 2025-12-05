@@ -375,14 +375,15 @@ export default function Security() {
 
           <FadeIn delay={0.2}>
             <div className="w-full mb-12">
-              <Image
-                src={securityArchitectureDiagram}
-                alt="Security architecture diagram showing data flow and security boundaries"
-                className="rounded-xl shadow-2xl w-full h-auto"
-                width={2500}
-                height={2100}
-                sizes="(max-width: 768px) 100vw, 100vw"
-              />
+              <div className="relative w-full aspect-[5/4] sm:aspect-[16/10] overflow-hidden rounded-xl">
+                <Image
+                  src={securityArchitectureDiagram}
+                  alt="Security architecture diagram showing data flow and security boundaries"
+                  className="rounded-xl shadow-2xl object-contain"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
+                />
+              </div>
             </div>
           </FadeIn>
 

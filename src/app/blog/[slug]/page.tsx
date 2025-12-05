@@ -99,7 +99,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
       <section className="relative bg-slate-50 py-8 px-6 lg:px-12">
         <Container className="max-w-7xl mx-auto">
           <FadeIn delay={0.2}>
-            <div className="bg-gradient-to-br from-indigo-100 to-purple-100 border-2 border-dashed border-indigo-600 rounded-xl min-h-[500px] flex items-center justify-center p-12 text-center">
+            <div className="bg-gradient-to-br from-indigo-100 to-purple-100 border-2 border-dashed border-indigo-600 rounded-xl min-h-[250px] sm:min-h-[350px] lg:min-h-[500px] flex items-center justify-center p-8 sm:p-12 text-center">
               <strong className="text-lg text-slate-700" style={{ fontFamily: "'DM Sans', sans-serif" }}>
                 {post.imageAlt}
               </strong>

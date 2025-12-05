@@ -50,14 +50,14 @@ export function PerformanceDashboardSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <FadeIn>
-            <div className="relative">
-              <div className="relative w-full" style={{ minHeight: 400, maxHeight: 500 }}>
+            <div className="relative w-full">
+              <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3]">
                 <Image
                   src={performanceDashboard}
                   alt="Performance dashboard showing key metrics"
                   className="rounded-xl shadow-2xl bg-white object-contain"
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
                 />
               </div>
             </div>

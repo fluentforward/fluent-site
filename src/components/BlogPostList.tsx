@@ -35,7 +35,7 @@ export function BlogPostList({ posts }: BlogPostListProps) {
                         <Image
                           alt=""
                           src={`https:${fields.featuredImage.fields.file.url}`}
-                          className="object-cover rounded-xl"
+                          className="object-contain rounded-xl"
                           fill
                           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                         />

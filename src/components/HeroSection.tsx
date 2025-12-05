@@ -47,14 +47,14 @@ export function HeroSection() {
             </div>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <div className="relative">
-              <div className="relative w-full" style={{ minHeight: 400, maxHeight: 500 }}>
+            <div className="relative w-full">
+              <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3]">
                 <Image
                   src={teamsChat}
                   alt="Microsoft Teams chat showing natural language query and Cognify's response"
                   className="rounded-xl shadow-2xl bg-white object-contain"
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
                 />
               </div>
             </div>

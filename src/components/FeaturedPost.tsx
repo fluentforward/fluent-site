@@ -15,7 +15,7 @@ export function FeaturedPost({ slug, title, excerpt, category, date, imageAlt, d
   return (
     <FadeIn delay={delay}>
       <div className="bg-white rounded-xl overflow-hidden shadow-lg grid grid-cols-1 lg:grid-cols-5 gap-0">
-        <div className="bg-gradient-to-br from-indigo-100 to-purple-100 lg:col-span-2 border-b-4 lg:border-b-0 lg:border-r-4 border-lime-500 min-h-[400px] flex items-center justify-center p-12 text-center">
+        <div className="bg-gradient-to-br from-indigo-100 to-purple-100 lg:col-span-2 border-b-4 lg:border-b-0 lg:border-r-4 border-lime-500 min-h-[250px] sm:min-h-[300px] lg:min-h-[400px] flex items-center justify-center p-8 sm:p-12 text-center">
           <strong className="text-lg text-slate-700" style={{ fontFamily: "'DM Sans', sans-serif" }}>
             {imageAlt}
           </strong>

@@ -72,43 +72,43 @@ export function ReactiveIntelligenceSection() {
             <FadeIn key={index} delay={index * 0.1}>
               <div className="bg-white rounded-xl overflow-hidden shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
                 {index === 0 ? (
-                  <div className="relative w-full h-[400px] overflow-hidden rounded-t-xl">
+                  <div className="relative w-full aspect-[16/10] sm:aspect-[4/3] overflow-hidden rounded-t-xl">
                     <Image
                       src={wordIntegration}
                       alt={app.screenshot.description}
-                      className="shadow-2xl bg-white object-cover"
+                      className="shadow-2xl bg-white object-contain"
                       fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
                     />
                   </div>
                 ) : index === 1 ? (
-                  <div className="relative w-full h-[400px] overflow-hidden rounded-t-xl">
+                  <div className="relative w-full aspect-[16/10] sm:aspect-[4/3] overflow-hidden rounded-t-xl">
                     <Image
                       src={excelIntegration}
                       alt={app.screenshot.description}
-                      className="shadow-2xl bg-white object-cover"
+                      className="shadow-2xl bg-white object-contain"
                       fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
                     />
                   </div>
                 ) : index === 2 ? (
-                  <div className="relative w-full h-[400px] overflow-hidden rounded-t-xl">
+                  <div className="relative w-full aspect-[16/10] sm:aspect-[4/3] overflow-hidden rounded-t-xl">
                     <Image
                       src={powerpointIntegration}
                       alt={app.screenshot.description}
-                      className="shadow-2xl bg-white object-cover"
+                      className="shadow-2xl bg-white object-contain"
                       fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
                     />
                   </div>
                 ) : index === 3 ? (
-                  <div className="relative w-full h-[400px] overflow-hidden rounded-t-xl">
+                  <div className="relative w-full aspect-[16/10] sm:aspect-[4/3] overflow-hidden rounded-t-xl">
                     <Image
                       src={outlookIntegration}
                       alt={app.screenshot.description}
-                      className="shadow-2xl bg-white object-cover"
+                      className="shadow-2xl bg-white object-contain"
                       fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
                     />
                   </div>
                 ) : (
