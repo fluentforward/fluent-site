@@ -25,11 +25,8 @@ export function TableOfContents({ items, delay = 0 }: TableOfContentsProps) {
 
   return (
     <FadeIn delay={delay}>
-      <div className="bg-slate-50 p-8 rounded-xl">
-        <h4
-          className="text-xl font-bold text-slate-900 mb-6"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-        >
+      <div className="bg-warm-gray p-8 rounded border-l-4 border-fluent-red">
+        <h4 className="font-display font-extrabold text-xl text-charcoal mb-6">
           Table of Contents
         </h4>
         <ul className="space-y-3">
@@ -38,8 +35,7 @@ export function TableOfContents({ items, delay = 0 }: TableOfContentsProps) {
               <a
                 href={item.href}
                 onClick={(e) => handleClick(e, item.href)}
-                className="text-slate-700 text-sm hover:text-indigo-600 transition-colors block hover:pl-2 cursor-pointer"
-                style={{ fontFamily: "'DM Sans', sans-serif" }}
+                className="text-charcoal text-sm hover:text-fluent-red transition-colors block hover:pl-2 cursor-pointer"
               >
                 {item.label}
               </a>

@@ -120,36 +120,33 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   return (
     <>
       {/* Article Header */}
-      <section className="relative mt-20 bg-slate-50 py-16 px-6 lg:px-12">
+      <section className="relative mt-20 bg-warm-gray py-16 px-6 lg:px-12">
         <Container className="max-w-4xl mx-auto">
           <FadeIn>
-            <div className="flex gap-2 mb-8 text-sm" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-              <Link href="/blog" className="text-indigo-600 hover:text-lime-500 transition-colors">
+            <div className="flex gap-2 mb-8 text-sm">
+              <Link href="/blog" className="text-fluent-red hover:text-charcoal transition-colors">
                 Blog
               </Link>
-              <span className="text-slate-700">/</span>
-              <span className="text-slate-700">{categoryName}</span>
+              <span className="text-neutral-600">/</span>
+              <span className="text-neutral-600">{categoryName}</span>
             </div>
 
             <div className="flex gap-4 mb-8 flex-wrap">
-              <span className="bg-lime-500 text-slate-900 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wide" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+              <span className="bg-fluent-red text-white px-4 py-1 rounded text-xs font-bold uppercase tracking-wide">
                 {categoryName}
               </span>
-              <span className="text-slate-700 opacity-70 text-sm flex items-center gap-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+              <span className="text-neutral-600 text-sm flex items-center gap-2">
                 📅 {publishedDate}
               </span>
-              <span className="text-slate-700 opacity-70 text-sm flex items-center gap-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+              <span className="text-neutral-600 text-sm flex items-center gap-2">
                 ⏱️ {readTime}
               </span>
             </div>
 
-            <h1
-              className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6 leading-tight"
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-            >
+            <h1 className="font-display font-extrabold text-4xl sm:text-5xl text-charcoal mb-6 leading-tight">
               {fields.title}
             </h1>
-            <p className="text-xl text-slate-700 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+            <p className="text-xl text-neutral-600 leading-relaxed">
               {fields.excerpt}
             </p>
           </FadeIn>
@@ -201,8 +198,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
                       <div key={section.sys.id} className="mb-12">
                         <h2
                           id={sectionFields.slug}
-                          className="text-3xl font-bold text-slate-900 mb-6 mt-12 scroll-mt-24"
-                          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                          className="font-display font-extrabold text-3xl text-charcoal mb-6 mt-12 scroll-mt-24"
                         >
                           {sectionFields.title}
                         </h2>
@@ -232,27 +228,23 @@ export default async function BlogPost({ params }: { params: { slug: string } })
                 <TableOfContents items={tableOfContents} delay={0.2} />
                 )}
                 <ShareButtons
-                  url={`https://cognifylegal.com/blog/${fields.slug}`}
+                  url={`https://fluentforward.com/blog/${fields.slug}`}
                   title={fields.title}
                   delay={0.3}
                 />
                 <FadeIn delay={0.4}>
-                  <div className="bg-indigo-600 text-white p-8 rounded-xl text-center">
-                    <h4
-                      className="text-xl font-bold mb-4"
-                      style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                    >
-                      See Cognify in Action
+                  <div className="bg-charcoal text-white p-8 rounded border-l-4 border-fluent-red text-center">
+                    <h4 className="font-display font-extrabold text-xl mb-4">
+                      Ready to Move From Scarcity to Abundance?
                     </h4>
-                    <p className="text-white/90 mb-6 text-sm" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                      Book a demo to see how we eliminate the adoption problem by embedding intelligence into Microsoft 365.
+                    <p className="text-white/90 mb-6 text-sm">
+                      Let's map your constraints and architect your execution system.
                     </p>
                     <Link
-                      href="/book-demo"
-                      className="inline-block bg-lime-500 text-slate-900 px-6 py-3 rounded-lg font-bold transition-all hover:-translate-y-0.5 shadow-lg hover:shadow-xl"
-                      style={{ fontFamily: "'DM Sans', sans-serif" }}
+                      href="/#contact"
+                      className="inline-block bg-fluent-red text-white px-6 py-3 rounded font-semibold transition-all hover:bg-fluent-red/90"
                     >
-                      Book a Demo
+                      Book a Constraint Audit
                     </Link>
                   </div>
                 </FadeIn>
@@ -264,13 +256,10 @@ export default async function BlogPost({ params }: { params: { slug: string } })
 
       {/* Related Posts */}
       {transformedRelatedPosts.length > 0 && (
-      <section className="relative bg-slate-900 py-24 px-6 lg:px-12 text-white">
+      <section className="relative bg-charcoal py-16 md:py-24 px-6 lg:px-12 text-white">
         <Container className="max-w-7xl mx-auto">
           <FadeIn className="text-center mb-16">
-            <h3
-              className="text-4xl font-bold text-white mb-4"
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-            >
+            <h3 className="font-display font-extrabold text-3xl md:text-4xl text-white mb-4">
               Related Articles
             </h3>
           </FadeIn>

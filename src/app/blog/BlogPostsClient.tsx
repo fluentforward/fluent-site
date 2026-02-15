@@ -51,7 +51,7 @@ export function BlogPostsClient({ posts, categories }: BlogPostsClientProps) {
       ) : (
         <FadeIn>
           <div className="text-center py-16">
-            <p className="text-lg text-slate-700" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+            <p className="text-lg text-neutral-600">
               No posts found in this category.
             </p>
           </div>

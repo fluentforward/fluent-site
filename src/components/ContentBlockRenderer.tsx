@@ -32,7 +32,7 @@ export function ContentBlockRenderer({ block, linkedAssets = [] }: ContentBlockR
     const testimonialBlock = block as ITestimonialBlock
     const fields = testimonialBlock.fields as ITestimonialBlockFields
     return (
-      <blockquote className="bg-slate-50 border-l-4 border-lime-500 pl-8 py-6 my-8 italic text-lg text-slate-700">
+      <blockquote className="bg-warm-gray border-l-4 border-fluent-red pl-8 py-6 my-8 italic text-lg text-charcoal">
         {fields.quoteText}
         {fields.quoteAttribution && (
           <>
@@ -51,17 +51,14 @@ export function ContentBlockRenderer({ block, linkedAssets = [] }: ContentBlockR
     const calloutBlock = block as ICalloutBlock
     const fields = calloutBlock.fields as ICalloutBlockFields
     const variantClass = {
-      lime: 'bg-lime-500',
-      indigo: 'bg-indigo-600',
-      slate: 'bg-slate-600',
-    }[fields.variant] || 'bg-lime-500'
+      lime: 'bg-fluent-red',
+      indigo: 'bg-charcoal',
+      slate: 'bg-neutral-600',
+    }[fields.variant] || 'bg-fluent-red'
 
     return (
-      <div className={`${variantClass} p-8 rounded-xl my-12`}>
-        <h4
-          className="text-xl font-bold text-slate-900 mb-4"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-        >
+      <div className={`${variantClass} p-8 rounded my-12 text-white`}>
+        <h4 className="font-display font-extrabold text-xl text-white mb-4">
           {fields.title}
         </h4>
         <RichTextRenderer content={fields.content} linkedAssets={linkedAssets} />

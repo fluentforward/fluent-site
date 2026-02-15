@@ -12,27 +12,23 @@ type AuthorSectionProps = {
 export function AuthorSection({ name, title, bio, learnMoreHref, delay = 0 }: AuthorSectionProps) {
   return (
     <FadeIn delay={delay}>
-      <div className="bg-slate-50 p-8 rounded-xl flex flex-col md:flex-row gap-8 items-start">
-        <div className="bg-gradient-to-br from-indigo-600 to-lime-500 w-24 h-24 rounded-full flex items-center justify-center text-5xl flex-shrink-0 mx-auto md:mx-0">
+      <div className="bg-warm-gray p-8 rounded border-l-4 border-fluent-red flex flex-col md:flex-row gap-8 items-start">
+        <div className="bg-fluent-red w-24 h-24 rounded-full flex items-center justify-center text-5xl flex-shrink-0 mx-auto md:mx-0">
           👤
         </div>
         <div>
-          <h4
-            className="text-xl font-bold text-slate-900 mb-2"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-          >
+          <h4 className="font-display font-extrabold text-xl text-charcoal mb-2">
             {name}
           </h4>
-          <p className="text-indigo-600 font-semibold mb-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+          <p className="text-fluent-red font-semibold mb-4">
             {title}
           </p>
-          <p className="text-slate-700 leading-relaxed mb-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+          <p className="text-neutral-600 leading-relaxed mb-4">
             {bio}
           </p>
           <Link
             href={learnMoreHref}
-            className="text-indigo-600 font-semibold hover:text-lime-500 transition-colors"
-            style={{ fontFamily: "'DM Sans', sans-serif" }}
+            className="text-fluent-red font-semibold hover:text-charcoal transition-colors"
           >
             Learn more about our story →
           </Link>

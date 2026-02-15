@@ -12,26 +12,22 @@ type RelatedPostCardProps = {
 export function RelatedPostCard({ slug, title, excerpt, imageAlt, delay = 0 }: RelatedPostCardProps) {
   return (
     <FadeIn delay={delay}>
-      <article className="bg-white/5 border border-white/10 rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:border-lime-500 backdrop-blur-md">
-        <div className="bg-gradient-to-br from-indigo-100 to-purple-100 h-44 flex items-center justify-center p-6 text-center">
-          <strong className="text-xs text-slate-700" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+      <article className="bg-white/5 border-l-4 border-fluent-red rounded overflow-hidden transition-all hover:-translate-y-1 hover:bg-white/10">
+        <div className="bg-warm-gray h-44 flex items-center justify-center p-6 text-center">
+          <strong className="text-xs text-charcoal">
             {imageAlt}
           </strong>
         </div>
         <div className="p-8">
-          <h4
-            className="text-xl font-bold text-white mb-3 leading-snug"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-          >
+          <h4 className="font-display font-extrabold text-xl text-white mb-3 leading-snug">
             {title}
           </h4>
-          <p className="text-white/80 text-sm leading-relaxed mb-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+          <p className="text-white/80 text-sm leading-relaxed mb-4">
             {excerpt}
           </p>
           <Link
             href={`/blog/${slug}`}
-            className="text-lime-500 font-bold hover:text-white transition-colors"
-            style={{ fontFamily: "'DM Sans', sans-serif" }}
+            className="text-fluent-red font-semibold hover:text-white transition-colors"
           >
             Read More →
           </Link>

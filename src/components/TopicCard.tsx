@@ -10,15 +10,12 @@ type TopicCardProps = {
 export function TopicCard({ icon, title, description, delay = 0 }: TopicCardProps) {
   return (
     <FadeIn delay={delay}>
-      <div className="bg-white p-8 rounded-xl shadow-md text-left">
+      <div className="bg-white p-8 rounded border-l-4 border-fluent-red shadow-md text-left">
         <div className="text-3xl mb-4">{icon}</div>
-        <h3
-          className="text-xl font-bold text-slate-900 mb-2"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-        >
+        <h3 className="font-display font-extrabold text-xl text-charcoal mb-2">
           {title}
         </h3>
-        <p className="text-slate-700 text-sm leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+        <p className="text-neutral-600 text-sm leading-relaxed">
           {description}
         </p>
       </div>

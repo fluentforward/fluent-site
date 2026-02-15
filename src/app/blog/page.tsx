@@ -70,26 +70,13 @@ export default async function Blog() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative mt-20 bg-gradient-to-br from-indigo-600 via-indigo-500 to-purple-600 py-24 px-6 lg:px-12 overflow-hidden text-center">
-        {/* Animated background pattern */}
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='white' opacity='0.1'/%3E%3C/svg%3E")`,
-            animation: 'float 20s linear infinite',
-          }}
-          aria-hidden="true"
-        />
-
+      <section className="relative mt-20 bg-charcoal py-20 md:py-24 px-6 lg:px-12 overflow-hidden text-center">
         <Container className="relative z-10 max-w-4xl mx-auto">
           <FadeIn>
-            <h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6"
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-            >
+            <h1 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white leading-tight mb-6">
               {heroTitle}
             </h1>
-            <p className="text-xl text-white/90 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+            <p className="text-xl text-white/90 leading-relaxed">
               {heroDescription}
             </p>
           </FadeIn>
@@ -99,10 +86,10 @@ export default async function Blog() {
 
       {/* Featured Post Section */}
       {featuredPostData && (
-        <section className="relative bg-white py-24 px-6 lg:px-12">
+        <section className="relative bg-white py-16 md:py-24 px-6 lg:px-12">
           <Container className="max-w-7xl mx-auto">
             <FadeIn className="text-center mb-12">
-              <div className="text-sm font-bold uppercase tracking-widest text-indigo-600 mb-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+              <div className="text-sm font-bold uppercase tracking-widest text-fluent-red mb-4">
                 Featured Post
               </div>
             </FadeIn>
@@ -112,23 +99,20 @@ export default async function Blog() {
       )}
 
       {/* Recent Posts Section */}
-      <section className="relative bg-white py-24 px-6 lg:px-12">
+      <section className="relative bg-warm-gray py-16 md:py-24 px-6 lg:px-12">
         <Container className="max-w-7xl mx-auto">
           <BlogPostsClient posts={transformedPosts} categories={categoryNames} />
         </Container>
       </section>
 
       {/* Coming Soon / Newsletter Section */}
-      <section className="relative bg-lime-500 py-24 px-6 lg:px-12">
+      <section className="relative bg-charcoal py-16 md:py-24 px-6 lg:px-12">
         <Container className="max-w-4xl mx-auto">
           <FadeIn className="text-center mb-12">
-            <h2
-              className="text-4xl font-bold text-slate-900 mb-6"
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-            >
+            <h2 className="font-display font-extrabold text-3xl md:text-4xl text-white mb-6">
               More Content Coming Soon
             </h2>
-            <p className="text-lg text-slate-800 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+            <p className="text-lg text-white/90 leading-relaxed">
               We're building out our content library covering everything from BI best practices to law firm operations. Here are some topics we'll be exploring:
             </p>
           </FadeIn>
@@ -140,14 +124,11 @@ export default async function Blog() {
           </div>
 
           <FadeIn delay={0.4}>
-            <div className="bg-slate-900 p-10 rounded-xl text-white">
-              <h3
-                className="text-2xl font-bold mb-4"
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-              >
+            <div className="bg-white/5 border-l-4 border-fluent-red p-8 md:p-10 rounded text-white">
+              <h3 className="font-display font-extrabold text-2xl mb-4">
                 Get Notified About New Posts
               </h3>
-              <p className="text-white/90 mb-6" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+              <p className="text-white/90 mb-6">
                 Subscribe to receive updates when we publish new content on legal tech and business intelligence.
               </p>
               <form action="/api/newsletter" method="post" className="flex flex-col sm:flex-row gap-4">
@@ -156,13 +137,11 @@ export default async function Blog() {
                   name="email"
                   placeholder="Enter your email address"
                   required
-                  className="flex-grow px-4 py-3 border-2 border-white/20 rounded-lg bg-white/10 text-white placeholder-white/50 focus:outline-none focus:border-lime-500 focus:bg-white/15 transition-colors"
-                  style={{ fontFamily: "'DM Sans', sans-serif" }}
+                  className="flex-grow px-4 py-3 border-2 border-white/20 rounded bg-white/10 text-white placeholder-white/50 focus:outline-none focus:border-fluent-red focus:bg-white/15 transition-colors"
                 />
                 <button
                   type="submit"
-                  className="bg-lime-500 text-slate-900 px-8 py-3 rounded-lg font-bold transition-all hover:-translate-y-0.5 shadow-lg hover:shadow-xl"
-                  style={{ fontFamily: "'DM Sans', sans-serif" }}
+                  className="bg-fluent-red text-white px-8 py-3 rounded font-semibold transition-all hover:bg-fluent-red/90"
                 >
                   Subscribe
                 </button>

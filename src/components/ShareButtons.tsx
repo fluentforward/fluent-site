@@ -46,11 +46,8 @@ export function ShareButtons({ url, title, delay = 0 }: ShareButtonsProps) {
 
   return (
     <FadeIn delay={delay}>
-      <div className="bg-slate-50 p-8 rounded-xl">
-        <h4
-          className="text-xl font-bold text-slate-900 mb-6"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-        >
+      <div className="bg-warm-gray p-8 rounded border-l-4 border-fluent-red">
+        <h4 className="font-display font-extrabold text-xl text-charcoal mb-6">
           Share This Article
         </h4>
         <div className="space-y-3">
@@ -64,8 +61,7 @@ export function ShareButtons({ url, title, delay = 0 }: ShareButtonsProps) {
                 href={link.href}
                 target={link.href.startsWith('mailto:') ? undefined : '_blank'}
                 rel={link.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
-                className="flex items-center gap-3 px-4 py-3 bg-white border-2 border-slate-200 rounded-lg text-slate-700 font-semibold hover:border-indigo-600 hover:bg-indigo-600 hover:text-white transition-all group"
-                style={{ fontFamily: "'DM Sans', sans-serif" }}
+                className="flex items-center gap-3 px-4 py-3 bg-white border-2 border-neutral-200 rounded text-charcoal font-semibold hover:border-fluent-red hover:bg-fluent-red hover:text-white transition-all group"
               >
                 {IconComponent ? (
                   <IconComponent className="h-5 w-5 fill-current group-hover:fill-white" />

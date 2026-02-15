@@ -6,7 +6,7 @@ import { TableOfContents } from '@/components/TableOfContents'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'Privacy Policy for Cognify Legal platform and services.',
+  description: 'Privacy Policy for FluentForward platform and services.',
 }
 
 const tocItems = [
@@ -31,26 +31,13 @@ export default function Privacy() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative mt-20 bg-gradient-to-br from-indigo-600 via-indigo-500 to-purple-600 py-20 px-6 lg:px-12 overflow-hidden text-center">
-        {/* Animated background pattern */}
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='white' opacity='0.1'/%3E%3C/svg%3E")`,
-            animation: 'float 20s linear infinite',
-          }}
-          aria-hidden="true"
-        />
-
+      <section className="relative mt-20 bg-charcoal py-20 px-6 lg:px-12 overflow-hidden text-center">
         <Container className="relative z-10 max-w-4xl mx-auto">
           <FadeIn>
-            <h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4"
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-            >
+            <h1 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white leading-tight mb-4">
               Privacy Policy
             </h1>
-            <p className="text-lg text-white/90" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+            <p className="text-lg text-white/90">
               Last Updated: December 1, 2024
             </p>
           </FadeIn>
@@ -71,15 +58,15 @@ export default function Privacy() {
             {/* Main Content */}
             <div className="lg:col-span-3 max-w-4xl">
               <FadeIn delay={0.2}>
-                <div className="bg-lime-500 p-8 rounded-xl mb-12">
-                  <p className="text-slate-800 leading-relaxed mb-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                    <strong className="text-slate-900">Your Privacy Matters.</strong> At Cognify Legal, we take data protection seriously. This Privacy Policy explains how we collect, use, protect, and share information about you.
+                <div className="bg-fluent-red p-8 rounded mb-12 text-white">
+                  <p className="leading-relaxed mb-4">
+                    <strong>Your Privacy Matters.</strong> At FluentForward, we take data protection seriously. This Privacy Policy explains how we collect, use, protect, and share information about you.
                   </p>
-                  <p className="text-slate-800 leading-relaxed mb-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                    This policy applies to all users of the Cognify Legal platform and website. By using our Service, you agree to the collection and use of information in accordance with this policy.
+                  <p className="leading-relaxed mb-4">
+                    This policy applies to all users of the FluentForward platform and website. By using our Service, you agree to the collection and use of information in accordance with this policy.
                   </p>
-                  <p className="text-slate-800 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                    <strong className="text-slate-900">We are committed to GDPR compliance and protecting your data rights.</strong>
+                  <p className="leading-relaxed">
+                    <strong>We are committed to GDPR compliance and protecting your data rights.</strong>
                   </p>
                 </div>
               </FadeIn>
@@ -94,7 +81,7 @@ export default function Privacy() {
                       1. Introduction
                     </h2>
                     <p className="text-slate-700 leading-relaxed mb-4 text-lg" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                      Cognify Legal Limited ("Cognify", "we", "us", or "our") is committed to protecting the privacy and security of your personal information. This Privacy Policy describes:
+                      FluentForward Limited ("Cognify", "we", "us", or "our") is committed to protecting the privacy and security of your personal information. This Privacy Policy describes:
                     </p>
                     <ul className="space-y-2 text-lg text-slate-700 ml-6 mb-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
                       <li>What information we collect and why</li>
@@ -103,7 +90,7 @@ export default function Privacy() {
                       <li>How to contact us with privacy-related questions</li>
                     </ul>
                     <p className="text-slate-700 leading-relaxed text-lg" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                      This policy applies to personal data processed through our website (cognifylegal.com) and our software platform (the "Service").
+                      This policy applies to personal data processed through our website (fluentforward.com) and our software platform (the "Service").
                     </p>
                   </section>
                 </FadeIn>
@@ -117,16 +104,16 @@ export default function Privacy() {
                       2. Data Controller
                     </h2>
                     <p className="text-slate-700 leading-relaxed mb-4 text-lg" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                      Cognify Legal Limited is the data controller responsible for your personal information. Our contact details are:
+                      FluentForward Limited is the data controller responsible for your personal information. Our contact details are:
                     </p>
                     <ul className="space-y-2 text-lg text-slate-700 ml-6 mb-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                      <li><strong className="text-slate-900">Company:</strong> Cognify Legal Limited</li>
-                      <li><strong className="text-slate-900">Email:</strong> privacy@cognifylegal.com</li>
+                      <li><strong className="text-slate-900">Company:</strong> FluentForward Limited</li>
+                      <li><strong className="text-slate-900">Email:</strong> privacy@fluentforward.com</li>
                       <li><strong className="text-slate-900">Address:</strong> [Company Registered Address]</li>
                       <li><strong className="text-slate-900">Company Number:</strong> [To be assigned]</li>
                     </ul>
                     <p className="text-slate-700 leading-relaxed text-lg" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                      For data protection queries, please contact our Data Protection Officer at privacy@cognifylegal.com.
+                      For data protection queries, please contact our Data Protection Officer at privacy@fluentforward.com.
                     </p>
                   </section>
                 </FadeIn>
@@ -732,7 +719,7 @@ export default function Privacy() {
 
                     <div className="bg-slate-50 border-l-4 border-indigo-600 p-6 rounded mb-6">
                       <p className="text-slate-700 leading-relaxed mb-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                        <strong className="text-slate-900">To exercise any of these rights, contact us at privacy@cognifylegal.com</strong>
+                        <strong className="text-slate-900">To exercise any of these rights, contact us at privacy@fluentforward.com</strong>
                       </p>
                       <p className="text-slate-700 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif" }}>
                         We will respond to all requests within 30 days.
@@ -861,7 +848,7 @@ export default function Privacy() {
                       13. Children's Privacy
                     </h2>
                     <p className="text-slate-700 leading-relaxed text-lg" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                      Our Service is not intended for individuals under 18. We do not knowingly collect personal data from children. If you believe we have inadvertently collected such data, please contact us immediately at privacy@cognifylegal.com.
+                      Our Service is not intended for individuals under 18. We do not knowingly collect personal data from children. If you believe we have inadvertently collected such data, please contact us immediately at privacy@fluentforward.com.
                     </p>
                   </section>
                 </FadeIn>
@@ -900,14 +887,14 @@ export default function Privacy() {
                       For privacy-related questions, concerns, or to exercise your data protection rights:
                     </p>
                     <ul className="space-y-2 text-lg text-slate-700 ml-6 mb-6" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                      <li><strong className="text-slate-900">Data Protection Officer:</strong> privacy@cognifylegal.com</li>
-                      <li><strong className="text-slate-900">General Inquiries:</strong> hello@cognifylegal.com</li>
-                      <li><strong className="text-slate-900">Security Issues:</strong> security@cognifylegal.com</li>
+                      <li><strong className="text-slate-900">Data Protection Officer:</strong> privacy@fluentforward.com</li>
+                      <li><strong className="text-slate-900">General Inquiries:</strong> hello@fluentforward.com</li>
+                      <li><strong className="text-slate-900">Security Issues:</strong> security@fluentforward.com</li>
                     </ul>
                     <p className="text-slate-700 leading-relaxed mb-4 text-lg" style={{ fontFamily: "'DM Sans', sans-serif" }}>
                       <strong className="text-slate-900">Postal Address:</strong>
                       <br />
-                      Cognify Legal Limited
+                      FluentForward Limited
                       <br />
                       [Company Registered Address]
                       <br />
@@ -938,11 +925,11 @@ export default function Privacy() {
                       If you have questions about how we handle your data or want to exercise your privacy rights, we're here to help.
                     </p>
                     <a
-                      href="mailto:privacy@cognifylegal.com"
+                      href="mailto:privacy@fluentforward.com"
                       className="text-lime-500 font-bold text-xl hover:text-white transition-colors"
                       style={{ fontFamily: "'DM Sans', sans-serif" }}
                     >
-                      privacy@cognifylegal.com
+                      privacy@fluentforward.com
                     </a>
                   </div>
                 </FadeIn>

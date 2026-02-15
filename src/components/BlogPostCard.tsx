@@ -16,8 +16,8 @@ type BlogPostCardProps = {
 export function BlogPostCard({ slug, title, excerpt, category, date, imageAlt, image, delay = 0 }: BlogPostCardProps) {
   return (
     <FadeIn delay={delay}>
-      <article className="bg-white border-2 border-slate-200 rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg hover:border-indigo-600 flex flex-col">
-        <div className="h-48 relative overflow-hidden border-b-3 border-lime-500">
+      <article className="bg-white border-l-4 border-fluent-red rounded overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl flex flex-col">
+        <div className="h-48 relative overflow-hidden">
           {image ? (
             <Image
               src={image}
@@ -27,35 +27,31 @@ export function BlogPostCard({ slug, title, excerpt, category, date, imageAlt, i
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
           ) : (
-            <div className="bg-gradient-to-br from-indigo-100 to-purple-100 w-full h-full flex items-center justify-center p-8 text-center">
-              <strong className="text-sm text-slate-700" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+            <div className="bg-warm-gray w-full h-full flex items-center justify-center p-8 text-center">
+              <strong className="text-sm text-charcoal">
                 {imageAlt}
               </strong>
             </div>
           )}
         </div>
-        <div className="p-8 flex-grow flex flex-col">
+        <div className="p-6 md:p-8 flex-grow flex flex-col">
           <div className="flex gap-4 mb-3 flex-wrap">
-            <span className="bg-lime-500 text-slate-900 px-3 py-1 rounded text-xs font-bold uppercase tracking-wide" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+            <span className="bg-fluent-red text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-wide">
               {category}
             </span>
-            <span className="text-slate-700 opacity-70 text-sm" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+            <span className="text-neutral-500 text-sm">
               {date}
             </span>
           </div>
-          <h3
-            className="text-2xl font-bold text-slate-900 mb-3"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-          >
+          <h3 className="font-display font-extrabold text-xl md:text-2xl text-charcoal mb-3">
             {title}
           </h3>
-          <p className="text-slate-700 mb-6 leading-relaxed flex-grow text-sm" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+          <p className="text-neutral-600 mb-6 leading-relaxed flex-grow text-sm">
             {excerpt}
           </p>
           <Link
             href={`/blog/${slug}`}
-            className="text-indigo-600 font-bold hover:text-lime-500 transition-colors inline-flex items-center gap-2"
-            style={{ fontFamily: "'DM Sans', sans-serif" }}
+            className="text-fluent-red font-semibold hover:text-charcoal transition-colors inline-flex items-center gap-2"
           >
             Read More →
           </Link>

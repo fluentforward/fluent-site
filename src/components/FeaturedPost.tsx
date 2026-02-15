@@ -16,8 +16,8 @@ type FeaturedPostProps = {
 export function FeaturedPost({ slug, title, excerpt, category, date, imageAlt, image, delay = 0 }: FeaturedPostProps) {
   return (
     <FadeIn delay={delay}>
-      <div className="rounded-xl overflow-hidden shadow-lg grid grid-cols-1 lg:grid-cols-5 gap-0">
-        <div className="lg:col-span-2 border-b-4 lg:border-b-0 lg:border-r-4 border-lime-500 min-h-[250px] sm:min-h-[300px] lg:min-h-[400px] relative rounded-l-xl lg:rounded-l-xl">
+      <div className="rounded overflow-hidden shadow-lg grid grid-cols-1 lg:grid-cols-5 gap-0 border-l-4 lg:border-l-0 lg:border-t-4 border-fluent-red">
+        <div className="lg:col-span-2 min-h-[250px] sm:min-h-[300px] lg:min-h-[400px] relative">
           {image ? (
             <Image
               src={image}
@@ -28,35 +28,31 @@ export function FeaturedPost({ slug, title, excerpt, category, date, imageAlt, i
               priority
             />
           ) : (
-            <div className="bg-gradient-to-br from-indigo-100 to-purple-100 w-full h-full flex items-center justify-center p-8 sm:p-12 text-center">
-              <strong className="text-lg text-slate-700" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+            <div className="bg-warm-gray w-full h-full flex items-center justify-center p-8 sm:p-12 text-center">
+              <strong className="text-lg text-charcoal">
                 {imageAlt}
               </strong>
             </div>
           )}
         </div>
-        <div className="lg:col-span-3 p-12 flex flex-col justify-center bg-white rounded-r-xl">
+        <div className="lg:col-span-3 p-8 md:p-12 flex flex-col justify-center bg-white">
           <div className="flex gap-4 mb-4 flex-wrap">
-            <span className="bg-lime-500 text-slate-900 px-3 py-1 rounded text-xs font-bold uppercase tracking-wide" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+            <span className="bg-fluent-red text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-wide">
               {category}
             </span>
-            <span className="text-slate-700 opacity-70 text-sm" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+            <span className="text-neutral-500 text-sm">
               {date}
             </span>
           </div>
-          <h2
-            className="text-3xl font-bold text-slate-900 mb-4"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-          >
+          <h2 className="font-display font-extrabold text-2xl md:text-3xl text-charcoal mb-4">
             {title}
           </h2>
-          <p className="text-slate-700 mb-6 leading-relaxed text-lg" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+          <p className="text-neutral-600 mb-6 leading-relaxed text-lg">
             {excerpt}
           </p>
           <Link
             href={`/blog/${slug}`}
-            className="text-indigo-600 font-bold hover:text-lime-500 transition-colors inline-flex items-center gap-2"
-            style={{ fontFamily: "'DM Sans', sans-serif" }}
+            className="text-fluent-red font-semibold hover:text-charcoal transition-colors inline-flex items-center gap-2"
           >
             Read Full Article →
           </Link>

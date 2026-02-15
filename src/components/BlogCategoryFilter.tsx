@@ -17,12 +17,11 @@ export function BlogCategoryFilter({
         <button
           key={category}
           onClick={() => onCategoryChange(category)}
-          className={`px-5 py-2 rounded-full font-semibold text-sm transition-all border-2 ${
+          className={`px-5 py-2 rounded font-semibold text-sm transition-all border-2 ${
             selectedCategory === category
-              ? 'bg-indigo-600 text-white border-indigo-600'
-              : 'bg-slate-50 text-slate-700 border-transparent hover:bg-slate-100'
+              ? 'bg-fluent-red text-white border-fluent-red'
+              : 'bg-warm-gray text-charcoal border-transparent hover:bg-neutral-200'
           }`}
-          style={{ fontFamily: "'DM Sans', sans-serif" }}
         >
           {category}
         </button>

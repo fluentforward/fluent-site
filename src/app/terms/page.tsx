@@ -6,7 +6,7 @@ import { TableOfContents } from '@/components/TableOfContents'
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
-  description: 'Terms of Service for Cognify Legal platform and services.',
+  description: 'Terms of Service for FluentForward platform and services.',
 }
 
 const tocItems = [
@@ -31,26 +31,13 @@ export default function Terms() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative mt-20 bg-gradient-to-br from-indigo-600 via-indigo-500 to-purple-600 py-20 px-6 lg:px-12 overflow-hidden text-center">
-        {/* Animated background pattern */}
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='white' opacity='0.1'/%3E%3C/svg%3E")`,
-            animation: 'float 20s linear infinite',
-          }}
-          aria-hidden="true"
-        />
-
+      <section className="relative mt-20 bg-charcoal py-20 px-6 lg:px-12 overflow-hidden text-center">
         <Container className="relative z-10 max-w-4xl mx-auto">
           <FadeIn>
-            <h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4"
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-            >
+            <h1 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white leading-tight mb-4">
               Terms of Service
             </h1>
-            <p className="text-lg text-white/90" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+            <p className="text-lg text-white/90">
               Last Updated: December 1, 2024
             </p>
           </FadeIn>
@@ -71,15 +58,15 @@ export default function Terms() {
             {/* Main Content */}
             <div className="lg:col-span-3 max-w-4xl">
               <FadeIn delay={0.2}>
-                <div className="bg-lime-500 p-8 rounded-xl mb-12">
-                  <p className="text-slate-800 leading-relaxed mb-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                    <strong className="text-slate-900">Welcome to Cognify Legal.</strong> These Terms of Service ("Terms") govern your access to and use of the Cognify Legal platform and services.
+                <div className="bg-fluent-red p-8 rounded mb-12 text-white">
+                  <p className="leading-relaxed mb-4">
+                    <strong>Welcome to FluentForward.</strong> These Terms of Service ("Terms") govern your access to and use of the FluentForward platform and services.
                   </p>
-                  <p className="text-slate-800 leading-relaxed mb-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                  <p className="leading-relaxed mb-4">
                     By accessing or using our Service, you agree to be bound by these Terms. If you disagree with any part of these Terms, you may not access the Service.
                   </p>
-                  <p className="text-slate-800 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                    <strong className="text-slate-900">For questions about these Terms, please contact us at legal@cognifylegal.com</strong>
+                  <p className="leading-relaxed">
+                    <strong>For questions about these Terms, please contact us at legal@fluentforward.com</strong>
                   </p>
                 </div>
               </FadeIn>
@@ -94,10 +81,10 @@ export default function Terms() {
                       1. Acceptance of Terms
                     </h2>
                     <p className="text-slate-700 leading-relaxed mb-4 text-lg" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                      By creating an account, accessing, or using the Cognify Legal platform ("Service"), you agree to be bound by these Terms of Service and all applicable laws and regulations. If you are entering into these Terms on behalf of a company or other legal entity, you represent that you have the authority to bind such entity to these Terms.
+                      By creating an account, accessing, or using the FluentForward platform ("Service"), you agree to be bound by these Terms of Service and all applicable laws and regulations. If you are entering into these Terms on behalf of a company or other legal entity, you represent that you have the authority to bind such entity to these Terms.
                     </p>
                     <p className="text-slate-700 leading-relaxed text-lg" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                      These Terms constitute a legally binding agreement between you or the entity you represent ("Customer", "you", or "your") and Cognify Legal Limited ("Cognify", "we", "us", or "our").
+                      These Terms constitute a legally binding agreement between you or the entity you represent ("Customer", "you", or "your") and FluentForward Limited ("Cognify", "we", "us", or "our").
                     </p>
                   </section>
                 </FadeIn>
@@ -111,7 +98,7 @@ export default function Terms() {
                       2. Definitions
                     </h2>
                     <ul className="space-y-3 text-lg text-slate-700 ml-6" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                      <li><strong className="text-slate-900">Service:</strong> The Cognify Legal software platform, including all features, applications, integrations, and associated services.</li>
+                      <li><strong className="text-slate-900">Service:</strong> The FluentForward software platform, including all features, applications, integrations, and associated services.</li>
                       <li><strong className="text-slate-900">Customer Data:</strong> All data, content, and information submitted, uploaded, or transmitted by you or your authorized users through the Service.</li>
                       <li><strong className="text-slate-900">Authorized Users:</strong> Your employees, contractors, or agents who are authorized to use the Service under your subscription.</li>
                       <li><strong className="text-slate-900">Practice Management System (PMS):</strong> Third-party legal practice management software that integrates with the Service, such as ActionStep or Clio.</li>
@@ -424,7 +411,7 @@ export default function Terms() {
                       8.4 Trademarks
                     </h3>
                     <p className="text-slate-700 leading-relaxed text-lg" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                      "Cognify Legal," the Cognify logo, and other marks are trademarks of Cognify Legal Limited. You may not use these marks without our prior written permission.
+                      "FluentForward," the Cognify logo, and other marks are trademarks of FluentForward Limited. You may not use these marks without our prior written permission.
                     </p>
                   </section>
                 </FadeIn>
@@ -627,7 +614,7 @@ export default function Terms() {
                       13.3 Dispute Resolution
                     </h3>
                     <p className="text-slate-700 leading-relaxed text-lg" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                      Before initiating any formal proceedings, you agree to first attempt to resolve any dispute informally by contacting us at legal@cognifylegal.com. We will attempt to resolve disputes in good faith.
+                      Before initiating any formal proceedings, you agree to first attempt to resolve any dispute informally by contacting us at legal@fluentforward.com. We will attempt to resolve disputes in good faith.
                     </p>
                   </section>
                 </FadeIn>
@@ -718,14 +705,14 @@ export default function Terms() {
                       If you have questions about these Terms, please contact us:
                     </p>
                     <ul className="space-y-2 text-lg text-slate-700 ml-6 mb-6" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                      <li><strong className="text-slate-900">Email:</strong> legal@cognifylegal.com</li>
-                      <li><strong className="text-slate-900">General Inquiries:</strong> hello@cognifylegal.com</li>
-                      <li><strong className="text-slate-900">Support:</strong> support@cognifylegal.com</li>
+                      <li><strong className="text-slate-900">Email:</strong> legal@fluentforward.com</li>
+                      <li><strong className="text-slate-900">General Inquiries:</strong> hello@fluentforward.com</li>
+                      <li><strong className="text-slate-900">Support:</strong> support@fluentforward.com</li>
                     </ul>
                     <p className="text-slate-700 leading-relaxed text-lg" style={{ fontFamily: "'DM Sans', sans-serif" }}>
                       <strong className="text-slate-900">Company Information:</strong>
                       <br />
-                      Cognify Legal Limited
+                      FluentForward Limited
                       <br />
                       Registered in England and Wales
                       <br />
@@ -747,11 +734,11 @@ export default function Terms() {
                       If you have questions or need clarification about any part of our Terms of Service, we're here to help.
                     </p>
                     <a
-                      href="mailto:legal@cognifylegal.com"
+                      href="mailto:legal@fluentforward.com"
                       className="text-lime-500 font-bold text-xl hover:text-white transition-colors"
                       style={{ fontFamily: "'DM Sans', sans-serif" }}
                     >
-                      legal@cognifylegal.com
+                      legal@fluentforward.com
                     </a>
                   </div>
                 </FadeIn>
