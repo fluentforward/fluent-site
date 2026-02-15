@@ -241,7 +241,9 @@ export default async function BlogPost({ params }: { params: { slug: string } })
                       Let's map your constraints and architect your execution system.
                     </p>
                     <Link
-                      href="/#contact"
+                      href="https://outlook.office.com/bookwithme/user/b17c8b977f6e43a3b6dfe7b7770e5446@fluentforward.co/meetingtype/53Ug6pSl3EGCvx_PPavG3w2?anonymous&ismsaljsauthenabled&ep=mlink"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-block bg-fluent-red text-white px-6 py-3 rounded font-semibold transition-all hover:bg-fluent-red/90"
                     >
                       Book a Constraint Audit

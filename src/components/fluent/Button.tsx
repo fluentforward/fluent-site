@@ -23,10 +23,13 @@ export function Button({
       'bg-transparent text-white border-2 border-white hover:bg-white hover:text-charcoal',
   }
 
+  const isExternal = href.startsWith('http')
+
   return (
     <Link
       href={href}
       className={clsx(base, variants[variant], className)}
+      {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}
     >
       {children}
     </Link>

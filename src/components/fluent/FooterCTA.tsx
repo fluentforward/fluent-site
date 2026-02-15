@@ -11,7 +11,7 @@ export function FooterCTA() {
           Let's map your constraints and architect your execution system.
         </p>
         <div className="flex flex-wrap gap-6 justify-center">
-          <Button href="mailto:matt@fluentforward.com" variant="primary">
+          <Button href="https://outlook.office.com/bookwithme/user/b17c8b977f6e43a3b6dfe7b7770e5446@fluentforward.co/meetingtype/53Ug6pSl3EGCvx_PPavG3w2?anonymous&ismsaljsauthenabled&ep=mlink" variant="primary">
             Book a Constraint Audit
           </Button>
           <Button href="/#services" variant="secondary">
