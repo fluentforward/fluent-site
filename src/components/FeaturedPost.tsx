@@ -7,13 +7,12 @@ type FeaturedPostProps = {
   title: string
   excerpt: string
   category: string
-  date: string
   imageAlt: string
   image?: string
   delay?: number
 }
 
-export function FeaturedPost({ slug, title, excerpt, category, date, imageAlt, image, delay = 0 }: FeaturedPostProps) {
+export function FeaturedPost({ slug, title, excerpt, category, imageAlt, image, delay = 0 }: FeaturedPostProps) {
   return (
     <FadeIn delay={delay}>
       <div className="rounded overflow-hidden shadow-lg grid grid-cols-1 lg:grid-cols-5 gap-0 border-l-4 lg:border-l-0 lg:border-t-4 border-fluent-red">
@@ -39,9 +38,6 @@ export function FeaturedPost({ slug, title, excerpt, category, date, imageAlt, i
           <div className="flex gap-4 mb-4 flex-wrap">
             <span className="bg-fluent-red text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-wide">
               {category}
-            </span>
-            <span className="text-neutral-500 text-sm">
-              {date}
             </span>
           </div>
           <h2 className="font-display font-extrabold text-2xl md:text-3xl text-charcoal mb-4">

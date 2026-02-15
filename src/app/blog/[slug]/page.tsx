@@ -11,7 +11,6 @@ import { RelatedPostCard } from '@/components/RelatedPostCard'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import { ContentBlockRenderer } from '@/components/ContentBlockRenderer'
 import { getBlogPostBySlugWithResponse, getRelatedPosts } from '@/lib/contentful'
-import { formatDate } from '@/lib/formatDate'
 import { getAssetUrl } from '@/lib/getAssetUrl'
 import { calculateReadingTime } from '@/lib/calculateReadingTime'
 import type { Document } from '@contentful/rich-text-types'
@@ -82,9 +81,6 @@ export default async function BlogPost({ params }: { params: { slug: string } })
     })
   })
   const readTimeMinutes = calculateReadingTime(...documentsToCount)
-
-  // Format dates
-  const publishedDate = formatDate(post.sys.createdAt)
   const readTime = `${readTimeMinutes} min read`
 
   // Get image URLs
@@ -134,9 +130,6 @@ export default async function BlogPost({ params }: { params: { slug: string } })
             <div className="flex gap-4 mb-8 flex-wrap">
               <span className="bg-fluent-red text-white px-4 py-1 rounded text-xs font-bold uppercase tracking-wide">
                 {categoryName}
-              </span>
-              <span className="text-neutral-600 text-sm flex items-center gap-2">
-                📅 {publishedDate}
               </span>
               <span className="text-neutral-600 text-sm flex items-center gap-2">
                 ⏱️ {readTime}

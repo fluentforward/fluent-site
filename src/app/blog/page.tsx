@@ -5,7 +5,6 @@ import { BlogPostCard } from '@/components/BlogPostCard'
 import { TopicCard } from '@/components/TopicCard'
 import { BlogCategoryFilter } from '@/components/BlogCategoryFilter'
 import { getBlogConfiguration, getBlogCategories, getBlogPosts } from '@/lib/contentful'
-import { formatDate } from '@/lib/formatDate'
 import { getAssetUrl } from '@/lib/getAssetUrl'
 import { BlogPostsClient } from './BlogPostsClient'
 import blogData from '@/data/blog-posts.json'
@@ -41,7 +40,6 @@ export default async function Blog() {
         title: featuredPost.fields.title as string,
         excerpt: featuredPost.fields.excerpt as string,
         category: (featuredPost.fields.category as any)?.fields?.name || 'Uncategorized',
-        date: formatDate(featuredPost.sys.createdAt),
         imageAlt: featuredPost.fields.title as string,
         image: getAssetUrl((featuredPost.fields.thumbnailImage as any)?.fields ? featuredPost.fields.thumbnailImage : undefined),
       }
@@ -53,7 +51,6 @@ export default async function Blog() {
     title: post.fields.title as string,
     excerpt: post.fields.excerpt as string,
     category: (post.fields.category as any)?.fields?.name || 'Uncategorized',
-    date: formatDate(post.sys.createdAt),
     imageAlt: post.fields.title as string,
     image: getAssetUrl((post.fields.thumbnailImage as any)?.fields ? post.fields.thumbnailImage : undefined),
   }))

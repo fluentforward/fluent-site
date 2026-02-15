@@ -7,13 +7,12 @@ type BlogPostCardProps = {
   title: string
   excerpt: string
   category: string
-  date: string
   imageAlt: string
   image?: string
   delay?: number
 }
 
-export function BlogPostCard({ slug, title, excerpt, category, date, imageAlt, image, delay = 0 }: BlogPostCardProps) {
+export function BlogPostCard({ slug, title, excerpt, category, imageAlt, image, delay = 0 }: BlogPostCardProps) {
   return (
     <FadeIn delay={delay}>
       <article className="bg-white border-l-4 border-fluent-red rounded overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl flex flex-col">
@@ -38,9 +37,6 @@ export function BlogPostCard({ slug, title, excerpt, category, date, imageAlt, i
           <div className="flex gap-4 mb-3 flex-wrap">
             <span className="bg-fluent-red text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-wide">
               {category}
-            </span>
-            <span className="text-neutral-500 text-sm">
-              {date}
             </span>
           </div>
           <h3 className="font-display font-extrabold text-xl md:text-2xl text-charcoal mb-3">

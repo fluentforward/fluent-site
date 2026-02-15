@@ -11,7 +11,6 @@ type Post = {
   title: string
   excerpt: string
   category: string
-  date: string
   imageAlt: string
   image?: string
 }
