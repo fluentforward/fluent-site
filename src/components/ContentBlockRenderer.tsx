@@ -50,18 +50,22 @@ export function ContentBlockRenderer({ block, linkedAssets = [] }: ContentBlockR
   if (contentTypeId === 'calloutBlock') {
     const calloutBlock = block as ICalloutBlock
     const fields = calloutBlock.fields as ICalloutBlockFields
-    const variantClass = {
-      lime: 'bg-fluent-red',
-      indigo: 'bg-charcoal',
-      slate: 'bg-neutral-600',
-    }[fields.variant] || 'bg-fluent-red'
+    const borderClass = {
+      lime: 'border-fluent-red',
+      indigo: 'border-charcoal',
+      slate: 'border-neutral-600',
+    }[fields.variant] || 'border-fluent-red'
 
     return (
-      <div className={`${variantClass} p-8 rounded my-12 text-white`}>
-        <h4 className="font-display font-extrabold text-xl text-white mb-4">
+      <div className={`bg-warm-gray border-l-4 ${borderClass} pl-8 py-6 my-12 rounded-r`}>
+        <h4 className="font-display font-extrabold text-xl text-charcoal mb-4">
           {fields.title}
         </h4>
-        <RichTextRenderer content={fields.content} linkedAssets={linkedAssets} />
+        <RichTextRenderer
+          content={fields.content}
+          linkedAssets={linkedAssets}
+          className="[&_p]:text-charcoal [&_p]:mb-4 [&_p:last-child]:mb-0 [&_h3]:text-charcoal [&_h4]:text-charcoal [&_li]:text-charcoal [&_a]:text-fluent-red [&_strong]:text-charcoal"
+        />
       </div>
     )
   }
