@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beyond Integration — FluentForward Agentic Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red:      #d42b2b;
+    --red-dim:  #a82222;
+    --charcoal: #0c0c10;
+    --dark:     #111116;
+    --surface:  #18181f;
+    --border:   #2a2a35;
+    --muted:    #6b6b80;
+    --body:     #c8c8d8;
+    --white:    #f0f0f6;
+    --max:      720px;
+  }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+background: var(–charcoal);
+color: var(–body);
+font-family: ‘Source Serif 4’, Georgia, serif;
+font-size: 17px;
+line-height: 1.75;
+-webkit-font-smoothing: antialiased;
+}
+
+/* ── Hero ───────────────────────────────────────────────── */
+.hero {
+min-height: 100svh;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+background: var(–charcoal);
+position: relative;
+overflow: hidden;
+}
+
+.hero::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background:
+radial-gradient(ellipse 80% 60% at 10% 80%, rgba(212,43,43,0.12) 0%, transparent 60%),
+radial-gradient(ellipse 60% 40% at 90% 20%, rgba(212,43,43,0.06) 0%, transparent 50%);
+pointer-events: none;
+}
+
+.hero-wordmark {
+padding: 32px 28px 0;
+display: flex;
+align-items: center;
+gap: 10px;
+opacity: 0;
+animation: fadeUp 0.6s 0.1s ease forwards;
+}
+
+.hero-wordmark-bar {
+width: 3px;
+height: 20px;
+background: var(–red);
+flex-shrink: 0;
+}
+
+.hero-wordmark-text {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 13px;
+font-weight: 700;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+color: var(–white);
+}
+
+.hero-wordmark-text span {
+color: var(–muted);
+font-weight: 400;
+}
+
+.hero-body {
+padding: 0 28px;
+flex: 1;
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+.hero-label {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–red);
+margin-bottom: 28px;
+opacity: 0;
+animation: fadeUp 0.6s 0.25s ease forwards;
+}
+
+.hero-headline {
+font-family: ‘Montserrat’, sans-serif;
+font-size: clamp(38px, 10vw, 72px);
+font-weight: 900;
+line-height: 1.0;
+letter-spacing: -0.02em;
+color: var(–white);
+margin-bottom: 8px;
+opacity: 0;
+animation: fadeUp 0.7s 0.35s ease forwards;
+}
+
+.hero-headline .accent {
+color: var(–red);
+display: block;
+}
+
+.hero-sub {
+margin-top: 32px;
+font-size: 16px;
+line-height: 1.65;
+color: var(–muted);
+max-width: 520px;
+font-style: italic;
+opacity: 0;
+animation: fadeUp 0.7s 0.55s ease forwards;
+}
+
+.hero-footer {
+padding: 28px;
+border-top: 1px solid var(–border);
+display: flex;
+justify-content: space-between;
+align-items: center;
+opacity: 0;
+animation: fadeUp 0.6s 0.7s ease forwards;
+}
+
+.hero-footer-site {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.08em;
+color: var(–muted);
+}
+
+.hero-footer-meta {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 11px;
+letter-spacing: 0.06em;
+color: var(–border);
+text-transform: uppercase;
+}
+
+.scroll-cue {
+display: flex;
+align-items: center;
+gap: 8px;
+font-family: ‘Montserrat’, sans-serif;
+font-size: 11px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–muted);
+cursor: pointer;
+border: none;
+background: none;
+padding: 0;
+opacity: 0;
+animation: fadeUp 0.6s 0.9s ease forwards;
+}
+
+.scroll-cue-line {
+width: 24px;
+height: 1px;
+background: var(–red);
+}
+
+/* ── Content ────────────────────────────────────────────── */
+.content {
+max-width: var(–max);
+margin: 0 auto;
+padding: 0 24px;
+}
+
+section {
+padding: 72px 0 0;
+opacity: 0;
+transform: translateY(24px);
+transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+section.visible {
+opacity: 1;
+transform: none;
+}
+
+section:last-of-type {
+padding-bottom: 96px;
+}
+
+/* Section header */
+.section-header {
+margin-bottom: 40px;
+}
+
+.section-number {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–red);
+margin-bottom: 12px;
+display: block;
+}
+
+.section-title {
+font-family: ‘Montserrat’, sans-serif;
+font-size: clamp(22px, 5vw, 30px);
+font-weight: 800;
+line-height: 1.15;
+letter-spacing: -0.02em;
+color: var(–white);
+padding-bottom: 20px;
+border-bottom: 1px solid var(–border);
+}
+
+/* Subsections */
+.subsection {
+margin-top: 48px;
+}
+
+.subsection-title {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 14px;
+font-weight: 700;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+color: var(–red);
+margin-bottom: 16px;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.subsection-title::after {
+content: ‘’;
+flex: 1;
+height: 1px;
+background: var(–border);
+}
+
+.sub-h3 {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 16px;
+font-weight: 700;
+color: var(–white);
+margin-bottom: 12px;
+margin-top: 36px;
+}
+
+p {
+margin-bottom: 20px;
+color: var(–body);
+}
+
+p:last-child { margin-bottom: 0; }
+
+/* Callout */
+.callout {
+margin: 36px 0;
+padding: 24px 24px 24px 20px;
+border-left: 3px solid var(–red);
+background: var(–surface);
+border-radius: 0 6px 6px 0;
+font-style: italic;
+font-size: 16px;
+line-height: 1.7;
+color: var(–white);
+}
+
+/* Comparison table */
+.table-wrap {
+margin: 36px -24px;
+overflow-x: auto;
+-webkit-overflow-scrolling: touch;
+}
+
+table {
+width: 100%;
+min-width: 560px;
+border-collapse: collapse;
+font-size: 14px;
+}
+
+thead tr {
+background: var(–dark);
+}
+
+thead th {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+padding: 14px 16px;
+text-align: left;
+color: var(–muted);
+border-bottom: 1px solid var(–border);
+}
+
+thead th.col-platform {
+color: var(–red);
+}
+
+tbody tr:nth-child(odd) {
+background: var(–surface);
+}
+
+tbody tr:nth-child(even) {
+background: var(–dark);
+}
+
+tbody td {
+padding: 13px 16px;
+border-bottom: 1px solid var(–border);
+vertical-align: top;
+line-height: 1.5;
+}
+
+tbody td:first-child {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 12px;
+font-weight: 700;
+letter-spacing: 0.04em;
+color: var(–white);
+white-space: nowrap;
+}
+
+tbody td:last-child {
+color: var(–white);
+font-weight: 600;
+}
+
+.table-hint {
+text-align: center;
+font-family: ‘Montserrat’, sans-serif;
+font-size: 11px;
+letter-spacing: 0.08em;
+color: var(–muted);
+padding: 10px 0 0;
+display: none;
+}
+
+@media (max-width: 600px) {
+.table-hint { display: block; }
+}
+
+/* Engagement cards */
+.cards {
+display: flex;
+flex-direction: column;
+gap: 16px;
+margin-top: 32px;
+}
+
+.card {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 8px;
+padding: 24px;
+position: relative;
+overflow: hidden;
+}
+
+.card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 3px;
+background: var(–red);
+transform: scaleX(0);
+transform-origin: left;
+transition: transform 0.3s ease;
+}
+
+.card:hover::before { transform: scaleX(1); }
+
+.card-label {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: var(–red);
+margin-bottom: 10px;
+}
+
+.card-title {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 18px;
+font-weight: 800;
+color: var(–white);
+margin-bottom: 14px;
+letter-spacing: -0.01em;
+}
+
+.card p {
+font-size: 15px;
+margin-bottom: 0;
+color: var(–body);
+}
+
+/* Closer / CTA */
+.closer {
+margin-top: 72px;
+padding: 48px 24px;
+background: var(–surface);
+border-top: 1px solid var(–border);
+border-bottom: 1px solid var(–border);
+text-align: center;
+}
+
+.closer-eyebrow {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–red);
+margin-bottom: 20px;
+}
+
+.closer-text {
+max-width: 560px;
+margin: 0 auto;
+font-style: italic;
+font-size: 17px;
+line-height: 1.75;
+color: var(–white);
+}
+
+/* Site footer */
+footer {
+padding: 32px 24px;
+text-align: center;
+border-top: 1px solid var(–border);
+}
+
+footer .wordmark {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 14px;
+font-weight: 800;
+letter-spacing: 0.06em;
+color: var(–white);
+margin-bottom: 6px;
+}
+
+footer .site {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 12px;
+color: var(–red);
+letter-spacing: 0.06em;
+margin-bottom: 10px;
+}
+
+footer .meta {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 11px;
+color: var(–muted);
+letter-spacing: 0.08em;
+text-transform: uppercase;
+}
+
+/* ── Animations ─────────────────────────────────────────── */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(16px); }
+to   { opacity: 1; transform: none; }
+}
+
+/* ── Responsive tweaks ──────────────────────────────────── */
+@media (max-width: 480px) {
+.hero-body { padding: 0 20px; }
+.hero-wordmark { padding: 24px 20px 0; }
+.hero-footer { padding: 20px; }
+.content { padding: 0 20px; }
+section { padding-top: 56px; }
+.callout { margin-left: 0; margin-right: 0; }
+.table-wrap { margin: 36px -20px; }
+}
+
+@media (min-width: 768px) {
+body { font-size: 18px; }
+.cards { flex-direction: row; flex-wrap: wrap; }
+.card { flex: 1 1 calc(50% - 8px); }
+.card:last-child { flex: 1 1 100%; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- ── Hero ─────────────────────────────────────────────────── -->
+
+<div class="hero">
+  <div class="hero-wordmark">
+    <div class="hero-wordmark-bar"></div>
+    <div class="hero-wordmark-text">FluentForward <span>Agentic Platform</span></div>
+  </div>
+
+  <div class="hero-body">
+    <p class="hero-label">Position Paper — March 2026</p>
+    <h1 class="hero-headline">
+      Beyond<br>Integration.
+      <span class="accent">The Agentic<br>Operating System.</span>
+    </h1>
+    <p class="hero-sub">
+      How purpose-built agentic platforms replace the operational stack entirely —
+      and why that changes everything for businesses in regulated verticals.
+    </p>
+  </div>
+
+  <div class="hero-footer">
+    <span class="hero-footer-site">fluentforward.com</span>
+    <span class="hero-footer-meta">Confidential</span>
+  </div>
+</div>
+
+<!-- ── Content ───────────────────────────────────────────────── -->
+
+<main>
+  <div class="content">
+
+```
+<!-- 1. The Problem -->
+<section>
+  <div class="section-header">
+    <span class="section-number">01</span>
+    <h2 class="section-title">The Problem with the Modern Operational Stack</h2>
+  </div>
+
+  <p>Most businesses running on software today are running on a compromise. They have a CRM that wasn't quite built for their industry. A workflow tool stitching it to a document system. A compliance layer bolted on top. And somewhere in the middle, a team spending significant time moving information between systems that were never designed to work together.</p>
+
+  <p>AI has made this worse in one important way. The wave of AI tools now available are almost universally designed as additions to the existing stack — AI features inside the CRM, AI agents that read from your project management tool, AI automation that connects the same fragmented systems via smarter rules. The underlying architecture hasn't changed. The integration tax hasn't gone away.</p>
+
+  <div class="callout">
+    The question isn't "how do we add AI to our existing stack?" The question is: if we were building our operational system from scratch today, knowing what AI can do, what would we actually build?
+  </div>
+
+  <p>The answer is not a better CRM with an AI feature. It is a system where agents, data, workflows, and compliance logic are designed together from the ground up — for a specific industry, with a specific set of problems, where AI isn't an add-on but the operating engine.</p>
+
+  <p>That is what the FluentForward Agentic Platform delivers.</p>
+</section>
+
+<!-- 2. Core Idea -->
+<section>
+  <div class="section-header">
+    <span class="section-number">02</span>
+    <h2 class="section-title">Agentic Operating Systems, Not Integrations</h2>
+  </div>
+
+  <p>The FluentForward Agentic Platform is a multi-tenant system that powers purpose-built, AI-native operational environments for regulated business verticals. Each vertical is delivered as a plugin — a complete operational system built around agents that act autonomously, safely, and with full auditability.</p>
+
+  <p>The distinction from conventional software — including conventional AI software — is structural, not cosmetic.</p>
+
+  <div class="subsection">
+    <div class="subsection-title">Purpose-Built Entity Models</div>
+    <p>Every operational system needs a way to represent the things it works with: clients, cases, transactions, assets, relationships. Most software uses generic building blocks — contacts, deals, tasks, records — because generic building blocks serve the widest possible market.</p>
+    <p>Vertical plugins on the FluentForward Platform are built around entity models native to a specific industry. A conveyancing plugin has Cases, Chains, Parties, Searches, and Milestones as first-class data types — not shoehorned into contact and deal fields. A property management plugin has Tenancies, Compliance Certificates, Maintenance Tickets, and Legal Notices, each with the precise structure that domain requires.</p>
+    <p>This matters because agents operate directly on these entities. There is no translation layer. There is no integration pulling data from one system into another. The agent's context is the entity state — complete, accurate, and current.</p>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Agents as the Operational Engine</div>
+    <p>In a conventional software stack, workflows are automated rules — if this, then that. They are deterministic, brittle, and limited to the scenarios their designers anticipated. When something falls outside those scenarios, a human has to intervene.</p>
+    <p>On the FluentForward Platform, agents handle the operational work. They monitor entity state, identify what needs to happen next, take action where they have autonomy to do so, and surface decisions to humans where judgement or authorisation is required. They learn from the outcomes of their actions. They improve over time.</p>
+    <p>The agent layer doesn't sit on top of the operational system. It <em>is</em> the operational system.</p>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Compliance as Infrastructure</div>
+    <p>In regulated industries, compliance is typically an overlay — policies documented somewhere, enforced by training and manual checks, audited periodically. Compliance failures happen in the gaps between systems, in the moments where no rule was triggered because no system knew enough to trigger it.</p>
+    <p>The FluentForward Platform encodes compliance logic at the infrastructure level. The Safeguard Layer is a dedicated, independent agent subsystem that evaluates every write action and external communication before it executes. Hard constraints are enforced at the platform level and cannot be overridden by operator configuration. Every safeguard evaluation is logged permanently.</p>
+    <p>Compliance isn't a feature. It's a structural property of how the platform works.</p>
+  </div>
+</section>
+
+<!-- 3. What This Replaces -->
+<section>
+  <div class="section-header">
+    <span class="section-number">03</span>
+    <h2 class="section-title">What This Replaces</h2>
+  </div>
+
+  <p>A well-specified vertical plugin can legitimately replace five or six separate SaaS tools — not by replicating their interfaces, but by making their functions redundant.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Operational Layer</th>
+          <th>Traditional SaaS Stack</th>
+          <th class="col-platform">FluentForward Platform</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>CRM / Entity Records</td>
+          <td>Generic CRM — contacts, companies, deals</td>
+          <td>Purpose-built entities native to your domain</td>
+        </tr>
+        <tr>
+          <td>Workflow Automation</td>
+          <td>Zapier / Make — rules connecting disconnected tools</td>
+          <td>Agent orchestration — autonomous, context-aware</td>
+        </tr>
+        <tr>
+          <td>Document Management</td>
+          <td>Document store + integrations to pull context in</td>
+          <td>Entity-linked documents — agents generate, review, act</td>
+        </tr>
+        <tr>
+          <td>Compliance & Risk</td>
+          <td>Compliance add-on or manual process layer</td>
+          <td>Native Safeguard Layer — encoded in the platform itself</td>
+        </tr>
+        <tr>
+          <td>Reporting & Analytics</td>
+          <td>BI tool pulling from multiple sources via connectors</td>
+          <td>Full execution capture — every action, state, and outcome</td>
+        </tr>
+        <tr>
+          <td>Task & Case Mgmt</td>
+          <td>Project management tool with custom fields</td>
+          <td>Entity state + workflow engine — no translation needed</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="table-hint">← scroll to see full table</p>
+  </div>
+
+  <div class="callout">
+    This is not a claim about features. It is a claim about architecture. A system designed from the ground up around agents, native entity models, and integrated compliance logic makes most of the conventional operational stack unnecessary — because those tools exist to compensate for the limitations of systems that were never designed to be intelligent.
+  </div>
+
+  <p>The practical consequence: businesses running on a FluentForward vertical plugin have lower total operational tooling cost, fewer integration failure points, more accurate data, faster decision cycles, and a compliance record generated automatically as a byproduct of normal operation.</p>
+</section>
+
+<!-- 4. Regulated Verticals -->
+<section>
+  <div class="section-header">
+    <span class="section-number">04</span>
+    <h2 class="section-title">Why Regulated Verticals Are the Right Starting Point</h2>
+  </div>
+
+  <p>The strongest case for this architecture is in industries where the cost of operational error is high, compliance requirements are non-negotiable, and the volume of information-heavy work makes automation genuinely valuable. Regulated verticals meet all three criteria.</p>
+
+  <p>In conveyancing, property management, financial services, and similar sectors, the difference between a well-run operation and a poorly-run one is almost always an information and coordination problem. Agents operating on complete, accurate, natively-structured entity state are particularly well-suited to solving exactly this problem.</p>
+
+  <div class="subsection">
+    <div class="subsection-title">The Auditability Advantage</div>
+    <p>Regulated businesses have auditability requirements that conventional software handles badly. Reconstructing exactly what happened in a transaction — who took what action, what information was available at the time, and why a particular decision was made — is typically a laborious manual exercise drawing from multiple disconnected systems.</p>
+    <p>The FluentForward Platform captures every agent action, every model call, every tool execution, and every entity state change as a structured record. Full execution capture is native to the architecture. Auditability is a byproduct of how the platform already operates.</p>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">The Moat That Builds Over Time</div>
+    <p>The longer a vertical plugin operates within a business, the more valuable it becomes. The self-learning system replays historical executions against new agent configurations, identifying improvements through backtesting before deploying them to production. Entity memory accumulates context that makes agent performance increasingly precise.</p>
+    <p>Switching costs are not primarily contractual — they are operational. A business that has run its operations through the platform for two years isn't just switching software. It's dismantling an operational system that has learned how its cases work, what its clients prefer, and how its team makes decisions.</p>
+  </div>
+</section>
+
+<!-- 5. How We Work -->
+<section>
+  <div class="section-header">
+    <span class="section-number">05</span>
+    <h2 class="section-title">How We Work With Clients and Partners</h2>
+  </div>
+
+  <p>FluentForward operates three distinct engagement models, designed to meet businesses and distribution partners at the right point in their journey.</p>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-label">Stream 01</div>
+      <div class="card-title">Managed Agentic Services</div>
+      <p>For firms that want the operational benefits without managing the technology. We deploy, configure, and operate a vertical plugin on your behalf. Pricing is outcome-based — aligned to the value delivered, not seat counts or usage tiers.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Stream 02</div>
+      <div class="card-title">AI-Native Transition</div>
+      <p>For businesses ready to move further. We work as a strategic partner in transitioning operations to a fully AI-native model — rebuilding operational processes around agent capabilities, not retrofitting agents onto existing processes.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Stream 03</div>
+      <div class="card-title">Channel Partnership</div>
+      <p>For consultancies and professional service firms serving regulated verticals. Partners access the platform under a revenue-share arrangement and deliver vertical-specific solutions to their own client base. Founding partners receive preferential terms, time-limited vertical exclusivity, and certified implementer status.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Bigger Idea -->
+<section>
+  <div class="section-header">
+    <span class="section-number">06</span>
+    <h2 class="section-title">The Bigger Idea</h2>
+  </div>
+
+  <p>We are at an early point in a significant structural shift. The generation of software that built the modern operational stack — CRMs, ERPs, workflow tools, document management systems — was designed for a world where software was inherently passive. It stored data. It surfaced information. Humans made decisions and took actions.</p>
+
+  <p>That constraint no longer holds. The question now is not whether AI can do operational work — it clearly can. The question is whether businesses will add AI to systems designed for passive software, or build operational systems designed for AI from the ground up.</p>
+
+  <p>The businesses that get this right in the next few years will not just be more efficient than their competitors. They will be structurally different — operating with a smaller team, a lower cost base, faster cycle times, and a compliance record generated automatically. The gap between those businesses and those still managing AI integrations on top of fragmented SaaS stacks will compound over time.</p>
+</section>
+```
+
+  </div><!-- /content -->
+
+  <!-- Closer -->
+
+  <div class="closer">
+    <div class="closer-eyebrow">Get in touch</div>
+    <p class="closer-text">
+      We built the FluentForward Agentic Platform because we believe the right answer is to start from first principles — to design the operational system around the agent, not the other way around. If you are building or running a business in a regulated vertical, we would like to talk about what that looks like for you.
+    </p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wordmark">FluentForward Ltd</div>
+  <div class="site">fluentforward.com</div>
+  <div class="meta">Confidential — March 2026</div>
+</footer>
+
+<script>
+  // Scroll-triggered section reveals
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+    { threshold: 0.08 }
+  );
+  document.querySelectorAll('section').forEach(s => observer.observe(s));
+
+  // Scroll cue
+  const cue = document.querySelector('.scroll-cue');
+  if (cue) cue.addEventListener('click', () => document.querySelector('main').scrollIntoView({ behavior: 'smooth' }));
+</script>
+
+</body>
+</html>
