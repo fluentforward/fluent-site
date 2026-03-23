@@ -92,7 +92,7 @@ const osLayers = [
     name: 'Execution Capture',
     desc: 'Every agent action, model call, tool execution, and entity state change captured as a permanent structured record. Auditability as a byproduct of normal operation.',
   },
-] as const
+]
 
 export default function AgenticPlatformPage() {
   return (
