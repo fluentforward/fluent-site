@@ -7,23 +7,30 @@ import { Header, Footer } from '@/components/fluent'
 
 export function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
-  const isPricingPage = pathname === '/pricing' || pathname.startsWith('/pricing/')
+  const immersiveRouteClass =
+    pathname === '/pricing' || pathname.startsWith('/pricing/')
+      ? 'pricing-page'
+      : pathname === '/surfaceos' || pathname.startsWith('/surfaceos/')
+        ? 'surfaceos-page'
+        : null
 
   useEffect(() => {
-    if (isPricingPage) {
-      document.documentElement.classList.add('pricing-page')
-      document.body.classList.add('pricing-page')
-      return () => {
-        document.documentElement.classList.remove('pricing-page')
-        document.body.classList.remove('pricing-page')
-      }
+    const routeClasses = ['pricing-page', 'surfaceos-page']
+    document.documentElement.classList.remove(...routeClasses)
+    document.body.classList.remove(...routeClasses)
+
+    if (immersiveRouteClass) {
+      document.documentElement.classList.add(immersiveRouteClass)
+      document.body.classList.add(immersiveRouteClass)
     }
 
-    document.documentElement.classList.remove('pricing-page')
-    document.body.classList.remove('pricing-page')
-  }, [isPricingPage])
+    return () => {
+      document.documentElement.classList.remove(...routeClasses)
+      document.body.classList.remove(...routeClasses)
+    }
+  }, [immersiveRouteClass])
 
-  if (isPricingPage) {
+  if (immersiveRouteClass) {
     return <main className="w-full flex-auto">{children}</main>
   }
 
