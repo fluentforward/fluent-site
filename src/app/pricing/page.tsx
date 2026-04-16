@@ -1,5 +1,6 @@
 import { type Metadata } from 'next'
 import Link from 'next/link'
+import { type ReactNode } from 'react'
 
 export const metadata: Metadata = {
   title: 'Pricing',
@@ -70,7 +71,7 @@ const plans: Plan[] = [
     period: 'Contact us',
     note: 'Unlimited users',
     ctaLabel: 'Contact Sales',
-    ctaHref: '/contact',
+    ctaHref: '/book-demo',
     features: [
       { text: 'Everything in Professional, plus:', included: true },
       { text: 'Unlimited users', included: true },
@@ -120,13 +121,24 @@ const roiRows = [
 const faqs = [
   {
     question: 'What happens when I exceed user limits?',
-    answer:
-      "You can upgrade to the next tier or add users at £75/user/month on Starter and Professional plans. We'll notify you when you're approaching your limit so there are no surprises.",
+    answer: (
+      <>
+        You can upgrade to the next tier or add users at{' '}
+        <strong>£75/user/month</strong> on Starter and Professional plans.
+        We&apos;ll notify you when you&apos;re approaching your limit so there
+        are no surprises.
+      </>
+    ),
   },
   {
     question: 'Are there setup or onboarding fees?',
-    answer:
-      "No. All plans include setup and onboarding at no additional cost. We'll have you live within 2 weeks with full data integration and user training.",
+    answer: (
+      <>
+        <strong>No.</strong> All plans include setup and onboarding at no
+        additional cost. We&apos;ll have you live within 2 weeks with full data
+        integration and user training.
+      </>
+    ),
   },
   {
     question: "What's included in the practice management integration?",
@@ -135,8 +147,13 @@ const faqs = [
   },
   {
     question: 'Can I cancel anytime?',
-    answer:
-      'Yes. All plans are month-to-month with no long-term contracts. Cancel with 30 days notice. Your data remains accessible for 90 days after cancellation.',
+    answer: (
+      <>
+        <strong>Yes.</strong> All plans are month-to-month with no long-term
+        contracts. Cancel with 30 days notice. Your data remains accessible for
+        90 days after cancellation.
+      </>
+    ),
   },
   {
     question: 'Do I need Microsoft Co-Pilot licenses?',
@@ -150,15 +167,21 @@ const faqs = [
   },
   {
     question: 'How long does implementation take?',
-    answer:
-      'Most firms are live within 2 weeks. This includes connecting your systems, configuring your Performance Dashboard, and training your team. No complex data modeling or dashboard building required.',
+    answer: (
+      <>
+        Most firms are live within <strong>2 weeks</strong>. This includes
+        connecting your systems, configuring your Performance Dashboard, and
+        training your team. No complex data modeling or dashboard building
+        required.
+      </>
+    ),
   },
   {
     question: 'What if I need features from a higher tier?',
     answer:
       "You can upgrade anytime, and we'll pro-rate your billing. We can also create custom plans combining features from different tiers—just ask during your demo.",
   },
-]
+] satisfies Array<{ question: string; answer: ReactNode }>
 
 export default function PricingPage() {
   return (
@@ -177,13 +200,33 @@ export default function PricingPage() {
 
       <section className="bg-slate-50 px-[5%] py-16 md:py-24">
         <div className="mx-auto max-w-[1200px]">
+          <div className="mb-14 text-center">
+            <p className="text-lg text-slate-800">
+              Billed monthly. No annual lock-in.
+            </p>
+            <div className="mt-4 inline-flex rounded-full bg-white p-2 shadow-md">
+              <button
+                type="button"
+                className="rounded-full bg-indigo-600 px-7 py-2 text-sm font-semibold text-white"
+              >
+                Monthly
+              </button>
+              <button
+                type="button"
+                className="rounded-full px-7 py-2 text-sm font-semibold text-slate-700"
+              >
+                Annual
+              </button>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             {plans.map((plan) => (
               <article
                 key={plan.name}
                 className={`relative flex h-full flex-col rounded-xl border-2 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg ${
                   plan.featured
-                    ? 'border-lime-400 ring-2 ring-lime-300/40'
+                    ? 'scale-100 border-lime-400 ring-2 ring-lime-300/40 lg:scale-105'
                     : 'border-transparent'
                 }`}
               >
@@ -255,10 +298,10 @@ export default function PricingPage() {
               helping shape the future of legal intelligence platforms.
             </p>
             <Link
-              href="/contact"
+              href="/founding-clients"
               className="mt-8 inline-flex rounded-lg bg-charcoal px-6 py-4 text-base font-bold text-white transition hover:-translate-y-0.5 hover:shadow-md"
             >
-              Learn More
+              Learn More →
             </Link>
           </div>
 
