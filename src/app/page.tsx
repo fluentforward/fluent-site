@@ -11,7 +11,7 @@ import {
 
 export const metadata: Metadata = {
   description:
-    'We apply Execution Abundance principles to design businesses where AI removes bottlenecks, creating capacity that compounds—not costs.',
+    'We apply Execution Abundance principles to design businesses where AI removes bottlenecks, creating capacity that compounds — not costs. From platform development to fractional strategic support.',
 }
 
 export default function Home() {
