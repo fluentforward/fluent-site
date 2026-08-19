@@ -1,7 +1,6 @@
 import { type Metadata } from 'next'
 
 import { CalInline } from '@/components/ui/CalInline'
-import { Container } from '@/components/ui/Container'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Heading, Lede } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
@@ -29,7 +28,7 @@ const expectations = [
 export default function Contact() {
   return (
     <>
-      <Section tone="paper" className="pt-16 pb-12 md:pt-24 md:pb-16">
+      <Section tone="paper" className="pt-16 pb-20 md:pt-24 md:pb-28">
         <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <Reveal>
             <Eyebrow>Book a call</Eyebrow>
@@ -45,7 +44,7 @@ export default function Contact() {
               >
                 {site.email}
               </a>{' '}
-              and it will reach me directly.
+              and it will reach us directly.
             </Lede>
 
             <ul className="mt-10 border-t border-line">
@@ -68,17 +67,6 @@ export default function Contact() {
           </Reveal>
         </div>
       </Section>
-
-      <div className="border-t border-line bg-paper-2">
-        <Container className="py-12">
-          <p className="max-w-2xl text-sm leading-relaxed text-slate">
-            The calendar above is provided by Cal.com and loads in an embedded
-            frame, which may set cookies of its own. Nothing on this site tracks
-            you, and the details you enter go only to us and to Cal.com in order
-            to create the booking.
-          </p>
-        </Container>
-      </div>
     </>
   )
 }

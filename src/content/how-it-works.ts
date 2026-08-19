@@ -170,16 +170,6 @@ export const faq = {
         'Then that is what the report says, and it is the most valuable version of the report you could have received. It has happened, and it will happen again. A recommendation you can trust requires the possibility of a no.',
     },
     {
-      question: 'Who actually does the work?',
-      answer:
-        'Matt Todd leads every engagement and stays accountable for it: the interviews, the recommendation, and the review of anything that ships. Where the build needs a particular specialism, it goes to a trusted freelancer from a network built up over twenty years, briefed and reviewed by Matt rather than handed off. You will not be sold by a senior and delivered to by a stranger.',
-    },
-    {
-      question: 'Is a small practice a delivery risk?',
-      answer:
-        'It is a fair question to ask of any supplier. Three things reduce it. The work is documented as it is built rather than afterwards, so your own team or another supplier could pick it up. Anything built for you is handed over to run without us, which is a principle here rather than a favour. And the specialists who touch an engagement are briefed on it, so delivery does not sit behind a single calendar. If a date does need to move, you hear it early and in writing.',
-    },
-    {
       question: 'What tools do you build with?',
       answer:
         'Whatever fits the problem. We are not reselling anyone\u2019s licences and there is no platform we are obliged to steer you towards. Sometimes the right answer is a spreadsheet and a rule change rather than software at all.',

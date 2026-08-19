@@ -11,7 +11,6 @@ export const site = {
 
 export const nav = [
   { label: 'How it works', href: '/how-it-works' },
-  { label: 'Results', href: '/results' },
   { label: 'About', href: '/about' },
 ] as const
 
@@ -28,7 +27,6 @@ export const footerNav = {
     title: 'Company',
     links: [
       { label: 'About', href: '/about' },
-      { label: 'Results', href: '/results' },
       { label: 'Book a call', href: '/contact' },
     ],
   },

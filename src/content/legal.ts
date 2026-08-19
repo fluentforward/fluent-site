@@ -152,7 +152,7 @@ export const terms = {
       id: 'confidentiality',
       heading: 'Confidentiality',
       paragraphs: [
-        'Anything you tell us on an introductory call is treated as confidential whether or not an agreement follows. We will not name you, quote you or write about your business without your written agreement, which is also why the results page on this site is empty rather than populated with anonymised stories.',
+        'Anything you tell us on an introductory call is treated as confidential whether or not an agreement follows. We will not name you, quote you or write about your business without your written agreement, which is also why this site carries no anonymised client stories.',
       ],
     },
     {

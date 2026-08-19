@@ -101,7 +101,6 @@ export const proof = {
         'Building and scaling production systems, still writing the code today.',
     },
   ],
-  link: { label: 'Results', href: '/results' },
 }
 
 export const founder = {
@@ -117,5 +116,5 @@ export const founder = {
 export const closingCta = {
   eyebrow: 'Next step',
   heading: 'Worth a conversation?',
-  body: 'Thirty minutes. We will talk about where your team\u2019s time actually goes and whether an audit would find anything worth acting on. If I do not think it would, I will say so on the call.',
+  body: 'Thirty minutes. We will talk about where your team\u2019s time actually goes and whether an audit would find anything worth acting on. If we do not think it would, we will say so on the call.',
 }

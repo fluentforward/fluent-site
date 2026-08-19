@@ -1,4 +1,3 @@
-import { ArrowLink } from '@/components/ui/ArrowLink'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Heading, Lede } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
@@ -32,10 +31,6 @@ export function ProofSection() {
           </Reveal>
         ))}
       </dl>
-
-      <Reveal className="mt-12">
-        <ArrowLink href={proof.link.href}>{proof.link.label}</ArrowLink>
-      </Reveal>
     </Section>
   )
 }
