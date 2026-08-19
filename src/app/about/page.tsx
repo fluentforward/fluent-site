@@ -15,7 +15,7 @@ import {
 } from '@/content/about'
 
 const description =
-  'FluentForward is a one-person AI practice run by Matt Todd. Twenty years building and scaling systems, still writing the code, and the same person advises and delivers.'
+  'FluentForward is a senior-led AI practice run by Matt Todd, with specialists brought in as the work needs them. Twenty years building and scaling systems, and the same person advises and delivers.'
 
 export const metadata: Metadata = {
   title: 'About',

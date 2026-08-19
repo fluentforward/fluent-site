@@ -4,7 +4,7 @@ import { HomeHero } from '@/components/sections/HomeHero'
 import { PhaseRail } from '@/components/sections/PhaseRail'
 import { ProblemSection } from '@/components/sections/ProblemSection'
 import { ProofSection } from '@/components/sections/ProofSection'
-import { QueueTeaser } from '@/components/sections/QueueTeaser'
+import { StrategyBuildTeaser } from '@/components/sections/StrategyBuildTeaser'
 import { TermsStrip } from '@/components/sections/TermsStrip'
 import { closingCta } from '@/content/home'
 import { site } from '@/content/site'
@@ -34,7 +34,7 @@ export default function Home() {
       <TermsStrip />
       <ProblemSection />
       <PhaseRail />
-      <QueueTeaser />
+      <StrategyBuildTeaser />
       <ProofSection />
       <FounderStrip />
       <CtaBand {...closingCta} />

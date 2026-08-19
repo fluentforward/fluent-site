@@ -4,7 +4,7 @@ export const site = {
   url: 'https://fluentforward.com',
   tagline: 'AI implementation for established businesses',
   description:
-    'FluentForward finds the one AI change worth making in your business, builds it, and keeps shipping. Fixed-fee audit and pilot, then an implementation queue with a turnaround guarantee. No hourly billing.',
+    'FluentForward finds the one AI change worth making in your business, builds it, and keeps shipping. A fixed-fee audit and pilot, then ongoing AI strategy and unlimited development requests for a flat monthly fee. No hourly billing.',
   email: 'hello@fluentforward.com',
   privacyEmail: 'privacy@fluentforward.com',
 } as const
@@ -20,7 +20,7 @@ export const footerNav = {
     title: 'The offer',
     links: [
       { label: 'How it works', href: '/how-it-works' },
-      { label: 'The Implementation Queue', href: '/how-it-works#queue' },
+      { label: 'Strategy and Build', href: '/how-it-works#strategy-and-build' },
       { label: 'Common questions', href: '/how-it-works#faq' },
     ],
   },

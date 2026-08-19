@@ -1,7 +1,7 @@
 export const hero = {
   eyebrow: 'How it works',
   heading: 'Three phases. Each one ends in a decision, not an upsell.',
-  lede: 'Phases one and two are fixed fee, agreed in writing before anything starts. Phase three is a flat monthly fee against a turnaround commitment. There is no hourly billing anywhere in this, and nothing rolls over automatically.',
+  lede: 'Phases one and two are fixed fee, agreed in writing before anything starts. Phase three is ongoing strategy and unlimited development for a flat monthly fee. There is no hourly billing anywhere in this, and nothing rolls over automatically.',
 }
 
 export type Phase = {
@@ -19,7 +19,7 @@ export const phases: Phase[] = [
   {
     index: '01',
     name: 'Audit',
-    meta: 'Fixed fee · about 4 weeks · one client at a time',
+    meta: 'Fixed fee · about 4 weeks · founder-led throughout',
     intro:
       'Before anything gets built, we work out what is actually worth building. Four weeks looking closely at how your business runs, from the people who run it.',
     happens: [
@@ -56,32 +56,32 @@ export const phases: Phase[] = [
   },
 ]
 
-export const queue = {
+export const strategyBuild = {
   eyebrow: 'Phase three',
-  heading: 'The Implementation Queue',
-  lede: 'Once a pilot has landed, most businesses discover the same thing: there is a steady stream of small, valuable changes and no sensible way to buy them. Each one is too small to scope as a project and too important to ignore. The queue is the answer to that.',
+  heading: 'Strategy and Build',
+  lede: 'Once a pilot has landed, most businesses discover the same thing: there is a steady stream of small, valuable changes and no sensible way to buy them. Each one is too small to scope as a project and too important to ignore. Phase three answers that with two things — someone senior deciding what matters next, and unlimited development requests to act on it.',
   how: {
-    heading: 'How it runs',
+    heading: 'What you get each month',
     steps: [
-      'You submit a request whenever one occurs to you. No forms to justify it, no meeting to scope it.',
-      'It joins your queue in the order you set. You can reorder it whenever priorities change.',
-      'We pick up the request at the top and deliver it inside the agreed turnaround window.',
-      'As it lands, or as it comes to you for review, the next one starts.',
+      'A strategy session on what has changed, what is working, and what is worth building next.',
+      'Development requests submitted whenever they occur to you. No forms to justify them, no meeting to scope each one.',
+      'Priorities set by you, and reordered by you whenever the business moves.',
+      'Work delivered back inside the turnaround window agreed in your contract.',
     ],
   },
   spec: {
     heading: 'The specification',
-    lede: 'Published in full, because “unlimited” only means something when the limits are written down.',
+    lede: 'Published in full, because “unlimited” only means something when the terms around it are written down.',
     rows: [
+      {
+        term: 'Strategy',
+        value:
+          'A monthly strategy call, so the work stays pointed at things that matter rather than things that are merely annoying.',
+      },
       {
         term: 'Requests',
         value:
           'Unlimited. Submit as many as you like, whenever you like, at no extra cost.',
-      },
-      {
-        term: 'In progress',
-        value:
-          'One at a time. The next request begins once the current one is delivered or sitting with you for review.',
       },
       {
         term: 'Turnaround',
@@ -96,12 +96,7 @@ export const queue = {
       {
         term: 'Larger than that',
         value:
-          'Scoped and quoted as its own project. It never gets quietly absorbed into the queue, and you never get a surprise about why something has taken a month.',
-      },
-      {
-        term: 'Also included',
-        value:
-          'A monthly strategy call, so the queue stays pointed at things that matter rather than things that are merely annoying.',
+          'Scoped and quoted as its own project, so nothing gets quietly absorbed and you never get a surprise about why something has taken a month.',
       },
       {
         term: 'Billing',
@@ -116,7 +111,7 @@ export const queue = {
       {
         term: 'Availability',
         value:
-          'One client slot at a time. When it is taken, it is taken, and you will be told rather than queued behind someone else.',
+          'A deliberately small number of ongoing engagements, so the turnaround window is a commitment rather than an aspiration. If there is a wait, you will be told rather than squeezed in.',
       },
     ],
   },
@@ -162,7 +157,7 @@ export const faq = {
     {
       question: 'Is “unlimited” actually unlimited?',
       answer:
-        'Unlimited requests, yes. Unlimited simultaneous delivery, no, and anyone promising that is quietly relying on you not using it. One request is in progress at a time and the turnaround window is written down, so you can work out exactly what throughput you are buying.',
+        'Yes, in the sense that matters: there is no per-request charge, no ticket allowance, and no bucket of hours to run down. What keeps that honest rather than a marketing line is that the turnaround window and the definition of a request are both written into your contract, so you can work out exactly what throughput you are buying before you sign anything.',
     },
     {
       question: 'Do we have to start with the audit?',
@@ -177,7 +172,12 @@ export const faq = {
     {
       question: 'Who actually does the work?',
       answer:
-        'Matt Todd, throughout. The person on the call is the person writing the code. That is the point of the model, and it is also why the retainer only runs one client slot at a time.',
+        'Matt Todd leads every engagement and stays accountable for it: the interviews, the recommendation, and the review of anything that ships. Where the build needs a particular specialism, it goes to a trusted freelancer from a network built up over twenty years, briefed and reviewed by Matt rather than handed off. You will not be sold by a senior and delivered to by a stranger.',
+    },
+    {
+      question: 'Is a small practice a delivery risk?',
+      answer:
+        'It is a fair question to ask of any supplier. Three things reduce it. The work is documented as it is built rather than afterwards, so your own team or another supplier could pick it up. Anything built for you is handed over to run without us, which is a principle here rather than a favour. And the specialists who touch an engagement are briefed on it, so delivery does not sit behind a single calendar. If a date does need to move, you hear it early and in writing.',
     },
     {
       question: 'What tools do you build with?',

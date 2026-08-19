@@ -5,7 +5,7 @@ import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
 import { FaqSection } from '@/components/sections/FaqSection'
 import { PageHero } from '@/components/sections/PageHero'
 import { PhaseDetail } from '@/components/sections/PhaseDetail'
-import { QueueSection } from '@/components/sections/QueueSection'
+import { StrategyBuildSection } from '@/components/sections/StrategyBuildSection'
 import {
   closingCta,
   faq,
@@ -15,7 +15,7 @@ import {
 } from '@/content/how-it-works'
 
 const description =
-  'A fixed-fee audit, a fixed-fee pilot, then an implementation queue with a written turnaround commitment. Each phase ends in a decision, and there is no hourly billing anywhere.'
+  'A fixed-fee audit, a fixed-fee pilot, then ongoing AI strategy and unlimited development requests against a written turnaround commitment. Each phase ends in a decision, and there is no hourly billing anywhere.'
 
 export const metadata: Metadata = {
   title: 'How it works',
@@ -50,7 +50,7 @@ export default function HowItWorks() {
       {phases.map((phase) => (
         <PhaseDetail key={phase.name} phase={phase} />
       ))}
-      <QueueSection />
+      <StrategyBuildSection />
       <DefinitionGrid
         tone="muted"
         eyebrow={reassurance.eyebrow}

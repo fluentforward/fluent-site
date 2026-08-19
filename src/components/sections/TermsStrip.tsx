@@ -2,7 +2,7 @@ import { Container } from '@/components/ui/Container'
 
 const terms = [
   'Fixed fee audit and pilot',
-  'One request at a time',
+  'Unlimited development',
   'Turnaround in the contract',
   'No hourly billing',
 ]

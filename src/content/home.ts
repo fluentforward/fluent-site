@@ -2,7 +2,7 @@ export const hero = {
   eyebrow: 'AI implementation, not AI advice',
   headline: 'Find the one AI change worth making.',
   headlineSecond: 'Then actually build it.',
-  lede: 'Most businesses do not need an AI strategy. They need one thing built properly, in production, being used. We map how your business really runs, recommend a single bounded pilot, build it, and then stay on to keep shipping.',
+  lede: 'Most businesses do not need another AI strategy deck. They need one thing built properly, in production, being used. We map how your business really runs, recommend a single bounded pilot, build it, and then stay on to keep shipping.',
   audience:
     'For owners and leadership teams of established small and mid-sized businesses.',
   primaryCta: { label: 'Book a call', href: '/contact' },
@@ -43,27 +43,27 @@ export const phasesSection = {
     },
     {
       index: '03',
-      name: 'The Implementation Queue',
+      name: 'Strategy and Build',
       meta: 'Monthly · pause anytime',
       summary:
-        'Submit implementation requests as they come up. We deliver them one at a time, inside a fixed turnaround window, with a monthly strategy call. No scoping meeting for every small thing.',
+        'Ongoing AI strategy plus unlimited development requests. A monthly session to decide what is worth building next, then the building itself, for one flat fee and inside a turnaround window agreed in writing.',
       gate: 'Pause or cancel whenever you like.',
     },
   ],
 }
 
-export const queueTeaser = {
+export const strategyBuildTeaser = {
   eyebrow: 'Phase three',
-  heading: 'The Implementation Queue',
-  lede: 'This is the part clients stay for, and it behaves like a product rather than a retainer. So here is the specification.',
+  heading: 'Strategy and Build',
+  lede: 'This is the part clients stay for: someone senior deciding what to do next, and as much development as you can find work for. It behaves like a product rather than a retainer, so here is the specification.',
   points: [
     {
-      term: 'Requests',
-      value: 'Unlimited. Add them whenever you think of them.',
+      term: 'Strategy',
+      value: 'A monthly session on what is worth building next.',
     },
     {
-      term: 'In progress',
-      value: 'One at a time. The next starts as the current one lands.',
+      term: 'Development',
+      value: 'Unlimited requests. Add them whenever you think of them.',
     },
     {
       term: 'Turnaround',
@@ -74,7 +74,10 @@ export const queueTeaser = {
       value: 'A flat monthly fee. Never hours.',
     },
   ],
-  link: { label: 'Read the full specification', href: '/how-it-works#queue' },
+  link: {
+    label: 'Read the full specification',
+    href: '/how-it-works#strategy-and-build',
+  },
 }
 
 export const proof = {
@@ -93,9 +96,9 @@ export const proof = {
         'Time saved in mapped conveyancing workflows after a single targeted change.',
     },
     {
-      figure: '1 of 1',
+      figure: '20 years',
       label:
-        'Requests in progress at any time. Capacity is managed honestly, not oversold.',
+        'Building and scaling production systems, still writing the code today.',
     },
   ],
   link: { label: 'Results', href: '/results' },
@@ -103,9 +106,10 @@ export const proof = {
 
 export const founder = {
   eyebrow: 'Who does the work',
-  heading: 'One person, and it is the person you spoke to.',
+  heading: 'Senior-led, and the senior stays on the work.',
   paragraphs: [
-    'Matt Todd. Technical founder, still writing the code. You will not be sold by a senior and delivered to by a junior, because there is no junior. The trade-off is honest: capacity is limited, so the retainer runs one client slot at a time.',
+    'Matt Todd runs every engagement end to end: the interviews, the recommendation, and accountability for whatever ships. A technical founder who still writes code, so nothing gets recommended that has not been thought through as a build.',
+    'Where a piece of work needs a particular specialism, it goes to someone from a network built up over twenty years, briefed and reviewed by the person you spoke to. Senior judgement throughout, and capacity that scales with the work rather than a bench you pay for either way.',
   ],
   link: { label: 'More about the practice', href: '/about' },
 }

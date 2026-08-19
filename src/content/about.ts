@@ -1,7 +1,7 @@
 export const hero = {
   eyebrow: 'About',
   heading: 'I build the things I recommend.',
-  lede: 'FluentForward is a one-person practice, deliberately. It exists because the gap in the market is not advice about AI, of which there is an oversupply, but people who will advise and then deliver the thing they advised.',
+  lede: 'FluentForward is deliberately senior-led: the person who works out what your business needs is the person accountable for building it. It exists because the gap in the market is not advice about AI, of which there is an oversupply, but people who will advise and then deliver the thing they advised.',
 }
 
 export const story = {
@@ -22,8 +22,8 @@ export const background = {
       body: 'Grew e-commerce platforms from thousands to tens of millions of orders a day, on less infrastructure and at lower cost than the volume would suggest. Most of that came from removing work, not adding capacity.',
     },
     {
-      title: 'Full-stack delivery',
-      body: 'Strategy, architecture and implementation from the same person. No translation layer between the thinking and the building, which is usually where the value quietly leaks out.',
+      title: 'Full-stack delivery, with specialists on call',
+      body: 'Strategy, architecture and implementation owned by one person, with trusted freelancers brought in when a job needs a particular skill. No translation layer between the thinking and the building, which is usually where the value quietly leaks out.',
     },
     {
       title: 'Measured process work',
@@ -42,7 +42,7 @@ export const principles = {
   items: [
     {
       title: 'One thing at a time',
-      body: 'Concurrency is where delivery quality goes to die. One audit, one pilot, one request in progress. It caps how much work I can take on, which is the point.',
+      body: 'Concurrency is where delivery quality goes to die. Your engagement has one active priority, finished before the next one starts, so progress is visible rather than spread thinly across a wish list.',
     },
     {
       title: 'A no is a valid outcome',

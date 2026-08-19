@@ -69,7 +69,7 @@ export default function OpengraphImage() {
           }}
         >
           <span>Fixed fee audit and pilot</span>
-          <span>One request at a time</span>
+          <span>Unlimited development</span>
           <span>No hourly billing</span>
         </div>
       </div>
