@@ -1,28 +1,27 @@
-import Link from 'next/link'
-
-import { Container } from '@/components/Container'
-import { FadeIn } from '@/components/FadeIn'
+import { Button } from '@/components/ui/Button'
+import { Container } from '@/components/ui/Container'
+import { Eyebrow } from '@/components/ui/Eyebrow'
+import { Heading, Lede } from '@/components/ui/Heading'
 
 export default function NotFound() {
   return (
-    <Container className="flex h-full items-center pt-24 sm:pt-32 lg:pt-40">
-      <FadeIn className="flex max-w-xl flex-col items-center text-center">
-        <p className="font-display text-4xl font-semibold text-neutral-950 sm:text-5xl">
-          404
-        </p>
-        <h1 className="mt-4 font-display text-2xl font-semibold text-neutral-950">
-          Page not found
-        </h1>
-        <p className="mt-2 text-sm text-neutral-600">
-          Sorry, we couldn’t find the page you’re looking for.
-        </p>
-        <Link
-          href="/"
-          className="mt-4 text-sm font-semibold text-fluent-red transition hover:text-charcoal"
-        >
-          Go to the home page
-        </Link>
-      </FadeIn>
+    <Container className="py-28 md:py-40">
+      <div className="max-w-xl">
+        <Eyebrow>Error 404</Eyebrow>
+        <Heading as="h1" size="display-sm" className="mt-6">
+          That page is not here.
+        </Heading>
+        <Lede className="mt-6">
+          It may have moved, or it may never have existed. Either way, the three
+          pages that matter are the offer, the practice, and a way to reach us.
+        </Lede>
+        <div className="mt-9 flex flex-wrap gap-4">
+          <Button href="/how-it-works">How it works</Button>
+          <Button href="/" variant="secondary">
+            Back to home
+          </Button>
+        </div>
+      </div>
     </Container>
   )
 }
