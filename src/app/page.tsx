@@ -1,3 +1,4 @@
+import { AppExamplesSection } from '@/components/sections/AppExamplesSection'
 import { CtaBand } from '@/components/sections/CtaBand'
 import { FounderStrip } from '@/components/sections/FounderStrip'
 import { HomeHero } from '@/components/sections/HomeHero'
@@ -33,6 +34,7 @@ export default function Home() {
       <HomeHero />
       <TermsStrip />
       <ProblemSection />
+      <AppExamplesSection />
       <PhaseRail />
       <StrategyBuildTeaser />
       <ProofSection />

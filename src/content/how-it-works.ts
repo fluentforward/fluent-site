@@ -1,7 +1,7 @@
 export const hero = {
   eyebrow: 'How it works',
   heading: 'Three phases. Each one ends in a decision, not an upsell.',
-  lede: 'Phases one and two are fixed fee, agreed in writing before anything starts. Phase three is ongoing strategy and unlimited development for a flat monthly fee. There is no hourly billing anywhere in this, and nothing rolls over automatically.',
+  lede: 'Phases one and two are fixed fee, agreed in writing before anything starts. Phase three is ongoing strategy and unlimited development on the internal platform, for a flat monthly fee. There is no hourly billing anywhere in this, and nothing rolls over automatically.',
 }
 
 export type Phase = {
@@ -21,7 +21,7 @@ export const phases: Phase[] = [
     name: 'Audit',
     meta: 'Fixed fee · about 4 weeks · founder-led throughout',
     intro:
-      'Before anything gets built, we work out what is actually worth building. Four weeks looking closely at how your business runs, from the people who run it.',
+      'Before anything gets built, we work out what is actually worth building. Four weeks looking closely at how your business runs, from the people who run it. Sometimes the answer is do not build.',
     happens: [
       'Interviews with three to five people across the business, including the ones doing the work rather than only the ones describing it.',
       'Process mapping across sales, marketing and operations, following the work rather than the org chart.',
@@ -30,41 +30,41 @@ export const phases: Phase[] = [
     deliverables: [
       'A written report you can hand to anyone, including your own team or another supplier.',
       'A prioritised opportunity map, ordered by value rather than by novelty.',
-      'One recommended pilot, scoped and costed, ready to start or ready to shelve.',
+      'One recommended next step, scoped and costed — usually a named app the people we interviewed would log into, ready to start or ready to shelve.',
     ],
     gate: 'Stop here and the report is yours. There is no obligation to continue, and the recommendation is written to be useful even if we never speak again.',
     boundary:
-      'The audit is recommendations only. We do not build during it, even when asked to, because a four week window spent building is a four week window not spent finding out what to build.',
+      'The audit is recommendations only. We do not build during it, even when asked to, because a four week window spent building is a four week window not spent finding out what, if anything, to build.',
   },
   {
     index: '02',
     name: 'Pilot',
     meta: 'Fixed fee · 4 to 8 weeks · scoped at the end of the audit',
     intro:
-      'One recommendation, built properly and put in front of the people who will use it. The fee is agreed before work starts and does not move unless you change the scope.',
+      'When the recommended next step is an app, we build it properly and put it in front of the people who will use it. The fee is agreed before work starts and does not move unless you change the scope.',
     happens: [
-      'We build the single pilot the audit recommended, using whatever tooling actually fits the problem.',
+      'We build the named app or internal platform the Audit recommended. Real UX. Used by the people we interviewed.',
       'It goes into your business rather than a sandbox, with real data and real users.',
       'We stay close to the people using it while it settles, because the first week of real use always teaches you something the spec did not.',
     ],
     deliverables: [
-      'A working system, running, owned by you.',
+      'A working app, running, owned by you. Their team logs into it.',
       'A short adoption note covering how it runs, what to watch, and what to do when it misbehaves.',
       'An honest read on whether it worked, including the parts that did not.',
     ],
-    gate: 'Stop here and the pilot keeps running. Plenty of engagements should end at this point, and saying so is part of the job.',
+    gate: 'Stop here and the app keeps running. Plenty of engagements should end at this point, and saying so is part of the job.',
   },
 ]
 
 export const strategyBuild = {
   eyebrow: 'Phase three',
   heading: 'Strategy and Build',
-  lede: 'Once a pilot has landed, most businesses discover the same thing: there is a steady stream of small, valuable changes and no sensible way to buy them. Each one is too small to scope as a project and too important to ignore. Phase three answers that with two things — someone senior deciding what matters next, and unlimited development requests to act on it.',
+  lede: 'Once the app has landed, grow the platform. Most businesses discover the same thing: there is a steady stream of small, valuable changes and no sensible way to buy them. Each one is too small to scope as a project and too important to ignore. Phase three answers that with two things — someone senior deciding what matters next, and unlimited development on the internal platform.',
   how: {
     heading: 'What you get each month',
     steps: [
-      'A strategy session on what has changed, what is working, and what is worth building next.',
-      'Development requests submitted whenever they occur to you. No forms to justify them, no meeting to scope each one.',
+      'A strategy session on what the app is doing.',
+      'Requests against the platform, submitted whenever they occur to you. No forms to justify them, no meeting to scope each one.',
       'Priorities set by you, and reordered by you whenever the business moves.',
       'Work delivered back inside the turnaround window agreed in your contract.',
     ],
@@ -91,7 +91,7 @@ export const strategyBuild = {
       {
         term: 'One request',
         value:
-          'A single automation, a single build, or a single workflow change. Defined in the contract, not decided case by case.',
+          'One increment of the platform: a screen, a workflow inside the app, or a second named app that sits with it.',
       },
       {
         term: 'Larger than that',
@@ -152,7 +152,7 @@ export const faq = {
     {
       question: 'What if my request is bigger than “one request”?',
       answer:
-        'Then it is not a request, it is a project, and we scope and quote it as one. The threshold is written into your contract so this is a boring conversation rather than an argument. Holding that line is the only reason unlimited requests can work at all.',
+        'Then it is not a request, it is a project, and we scope and quote it as one. The threshold is written into your contract so this is a boring conversation rather than an argument. Holding that line is the only reason unlimited requests can work at all. A request can still be a single automation, a single build, or a single workflow change when that is the honest increment. The picture on the site is the named app those sit inside, not invisible automations nobody on the team can see.',
     },
     {
       question: 'Is “unlimited” actually unlimited?',
@@ -185,5 +185,5 @@ export const faq = {
 export const closingCta = {
   eyebrow: 'Next step',
   heading: 'Start with a conversation, not a commitment.',
-  body: 'Thirty minutes to work out whether an audit would find anything worth acting on in your business. If it would not, that is a useful answer too, and it costs you half an hour to get it.',
+  body: 'Thirty minutes. We will talk about where your team\u2019s time actually goes and whether an Audit would find anything worth acting on. If I do not think it would, I will say so on the call.',
 }
