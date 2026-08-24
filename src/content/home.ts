@@ -20,6 +20,33 @@ export const problem = {
     'That is the whole job here. Look closely, pick the one internal app worth building, ship it, put it in front of the people who do the work, then keep going.',
 }
 
+export const appExamples = {
+  heading: 'What that looks like in the business.',
+  lede: 'Examples of named apps a team could log into. Not a list of work we have already shipped.',
+  examples: [
+    {
+      name: 'Deal room',
+      description:
+        'Sales leadership and AEs log in. The live pipeline, the next action, and the messy exceptions sit in one place, instead of a spreadsheet plus Slack.',
+    },
+    {
+      name: 'Operations queue',
+      description:
+        'The people who run one messy process log in: handoffs, status, exceptions. The work moves in the app, so nobody has to chase a thread.',
+    },
+    {
+      name: 'Briefing desk',
+      description:
+        'Marketing or sales ops log in. A request comes in, an AI draft comes back, a human signs off, and the record stays in one app.',
+    },
+    {
+      name: 'Weekly operating view',
+      description:
+        'The owner or leadership team logs in. They get the few numbers and flags they actually use, not another BI graveyard.',
+    },
+  ],
+}
+
 export const phasesSection = {
   eyebrow: 'How we work',
   heading: 'Three phases. Each one ends in a decision.',
