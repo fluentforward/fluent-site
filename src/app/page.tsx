@@ -1,10 +1,8 @@
-import { AppExamplesSection } from '@/components/sections/AppExamplesSection'
+import { SectorsSection } from '@/components/sections/SectorsSection'
 import { CtaBand } from '@/components/sections/CtaBand'
-import { FounderStrip } from '@/components/sections/FounderStrip'
 import { HomeHero } from '@/components/sections/HomeHero'
 import { PhaseRail } from '@/components/sections/PhaseRail'
 import { ProblemSection } from '@/components/sections/ProblemSection'
-import { ProofSection } from '@/components/sections/ProofSection'
 import { StrategyBuildTeaser } from '@/components/sections/StrategyBuildTeaser'
 import { TermsStrip } from '@/components/sections/TermsStrip'
 import { closingCta } from '@/content/home'
@@ -34,11 +32,9 @@ export default function Home() {
       <HomeHero />
       <TermsStrip />
       <ProblemSection />
-      <AppExamplesSection />
+      <SectorsSection />
       <PhaseRail />
       <StrategyBuildTeaser />
-      <ProofSection />
-      <FounderStrip />
       <CtaBand {...closingCta} />
     </>
   )

@@ -1,10 +1,10 @@
 export const hero = {
   eyebrow: 'AI implementation, not AI advice',
-  headline: 'Find the one internal app worth building.',
-  headlineSecond: 'Then actually ship it.',
-  lede: 'Most businesses do not need another AI strategy deck. They need a harness: a unique, named app or platform their people log into, with real UX, built around AI they can actually use. We map how the business really runs, recommend one next step, build it for the people we interviewed, and then stay on to grow it.',
+  headline: 'Do more with the team you have.',
+  headlineSecond: 'We build the AI systems that make that true.',
+  lede: 'Established businesses should not need an expensive engineering bench, or an offshore team to manage, to get real AI and software into production. FluentForward designs and ships the named apps and platforms your operators use — unlocking new capability and capacity, fixed-fee and senior-led, without standing up a tech department.',
   audience:
-    'For owners and leadership teams of established small and mid-sized businesses.',
+    'For owners and leadership teams of established businesses.',
   primaryCta: { label: 'Book a call', href: '/contact' },
   secondaryCta: { label: 'See how it works', href: '/how-it-works' },
 }
@@ -14,43 +14,47 @@ export const problem = {
   heading: 'You already know AI matters. That is not the hard part.',
   paragraphs: [
     'The hard part is that every route in looks either trivial or enormous. A chatbot nobody opens, invisible automations nobody on the team can see, or a transformation programme with a two-year horizon and a budget to match. None of those is a sensible first move for a business that still has a quarter to run.',
-    'So it stalls. A few licences get bought, a few experiments run in isolation, and a year later nothing has structurally changed. The named app their team would actually open never gets built, because nobody has looked closely enough at how the work actually moves to design it.',
+    'So it stalls. A few licences get bought, a few experiments run in isolation, and a year later nothing has structurally changed, and the team is still the same size, or managing an offshore bench that never quite shipped. The named app their team would actually open never gets built, because nobody has looked closely enough at how the work actually moves to design it.',
   ],
   closing:
     'That is the whole job here. Look closely, pick the one internal app worth building, ship it, put it in front of the people who do the work, then keep going.',
 }
 
-export const appExamples = {
-  heading: 'What that looks like in the business.',
-  lede: 'Examples of named apps a team could log into. Not a list of work we have already shipped.',
-  examples: [
+export const sectors = {
+  heading: 'Sectors we know from the inside.',
+  lede: 'Production systems across the industries below — the same shape of work we do now.',
+  items: [
     {
-      name: 'Deal room',
-      description:
-        'Sales leadership and AEs log in. The live pipeline, the next action, and the messy exceptions sit in one place, instead of a spreadsheet plus Slack.',
+      title: 'Energy and utilities',
+      body: 'Bespoke client and operations platforms for energy sales and delivery teams. Pipeline, contracts, and the day-to-day work of running the book, in one place.',
     },
     {
-      name: 'Operations queue',
-      description:
-        'The people who run one messy process log in: handoffs, status, exceptions. The work moves in the app, so nobody has to chase a thread.',
+      title: 'eCommerce and retail operations',
+      body: 'Production systems for high-volume order handling, scaled from thousands to millions of orders a day as the business grew.',
     },
     {
-      name: 'Briefing desk',
-      description:
-        'Marketing or sales ops log in. A request comes in, an AI draft comes back, a human signs off, and the record stays in one app.',
+      title: 'Transport and mobility',
+      body: 'Internal ops and customer-facing platforms across private aviation, parking, and taxi and rideshare operations.',
     },
     {
-      name: 'Weekly operating view',
-      description:
-        'The owner or leadership team logs in. They get the few numbers and flags they actually use, not another BI graveyard.',
+      title: 'Finance',
+      body: 'Payroll platform rearchitecture, invoice-financing customer and back-office systems, and internal platforms for investment management.',
+    },
+    {
+      title: 'Healthcare',
+      body: 'Regulated product work: technical rescue and oversight, multi-system prescription and fulfilment platforms, and hands-on build on clinical matching products.',
     },
   ],
+  alsoDelivered: {
+    title: 'Also delivered',
+    body: 'Via partner agencies: education and attractions sites, defence integrations, automotive launch apps, and realtime creative tools.',
+  },
 }
 
 export const phasesSection = {
   eyebrow: 'How we work',
   heading: 'Three phases. Each one ends in a decision.',
-  lede: 'Nothing here commits you to the next thing. Every phase is scoped so that stopping at the end of it still leaves you better off than when you started.',
+  lede: 'Each phase is scoped, priced, and designed to leave you stronger than when you started. You only continue when the next step has earned it.',
   phases: [
     {
       index: '01',
@@ -107,41 +111,8 @@ export const strategyBuildTeaser = {
   },
 }
 
-export const proof = {
-  eyebrow: 'Track record',
-  heading: 'Twenty years of shipping systems, not recommending them.',
-  lede: 'Client case studies from this offer are still in flight. Rather than fill the space with logos that are not ours yet, here is the prior work the judgement is built on.',
-  credentials: [
-    {
-      figure: 'Millions/day',
-      label:
-        'Scaled e-commerce systems from thousands to tens of millions of orders a day, on less infrastructure.',
-    },
-    {
-      figure: '40–60%',
-      label:
-        'Time saved in mapped conveyancing workflows after a single targeted change.',
-    },
-    {
-      figure: '20 years',
-      label:
-        'Building and scaling production systems, still writing the code today.',
-    },
-  ],
-}
-
-export const founder = {
-  eyebrow: 'Who does the work',
-  heading: 'Senior-led, and the senior stays on the work.',
-  paragraphs: [
-    'Matt Todd runs every engagement end to end: the interviews, the recommendation, and accountability for whatever ships. A technical founder who still writes code, so nothing gets recommended that has not been thought through as something people will actually log into.',
-    'Where a piece of work needs a particular specialism, it goes to someone from a network built up over twenty years, briefed and reviewed by the person you spoke to. Senior judgement throughout, and capacity that scales with the work rather than a bench you pay for either way.',
-  ],
-  link: { label: 'More about the practice', href: '/about' },
-}
-
 export const closingCta = {
   eyebrow: 'Next step',
   heading: 'Worth a conversation?',
-  body: 'Thirty minutes. We will talk about where your team\u2019s time actually goes and whether an Audit would find anything worth acting on. If I do not think it would, I will say so on the call.',
+  body: 'Thirty minutes. We will talk about where your team\u2019s time actually goes and whether an Audit would find anything worth acting on. If we do not think it would, we will say so on the call.',
 }

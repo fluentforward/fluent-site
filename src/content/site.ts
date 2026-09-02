@@ -2,7 +2,8 @@ export const site = {
   name: 'FluentForward',
   legalName: 'FluentForward Limited',
   url: 'https://fluentforward.com',
-  tagline: 'AI implementation for established businesses',
+  tagline:
+    'Senior-led AI implementation for established businesses. We find the one internal app worth building, ship it, and keep growing the platform.',
   description:
     'FluentForward finds the one AI change worth making in your business, builds it, and keeps shipping. A fixed-fee audit and pilot, then ongoing AI strategy and unlimited development requests for a flat monthly fee. No hourly billing.',
   email: 'hello@fluentforward.com',
@@ -11,7 +12,7 @@ export const site = {
 
 export const nav = [
   { label: 'How it works', href: '/how-it-works' },
-  { label: 'About', href: '/about' },
+  { label: 'Practice', href: '/about' },
 ] as const
 
 export const footerNav = {
@@ -24,9 +25,10 @@ export const footerNav = {
     ],
   },
   company: {
-    title: 'Company',
+    title: 'Practice',
     links: [
-      { label: 'About', href: '/about' },
+      { label: 'About the practice', href: '/about' },
+      { label: 'Track record', href: '/about#background' },
       { label: 'Book a call', href: '/contact' },
     ],
   },

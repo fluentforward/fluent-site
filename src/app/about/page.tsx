@@ -14,15 +14,12 @@ import {
   story,
 } from '@/content/about'
 
-const description =
-  'FluentForward is a senior-led AI practice run by Matt Todd, with specialists brought in as the work needs them. Twenty years building and scaling systems, and the same person advises and delivers.'
-
 export const metadata: Metadata = {
-  title: 'About',
-  description,
+  title: 'Practice',
+  description: hero.lede,
   alternates: { canonical: '/about' },
-  openGraph: { title: 'About', description, url: '/about' },
-  twitter: { title: 'About', description },
+  openGraph: { title: 'Practice', description: hero.lede, url: '/about' },
+  twitter: { title: 'Practice', description: hero.lede },
 }
 
 export default function About() {
@@ -34,20 +31,22 @@ export default function About() {
         lede={hero.lede}
       />
 
-      <Section tone="muted">
-        <div className="grid gap-10 lg:grid-cols-[16rem_1fr] lg:gap-16">
-          <Reveal>
+      <Section tone="muted" border>
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <Reveal className="lg:col-span-4">
             <Eyebrow className="lg:sticky lg:top-28">{story.eyebrow}</Eyebrow>
           </Reveal>
-          <Reveal delay={80} className="max-w-2xl space-y-6">
-            {story.paragraphs.map((paragraph) => (
-              <p
-                key={paragraph}
-                className="text-[1.0625rem] leading-relaxed text-slate"
-              >
-                {paragraph}
-              </p>
-            ))}
+          <Reveal delay={80} className="lg:col-span-8">
+            <div className="space-y-6 border-l border-line pl-8 md:pl-10">
+              {story.paragraphs.map((paragraph) => (
+                <p
+                  key={paragraph}
+                  className="text-[1.0625rem] leading-relaxed text-slate"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
           </Reveal>
         </div>
       </Section>
@@ -56,6 +55,7 @@ export default function About() {
         eyebrow={background.eyebrow}
         heading={background.heading}
         items={background.items}
+        id="background"
       />
 
       <DefinitionGrid
@@ -63,6 +63,7 @@ export default function About() {
         eyebrow={principles.eyebrow}
         heading={principles.heading}
         items={principles.items}
+        id="principles"
       />
 
       <CtaBand {...closingCta} />
