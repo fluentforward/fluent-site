@@ -20,31 +20,35 @@ export const problem = {
     'That is the whole job here. Look closely, pick the one internal app worth building, ship it, put it in front of the people who do the work, then keep going.',
 }
 
-export const appExamples = {
-  heading: 'What that looks like in the business.',
-  lede: 'Examples of named apps a team could log into. Not a list of work we have already shipped.',
-  examples: [
+export const sectors = {
+  heading: 'Sectors we know from the inside.',
+  lede: 'Named apps and platforms built for operators in regulated and high-volume industries. The shape of the work, without a logo wall.',
+  items: [
     {
-      name: 'Deal room',
-      description:
-        'Sales leadership and AEs log in. The live pipeline, the next action, and the messy exceptions sit in one place, instead of a spreadsheet plus Slack.',
+      title: 'Energy and utilities',
+      body: 'Bespoke client and operations platforms for energy sales and delivery teams. Pipeline, contracts, and the day-to-day work of running the book, in one place.',
     },
     {
-      name: 'Operations queue',
-      description:
-        'The people who run one messy process log in: handoffs, status, exceptions. The work moves in the app, so nobody has to chase a thread.',
+      title: 'eCommerce and retail operations',
+      body: 'Production systems for high-volume order handling, scaled from thousands to millions of orders a day as the business grew.',
     },
     {
-      name: 'Briefing desk',
-      description:
-        'Marketing or sales ops log in. A request comes in, an AI draft comes back, a human signs off, and the record stays in one app.',
+      title: 'Transport and mobility',
+      body: 'Internal ops and customer-facing platforms across private aviation, parking, and taxi and rideshare operations.',
     },
     {
-      name: 'Weekly operating view',
-      description:
-        'The owner or leadership team logs in. They get the few numbers and flags they actually use, not another BI graveyard.',
+      title: 'Finance',
+      body: 'Payroll platform rearchitecture, invoice-financing customer and back-office systems, and internal platforms for investment management.',
+    },
+    {
+      title: 'Healthcare',
+      body: 'Regulated product work: technical rescue and oversight, multi-system prescription and fulfilment platforms, and hands-on build on clinical matching products.',
     },
   ],
+  alsoDelivered: {
+    title: 'Also delivered',
+    body: 'Via partner agencies: education and attractions sites, defence integrations, automotive launch apps, and realtime creative tools.',
+  },
 }
 
 export const phasesSection = {
