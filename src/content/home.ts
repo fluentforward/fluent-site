@@ -4,7 +4,7 @@ export const hero = {
   headlineSecond: 'Then actually ship it.',
   lede: 'Most businesses do not need another AI strategy deck. They need a harness: a unique, named app or platform their people log into, with real UX, built around AI they can actually use. We map how the business really runs, recommend one next step, build it for the people we interviewed, and then stay on to grow it.',
   audience:
-    'For owners and leadership teams of established small and mid-sized businesses.',
+    'For owners and leadership teams of established businesses.',
   primaryCta: { label: 'Book a call', href: '/contact' },
   secondaryCta: { label: 'See how it works', href: '/how-it-works' },
 }
@@ -110,7 +110,7 @@ export const strategyBuildTeaser = {
 export const proof = {
   eyebrow: 'Track record',
   heading: 'Twenty years of shipping systems, not recommending them.',
-  lede: 'Client case studies from this offer are still in flight. Rather than fill the space with logos that are not ours yet, here is the prior work the judgement is built on.',
+  lede: 'The judgement behind this practice is built on prior work shipping production systems. The measures below are the ones we publish.',
   credentials: [
     {
       figure: 'Millions/day',
@@ -133,15 +133,15 @@ export const proof = {
 export const founder = {
   eyebrow: 'Who does the work',
   heading: 'Senior-led, and the senior stays on the work.',
-  paragraphs: [
-    'Matt Todd runs every engagement end to end: the interviews, the recommendation, and accountability for whatever ships. A technical founder who still writes code, so nothing gets recommended that has not been thought through as something people will actually log into.',
-    'Where a piece of work needs a particular specialism, it goes to someone from a network built up over twenty years, briefed and reviewed by the person you spoke to. Senior judgement throughout, and capacity that scales with the work rather than a bench you pay for either way.',
-  ],
+  body:
+    'FluentForward is principal-led. Matt Todd runs every engagement end to end: the interviews, the recommendation, and accountability for whatever ships. A technical founder who still writes code, so nothing gets recommended that has not been thought through as something people will actually log into.',
+  secondary:
+    'Where a piece of work needs a particular specialism, it goes to a network of specialists we brief and review. Senior judgement stays with the practice throughout, and capacity scales with the work rather than a bench you pay for either way.',
   link: { label: 'More about the practice', href: '/about' },
 }
 
 export const closingCta = {
   eyebrow: 'Next step',
   heading: 'Worth a conversation?',
-  body: 'Thirty minutes. We will talk about where your team\u2019s time actually goes and whether an Audit would find anything worth acting on. If I do not think it would, I will say so on the call.',
+  body: 'Thirty minutes. We will talk about where your team\u2019s time actually goes and whether an Audit would find anything worth acting on. If we do not think it would, we will say so on the call.',
 }

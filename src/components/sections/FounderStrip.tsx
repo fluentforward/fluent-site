@@ -8,20 +8,24 @@ import { founder } from '@/content/home'
 export function FounderStrip() {
   return (
     <Section tone="muted" size="compact">
-      <div className="grid gap-10 lg:grid-cols-[16rem_1fr] lg:gap-16">
-        <Reveal>
+      <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <Reveal className="lg:col-span-5">
           <Eyebrow>{founder.eyebrow}</Eyebrow>
-        </Reveal>
-        <Reveal delay={80} className="max-w-2xl">
-          <Heading as="h2" size="sub">
+          <Heading as="h2" size="sub" className="mt-5">
             {founder.heading}
           </Heading>
-          {founder.paragraphs.map((paragraph) => (
-            <p key={paragraph} className="mt-5 leading-relaxed text-slate">
-              {paragraph}
-            </p>
-          ))}
-          <div className="mt-7">
+        </Reveal>
+
+        <Reveal delay={80} className="lg:col-span-7">
+          <p className="text-[1.0625rem] leading-relaxed text-slate">
+            {founder.body}
+          </p>
+
+          <p className="mt-8 border-t border-line pt-8 text-sm leading-relaxed text-slate">
+            {founder.secondary}
+          </p>
+
+          <div className="mt-8">
             <ArrowLink href={founder.link.href}>{founder.link.label}</ArrowLink>
           </div>
         </Reveal>
