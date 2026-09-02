@@ -6,16 +6,18 @@ import { cal, calConfigJson } from '@/content/cal'
 type Variant = 'primary' | 'secondary' | 'onDark' | 'onDarkGhost'
 
 const variantClasses: Record<Variant, string> = {
-  primary: 'bg-ink text-paper hover:bg-ink-3',
+  primary:
+    'bg-ink text-paper hover:bg-ink-3 active:scale-[0.98] active:bg-ink-2',
   secondary:
-    'border-line-strong text-ink hover:bg-paper-2 border bg-transparent',
-  onDark: 'bg-paper text-ink hover:bg-paper-3',
+    'border-line-strong text-ink hover:bg-paper-2 active:scale-[0.98] active:bg-paper-3 border bg-transparent',
+  onDark:
+    'bg-paper text-ink hover:bg-paper-3 active:scale-[0.98] active:bg-paper-2',
   onDarkGhost:
-    'border-line-dark text-paper hover:bg-ink-3 border bg-transparent',
+    'border-line-dark text-paper hover:bg-ink-3 active:scale-[0.98] border bg-transparent',
 }
 
 const base =
-  'rounded-btn inline-flex items-center justify-center gap-2 px-6 py-3.5 text-[0.9375rem] font-medium transition-colors duration-200'
+  'rounded-btn inline-flex items-center justify-center gap-2 px-7 py-3.5 text-[0.9375rem] font-medium transition-[color,background-color,transform,box-shadow] duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]'
 
 type BaseProps = {
   variant?: Variant

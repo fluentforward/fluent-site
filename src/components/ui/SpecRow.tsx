@@ -16,7 +16,7 @@ export function SpecRow({
   return (
     <div
       className={clsx(
-        'grid gap-2 border-t py-5 first:border-t-0 first:pt-0 md:grid-cols-[13rem_1fr] md:gap-8',
+        'grid gap-2 border-t py-6 first:border-t-0 first:pt-0 md:grid-cols-[13rem_1fr] md:gap-8',
         tone === 'light' ? 'border-line' : 'border-line-dark',
       )}
     >
@@ -28,7 +28,7 @@ export function SpecRow({
       >
         {term}
       </dt>
-      <dd className={tone === 'light' ? 'text-ink' : 'text-paper'}>
+      <dd className={tone === 'light' ? 'text-ink leading-[1.72]' : 'text-paper leading-[1.72]'}>
         {children}
       </dd>
     </div>

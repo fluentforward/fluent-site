@@ -16,7 +16,7 @@ export function ArrowLink({
     <Link
       href={href}
       className={clsx(
-        'group inline-flex items-center gap-2 text-[0.9375rem] font-medium underline decoration-line-strong underline-offset-[6px] transition-colors',
+        'group inline-flex items-center gap-2.5 text-[0.9375rem] font-medium underline decoration-line-strong underline-offset-[7px] transition-[color,text-decoration-color] duration-300',
         tone === 'light'
           ? 'text-ink hover:text-steel hover:decoration-steel'
           : 'text-paper decoration-line-dark hover:text-paper',
@@ -26,7 +26,7 @@ export function ArrowLink({
       {children}
       <span
         aria-hidden="true"
-        className="transition-transform duration-200 group-hover:translate-x-1"
+        className="transition-transform duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:translate-x-1"
       >
         &rarr;
       </span>

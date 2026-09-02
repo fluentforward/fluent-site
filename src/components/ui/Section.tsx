@@ -39,9 +39,9 @@ export function Section({
           (tone === 'ink'
             ? 'border-t border-line-dark'
             : 'border-t border-line'),
-        size === 'compact' && 'py-14 md:py-20',
-        size === 'default' && 'py-20 md:py-28',
-        size === 'loose' && 'py-24 md:py-36',
+        size === 'compact' && 'py-16 md:py-24',
+        size === 'default' && 'py-24 md:py-36',
+        size === 'loose' && 'py-28 md:py-44',
         className,
       )}
     >
