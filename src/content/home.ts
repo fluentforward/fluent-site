@@ -1,8 +1,8 @@
 export const hero = {
   eyebrow: 'AI implementation, not AI advice',
-  headline: 'Find the one internal app worth building.',
-  headlineSecond: 'Then actually ship it.',
-  lede: 'Most businesses do not need another AI strategy deck. They need a harness: a unique, named app or platform their people log into, with real UX, built around AI they can actually use. We map how the business really runs, recommend one next step, build it for the people we interviewed, and then stay on to grow it.',
+  headline: 'Do more with the team you have.',
+  headlineSecond: 'We build the AI systems that make that true.',
+  lede: 'Established businesses should not need an expensive engineering bench, or an offshore team to manage, to get real AI and software into production. FluentForward designs and ships the named apps and platforms your operators use — unlocking new capability and capacity, fixed-fee and senior-led, without standing up a tech department.',
   audience:
     'For owners and leadership teams of established businesses.',
   primaryCta: { label: 'Book a call', href: '/contact' },
@@ -14,7 +14,7 @@ export const problem = {
   heading: 'You already know AI matters. That is not the hard part.',
   paragraphs: [
     'The hard part is that every route in looks either trivial or enormous. A chatbot nobody opens, invisible automations nobody on the team can see, or a transformation programme with a two-year horizon and a budget to match. None of those is a sensible first move for a business that still has a quarter to run.',
-    'So it stalls. A few licences get bought, a few experiments run in isolation, and a year later nothing has structurally changed. The named app their team would actually open never gets built, because nobody has looked closely enough at how the work actually moves to design it.',
+    'So it stalls. A few licences get bought, a few experiments run in isolation, and a year later nothing has structurally changed, and the team is still the same size, or managing an offshore bench that never quite shipped. The named app their team would actually open never gets built, because nobody has looked closely enough at how the work actually moves to design it.',
   ],
   closing:
     'That is the whole job here. Look closely, pick the one internal app worth building, ship it, put it in front of the people who do the work, then keep going.',
@@ -22,7 +22,7 @@ export const problem = {
 
 export const sectors = {
   heading: 'Sectors we know from the inside.',
-  lede: 'Named apps and platforms built for operators in regulated and high-volume industries. The shape of the work, without a logo wall.',
+  lede: 'Production systems across the industries below — the same shape of work we do now.',
   items: [
     {
       title: 'Energy and utilities',
@@ -54,7 +54,7 @@ export const sectors = {
 export const phasesSection = {
   eyebrow: 'How we work',
   heading: 'Three phases. Each one ends in a decision.',
-  lede: 'Nothing here commits you to the next thing. Every phase is scoped so that stopping at the end of it still leaves you better off than when you started.',
+  lede: 'Each phase is scoped, priced, and designed to leave you stronger than when you started. You only continue when the next step has earned it.',
   phases: [
     {
       index: '01',
