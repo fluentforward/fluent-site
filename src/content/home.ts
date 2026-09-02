@@ -111,39 +111,6 @@ export const strategyBuildTeaser = {
   },
 }
 
-export const proof = {
-  eyebrow: 'Track record',
-  heading: 'Twenty years of shipping systems, not recommending them.',
-  lede: 'The judgement behind this practice is built on prior work shipping production systems. The measures below are the ones we publish.',
-  credentials: [
-    {
-      figure: 'Millions/day',
-      label:
-        'Scaled e-commerce systems from thousands to tens of millions of orders a day, on less infrastructure.',
-    },
-    {
-      figure: '40–60%',
-      label:
-        'Time saved in mapped conveyancing workflows after a single targeted change.',
-    },
-    {
-      figure: '20 years',
-      label:
-        'Building and scaling production systems, still writing the code today.',
-    },
-  ],
-}
-
-export const founder = {
-  eyebrow: 'Who does the work',
-  heading: 'Senior-led, and the senior stays on the work.',
-  body:
-    'FluentForward is principal-led. Matt Todd runs every engagement end to end: the interviews, the recommendation, and accountability for whatever ships. A technical founder who still writes code, so nothing gets recommended that has not been thought through as something people will actually log into.',
-  secondary:
-    'Where a piece of work needs a particular specialism, it goes to a network of specialists we brief and review. Senior judgement stays with the practice throughout, and capacity scales with the work rather than a bench you pay for either way.',
-  link: { label: 'More about the practice', href: '/about' },
-}
-
 export const closingCta = {
   eyebrow: 'Next step',
   heading: 'Worth a conversation?',
