@@ -26,23 +26,37 @@ export const sectors = {
   items: [
     {
       title: 'Energy and utilities',
-      body: 'When sales and delivery run on spreadsheets and inbox, the book cannot grow. One platform for pipeline, contracts, and delivery work — so the team runs a larger book without a larger headcount.',
+      before:
+        'When sales and delivery run on spreadsheets and inbox, the book cannot grow.',
+      withUs:
+        'One platform for pipeline, contracts, and delivery work — so the team runs a larger book without a larger headcount.',
     },
     {
       title: 'eCommerce and retail operations',
-      body: 'Order volume grows faster than the team. Production systems that absorb thousands to millions of orders a day without a linear hiring curve.',
+      before: 'Order volume grows faster than the team.',
+      withUs:
+        'Production systems that absorb thousands to millions of orders a day without a linear hiring curve.',
     },
     {
       title: 'Transport and mobility',
-      body: 'When ops and customer journeys sit in different tools, handoffs multiply. Internal and customer-facing platforms that keep aviation, parking, and rideshare operations moving as one.',
+      before:
+        'When ops and customer journeys sit in different tools, handoffs multiply.',
+      withUs:
+        'Internal and customer-facing platforms that keep aviation, parking, and rideshare operations moving as one.',
     },
     {
       title: 'Finance',
-      body: 'When regulated workflows and back office only grow by adding people, cost climbs with volume. Platforms for payroll, invoice financing, and investment ops that take load off the team.',
+      before:
+        'When regulated workflows and back office only grow by adding people, cost climbs with volume.',
+      withUs:
+        'Platforms for payroll, invoice financing, and investment ops that take load off the team.',
     },
     {
       title: 'Healthcare',
-      body: 'When a regulated product stalls in delivery, the business waits on a team it does not have. Rescue, multi-system platforms, and clinical matching products that ship without standing up a permanent eng org.',
+      before:
+        'When a regulated product stalls in delivery, the business waits on a team it does not have.',
+      withUs:
+        'Rescue, multi-system platforms, and clinical matching products that ship without standing up a permanent eng org.',
     },
   ],
   alsoDelivered: {

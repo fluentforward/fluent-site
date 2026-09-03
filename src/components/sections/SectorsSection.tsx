@@ -4,6 +4,31 @@ import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
 import { sectors } from '@/content/home'
 
+function SectorCardBody({
+  before,
+  withUs,
+}: {
+  before: string
+  withUs: string
+}) {
+  return (
+    <div className="mt-5 space-y-5">
+      <div>
+        <p className="font-mono text-label uppercase text-mist">Before</p>
+        <p className="mt-2 text-[0.9375rem] leading-[1.72] text-slate">
+          {before}
+        </p>
+      </div>
+      <div className="border-t border-line pt-5">
+        <p className="font-mono text-label uppercase text-steel">With us</p>
+        <p className="mt-2 text-[0.9375rem] leading-[1.72] text-ink">
+          {withUs}
+        </p>
+      </div>
+    </div>
+  )
+}
+
 export function SectorsSection() {
   return (
     <Section tone="paper">
@@ -19,8 +44,8 @@ export function SectorsSection() {
               <dt className="font-display text-[1.125rem] font-medium tracking-[-0.015em] text-ink">
                 {sector.title}
               </dt>
-              <dd className="mt-4 text-[0.9375rem] leading-[1.72] text-slate">
-                {sector.body}
+              <dd>
+                <SectorCardBody before={sector.before} withUs={sector.withUs} />
               </dd>
             </Card>
           </Reveal>
