@@ -32,16 +32,16 @@ export default function About() {
       />
 
       <Section tone="muted" border>
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-20">
           <Reveal className="lg:col-span-4">
-            <Eyebrow className="lg:sticky lg:top-28">{story.eyebrow}</Eyebrow>
+            <Eyebrow className="lg:sticky lg:top-32">{story.eyebrow}</Eyebrow>
           </Reveal>
-          <Reveal delay={80} className="lg:col-span-8">
-            <div className="space-y-6 border-l border-line pl-8 md:pl-10">
+          <Reveal delay={100} className="lg:col-span-8">
+            <div className="space-y-7 border-l border-line pl-8 md:pl-10">
               {story.paragraphs.map((paragraph) => (
                 <p
                   key={paragraph}
-                  className="text-[1.0625rem] leading-relaxed text-slate"
+                  className="text-[1.0625rem] leading-[1.72] text-slate"
                 >
                   {paragraph}
                 </p>

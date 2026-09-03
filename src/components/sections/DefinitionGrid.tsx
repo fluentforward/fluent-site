@@ -23,23 +23,23 @@ export function DefinitionGrid({
     <Section tone={tone} id={id}>
       <Reveal className="max-w-2xl">
         <Eyebrow>{eyebrow}</Eyebrow>
-        <Heading as="h2" className="mt-6">
+        <Heading as="h2" className="mt-8">
           {heading}
         </Heading>
-        {lede && <Lede className="mt-6">{lede}</Lede>}
+        {lede && <Lede className="mt-8">{lede}</Lede>}
       </Reveal>
 
-      <dl className="mt-14 grid gap-px border border-line bg-line sm:grid-cols-2">
+      <dl className="mt-20 grid gap-5 sm:grid-cols-2 lg:gap-6">
         {items.map((item, index) => (
           <Reveal
             key={item.title}
-            delay={index * 70}
-            className="bg-paper p-7 md:p-8"
+            delay={index * 90}
+            className="rounded-card border border-line bg-paper p-8 md:p-9 card-lift shadow-card"
           >
-            <dt className="font-display text-[1.0625rem] font-medium text-ink">
+            <dt className="font-display text-[1.125rem] font-medium tracking-[-0.015em] text-ink">
               {item.title}
             </dt>
-            <dd className="mt-3 text-[0.9375rem] leading-relaxed text-slate">
+            <dd className="mt-4 text-[0.9375rem] leading-[1.72] text-slate">
               {item.body}
             </dd>
           </Reveal>

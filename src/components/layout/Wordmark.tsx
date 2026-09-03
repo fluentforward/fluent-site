@@ -6,7 +6,7 @@ export function Wordmark({ tone = 'light' }: { tone?: 'light' | 'dark' }) {
   return (
     <Link
       href="/"
-      className="group inline-flex items-center gap-2.5"
+      className="group inline-flex items-center gap-2.5 transition-opacity duration-300 hover:opacity-80"
       aria-label={`${site.name} — home`}
     >
       <svg
@@ -14,7 +14,7 @@ export function Wordmark({ tone = 'light' }: { tone?: 'light' | 'dark' }) {
         aria-hidden="true"
         className={tone === 'light' ? 'h-5 w-5 text-ink' : 'h-5 w-5 text-paper'}
       >
-        <rect width="20" height="20" rx="2" fill="currentColor" />
+        <rect width="20" height="20" rx="5" fill="currentColor" />
         <path
           d="M7 5.5 12 10l-5 4.5"
           fill="none"
@@ -26,8 +26,8 @@ export function Wordmark({ tone = 'light' }: { tone?: 'light' | 'dark' }) {
       <span
         className={
           tone === 'light'
-            ? 'font-display text-[1.0625rem] font-semibold tracking-[-0.02em] text-ink'
-            : 'font-display text-[1.0625rem] font-semibold tracking-[-0.02em] text-paper'
+            ? 'font-display text-[1.0625rem] font-semibold tracking-[-0.025em] text-ink'
+            : 'font-display text-[1.0625rem] font-semibold tracking-[-0.025em] text-paper'
         }
       >
         {site.name}

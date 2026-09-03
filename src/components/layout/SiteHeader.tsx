@@ -14,6 +14,7 @@ import { Wordmark } from './Wordmark'
 export function SiteHeader() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => setOpen(false), [pathname])
 
@@ -26,13 +27,25 @@ export function SiteHeader() {
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [open])
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-paper/85 backdrop-blur-md">
+    <header
+      className={clsx(
+        'sticky top-0 z-50 border-b border-line bg-paper/75 backdrop-blur-xl transition-[background-color,backdrop-filter,border-color] duration-500',
+        scrolled && 'header-scrolled',
+      )}
+    >
       <Container>
-        <div className="flex h-16 items-center justify-between gap-6 md:h-[4.5rem]">
+        <div className="flex h-[3.75rem] items-center justify-between gap-6 md:h-16">
           <Wordmark />
 
-          <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
+          <nav aria-label="Main" className="hidden items-center gap-9 md:flex">
             {nav.map((item) => {
               const active = pathname === item.href
               return (
@@ -41,9 +54,9 @@ export function SiteHeader() {
                   href={item.href}
                   aria-current={active ? 'page' : undefined}
                   className={clsx(
-                    'text-[0.9375rem] transition-colors',
+                    'text-[0.875rem] font-medium tracking-[-0.01em] transition-colors duration-300',
                     active
-                      ? 'text-ink underline decoration-steel decoration-2 underline-offset-[10px]'
+                      ? 'text-ink'
                       : 'text-slate hover:text-ink',
                   )}
                 >
@@ -54,7 +67,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="hidden md:block">
-            <Button href={primaryCta.href} className="px-5 py-2.5 text-sm">
+            <Button href={primaryCta.href} className="px-6 py-2.5 text-sm">
               {primaryCta.label}
             </Button>
           </div>
@@ -65,7 +78,7 @@ export function SiteHeader() {
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? 'Close menu' : 'Open menu'}
-            className="flex h-10 w-10 items-center justify-center rounded-btn border border-line-strong text-ink md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink transition-colors hover:bg-paper-2 md:hidden"
           >
             <svg viewBox="0 0 16 16" aria-hidden="true" className="h-4 w-4">
               {open ? (
@@ -91,16 +104,16 @@ export function SiteHeader() {
       {open && (
         <div
           id="mobile-nav"
-          className="border-t border-line bg-paper shadow-lift md:hidden"
+          className="border-t border-line bg-paper/95 backdrop-blur-xl md:hidden"
         >
-          <Container className="py-4">
+          <Container className="py-5">
             <nav aria-label="Main" className="flex flex-col">
               {nav.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   className={clsx(
-                    'border-b border-line py-3.5 text-base',
+                    'border-b border-line py-4 text-base transition-colors',
                     pathname === item.href ? 'text-ink' : 'text-slate',
                   )}
                 >
@@ -108,7 +121,7 @@ export function SiteHeader() {
                 </Link>
               ))}
             </nav>
-            <Button href={primaryCta.href} className="mt-5 w-full">
+            <Button href={primaryCta.href} className="mt-6 w-full">
               {primaryCta.label}
             </Button>
           </Container>

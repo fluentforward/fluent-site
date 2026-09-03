@@ -15,13 +15,13 @@ export function PageHero({
   children?: React.ReactNode
 }) {
   return (
-    <Section tone="paper" className="pt-16 pb-14 md:pt-24 md:pb-20">
+    <Section tone="paper" className="hero-ambient pt-14 pb-12 md:pt-20 md:pb-16">
       <Reveal className="max-w-3xl">
         <Eyebrow>{eyebrow}</Eyebrow>
-        <Heading as="h1" size="display-sm" className="mt-6">
+        <Heading as="h1" size="display-sm" className="mt-5 md:mt-6">
           {heading}
         </Heading>
-        {lede && <Lede className="mt-6">{lede}</Lede>}
+        {lede && <Lede className="mt-6 max-w-prose md:mt-7">{lede}</Lede>}
         {children}
       </Reveal>
     </Section>

@@ -21,7 +21,7 @@ export function CalInline() {
   return (
     <div
       id={elementId}
-      className="min-h-[640px] overflow-hidden rounded-card border border-line bg-paper"
+      className="min-h-[640px] overflow-hidden rounded-card border border-line bg-paper shadow-card"
     />
   )
 }
