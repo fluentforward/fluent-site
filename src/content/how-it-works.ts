@@ -59,7 +59,7 @@ export const phases: Phase[] = [
 export const strategyBuild = {
   eyebrow: 'Phase three',
   heading: 'Strategy and Build',
-  lede: 'Once the app has landed, grow the platform. Most businesses discover the same thing: there is a steady stream of small, valuable changes and no sensible way to buy them. Each one is too small to scope as a project and too important to ignore. Phase three answers that with two things — someone senior deciding what matters next, and unlimited development on the internal platform.',
+  lede: 'Once the app has landed, most businesses need ongoing build without hiring a technical team. Strategy and Build is that capability as a simple flat monthly subscription: senior strategy each month, plus unlimited development requests on the platform, pause anytime.',
   how: {
     heading: 'What you get each month',
     steps: [

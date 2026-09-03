@@ -2,7 +2,7 @@ export const hero = {
   eyebrow: 'AI implementation, not AI advice',
   headline: 'Do more with the team you have.',
   headlineSecond: 'We build the AI systems that make that true.',
-  lede: 'Established businesses should not need an expensive engineering bench, or an offshore team to manage, to get real AI and software into production. FluentForward designs and ships the named apps and platforms your operators use — unlocking new capability and capacity, fixed-fee and senior-led, without standing up a tech department.',
+  lede: 'Established businesses should not need an expensive engineering bench, or an offshore team to manage, to get real AI and software into production. FluentForward designs and ships the named apps and platforms your operators use — unlocking new capability and letting the same team carry more work, often with materially less operational load, fixed-fee and senior-led, without standing up a tech department.',
   audience:
     'For owners and leadership teams of established businesses.',
   primaryCta: { label: 'Book a call', href: '/contact' },
@@ -17,32 +17,32 @@ export const problem = {
     'So it stalls. A few licences get bought, a few experiments run in isolation, and a year later nothing has structurally changed, and the team is still the same size, or managing an offshore bench that never quite shipped. The named app their team would actually open never gets built, because nobody has looked closely enough at how the work actually moves to design it.',
   ],
   closing:
-    'That is the whole job here. Look closely, pick the one internal app worth building, ship it, put it in front of the people who do the work, then keep going.',
+    'That is the whole job here. Find what is worth building, ship the system your operators will use, and free the team to run a bigger book without a bigger payroll.',
 }
 
 export const sectors = {
   heading: 'Sectors we know from the inside.',
-  lede: 'Production systems across the industries below — the same shape of work we do now.',
+  lede: 'For operators in the industries below. Same problems: volume, handoffs, and headcount that cannot keep up.',
   items: [
     {
       title: 'Energy and utilities',
-      body: 'Bespoke client and operations platforms for energy sales and delivery teams. Pipeline, contracts, and the day-to-day work of running the book, in one place.',
+      body: 'When sales and delivery run on spreadsheets and inbox, the book cannot grow. One platform for pipeline, contracts, and delivery work — so the team runs a larger book without a larger headcount.',
     },
     {
       title: 'eCommerce and retail operations',
-      body: 'Production systems for high-volume order handling, scaled from thousands to millions of orders a day as the business grew.',
+      body: 'Order volume grows faster than the team. Production systems that absorb thousands to millions of orders a day without a linear hiring curve.',
     },
     {
       title: 'Transport and mobility',
-      body: 'Internal ops and customer-facing platforms across private aviation, parking, and taxi and rideshare operations.',
+      body: 'Ops and customer journeys split across tools. Internal and customer-facing platforms that keep aviation, parking, and rideshare operations moving with fewer handoffs.',
     },
     {
       title: 'Finance',
-      body: 'Payroll platform rearchitecture, invoice-financing customer and back-office systems, and internal platforms for investment management.',
+      body: 'Regulated workflows and back office that do not scale with people. Platforms for payroll, invoice financing, and investment ops that take load off the team.',
     },
     {
       title: 'Healthcare',
-      body: 'Regulated product work: technical rescue and oversight, multi-system prescription and fulfilment platforms, and hands-on build on clinical matching products.',
+      body: 'Regulated products that stall in delivery. Rescue, multi-system platforms, and clinical matching products that ship without standing up a permanent eng org.',
     },
   ],
   alsoDelivered: {
@@ -77,7 +77,7 @@ export const phasesSection = {
       name: 'Strategy and Build',
       meta: 'Monthly · pause anytime',
       summary:
-        'Ongoing AI strategy plus unlimited development on the internal platform. A monthly session to decide what the app should do next, then the building itself, for one flat fee and inside a turnaround window agreed in writing.',
+        'Entire tech-team capability on a flat monthly subscription: senior strategy plus unlimited development on the platform. Pause anytime.',
       gate: 'Pause or cancel whenever you like.',
     },
   ],
@@ -85,24 +85,24 @@ export const phasesSection = {
 
 export const strategyBuildTeaser = {
   eyebrow: 'Phase three',
-  heading: 'Strategy and Build',
-  lede: 'This is the part clients stay for: someone senior deciding what the platform should do next, and as much development as you can find work for. More of the app they already use, or a second one if that is the honest next step. It behaves like a product rather than a retainer, so here is the specification.',
+  heading: 'Your technical team, as a subscription.',
+  lede: 'Senior strategy each month plus unlimited development on the platform, for one flat fee. Pause or cancel anytime. It behaves like having the capability in-house — without hiring it.',
   points: [
     {
       term: 'Strategy',
-      value: 'A monthly session on what is worth building next.',
+      value: 'Senior strategy each month on what the platform should do next.',
     },
     {
-      term: 'Development',
-      value: 'Unlimited requests against the platform. Add them whenever you think of them.',
+      term: 'Unlimited development requests',
+      value: 'Add them whenever you think of them. No ticket allowance.',
     },
     {
       term: 'Turnaround',
       value: 'A fixed window per request, written into the contract.',
     },
     {
-      term: 'Billing',
-      value: 'A flat monthly fee. Never hours.',
+      term: 'Flat monthly fee',
+      value: 'Never hours. Pause or cancel anytime.',
     },
   ],
   link: {
