@@ -34,15 +34,15 @@ export const sectors = {
     },
     {
       title: 'Transport and mobility',
-      body: 'Ops and customer journeys split across tools. Internal and customer-facing platforms that keep aviation, parking, and rideshare operations moving with fewer handoffs.',
+      body: 'When ops and customer journeys sit in different tools, handoffs multiply. Internal and customer-facing platforms that keep aviation, parking, and rideshare operations moving as one.',
     },
     {
       title: 'Finance',
-      body: 'Regulated workflows and back office that do not scale with people. Platforms for payroll, invoice financing, and investment ops that take load off the team.',
+      body: 'When regulated workflows and back office only grow by adding people, cost climbs with volume. Platforms for payroll, invoice financing, and investment ops that take load off the team.',
     },
     {
       title: 'Healthcare',
-      body: 'Regulated products that stall in delivery. Rescue, multi-system platforms, and clinical matching products that ship without standing up a permanent eng org.',
+      body: 'When a regulated product stalls in delivery, the business waits on a team it does not have. Rescue, multi-system platforms, and clinical matching products that ship without standing up a permanent eng org.',
     },
   ],
   alsoDelivered: {
