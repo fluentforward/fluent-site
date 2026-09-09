@@ -3,9 +3,9 @@ export const site = {
   legalName: 'FluentForward Limited',
   url: 'https://fluentforward.com',
   tagline:
-    'Senior-led AI implementation for established businesses. We find the one internal app worth building, ship it, and keep growing the platform.',
+    'Senior-led delivery for established businesses. We build the internal systems your team runs on, you own them, and we keep growing the platform.',
   description:
-    'FluentForward finds the one AI change worth making in your business, builds it, and keeps shipping. A fixed-fee audit and pilot, then ongoing AI strategy and unlimited development requests for a flat monthly fee. No hourly billing.',
+    'Senior-led delivery for established businesses. A fixed-fee Audit and Impact Build, then ongoing strategy and unlimited development on the platform you own, for a flat monthly fee. No hourly billing.',
   email: 'hello@fluentforward.com',
   privacyEmail: 'privacy@fluentforward.com',
 } as const

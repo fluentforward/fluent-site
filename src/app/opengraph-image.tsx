@@ -52,8 +52,8 @@ export default function OpengraphImage() {
             letterSpacing: '-0.03em',
           }}
         >
-          <span>Find the one AI change worth making.</span>
-          <span style={{ color: '#8A929F' }}>Then actually build it.</span>
+          <span>Internal systems your team actually runs on.</span>
+          <span style={{ color: '#8A929F' }}>Apps and client portals you own.</span>
         </div>
 
         <div
@@ -68,7 +68,7 @@ export default function OpengraphImage() {
             paddingTop: 28,
           }}
         >
-          <span>Fixed fee audit and pilot</span>
+          <span>Fixed-fee Audit and Impact Build</span>
           <span>Unlimited development</span>
           <span>No hourly billing</span>
         </div>
