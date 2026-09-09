@@ -1,8 +1,9 @@
 export const hero = {
-  eyebrow: 'AI implementation, not AI advice',
-  headline: 'Do more with the team you have.',
-  headlineSecond: 'We build the AI systems that make that true.',
-  lede: 'Established businesses should not need an expensive engineering bench, or an offshore team to manage, to get real AI and software into production. FluentForward designs and ships the named apps and platforms your operators use — unlocking new capability and letting the same team carry more work, often with materially less operational load, fixed-fee and senior-led, without standing up a tech department.',
+  eyebrow: 'Systems you own. Not another licence.',
+  headline: 'Internal systems your team actually runs on.',
+  headlineSecond: 'Apps and client portals you own.',
+  lede:
+    'Shaped around your processes — not another SaaS you have to bend the business around. A fixed eight-week build. Not a two-year transformation. You keep control of the tech.',
   audience:
     'For owners and leadership teams of established businesses.',
   primaryCta: { label: 'Book a call', href: '/contact' },
@@ -11,7 +12,7 @@ export const hero = {
 
 export const problem = {
   eyebrow: 'The problem',
-  heading: 'You already know AI matters. That is not the hard part.',
+  heading: 'You already know the tools matter. That is not the hard part.',
   paragraphs: [
     'The hard part is that every route in looks either trivial or enormous. A chatbot nobody opens, invisible automations nobody on the team can see, or a transformation programme with a two-year horizon and a budget to match. None of those is a sensible first move for a business that still has a quarter to run.',
     'So it stalls. A few licences get bought, a few experiments run in isolation, and a year later nothing has structurally changed, and the team is still the same size, or managing an offshore bench that never quite shipped. The named app their team would actually open never gets built, because nobody has looked closely enough at how the work actually moves to design it.',
@@ -75,23 +76,23 @@ export const phasesSection = {
       name: 'Audit',
       meta: 'Fixed fee · about 4 weeks',
       summary:
-        'Interviews with three to five of your people, then a map of how work actually flows through sales, marketing and operations. You get a written report, a prioritised opportunity map, and one recommended next step, scoped and costed — usually a named app those people would log into. The report can also say do not build.',
+        'Interviews with three to five of your people, then a map of how work actually flows through sales, marketing and operations. You get a written report, a prioritised opportunity map, and one recommended next step, scoped and costed — usually an internal app or client portal those people would use, that you own. The report can also say do not build.',
       gate: 'Stop here and the report is yours to act on, with us or anyone else.',
     },
     {
       index: '02',
-      name: 'Pilot',
-      meta: 'Fixed fee · 4 to 8 weeks',
+      name: 'Impact Build',
+      meta: 'Fixed fee · about 8 weeks',
       summary:
-        'When the next step is an app, we build it and put it in front of real users, in their business. Not a demo to admire: the thing they log into, with a short adoption note so they can run it without us.',
-      gate: 'Stop here and the app is yours, running.',
+        'When the next step is clear, we build the internal app or client portal in about eight weeks, fixed fee, and put it in front of real users. You own it. Shaped around your processes — not a demo, not a two-year programme. Short adoption note so the team can run it without us.',
+      gate: 'Stop here and the system is yours, running.',
     },
     {
       index: '03',
       name: 'Strategy and Build',
       meta: 'Monthly · pause anytime',
       summary:
-        'Entire tech-team capability on a flat monthly subscription: senior strategy plus unlimited development on the platform. Pause anytime.',
+        'Grow what you own. Entire tech-team capability on a flat monthly subscription: senior strategy plus unlimited development on your platform. Pause anytime.',
       gate: 'Pause or cancel whenever you like.',
     },
   ],
@@ -100,7 +101,8 @@ export const phasesSection = {
 export const strategyBuildTeaser = {
   eyebrow: 'Phase three',
   heading: 'Your technical team, as a subscription.',
-  lede: 'Senior strategy each month plus unlimited development on the platform, for one flat fee. Pause or cancel anytime. It behaves like having the capability in-house — without hiring it.',
+  lede:
+    'Senior strategy each month plus unlimited development on the platform you own, for one flat fee. Pause or cancel anytime. Incremental follow-on after Impact Build — capability in-house, without hiring it.',
   points: [
     {
       term: 'Strategy',

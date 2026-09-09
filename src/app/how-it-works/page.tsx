@@ -15,7 +15,7 @@ import {
 } from '@/content/how-it-works'
 
 const description =
-  'A fixed-fee audit, a fixed-fee pilot, then ongoing AI strategy and unlimited development requests against a written turnaround commitment. Each phase ends in a decision, and there is no hourly billing anywhere.'
+  'Phase one is a fixed-fee Audit. Phase two is Impact Build: a fixed-fee build of about eight weeks. Phase three is Strategy and Build — ongoing strategy and unlimited development on the platform you own, for a flat monthly fee. No hourly billing. Nothing rolls over automatically.'
 
 export const metadata: Metadata = {
   title: 'How it works',

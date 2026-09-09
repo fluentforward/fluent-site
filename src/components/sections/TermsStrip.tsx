@@ -1,7 +1,7 @@
 import { Container } from '@/components/ui/Container'
 
 const terms = [
-  'Fixed fee audit and pilot',
+  'Fixed-fee Audit and Impact Build',
   'Unlimited development',
   'Turnaround in the contract',
   'No hourly billing',

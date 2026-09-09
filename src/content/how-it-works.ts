@@ -1,7 +1,8 @@
 export const hero = {
   eyebrow: 'How it works',
   heading: 'Three phases. Each one ends in a decision, not an upsell.',
-  lede: 'Phases one and two are fixed fee, agreed in writing before anything starts. Phase three is ongoing strategy and unlimited development on the internal platform, for a flat monthly fee. There is no hourly billing anywhere in this, and nothing rolls over automatically.',
+  lede:
+    'Phase one is a fixed-fee Audit. Phase two is Impact Build: a fixed-fee build of about eight weeks. Phase three is Strategy and Build — ongoing strategy and unlimited development on the platform you own, for a flat monthly fee. No hourly billing. Nothing rolls over automatically.',
 }
 
 export type Phase = {
@@ -30,7 +31,7 @@ export const phases: Phase[] = [
     deliverables: [
       'A written report you can hand to anyone, including your own team or another supplier.',
       'A prioritised opportunity map, ordered by value rather than by novelty.',
-      'One recommended next step, scoped and costed — usually a named app the people we interviewed would log into, ready to start or ready to shelve.',
+      'One recommended next step, scoped and costed — usually an internal app or client portal the people we interviewed would use, that you own, ready to start or ready to shelve.',
     ],
     gate: 'Stop here and the report is yours. There is no obligation to continue, and the recommendation is written to be useful even if we never speak again.',
     boundary:
@@ -38,12 +39,12 @@ export const phases: Phase[] = [
   },
   {
     index: '02',
-    name: 'Pilot',
-    meta: 'Fixed fee · 4 to 8 weeks · scoped at the end of the audit',
+    name: 'Impact Build',
+    meta: 'Fixed fee · about 8 weeks · scoped at the end of the Audit',
     intro:
-      'When the recommended next step is an app, we build it properly and put it in front of the people who will use it. The fee is agreed before work starts and does not move unless you change the scope.',
+      'When the recommended next step is clear, we build the internal app or client portal properly and put it in front of the people who will use it. About eight weeks. Fixed fee, agreed before work starts, and it does not move unless you change the scope. You own what ships.',
     happens: [
-      'We build the named app or internal platform the Audit recommended. Real UX. Used by the people we interviewed.',
+      'We build the internal app or client portal the Audit recommended, shaped around your processes. Real UX. Used by the people we interviewed. You own it.',
       'It goes into your business rather than a sandbox, with real data and real users.',
       'We stay close to the people using it while it settles, because the first week of real use always teaches you something the spec did not.',
     ],
@@ -52,18 +53,19 @@ export const phases: Phase[] = [
       'A short adoption note covering how it runs, what to watch, and what to do when it misbehaves.',
       'An honest read on whether it worked, including the parts that did not.',
     ],
-    gate: 'Stop here and the app keeps running. Plenty of engagements should end at this point, and saying so is part of the job.',
+    gate: 'Stop here and the system keeps running. Plenty of engagements should end at this point, and saying so is part of the job.',
   },
 ]
 
 export const strategyBuild = {
   eyebrow: 'Phase three',
   heading: 'Strategy and Build',
-  lede: 'Once the app has landed, most businesses need ongoing build without hiring a technical team. Strategy and Build is that capability as a simple flat monthly subscription: senior strategy each month, plus unlimited development requests on the platform, pause anytime.',
+  lede:
+    'Once Impact Build has landed, most businesses need ongoing build without hiring a technical team — and without losing ownership of what shipped. Strategy and Build is that follow-on: grow the platform you own, as a simple flat monthly subscription. Senior strategy each month, unlimited development requests, pause anytime.',
   how: {
     heading: 'What you get each month',
     steps: [
-      'A strategy session on what the app is doing.',
+      'A strategy session on what the platform you own should do next.',
       'Requests against the platform, submitted whenever they occur to you. No forms to justify them, no meeting to scope each one.',
       'Priorities set by you, and reordered by you whenever the business moves.',
       'Work delivered back inside the turnaround window agreed in your contract.',
@@ -122,7 +124,7 @@ export const reassurance = {
   heading: 'What you are agreeing to, in plain terms.',
   items: [
     {
-      title: 'Fixed fees for the audit and the pilot',
+      title: 'Fixed fees for the Audit and the Impact Build',
       body: 'Both are quoted as a single number, in writing, before work starts. If the scope does not change, the number does not change.',
     },
     {
