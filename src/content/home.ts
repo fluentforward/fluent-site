@@ -3,7 +3,7 @@ export const hero = {
   headline: 'Internal systems your team actually runs on.',
   headlineSecond: 'Apps and client portals you own.',
   lede:
-    'Shaped around your processes — not another SaaS you have to bend the business around. A fixed eight-week build. Not a two-year transformation. You keep control of the tech.',
+    'Custom software used to move at the speed of a hiring plan. It does not have to anymore. That is why a system you own, shaped around how you already work, can ship in about eight weeks instead of an 18-month programme. Not another licence with AI bolted on. You keep control of the tech.',
   audience:
     'For owners and leadership teams of established businesses.',
   primaryCta: { label: 'Book a call', href: '/contact' },
