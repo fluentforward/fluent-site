@@ -3,6 +3,7 @@ import { SectorsSection } from '@/components/sections/SectorsSection'
 import { CtaBand } from '@/components/sections/CtaBand'
 import { HomeHero } from '@/components/sections/HomeHero'
 import { PhaseRail } from '@/components/sections/PhaseRail'
+import { StrategyBlueprintsSection } from '@/components/sections/StrategyBlueprintsSection'
 import { ProblemSection } from '@/components/sections/ProblemSection'
 import { StrategyBuildTeaser } from '@/components/sections/StrategyBuildTeaser'
 import { TermsStrip } from '@/components/sections/TermsStrip'
@@ -35,6 +36,7 @@ export default function Home() {
       <ProblemSection />
       <SectorsSection />
       <ProofSection />
+      <StrategyBlueprintsSection />
       <PhaseRail />
       <StrategyBuildTeaser />
       <CtaBand {...closingCta} />
