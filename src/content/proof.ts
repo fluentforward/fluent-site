@@ -1,8 +1,8 @@
 export const proofSection = {
   eyebrow: 'Proof',
-  heading: 'Process autopsies.',
+  heading: 'Real engagements.',
   lede:
-    'Real engagements, anonymised. How work moved, what we refused to bolt on, and the system they own now.',
+    'How work moved, what we refused to bolt on, and the system they own now.',
 }
 
 export type ProofPack = {
@@ -22,7 +22,7 @@ export const proofPacks: readonly ProofPack[] = [
     title: 'The CRM was winning. The process was losing.',
     summary:
       'An energy-sector owner and ops team stopped bending their process around a legacy CRM, sheets, and inbox, and got an internal pipeline and client platform they actually run on.',
-    ctaLabel: 'Read the process autopsy',
+    ctaLabel: 'Read the proof',
     href: '/proof/energy-utilities.pdf',
   },
 ]

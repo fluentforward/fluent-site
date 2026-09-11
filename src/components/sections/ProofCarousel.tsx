@@ -54,7 +54,7 @@ export function ProofCarousel({ packs }: { packs: readonly ProofPack[] }) {
         className="relative"
         role="region"
         aria-roledescription="carousel"
-        aria-label="Process autopsy case studies"
+        aria-label="Proof case studies"
       >
         <div aria-live="polite" className="min-h-[1px]">
           <Card hover className="max-w-3xl">
