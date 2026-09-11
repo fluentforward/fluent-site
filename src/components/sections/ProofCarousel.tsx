@@ -6,7 +6,6 @@ import clsx from 'clsx'
 import { ArrowLink } from '@/components/ui/ArrowLink'
 import { Card } from '@/components/ui/Card'
 import type { ProofPack } from '@/content/proof'
-import { proofHref } from '@/content/proof'
 
 function ChevronIcon({ direction }: { direction: 'left' | 'right' }) {
   return (
@@ -67,7 +66,7 @@ export function ProofCarousel({ packs }: { packs: readonly ProofPack[] }) {
               {active.summary}
             </p>
             <div className="mt-8 border-t border-line pt-8">
-              <ArrowLink href={proofHref(active.slug)}>
+              <ArrowLink href={active.href} newTab>
                 {active.ctaLabel}
               </ArrowLink>
             </div>
