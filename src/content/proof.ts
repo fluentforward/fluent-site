@@ -25,4 +25,13 @@ export const proofPacks: readonly ProofPack[] = [
     ctaLabel: 'Read the proof',
     href: '/proof/energy-utilities.pdf',
   },
+  {
+    slug: 'healthcare',
+    label: 'Healthcare',
+    title: 'The prototype could not carry the ambition.',
+    summary:
+      'Founders of a mental health platform replaced a brittle first stack with a product that could match, meet, take payment, and partner, and raise.',
+    ctaLabel: 'Read the proof',
+    href: '/proof/healthcare.pdf',
+  },
 ]
