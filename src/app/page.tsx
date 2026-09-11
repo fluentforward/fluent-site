@@ -1,3 +1,4 @@
+import { ProofSection } from '@/components/sections/ProofSection'
 import { SectorsSection } from '@/components/sections/SectorsSection'
 import { CtaBand } from '@/components/sections/CtaBand'
 import { HomeHero } from '@/components/sections/HomeHero'
@@ -33,6 +34,7 @@ export default function Home() {
       <TermsStrip />
       <ProblemSection />
       <SectorsSection />
+      <ProofSection />
       <PhaseRail />
       <StrategyBuildTeaser />
       <CtaBand {...closingCta} />
