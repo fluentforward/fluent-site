@@ -8,7 +8,7 @@ import { Section } from '@/components/ui/Section'
 import { site } from '@/content/site'
 
 const description =
-  'Book a thirty minute call with Matt Todd to work out whether an AI opportunity audit would find anything worth acting on in your business.'
+  'Book a thirty minute call with Matt Todd to work out whether Interaction Engine Design would find anything worth acting on in your business.'
 
 export const metadata: Metadata = {
   title: 'Book a call',

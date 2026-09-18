@@ -26,7 +26,11 @@ function DetailList({ title, items }: { title: string; items: string[] }) {
 
 export function PhaseDetail({ phase }: { phase: Phase }) {
   return (
-    <Section tone="paper" border id={phase.name.toLowerCase()}>
+    <Section
+      tone="paper"
+      border
+      id={phase.name.toLowerCase().replace(/\s+/g, '-')}
+    >
       <div className="grid gap-12 lg:grid-cols-[16rem_1fr] lg:gap-20">
         <Reveal>
           <div className="lg:sticky lg:top-32">

@@ -7,11 +7,14 @@ export const blueprintsPage = {
 } as const
 
 export const blueprintsHomeSection = {
-  eyebrow: 'Strategy',
-  heading: 'Strategy blueprints.',
-  lede: 'Clear paths for common stuck stacks: keep, integrate, replace.',
+  eyebrow: 'Insights',
+  heading: 'Interaction insights.',
+  lede:
+    'Clear paths for common stuck stacks, while sector tools are still on the way.',
+  footer:
+    'Sector-specific insights and goal calculators are next. This slot stays useful until they ship.',
   link: {
-    label: 'See the blueprints',
+    label: 'See all interaction insights',
     href: '/strategy-blueprints',
   },
 } as const

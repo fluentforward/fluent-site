@@ -15,7 +15,7 @@ import {
 } from '@/content/how-it-works'
 
 const description =
-  'Phase one is a fixed-fee Audit. Phase two is Impact Build: a fixed-fee build of about eight weeks. Phase three is Strategy and Build — ongoing strategy and unlimited development on the platform you own, for a flat monthly fee. No hourly billing. Nothing rolls over automatically.'
+  'Phase one is Interaction Engine Design. Phase two is Impact Build: a fixed-fee first release of about eight weeks. Phase three is Strategy and Build: grow the engine you own with senior strategy and ongoing development on a flat monthly fee. No hourly billing. Nothing rolls over automatically.'
 
 export const metadata: Metadata = {
   title: 'How it works',

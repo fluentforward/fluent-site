@@ -3,7 +3,7 @@ import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Heading } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
-import { site } from '@/content/site'
+import { primaryCta } from '@/content/site'
 
 export function CtaBand({
   eyebrow,
@@ -23,11 +23,8 @@ export function CtaBand({
         </Heading>
         <p className="mt-8 text-lede text-mist">{body}</p>
         <div className="mt-10 flex flex-wrap items-center gap-4">
-          <Button cal variant="onDark">
-            Book a call
-          </Button>
-          <Button href={`mailto:${site.email}`} variant="onDarkGhost">
-            Email instead
+          <Button href={primaryCta.href} variant="onDark">
+            {primaryCta.label}
           </Button>
         </div>
       </Reveal>
