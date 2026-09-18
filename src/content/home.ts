@@ -1,37 +1,52 @@
 export const hero = {
-  eyebrow: 'Interaction Engine',
-  headline: 'Install an Interaction Engine. Win your category in 2026.',
+  headline:
+    'For ambitious businesses that intend to lead their category.',
   lede:
-    'The owned system under every customer and staff interaction. Delight on every interaction. Capacity with the same headcount. First release in about eight weeks.',
+    'Category leaders delight customers and staff on every interaction, and grow capacity without a matching hire curve. Followers still run on inbox, bent CRMs, and bolted-on tools.',
   audience:
-    'For owners and leadership teams of established businesses.',
+    'For owners, COOs, and ops leaders who will own how the work runs.',
   primaryCta: { label: 'Worth a conversation?', href: '/contact' },
   proofChips: [
-    'Owned. Process-fit.',
+    'Process-fit.',
     'Customer and staff.',
     'First release in about eight weeks.',
   ],
 }
 
 export const contrast = {
-  eyebrow: 'The contrast',
-  heading: 'Not another portal project.',
-  paragraphs: [
-    'Not a chatbot nobody opens. Not an AI licence with a demo bolted on. Not an 18-month digital transformation before anything useful ships.',
-    'This is an Interaction Engine: one owned, process-fit system under customer journeys and the work your team does every day.',
+  eyebrow: 'Leaders vs followers',
+  heading: 'Leaders look like this. Followers look like that.',
+  leaders: [
+    'One place people open first for customer and staff work.',
+    'Journeys feel coherent to the customer and to the team.',
+    'Capacity rises without headcount climbing in lockstep.',
+    'The stack matches how the work already runs.',
   ],
+  followers: [
+    'Inbox and sheets still hold the truth.',
+    'A bent CRM owns the process.',
+    'Empty SaaS tabs and bolted-on tools.',
+    'ChatGPT paste for work the system should carry.',
+    'Headcount climbing with volume.',
+  ],
+  bridge:
+    'The gap is not ambition. It is the machine between where you are and where category leaders already operate.',
+  alsoNot:
+    'Also not: a chatbot nobody opens, an AI licence with a demo bolted on, or an 18-month programme before anything useful ships.',
 }
 
 export const engineDefinition = {
-  eyebrow: 'The engine',
-  heading: 'What an Interaction Engine is.',
+  eyebrow: 'The mechanism',
+  heading: 'The Interaction Engine is how you get there.',
   lede:
-    'The owned system that sits under every customer and staff interaction. Operators open it first. Customers feel the coherence. Capacity rises without a linear hiring curve. AI only shows up inside the workflow where it earns its place.',
+    'We design and install the system under every customer and staff interaction so you can move from follower patterns to leader outcomes. First release in about eight weeks. Not an 18-month programme as the first move.',
+  plainLine:
+    'Operators open it first. Customers feel the coherence. The work stops living in inbox, sheets, and empty tabs.',
   chips: [
     {
-      title: 'Owned process-fit',
+      title: 'Fits how you already work',
       body:
-        'Shaped around how you already work, not a vendor\u2019s process.',
+        'Not a vendor process you have to adopt forever.',
     },
     {
       title: 'Customer and staff',
@@ -40,9 +55,12 @@ export const engineDefinition = {
     },
     {
       title: 'First release in about eight weeks',
-      body: 'Not a two-year programme as the first move.',
+      body:
+        'Useful software in front of real users, then you decide what grows next.',
     },
   ],
+  closing:
+    'You keep control of what ships. We do not lead with another licence pile.',
 }
 
 export const whoItsFor = {

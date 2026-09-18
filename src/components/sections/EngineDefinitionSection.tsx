@@ -7,8 +7,10 @@ export function EngineDefinitionSection() {
       eyebrow={engineDefinition.eyebrow}
       heading={engineDefinition.heading}
       lede={engineDefinition.lede}
+      plainLine={engineDefinition.plainLine}
       items={engineDefinition.chips}
-      tone="muted"
+      closing={engineDefinition.closing}
+      tone="paper"
     />
   )
 }

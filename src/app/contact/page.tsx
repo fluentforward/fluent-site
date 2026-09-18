@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 const expectations = [
   'Thirty minutes, and it is a conversation rather than a pitch. No deck.',
   'We talk about where your team\u2019s time actually goes and what you have already tried.',
-  'You leave with a straight answer on whether an audit is worth doing, including if that answer is no.',
+  'You leave with a straight answer on whether Interaction Engine Design is worth doing, including if that answer is no.',
   'No follow-up sequence, and nothing added to a mailing list.',
 ]
 
