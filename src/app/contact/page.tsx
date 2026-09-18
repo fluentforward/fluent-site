@@ -8,7 +8,7 @@ import { Section } from '@/components/ui/Section'
 import { site } from '@/content/site'
 
 const description =
-  'Book a thirty minute call with Matt Todd to work out whether an AI opportunity audit would find anything worth acting on in your business.'
+  'Book a thirty minute call with Matt Todd to work out whether Interaction Engine Design would find anything worth acting on in your business.'
 
 export const metadata: Metadata = {
   title: 'Book a call',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 const expectations = [
   'Thirty minutes, and it is a conversation rather than a pitch. No deck.',
   'We talk about where your team\u2019s time actually goes and what you have already tried.',
-  'You leave with a straight answer on whether an audit is worth doing, including if that answer is no.',
+  'You leave with a straight answer on whether Interaction Engine Design is worth doing, including if that answer is no.',
   'No follow-up sequence, and nothing added to a mailing list.',
 ]
 

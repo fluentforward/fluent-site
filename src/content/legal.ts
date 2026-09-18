@@ -137,7 +137,7 @@ export const terms = {
       heading: 'Engagements and fees',
       paragraphs: [
         'Nothing on this site is an offer capable of acceptance, and no engagement exists until both parties have signed an agreement setting out scope, fees and timescales.',
-        'For clarity, and consistent with what the site says: Audit and Impact Build work is quoted as a fixed fee agreed in writing before work starts, and ongoing implementation work is charged as a flat monthly fee against a defined turnaround commitment. We do not bill by the hour. Fees are not published here because scope varies materially between clients.',
+        'For clarity, and consistent with what the site says: Interaction Engine Design and Impact Build work is quoted as a fixed fee agreed in writing before work starts, and ongoing implementation work is charged as a flat monthly fee against a defined turnaround commitment. We do not bill by the hour. Fees are not published here because scope varies materially between clients.',
       ],
     },
     {

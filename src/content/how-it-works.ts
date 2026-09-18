@@ -2,7 +2,7 @@ export const hero = {
   eyebrow: 'How it works',
   heading: 'Three phases. Each one ends in a decision, not an upsell.',
   lede:
-    'Phase one is a fixed-fee Audit. Phase two is Impact Build: a fixed-fee build of about eight weeks. Phase three is Strategy and Build — ongoing strategy and unlimited development on the platform you own, for a flat monthly fee. No hourly billing. Nothing rolls over automatically.',
+    'Phase one is Interaction Engine Design: fixed fee, multi-week. Phase two is Impact Build, a fixed-fee first release of about eight weeks. Phase three is Strategy and Build: grow the engine you own with senior strategy and ongoing development on a flat monthly fee. No hourly billing. Nothing rolls over automatically.',
 }
 
 export type Phase = {
@@ -19,37 +19,38 @@ export type Phase = {
 export const phases: Phase[] = [
   {
     index: '01',
-    name: 'Audit',
-    meta: 'Fixed fee · about 4 weeks · founder-led throughout',
+    name: 'Interaction Engine Design',
+    meta: 'Fixed fee · multi-week · founder-led throughout',
     intro:
-      'Before anything gets built, we work out what is actually worth building. Four weeks looking closely at how your business runs, from the people who run it. Sometimes the answer is do not build.',
+      'Before anything gets built, we work out what winning in your category means, what is blocking it, and what your Interaction Engine needs to do. You leave with a prototype you can click, a named first release, and a clear commercial next step. Sometimes the right next step is not to build.',
     happens: [
-      'Interviews with three to five people across the business, including the ones doing the work rather than only the ones describing it.',
-      'Process mapping across sales, marketing and operations, following the work rather than the org chart.',
-      'Every candidate opportunity sized against effort, risk and how much time it would genuinely give back.',
+      'Interviews and work-mapping across the stuck stacks, broken handoffs, and places customer and staff interactions fail.',
+      'A clear picture of category-win outcomes: customer experience, internal experience, and capacity with the same headcount.',
+      'An interactive prototype of your engine until it bridges the blockers to those outcomes.',
     ],
     deliverables: [
-      'A written report you can hand to anyone, including your own team or another supplier.',
-      'A prioritised opportunity map, ordered by value rather than by novelty.',
-      'One recommended next step, scoped and costed — usually an internal app or client portal the people we interviewed would use, that you own, ready to start or ready to shelve.',
+      'The Interaction Engine Design pack you can hand to anyone, including your own team or another supplier.',
+      'A named first release: scope, outcomes it must move, and the commercial next step.',
+      'An honest read on whether to build, including when the answer is not yet.',
     ],
-    gate: 'Stop here and the report is yours. There is no obligation to continue, and the recommendation is written to be useful even if we never speak again.',
+    gate:
+      'Stop here and the Design pack is yours. There is no obligation to continue, and the work is written to be useful even if we never speak again.',
     boundary:
-      'The audit is recommendations only. We do not build during it, even when asked to, because a four week window spent building is a four week window not spent finding out what, if anything, to build.',
+      'Design is discovery and prototype, not production build. We do not ship the first release during it, because that window is for finding the engine worth building.',
   },
   {
     index: '02',
     name: 'Impact Build',
-    meta: 'Fixed fee · about 8 weeks · scoped at the end of the Audit',
+    meta: 'Fixed fee · about 8 weeks · scoped at the end of Design',
     intro:
-      'When the recommended next step is clear, we build the internal app or client portal properly and put it in front of the people who will use it. About eight weeks. Fixed fee, agreed before work starts, and it does not move unless you change the scope. You own what ships.',
+      'When the first release is clear, we build the Interaction Engine properly and put it in front of real users. About eight weeks. Fixed fee, agreed before work starts, and it does not move unless you change the scope. You own what ships.',
     happens: [
-      'We build the internal app or client portal the Audit recommended, shaped around your processes. Real UX. Used by the people we interviewed. You own it.',
+      'We build the first release scoped in Design, shaped around your processes. Real UX. Used by the people who will run it. You own it.',
       'It goes into your business rather than a sandbox, with real data and real users.',
       'We stay close to the people using it while it settles, because the first week of real use always teaches you something the spec did not.',
     ],
     deliverables: [
-      'A working app, running, owned by you. Their team logs into it.',
+      'A working system, running, owned by you. Their team opens it first.',
       'A short adoption note covering how it runs, what to watch, and what to do when it misbehaves.',
       'An honest read on whether it worked, including the parts that did not.',
     ],
@@ -61,7 +62,7 @@ export const strategyBuild = {
   eyebrow: 'Phase three',
   heading: 'Strategy and Build',
   lede:
-    'Once Impact Build has landed, most businesses need ongoing build without hiring a technical team — and without losing ownership of what shipped. Strategy and Build is that follow-on: grow the platform you own, as a simple flat monthly subscription. Senior strategy each month, unlimited development requests, pause anytime.',
+    'Once Impact Build has landed, most businesses need to grow the engine without hiring a permanent technical team and without losing ownership of what shipped. Strategy and Build is that follow-on: senior strategy each month on what the platform should do next, plus ongoing development on the system you own. Pause anytime.',
   how: {
     heading: 'What you get each month',
     steps: [
@@ -124,7 +125,7 @@ export const reassurance = {
   heading: 'What you are agreeing to, in plain terms.',
   items: [
     {
-      title: 'Fixed fees for the Audit and the Impact Build',
+      title: 'Fixed fees for Interaction Engine Design and Impact Build',
       body: 'Both are quoted as a single number, in writing, before work starts. If the scope does not change, the number does not change.',
     },
     {
@@ -149,12 +150,12 @@ export const faq = {
     {
       question: 'Why are your prices not on the site?',
       answer:
-        'Because a published number would be wrong for most people who read it. The audit fee depends on how many people we need to talk to and how tangled the process is; the retainer depends on the turnaround window and the request size threshold you want. You get a fixed number in writing before anything starts, and it will not move on its own.',
+        'Because a published number would be wrong for most people who read it. The Design fee depends on how many people we need to talk to and how tangled the process is; the retainer depends on the turnaround window and the request size threshold you want. You get a fixed number in writing before anything starts, and it will not move on its own.',
     },
     {
       question: 'What if my request is bigger than “one request”?',
       answer:
-        'Then it is not a request, it is a project, and we scope and quote it as one. The threshold is written into your contract so this is a boring conversation rather than an argument. Holding that line is the only reason unlimited requests can work at all. A request can still be a single automation, a single build, or a single workflow change when that is the honest increment. The picture on the site is the named app those sit inside, not invisible automations nobody on the team can see.',
+        'Then it is not a request, it is a project, and we scope and quote it as one. The threshold is written into your contract so this is a boring conversation rather than an argument. Holding that line is the only reason unlimited requests can work at all. A request can still be a single automation, a single build, or a single workflow change when that is the honest increment. The picture on the site is the named system those sit inside, not invisible automations nobody on the team can see.',
     },
     {
       question: 'Is “unlimited” actually unlimited?',
@@ -162,14 +163,14 @@ export const faq = {
         'Yes, in the sense that matters: there is no per-request charge, no ticket allowance, and no bucket of hours to run down. What keeps that honest rather than a marketing line is that the turnaround window and the definition of a request are both written into your contract, so you can work out exactly what throughput you are buying before you sign anything.',
     },
     {
-      question: 'Do we have to start with the audit?',
+      question: 'Do we have to start with Interaction Engine Design?',
       answer:
-        'Almost always, yes. Building the wrong thing quickly is worse than building the right thing slowly, and four weeks of looking properly is what separates the two. If you have already done equivalent work and can show it, we will pick up from there.',
+        'Almost always, yes. Building the wrong thing quickly is worse than building the right thing slowly, and proper Design is what separates the two. If you have already done equivalent work and can show it, we will pick up from there.',
     },
     {
-      question: 'What if the audit concludes we should not do this?',
+      question: 'What if Design concludes we should not build yet?',
       answer:
-        'Then that is what the report says, and it is the most valuable version of the report you could have received. It has happened, and it will happen again. A recommendation you can trust requires the possibility of a no.',
+        'Then that is what the pack says, and it is the most valuable version you could have received. It has happened, and it will happen again. A recommendation you can trust requires the possibility of a no.',
     },
     {
       question: 'What tools do you build with?',
@@ -186,6 +187,7 @@ export const faq = {
 
 export const closingCta = {
   eyebrow: 'Next step',
-  heading: 'Start with a conversation, not a commitment.',
-  body: 'Thirty minutes. We will talk about where your team\u2019s time actually goes and whether an Audit would find anything worth acting on. If I do not think it would, I will say so on the call.',
+  heading: 'Worth a conversation?',
+  body:
+    'If category-win outcomes are clear enough to name, and the stack is the quiet blocker, talk. The usual next step is Interaction Engine Design.',
 }

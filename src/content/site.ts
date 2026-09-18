@@ -3,16 +3,16 @@ export const site = {
   legalName: 'FluentForward Limited',
   url: 'https://fluentforward.com',
   tagline:
-    'Senior-led delivery for established businesses. We build the internal systems your team runs on, you own them, and we keep growing the platform.',
+    'Senior-led delivery for established businesses. Install an Interaction Engine you own, then grow it with Strategy and Build.',
   description:
-    'Senior-led delivery for established businesses. A fixed-fee Audit and Impact Build, then ongoing strategy and unlimited development on the platform you own, for a flat monthly fee. No hourly billing.',
+    'Senior-led delivery for established businesses. Interaction Engine Design, Impact Build, and Strategy and Build on the platform you own. Fixed fee where it matters. No hourly billing.',
   email: 'hello@fluentforward.com',
   privacyEmail: 'privacy@fluentforward.com',
 } as const
 
 export const nav = [
   { label: 'How it works', href: '/how-it-works' },
-  { label: 'Strategy blueprints', href: '/strategy-blueprints' },
+  { label: 'Interaction insights', href: '/strategy-blueprints' },
   { label: 'Practice', href: '/about' },
 ] as const
 
@@ -30,7 +30,7 @@ export const footerNav = {
     links: [
       { label: 'About the practice', href: '/about' },
       { label: 'Track record', href: '/about#background' },
-      { label: 'Book a call', href: '/contact' },
+      { label: 'Worth a conversation?', href: '/contact' },
     ],
   },
   legal: {
@@ -43,6 +43,6 @@ export const footerNav = {
 } as const
 
 export const primaryCta = {
-  label: 'Book a call',
+  label: 'Worth a conversation?',
   href: '/contact',
 } as const

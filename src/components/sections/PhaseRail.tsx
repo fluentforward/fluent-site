@@ -7,7 +7,7 @@ import { phasesSection } from '@/content/home'
 
 export function PhaseRail() {
   return (
-    <Section tone="paper">
+    <Section tone="paper" id="design">
       <Reveal className="max-w-2xl">
         <Eyebrow>{phasesSection.eyebrow}</Eyebrow>
         <Heading as="h2" className="mt-8">
@@ -34,7 +34,32 @@ export function PhaseRail() {
             <p className="font-mono text-xs tracking-wide text-mist uppercase">
               {phase.meta}
             </p>
-            <p className="leading-[1.72] text-slate">{phase.summary}</p>
+
+            {phase.pillars ? (
+              <dl className="space-y-6">
+                {phase.pillars.map((pillar) => (
+                  <div key={pillar.title}>
+                    <dt className="text-sm font-medium text-ink">
+                      {pillar.title}
+                    </dt>
+                    <dd className="mt-2 text-[0.9375rem] leading-[1.72] text-slate">
+                      {pillar.body}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            ) : null}
+
+            {phase.summary ? (
+              <p className="leading-[1.72] text-slate">{phase.summary}</p>
+            ) : null}
+
+            {phase.footnote ? (
+              <p className="text-[0.9375rem] leading-[1.72] text-slate">
+                {phase.footnote}
+              </p>
+            ) : null}
+
             <div className="mt-auto border-t border-line pt-6">
               <p className="font-mono text-label text-mist uppercase">
                 Decision point

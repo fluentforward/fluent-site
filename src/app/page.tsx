@@ -4,7 +4,9 @@ import { CtaBand } from '@/components/sections/CtaBand'
 import { HomeHero } from '@/components/sections/HomeHero'
 import { PhaseRail } from '@/components/sections/PhaseRail'
 import { StrategyBlueprintsSection } from '@/components/sections/StrategyBlueprintsSection'
-import { ProblemSection } from '@/components/sections/ProblemSection'
+import { ContrastSection } from '@/components/sections/ContrastSection'
+import { EngineDefinitionSection } from '@/components/sections/EngineDefinitionSection'
+import { WhoItsForSection } from '@/components/sections/WhoItsForSection'
 import { StrategyBuildTeaser } from '@/components/sections/StrategyBuildTeaser'
 import { TermsStrip } from '@/components/sections/TermsStrip'
 import { closingCta } from '@/content/home'
@@ -33,11 +35,13 @@ export default function Home() {
       />
       <HomeHero />
       <TermsStrip />
-      <ProblemSection />
+      <ContrastSection />
+      <EngineDefinitionSection />
+      <WhoItsForSection />
+      <PhaseRail />
       <SectorsSection />
       <ProofSection />
       <StrategyBlueprintsSection />
-      <PhaseRail />
       <StrategyBuildTeaser />
       <CtaBand {...closingCta} />
     </>

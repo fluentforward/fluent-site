@@ -53,6 +53,12 @@ export function StrategyBlueprintsSection() {
         ))}
       </ul>
 
+      <Reveal delay={100} className="mt-12 max-w-prose">
+        <p className="text-[0.9375rem] leading-[1.72] text-slate">
+          {blueprintsHomeSection.footer}
+        </p>
+      </Reveal>
+
       <Reveal delay={120} className="mt-12">
         <ArrowLink href={blueprintsHomeSection.link.href}>
           {blueprintsHomeSection.link.label}

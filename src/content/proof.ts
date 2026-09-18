@@ -2,7 +2,7 @@ export const proofSection = {
   eyebrow: 'Proof',
   heading: 'Real engagements.',
   lede:
-    'How work moved, what we refused to bolt on, and the system they own now.',
+    'Interaction Engines installed under customer and staff work. How the work moved. What we refused to bolt on. The system they own now.',
 }
 
 export type ProofPack = {
@@ -21,7 +21,7 @@ export const proofPacks: readonly ProofPack[] = [
     label: 'Energy & utilities',
     title: 'The CRM was winning. The process was losing.',
     summary:
-      'An energy-sector owner and ops team stopped bending their process around a legacy CRM, sheets, and inbox, and got an internal pipeline and client platform they actually run on.',
+      'An energy-sector owner and ops team stopped bending their process around a legacy CRM, sheets, and inbox. They got an Interaction Engine for pipeline and client work that the team actually opens first.',
     ctaLabel: 'Read the proof',
     href: '/proof/energy-utilities.pdf',
   },

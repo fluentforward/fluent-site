@@ -8,14 +8,18 @@ export function DefinitionGrid({
   eyebrow,
   heading,
   lede,
+  plainLine,
   items,
+  closing,
   tone = 'paper',
   id,
 }: {
   eyebrow: string
   heading: string
   lede?: string
+  plainLine?: string
   items: { title: string; body: string }[]
+  closing?: string
   tone?: 'paper' | 'muted'
   id?: string
 }) {
@@ -27,9 +31,14 @@ export function DefinitionGrid({
           {heading}
         </Heading>
         {lede && <Lede className="mt-8">{lede}</Lede>}
+        {plainLine && (
+          <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">
+            {plainLine}
+          </p>
+        )}
       </Reveal>
 
-      <dl className="mt-20 grid gap-5 sm:grid-cols-2 lg:gap-6">
+      <dl className="mt-20 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
         {items.map((item, index) => (
           <Reveal
             key={item.title}
@@ -45,6 +54,12 @@ export function DefinitionGrid({
           </Reveal>
         ))}
       </dl>
+
+      {closing ? (
+        <Reveal delay={120} className="mt-12 max-w-prose">
+          <p className="text-[1.0625rem] leading-[1.72] text-slate">{closing}</p>
+        </Reveal>
+      ) : null}
     </Section>
   )
 }
