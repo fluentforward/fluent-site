@@ -15,7 +15,8 @@ export const hero = {
 
 export const contrast = {
   eyebrow: 'Leaders vs followers',
-  heading: 'Leaders look like this. Followers look like that.',
+  leadersHeading: 'What category leaders run on.',
+  followersHeading: 'What followers still put up with.',
   leaders: [
     'One place people open first for customer and staff work.',
     'Journeys feel coherent to the customer and to the team.',
