@@ -21,12 +21,13 @@ export const contrast = {
     'Journeys feel coherent to the customer and to the team.',
     'Capacity rises without headcount climbing in lockstep.',
     'The stack matches how the work already runs.',
+    'AI sits inside the workflow, under your control, and strengthens how people already work.',
   ],
   followers: [
     'Inbox and sheets still hold the truth.',
     'A bent CRM owns the process.',
     'Empty SaaS tabs and bolted-on tools.',
-    'ChatGPT paste for work the system should carry.',
+    'Private work pasted into ChatGPT, with no control over where that data goes.',
     'Headcount climbing with volume.',
   ],
   bridge:
