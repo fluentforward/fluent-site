@@ -60,6 +60,12 @@ export function PhaseRail() {
               </p>
             ) : null}
 
+            {phase.briefDownload ? (
+              <ArrowLink href={phase.briefDownload.href} newTab>
+                {phase.briefDownload.label}
+              </ArrowLink>
+            ) : null}
+
             <div className="mt-auto border-t border-line pt-6">
               <p className="font-mono text-label text-mist uppercase">
                 Decision point

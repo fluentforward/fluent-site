@@ -142,6 +142,7 @@ export type HomePhase = {
   summary?: string
   pillars?: HomePhasePillar[]
   footnote?: string
+  briefDownload?: { label: string; href: string }
   gate: string
 }
 
@@ -174,6 +175,10 @@ export const phasesSection = {
       ],
       footnote:
         'You also leave with a named first release: scope, outcomes it must move, and the commercial next step. Sometimes the right next step is not to build. The Design is still yours.',
+      briefDownload: {
+        label: 'Download the Interaction Engine Design brief',
+        href: '/offers/interaction-engine-design.pdf',
+      },
       gate:
         'Stop here and the Design pack is yours to act on, with us or anyone else.',
     },
