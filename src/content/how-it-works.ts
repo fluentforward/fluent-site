@@ -2,7 +2,7 @@ export const hero = {
   eyebrow: 'How it works',
   heading: 'Three phases. Each one ends in a decision, not an upsell.',
   lede:
-    'Phase one is Interaction Engine Design: fixed fee, multi-week. Phase two is Impact Build, a fixed-fee first release of about eight weeks. Phase three is Strategy and Build: grow the engine you own with senior strategy and ongoing development on a flat monthly fee. No hourly billing. Nothing rolls over automatically.',
+    'Phase one is a One-Month Interaction Engine Design Sprint: fixed fee. Phase two is Impact Build, a fixed-fee first release of about eight weeks. Phase three is Strategy and Build: grow the engine you own with senior strategy and ongoing development on a flat monthly fee. No hourly billing. Nothing rolls over automatically.',
 }
 
 export type Phase = {
@@ -19,7 +19,7 @@ export type Phase = {
 export const phases: Phase[] = [
   {
     index: '01',
-    name: 'Interaction Engine Design',
+    name: 'One-Month Interaction Engine Design Sprint',
     meta: 'Fixed fee · multi-week · founder-led throughout',
     intro:
       'Before anything gets built, we work out what winning in your category means, what is blocking it, and what your Interaction Engine needs to do. You leave with a prototype you can click, a named first release, and a clear commercial next step. Sometimes the right next step is not to build.',
@@ -29,7 +29,7 @@ export const phases: Phase[] = [
       'An interactive prototype of your engine until it bridges the blockers to those outcomes.',
     ],
     deliverables: [
-      'The Interaction Engine Design pack you can hand to anyone, including your own team or another supplier.',
+      'The Design Sprint pack you can hand to anyone, including your own team or another supplier.',
       'A named first release: scope, outcomes it must move, and the commercial next step.',
       'An honest read on whether to build, including when the answer is not yet.',
     ],
@@ -125,7 +125,7 @@ export const reassurance = {
   heading: 'What you are agreeing to, in plain terms.',
   items: [
     {
-      title: 'Fixed fees for Interaction Engine Design and Impact Build',
+      title: 'Fixed fees for One-Month Interaction Engine Design Sprint and Impact Build',
       body: 'Both are quoted as a single number, in writing, before work starts. If the scope does not change, the number does not change.',
     },
     {
@@ -163,7 +163,7 @@ export const faq = {
         'Yes, in the sense that matters: there is no per-request charge, no ticket allowance, and no bucket of hours to run down. What keeps that honest rather than a marketing line is that the turnaround window and the definition of a request are both written into your contract, so you can work out exactly what throughput you are buying before you sign anything.',
     },
     {
-      question: 'Do we have to start with Interaction Engine Design?',
+      question: 'Do we have to start with a One-Month Interaction Engine Design Sprint?',
       answer:
         'Almost always, yes. Building the wrong thing quickly is worse than building the right thing slowly, and proper Design is what separates the two. If you have already done equivalent work and can show it, we will pick up from there.',
     },
@@ -189,5 +189,5 @@ export const closingCta = {
   eyebrow: 'Next step',
   heading: 'Worth a conversation?',
   body:
-    'If category-win outcomes are clear enough to name, and the stack is the quiet blocker, talk. The usual next step is Interaction Engine Design.',
+    'If category-win outcomes are clear enough to name, and the stack is the quiet blocker, talk. The usual next step is a One-Month Interaction Engine Design Sprint.',
 }

@@ -5,7 +5,7 @@ export const site = {
   tagline:
     'Senior-led delivery for established businesses. Install an Interaction Engine you own, then grow it with Strategy and Build.',
   description:
-    'Senior-led delivery for established businesses. Interaction Engine Design, Impact Build, and Strategy and Build on the platform you own. Fixed fee where it matters. No hourly billing.',
+    'Senior-led delivery for established businesses. One-Month Interaction Engine Design Sprint, Impact Build, and Strategy and Build on the platform you own. Fixed fee where it matters. No hourly billing.',
   email: 'hello@fluentforward.com',
   privacyEmail: 'privacy@fluentforward.com',
 } as const
