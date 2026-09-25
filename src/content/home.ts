@@ -154,7 +154,7 @@ export const phasesSection = {
   phases: [
     {
       index: '01',
-      name: 'Interaction Engine Design',
+      name: 'One-Month Interaction Engine Design Sprint',
       meta: 'Fixed fee · multi-week',
       pillars: [
         {
@@ -176,7 +176,7 @@ export const phasesSection = {
       footnote:
         'You also leave with a named first release: scope, outcomes it must move, and the commercial next step. Sometimes the right next step is not to build. The Design is still yours.',
       briefDownload: {
-        label: 'Download the Interaction Engine Design brief',
+        label: 'Download the Design Sprint brief',
         href: '/offers/interaction-engine-design.pdf',
       },
       gate:
@@ -218,5 +218,5 @@ export const closingCta = {
   eyebrow: 'Next step',
   heading: 'Worth a conversation?',
   body:
-    'If category-win outcomes are clear enough to name, and the stack is the quiet blocker, talk. The usual next step is Interaction Engine Design.',
+    'If category-win outcomes are clear enough to name, and the stack is the quiet blocker, talk. The usual next step is a One-Month Interaction Engine Design Sprint.',
 }
