@@ -160,7 +160,7 @@ export const phasesSection = {
         {
           title: 'Where you win',
           body:
-            'Where category leaders get to for you: customer experience, staff experience, growth without a matching headcount curve.',
+            'Customer experience, staff experience, growth without a matching headcount curve.',
         },
         {
           title: 'What’s stuck',

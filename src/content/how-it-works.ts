@@ -25,7 +25,7 @@ export const phases: Phase[] = [
       'Before anything gets built, we work out what winning in your category means, what is blocking it, and what your Interaction Engine needs to do. You leave with a prototype you can click, a named first release, and a clear commercial next step. Sometimes the right next step is not to build.',
     happens: [
       'Interviews and work-mapping across the stuck stacks, broken handoffs, and places customer and staff interactions fail.',
-      'A clear picture of category-win outcomes: customer experience, internal experience, and capacity with the same headcount.',
+      'A clear picture of customer experience, staff experience, and growth without a matching headcount curve.',
       'An interactive prototype of your engine until it bridges the blockers to those outcomes.',
     ],
     deliverables: [
@@ -189,5 +189,5 @@ export const closingCta = {
   eyebrow: 'Next step',
   heading: 'Worth a conversation?',
   body:
-    'If category-win outcomes are clear enough to name, and the stack is the quiet blocker, talk. The usual next step is a One-Month Interaction Engine Design Sprint.',
+    'If Growth Without Headcount outcomes are clear enough to name, and low leverage in the stack is the quiet blocker, talk. The usual next paid step is a One-Month Interaction Engine Design Sprint.',
 }
