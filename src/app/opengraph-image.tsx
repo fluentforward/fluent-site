@@ -68,7 +68,7 @@ export default function OpengraphImage() {
             paddingTop: 28,
           }}
         >
-          <span>Interaction Engine Design and Impact Build</span>
+          <span>One-Month Interaction Engine Design Sprint and Impact Build</span>
           <span>Unlimited development</span>
           <span>No hourly billing</span>
         </div>

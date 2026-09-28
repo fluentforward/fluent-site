@@ -158,37 +158,35 @@ export const phasesSection = {
       meta: 'Fixed fee · about one month',
       pillars: [
         {
-          title: 'Where category leaders get to',
+          title: 'Where you win',
           body:
-            'What winning in your category means for you. Customer experience. Staff experience. Growth without a matching headcount curve. Concrete outcomes, not vague aspiration.',
+            'Where category leaders get to for you: customer experience, staff experience, growth without a matching headcount curve.',
         },
         {
-          title: 'What is holding you back',
+          title: 'What’s stuck',
           body:
-            'Deep analysis of leverage debt and integration debt: stuck stacks, broken handoffs, places customer and staff interactions fail. Interviews and work-mapping. Not a surface survey.',
+            'Leverage debt and integration debt mapped: stuck stacks, broken handoffs, where customer and staff interactions fail.',
         },
         {
-          title: 'The Interaction Engine prototype',
+          title: 'Clickable prototype',
           body:
-            'An interactive prototype of your owned operating layer until it clearly bridges the blockers to the outcomes. You leave able to click the machine, not read another deck.',
+            'An interactive prototype of your owned operating layer, plus a named first-release brief. You leave able to click the machine, not read another deck. Sometimes the right next step is not to build; the Design Sprint is still yours.',
         },
       ],
-      footnote:
-        'You also leave with a named first release: scope, outcomes it must move, and the commercial next step. Sometimes the right next step is not to build. The Design Sprint is still yours.',
       briefDownload: {
         label: 'Download the Interaction Engine Design brief',
         href: '/offers/interaction-engine-design.pdf',
       },
       gate:
-        'Stop here and the Design pack is yours to act on, with us or anyone else.',
+        'Stop here. The Design pack is yours to act on, with us or anyone else.',
     },
     {
       index: '02',
       name: 'Impact Build',
       meta: 'Fixed fee · about 8 weeks',
       summary:
-        'The first release of that Interaction Engine, in front of real users. You own it. Short adoption note so the team can run it without us.',
-      gate: 'Stop here and the system is yours, running.',
+        'First release of that Interaction Engine in front of real users. You own it. Short adoption note so the team can run it without us.',
+      gate: 'Stop here. The system is yours, running.',
     },
     {
       index: '03',
@@ -198,7 +196,7 @@ export const phasesSection = {
         'Grow the engine you own. Senior strategy plus ongoing development on your platform. Pause or cancel whenever you like.',
       gate: 'Pause or cancel anytime.',
     },
-  ] satisfies HomePhase[],
+  ] as HomePhase[],
 }
 
 export const engagementFeels = {
