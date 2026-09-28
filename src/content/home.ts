@@ -174,7 +174,7 @@ export const phasesSection = {
         },
       ],
       briefDownload: {
-        label: 'Download the Interaction Engine Design brief',
+        label: 'Download the Design Sprint brief',
         href: '/offers/interaction-engine-design.pdf',
       },
       gate:
