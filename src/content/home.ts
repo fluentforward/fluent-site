@@ -4,7 +4,7 @@ export const hero = {
   lede:
     'The gap is not ambition. It is leverage: who owns the operating layer under the work, and whether every new tool adds capacity or adds glue.',
   audience:
-    'For owners, COOs, and ops leaders who will own how the work runs.',
+    'Owners, COOs, and ops leaders who will own how the work runs.',
   primaryCta: { label: 'Worth a conversation?', href: '/contact' },
   proofChips: [
     'Process-fit.',
