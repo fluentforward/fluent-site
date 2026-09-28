@@ -150,7 +150,7 @@ export const faq = {
     {
       question: 'Why are your prices not on the site?',
       answer:
-        'Because a published number would be wrong for most people who read it. The Design fee depends on how many people we need to talk to and how tangled the process is; the retainer depends on the turnaround window and the request size threshold you want. You get a fixed number in writing before anything starts, and it will not move on its own.',
+        'Because a published number would be wrong for most people who read it. The Design Sprint fee depends on how many people we need to talk to and how tangled the process is; the retainer depends on the turnaround window and the request size threshold you want. You get a fixed number in writing before anything starts, and it will not move on its own.',
     },
     {
       question: 'What if my request is bigger than “one request”?',
@@ -168,7 +168,7 @@ export const faq = {
         'Almost always, yes. Building the wrong thing quickly is worse than building the right thing slowly, and proper Design is what separates the two. If you have already done equivalent work and can show it, we will pick up from there.',
     },
     {
-      question: 'What if Design concludes we should not build yet?',
+      question: 'What if the Design Sprint concludes we should not build yet?',
       answer:
         'Then that is what the pack says, and it is the most valuable version you could have received. It has happened, and it will happen again. A recommendation you can trust requires the possibility of a no.',
     },

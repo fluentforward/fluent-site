@@ -155,7 +155,7 @@ export const phasesSection = {
     {
       index: '01',
       name: 'One-Month Interaction Engine Design Sprint',
-      meta: 'Fixed fee · multi-week',
+      meta: 'Fixed fee · about one month',
       pillars: [
         {
           title: 'Where category leaders get to',
