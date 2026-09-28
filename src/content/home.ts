@@ -1,8 +1,8 @@
 export const hero = {
   headline:
-    'For ambitious businesses that intend to lead their category.',
+    'For ambitious businesses that want rapid growth without adding headcount and complexity.',
   lede:
-    'Category leaders grow without a matching hire curve. They delight customers and staff on every interaction because the work sits on an owned operating layer, not on people as glue between systems.',
+    'The gap is not ambition. It is leverage: who owns the operating layer under the work, and whether every new tool adds capacity or adds glue.',
   audience:
     'For owners, COOs, and ops leaders who will own how the work runs.',
   primaryCta: { label: 'Worth a conversation?', href: '/contact' },
