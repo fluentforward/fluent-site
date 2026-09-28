@@ -1,10 +1,10 @@
 export const hero = {
   headline:
-    'For ambitious businesses that intend to lead their category.',
+    'For ambitious businesses that want rapid growth without adding headcount and complexity.',
   lede:
-    'Category leaders delight customers and staff on every interaction, and grow capacity without a matching hire curve. Followers still run on inbox, bent CRMs, and bolted-on tools.',
+    'The gap is not ambition. It is leverage: who owns the operating layer under the work, and whether every new tool adds capacity or adds glue.',
   audience:
-    'For owners, COOs, and ops leaders who will own how the work runs.',
+    'Owners, COOs, and ops leaders who will own how the work runs.',
   primaryCta: { label: 'Worth a conversation?', href: '/contact' },
   proofChips: [
     'Process-fit.',
@@ -14,25 +14,25 @@ export const hero = {
 }
 
 export const contrast = {
-  eyebrow: 'Leaders vs followers',
-  leadersHeading: 'What category leaders run on.',
-  followersHeading: 'What followers still put up with.',
+  eyebrow: 'High vs low leverage',
+  leadersHeading: 'What high leverage runs on.',
+  followersHeading: 'What low leverage still puts up with.',
   leaders: [
-    'One place people open first for customer and staff work.',
-    'Journeys feel coherent to the customer and to the team.',
-    'Capacity rises without headcount climbing in lockstep.',
-    'The stack matches how the work already runs.',
-    'AI sits inside the workflow, under your control, and strengthens how people already work.',
+    'An owned operating layer beside the CRM: one place people open first for customer and staff work.',
+    'Processes and integrations that create leverage, not glue jobs.',
+    'AI inside the work, on that owned layer, not bolted on per vendor.',
+    'Keep, integrate, or replace: the stack matches how the work already runs.',
+    'Growth without a matching headcount curve. Capacity rises; headcount does not climb in lockstep.',
   ],
   followers: [
-    'Inbox and sheets still hold the truth.',
-    'A bent CRM owns the process.',
-    'Empty SaaS tabs and bolted-on tools.',
-    'Private work pasted into ChatGPT, with no control over where that data goes.',
-    'Headcount climbing with volume.',
+    'People as glue between systems. Inbox and sheets still hold the truth.',
+    'Fragmented processes and integrations. A bent CRM owns the process.',
+    'AI bolted on per vendor. ChatGPT paste for work the system should carry.',
+    'Renting capability you should own. Empty SaaS tabs and bolted-on tools.',
+    'Growth equals hire and grind. Headcount climbs with volume. Leverage debt and integration debt compound quietly.',
   ],
   bridge:
-    'The gap is not ambition. It is the machine between where you are and where category leaders already operate.',
+    'The gap is not ambition. It is leverage: who owns the operating layer under customer and staff work, and whether every new tool adds capacity or adds glue.',
   alsoNot:
     'Also not: a chatbot nobody opens, an AI licence with a demo bolted on, or an 18-month programme before anything useful ships.',
 }
@@ -41,14 +41,14 @@ export const engineDefinition = {
   eyebrow: 'The mechanism',
   heading: 'The Interaction Engine is how you get there.',
   lede:
-    'We design and install the system under every customer and staff interaction so you can move from follower patterns to leader outcomes. First release in about eight weeks. Not an 18-month programme as the first move.',
+    'In the One-Month Interaction Engine Design Sprint, we design the owned operating layer under every customer and staff interaction so you can move from low-leverage patterns to high-leverage outcomes. The first release lands in Impact Build, in about eight weeks. Not an 18-month programme as the first move.',
   plainLine:
-    'Operators open it first. Customers feel the coherence. The work stops living in inbox, sheets, and empty tabs.',
+    'Operators open it first. Customers feel the coherence. AI multiplies the stack it is plugged into, because the layer is yours. The work stops living in inbox, sheets, and empty tabs.',
   chips: [
     {
       title: 'Fits how you already work',
       body:
-        'Not a vendor process you have to adopt forever.',
+        'Keep, integrate, or replace. Not a vendor process you have to adopt forever.',
     },
     {
       title: 'Customer and staff',
@@ -58,26 +58,26 @@ export const engineDefinition = {
     {
       title: 'First release in about eight weeks',
       body:
-        'Useful software in front of real users, then you decide what grows next.',
+        'Useful software in front of real users in Impact Build, then you decide what grows next.',
     },
   ],
   closing:
-    'You keep control of what ships. We do not lead with another licence pile.',
+    'You keep control of what ships. AI is leverage only on an owned layer. We do not lead with another licence pile.',
 }
 
 export const whoItsFor = {
   eyebrow: 'Fit',
-  heading: 'Built for established businesses that will own the system.',
+  heading: 'Built for established businesses that will own the operating layer.',
   lede:
     'Owners, COOs, ops directors, and IT-adjacent leaders who feel volume, handoffs, or product ambition outrunning headcount and tooling.',
   rightFit: [
     'Nothing off the shelf fits how you work.',
-    'The CRM owns the process, or the inbox and sheets hold the truth.',
+    'People are still the glue, or the CRM owns the process, or inbox and sheets hold the truth.',
     'You can name the outcome you want (throughput, revenue, NPS, capacity), even if the path is unclear.',
     'You want to see the engine before you commit to an eight-week build.',
   ],
   wrongFit: [
-    'You want a public chatbot or AI slides with no system to own.',
+    'You want a public chatbot or AI slides with no layer to own.',
     'You want a multi-year transformation programme as the first move.',
     'You want staff augmentation forever, not a system your team runs.',
   ],
@@ -86,7 +86,7 @@ export const whoItsFor = {
 export const sectors = {
   heading: 'Sectors we know from the inside.',
   lede:
-    'Same pressure everywhere: interactions and headcount cannot keep up with volume. An Interaction Engine changes both.',
+    'Same pressure everywhere: interactions and headcount cannot keep up with volume. An owned operating layer changes both.',
   items: [
     {
       title: 'Energy and utilities',
@@ -154,51 +154,49 @@ export const phasesSection = {
   phases: [
     {
       index: '01',
-      name: 'Interaction Engine Design',
-      meta: 'Fixed fee · multi-week',
+      name: 'One-Month Interaction Engine Design Sprint',
+      meta: 'Fixed fee · about one month',
       pillars: [
         {
-          title: 'Where category leaders get to',
+          title: 'Where you win',
           body:
-            'What winning in your category in 2026 means for you. Customer experience. Internal experience. Capacity with the same headcount. Delight on every interaction. Concrete outcomes, not vague aspiration.',
+            'Customer experience, staff experience, growth without a matching headcount curve.',
         },
         {
-          title: 'What is holding you back',
+          title: 'What’s stuck',
           body:
-            'Deep analysis of the stuck stacks, broken handoffs, and places customer and staff interactions fail. Interviews and work-mapping. Not a surface survey.',
+            'Leverage debt and integration debt mapped: stuck stacks, broken handoffs, where customer and staff interactions fail.',
         },
         {
-          title: 'The Interaction Engine prototype',
+          title: 'Clickable prototype',
           body:
-            'An interactive prototype of your engine until it clearly bridges the blockers to the outcomes. You leave able to click the machine, not read another deck.',
+            'An interactive prototype of your owned operating layer, plus a named first-release brief. You leave able to click the machine, not read another deck. Sometimes the right next step is not to build; the Design Sprint is still yours.',
         },
       ],
-      footnote:
-        'You also leave with a named first release: scope, outcomes it must move, and the commercial next step. Sometimes the right next step is not to build. The Design is still yours.',
       briefDownload: {
-        label: 'Download the Interaction Engine Design brief',
+        label: 'Download the Design Sprint brief',
         href: '/offers/interaction-engine-design.pdf',
       },
       gate:
-        'Stop here and the Design pack is yours to act on, with us or anyone else.',
+        'Stop here. The Design pack is yours to act on, with us or anyone else.',
     },
     {
       index: '02',
       name: 'Impact Build',
       meta: 'Fixed fee · about 8 weeks',
       summary:
-        'The first release of that Interaction Engine, in front of real users. You own it. Short adoption note so the team can run it without us.',
-      gate: 'Stop here and the system is yours, running.',
+        'First release of that Interaction Engine in front of real users. You own it. Short adoption note so the team can run it without us.',
+      gate: 'Stop here. The system is yours, running.',
     },
     {
       index: '03',
-      name: 'Strategy and Build',
+      name: 'Strategy & Build',
       meta: 'Monthly · pause anytime',
       summary:
         'Grow the engine you own. Senior strategy plus ongoing development on your platform. Pause or cancel whenever you like.',
       gate: 'Pause or cancel anytime.',
     },
-  ] satisfies HomePhase[],
+  ] as HomePhase[],
 }
 
 export const engagementFeels = {
@@ -218,5 +216,5 @@ export const closingCta = {
   eyebrow: 'Next step',
   heading: 'Worth a conversation?',
   body:
-    'If category-win outcomes are clear enough to name, and the stack is the quiet blocker, talk. The usual next step is Interaction Engine Design.',
+    'If Growth Without Headcount outcomes are clear enough to name, and low leverage in the stack is the quiet blocker, talk. The usual next paid step is a One-Month Interaction Engine Design Sprint.',
 }
