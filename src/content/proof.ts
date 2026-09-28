@@ -2,7 +2,7 @@ export const proofSection = {
   eyebrow: 'Proof',
   heading: 'Real engagements.',
   lede:
-    'Interaction Engines installed under customer and staff work. How the work moved. What we refused to bolt on. The system they own now.',
+    'Interaction Engines installed under customer and staff work. How leverage moved. What we refused to bolt on. The layer they own now.',
 }
 
 export type ProofPack = {
