@@ -21,6 +21,7 @@ export const footerNav = {
     title: 'The offer',
     links: [
       { label: 'How it works', href: '/how-it-works' },
+      { label: 'Leverage Board', href: '/leverage-board' },
       { label: 'After the first release', href: '/how-it-works#after-the-first-release' },
       { label: 'Common questions', href: '/how-it-works#faq' },
     ],
