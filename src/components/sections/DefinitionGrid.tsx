@@ -14,11 +14,11 @@ export function DefinitionGrid({
   tone = 'paper',
   id,
 }: {
-  eyebrow: string
+  eyebrow?: string
   heading: string
   lede?: string
   plainLine?: string
-  items: { title: string; body: string }[]
+  items: readonly { title: string; body: string }[]
   closing?: string
   tone?: 'paper' | 'muted'
   id?: string
@@ -26,8 +26,8 @@ export function DefinitionGrid({
   return (
     <Section tone={tone} id={id}>
       <Reveal className="max-w-2xl">
-        <Eyebrow>{eyebrow}</Eyebrow>
-        <Heading as="h2" className="mt-8">
+        {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
+        <Heading as="h2" className={eyebrow ? 'mt-8' : undefined}>
           {heading}
         </Heading>
         {lede && <Lede className="mt-8">{lede}</Lede>}
