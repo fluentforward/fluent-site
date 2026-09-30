@@ -2,7 +2,6 @@ import { type Metadata } from 'next'
 
 import { CtaBand } from '@/components/sections/CtaBand'
 import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
-import { LeverageBoardCloseStrip } from '@/components/sections/LeverageBoardCloseStrip'
 import { PageHero } from '@/components/sections/PageHero'
 import { ReleaseEngineSection } from '@/components/sections/ReleaseEngineSection'
 import { Button } from '@/components/ui/Button'
@@ -87,7 +86,6 @@ export default function LeverageBoardPage() {
         tone="paper"
         id="what-you-get"
       />
-      <LeverageBoardCloseStrip text={whatYouGet.closeStrip} />
 
       <Section tone="muted" border>
         <Reveal className="max-w-2xl">

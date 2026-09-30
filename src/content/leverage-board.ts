@@ -58,8 +58,6 @@ export const whatYouGet = {
         'A short written or brief review when you want to commit budget or start Release Engine.',
     },
   ],
-  closeStrip:
-    'Seat. Four touchpoints (three sessions + Summit). Portal office hours. AI advisor on your transcripts. Library. Ship-gate when something should move. Not an open Slack retainer.',
 } as const
 
 export const summit = {
