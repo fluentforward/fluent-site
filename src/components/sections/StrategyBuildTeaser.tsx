@@ -1,4 +1,3 @@
-import { ArrowLink } from '@/components/ui/ArrowLink'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Heading, Lede } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
@@ -17,11 +16,6 @@ export function StrategyBuildTeaser() {
           {engagementFeels.lede}
         </Lede>
         <p className="mt-8 text-lede text-mist">{engagementFeels.body}</p>
-        <div className="mt-10">
-          <ArrowLink href={engagementFeels.link.href} tone="dark">
-            {engagementFeels.link.label}
-          </ArrowLink>
-        </div>
       </Reveal>
     </Section>
   )

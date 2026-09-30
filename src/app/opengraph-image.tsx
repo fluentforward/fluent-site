@@ -69,7 +69,7 @@ export default function OpengraphImage() {
           }}
         >
           <span>One-Month Interaction Engine Design Sprint and Impact Build</span>
-          <span>Unlimited development</span>
+          <span>Optional continuity</span>
           <span>No hourly billing</span>
         </div>
       </div>

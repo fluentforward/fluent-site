@@ -16,7 +16,7 @@ export function PhaseRail() {
         <Lede className="mt-8">{phasesSection.lede}</Lede>
       </Reveal>
 
-      <ol className="mt-20 grid divide-y divide-line border-y border-line lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+      <ol className="mt-20 grid divide-y divide-line border-y border-line lg:grid-cols-2 lg:divide-x lg:divide-y-0">
         {phasesSection.phases.map((phase, index) => (
           <Reveal
             as="li"
@@ -77,6 +77,15 @@ export function PhaseRail() {
           </Reveal>
         ))}
       </ol>
+
+      <Reveal delay={100} className="mt-12 max-w-3xl border-t border-line pt-10">
+        <h3 className="text-lg font-medium text-ink">
+          {phasesSection.continuity.heading}
+        </h3>
+        <p className="mt-4 text-[0.9375rem] leading-[1.72] text-slate">
+          {phasesSection.continuity.body}
+        </p>
+      </Reveal>
 
       <Reveal delay={140} className="mt-16">
         <ArrowLink href="/how-it-works">

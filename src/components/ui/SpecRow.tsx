@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 
 /**
- * A single row of the retainer spec table: monospace term on the left, plain
+ * A single spec table row: monospace term on the left, plain
  * definition on the right. Deliberately reads like product documentation.
  */
 export function SpecRow({

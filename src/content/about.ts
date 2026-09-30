@@ -50,7 +50,7 @@ export const principles = {
     },
     {
       title: 'Nothing that needs us to run it',
-      body: 'Anything we build is documented and handed over properly. If the only way it keeps working is that we stay on retainer, it is not finished.',
+      body: 'Anything we build is documented and handed over properly. If the only way it keeps working is that we stay on indefinitely, it is not finished.',
     },
     {
       title: 'Boring, specific, measurable',

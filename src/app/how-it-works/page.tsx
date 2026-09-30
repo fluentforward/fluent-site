@@ -5,7 +5,7 @@ import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
 import { FaqSection } from '@/components/sections/FaqSection'
 import { PageHero } from '@/components/sections/PageHero'
 import { PhaseDetail } from '@/components/sections/PhaseDetail'
-import { StrategyBuildSection } from '@/components/sections/StrategyBuildSection'
+import { AfterImpactSection } from '@/components/sections/AfterImpactSection'
 import {
   closingCta,
   faq,
@@ -15,7 +15,7 @@ import {
 } from '@/content/how-it-works'
 
 const description =
-  'Phase one is a One-Month Interaction Engine Design Sprint. Phase two is Impact Build: a fixed-fee first release of about eight weeks. Phase three is Strategy and Build: grow the engine you own with senior strategy and ongoing development on a flat monthly fee. No hourly billing. Nothing rolls over automatically.'
+  'Phase one is a One-Month Interaction Engine Design Sprint. Phase two is Impact Build: a fixed-fee first release of about eight weeks. After the first release, optional continuity: quarterly strategy and a shared library on the engine you own. No hourly billing.'
 
 export const metadata: Metadata = {
   title: 'How it works',
@@ -50,7 +50,7 @@ export default function HowItWorks() {
       {phases.map((phase) => (
         <PhaseDetail key={phase.name} phase={phase} />
       ))}
-      <StrategyBuildSection />
+      <AfterImpactSection />
       <DefinitionGrid
         tone="muted"
         eyebrow={reassurance.eyebrow}
