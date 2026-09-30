@@ -3,9 +3,9 @@ export const site = {
   legalName: 'FluentForward Limited',
   url: 'https://fluentforward.com',
   tagline:
-    'Senior-led delivery for established businesses. Install an Interaction Engine you own, then grow it with Strategy and Build.',
+    'Senior-led delivery for established businesses. Install an Interaction Engine you own, then choose how to stay on.',
   description:
-    'Senior-led delivery for established businesses. One-Month Interaction Engine Design Sprint, Impact Build, and Strategy and Build on the platform you own. Fixed fee where it matters. No hourly billing.',
+    'Senior-led delivery for established businesses. One-Month Interaction Engine Design Sprint, Impact Build, and optional continuity on the platform you own. Fixed fee where it matters. No hourly billing.',
   email: 'hello@fluentforward.com',
   privacyEmail: 'privacy@fluentforward.com',
 } as const
@@ -21,7 +21,7 @@ export const footerNav = {
     title: 'The offer',
     links: [
       { label: 'How it works', href: '/how-it-works' },
-      { label: 'Strategy and Build', href: '/how-it-works#strategy-and-build' },
+      { label: 'After the first release', href: '/how-it-works#after-the-first-release' },
       { label: 'Common questions', href: '/how-it-works#faq' },
     ],
   },

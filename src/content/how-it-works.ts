@@ -1,8 +1,8 @@
 export const hero = {
   eyebrow: 'How it works',
-  heading: 'Three phases. Each one ends in a decision, not an upsell.',
+  heading: 'Two decisions. Then you choose how to stay on.',
   lede:
-    'Phase one is a One-Month Interaction Engine Design Sprint: fixed fee. Phase two is Impact Build, a fixed-fee first release of about eight weeks. Phase three is Strategy and Build: grow the engine you own with senior strategy and ongoing development on a flat monthly fee. No hourly billing. Nothing rolls over automatically.',
+    'Each step is scoped and fixed fee where it matters. You only continue when the next step has earned it. You own what ships. Phase one is a One-Month Interaction Engine Design Sprint. Phase two is Impact Build, a fixed-fee first release of about eight weeks. After the first release, continuity is optional.',
 }
 
 export type Phase = {
@@ -58,66 +58,11 @@ export const phases: Phase[] = [
   },
 ]
 
-export const strategyBuild = {
-  eyebrow: 'Phase three',
-  heading: 'Strategy and Build',
-  lede:
-    'Once Impact Build has landed, most businesses need to grow the engine without hiring a permanent technical team and without losing ownership of what shipped. Strategy and Build is that follow-on: senior strategy each month on what the platform should do next, plus ongoing development on the system you own. Pause anytime.',
-  how: {
-    heading: 'What you get each month',
-    steps: [
-      'A strategy session on what the platform you own should do next.',
-      'Requests against the platform, submitted whenever they occur to you. No forms to justify them, no meeting to scope each one.',
-      'Priorities set by you, and reordered by you whenever the business moves.',
-      'Work delivered back inside the turnaround window agreed in your contract.',
-    ],
-  },
-  spec: {
-    heading: 'The specification',
-    lede: 'Published in full, because “unlimited” only means something when the terms around it are written down.',
-    rows: [
-      {
-        term: 'Strategy',
-        value:
-          'A monthly strategy call, so the work stays pointed at things that matter rather than things that are merely annoying.',
-      },
-      {
-        term: 'Requests',
-        value:
-          'Unlimited. Submit as many as you like, whenever you like, at no extra cost.',
-      },
-      {
-        term: 'Turnaround',
-        value:
-          'A fixed window per request, written into your contract. Generous rather than heroic, so that it holds every week rather than most weeks.',
-      },
-      {
-        term: 'One request',
-        value:
-          'One increment of the platform: a screen, a workflow inside the app, or a second named app that sits with it.',
-      },
-      {
-        term: 'Larger than that',
-        value:
-          'Scoped and quoted as its own project, so nothing gets quietly absorbed and you never get a surprise about why something has taken a month.',
-      },
-      {
-        term: 'Billing',
-        value:
-          'A flat monthly fee. Not hours, not days, not a bucket of time that expires.',
-      },
-      {
-        term: 'Commitment',
-        value:
-          'Monthly. Pause it when you are between priorities, cancel it when you are done.',
-      },
-      {
-        term: 'Availability',
-        value:
-          'A deliberately small number of ongoing engagements, so the turnaround window is a commitment rather than an aspiration. If there is a wait, you will be told rather than squeezed in.',
-      },
-    ],
-  },
+export const afterImpact = {
+  eyebrow: 'After Impact Build',
+  heading: 'After the first release',
+  body:
+    'Stay on with us for quarterly AI and technology strategy, plus a shared library of patterns and resources for the engine you own. When strategy says ship, we build the next release on that same layer. No hours hunting. No token counting. You decide when to continue.',
 }
 
 export const reassurance = {
@@ -129,16 +74,16 @@ export const reassurance = {
       body: 'Both are quoted as a single number, in writing, before work starts. If the scope does not change, the number does not change.',
     },
     {
-      title: 'Turnaround, not timesheets',
-      body: 'The retainer is priced against how quickly work comes back to you, not how long it took us. Efficiency is our problem to solve, not yours to pay for.',
+      title: 'Optional continuity after Impact Build',
+      body: 'Quarterly AI and technology strategy and a shared library on the engine you own. Build capacity when strategy says the next ship is worth it. Pause or leave whenever you like.',
     },
     {
       title: 'No hourly billing anywhere',
       body: 'There is no rate card, no minimum billable unit, and no invoice that needs decoding at the end of the month.',
     },
     {
-      title: 'Every phase is a decision point',
-      body: 'Nothing renews by default and nothing assumes the next phase. Stopping is a normal outcome, not a failure.',
+      title: 'Every step is a decision point',
+      body: 'Nothing renews by default and nothing assumes the next step. Stopping is a normal outcome, not a failure.',
     },
   ],
 }
@@ -150,22 +95,17 @@ export const faq = {
     {
       question: 'Why are your prices not on the site?',
       answer:
-        'Because a published number would be wrong for most people who read it. The Design Sprint fee depends on how many people we need to talk to and how tangled the process is; the retainer depends on the turnaround window and the request size threshold you want. You get a fixed number in writing before anything starts, and it will not move on its own.',
-    },
-    {
-      question: 'What if my request is bigger than “one request”?',
-      answer:
-        'Then it is not a request, it is a project, and we scope and quote it as one. The threshold is written into your contract so this is a boring conversation rather than an argument. Holding that line is the only reason unlimited requests can work at all. A request can still be a single automation, a single build, or a single workflow change when that is the honest increment. The picture on the site is the named system those sit inside, not invisible automations nobody on the team can see.',
-    },
-    {
-      question: 'Is “unlimited” actually unlimited?',
-      answer:
-        'Yes, in the sense that matters: there is no per-request charge, no ticket allowance, and no bucket of hours to run down. What keeps that honest rather than a marketing line is that the turnaround window and the definition of a request are both written into your contract, so you can work out exactly what throughput you are buying before you sign anything.',
+        'Because a published number would be wrong for most people who read it. The Design Sprint fee depends on how many people we need to talk to and how tangled the process is. Continuity after Impact Build is scoped when you are ready to talk about it. You get a fixed number in writing before anything starts, and it will not move on its own.',
     },
     {
       question: 'Do we have to start with a One-Month Interaction Engine Design Sprint?',
       answer:
         'Almost always, yes. Building the wrong thing quickly is worse than building the right thing slowly, and a proper Design Sprint is what separates the two. If you have already done equivalent work and can show it, we will pick up from there.',
+    },
+    {
+      question: 'What happens after Impact Build?',
+      answer:
+        'You can stop with the system running, which is a normal outcome. If you want to stay on, continuity is optional: quarterly AI and technology strategy on the engine you own, a library you can draw on between releases, and build capacity when strategy says the next ship is worth it. You decide when to continue.',
     },
     {
       question: 'What if the Design Sprint concludes we should not build yet?',
@@ -189,5 +129,5 @@ export const closingCta = {
   eyebrow: 'Next step',
   heading: 'Worth a conversation?',
   body:
-    'If Growth Without Headcount outcomes are clear enough to name, and low leverage in the stack is the quiet blocker, talk. The usual next paid step is a One-Month Interaction Engine Design Sprint.',
+    'If rapid growth without adding headcount and complexity is clear enough to name, and low leverage in the stack is the quiet blocker, talk. The usual next paid step is a One-Month Interaction Engine Design Sprint.',
 }

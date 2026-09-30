@@ -148,9 +148,14 @@ export type HomePhase = {
 
 export const phasesSection = {
   eyebrow: 'How we work',
-  heading: 'Three phases. Each one ends in a decision.',
+  heading: 'Two decisions. Then you choose how to stay on.',
   lede:
-    'Each phase is scoped and fixed fee where it matters. You only continue when the next step has earned it. You own what ships.',
+    'Each step is scoped and fixed fee where it matters. You only continue when the next step has earned it. You own what ships.',
+  continuity: {
+    heading: 'After the first release',
+    body:
+      'Stay on with us for quarterly AI and technology strategy, plus a shared library of patterns and resources for the engine you own. When strategy says ship, we build the next release on that same layer. No hours hunting. No token counting. You decide when to continue.',
+  },
   phases: [
     {
       index: '01',
@@ -188,14 +193,6 @@ export const phasesSection = {
         'First release of that Interaction Engine in front of real users. You own it. Short adoption note so the team can run it without us.',
       gate: 'Stop here. The system is yours, running.',
     },
-    {
-      index: '03',
-      name: 'Strategy & Build',
-      meta: 'Monthly · pause anytime',
-      summary:
-        'Grow the engine you own. Senior strategy plus ongoing development on your platform. Pause or cancel whenever you like.',
-      gate: 'Pause or cancel anytime.',
-    },
   ] as HomePhase[],
 }
 
@@ -205,16 +202,12 @@ export const engagementFeels = {
   lede:
     'Senior-led. Fixed fee where it matters. You own what ships.',
   body:
-    'Strategy and Build is how you grow the engine after the first release proves itself. Senior strategy each month on what the platform should do next. Ongoing development on the system you own. Turnaround written into the contract. Never hours. Pause or cancel anytime.',
-  link: {
-    label: 'Read the full specification',
-    href: '/how-it-works#strategy-and-build',
-  },
+    'After Impact Build, continuity is optional. Quarterly AI and technology strategy on the engine you own. A library you can draw on between releases. Build capacity only when strategy says the next ship is worth it. Pause or leave whenever you like.',
 }
 
 export const closingCta = {
   eyebrow: 'Next step',
   heading: 'Worth a conversation?',
   body:
-    'If Growth Without Headcount outcomes are clear enough to name, and low leverage in the stack is the quiet blocker, talk. The usual next paid step is a One-Month Interaction Engine Design Sprint.',
+    'If rapid growth without adding headcount and complexity is clear enough to name, and low leverage in the stack is the quiet blocker, talk. The usual next paid step is a One-Month Interaction Engine Design Sprint.',
 }
