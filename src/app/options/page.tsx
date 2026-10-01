@@ -11,7 +11,6 @@ import {
   hero,
   howTheyFit,
   meta,
-  purpose,
 } from '@/content/options'
 
 export const metadata: Metadata = {
@@ -74,15 +73,6 @@ export default function OptionsPage() {
         <Reveal className="max-w-2xl">
           <Heading as="h2">{choose.heading}</Heading>
           <BulletList items={choose.items} />
-        </Reveal>
-      </Section>
-
-      <Section tone="paper" border>
-        <Reveal className="max-w-2xl">
-          <Heading as="h2">{purpose.heading}</Heading>
-          <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">
-            {purpose.body}
-          </p>
         </Reveal>
       </Section>
 

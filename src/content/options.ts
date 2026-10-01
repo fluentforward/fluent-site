@@ -129,12 +129,6 @@ export const choose = {
   ],
 } as const
 
-export const purpose = {
-  heading: 'What this page is for',
-  body:
-    'Internal framing for a leadership conversation. Not a public offer page. Commercial numbers are set in writing before anything starts.',
-} as const
-
 export const cta = {
   heading: 'Worth narrowing which of the three fits?',
   body:
