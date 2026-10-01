@@ -91,6 +91,7 @@ export default function OptionsPage() {
           <Heading as="h2" size="display-sm" tone="dark">
             {cta.heading}
           </Heading>
+          <p className="mt-8 text-lede text-mist">{cta.body}</p>
           <p className="mt-10">
             <a
               href={`mailto:${cta.email}`}

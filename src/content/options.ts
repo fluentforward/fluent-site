@@ -6,7 +6,7 @@ export const meta = {
 export const hero = {
   heading: 'Three options. One decision for now.',
   deck:
-    'Your leadership wants AI leverage without inventing an in-house AI role. You already buy specialist capability from outside. These are the three ways we work. Pick the smallest step that matches how clear the first release is, and how much judgment you want alongside it.',
+    'Leadership wants AI leverage without hiring a full-time Chief of AI. You already buy specialist capability from outside. These are the three ways we work. Pick the smallest step that matches how clear the first release is, and how much judgment you want alongside it.',
 } as const
 
 export type CompareRowKey =
@@ -53,7 +53,7 @@ export const compareColumns: CompareColumn[] = [
     title: 'One-Month Interaction Engine Design Sprint',
     rows: {
       whatItIs:
-        'Discovery and prototype. Find the engine worth building before you spend on build.',
+        'Design and prototype. See the engine worth building before you spend on build.',
       bestWhen:
         'The biggest-impact first release is not yet clear, or you need a pack the CEO and IT can trust before committing build budget.',
       youGet:
@@ -62,7 +62,7 @@ export const compareColumns: CompareColumn[] = [
       buyerTime:
         'Roughly 8-12 hours across kickoff, interviews, mapping access, and prototype review.',
       guaranteeRisk:
-        'We iterate until we reach agreed, demonstrable value (within the Sprint scope and window). You leave with a clickable prototype and a named first-release brief you can stand behind, or an honest "not yet" recommendation. Not a refund guarantee; delivery until the artefacts land.',
+        'Within the one-month window we iterate until you have a clickable prototype and a named first-release brief you can stand behind, or an honest not-yet recommendation. The Design pack stays yours either way.',
       whatItIsNot: 'Not production build. Not a workshop alone.',
       usualNextStep:
         'Impact Build if build is recommended; or stop with the pack. Board can sit alongside later work.',
@@ -79,8 +79,8 @@ export const compareColumns: CompareColumn[] = [
         'A fractional Chief of AI seat: clear calls on where AI creates leverage and where it doesn\u2019t',
         'Four senior touchpoints a year: three strategy sessions plus the Annual Leverage Summit',
         'Scheduled portal office hours for batched questions and decisions',
-        'A portal AI advisor that prep and recalls between sessions (human judgment still decides ship)',
-        'A living library: we track the latest AI developments and turn them into real-world patterns, playbooks, and blueprints you can adopt for genuine business benefit',
+        'A portal AI advisor that prepares and recalls between sessions (human judgment still decides ship).',
+        'A living library of playbooks and blueprints tied to your engine: patterns worth adopting for real business benefit, not AI noise.',
         'A short ship-gate before any build budget or Release Engine work starts',
       ],
       duration: 'Membership (quarterly or annual).',
@@ -137,6 +137,8 @@ export const purpose = {
 
 export const cta = {
   heading: 'Worth narrowing which of the three fits?',
+  body:
+    'Reply with which fork fits, or book 30 minutes with Matt to pressure-test it.',
   email: 'hello@fluentforward.com',
 } as const
 
