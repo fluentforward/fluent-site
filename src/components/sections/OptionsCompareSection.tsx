@@ -5,15 +5,35 @@ import {
   compareColumns,
   compareRowLabels,
   compareRowOrder,
+  type CompareCellValue,
   type CompareRowKey,
 } from '@/content/options'
+
+function CompareCellContent({ value }: { value: CompareCellValue }) {
+  if (typeof value === 'string') {
+    return value
+  }
+
+  return (
+    <ul className="space-y-3">
+      {value.map((item) => (
+        <li key={item} className="flex gap-3">
+          <span aria-hidden="true" className="shrink-0 text-steel">
+            &bull;
+          </span>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  )
+}
 
 function CompareCard({
   title,
   rows,
 }: {
   title: string
-  rows: Record<CompareRowKey, string>
+  rows: Record<CompareRowKey, CompareCellValue>
 }) {
   return (
     <article className="flex min-w-0 flex-col">
@@ -31,7 +51,7 @@ function CompareCard({
                 {compareRowLabels[key]}
               </dt>
               <dd className="mt-2 text-[0.9375rem] leading-[1.72] text-slate">
-                {rows[key]}
+                <CompareCellContent value={rows[key]} />
               </dd>
             </div>
           ))}
@@ -91,7 +111,7 @@ export function OptionsCompareSection() {
                         key={column.title + key}
                         className="py-5 pr-6 align-top text-[0.9375rem] leading-[1.72] text-slate last:pr-0"
                       >
-                        {column.rows[key]}
+                        <CompareCellContent value={column.rows[key]} />
                       </td>
                     ))}
                   </tr>

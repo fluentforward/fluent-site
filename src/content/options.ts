@@ -41,9 +41,11 @@ export const compareRowOrder: CompareRowKey[] = [
   'usualNextStep',
 ]
 
+export type CompareCellValue = string | readonly string[]
+
 export type CompareColumn = {
   title: string
-  rows: Record<CompareRowKey, string>
+  rows: Record<CompareRowKey, CompareCellValue>
 }
 
 export const compareColumns: CompareColumn[] = [
@@ -60,7 +62,7 @@ export const compareColumns: CompareColumn[] = [
       buyerTime:
         'Roughly 8-12 hours across kickoff, interviews, mapping access, and prototype review.',
       guaranteeRisk:
-        'Full refund of the Design fee unless you get the prototype and named first-release brief (or an honest "don\u2019t build yet" pack).',
+        'We iterate until we reach agreed, demonstrable value (within the Sprint scope and window). You leave with a clickable prototype and a named first-release brief you can stand behind, or an honest "not yet" recommendation. Not a refund guarantee; delivery until the artefacts land.',
       whatItIsNot: 'Not production build. Not a workshop alone.',
       usualNextStep:
         'Impact Build if build is recommended; or stop with the pack. Board can sit alongside later work.',
@@ -73,8 +75,14 @@ export const compareColumns: CompareColumn[] = [
         'Fractional Chief of AI seat. Ongoing judgment on where leverage is, where it isn\u2019t, and ship / don\u2019t ship.',
       bestWhen:
         'Leadership wants expert judgment and a decision rhythm without hiring, and may or may not be ready to build yet.',
-      youGet:
-        'Seat + four touchpoints a year (three strategy sessions + Annual Leverage Summit) + portal office hours + portal AI advisor (prep only) + library + ship-gate before any build budget.',
+      youGet: [
+        'A fractional Chief of AI seat: clear calls on where AI creates leverage and where it doesn\u2019t',
+        'Four senior touchpoints a year: three strategy sessions plus the Annual Leverage Summit',
+        'Scheduled portal office hours for batched questions and decisions',
+        'A portal AI advisor that prep and recalls between sessions (human judgment still decides ship)',
+        'A living library: we track the latest AI developments and turn them into real-world patterns, playbooks, and blueprints you can adopt for genuine business benefit',
+        'A short ship-gate before any build budget or Release Engine work starts',
+      ],
       duration: 'Membership (quarterly or annual).',
       buyerTime: 'Strategy sessions and Summit; portal submissions between.',
       guaranteeRisk:
