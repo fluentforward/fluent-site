@@ -4,6 +4,7 @@ import { CtaBand } from '@/components/sections/CtaBand'
 import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
 import { PageHero } from '@/components/sections/PageHero'
 import { ReleaseEngineSection } from '@/components/sections/ReleaseEngineSection'
+import { ResearchProofStrip } from '@/components/sections/ResearchProofStrip'
 import { Button } from '@/components/ui/Button'
 import { Heading } from '@/components/ui/Heading'
 import { ArrowLink } from '@/components/ui/ArrowLink'
@@ -11,6 +12,7 @@ import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
 import {
   closingCta,
+  gartnerProofBoard,
   hero,
   ladder,
   meta,
@@ -78,6 +80,8 @@ export default function LeverageBoardPage() {
           </p>
         </Reveal>
       </Section>
+
+      <ResearchProofStrip content={gartnerProofBoard} tone="paper" border />
 
       <DefinitionGrid
         heading={whatYouGet.heading}

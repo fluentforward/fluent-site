@@ -23,6 +23,14 @@ export const problem = {
     'Most stacks already have tools. Work still falls between them as manual process. Bolting AI into each product enhances isolation. Operators need a judgment layer above the stack, and, when ready, an owned operating layer, not another feature inside someone else\u2019s product.',
 } as const
 
+export const gartnerProofBoard = {
+  heading: 'Vendor-led agentic programmes do not stick',
+  body:
+    'Gartner forecasts that by 2028, 70% of enterprises on the vendor forward-deployed-engineering route for agentic AI will abandon it: too expensive, and the organisation cannot evolve the system alone. The Leverage Board puts fractional Chief of AI judgment on your side of the table. When the Board says ship, Release Engine adds capacity you own the direction of.',
+  attribution:
+    'Source: Gartner public research, September 2026. Not an endorsement of FluentForward.',
+} as const
+
 export const whatYouGet = {
   heading: 'What you get with a Leverage Board seat',
   intro:

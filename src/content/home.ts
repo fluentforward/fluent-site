@@ -37,6 +37,19 @@ export const contrast = {
     'Also not: a chatbot nobody opens, an AI licence with a demo bolted on, or an 18-month programme before anything useful ships.',
 }
 
+export const gartnerProofHome = {
+  heading: 'Most agentic projects will not survive the forecast',
+  body:
+    'Analysts forecast that more than 40% of agentic AI projects will be cancelled by the end of 2027, mostly for cost, unclear value, or weak risk controls. That is why we start with a one-month Design Sprint: a clickable prototype and a named first-release brief before you put serious build budget at risk.',
+  attribution:
+    'Source: Gartner public research, June 2025. Not an endorsement of FluentForward.',
+  cta: {
+    label: 'See the Design Sprint',
+    href: '/offers/interaction-engine-design.pdf',
+    newTab: true,
+  },
+}
+
 export const engineDefinition = {
   eyebrow: 'The mechanism',
   heading: 'The Interaction Engine is how you get there.',
@@ -154,7 +167,8 @@ export const phasesSection = {
   continuity: {
     heading: 'After the first release',
     body:
-      'Stay on with us for quarterly AI and technology strategy, plus a shared library of patterns and resources for the engine you own. When strategy says ship, we build the next release on that same layer. No hours hunting. No token counting. You decide when to continue.',
+      'When the first release is live, take a Leverage Board seat for fractional Chief of AI judgment, four senior touchpoints a year, and portal office hours. When the Board says ship, Release Engine adds build capacity you own the direction of.',
+    link: { label: 'Leverage Board', href: '/leverage-board' },
   },
   phases: [
     {
