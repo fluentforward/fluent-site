@@ -6,10 +6,11 @@ import { PhaseRail } from '@/components/sections/PhaseRail'
 import { StrategyBlueprintsSection } from '@/components/sections/StrategyBlueprintsSection'
 import { ContrastSection } from '@/components/sections/ContrastSection'
 import { EngineDefinitionSection } from '@/components/sections/EngineDefinitionSection'
+import { ResearchProofStrip } from '@/components/sections/ResearchProofStrip'
 import { WhoItsForSection } from '@/components/sections/WhoItsForSection'
 import { StrategyBuildTeaser } from '@/components/sections/StrategyBuildTeaser'
 import { TermsStrip } from '@/components/sections/TermsStrip'
-import { closingCta } from '@/content/home'
+import { closingCta, gartnerProofHome } from '@/content/home'
 import { site } from '@/content/site'
 
 const structuredData = {
@@ -36,6 +37,7 @@ export default function Home() {
       <HomeHero />
       <TermsStrip />
       <ContrastSection />
+      <ResearchProofStrip content={gartnerProofHome} tone="paper" border />
       <EngineDefinitionSection />
       <WhoItsForSection />
       <PhaseRail />

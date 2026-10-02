@@ -85,6 +85,13 @@ export function PhaseRail() {
         <p className="mt-4 text-[0.9375rem] leading-[1.72] text-slate">
           {phasesSection.continuity.body}
         </p>
+        {phasesSection.continuity.link ? (
+          <div className="mt-6">
+            <ArrowLink href={phasesSection.continuity.link.href}>
+              {phasesSection.continuity.link.label}
+            </ArrowLink>
+          </div>
+        ) : null}
       </Reveal>
 
       <Reveal delay={140} className="mt-16">
