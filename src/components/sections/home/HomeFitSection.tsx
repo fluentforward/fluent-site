@@ -6,7 +6,7 @@ import { fit } from '@/content/home'
 export function HomeFitSection() {
   return (
     <Section tone="paper" border>
-      <Reveal className="max-w-2xl">
+      <Reveal className="max-w-3xl">
         <Heading as="h2">{fit.builtForHeading}</Heading>
         <Lede className="mt-8">{fit.builtFor}</Lede>
 

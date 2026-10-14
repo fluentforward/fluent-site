@@ -11,7 +11,7 @@ export function HomeProofSection() {
 
   return (
     <Section id="proof" tone="paper" border>
-      <Reveal className="max-w-2xl">
+      <Reveal className="max-w-3xl">
         <Eyebrow>{proofSection.eyebrow}</Eyebrow>
         <Heading as="h2" className="mt-8">{pack.title}</Heading>
         {pack.homeFounderLine ? (

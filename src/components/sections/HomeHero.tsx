@@ -9,7 +9,7 @@ export function HomeHero() {
     <section className="hero-ambient relative pt-14 pb-20 md:pt-20 md:pb-24">
       <Container>
         <Reveal>
-          <Heading as="h1" size="display" className="max-w-[48rem]">
+          <Heading as="h1" size="display">
             {hero.headline}
           </Heading>
         </Reveal>

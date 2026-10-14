@@ -13,7 +13,7 @@ export function BoardHowItWorksSection({
 }) {
   return (
     <Section tone={tone} border id="how-the-board-works">
-      <Reveal className="max-w-2xl">
+      <Reveal className="max-w-3xl">
         <Eyebrow>{howBoardWorks.eyebrow}</Eyebrow>
         <Heading as="h2" className="mt-8">
           {howBoardWorks.heading}
@@ -40,7 +40,7 @@ export function BoardHowItWorksSection({
       </ol>
 
       {showMembership ? (
-        <Reveal delay={120} className="mt-16 max-w-2xl">
+        <Reveal delay={120} className="mt-16 max-w-3xl">
           <h3 className="font-display text-[1.125rem] font-medium tracking-[-0.015em] text-ink">
             {howBoardWorks.membership.heading}
           </h3>

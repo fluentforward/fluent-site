@@ -25,7 +25,7 @@ export function DefinitionGrid({
 }) {
   return (
     <Section tone={tone} id={id}>
-      <Reveal className="max-w-2xl">
+      <Reveal className="max-w-3xl">
         {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
         <Heading as="h2" className={eyebrow ? 'mt-8' : undefined}>
           {heading}

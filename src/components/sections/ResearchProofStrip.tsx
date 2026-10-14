@@ -24,7 +24,7 @@ export function ResearchProofStrip({
 }) {
   return (
     <Section tone={tone} border={border}>
-      <Reveal className="max-w-2xl">
+      <Reveal className="max-w-3xl">
         <Heading as={headingAs}>{content.heading}</Heading>
         <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">
           {content.body}

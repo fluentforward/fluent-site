@@ -23,7 +23,7 @@ export function CtaBand({
   const primaryLink = primary ?? primaryCta
   return (
     <Section tone="ink" size="default">
-      <Reveal className="max-w-2xl">
+      <Reveal className="max-w-3xl">
         <Eyebrow tone="dark">{eyebrow}</Eyebrow>
         <Heading as="h2" size="display-sm" tone="dark" className="mt-8">
           {heading}

@@ -8,7 +8,7 @@ import { closing } from '@/content/home'
 export function HomeClosingSection() {
   return (
     <Section tone="ink" size="default">
-      <Reveal className="max-w-2xl">
+      <Reveal className="max-w-3xl">
         <Eyebrow tone="dark">{closing.eyebrow}</Eyebrow>
         <Heading as="h2" size="display-sm" tone="dark" className="mt-8">
           {closing.heading}

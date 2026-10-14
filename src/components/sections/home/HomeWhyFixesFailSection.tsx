@@ -8,7 +8,7 @@ export function HomeWhyFixesFailSection() {
   return (
     <>
       <Section tone="paper" border>
-        <Reveal className="max-w-2xl">
+        <Reveal className="max-w-3xl">
           <Heading as="h2">{whyFixesFail.heading}</Heading>
           <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">
             {whyFixesFail.intro}

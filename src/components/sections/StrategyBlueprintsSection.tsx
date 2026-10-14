@@ -13,7 +13,7 @@ import {
 export function StrategyBlueprintsSection() {
   return (
     <Section id="strategy-blueprints" tone="paper" border>
-      <Reveal className="max-w-2xl">
+      <Reveal className="max-w-3xl">
         <Eyebrow>{blueprintsHomeSection.eyebrow}</Eyebrow>
         <Heading as="h2" className="mt-8">
           {blueprintsHomeSection.heading}

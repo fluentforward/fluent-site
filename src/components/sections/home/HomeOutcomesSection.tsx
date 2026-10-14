@@ -8,7 +8,7 @@ import { outcomes } from '@/content/home'
 export function HomeOutcomesSection() {
   return (
     <Section tone="muted" border>
-      <Reveal className="max-w-2xl">
+      <Reveal className="max-w-3xl">
         <Heading as="h2">{outcomes.heading}</Heading>
         <ul className="mt-12 space-y-5">
           {outcomes.items.map((item) => (

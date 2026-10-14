@@ -14,7 +14,7 @@ export function ProofSection({ packs }: { packs?: readonly ProofPack[] }) {
   const items = packs ?? proofPacks
   return (
     <Section id="proof" tone="muted" border>
-      <Reveal className="max-w-2xl">
+      <Reveal className="max-w-3xl">
         <Eyebrow>{proofSection.eyebrow}</Eyebrow>
         <Heading as="h2" className="mt-8">
           {proofSection.heading}
