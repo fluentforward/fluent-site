@@ -3,7 +3,7 @@ import { gartnerPressReleases } from '@/content/gartner'
 export const meta = {
   title: 'Leverage Board: senior AI advisory membership | FluentForward',
   description:
-    'A Leverage Board seat: senior judgement, four touchpoints a year, portal office hours, AI advisor, library, ship-gate and Annual Summit.',
+    'A Leverage Board seat: senior AI and operations judgement, portal office hours, an AI advisor, the playbook library, a ship-gate on every build, and the Annual Leverage Summit.',
 } as const
 
 export const hero = {
