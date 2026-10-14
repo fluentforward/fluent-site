@@ -1,8 +1,8 @@
 export const proofSection = {
   eyebrow: 'Proof',
-  heading: 'Real engagements.',
+  heading: 'Judgement before build, in practice.',
   lede:
-    'Interaction Engines installed under customer and staff work. How leverage moved. What we refused to bolt on. The layer they own now.',
+    'Real engagements where strategy and partner choice came before spend. What we refused to bolt on. The layer the client owns now.',
 }
 
 export type ProofPack = {
@@ -21,7 +21,7 @@ export const proofPacks: readonly ProofPack[] = [
     label: 'Energy & utilities',
     title: 'The CRM was winning. The process was losing.',
     summary:
-      'An energy-sector owner and ops team stopped bending their process around a legacy CRM, sheets, and inbox. They got an Interaction Engine for pipeline and client work that the team actually opens first.',
+      'An energy-sector owner and ops team stopped bending their process around a legacy CRM, sheets, and inbox. Strategy first, then an owned layer for pipeline and client work the team actually opens first.',
     ctaLabel: 'Read the proof',
     href: '/proof/energy-utilities.pdf',
   },
@@ -35,3 +35,7 @@ export const proofPacks: readonly ProofPack[] = [
     href: '/proof/healthcare.pdf',
   },
 ]
+
+export const proofPacksHome: readonly ProofPack[] = proofPacks.filter(
+  (pack) => pack.slug === 'energy-utilities',
+)

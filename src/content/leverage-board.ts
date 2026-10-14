@@ -1,18 +1,20 @@
+import { auditCta, boardConversationCta, boardOutcomes } from '@/content/board'
+
 export const meta = {
   title: 'Leverage Board',
   description:
-    'Fractional Chief of AI judgment for operators who want control over AI and tech leverage, without a full-time hire. Release Engine as optional build capacity when the Board says ship.',
+    'Senior AI and operations judgement every quarter for services firms: governance, independent build-partner choice, owned roadmaps and productivity per head. Optional Release Engine when the Board says ship.',
 } as const
 
 export const hero = {
   eyebrow: 'Leverage Board',
-  heading: 'Your fractional Chief of AI, without the full-time hire.',
+  heading: 'Growth without headcount, with judgement every quarter.',
   lede:
-    'A Board seat for senior judgment on where AI and technology create leverage across the business you already run. Process first. Systems you own. Control over AI. When judgment says ship, Release Engine is the optional build add-on, not an open retainer.',
-  primaryCta: { label: 'Worth a conversation?', href: '/contact' },
+    'A membership seat for senior AI and operations judgement on the business you already run. Fractional Chief of AI thinking when you need it, without a full-time hire. Process first. Systems you own. Control over AI.',
+  primaryCta: boardConversationCta,
   secondaryCta: {
-    label: 'How the Design Sprint and Impact Build work',
-    href: '/how-it-works',
+    label: auditCta.label,
+    href: auditCta.href,
   },
 } as const
 
@@ -20,15 +22,15 @@ export const problem = {
   heading:
     'Vendor AI makes silos smarter. It rarely makes the business more productive.',
   body:
-    'Most stacks already have tools. Work still falls between them as manual process. Bolting AI into each product enhances isolation. Operators need a judgment layer above the stack, and, when ready, an owned operating layer, not another feature inside someone else\u2019s product.',
+    'Most stacks already have tools. Work still falls between them as manual process. Bolting AI into each product enhances isolation. Operators need a judgement layer above the stack, and, when ready, an owned operating layer, not another feature inside someone else\u2019s product.',
 } as const
 
 export const gartnerProofBoard = {
   heading: 'Vendor-led agentic programmes do not stick',
   body:
-    'Gartner forecasts that by 2028, 70% of enterprises on the vendor forward-deployed-engineering route for agentic AI will abandon it: too expensive, and the organisation cannot evolve the system alone. The Leverage Board puts fractional Chief of AI judgment on your side of the table. When the Board says ship, Release Engine adds capacity you own the direction of.',
+    'Gartner forecasts that by 2028, 70% of enterprises on the vendor forward-deployed-engineering route for agentic AI will abandon it: too expensive, and the organisation cannot evolve the system alone. The Leverage Board puts judgement on your side of the table before build budget moves.',
   attribution:
-    'Source: Gartner public research, September 2026. Not an endorsement of FluentForward.',
+    'Source: Gartner press release, 29 September 2026. Not an endorsement of FluentForward.',
 } as const
 
 export const whatYouGet = {
@@ -39,7 +41,7 @@ export const whatYouGet = {
     {
       title: 'Leverage Board seat',
       body:
-        'Fractional Chief of AI judgment: where leverage is, where it isn\u2019t, and ship / don\u2019t ship.',
+        'Fractional Chief of AI judgement: where leverage is, where it isn\u2019t, and ship / don\u2019t ship.',
     },
     {
       title: 'Four touchpoints a year',
@@ -49,7 +51,7 @@ export const whatYouGet = {
     {
       title: 'Portal office hours',
       body:
-        'Scheduled slots. You submit questions and issues through the portal for the agenda. Intentional, batched judgment, not always-on chat.',
+        'Scheduled slots. You submit questions and issues through the portal for the agenda. Intentional, batched judgement, not always-on chat.',
     },
     {
       title: 'Portal AI advisor',
@@ -78,7 +80,7 @@ export const releaseEngine = {
   eyebrow: 'Member-only add-on',
   heading: 'Release Engine: build capacity when the Board says ship',
   body:
-    'Release Engine is not the Board. It is optional ship capacity for Board members only, when judgment says the next release is worth it. You choose intensity: Steady, Build, or Velocity, against a visible used / left budget. Not token billing. Not an open Slack queue. Speed is valued; rush work uses more of the budget rather than sitting in a longer line.',
+    'Release Engine is not the Board. It is optional ship capacity for Board members only, when judgement says the next release is worth it. You choose intensity: Steady, Build, or Velocity, against a visible used / left budget. Not token billing. Not an open Slack queue. Speed is valued; rush work uses more of the budget rather than sitting in a longer line.',
   intensities: [
     {
       title: 'Steady',
@@ -100,19 +102,19 @@ export const releaseEngine = {
 export const whoFor = {
   heading: 'Built for operators who already know the problem',
   items: [
-    'Established businesses with named outcomes and stuck interactions between systems',
+    'Services firms of about 20 to 200 people with named outcomes and stuck interactions between systems',
     'Process-first leaders who want technology independence and ownership of IP',
     'Teams wary of vendor AI that only makes siloed tools smarter',
-    'Buyers used to outsourcing specialist capability they do not hold in-house',
-    'Continuity after a first Interaction Engine release, or judgment while the owned layer is being scoped',
+    'Owners who want judgement while the owned layer is being scoped or grown',
+    'Firms ready to measure productivity per head quarter by quarter',
   ],
 } as const
 
 export const ladder = {
   heading: 'Where Leverage Board sits',
   body:
-    'Most engagements start with a One-Month Interaction Engine Design Sprint, then Impact Build for the first owned release. A Board seat can run through the Impact Build window, then continue as paid membership. If the biggest-impact first release and IT constraints are already clear, some operators go straight to Impact Build with Board included for the build, then decide whether to keep the seat.',
-  link: { label: 'How it works', href: '/how-it-works' },
+    'Start with the Growth Without Headcount Audit, then a free call to sense-check fit. Quarter one maps governance, build-partner choice and an owned roadmap. Each quarter after, re-score the pillars and decide ship or hold. Impact Build is a later Board decision for firms that are ready: delivered by us, a partner or your vendor under Board oversight. Release Engine adds optional ship capacity for members when judgement says move.',
+  link: { label: 'How the Board works', href: '/how-it-works' },
 } as const
 
 export const notList = {
@@ -120,7 +122,7 @@ export const notList = {
   items: [
     'Not monthly hours or staff augmentation',
     'Not an open Slack or unlimited chat retainer',
-    'Not a second Design Sprint',
+    'Not a vendor in disguise: we do not resell builds or licences',
     'Not build-without-strategy (Release Engine never without a Board seat)',
     'Not a public conference ticket without a seat',
     'Not another vendor AI bolted into a silo',
@@ -129,7 +131,11 @@ export const notList = {
 
 export const closingCta = {
   eyebrow: 'Next step',
-  heading: 'Worth a conversation?',
+  heading: 'Find your stage, or talk it through.',
   body:
-    'If you want fractional Chief of AI judgment on the stack you run, and optional ship capacity when something should move, talk. Fixed commercial terms are private and set in writing before anything starts.',
+    'Take the Audit for a fast read on stage and gaps, or book a call if you would rather talk first. Fixed commercial terms are private and set in writing before anything starts.',
+  primary: auditCta,
+  secondary: boardConversationCta,
 } as const
+
+export { boardOutcomes }

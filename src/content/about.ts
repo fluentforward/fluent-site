@@ -1,7 +1,8 @@
 export const hero = {
   eyebrow: 'Practice',
-  heading: 'We build what we recommend.',
-  lede: 'FluentForward is deliberately senior-led: the practice that works out what your business needs is accountable for building it. It exists because the gap in the market is not advice about AI, of which there is an oversupply, but a firm that will advise and then deliver the thing it advised.',
+  heading: 'Senior people on your side of the table.',
+  lede:
+    'FluentForward is deliberately senior-led: judgement from builders who have shipped at scale, accountable for telling you what to fix, what to build and who should build it, whether that is us or someone else.',
 }
 
 export const story = {
@@ -9,7 +10,7 @@ export const story = {
   paragraphs: [
     'Most AI consulting stops at the recommendation. A report lands, everyone agrees it is sensible, and then it sits there because implementing it needs a skill set the people who wrote it do not have. The business is left holding a document and a problem.',
     'The practice is run by Matt Todd, its principal. Twenty years on the other side of that handover, building and scaling the systems that reports like those describe, and still writing code today. The recommendation you get has already been pressure-tested against the question that matters: whether it can actually be built and run by the team you actually have.',
-    'The three-phase structure exists for the same reason. It is designed so you can find out whether this is worth doing before committing to it, and so we can find out whether we can genuinely help before taking on an ongoing commitment we cannot honour.',
+    'Vendor-independent positioning is deliberate. We will advise, select build partners and oversee delivery, but we will also say plainly when another firm should build, or when build should wait. The Leverage Board exists so that judgement repeats every quarter, not only on a one-off project.',
   ],
 }
 

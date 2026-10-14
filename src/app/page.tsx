@@ -1,16 +1,16 @@
-import { ProofSection } from '@/components/sections/ProofSection'
-import { SectorsSection } from '@/components/sections/SectorsSection'
-import { CtaBand } from '@/components/sections/CtaBand'
-import { HomeHero } from '@/components/sections/HomeHero'
-import { PhaseRail } from '@/components/sections/PhaseRail'
-import { StrategyBlueprintsSection } from '@/components/sections/StrategyBlueprintsSection'
+import { BoardHowItWorksSection } from '@/components/sections/BoardHowItWorksSection'
 import { ContrastSection } from '@/components/sections/ContrastSection'
-import { EngineDefinitionSection } from '@/components/sections/EngineDefinitionSection'
+import { CtaBand } from '@/components/sections/CtaBand'
+import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
+import { HomeHero } from '@/components/sections/HomeHero'
+import { PillarsSection } from '@/components/sections/PillarsSection'
+import { ProofSection } from '@/components/sections/ProofSection'
 import { ResearchProofStrip } from '@/components/sections/ResearchProofStrip'
+import { WhenBoardSaysBuildSection } from '@/components/sections/WhenBoardSaysBuildSection'
 import { WhoItsForSection } from '@/components/sections/WhoItsForSection'
-import { StrategyBuildTeaser } from '@/components/sections/StrategyBuildTeaser'
-import { TermsStrip } from '@/components/sections/TermsStrip'
+import { boardOutcomes } from '@/content/board'
 import { closingCta, gartnerProofHome } from '@/content/home'
+import { proofPacksHome } from '@/content/proof'
 import { site } from '@/content/site'
 
 const structuredData = {
@@ -22,7 +22,7 @@ const structuredData = {
   email: site.email,
   description: site.description,
   areaServed: 'GB',
-  serviceType: 'AI advisory and implementation',
+  serviceType: 'AI and operations advisory membership',
   founder: { '@type': 'Person', name: 'Matt Todd' },
   address: { '@type': 'PostalAddress', addressCountry: 'GB' },
 }
@@ -35,17 +35,24 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <HomeHero />
-      <TermsStrip />
       <ContrastSection />
+      <PillarsSection />
       <ResearchProofStrip content={gartnerProofHome} tone="paper" border />
-      <EngineDefinitionSection />
+      <ProofSection packs={proofPacksHome} />
+      <DefinitionGrid
+        eyebrow={boardOutcomes.eyebrow}
+        heading={boardOutcomes.heading}
+        items={boardOutcomes.items}
+        tone="muted"
+      />
+      <BoardHowItWorksSection />
+      <WhenBoardSaysBuildSection />
       <WhoItsForSection />
-      <PhaseRail />
-      <SectorsSection />
-      <ProofSection />
-      <StrategyBlueprintsSection />
-      <StrategyBuildTeaser />
-      <CtaBand {...closingCta} />
+      <CtaBand
+        {...closingCta}
+        primary={closingCta.primaryCta}
+        secondary={closingCta.secondaryCta}
+      />
     </>
   )
 }

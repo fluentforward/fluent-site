@@ -8,6 +8,24 @@ import { Wordmark } from './Wordmark'
 
 const columns = [footerNav.offer, footerNav.company, footerNav.legal]
 
+function FooterLink({ href, label }: { href: string; label: string }) {
+  const external = /^https?:/.test(href)
+  const className =
+    'text-sm text-paper/60 transition-colors duration-300 hover:text-paper'
+  if (external) {
+    return (
+      <a href={href} className={className}>
+        {label}
+      </a>
+    )
+  }
+  return (
+    <Link href={href} className={className}>
+      {label}
+    </Link>
+  )
+}
+
 export function SiteFooter() {
   return (
     <footer className="border-t border-line-dark bg-ink text-mist">
@@ -40,12 +58,7 @@ export function SiteFooter() {
                 <ul className="mt-6 space-y-3.5">
                   {column.links.map((link) => (
                     <li key={link.href + link.label}>
-                      <Link
-                        href={link.href}
-                        className="text-sm text-paper/60 transition-colors duration-300 hover:text-paper"
-                      >
-                        {link.label}
-                      </Link>
+                      <FooterLink href={link.href} label={link.label} />
                     </li>
                   ))}
                 </ul>

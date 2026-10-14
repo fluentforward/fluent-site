@@ -1,16 +1,12 @@
+import { auditCta, boardConversationCta } from '@/content/board'
+
 export const hero = {
-  headline:
-    'For ambitious businesses that want rapid growth without adding headcount and complexity.',
+  headline: 'Grow without adding headcount.',
   lede:
-    'The gap is not ambition. It is leverage: who owns the operating layer under the work, and whether every new tool adds capacity or adds glue.',
-  audience:
-    'Owners, COOs, and ops leaders who will own how the work runs.',
-  primaryCta: { label: 'Worth a conversation?', href: '/contact' },
-  proofChips: [
-    'Process-fit.',
-    'Customer and staff.',
-    'First release in about eight weeks.',
-  ],
+    'The Leverage Board gives your firm senior AI and operations judgement every quarter, so you know what to fix, what to build and who should build it, before you spend a penny on build.',
+  primaryCta: auditCta,
+  secondaryCta: boardConversationCta,
+  auditHint: auditCta.hint,
 }
 
 export const contrast = {
@@ -20,208 +16,58 @@ export const contrast = {
   leaders: [
     'An owned operating layer beside the CRM: one place people open first for customer and staff work.',
     'Processes and integrations that create leverage, not glue jobs.',
-    'AI inside the work, on that owned layer, not bolted on per vendor.',
-    'Keep, integrate, or replace: the stack matches how the work already runs.',
-    'Growth without a matching headcount curve. Capacity rises; headcount does not climb in lockstep.',
+    'AI inside the work on that layer, with governance and ship-gates, not bolted on per vendor.',
+    'Growth without a matching headcount curve.',
   ],
   followers: [
     'People as glue between systems. Inbox and sheets still hold the truth.',
-    'Fragmented processes and integrations. A bent CRM owns the process.',
-    'AI bolted on per vendor. ChatGPT paste for work the system should carry.',
-    'Renting capability you should own. Empty SaaS tabs and bolted-on tools.',
-    'Growth equals hire and grind. Headcount climbs with volume. Leverage debt and integration debt compound quietly.',
+    'Shadow AI: ChatGPT paste for work the system should carry, with no policy or control.',
+    'Vendor-led roadmaps that make silos smarter without making the firm more productive.',
+    'Growth equals hire and grind. Headcount climbs with volume.',
   ],
   bridge:
-    'The gap is not ambition. It is leverage: who owns the operating layer under customer and staff work, and whether every new tool adds capacity or adds glue.',
+    'The gap is not ambition. It is leverage: who owns judgement on what to fix, what to build and who builds it.',
   alsoNot:
-    'Also not: a chatbot nobody opens, an AI licence with a demo bolted on, or an 18-month programme before anything useful ships.',
+    'Also not: a chatbot nobody opens, an AI licence with a demo bolted on, or a multi-year programme before anything useful ships.',
 }
 
 export const gartnerProofHome = {
   heading: 'Most agentic projects will not survive the forecast',
   body:
-    'Analysts forecast that more than 40% of agentic AI projects will be cancelled by the end of 2027, mostly for cost, unclear value, or weak risk controls. That is why we start with a one-month Design Sprint: a clickable prototype and a named first-release brief before you put serious build budget at risk.',
+    'Analysts forecast that more than 40% of agentic AI projects will be cancelled by the end of 2027, mostly for cost, unclear value, or weak risk controls. That is why strategy comes before build: quarter one on the Board settles what to build, who builds it and how it is controlled.',
   attribution:
     'Source: Gartner public research, June 2025. Not an endorsement of FluentForward.',
-  cta: {
-    label: 'See the Design Sprint',
-    href: '/offers/interaction-engine-design.pdf',
-    newTab: true,
-  },
-}
-
-export const engineDefinition = {
-  eyebrow: 'The mechanism',
-  heading: 'The Interaction Engine is how you get there.',
-  lede:
-    'In the One-Month Interaction Engine Design Sprint, we design the owned operating layer under every customer and staff interaction so you can move from low-leverage patterns to high-leverage outcomes. The first release lands in Impact Build, in about eight weeks. Not an 18-month programme as the first move.',
-  plainLine:
-    'Operators open it first. Customers feel the coherence. AI multiplies the stack it is plugged into, because the layer is yours. The work stops living in inbox, sheets, and empty tabs.',
-  chips: [
-    {
-      title: 'Fits how you already work',
-      body:
-        'Keep, integrate, or replace. Not a vendor process you have to adopt forever.',
-    },
-    {
-      title: 'Customer and staff',
-      body:
-        'One spine for internal work and client-facing journeys.',
-    },
-    {
-      title: 'First release in about eight weeks',
-      body:
-        'Useful software in front of real users in Impact Build, then you decide what grows next.',
-    },
-  ],
-  closing:
-    'You keep control of what ships. AI is leverage only on an owned layer. We do not lead with another licence pile.',
 }
 
 export const whoItsFor = {
   eyebrow: 'Fit',
-  heading: 'Built for established businesses that will own the operating layer.',
-  lede:
-    'Owners, COOs, ops directors, and IT-adjacent leaders who feel volume, handoffs, or product ambition outrunning headcount and tooling.',
+  heading:
+    'Services firms of about 20 to 200 people, run by owners who own client experience and staff interactions.',
+  lede: 'Not sure where you sit? The Audit tells you.',
   rightFit: [
-    'Nothing off the shelf fits how you work.',
-    'People are still the glue, or the CRM owns the process, or inbox and sheets hold the truth.',
-    'You can name the outcome you want (throughput, revenue, NPS, capacity), even if the path is unclear.',
-    'You want to see the engine before you commit to an eight-week build.',
+    'Named outcomes and stuck handoffs between systems, even if the path is unclear.',
+    'Owners who will own how work runs, not delegate judgement to vendors.',
+    'Willingness to measure productivity per head quarter by quarter.',
   ],
   wrongFit: [
     'You want a public chatbot or AI slides with no layer to own.',
     'You want a multi-year transformation programme as the first move.',
-    'You want staff augmentation forever, not a system your team runs.',
+    'You want staff augmentation forever, not systems and judgement your team runs.',
   ],
 }
 
-export const sectors = {
-  heading: 'Sectors we know from the inside.',
-  lede:
-    'Same pressure everywhere: interactions and headcount cannot keep up with volume. An owned operating layer changes both.',
-  items: [
-    {
-      title: 'Energy and utilities',
-      before:
-        'When sales and delivery run on spreadsheets and inbox, every customer and staff handoff frays.',
-      withUs:
-        'An Interaction Engine for pipeline, contracts, and delivery work, so the team serves a larger book without a larger headcount.',
-    },
-    {
-      title: 'eCommerce and retail operations',
-      before:
-        'Order volume grows faster than the team. Every interaction costs more attention.',
-      withUs:
-        'Systems that absorb thousands to millions of orders a day without a linear hiring curve.',
-    },
-    {
-      title: 'Transport and mobility',
-      before:
-        'Ops and customer journeys sit in different tools. Handoffs multiply.',
-      withUs:
-        'Internal and customer-facing platforms that keep operations moving as one.',
-    },
-    {
-      title: 'Finance',
-      before:
-        'Regulated workflows and back office only grow by adding people.',
-      withUs:
-        'Platforms for payroll, invoice financing, and investment ops that take load off the team and keep journeys coherent.',
-    },
-    {
-      title: 'Healthcare',
-      before:
-        'When a regulated product stalls in delivery, the business waits on a team it does not have.',
-      withUs:
-        'Rescue, multi-system platforms, and clinical matching products that ship without standing up a permanent eng org.',
-    },
-  ],
-  alsoDelivered: {
-    title: 'Also delivered',
-    body: 'Via partner agencies: education, attractions, defence, automotive, creative.',
-  },
-}
-
-export type HomePhasePillar = {
-  title: string
-  body: string
-}
-
-export type HomePhase = {
-  index: string
-  name: string
-  meta: string
-  summary?: string
-  pillars?: HomePhasePillar[]
-  footnote?: string
-  briefDownload?: { label: string; href: string }
-  gate: string
-}
-
-export const phasesSection = {
-  eyebrow: 'How we work',
-  heading: 'Two decisions. Then you choose how to stay on.',
-  lede:
-    'Each step is scoped and fixed fee where it matters. You only continue when the next step has earned it. You own what ships.',
-  continuity: {
-    heading: 'After the first release',
-    body:
-      'When the first release is live, take a Leverage Board seat for fractional Chief of AI judgment, four senior touchpoints a year, and portal office hours. When the Board says ship, Release Engine adds build capacity you own the direction of.',
-    link: { label: 'Leverage Board', href: '/leverage-board' },
-  },
-  phases: [
-    {
-      index: '01',
-      name: 'One-Month Interaction Engine Design Sprint',
-      meta: 'Fixed fee · about one month',
-      pillars: [
-        {
-          title: 'Where you win',
-          body:
-            'Customer experience, staff experience, growth without a matching headcount curve.',
-        },
-        {
-          title: 'What’s stuck',
-          body:
-            'Leverage debt and integration debt mapped: stuck stacks, broken handoffs, where customer and staff interactions fail.',
-        },
-        {
-          title: 'Clickable prototype',
-          body:
-            'An interactive prototype of your owned operating layer, plus a named first-release brief. You leave able to click the machine, not read another deck. Sometimes the right next step is not to build; the Design Sprint is still yours.',
-        },
-      ],
-      briefDownload: {
-        label: 'Download the Design Sprint brief',
-        href: '/offers/interaction-engine-design.pdf',
-      },
-      gate:
-        'Stop here. The Design pack is yours to act on, with us or anyone else.',
-    },
-    {
-      index: '02',
-      name: 'Impact Build',
-      meta: 'Fixed fee · about 8 weeks',
-      summary:
-        'First release of that Interaction Engine in front of real users. You own it. Short adoption note so the team can run it without us.',
-      gate: 'Stop here. The system is yours, running.',
-    },
-  ] as HomePhase[],
-}
-
-export const engagementFeels = {
-  eyebrow: 'Engagement',
-  heading: 'How the engagement feels.',
-  lede:
-    'Senior-led. Fixed fee where it matters. You own what ships.',
+export const whenBoardSaysBuild = {
+  eyebrow: 'Member-only add-on',
+  heading: 'When the Board says build',
   body:
-    'After Impact Build, continuity is optional. Quarterly AI and technology strategy on the engine you own. A library you can draw on between releases. Build capacity only when strategy says the next ship is worth it. Pause or leave whenever you like.',
+    'Release Engine is optional ship capacity for Leverage Board members only, when judgement says the next release is worth it. Build can be delivered by us, by a partner or by your own vendor under Board oversight. Never sold without an active seat. Ship-gate comes first.',
 }
 
 export const closingCta = {
   eyebrow: 'Next step',
-  heading: 'Worth a conversation?',
+  heading: 'Find your stage, then talk if it fits.',
   body:
-    'If rapid growth without adding headcount and complexity is clear enough to name, and low leverage in the stack is the quiet blocker, talk. The usual next paid step is a One-Month Interaction Engine Design Sprint.',
+    'The Audit takes about ten minutes. If you would rather talk first, book a call. No public prices: terms are set in writing before anything starts, and you can pause or leave.',
+  primaryCta: auditCta,
+  secondaryCta: boardConversationCta,
 }

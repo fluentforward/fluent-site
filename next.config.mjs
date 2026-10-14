@@ -7,6 +7,12 @@ const nextConfig = {
       { source: '/pricing', destination: '/how-it-works', permanent: true },
       { source: '/surfaceos', destination: '/', permanent: true },
       { source: '/agentic-platform', destination: '/', permanent: true },
+      { source: '/options', destination: '/leverage-board', permanent: true },
+      {
+        source: '/offers/interaction-engine-design.pdf',
+        destination: '/leverage-board',
+        permanent: true,
+      },
     ]
   },
 }

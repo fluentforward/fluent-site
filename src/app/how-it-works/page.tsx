@@ -1,28 +1,31 @@
 import { type Metadata } from 'next'
 
+import { BoardHowItWorksSection } from '@/components/sections/BoardHowItWorksSection'
 import { CtaBand } from '@/components/sections/CtaBand'
 import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
 import { FaqSection } from '@/components/sections/FaqSection'
 import { PageHero } from '@/components/sections/PageHero'
-import { PhaseDetail } from '@/components/sections/PhaseDetail'
-import { AfterImpactSection } from '@/components/sections/AfterImpactSection'
+import { Eyebrow } from '@/components/ui/Eyebrow'
+import { Heading } from '@/components/ui/Heading'
+import { Reveal } from '@/components/ui/Reveal'
+import { Section } from '@/components/ui/Section'
 import {
   closingCta,
   faq,
   hero,
-  phases,
   reassurance,
+  whenBuild,
 } from '@/content/how-it-works'
 
 const description =
-  'Phase one is a One-Month Interaction Engine Design Sprint. Phase two is Impact Build: a fixed-fee first release of about eight weeks. After the first release, optional continuity: quarterly strategy and a shared library on the engine you own. No hourly billing.'
+  'How the Leverage Board works: Growth Without Headcount Audit, free call, quarter one strategy, quarterly re-score, Annual Summit and compounding membership. Optional build under Board oversight.'
 
 export const metadata: Metadata = {
-  title: 'How it works',
+  title: 'How the Board works',
   description,
   alternates: { canonical: '/how-it-works' },
-  openGraph: { title: 'How it works', description, url: '/how-it-works' },
-  twitter: { title: 'How it works', description },
+  openGraph: { title: 'How the Board works', description, url: '/how-it-works' },
+  twitter: { title: 'How the Board works', description },
 }
 
 const faqStructuredData = {
@@ -47,18 +50,28 @@ export default function HowItWorks() {
         heading={hero.heading}
         lede={hero.lede}
       />
-      {phases.map((phase) => (
-        <PhaseDetail key={phase.name} phase={phase} />
-      ))}
-      <AfterImpactSection />
+      <BoardHowItWorksSection tone="paper" showMembership={false} />
+      <Section tone="muted" border>
+        <Reveal className="max-w-2xl">
+          <Eyebrow>{whenBuild.eyebrow}</Eyebrow>
+          <Heading as="h2" className="mt-8">{whenBuild.heading}</Heading>
+          <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">
+            {whenBuild.body}
+          </p>
+        </Reveal>
+      </Section>
       <DefinitionGrid
-        tone="muted"
+        tone="paper"
         eyebrow={reassurance.eyebrow}
         heading={reassurance.heading}
         items={reassurance.items}
       />
       <FaqSection />
-      <CtaBand {...closingCta} />
+      <CtaBand
+        {...closingCta}
+        primary={closingCta.primary}
+        secondary={closingCta.secondary}
+      />
     </>
   )
 }
