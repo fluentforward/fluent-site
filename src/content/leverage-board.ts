@@ -5,7 +5,7 @@ import { fit } from '@/content/home'
 export const meta = {
   title: 'Leverage Board',
   description:
-    'Grow without adding headcount: senior AI and operations judgement for services firms, with governance, independent build-partner choice, owned roadmaps and productivity per head. Optional Release Engine when the Board says ship.',
+    'Grow without adding headcount: senior AI and operations judgement for services firms, with governance, independent build-partner choice, owned roadmaps and productivity per head.',
 } as const
 
 export const hero = {
@@ -65,7 +65,7 @@ export const whatYouGet = {
     {
       title: 'Ship-gate',
       body:
-        'A short written or brief review when you want to commit budget or start Release Engine.',
+        'A short written review when you want to commit build budget before work starts.',
     },
   ],
 } as const
@@ -76,27 +76,13 @@ export const summit = {
     'One of your four touchpoints is the Annual Leverage Summit: a one-day, members-only session with peer operators, expert speakers, and real stories, facilitated around leverage and stuck interactions. Timings and venue are confirmed for each membership year. Never a public ticket; the Summit is part of the seat.',
 } as const
 
-export const releaseEngine = {
-  eyebrow: 'Member-only add-on',
-  heading: 'Release Engine: build capacity when the Board says ship',
+export const developerLeverage = {
+  eyebrow: 'When the Board says build',
+  heading: "One developer. A team's worth of output.",
   body:
-    'Release Engine is not the Board. It is optional ship capacity for Board members only, when judgement says the next release is worth it. You choose intensity: Steady, Build, or Velocity, against a visible used / left budget. Not token billing. Not an open Slack queue. Speed is valued; rush work uses more of the budget rather than sitting in a longer line.',
-  intensities: [
-    {
-      title: 'Steady',
-      body: 'Low maintenance / keep-alive on the layer you own.',
-    },
-    {
-      title: 'Build',
-      body: 'Active moderate development (the usual pace).',
-    },
-    {
-      title: 'Velocity',
-      body: 'High-velocity / bigger project work.',
-    },
-  ],
-  rule:
-    'Never sold without an active Leverage Board seat. Ship-gate comes first.',
+    "When the Board says build, you shouldn't need a bigger team. We train your existing developer to work the AI-leveraged way, or help you bring in one who already does, on a permanent or contract basis. We've seen one developer ship in a day what used to take a team a month.",
+  smallPrint:
+    'For Leverage Board members. Details are agreed with you when the Board says build.',
 } as const
 
 export const whoFor = {
@@ -107,7 +93,7 @@ export const whoFor = {
 export const ladder = {
   heading: 'Where Leverage Board sits',
   body:
-    'Start with the AI Readiness and Governance Audit, then a free Audit review call to sense-check fit. The first 90 days on the Board map governance, build-partner choice and an owned roadmap. We keep re-scoring as you grow. Impact Build is a later Board decision for firms that are ready: delivered by a partner, your own vendor or us under Board oversight. Release Engine adds optional ship capacity for members when judgement says move.',
+    'Start with the AI Readiness and Governance Audit, then a free Audit review call to sense-check fit. The first 90 days on the Board map governance, build-partner choice and an owned roadmap. We keep re-scoring as you grow. Impact Build is a later Board decision for firms that are ready: delivered by a partner, your own vendor or us under Board oversight.',
   link: { label: 'How the Board works', href: '/how-it-works' },
 } as const
 

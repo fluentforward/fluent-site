@@ -3,7 +3,7 @@ import { type Metadata } from 'next'
 import { CtaBand } from '@/components/sections/CtaBand'
 import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
 import { PageHero } from '@/components/sections/PageHero'
-import { ReleaseEngineSection } from '@/components/sections/ReleaseEngineSection'
+import { BoardDeveloperSection } from '@/components/sections/BoardDeveloperSection'
 import { ResearchProofStrip } from '@/components/sections/ResearchProofStrip'
 import { Button } from '@/components/ui/Button'
 import { Heading } from '@/components/ui/Heading'
@@ -109,7 +109,7 @@ export default function LeverageBoardPage() {
         </Reveal>
       </Section>
 
-      <ReleaseEngineSection />
+      <BoardDeveloperSection />
 
       <Section tone="paper" border>
         <Reveal className="max-w-2xl">

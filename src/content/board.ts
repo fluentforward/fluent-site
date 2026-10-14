@@ -106,7 +106,7 @@ export const howBoardWorks = {
       'Portal office hours on a published rhythm',
       'Portal AI advisor for prep and recall between sessions (ship decisions stay human)',
       'Playbook library between sessions',
-      'Ship-gate when you want to commit budget or start Release Engine',
+      'Ship-gate when you want to commit build budget before work starts',
     ],
   },
 } as const
