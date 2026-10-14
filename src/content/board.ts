@@ -1,4 +1,4 @@
-export const growthAuditUrl = 'https://client.fluentforward.com/growth-audit'
+export const growthAuditUrl = 'https://client.fluentforward.com/ai-audit'
 
 export const auditCta = {
   label: 'Take the AI Readiness and Governance Audit',
