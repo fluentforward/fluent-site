@@ -1,9 +1,9 @@
 export const growthAuditUrl = 'https://client.fluentforward.com/growth-audit'
 
 export const auditCta = {
-  label: 'Take the Growth Without Headcount Audit',
+  label: 'Take the AI Readiness and Governance Audit',
   href: growthAuditUrl,
-  hint: '10 minutes. See your stage, your gaps and your next move.',
+  hint: '10 minutes. See where you stand on AI control and capacity, and your next move.',
 } as const
 
 export const boardConversationCta = {
@@ -64,13 +64,13 @@ export const howBoardWorks = {
   steps: [
     {
       index: '01',
-      title: 'Growth Without Headcount Audit',
+      title: 'AI Readiness and Governance Audit',
       body:
-        'A short online assessment: your stage, pillar profile and where leverage is stuck. It frames the conversation, whether you book a call next or not.',
+        'A short online assessment: your stage, pillar profile and where leverage is stuck. It frames the conversation, whether you book an Audit review call next or not.',
     },
     {
       index: '02',
-      title: 'Free call with the practice',
+      title: 'Free Audit review call with the practice',
       body:
         'Thirty minutes to sense-check fit and what would matter first in your firm. Straight answers, including when the Board is not the right move.',
     },

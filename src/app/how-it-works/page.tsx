@@ -18,7 +18,7 @@ import {
 } from '@/content/how-it-works'
 
 const description =
-  'How the Leverage Board works: Growth Without Headcount Audit, free call, quarter one strategy, quarterly re-score, Annual Summit and compounding membership. Optional build under Board oversight.'
+  'How the Leverage Board works: the AI Readiness and Governance Audit, free Audit review call, quarter one strategy, quarterly re-score, Annual Summit and compounding membership. Optional build under Board oversight.'
 
 export const metadata: Metadata = {
   title: 'How the Board works',

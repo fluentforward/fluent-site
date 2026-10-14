@@ -4,7 +4,7 @@ export const hero = {
   eyebrow: 'How the Board works',
   heading: 'Audit, judgement, quarters, compounding.',
   lede:
-    'The Leverage Board is a membership seat, not a build retainer. You start with the Audit and a free call, then quarter one settles strategy before any build. Each quarter after, re-score, plug gaps and decide ship or hold.',
+    'The Leverage Board is a membership seat, not a build retainer. You start with the Audit and a free Audit review call, then quarter one settles strategy before any build. Each quarter after, re-score, plug gaps and decide ship or hold.',
 }
 
 export const whenBuild = {
@@ -48,7 +48,7 @@ export const faq = {
     {
       question: 'Where do we start?',
       answer:
-        'With the Growth Without Headcount Audit if you want a fast read on stage and gaps, or a free thirty-minute call if you would rather talk first. Both routes end in the same straight conversation about fit and what would matter first.',
+        'With the AI Readiness and Governance Audit if you want a fast read on stage and gaps, or a free Audit review call if you would rather talk first. Both routes end in the same straight conversation about fit and what would matter first.',
     },
     {
       question: 'Do you build?',

@@ -9,7 +9,7 @@ import { auditCta } from '@/content/board'
 import { site } from '@/content/site'
 
 const description =
-  'Book a thirty minute call with Matt Todd to work out whether the Leverage Board fits your firm and where to start. Or take the Growth Without Headcount Audit first.'
+  'Book a thirty minute call with Matt Todd to work out whether the Leverage Board fits your firm and where to start. Or take the AI Readiness and Governance Audit first.'
 
 export const metadata: Metadata = {
   title: 'Book a call',
@@ -23,7 +23,7 @@ const expectations = [
   'Thirty minutes, and it is a conversation rather than a pitch. No deck.',
   'We talk about where your team\u2019s time actually goes and what you have already tried.',
   'You leave with a straight answer on whether the Leverage Board fits and where to start, including if that answer is no.',
-  `Prefer to start online? ${auditCta.label} takes about ten minutes.`,
+  `Prefer to start online? ${auditCta.hint}`,
   'No follow-up sequence, and nothing added to a mailing list.',
 ]
 

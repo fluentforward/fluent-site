@@ -112,7 +112,7 @@ export const whoFor = {
 export const ladder = {
   heading: 'Where Leverage Board sits',
   body:
-    'Start with the Growth Without Headcount Audit, then a free call to sense-check fit. Quarter one maps governance, build-partner choice and an owned roadmap. Each quarter after, re-score the pillars and decide ship or hold. Impact Build is a later Board decision for firms that are ready: delivered by a partner, your own vendor or us under Board oversight. Release Engine adds optional ship capacity for members when judgement says move.',
+    'Start with the AI Readiness and Governance Audit, then a free Audit review call to sense-check fit. Quarter one maps governance, build-partner choice and an owned roadmap. Each quarter after, re-score the pillars and decide ship or hold. Impact Build is a later Board decision for firms that are ready: delivered by a partner, your own vendor or us under Board oversight. Release Engine adds optional ship capacity for members when judgement says move.',
   link: { label: 'How the Board works', href: '/how-it-works' },
 } as const
 

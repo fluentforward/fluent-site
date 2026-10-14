@@ -7,7 +7,7 @@ export const site = {
   tagline:
     'The Leverage Board: senior AI and operations judgement every quarter for services firms that want growth without adding headcount.',
   description:
-    'The Leverage Board gives services firms senior judgement on what to fix, what to build and who should build it. Start with the Growth Without Headcount Audit, then membership with strategy sessions, office hours, and an owned roadmap.',
+    'The Leverage Board gives services firms senior judgement on what to fix, what to build and who should build it. Start with the AI Readiness and Governance Audit, then membership with strategy sessions, office hours, and an owned roadmap.',
   email: 'hello@fluentforward.com',
   privacyEmail: 'privacy@fluentforward.com',
 } as const
@@ -25,7 +25,7 @@ export const footerNav = {
     links: [
       { label: 'Leverage Board', href: '/leverage-board' },
       { label: 'How it works', href: '/how-it-works' },
-      { label: 'Growth Without Headcount Audit', href: auditCta.href },
+      { label: 'AI Readiness and Governance Audit', href: auditCta.href },
       { label: 'Common questions', href: '/how-it-works#faq' },
     ],
   },
