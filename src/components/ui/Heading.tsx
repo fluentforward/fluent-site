@@ -10,6 +10,13 @@ const sizeClasses: Record<Size, string> = {
   sub: 'text-sub',
 }
 
+/** Character-based max widths for balanced display headings at laptop sizes. */
+const widthClasses: Record<Level, string> = {
+  h1: 'max-w-[24ch]',
+  h2: 'max-w-[32ch]',
+  h3: 'max-w-[28ch]',
+}
+
 export function Heading({
   as: Tag = 'h2',
   size = 'section',
@@ -23,10 +30,15 @@ export function Heading({
   className?: string
   children: React.ReactNode
 }) {
+  const displayWidth =
+    size === 'display' || size === 'display-sm' ? 'max-w-[24ch]' : widthClasses[Tag]
+
   return (
     <Tag
       className={clsx(
         sizeClasses[size],
+        'text-balance',
+        displayWidth,
         tone === 'light' ? 'text-ink' : 'text-paper',
         className,
       )}

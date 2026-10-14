@@ -16,7 +16,7 @@ export function PageHero({
 }) {
   return (
     <Section tone="paper" className="hero-ambient pt-14 pb-12 md:pt-20 md:pb-16">
-      <Reveal className="max-w-3xl">
+      <Reveal className="max-w-4xl">
         <Eyebrow>{eyebrow}</Eyebrow>
         <Heading as="h1" size="display-sm" className="mt-5 md:mt-6">
           {heading}

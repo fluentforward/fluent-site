@@ -1,34 +1,36 @@
+import { auditCta, boardConversationCta, boardOutcomes } from '@/content/board'
+import { gartnerPressReleases } from '@/content/gartner'
+import { fit } from '@/content/home'
+
 export const meta = {
   title: 'Leverage Board',
   description:
-    'Fractional Chief of AI judgment for operators who want control over AI and tech leverage, without a full-time hire. Release Engine as optional build capacity when the Board says ship.',
+    'Grow without adding headcount: senior AI and operations judgement for services firms, with governance, independent build-partner choice, owned roadmaps and productivity per head.',
 } as const
 
 export const hero = {
   eyebrow: 'Leverage Board',
-  heading: 'Your fractional Chief of AI, without the full-time hire.',
+  heading: 'Grow without headcount, with senior judgement on your side.',
   lede:
-    'A Board seat for senior judgment on where AI and technology create leverage across the business you already run. Process first. Systems you own. Control over AI. When judgment says ship, Release Engine is the optional build add-on, not an open retainer.',
-  primaryCta: { label: 'Worth a conversation?', href: '/contact' },
-  secondaryCta: {
-    label: 'How the Design Sprint and Impact Build work',
-    href: '/how-it-works',
-  },
+    'A membership seat for senior AI and operations judgement on the business you already run. Fractional Chief of AI thinking when you need it, without a full-time hire. Process first. Systems you own. Control over AI.',
+  primaryCta: auditCta,
+  secondaryCta: boardConversationCta,
 } as const
 
 export const problem = {
   heading:
     'Vendor AI makes silos smarter. It rarely makes the business more productive.',
   body:
-    'Most stacks already have tools. Work still falls between them as manual process. Bolting AI into each product enhances isolation. Operators need a judgment layer above the stack, and, when ready, an owned operating layer, not another feature inside someone else\u2019s product.',
+    'Most stacks already have tools. Work still falls between them as manual process. Bolting AI into each product enhances isolation. Operators need a judgement layer above the stack, and, when ready, an owned operating layer, not another feature inside someone else\u2019s product.',
 } as const
 
 export const gartnerProofBoard = {
   heading: 'Vendor-led agentic programmes do not stick',
   body:
-    'Gartner forecasts that by 2028, 70% of enterprises on the vendor forward-deployed-engineering route for agentic AI will abandon it: too expensive, and the organisation cannot evolve the system alone. The Leverage Board puts fractional Chief of AI judgment on your side of the table. When the Board says ship, Release Engine adds capacity you own the direction of.',
+    'Gartner forecasts that by 2028, 70% of enterprises on the vendor forward-deployed-engineering route for agentic AI will abandon it: too expensive, and the organisation cannot evolve the system alone. The Leverage Board puts judgement on your side of the table before build budget moves.',
   attribution:
-    'Source: Gartner public research, September 2026. Not an endorsement of FluentForward.',
+    'Source: Gartner press release, 29 September 2026. Not an endorsement of FluentForward.',
+  sourceUrl: gartnerPressReleases.vendorFdeAbandon2028,
 } as const
 
 export const whatYouGet = {
@@ -39,7 +41,7 @@ export const whatYouGet = {
     {
       title: 'Leverage Board seat',
       body:
-        'Fractional Chief of AI judgment: where leverage is, where it isn\u2019t, and ship / don\u2019t ship.',
+        'Senior judgement on where leverage is, where it isn\u2019t, and ship or don\u2019t ship.',
     },
     {
       title: 'Four touchpoints a year',
@@ -49,7 +51,7 @@ export const whatYouGet = {
     {
       title: 'Portal office hours',
       body:
-        'Scheduled slots. You submit questions and issues through the portal for the agenda. Intentional, batched judgment, not always-on chat.',
+        'Scheduled slots. You submit questions and issues through the portal for the agenda. Intentional, batched judgement, not always-on chat.',
     },
     {
       title: 'Portal AI advisor',
@@ -63,7 +65,7 @@ export const whatYouGet = {
     {
       title: 'Ship-gate',
       body:
-        'A short written or brief review when you want to commit budget or start Release Engine.',
+        'A short written review when you want to commit build budget before work starts.',
     },
   ],
 } as const
@@ -74,62 +76,39 @@ export const summit = {
     'One of your four touchpoints is the Annual Leverage Summit: a one-day, members-only session with peer operators, expert speakers, and real stories, facilitated around leverage and stuck interactions. Timings and venue are confirmed for each membership year. Never a public ticket; the Summit is part of the seat.',
 } as const
 
-export const releaseEngine = {
-  eyebrow: 'Member-only add-on',
-  heading: 'Release Engine: build capacity when the Board says ship',
+export const developerLeverage = {
+  eyebrow: 'When the Board says build',
+  heading: "One developer. A team's worth of output.",
   body:
-    'Release Engine is not the Board. It is optional ship capacity for Board members only, when judgment says the next release is worth it. You choose intensity: Steady, Build, or Velocity, against a visible used / left budget. Not token billing. Not an open Slack queue. Speed is valued; rush work uses more of the budget rather than sitting in a longer line.',
-  intensities: [
-    {
-      title: 'Steady',
-      body: 'Low maintenance / keep-alive on the layer you own.',
-    },
-    {
-      title: 'Build',
-      body: 'Active moderate development (the usual pace).',
-    },
-    {
-      title: 'Velocity',
-      body: 'High-velocity / bigger project work.',
-    },
-  ],
-  rule:
-    'Never sold without an active Leverage Board seat. Ship-gate comes first.',
+    "When the Board says build, you shouldn't need a bigger team. We train your existing developer to work the AI-leveraged way, or help you bring in one who already does, on a permanent or contract basis. We've seen one developer ship in a day what used to take a team a month.",
+  smallPrint:
+    'For Leverage Board members. Details are agreed with you when the Board says build.',
 } as const
 
 export const whoFor = {
-  heading: 'Built for operators who already know the problem',
-  items: [
-    'Established businesses with named outcomes and stuck interactions between systems',
-    'Process-first leaders who want technology independence and ownership of IP',
-    'Teams wary of vendor AI that only makes siloed tools smarter',
-    'Buyers used to outsourcing specialist capability they do not hold in-house',
-    'Continuity after a first Interaction Engine release, or judgment while the owned layer is being scoped',
-  ],
+  heading: fit.builtForHeading,
+  body: fit.builtFor,
 } as const
 
 export const ladder = {
   heading: 'Where Leverage Board sits',
   body:
-    'Most engagements start with a One-Month Interaction Engine Design Sprint, then Impact Build for the first owned release. A Board seat can run through the Impact Build window, then continue as paid membership. If the biggest-impact first release and IT constraints are already clear, some operators go straight to Impact Build with Board included for the build, then decide whether to keep the seat.',
-  link: { label: 'How it works', href: '/how-it-works' },
+    'Start with the AI Readiness and Governance Audit, then a free Audit review call to sense-check fit. The first 90 days on the Board map governance, build-partner choice and an owned roadmap. We keep re-scoring as you grow. Impact Build is a later Board decision for firms that are ready: delivered by a partner, your own vendor or us under Board oversight.',
+  link: { label: 'How the Board works', href: '/how-it-works' },
 } as const
 
 export const notList = {
-  heading: 'What this is not',
-  items: [
-    'Not monthly hours or staff augmentation',
-    'Not an open Slack or unlimited chat retainer',
-    'Not a second Design Sprint',
-    'Not build-without-strategy (Release Engine never without a Board seat)',
-    'Not a public conference ticket without a seat',
-    'Not another vendor AI bolted into a silo',
-  ],
+  heading: fit.notForHeading,
+  items: fit.notFor,
 } as const
 
 export const closingCta = {
   eyebrow: 'Next step',
-  heading: 'Worth a conversation?',
+  heading: 'Find your stage, or talk it through.',
   body:
-    'If you want fractional Chief of AI judgment on the stack you run, and optional ship capacity when something should move, talk. Fixed commercial terms are private and set in writing before anything starts.',
+    'Take the Audit for a fast read on stage and gaps, or book a call if you would rather talk first. Fixed commercial terms are private and set in writing before anything starts.',
+  primary: auditCta,
+  secondary: boardConversationCta,
 } as const
+
+export { boardOutcomes }

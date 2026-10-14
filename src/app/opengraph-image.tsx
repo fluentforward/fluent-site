@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 
 import { site } from '@/content/site'
 
-export const alt = `${site.name} — ${site.tagline}`
+export const alt = `${site.name} | ${site.tagline}`
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -47,13 +47,13 @@ export default function OpengraphImage() {
             display: 'flex',
             flexDirection: 'column',
             color: '#FFFFFF',
-            fontSize: 62,
-            lineHeight: 1.1,
+            fontSize: 44,
+            lineHeight: 1.15,
             letterSpacing: '-0.03em',
+            maxWidth: 1000,
           }}
         >
-          <span>Internal systems your team actually runs on.</span>
-          <span style={{ color: '#8A929F' }}>Apps and client portals you own.</span>
+          <span>{site.tagline}</span>
         </div>
 
         <div
@@ -68,9 +68,9 @@ export default function OpengraphImage() {
             paddingTop: 28,
           }}
         >
-          <span>One-Month Interaction Engine Design Sprint and Impact Build</span>
-          <span>Optional continuity</span>
-          <span>No hourly billing</span>
+          <span>Audit</span>
+          <span>Leverage Board</span>
+          <span>Judgement first</span>
         </div>
       </div>
     ),

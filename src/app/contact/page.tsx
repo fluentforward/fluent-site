@@ -5,10 +5,11 @@ import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Heading, Lede } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
+import { auditCta } from '@/content/board'
 import { site } from '@/content/site'
 
 const description =
-  'Book a thirty minute call with Matt Todd to work out whether a One-Month Interaction Engine Design Sprint would find anything worth acting on in your business.'
+  'Book a thirty minute call with Matt Todd to work out whether the Leverage Board fits your firm and where to start. Or take the AI Readiness and Governance Audit first.'
 
 export const metadata: Metadata = {
   title: 'Book a call',
@@ -21,7 +22,8 @@ export const metadata: Metadata = {
 const expectations = [
   'Thirty minutes, and it is a conversation rather than a pitch. No deck.',
   'We talk about where your team\u2019s time actually goes and what you have already tried.',
-  'You leave with a straight answer on whether a One-Month Interaction Engine Design Sprint is worth doing, including if that answer is no.',
+  'You leave with a straight answer on whether the Leverage Board fits and where to start, including if that answer is no.',
+  `Prefer to start online? ${auditCta.hint}`,
   'No follow-up sequence, and nothing added to a mailing list.',
 ]
 
@@ -44,7 +46,14 @@ export default function Contact() {
               >
                 {site.email}
               </a>{' '}
-              and it will reach us directly.
+              or{' '}
+              <a
+                href={auditCta.href}
+                className="text-ink underline underline-offset-4 transition-colors duration-300 hover:text-steel"
+              >
+                take the Audit
+              </a>{' '}
+              first.
             </Lede>
 
             <ul className="mt-12 border-t border-line">
@@ -54,7 +63,7 @@ export default function Contact() {
                   className="flex gap-3 border-b border-line py-5 text-[0.9375rem] leading-[1.72] text-slate"
                 >
                   <span aria-hidden="true" className="shrink-0 text-steel">
-                    &mdash;
+                    &bull;
                   </span>
                   {item}
                 </li>

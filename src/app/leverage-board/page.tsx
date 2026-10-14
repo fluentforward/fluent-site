@@ -3,7 +3,7 @@ import { type Metadata } from 'next'
 import { CtaBand } from '@/components/sections/CtaBand'
 import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
 import { PageHero } from '@/components/sections/PageHero'
-import { ReleaseEngineSection } from '@/components/sections/ReleaseEngineSection'
+import { BoardDeveloperSection } from '@/components/sections/BoardDeveloperSection'
 import { ResearchProofStrip } from '@/components/sections/ResearchProofStrip'
 import { Button } from '@/components/ui/Button'
 import { Heading } from '@/components/ui/Heading'
@@ -11,6 +11,7 @@ import { ArrowLink } from '@/components/ui/ArrowLink'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
 import {
+  boardOutcomes,
   closingCta,
   gartnerProofBoard,
   hero,
@@ -64,7 +65,7 @@ export default function LeverageBoardPage() {
         heading={hero.heading}
         lede={hero.lede}
       >
-        <div className="mt-8 flex flex-wrap items-center gap-4 md:mt-9">
+        <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center md:mt-9">
           <Button href={hero.primaryCta.href}>{hero.primaryCta.label}</Button>
           <Button href={hero.secondaryCta.href} variant="secondary">
             {hero.secondaryCta.label}
@@ -72,7 +73,15 @@ export default function LeverageBoardPage() {
         </div>
       </PageHero>
 
-      <Section tone="muted" border>
+      <DefinitionGrid
+        eyebrow={boardOutcomes.eyebrow}
+        heading={boardOutcomes.heading}
+        items={boardOutcomes.items}
+        tone="muted"
+        id="outcomes"
+      />
+
+      <Section tone="paper" border>
         <Reveal className="max-w-2xl">
           <Heading as="h2">{problem.heading}</Heading>
           <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">
@@ -81,7 +90,7 @@ export default function LeverageBoardPage() {
         </Reveal>
       </Section>
 
-      <ResearchProofStrip content={gartnerProofBoard} tone="paper" border />
+      <ResearchProofStrip content={gartnerProofBoard} tone="muted" border />
 
       <DefinitionGrid
         heading={whatYouGet.heading}
@@ -100,12 +109,12 @@ export default function LeverageBoardPage() {
         </Reveal>
       </Section>
 
-      <ReleaseEngineSection />
+      <BoardDeveloperSection />
 
       <Section tone="paper" border>
         <Reveal className="max-w-2xl">
           <Heading as="h2">{whoFor.heading}</Heading>
-          <BulletList items={whoFor.items} />
+          <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">{whoFor.body}</p>
         </Reveal>
       </Section>
 
@@ -128,7 +137,11 @@ export default function LeverageBoardPage() {
         </Reveal>
       </Section>
 
-      <CtaBand {...closingCta} />
+      <CtaBand
+        {...closingCta}
+        primary={closingCta.primary}
+        secondary={closingCta.secondary}
+      />
     </>
   )
 }

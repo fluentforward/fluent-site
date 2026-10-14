@@ -18,7 +18,7 @@ export function LegalPage({
   return (
     <>
       <Section tone="paper" className="pt-16 pb-12 md:pt-24 md:pb-16">
-        <div className="max-w-2xl">
+        <div className="max-w-3xl">
           <Eyebrow>Legal</Eyebrow>
           <Heading as="h1" size="display-sm" className="mt-6">
             {title}
@@ -53,7 +53,7 @@ export function LegalPage({
             </ul>
           </nav>
 
-          <div className="max-w-2xl">
+          <div className="max-w-3xl">
             {sections.map((section) => (
               <Reveal
                 key={section.id}
@@ -84,7 +84,7 @@ export function LegalPage({
                           aria-hidden="true"
                           className="shrink-0 text-steel"
                         >
-                          &mdash;
+                          &bull;
                         </span>
                         {item}
                       </li>

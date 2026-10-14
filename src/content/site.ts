@@ -1,16 +1,19 @@
+import { auditCta } from '@/content/board'
+
 export const site = {
   name: 'FluentForward',
   legalName: 'FluentForward Limited',
   url: 'https://fluentforward.com',
   tagline:
-    'Senior-led delivery for established businesses. Install an Interaction Engine you own, then choose how to stay on.',
+    'Senior AI judgement for services firms that want to grow without adding headcount.',
   description:
-    'Senior-led delivery for established businesses. One-Month Interaction Engine Design Sprint, Impact Build, and optional continuity on the platform you own. Fixed fee where it matters. No hourly billing.',
+    'For owner-led agencies, consultancies and professional services firms of 20 to 200 people. We help you decide what to fix, what to build and who should build it, before you spend a penny on build.',
   email: 'hello@fluentforward.com',
   privacyEmail: 'privacy@fluentforward.com',
 } as const
 
 export const nav = [
+  { label: 'Leverage Board', href: '/leverage-board' },
   { label: 'How it works', href: '/how-it-works' },
   { label: 'Interaction insights', href: '/strategy-blueprints' },
   { label: 'Practice', href: '/about' },
@@ -20,9 +23,9 @@ export const footerNav = {
   offer: {
     title: 'The offer',
     links: [
-      { label: 'How it works', href: '/how-it-works' },
       { label: 'Leverage Board', href: '/leverage-board' },
-      { label: 'After the first release', href: '/how-it-works#after-the-first-release' },
+      { label: 'How it works', href: '/how-it-works' },
+      { label: 'AI Readiness and Governance Audit', href: auditCta.href },
       { label: 'Common questions', href: '/how-it-works#faq' },
     ],
   },
@@ -31,7 +34,7 @@ export const footerNav = {
     links: [
       { label: 'About the practice', href: '/about' },
       { label: 'Track record', href: '/about#background' },
-      { label: 'Worth a conversation?', href: '/contact' },
+      { label: 'Book a call', href: '/contact' },
     ],
   },
   legal: {
@@ -44,6 +47,6 @@ export const footerNav = {
 } as const
 
 export const primaryCta = {
-  label: 'Worth a conversation?',
-  href: '/contact',
+  label: auditCta.label,
+  href: auditCta.href,
 } as const

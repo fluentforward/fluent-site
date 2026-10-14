@@ -28,11 +28,13 @@ const plexMono = IBM_Plex_Mono({
   variable: '--font-plex-mono',
 })
 
+const defaultTitle = 'FluentForward | Senior AI judgement for services firms'
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    template: `%s — ${site.name}`,
-    default: `${site.name} — ${site.tagline}`,
+    template: `%s | ${site.name}`,
+    default: defaultTitle,
   },
   description: site.description,
   openGraph: {
@@ -40,12 +42,12 @@ export const metadata: Metadata = {
     siteName: site.name,
     locale: 'en_GB',
     url: site.url,
-    title: `${site.name} — ${site.tagline}`,
+    title: defaultTitle,
     description: site.description,
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${site.name} — ${site.tagline}`,
+    title: defaultTitle,
     description: site.description,
   },
   alternates: {

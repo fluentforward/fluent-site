@@ -7,7 +7,7 @@ export function Wordmark({ tone = 'light' }: { tone?: 'light' | 'dark' }) {
     <Link
       href="/"
       className="group inline-flex items-center gap-2.5 transition-opacity duration-300 hover:opacity-80"
-      aria-label={`${site.name} — home`}
+      aria-label={`${site.name} home`}
     >
       <svg
         viewBox="0 0 20 20"

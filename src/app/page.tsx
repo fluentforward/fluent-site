@@ -1,16 +1,12 @@
-import { ProofSection } from '@/components/sections/ProofSection'
-import { SectorsSection } from '@/components/sections/SectorsSection'
-import { CtaBand } from '@/components/sections/CtaBand'
+import { HomeBoardSection } from '@/components/sections/home/HomeBoardSection'
+import { HomeClosingSection } from '@/components/sections/home/HomeClosingSection'
+import { HomeFitSection } from '@/components/sections/home/HomeFitSection'
+import { HomeOutcomesSection } from '@/components/sections/home/HomeOutcomesSection'
+import { HomePainSection } from '@/components/sections/home/HomePainSection'
+import { HomeProofSection } from '@/components/sections/home/HomeProofSection'
+import { HomeThreeStepsSection } from '@/components/sections/home/HomeThreeStepsSection'
+import { HomeWhyFixesFailSection } from '@/components/sections/home/HomeWhyFixesFailSection'
 import { HomeHero } from '@/components/sections/HomeHero'
-import { PhaseRail } from '@/components/sections/PhaseRail'
-import { StrategyBlueprintsSection } from '@/components/sections/StrategyBlueprintsSection'
-import { ContrastSection } from '@/components/sections/ContrastSection'
-import { EngineDefinitionSection } from '@/components/sections/EngineDefinitionSection'
-import { ResearchProofStrip } from '@/components/sections/ResearchProofStrip'
-import { WhoItsForSection } from '@/components/sections/WhoItsForSection'
-import { StrategyBuildTeaser } from '@/components/sections/StrategyBuildTeaser'
-import { TermsStrip } from '@/components/sections/TermsStrip'
-import { closingCta, gartnerProofHome } from '@/content/home'
 import { site } from '@/content/site'
 
 const structuredData = {
@@ -22,7 +18,7 @@ const structuredData = {
   email: site.email,
   description: site.description,
   areaServed: 'GB',
-  serviceType: 'AI advisory and implementation',
+  serviceType: 'AI and operations advisory membership',
   founder: { '@type': 'Person', name: 'Matt Todd' },
   address: { '@type': 'PostalAddress', addressCountry: 'GB' },
 }
@@ -35,17 +31,14 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <HomeHero />
-      <TermsStrip />
-      <ContrastSection />
-      <ResearchProofStrip content={gartnerProofHome} tone="paper" border />
-      <EngineDefinitionSection />
-      <WhoItsForSection />
-      <PhaseRail />
-      <SectorsSection />
-      <ProofSection />
-      <StrategyBlueprintsSection />
-      <StrategyBuildTeaser />
-      <CtaBand {...closingCta} />
+      <HomePainSection />
+      <HomeWhyFixesFailSection />
+      <HomeBoardSection />
+      <HomeOutcomesSection />
+      <HomeFitSection />
+      <HomeThreeStepsSection />
+      <HomeProofSection />
+      <HomeClosingSection />
     </>
   )
 }

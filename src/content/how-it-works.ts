@@ -1,68 +1,17 @@
+import { auditCta, boardConversationCta } from '@/content/board'
+
 export const hero = {
-  eyebrow: 'How it works',
-  heading: 'Two decisions. Then you choose how to stay on.',
+  eyebrow: 'How the Board works',
+  heading: 'Audit, judgement, quarters, compounding.',
   lede:
-    'Each step is scoped and fixed fee where it matters. You only continue when the next step has earned it. You own what ships. Phase one is a One-Month Interaction Engine Design Sprint. Phase two is Impact Build, a fixed-fee first release of about eight weeks. After the first release, continuity is optional.',
+    'The Leverage Board is a membership seat, not a build retainer. You start with the Audit and a free Audit review call, then quarter one settles strategy before any build. Each quarter after, re-score, plug gaps and decide ship or hold.',
 }
 
-export type Phase = {
-  index: string
-  name: string
-  meta: string
-  intro: string
-  happens: string[]
-  deliverables: string[]
-  gate: string
-  boundary?: string
-}
-
-export const phases: Phase[] = [
-  {
-    index: '01',
-    name: 'One-Month Interaction Engine Design Sprint',
-    meta: 'Fixed fee · about one month · founder-led throughout',
-    intro:
-      'Before anything gets built, we work out what winning in your category means, what is blocking it, and what your Interaction Engine needs to do. You leave with a prototype you can click, a named first release, and a clear commercial next step. Sometimes the right next step is not to build.',
-    happens: [
-      'Interviews and work-mapping across the stuck stacks, broken handoffs, and places customer and staff interactions fail.',
-      'A clear picture of customer experience, staff experience, and growth without a matching headcount curve.',
-      'An interactive prototype of your engine until it bridges the blockers to those outcomes.',
-    ],
-    deliverables: [
-      'The Design Sprint pack you can hand to anyone, including your own team or another supplier.',
-      'A named first release: scope, outcomes it must move, and the commercial next step.',
-      'An honest read on whether to build, including when the answer is not yet.',
-    ],
-    gate:
-      'Stop here and the Design pack is yours. There is no obligation to continue, and the work is written to be useful even if we never speak again.',
-    boundary:
-      'The Design Sprint is discovery and prototype, not production build. We do not ship the first release during it, because that window is for finding the engine worth building.',
-  },
-  {
-    index: '02',
-    name: 'Impact Build',
-    meta: 'Fixed fee · about 8 weeks · scoped at the end of the Design Sprint',
-    intro:
-      'When the first release is clear, we build the Interaction Engine properly and put it in front of real users. About eight weeks. Fixed fee, agreed before work starts, and it does not move unless you change the scope. You own what ships.',
-    happens: [
-      'We build the first release scoped in the Design Sprint, shaped around your processes. Real UX. Used by the people who will run it. You own it.',
-      'It goes into your business rather than a sandbox, with real data and real users.',
-      'We stay close to the people using it while it settles, because the first week of real use always teaches you something the spec did not.',
-    ],
-    deliverables: [
-      'A working system, running, owned by you. Their team opens it first.',
-      'A short adoption note covering how it runs, what to watch, and what to do when it misbehaves.',
-      'An honest read on whether it worked, including the parts that did not.',
-    ],
-    gate: 'Stop here and the system keeps running. Plenty of engagements should end at this point, and saying so is part of the job.',
-  },
-]
-
-export const afterImpact = {
-  eyebrow: 'After Impact Build',
-  heading: 'After the first release',
+export const whenBuild = {
+  eyebrow: 'When the Board says build',
+  heading: 'Impact Build is a later decision',
   body:
-    'Stay on with us for quarterly AI and technology strategy, plus a shared library of patterns and resources for the engine you own. When strategy says ship, we build the next release on that same layer. No hours hunting. No token counting. You decide when to continue.',
+    'When the operation is ready and judgement says ship, Impact Build can be scoped as a fixed engagement, delivered by a partner, your own vendor or us, under Board oversight. The Board plans and governs the method.',
 }
 
 export const reassurance = {
@@ -70,20 +19,24 @@ export const reassurance = {
   heading: 'What you are agreeing to, in plain terms.',
   items: [
     {
-      title: 'Fixed fees for One-Month Interaction Engine Design Sprint and Impact Build',
-      body: 'Both are quoted as a single number, in writing, before work starts. If the scope does not change, the number does not change.',
+      title: 'A seat, not hours',
+      body:
+        'Leverage Board membership is a seat with a defined rhythm of sessions and office hours, not an hourly retainer or open chat queue.',
     },
     {
-      title: 'Optional continuity after Impact Build',
-      body: 'Quarterly AI and technology strategy and a shared library on the engine you own. Build capacity when strategy says the next ship is worth it. Pause or leave whenever you like.',
+      title: 'No lock-in',
+      body:
+        'Your roadmap and IP stay yours. Pause or leave when you need to; nothing renews by default.',
     },
     {
-      title: 'No hourly billing anywhere',
-      body: 'There is no rate card, no minimum billable unit, and no invoice that needs decoding at the end of the month.',
+      title: 'No hourly billing',
+      body:
+        'There is no rate card, no minimum billable unit, and no invoice that needs decoding at the end of the month.',
     },
     {
       title: 'Every step is a decision point',
-      body: 'Nothing renews by default and nothing assumes the next step. Stopping is a normal outcome, not a failure.',
+      body:
+        'Build only moves when the Board says ship. Stopping is a normal outcome, not a failure.',
     },
   ],
 }
@@ -93,24 +46,24 @@ export const faq = {
   heading: 'The things people ask on the first call.',
   items: [
     {
-      question: 'Why are your prices not on the site?',
+      question: 'Where do we start?',
       answer:
-        'Because a published number would be wrong for most people who read it. The Design Sprint fee depends on how many people we need to talk to and how tangled the process is. Continuity after Impact Build is scoped when you are ready to talk about it. You get a fixed number in writing before anything starts, and it will not move on its own.',
+        'With the AI Readiness and Governance Audit if you want a fast read on stage and gaps, or a free Audit review call if you would rather talk first. Both routes end in the same straight conversation about fit and what would matter first.',
     },
     {
-      question: 'Do we have to start with a One-Month Interaction Engine Design Sprint?',
+      question: 'Do you build?',
       answer:
-        'Almost always, yes. Building the wrong thing quickly is worse than building the right thing slowly, and a proper Design Sprint is what separates the two. If you have already done equivalent work and can show it, we will pick up from there.',
+        'Sometimes, when the Board says ship and you want us to deliver. Often a partner or your own vendor builds under Board oversight. Impact Build is scoped as a later decision, not the default entry.',
     },
     {
-      question: 'What happens after Impact Build?',
+      question: 'Are you tied to a vendor?',
       answer:
-        'You can stop with the system running, which is a normal outcome. If you want to stay on, continuity is optional: quarterly AI and technology strategy on the engine you own, a library you can draw on between releases, and build capacity when strategy says the next ship is worth it. You decide when to continue.',
+        'No. We are not reselling anyone\u2019s licences and there is no platform we are obliged to steer you towards. Build-partner choice is independent and on your side of the table.',
     },
     {
-      question: 'What if the Design Sprint concludes we should not build yet?',
+      question: 'How do we know it\u2019s working?',
       answer:
-        'Then that is what the pack says, and it is the most valuable version you could have received. It has happened, and it will happen again. A recommendation you can trust requires the possibility of a no.',
+        'Productivity per head, tracked quarter by quarter against the baseline set in quarter one, plus honest ship / don\u2019t ship decisions you can see in the roadmap.',
     },
     {
       question: 'What tools do you build with?',
@@ -122,12 +75,19 @@ export const faq = {
       answer:
         'No. Your data is used to do your work. It is not pooled, sold, or fed into a model for anyone else\u2019s benefit, and the specifics go in the engagement agreement rather than staying a verbal assurance.',
     },
+    {
+      question: 'Why are your prices not on the site?',
+      answer:
+        'Because a published number would be wrong for most firms who read it. Membership and any build work are scoped to your stage and constraints. You get fixed terms in writing before anything starts.',
+    },
   ],
 }
 
 export const closingCta = {
   eyebrow: 'Next step',
-  heading: 'Worth a conversation?',
+  heading: 'Take the Audit or book a call.',
   body:
-    'If rapid growth without adding headcount and complexity is clear enough to name, and low leverage in the stack is the quiet blocker, talk. The usual next paid step is a One-Month Interaction Engine Design Sprint.',
+    'If growth without headcount is the goal and judgement on AI and operations is the blocker, start with the Audit or talk it through. Terms stay private until they are written down.',
+  primary: auditCta,
+  secondary: boardConversationCta,
 }
