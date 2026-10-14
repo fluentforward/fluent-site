@@ -23,11 +23,11 @@ export const gartnerProofBoard = {
 export const whatYouGet = {
   heading: 'What you get with a Leverage Board seat',
   intro:
-    'Membership is a seat, not billed hours. Not an open Slack channel. Not monthly theatre meetings.',
+    'Membership is a seat, not billed hours. Not an open Slack channel. Not meetings for the sake of meetings.',
   items: [
     {
       title: 'Senior judgement on your side',
-      body: 'Every AI and build decision checked before you spend.',
+      body: 'AI and build decisions checked before you spend.',
     },
     {
       title: 'A roadmap and IP you own',
