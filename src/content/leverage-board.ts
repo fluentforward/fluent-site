@@ -5,12 +5,12 @@ import { fit } from '@/content/home'
 export const meta = {
   title: 'Leverage Board',
   description:
-    'Senior AI and operations judgement every quarter for services firms: governance, independent build-partner choice, owned roadmaps and productivity per head. Optional Release Engine when the Board says ship.',
+    'Grow without adding headcount: senior AI and operations judgement for services firms, with governance, independent build-partner choice, owned roadmaps and productivity per head. Optional Release Engine when the Board says ship.',
 } as const
 
 export const hero = {
   eyebrow: 'Leverage Board',
-  heading: 'Growth without headcount, with judgement every quarter.',
+  heading: 'Grow without headcount, with senior judgement on your side.',
   lede:
     'A membership seat for senior AI and operations judgement on the business you already run. Fractional Chief of AI thinking when you need it, without a full-time hire. Process first. Systems you own. Control over AI.',
   primaryCta: auditCta,

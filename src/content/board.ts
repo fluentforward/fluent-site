@@ -31,7 +31,7 @@ export const boardOutcomes = {
         'An owned plan and artefacts you keep. Pause or leave without losing the thinking.',
     },
     {
-      title: 'More output per person, measured every quarter',
+      title: 'More output per person, with progress you can see',
       body:
         'Productivity per head tracked over time, so progress is visible rather than anecdotal.',
     },
