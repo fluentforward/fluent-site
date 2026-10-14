@@ -79,13 +79,7 @@ export default function LeverageBoardPage() {
 
       <FaqSection content={faq} />
 
-      <Section tone="muted" border>
-        <Reveal className="max-w-2xl">
-          <p className="text-[1.0625rem] leading-[1.72] text-slate">{fitLine}</p>
-        </Reveal>
-      </Section>
-
-      <HomeClosingSection />
+      <HomeClosingSection fitLine={fitLine} />
     </>
   )
 }

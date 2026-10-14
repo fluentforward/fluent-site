@@ -11,45 +11,6 @@ export const boardConversationCta = {
   href: '/contact',
 } as const
 
-export const boardOutcomes = {
-  eyebrow: 'What you get',
-  heading: 'Five outcomes members work toward',
-  items: [
-    {
-      title: 'AI you control, not AI that happens to you',
-      body:
-        'Governance, policies and ship-gates so AI stays inside work you own, not shadow tools and one-off prompts.',
-    },
-    {
-      title: 'Spend your build budget once, with the right partner',
-      body:
-        'Independent vendor and build-partner selection on your side of the table, before money moves.',
-    },
-    {
-      title: 'Your roadmap, your IP, no lock-in',
-      body:
-        'An owned plan and artefacts you keep. Pause or leave without losing the thinking.',
-    },
-    {
-      title: 'More output per person, with progress you can see',
-      body:
-        'Productivity per head tracked over time, so progress is visible rather than anecdotal.',
-    },
-    {
-      title: 'Strategy first, so you only build what pays',
-      body:
-        'Quarter one settles what to build, who builds it and how it is controlled before build budget goes out.',
-    },
-  ],
-} as const
-
-export const pillars = {
-  eyebrow: 'Operating model',
-  heading: 'Four pillars across six stages of maturity',
-  names: ['Flow', 'Foundations', 'Capacity', 'Control'] as const,
-  stagesLine: 'Six stages from Founder-Held to Compounding.',
-} as const
-
 export type BoardStep = {
   index: string
   title: string

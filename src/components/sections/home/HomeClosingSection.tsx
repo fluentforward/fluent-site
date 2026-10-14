@@ -5,7 +5,7 @@ import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
 import { closing } from '@/content/home'
 
-export function HomeClosingSection() {
+export function HomeClosingSection({ fitLine }: { fitLine?: string }) {
   return (
     <Section tone="ink" size="default">
       <Reveal className="max-w-3xl">
@@ -13,6 +13,9 @@ export function HomeClosingSection() {
         <Heading as="h2" size="display-sm" tone="dark" className="mt-8">
           {closing.heading}
         </Heading>
+        {fitLine ? (
+          <p className="mt-8 text-lede text-mist">{fitLine}</p>
+        ) : null}
         <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
           <Button href={closing.primaryCta.href} variant="onDark">
             {closing.primaryCta.label}

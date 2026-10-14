@@ -3,7 +3,7 @@ import { gartnerPressReleases } from '@/content/gartner'
 export const meta = {
   title: 'Leverage Board: senior AI advisory membership | FluentForward',
   description:
-    'A Leverage Board seat: senior AI and operations judgement, portal office hours, an AI advisor, the playbook library, a ship-gate on every build, and the Annual Leverage Summit.',
+    'A Leverage Board seat: senior AI and operations judgement, private strategy sessions, portal office hours, an AI advisor, the Library and the Annual Leverage Summit.',
 } as const
 
 export const hero = {
@@ -70,7 +70,7 @@ export const shipGateImpactBuild = {
 } as const
 
 export const developerLeverage = {
-  eyebrow: 'When the Board says build',
+  eyebrow: 'Developer leverage',
   heading: "One developer. A team's worth of output.",
   body:
     "When the Board says build, you shouldn't need a bigger team. We train your existing developer to work the AI-leveraged way, or help you bring in one who already does, on a permanent or contract basis. We've seen one developer ship in a day what used to take a team a month.",
@@ -93,7 +93,7 @@ export const faq = {
     {
       question: 'What am I committing to?',
       answer:
-        'Leverage Board membership is a seat with a defined rhythm of sessions and office hours, not an hourly retainer or open chat queue. Nothing renews by default.',
+        'Leverage Board membership is a seat with a defined rhythm of sessions and office hours, not an hourly retainer or open chat queue.',
     },
     {
       question: 'Can we pause or leave?',
