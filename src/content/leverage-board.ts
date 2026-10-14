@@ -3,7 +3,7 @@ import { gartnerPressReleases } from '@/content/gartner'
 export const meta = {
   title: 'Leverage Board: senior AI advisory membership | FluentForward',
   description:
-    'A Leverage Board seat: senior AI and operations judgement, private strategy sessions, portal office hours, an AI advisor, the Library and the Annual Leverage Summit.',
+    'A Leverage Board seat: senior AI and operations judgement on your side, a roadmap you own, help between sessions, the Library and the Annual Leverage Summit.',
 } as const
 
 export const hero = {
@@ -26,41 +26,36 @@ export const whatYouGet = {
     'Membership is a seat, not billed hours. Not an open Slack channel. Not monthly theatre meetings.',
   items: [
     {
-      title: 'Leverage Board seat',
-      body:
-        'Senior judgement on where leverage is, where it isn\u2019t, and ship or don\u2019t ship.',
+      title: 'Senior judgement on your side',
+      body: 'Every AI and build decision checked before you spend.',
     },
     {
-      title: 'Four touchpoints a year',
-      body:
-        'Three private strategy sessions, plus the Annual Leverage Summit (one day, in person, members only).',
+      title: 'A roadmap and IP you own',
+      body: 'Priorities set with you, never by a vendor.',
     },
     {
-      title: 'Portal office hours',
-      body:
-        'Scheduled slots. You submit questions and issues through the portal for the agenda. Intentional, batched judgement, not always-on chat.',
+      title: 'Help when you need a steer',
+      body: 'Office hours and the AI advisor between sessions.',
     },
     {
-      title: 'Portal AI advisor',
-      body:
-        'An advisor in your portal, fed on your call transcripts, decisions, and our library. Prep and recall between sessions. It does not make binding ship decisions; those stay human, via office hours or ship-gate.',
+      title: "Proof it's working",
+      body: 'Output per person tracked as you grow.',
     },
     {
-      title: 'Library',
-      body: 'Playbooks, trainings, and blueprints between sessions.',
+      title: 'A library of what works',
+      body: 'Playbooks and templates your team can use.',
     },
     {
-      title: 'Ship-gate',
-      body:
-        'A short written review when you want to commit build budget before work starts.',
+      title: 'The Annual Leverage Summit',
+      body: "A day with peers, comparing what's working.",
     },
   ],
 } as const
 
 export const summit = {
-  heading: 'Once a year, in the room with peers',
+  heading: 'In the room with peers',
   body:
-    'One of your four touchpoints is the Annual Leverage Summit: a one-day, members-only session with peer operators, expert speakers, and real stories, facilitated around leverage and stuck interactions. Timings and venue are confirmed for each membership year. Never a public ticket; the Summit is part of the seat.',
+    'The Summit is members only and in person: operators, expert speakers and honest stories about what is working. Timings and venue are confirmed with you. Never a public ticket.',
 } as const
 
 export const shipGateImpactBuild = {
@@ -93,7 +88,7 @@ export const faq = {
     {
       question: 'What am I committing to?',
       answer:
-        'Leverage Board membership is a seat with a defined rhythm of sessions and office hours, not an hourly retainer or open chat queue.',
+        'A membership seat, not an hourly retainer. Not an open chat queue.',
     },
     {
       question: 'Can we pause or leave?',
