@@ -84,7 +84,7 @@ export function LegalPage({
                           aria-hidden="true"
                           className="shrink-0 text-steel"
                         >
-                          &mdash;
+                          &bull;
                         </span>
                         {item}
                       </li>
