@@ -11,7 +11,7 @@ export const whenBuild = {
   eyebrow: 'When the Board says build',
   heading: 'Impact Build is a later decision',
   body:
-    'When the operation is ready and judgement says ship, Impact Build can be scoped as a fixed engagement: us, a partner or your vendor under Board oversight. Release Engine is optional ship capacity for members only, after ship-gate. The Interaction Engine is the system the Board plans and governs; it is not a separate product you buy off the page.',
+    'When the operation is ready and judgement says ship, Impact Build can be scoped as a fixed engagement, delivered by a partner, your own vendor or us, under Board oversight. Release Engine is optional ship capacity for members only, after ship-gate. The Board plans and governs the method.',
 }
 
 export const reassurance = {

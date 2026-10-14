@@ -2,16 +2,16 @@
 const nextConfig = {
   async redirects() {
     return [
-      { source: '/blog', destination: '/', permanent: true },
-      { source: '/blog/:slug', destination: '/', permanent: true },
-      { source: '/pricing', destination: '/how-it-works', permanent: true },
-      { source: '/surfaceos', destination: '/', permanent: true },
-      { source: '/agentic-platform', destination: '/', permanent: true },
-      { source: '/options', destination: '/leverage-board', permanent: true },
+      { source: '/blog', destination: '/', statusCode: 301 },
+      { source: '/blog/:slug', destination: '/', statusCode: 301 },
+      { source: '/pricing', destination: '/how-it-works', statusCode: 301 },
+      { source: '/surfaceos', destination: '/', statusCode: 301 },
+      { source: '/agentic-platform', destination: '/', statusCode: 301 },
+      { source: '/options', destination: '/leverage-board', statusCode: 301 },
       {
         source: '/offers/interaction-engine-design.pdf',
         destination: '/leverage-board',
-        permanent: true,
+        statusCode: 301,
       },
     ]
   },

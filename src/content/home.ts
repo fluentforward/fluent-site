@@ -1,4 +1,5 @@
 import { auditCta, boardConversationCta } from '@/content/board'
+import { gartnerPressReleases } from '@/content/gartner'
 
 export const hero = {
   headline: 'Grow without adding headcount.',
@@ -34,9 +35,10 @@ export const contrast = {
 export const gartnerProofHome = {
   heading: 'Most agentic projects will not survive the forecast',
   body:
-    'Analysts forecast that more than 40% of agentic AI projects will be cancelled by the end of 2027, mostly for cost, unclear value, or weak risk controls. That is why strategy comes before build: quarter one on the Board settles what to build, who builds it and how it is controlled.',
+    'Gartner forecasts that more than 40% of agentic AI projects will be cancelled by the end of 2027, mostly for cost, unclear value, or weak risk controls. That is why strategy comes before build: quarter one on the Board settles what to build, who builds it and how it is controlled.',
   attribution:
-    'Source: Gartner public research, June 2025. Not an endorsement of FluentForward.',
+    'Source: Gartner press release, 25 June 2025. Not an endorsement of FluentForward.',
+  sourceUrl: gartnerPressReleases.agenticProjectsCancelled2027,
 }
 
 export const whoItsFor = {
@@ -60,7 +62,7 @@ export const whenBoardSaysBuild = {
   eyebrow: 'Member-only add-on',
   heading: 'When the Board says build',
   body:
-    'Release Engine is optional ship capacity for Leverage Board members only, when judgement says the next release is worth it. Build can be delivered by us, by a partner or by your own vendor under Board oversight. Never sold without an active seat. Ship-gate comes first.',
+    'When the operation is ready and the Board says ship, Impact Build can be scoped as a fixed engagement, delivered by a partner, your own vendor or us, under Board oversight. Release Engine is build capacity for Leverage Board members only, when the Board says ship.',
 }
 
 export const closingCta = {

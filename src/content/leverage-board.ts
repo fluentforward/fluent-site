@@ -1,4 +1,5 @@
 import { auditCta, boardConversationCta, boardOutcomes } from '@/content/board'
+import { gartnerPressReleases } from '@/content/gartner'
 
 export const meta = {
   title: 'Leverage Board',
@@ -11,11 +12,8 @@ export const hero = {
   heading: 'Growth without headcount, with judgement every quarter.',
   lede:
     'A membership seat for senior AI and operations judgement on the business you already run. Fractional Chief of AI thinking when you need it, without a full-time hire. Process first. Systems you own. Control over AI.',
-  primaryCta: boardConversationCta,
-  secondaryCta: {
-    label: auditCta.label,
-    href: auditCta.href,
-  },
+  primaryCta: auditCta,
+  secondaryCta: boardConversationCta,
 } as const
 
 export const problem = {
@@ -31,6 +29,7 @@ export const gartnerProofBoard = {
     'Gartner forecasts that by 2028, 70% of enterprises on the vendor forward-deployed-engineering route for agentic AI will abandon it: too expensive, and the organisation cannot evolve the system alone. The Leverage Board puts judgement on your side of the table before build budget moves.',
   attribution:
     'Source: Gartner press release, 29 September 2026. Not an endorsement of FluentForward.',
+  sourceUrl: gartnerPressReleases.vendorFdeAbandon2028,
 } as const
 
 export const whatYouGet = {
@@ -41,7 +40,7 @@ export const whatYouGet = {
     {
       title: 'Leverage Board seat',
       body:
-        'Fractional Chief of AI judgement: where leverage is, where it isn\u2019t, and ship / don\u2019t ship.',
+        'Senior judgement on where leverage is, where it isn\u2019t, and ship or don\u2019t ship.',
     },
     {
       title: 'Four touchpoints a year',
@@ -113,7 +112,7 @@ export const whoFor = {
 export const ladder = {
   heading: 'Where Leverage Board sits',
   body:
-    'Start with the Growth Without Headcount Audit, then a free call to sense-check fit. Quarter one maps governance, build-partner choice and an owned roadmap. Each quarter after, re-score the pillars and decide ship or hold. Impact Build is a later Board decision for firms that are ready: delivered by us, a partner or your vendor under Board oversight. Release Engine adds optional ship capacity for members when judgement says move.',
+    'Start with the Growth Without Headcount Audit, then a free call to sense-check fit. Quarter one maps governance, build-partner choice and an owned roadmap. Each quarter after, re-score the pillars and decide ship or hold. Impact Build is a later Board decision for firms that are ready: delivered by a partner, your own vendor or us under Board oversight. Release Engine adds optional ship capacity for members when judgement says move.',
   link: { label: 'How the Board works', href: '/how-it-works' },
 } as const
 

@@ -7,6 +7,7 @@ export type ResearchProofContent = {
   heading: string
   body: string
   attribution: string
+  sourceUrl?: string
   cta?: { label: string; href: string; newTab?: boolean }
 }
 
@@ -30,6 +31,20 @@ export function ResearchProofStrip({
         </p>
         <p className="mt-6 text-xs leading-relaxed text-mist">
           {content.attribution}
+          {content.sourceUrl ? (
+            <>
+              {' '}
+              <a
+                href={content.sourceUrl}
+                className="text-slate underline underline-offset-2 transition-colors hover:text-ink"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Read the Gartner press release
+              </a>
+              .
+            </>
+          ) : null}
         </p>
         {content.cta ? (
           <div className="mt-8">

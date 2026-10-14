@@ -2,7 +2,7 @@ export const hero = {
   eyebrow: 'Practice',
   heading: 'Senior people on your side of the table.',
   lede:
-    'FluentForward is deliberately senior-led: judgement from builders who have shipped at scale, accountable for telling you what to fix, what to build and who should build it, whether that is us or someone else.',
+    'FluentForward is deliberately senior-led: judgement from builders who have shipped at scale, accountable for telling you what to fix, what to build and who should build it, independent of who that is.',
 }
 
 export const story = {

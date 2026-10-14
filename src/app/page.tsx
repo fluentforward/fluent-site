@@ -36,15 +36,15 @@ export default function Home() {
       />
       <HomeHero />
       <ContrastSection />
-      <PillarsSection />
-      <ResearchProofStrip content={gartnerProofHome} tone="paper" border />
-      <ProofSection packs={proofPacksHome} />
       <DefinitionGrid
         eyebrow={boardOutcomes.eyebrow}
         heading={boardOutcomes.heading}
         items={boardOutcomes.items}
         tone="muted"
       />
+      <ProofSection packs={proofPacksHome} />
+      <ResearchProofStrip content={gartnerProofHome} tone="paper" border />
+      <PillarsSection />
       <BoardHowItWorksSection />
       <WhenBoardSaysBuildSection />
       <WhoItsForSection />
