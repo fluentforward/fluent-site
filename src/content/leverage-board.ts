@@ -1,5 +1,6 @@
 import { auditCta, boardConversationCta, boardOutcomes } from '@/content/board'
 import { gartnerPressReleases } from '@/content/gartner'
+import { fit } from '@/content/home'
 
 export const meta = {
   title: 'Leverage Board',
@@ -99,33 +100,20 @@ export const releaseEngine = {
 } as const
 
 export const whoFor = {
-  heading: 'Built for operators who already know the problem',
-  items: [
-    'Services firms of about 20 to 200 people with named outcomes and stuck interactions between systems',
-    'Process-first leaders who want technology independence and ownership of IP',
-    'Teams wary of vendor AI that only makes siloed tools smarter',
-    'Owners who want judgement while the owned layer is being scoped or grown',
-    'Firms ready to measure productivity per head quarter by quarter',
-  ],
+  heading: fit.builtForHeading,
+  body: fit.builtFor,
 } as const
 
 export const ladder = {
   heading: 'Where Leverage Board sits',
   body:
-    'Start with the AI Readiness and Governance Audit, then a free Audit review call to sense-check fit. Quarter one maps governance, build-partner choice and an owned roadmap. Each quarter after, re-score the pillars and decide ship or hold. Impact Build is a later Board decision for firms that are ready: delivered by a partner, your own vendor or us under Board oversight. Release Engine adds optional ship capacity for members when judgement says move.',
+    'Start with the AI Readiness and Governance Audit, then a free Audit review call to sense-check fit. The first 90 days on the Board map governance, build-partner choice and an owned roadmap. We keep re-scoring as you grow. Impact Build is a later Board decision for firms that are ready: delivered by a partner, your own vendor or us under Board oversight. Release Engine adds optional ship capacity for members when judgement says move.',
   link: { label: 'How the Board works', href: '/how-it-works' },
 } as const
 
 export const notList = {
-  heading: 'What this is not',
-  items: [
-    'Not monthly hours or staff augmentation',
-    'Not an open Slack or unlimited chat retainer',
-    'Not a vendor in disguise: we do not resell builds or licences',
-    'Not build-without-strategy (Release Engine never without a Board seat)',
-    'Not a public conference ticket without a seat',
-    'Not another vendor AI bolted into a silo',
-  ],
+  heading: fit.notForHeading,
+  items: fit.notFor,
 } as const
 
 export const closingCta = {

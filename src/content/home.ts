@@ -2,74 +2,99 @@ import { auditCta, boardConversationCta } from '@/content/board'
 import { gartnerPressReleases } from '@/content/gartner'
 
 export const hero = {
-  headline: 'Grow without adding headcount.',
+  headline:
+    'Senior AI judgement for services firms that want to grow without adding headcount.',
   lede:
-    'The Leverage Board gives your firm senior AI and operations judgement every quarter, so you know what to fix, what to build and who should build it, before you spend a penny on build.',
+    'For owner-led agencies, consultancies and professional services firms of 20 to 200 people. We help you decide what to fix, what to build and who should build it, before you spend a penny on build.',
   primaryCta: auditCta,
   secondaryCta: boardConversationCta,
   auditHint: auditCta.hint,
 }
 
-export const contrast = {
-  eyebrow: 'High vs low leverage',
-  leadersHeading: 'What high leverage runs on.',
-  followersHeading: 'What low leverage still puts up with.',
-  leaders: [
-    'An owned operating layer beside the CRM: one place people open first for customer and staff work.',
-    'Processes and integrations that create leverage, not glue jobs.',
-    'AI inside the work on that layer, with governance and ship-gates, not bolted on per vendor.',
-    'Growth without a matching headcount curve.',
-  ],
-  followers: [
-    'People as glue between systems. Inbox and sheets still hold the truth.',
-    'Shadow AI: ChatGPT paste for work the system should carry, with no policy or control.',
-    'Vendor-led roadmaps that make silos smarter without making the firm more productive.',
-    'Growth equals hire and grind. Headcount climbs with volume.',
-  ],
-  bridge:
-    'The gap is not ambition. It is leverage: who owns judgement on what to fix, what to build and who builds it.',
-  alsoNot:
-    'Also not: a chatbot nobody opens, an AI licence with a demo bolted on, or a multi-year programme before anything useful ships.',
-}
-
-export const gartnerProofHome = {
-  heading: 'Most agentic projects will not survive the forecast',
+export const pain = {
+  heading: 'Your best people have become the glue between your systems.',
   body:
-    'Gartner forecasts that more than 40% of agentic AI projects will be cancelled by the end of 2027, mostly for cost, unclear value, or weak risk controls. That is why strategy comes before build: quarter one on the Board settles what to build, who builds it and how it is controlled.',
-  attribution:
-    'Source: Gartner press release, 25 June 2025. Not an endorsement of FluentForward.',
-  sourceUrl: gartnerPressReleases.agenticProjectsCancelled2027,
+    'Every new client adds more chasing, copying and checking, so growth means hiring.',
 }
 
-export const whoItsFor = {
-  eyebrow: 'Fit',
-  heading:
-    'Services firms of about 20 to 200 people, run by owners who own client experience and staff interactions.',
-  lede: 'Not sure where you sit? The Audit tells you.',
-  rightFit: [
-    'Named outcomes and stuck handoffs between systems, even if the path is unclear.',
-    'Owners who will own how work runs, not delegate judgement to vendors.',
-    'Willingness to measure productivity per head quarter by quarter.',
-  ],
-  wrongFit: [
-    'You want a public chatbot or AI slides with no layer to own.',
-    'You want a multi-year transformation programme as the first move.',
-    'You want staff augmentation forever, not systems and judgement your team runs.',
-  ],
+export const whyFixesFail = {
+  heading: 'Why the usual fixes fail',
+  intro:
+    'Vendor AI, more licences, chatbots, and agencies selling builds rarely fix the work between systems. They add tools while the firm stays dependent.',
+  gartner: {
+    heading: 'Most agentic projects will not survive the forecast',
+    body:
+      'Gartner forecasts that more than 40% of agentic AI projects will be cancelled by the end of 2027, mostly for cost, unclear value, or weak risk controls. Strategy has to come before build: decide what to fix, what to build, who builds it and how AI stays under your control.',
+    attribution:
+      'Source: Gartner press release, 25 June 2025. Not an endorsement of FluentForward.',
+    sourceUrl: gartnerPressReleases.agenticProjectsCancelled2027,
+  },
 }
 
-export const whenBoardSaysBuild = {
-  eyebrow: 'Member-only add-on',
-  heading: 'When the Board says build',
+export const theBoard = {
+  eyebrow: 'The Leverage Board',
+  heading: 'Judgement on your side of the table',
   body:
-    'When the operation is ready and the Board says ship, Impact Build can be scoped as a fixed engagement, delivered by a partner, your own vendor or us, under Board oversight. Release Engine is build capacity for Leverage Board members only, when the Board says ship.',
+    'The Leverage Board puts senior AI and operations judgement on your side of the table, so every AI and build decision makes your firm more productive per head and never more dependent on a vendor.',
+  support:
+    'Between sessions, portal office hours and the AI advisor give you always-available help when you need a steer, without waiting for the next meeting.',
 }
 
-export const closingCta = {
+export const outcomes = {
+  heading: 'What changes when judgement stays with you',
+  items: [
+    'AI you control, not AI that happens to you.',
+    'A build partner chosen on merit, not on who pitched first.',
+    "A roadmap and IP you own, not a vendor's lock-in.",
+    'More output per person, not more people.',
+  ],
+}
+
+export const fit = {
+  builtForHeading: 'Built for',
+  builtFor:
+    'Owner-led services firms of 20 to 200 people (agencies, consultancies, professional and managed services) where client work runs on people, inboxes and spreadsheets, and the owner wants growth without adding the same again in headcount.',
+  lineHeading: 'Where we draw the line',
+  notForHeading: "The Board isn't for you if:",
+  notFor: [
+    "You sell software. If SaaS or a product is your core business, you need a product team, not a Board.",
+    "You're under about 20 people. Start with the Audit; the Board pays off once there's a team to multiply.",
+    "You want a chatbot or a licence. We don't resell tools.",
+    "You want extra developers. We don't do staff augmentation.",
+    'You want a multi-year transformation programme. We work in short, visible steps, and you see progress as it happens.',
+  ],
+  auditLine:
+    'Not sure which side you are on? The Audit will tell you in about ten minutes.',
+}
+
+export const howItWorks = {
+  eyebrow: 'How it works',
+  heading: 'Three steps in',
+  steps: [
+    {
+      title: 'AI Readiness and Governance Audit',
+      body:
+        'A short online assessment of where you stand on AI control and capacity, and where leverage is stuck.',
+    },
+    {
+      title: 'Free Audit review call',
+      body:
+        'Thirty minutes with the practice to sense-check fit and what would matter first. Straight answers, including when the Board is not the right move.',
+    },
+    {
+      title: 'First 90 days on the Board',
+      body:
+        'Settle what to fix, what to build, who builds it and how AI is controlled, before build budget moves.',
+    },
+  ],
+  closing: 'Then we keep re-scoring as you grow.',
+}
+
+export const closing = {
   eyebrow: 'Next step',
-  heading: 'Find your stage, then talk if it fits.',
-  body:
-    'The Audit takes about ten minutes. If you would rather talk first, book a call. No public prices: terms are set in writing before anything starts, and you can pause or leave.',
+  heading: "See if you're a fit.",
+  buildLine:
+    'When the Board says build, we scope it with a partner, your own vendor or us.',
   primaryCta: auditCta,
   secondaryCta: boardConversationCta,
 }

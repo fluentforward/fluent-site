@@ -114,7 +114,7 @@ export default function LeverageBoardPage() {
       <Section tone="paper" border>
         <Reveal className="max-w-2xl">
           <Heading as="h2">{whoFor.heading}</Heading>
-          <BulletList items={whoFor.items} />
+          <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">{whoFor.body}</p>
         </Reveal>
       </Section>
 

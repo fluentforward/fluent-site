@@ -7,7 +7,7 @@ export const site = {
   tagline:
     'The Leverage Board: senior AI and operations judgement every quarter for services firms that want growth without adding headcount.',
   description:
-    'The Leverage Board gives services firms senior judgement on what to fix, what to build and who should build it. Start with the AI Readiness and Governance Audit, then membership with strategy sessions, office hours, and an owned roadmap.',
+    'For owner-led agencies, consultancies and professional services firms of 20 to 200 people. We help you decide what to fix, what to build and who should build it, before you spend a penny on build.',
   email: 'hello@fluentforward.com',
   privacyEmail: 'privacy@fluentforward.com',
 } as const

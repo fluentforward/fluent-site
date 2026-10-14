@@ -1,16 +1,12 @@
-import { BoardHowItWorksSection } from '@/components/sections/BoardHowItWorksSection'
-import { ContrastSection } from '@/components/sections/ContrastSection'
-import { CtaBand } from '@/components/sections/CtaBand'
-import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
+import { HomeBoardSection } from '@/components/sections/home/HomeBoardSection'
+import { HomeClosingSection } from '@/components/sections/home/HomeClosingSection'
+import { HomeFitSection } from '@/components/sections/home/HomeFitSection'
+import { HomeOutcomesSection } from '@/components/sections/home/HomeOutcomesSection'
+import { HomePainSection } from '@/components/sections/home/HomePainSection'
+import { HomeProofSection } from '@/components/sections/home/HomeProofSection'
+import { HomeThreeStepsSection } from '@/components/sections/home/HomeThreeStepsSection'
+import { HomeWhyFixesFailSection } from '@/components/sections/home/HomeWhyFixesFailSection'
 import { HomeHero } from '@/components/sections/HomeHero'
-import { PillarsSection } from '@/components/sections/PillarsSection'
-import { ProofSection } from '@/components/sections/ProofSection'
-import { ResearchProofStrip } from '@/components/sections/ResearchProofStrip'
-import { WhenBoardSaysBuildSection } from '@/components/sections/WhenBoardSaysBuildSection'
-import { WhoItsForSection } from '@/components/sections/WhoItsForSection'
-import { boardOutcomes } from '@/content/board'
-import { closingCta, gartnerProofHome } from '@/content/home'
-import { proofPacksHome } from '@/content/proof'
 import { site } from '@/content/site'
 
 const structuredData = {
@@ -35,24 +31,14 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <HomeHero />
-      <ContrastSection />
-      <DefinitionGrid
-        eyebrow={boardOutcomes.eyebrow}
-        heading={boardOutcomes.heading}
-        items={boardOutcomes.items}
-        tone="muted"
-      />
-      <ProofSection packs={proofPacksHome} />
-      <ResearchProofStrip content={gartnerProofHome} tone="paper" border />
-      <PillarsSection />
-      <BoardHowItWorksSection />
-      <WhenBoardSaysBuildSection />
-      <WhoItsForSection />
-      <CtaBand
-        {...closingCta}
-        primary={closingCta.primaryCta}
-        secondary={closingCta.secondaryCta}
-      />
+      <HomePainSection />
+      <HomeWhyFixesFailSection />
+      <HomeBoardSection />
+      <HomeOutcomesSection />
+      <HomeFitSection />
+      <HomeThreeStepsSection />
+      <HomeProofSection />
+      <HomeClosingSection />
     </>
   )
 }
