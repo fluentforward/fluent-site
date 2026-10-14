@@ -5,7 +5,7 @@ export const site = {
   legalName: 'FluentForward Limited',
   url: 'https://fluentforward.com',
   tagline:
-    'The Leverage Board: senior AI and operations judgement every quarter for services firms that want growth without adding headcount.',
+    'Senior AI judgement for services firms that want to grow without adding headcount.',
   description:
     'For owner-led agencies, consultancies and professional services firms of 20 to 200 people. We help you decide what to fix, what to build and who should build it, before you spend a penny on build.',
   email: 'hello@fluentforward.com',
