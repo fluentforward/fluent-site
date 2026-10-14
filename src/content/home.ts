@@ -37,7 +37,7 @@ export const theBoard = {
   body:
     'The Leverage Board puts senior AI and operations judgement on your side of the table, so every AI and build decision makes your firm more productive per head and never more dependent on a vendor.',
   support:
-    'Between sessions, portal office hours and the AI advisor give you always-available help when you need a steer, without waiting for the next meeting.',
+    'Between sessions, scheduled portal office hours and the AI advisor help you prepare and recall decisions. The decisions stay with people.',
 }
 
 export const outcomes = {

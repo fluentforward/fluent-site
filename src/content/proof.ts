@@ -24,11 +24,11 @@ export const proofPacks: readonly ProofPack[] = [
     label: 'Energy & utilities (anonymised)',
     title: 'The CRM was winning. The process was losing.',
     homeFounderLine:
-      'The owner and ops team stopped bending their process around the CRM and chose to build around how work actually runs.',
+      'The owner and ops team stopped bending their process around the CRM and moved to a system built around how their work actually runs.',
     homeQuote:
       'We stopped reshaping our process to fit the CRM. We got a system built around how we actually work, and we can see the whole pipeline and client book without hunting through sheets and inboxes.',
     summary:
-      'An energy-sector owner and ops team stopped bending their process around a legacy CRM, sheets, and inbox. From the proof pack: "We stopped reshaping our process to fit the CRM. We got a system built around how we actually work, and we can see the whole pipeline and client book without hunting through sheets and inboxes."',
+      'An energy-sector owner and ops team stopped bending their process around a legacy CRM, sheets, and inbox. Strategy first, then an owned layer for pipeline and client work the team actually opens first.',
     ctaLabel: 'Read the proof',
     href: '/proof/energy-utilities.pdf',
   },

@@ -47,16 +47,13 @@ export default function OpengraphImage() {
             display: 'flex',
             flexDirection: 'column',
             color: '#FFFFFF',
-            fontSize: 52,
-            lineHeight: 1.12,
+            fontSize: 44,
+            lineHeight: 1.15,
             letterSpacing: '-0.03em',
             maxWidth: 1000,
           }}
         >
-          <span>The Leverage Board</span>
-          <span style={{ color: '#8A929F' }}>
-            Senior judgement every quarter. Growth without adding headcount.
-          </span>
+          <span>{site.tagline}</span>
         </div>
 
         <div
@@ -72,8 +69,8 @@ export default function OpengraphImage() {
           }}
         >
           <span>Audit</span>
-          <span>Strategy sessions</span>
-          <span>Owned roadmap</span>
+          <span>Leverage Board</span>
+          <span>Judgement first</span>
         </div>
       </div>
     ),

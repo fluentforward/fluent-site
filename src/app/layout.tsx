@@ -28,7 +28,7 @@ const plexMono = IBM_Plex_Mono({
   variable: '--font-plex-mono',
 })
 
-const defaultTitle = 'FluentForward | Grow without adding headcount'
+const defaultTitle = 'FluentForward | Senior AI judgement for services firms'
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
