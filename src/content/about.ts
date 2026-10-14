@@ -63,5 +63,5 @@ export const principles = {
 export const closingCta = {
   eyebrow: 'Next step',
   heading: 'Happy to talk it through.',
-  body: 'A thirty minute call with the practice. No deck, no questionnaire, no follow-up sequence.',
+  body: 'No deck, no questionnaire, no follow-up sequence.',
 }
