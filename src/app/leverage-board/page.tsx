@@ -1,106 +1,57 @@
 import { type Metadata } from 'next'
 
-import { CtaBand } from '@/components/sections/CtaBand'
+import { BoardDeveloperSection } from '@/components/sections/BoardDeveloperSection'
+import { FaqSection } from '@/components/sections/FaqSection'
+import { HomeClosingSection } from '@/components/sections/home/HomeClosingSection'
+import { HomeProofSection } from '@/components/sections/home/HomeProofSection'
+import { HomeThreeStepsSection } from '@/components/sections/home/HomeThreeStepsSection'
 import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
 import { PageHero } from '@/components/sections/PageHero'
-import { BoardDeveloperSection } from '@/components/sections/BoardDeveloperSection'
 import { ResearchProofStrip } from '@/components/sections/ResearchProofStrip'
-import { Button } from '@/components/ui/Button'
 import { Heading } from '@/components/ui/Heading'
-import { ArrowLink } from '@/components/ui/ArrowLink'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
 import {
-  boardOutcomes,
-  closingCta,
+  faq,
+  fitLine,
   gartnerProofBoard,
   hero,
-  ladder,
+  howItWorksLink,
   meta,
-  notList,
-  problem,
+  shipGateImpactBuild,
   summit,
   whatYouGet,
-  whoFor,
 } from '@/content/leverage-board'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Leverage Board | FluentForward' },
+  title: { absolute: meta.title },
   description: meta.description,
   alternates: { canonical: '/leverage-board' },
   openGraph: {
-    title: 'Leverage Board | FluentForward',
+    title: meta.title,
     description: meta.description,
     url: '/leverage-board',
   },
   twitter: {
-    title: 'Leverage Board | FluentForward',
+    title: meta.title,
     description: meta.description,
   },
-}
-
-function BulletList({ items }: { items: readonly string[] }) {
-  return (
-    <ul className="mt-8 space-y-4">
-      {items.map((item) => (
-        <li
-          key={item}
-          className="flex gap-3 text-[0.9375rem] leading-[1.72] text-slate"
-        >
-          <span aria-hidden="true" className="shrink-0 text-steel">
-            &bull;
-          </span>
-          {item}
-        </li>
-      ))}
-    </ul>
-  )
 }
 
 export default function LeverageBoardPage() {
   return (
     <>
-      <PageHero
-        eyebrow={hero.eyebrow}
-        heading={hero.heading}
-        lede={hero.lede}
-      >
-        <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center md:mt-9">
-          <Button href={hero.primaryCta.href}>{hero.primaryCta.label}</Button>
-          <Button href={hero.secondaryCta.href} variant="secondary">
-            {hero.secondaryCta.label}
-          </Button>
-        </div>
-      </PageHero>
-
-      <DefinitionGrid
-        eyebrow={boardOutcomes.eyebrow}
-        heading={boardOutcomes.heading}
-        items={boardOutcomes.items}
-        tone="muted"
-        id="outcomes"
-      />
-
-      <Section tone="paper" border>
-        <Reveal className="max-w-2xl">
-          <Heading as="h2">{problem.heading}</Heading>
-          <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">
-            {problem.body}
-          </p>
-        </Reveal>
-      </Section>
-
-      <ResearchProofStrip content={gartnerProofBoard} tone="muted" border />
+      <PageHero eyebrow={hero.eyebrow} heading={hero.heading} />
 
       <DefinitionGrid
         heading={whatYouGet.heading}
         lede={whatYouGet.intro}
         items={whatYouGet.items}
-        tone="paper"
+        tone="muted"
         id="what-you-get"
       />
 
-      <Section tone="muted" border>
+      <Section tone="paper" border>
         <Reveal className="max-w-2xl">
           <Heading as="h2">{summit.heading}</Heading>
           <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">
@@ -109,39 +60,32 @@ export default function LeverageBoardPage() {
         </Reveal>
       </Section>
 
-      <BoardDeveloperSection />
-
-      <Section tone="paper" border>
+      <Section tone="muted" border>
         <Reveal className="max-w-2xl">
-          <Heading as="h2">{whoFor.heading}</Heading>
-          <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">{whoFor.body}</p>
+          <Heading as="h2">{shipGateImpactBuild.heading}</Heading>
+          <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">
+            {shipGateImpactBuild.body}
+          </p>
         </Reveal>
       </Section>
+
+      <BoardDeveloperSection />
+
+      <ResearchProofStrip content={gartnerProofBoard} tone="paper" border />
+
+      <HomeProofSection />
+
+      <HomeThreeStepsSection moreLink={howItWorksLink} />
+
+      <FaqSection content={faq} />
 
       <Section tone="muted" border>
         <Reveal className="max-w-2xl">
-          <Heading as="h2">{ladder.heading}</Heading>
-          <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">
-            {ladder.body}
-          </p>
-          <div className="mt-8">
-            <ArrowLink href={ladder.link.href}>{ladder.link.label}</ArrowLink>
-          </div>
+          <p className="text-[1.0625rem] leading-[1.72] text-slate">{fitLine}</p>
         </Reveal>
       </Section>
 
-      <Section tone="paper" border>
-        <Reveal className="max-w-2xl">
-          <Heading as="h2">{notList.heading}</Heading>
-          <BulletList items={notList.items} />
-        </Reveal>
-      </Section>
-
-      <CtaBand
-        {...closingCta}
-        primary={closingCta.primary}
-        secondary={closingCta.secondary}
-      />
+      <HomeClosingSection />
     </>
   )
 }

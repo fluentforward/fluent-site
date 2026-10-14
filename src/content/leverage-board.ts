@@ -1,27 +1,14 @@
-import { auditCta, boardConversationCta, boardOutcomes } from '@/content/board'
 import { gartnerPressReleases } from '@/content/gartner'
-import { fit } from '@/content/home'
 
 export const meta = {
-  title: 'Leverage Board',
+  title: 'Leverage Board: senior AI advisory membership | FluentForward',
   description:
-    'Grow without adding headcount: senior AI and operations judgement for services firms, with governance, independent build-partner choice, owned roadmaps and productivity per head.',
+    'A Leverage Board seat: senior judgement, four touchpoints a year, portal office hours, AI advisor, library, ship-gate and Annual Summit.',
 } as const
 
 export const hero = {
   eyebrow: 'Leverage Board',
-  heading: 'Grow without headcount, with senior judgement on your side.',
-  lede:
-    'A membership seat for senior AI and operations judgement on the business you already run. Fractional Chief of AI thinking when you need it, without a full-time hire. Process first. Systems you own. Control over AI.',
-  primaryCta: auditCta,
-  secondaryCta: boardConversationCta,
-} as const
-
-export const problem = {
-  heading:
-    'Vendor AI makes silos smarter. It rarely makes the business more productive.',
-  body:
-    'Most stacks already have tools. Work still falls between them as manual process. Bolting AI into each product enhances isolation. Operators need a judgement layer above the stack, and, when ready, an owned operating layer, not another feature inside someone else\u2019s product.',
+  heading: 'What a Leverage Board seat includes',
 } as const
 
 export const gartnerProofBoard = {
@@ -76,6 +63,12 @@ export const summit = {
     'One of your four touchpoints is the Annual Leverage Summit: a one-day, members-only session with peer operators, expert speakers, and real stories, facilitated around leverage and stuck interactions. Timings and venue are confirmed for each membership year. Never a public ticket; the Summit is part of the seat.',
 } as const
 
+export const shipGateImpactBuild = {
+  heading: 'Ship-gate and Impact Build',
+  body:
+    'When the Board says build, we scope it with a partner, your own vendor or us. Ship-gate is the short written review before build budget moves. Impact Build is a later Board decision when the operation is ready. We do not publish commercial terms on this page.',
+} as const
+
 export const developerLeverage = {
   eyebrow: 'When the Board says build',
   heading: "One developer. A team's worth of output.",
@@ -85,30 +78,31 @@ export const developerLeverage = {
     'For Leverage Board members. Details are agreed with you when the Board says build.',
 } as const
 
-export const whoFor = {
-  heading: fit.builtForHeading,
-  body: fit.builtFor,
+export const fitLine =
+  'Built for owner-led services firms of 20 to 200 people. Not sure? The Audit tells you.' as const
+
+export const howItWorksLink = {
+  label: 'How the Board works',
+  href: '/how-it-works',
 } as const
 
-export const ladder = {
-  heading: 'Where Leverage Board sits',
-  body:
-    'Start with the AI Readiness and Governance Audit, then a free Audit review call to sense-check fit. The first 90 days on the Board map governance, build-partner choice and an owned roadmap. We keep re-scoring as you grow. Impact Build is a later Board decision for firms that are ready: delivered by a partner, your own vendor or us under Board oversight.',
-  link: { label: 'How the Board works', href: '/how-it-works' },
+export const faq = {
+  eyebrow: 'Common questions',
+  heading: 'Membership in practice',
+  items: [
+    {
+      question: 'What am I committing to?',
+      answer:
+        'Leverage Board membership is a seat with a defined rhythm of sessions and office hours, not an hourly retainer or open chat queue. Nothing renews by default.',
+    },
+    {
+      question: 'Can we pause or leave?',
+      answer:
+        'Your roadmap and IP stay yours. Pause or leave when you need to; nothing renews by default.',
+    },
+    {
+      question: 'How does pricing work?',
+      answer: 'Pricing is confirmed in writing.',
+    },
+  ],
 } as const
-
-export const notList = {
-  heading: fit.notForHeading,
-  items: fit.notFor,
-} as const
-
-export const closingCta = {
-  eyebrow: 'Next step',
-  heading: 'Find your stage, or talk it through.',
-  body:
-    'Take the Audit for a fast read on stage and gaps, or book a call if you would rather talk first. Fixed commercial terms are private and set in writing before anything starts.',
-  primary: auditCta,
-  secondary: boardConversationCta,
-} as const
-
-export { boardOutcomes }

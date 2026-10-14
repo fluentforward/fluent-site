@@ -2,9 +2,14 @@ import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Heading } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
+import { ArrowLink } from '@/components/ui/ArrowLink'
 import { howItWorks } from '@/content/home'
 
-export function HomeThreeStepsSection() {
+export function HomeThreeStepsSection({
+  moreLink,
+}: {
+  moreLink?: { href: string; label: string }
+}) {
   return (
     <Section tone="muted" border id="how-it-works">
       <Reveal className="max-w-3xl">
@@ -30,6 +35,12 @@ export function HomeThreeStepsSection() {
       <Reveal delay={120} className="mt-10 max-w-prose">
         <p className="text-[1.0625rem] leading-[1.72] text-ink">{howItWorks.closing}</p>
       </Reveal>
+
+      {moreLink ? (
+        <Reveal delay={150} className="mt-10">
+          <ArrowLink href={moreLink.href}>{moreLink.label}</ArrowLink>
+        </Reveal>
+      ) : null}
     </Section>
   )
 }

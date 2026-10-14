@@ -2,9 +2,16 @@ import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Heading } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
-import { faq } from '@/content/how-it-works'
+import { faq as defaultFaq } from '@/content/how-it-works'
 
-export function FaqSection() {
+type FaqContent = {
+  eyebrow: string
+  heading: string
+  items: readonly { question: string; answer: string }[]
+}
+
+export function FaqSection({ content = defaultFaq }: { content?: FaqContent }) {
+  const faq = content
   return (
     <Section tone="paper" id="faq">
       <div className="grid gap-12 lg:grid-cols-[16rem_1fr] lg:gap-20">
