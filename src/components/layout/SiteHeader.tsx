@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 
+import { CookieSettingsButton } from '@/components/consent/CookieConsentProvider'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { nav, primaryCta } from '@/content/site'
@@ -124,6 +125,11 @@ export function SiteHeader() {
             <Button href={primaryCta.href} className="mt-6 w-full">
               {primaryCta.label}
             </Button>
+            <CookieSettingsButton
+              className="mt-4 w-full py-3 text-center text-sm text-slate transition-colors hover:text-ink"
+            >
+              Cookie settings
+            </CookieSettingsButton>
           </Container>
         </div>
       )}
