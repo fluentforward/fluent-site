@@ -1,27 +1,14 @@
-import { auditCta, boardConversationCta, boardOutcomes } from '@/content/board'
 import { gartnerPressReleases } from '@/content/gartner'
-import { fit } from '@/content/home'
 
 export const meta = {
-  title: 'Leverage Board',
+  title: 'Leverage Board: senior AI advisory membership | FluentForward',
   description:
-    'Grow without adding headcount: senior AI and operations judgement for services firms, with governance, independent build-partner choice, owned roadmaps and productivity per head.',
+    'A Leverage Board seat: senior AI and operations judgement on your side, a roadmap you own, help between sessions, the Library and the Annual Leverage Summit.',
 } as const
 
 export const hero = {
   eyebrow: 'Leverage Board',
-  heading: 'Grow without headcount, with senior judgement on your side.',
-  lede:
-    'A membership seat for senior AI and operations judgement on the business you already run. Fractional Chief of AI thinking when you need it, without a full-time hire. Process first. Systems you own. Control over AI.',
-  primaryCta: auditCta,
-  secondaryCta: boardConversationCta,
-} as const
-
-export const problem = {
-  heading:
-    'Vendor AI makes silos smarter. It rarely makes the business more productive.',
-  body:
-    'Most stacks already have tools. Work still falls between them as manual process. Bolting AI into each product enhances isolation. Operators need a judgement layer above the stack, and, when ready, an owned operating layer, not another feature inside someone else\u2019s product.',
+  heading: 'What a Leverage Board seat includes',
 } as const
 
 export const gartnerProofBoard = {
@@ -36,48 +23,49 @@ export const gartnerProofBoard = {
 export const whatYouGet = {
   heading: 'What you get with a Leverage Board seat',
   intro:
-    'Membership is a seat, not billed hours. Not an open Slack channel. Not monthly theatre meetings.',
+    'Membership is a seat, not billed hours. Not an open Slack channel. Not meetings for the sake of meetings.',
   items: [
     {
-      title: 'Leverage Board seat',
-      body:
-        'Senior judgement on where leverage is, where it isn\u2019t, and ship or don\u2019t ship.',
+      title: 'Senior judgement on your side',
+      body: 'AI and build decisions checked before you spend.',
     },
     {
-      title: 'Four touchpoints a year',
-      body:
-        'Three private strategy sessions, plus the Annual Leverage Summit (one day, in person, members only).',
+      title: 'A roadmap and IP you own',
+      body: 'Priorities set with you, never by a vendor.',
     },
     {
-      title: 'Portal office hours',
-      body:
-        'Scheduled slots. You submit questions and issues through the portal for the agenda. Intentional, batched judgement, not always-on chat.',
+      title: 'Help when you need a steer',
+      body: 'Office hours and the AI advisor between sessions.',
     },
     {
-      title: 'Portal AI advisor',
-      body:
-        'An advisor in your portal, fed on your call transcripts, decisions, and our library. Prep and recall between sessions. It does not make binding ship decisions; those stay human, via office hours or ship-gate.',
+      title: "Proof it's working",
+      body: 'Output per person tracked as you grow.',
     },
     {
-      title: 'Library',
-      body: 'Playbooks, trainings, and blueprints between sessions.',
+      title: 'A library of what works',
+      body: 'Playbooks and templates your team can use.',
     },
     {
-      title: 'Ship-gate',
-      body:
-        'A short written review when you want to commit build budget before work starts.',
+      title: 'The Annual Leverage Summit',
+      body: "A day with peers, comparing what's working.",
     },
   ],
 } as const
 
 export const summit = {
-  heading: 'Once a year, in the room with peers',
+  heading: 'In the room with peers',
   body:
-    'One of your four touchpoints is the Annual Leverage Summit: a one-day, members-only session with peer operators, expert speakers, and real stories, facilitated around leverage and stuck interactions. Timings and venue are confirmed for each membership year. Never a public ticket; the Summit is part of the seat.',
+    'The Summit is members only and in person: operators, expert speakers and honest stories about what is working. Timings and venue are confirmed with you. Never a public ticket.',
+} as const
+
+export const shipGateImpactBuild = {
+  heading: 'Ship-gate and Impact Build',
+  body:
+    'When the Board says build, we scope it with a partner, your own vendor or us. Ship-gate is the short written review before build budget moves. Impact Build is a later Board decision when the operation is ready. We do not publish commercial terms on this page.',
 } as const
 
 export const developerLeverage = {
-  eyebrow: 'When the Board says build',
+  eyebrow: 'Developer leverage',
   heading: "One developer. A team's worth of output.",
   body:
     "When the Board says build, you shouldn't need a bigger team. We train your existing developer to work the AI-leveraged way, or help you bring in one who already does, on a permanent or contract basis. We've seen one developer ship in a day what used to take a team a month.",
@@ -85,30 +73,31 @@ export const developerLeverage = {
     'For Leverage Board members. Details are agreed with you when the Board says build.',
 } as const
 
-export const whoFor = {
-  heading: fit.builtForHeading,
-  body: fit.builtFor,
+export const fitLine =
+  'Built for owner-led services firms of 20 to 200 people. Not sure? The Audit tells you.' as const
+
+export const howItWorksLink = {
+  label: 'How the Board works',
+  href: '/how-it-works',
 } as const
 
-export const ladder = {
-  heading: 'Where Leverage Board sits',
-  body:
-    'Start with the AI Readiness and Governance Audit, then a free Audit review call to sense-check fit. The first 90 days on the Board map governance, build-partner choice and an owned roadmap. We keep re-scoring as you grow. Impact Build is a later Board decision for firms that are ready: delivered by a partner, your own vendor or us under Board oversight.',
-  link: { label: 'How the Board works', href: '/how-it-works' },
+export const faq = {
+  eyebrow: 'Common questions',
+  heading: 'Membership in practice',
+  items: [
+    {
+      question: 'What am I committing to?',
+      answer:
+        'A membership seat, not an hourly retainer. Not an open chat queue.',
+    },
+    {
+      question: 'Can we pause or leave?',
+      answer:
+        'Your roadmap and IP stay yours. Pause or leave when you need to; nothing renews by default.',
+    },
+    {
+      question: 'How does pricing work?',
+      answer: 'Pricing is confirmed in writing.',
+    },
+  ],
 } as const
-
-export const notList = {
-  heading: fit.notForHeading,
-  items: fit.notFor,
-} as const
-
-export const closingCta = {
-  eyebrow: 'Next step',
-  heading: 'Find your stage, or talk it through.',
-  body:
-    'Take the Audit for a fast read on stage and gaps, or book a call if you would rather talk first. Fixed commercial terms are private and set in writing before anything starts.',
-  primary: auditCta,
-  secondary: boardConversationCta,
-} as const
-
-export { boardOutcomes }

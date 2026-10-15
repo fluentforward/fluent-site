@@ -1,5 +1,6 @@
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Heading, Lede } from '@/components/ui/Heading'
+import { ArrowLink } from '@/components/ui/ArrowLink'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
 import { theBoard } from '@/content/home'
@@ -14,6 +15,9 @@ export function HomeBoardSection() {
         <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">
           {theBoard.support}
         </p>
+        <div className="mt-6">
+          <ArrowLink href="/leverage-board">See what a seat includes</ArrowLink>
+        </div>
       </Reveal>
     </Section>
   )
