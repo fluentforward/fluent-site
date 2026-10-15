@@ -193,6 +193,11 @@ cal-modal-box iframe {
   border-radius: var(--radius-card) !important;
 }
 
+/* Room for the fixed cookie banner without covering primary CTAs */
+body.cookie-banner-open {
+  padding-bottom: clamp(10rem, 32vh, 14rem);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

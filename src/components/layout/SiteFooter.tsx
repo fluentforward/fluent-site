@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import { CookieSettingsButton } from '@/components/consent/CookieConsentProvider'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { footerNav, primaryCta, site } from '@/content/site'
@@ -67,9 +68,16 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-20 flex flex-col gap-2 border-t border-line-dark pt-10 text-xs text-mist/70 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-20 flex flex-col gap-4 border-t border-line-dark pt-10 text-xs text-mist/70 sm:flex-row sm:items-center sm:justify-between">
           <p>{`© ${new Date().getFullYear()} ${site.legalName}. All rights reserved.`}</p>
-          <p>Registered in England and Wales.</p>
+          <div className="flex flex-col gap-2 sm:items-end">
+            <CookieSettingsButton
+              className="text-left text-xs text-paper/60 underline underline-offset-4 transition-colors duration-300 hover:text-paper sm:text-right"
+            >
+              Cookie settings
+            </CookieSettingsButton>
+            <p>Registered in England and Wales.</p>
+          </div>
         </div>
       </Container>
     </footer>

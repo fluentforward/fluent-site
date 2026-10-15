@@ -2,7 +2,8 @@ import { type Metadata } from 'next'
 import { IBM_Plex_Mono, Instrument_Sans, Inter } from 'next/font/google'
 import clsx from 'clsx'
 
-import { CalEmbedScript } from '@/components/ui/CalEmbedScript'
+import { CalBookingInit } from '@/components/consent/CalBookingInit'
+import { CookieConsentProvider } from '@/components/consent/CookieConsentProvider'
 import { SiteFooter } from '@/components/layout/SiteFooter'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 import { site } from '@/content/site'
@@ -71,10 +72,12 @@ export default function RootLayout({
       )}
     >
       <body className="flex min-h-full flex-col bg-paper font-sans text-slate">
-        <SiteHeader />
-        <main className="flex-auto">{children}</main>
-        <SiteFooter />
-        <CalEmbedScript />
+        <CookieConsentProvider>
+          <SiteHeader />
+          <main className="flex-auto">{children}</main>
+          <SiteFooter />
+          <CalBookingInit />
+        </CookieConsentProvider>
       </body>
     </html>
   )
