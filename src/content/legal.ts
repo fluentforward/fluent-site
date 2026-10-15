@@ -9,7 +9,7 @@ export type LegalSection = {
 
 export const privacy = {
   title: 'Privacy',
-  lastUpdated: 'August 2026',
+  lastUpdated: 'October 2026',
   intro:
     'This notice explains what personal information FluentForward Limited collects, why, and what you can do about it. It is written to be read rather than to be technically survivable.',
   sections: [
@@ -25,10 +25,11 @@ export const privacy = {
       id: 'what-we-collect',
       heading: 'What we collect',
       paragraphs: [
-        'We collect as little as we can get away with. In practice that falls into three groups.',
+        'We collect as little as we can get away with. In practice that falls into four groups.',
       ],
       list: [
-        'Website visitors. Our hosting provider processes standard server logs, including IP address, browser type and the pages requested, to serve the site and keep it secure. We do not run advertising or behavioural tracking.',
+        'Website visitors. Our hosting provider processes standard server logs, including IP address, browser type and the pages requested, to serve the site and keep it secure.',
+        'Site analytics (optional). If you accept analytics cookies, Google Analytics 4 measures aggregate traffic: pages viewed, referrers, device and approximate location. Google processes this on our behalf. It does not load until you consent, and Preview or local copies of the site do not load it.',
         'Enquiries and calls. If you book a call or email us, we hold your name, email address, any details you choose to share about your business, and our notes from the conversation.',
         'Clients. During an engagement we hold the contact details, correspondence, contractual records and project documentation needed to deliver the work and meet our accounting obligations.',
       ],
@@ -40,6 +41,7 @@ export const privacy = {
         'To respond to enquiries and hold scheduled calls. Our legitimate interest in answering people who contact us.',
         'To deliver an engagement, invoice for it and support it afterwards. Performance of our contract with you.',
         'To keep the website available, functional and secure. Our legitimate interest in operating the site.',
+        'To understand how the live site is used so we can improve it. Consent, via the cookie banner or cookie settings, for optional analytics.',
         'To meet statutory obligations, including tax and company record keeping. Legal obligation.',
       ],
       after: [
@@ -54,11 +56,12 @@ export const privacy = {
       ],
       list: [
         'Cal.com for scheduling calls. If you use the booking calendar on this site, the details you enter are processed by Cal.com to create the booking.',
+        'Google, if you consent to analytics, to provide Google Analytics 4 on the live site.',
         'Our hosting and email providers, to serve this website and carry our correspondence.',
         'Our accountant and, where legally required, HMRC or another regulator.',
       ],
       after: [
-        'We do not sell personal information, and we do not share it with advertising networks or data brokers.',
+        'We do not sell personal information, and we do not share it with data brokers. Optional marketing tags, if you enable them, are listed in the cookie notice.',
       ],
     },
     {
@@ -89,8 +92,9 @@ export const privacy = {
       id: 'cookies',
       heading: 'Cookies and analytics',
       paragraphs: [
-        'This site sets no cookies of its own and runs no analytics or advertising scripts. Nothing about your visit is profiled.',
-        'The one exception is the booking calendar. When you open it, the Cal.com embed loads and may set cookies necessary for the booking to work. If you would rather not load it at all, email us instead and we will arrange a time by hand.',
+        'Strictly necessary storage remembers your cookie choices and keeps the site working. Optional analytics (Google Analytics 4 on the live production site) and marketing tags load only after you accept them in the cookie banner or settings.',
+        'The booking calendar is separate. When you open it, the Cal.com embed loads and may set cookies necessary for the booking to work. If you would rather not load it at all, email us instead and we will arrange a time by hand.',
+        'Full inventory, retention and controls are on the cookie notice at /cookies. You can change your mind at any time via Cookie settings in the footer.',
       ],
     },
     {
