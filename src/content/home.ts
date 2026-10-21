@@ -94,7 +94,7 @@ export const closing = {
   eyebrow: 'Next step',
   heading: "See if you're a fit.",
   buildLine:
-    'When the Board says build, we scope it with a partner, your own vendor or us.',
+    'When the Board says build, we work alongside your developers, or help you place one, and train them in AI-driven development, so your firm owns the code and keeps the capability.',
   primaryCta: auditCta,
   secondaryCta: boardConversationCta,
 }
