@@ -61,14 +61,14 @@ export const summit = {
 export const shipGateImpactBuild = {
   heading: 'Ship-gate and Impact Build',
   body:
-    'When the Board says build, we work alongside your developers, or help you place one, and train them in AI-driven development, so your firm owns the code and keeps the capability. Ship-gate is the short written review before build budget moves. Impact Build is a later Board decision when the operation is ready. We do not publish commercial terms on this page.',
+    'Ship-gate is the short written review before build budget moves. Impact Build is a later Board decision when the operation is ready, built by your own developers or your existing vendor, with the code staying yours. We do not publish commercial terms on this page.',
 } as const
 
 export const developerLeverage = {
   eyebrow: 'Developer leverage',
   heading: 'Your team, building with AI.',
   body:
-    'When the Board says build, we work alongside your developers, or help you place one, and train them in AI-driven development, so your firm owns the code and keeps the capability. No developers? We help you place one, on a permanent or contract basis, and train them from day one.',
+    'When the Board says build, we work alongside your developers and train them in AI-driven development, so your firm owns the code and keeps the capability. No developers? We help you place one, on a permanent or contract basis, and train them from day one.',
   smallPrint:
     'For Leverage Board members. Details are agreed with you when the Board says build.',
 } as const

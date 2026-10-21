@@ -11,7 +11,7 @@ export const whenBuild = {
   eyebrow: 'When the Board says build',
   heading: 'Impact Build is a later decision',
   body:
-    'When the operation is ready and judgement says ship, Impact Build can be scoped as a fixed engagement under Board oversight, alongside your developers trained in AI-driven development or your own vendor. The Board plans and governs the method.',
+    'When the operation is ready and judgement says ship, Impact Build is scoped as a fixed engagement under Board oversight. Your own developers build it, trained in AI-driven development, or your existing vendor does. Either way, your firm owns the code. The Board plans and governs the method.',
 }
 
 export const reassurance = {
@@ -53,7 +53,7 @@ export const faq = {
     {
       question: 'Do you build?',
       answer:
-        'When the Board says build, we work alongside your developers, or help you place one, and train them in AI-driven development, so your firm owns the code and keeps the capability. Impact Build is a later Board decision, not the default entry.',
+        'Not as the default. When the Board says build, we work alongside your developers, or help you place one, and train them in AI-driven development, so your firm owns the code and keeps the capability. If you already have a vendor, they can build under Board oversight. Impact Build is always a later Board decision.',
     },
     {
       question: 'Are you tied to a vendor?',

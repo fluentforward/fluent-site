@@ -60,7 +60,7 @@ export const fit = {
     "You sell software. If SaaS or a product is your core business, you need a product team, not a Board.",
     "You're under about 20 people. Start with the Audit; the Board pays off once there's a team to multiply.",
     "You want a chatbot or a licence. We don't resell tools.",
-    "You want extra developers. We don't do staff augmentation.",
+    'You want to rent a development team. We build capability inside your firm instead.',
     'You want a multi-year transformation programme. We work in short, visible steps, and you see progress as it happens.',
   ],
   auditLine:
