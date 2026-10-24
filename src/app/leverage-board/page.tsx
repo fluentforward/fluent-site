@@ -4,7 +4,7 @@ import { BoardDeveloperSection } from '@/components/sections/BoardDeveloperSecti
 import { FaqSection } from '@/components/sections/FaqSection'
 import { HomeClosingSection } from '@/components/sections/home/HomeClosingSection'
 import { HomeProofSection } from '@/components/sections/home/HomeProofSection'
-import { HomeThreeStepsSection } from '@/components/sections/home/HomeThreeStepsSection'
+import { BoardHowItWorksSection } from '@/components/sections/BoardHowItWorksSection'
 import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
 import { PageHero } from '@/components/sections/PageHero'
 import { ResearchProofStrip } from '@/components/sections/ResearchProofStrip'
@@ -17,7 +17,6 @@ import {
   fitLine,
   gartnerProofBoard,
   hero,
-  howItWorksLink,
   meta,
   shipGateImpactBuild,
   summit,
@@ -87,7 +86,7 @@ export default function LeverageBoardPage() {
 
       <HomeProofSection />
 
-      <HomeThreeStepsSection moreLink={howItWorksLink} />
+      <BoardHowItWorksSection tone="muted" showMembership />
 
       <FaqSection content={faq} />
 

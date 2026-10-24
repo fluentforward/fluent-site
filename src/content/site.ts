@@ -4,10 +4,9 @@ export const site = {
   name: 'FluentForward',
   legalName: 'FluentForward Limited',
   url: 'https://fluentforward.com',
-  tagline:
-    'Senior AI judgement for services firms that want to grow without adding headcount.',
+  tagline: 'Win more client work without hiring more people.',
   description:
-    'For owner-led agencies, consultancies and professional services firms of 20 to 200 people. We help you decide what to fix, what to build and who should build it, before you spend a penny on build.',
+    "For agencies, consultancies and professional services firms of 20 to 200 people. We find the work that eats your team's time, get AI doing it safely, and your firm owns the result.",
   email: 'hello@fluentforward.com',
   privacyEmail: 'privacy@fluentforward.com',
 } as const

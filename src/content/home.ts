@@ -13,8 +13,12 @@ export const hero = {
   lede:
     "For agencies, consultancies and professional services firms of 20 to 200 people. We find the work that eats your team's time, get AI doing it safely, and your firm owns the result.",
   primaryCta: auditCta,
-  secondaryCta: boardConversationCta,
-  auditHint: auditCta.hint,
+  secondaryCta: {
+    label: 'Book your free Audit review call',
+    href: boardConversationCta.href,
+  },
+  auditHint:
+    'Under ten minutes. See where you stand on AI control and capacity, and your next move.',
 }
 
 export const whereToStart = {

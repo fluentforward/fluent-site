@@ -5,6 +5,7 @@ import { CtaBand } from '@/components/sections/CtaBand'
 import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
 import { FaqSection } from '@/components/sections/FaqSection'
 import { PageHero } from '@/components/sections/PageHero'
+import { ArrowLink } from '@/components/ui/ArrowLink'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Heading } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
@@ -14,19 +15,20 @@ import {
   faq,
   faqAnswerText,
   hero,
+  leverageBoardStepsLink,
+  meta,
   reassurance,
   whenBuild,
 } from '@/content/how-it-works'
 
-const description =
-  'How the Leverage Board works: the AI Readiness and Governance Audit, free Audit review call, quarter one strategy, quarterly re-score, Annual Summit and compounding membership. Optional build under Board oversight.'
+const { title, description } = meta
 
 export const metadata: Metadata = {
-  title: 'How the Board works',
+  title,
   description,
   alternates: { canonical: '/how-it-works' },
-  openGraph: { title: 'How the Board works', description, url: '/how-it-works' },
-  twitter: { title: 'How the Board works', description },
+  openGraph: { title, description, url: '/how-it-works' },
+  twitter: { title, description },
 }
 
 const faqStructuredData = {
@@ -52,6 +54,15 @@ export default function HowItWorks() {
         lede={hero.lede}
       />
       <HomeThreeStepsSection />
+      <Section tone="paper" size="compact" border>
+        <Reveal className="max-w-prose text-[1.0625rem] leading-[1.72] text-slate">
+          {leverageBoardStepsLink.before}
+          <ArrowLink href={leverageBoardStepsLink.link.href}>
+            {leverageBoardStepsLink.link.label}
+          </ArrowLink>
+          {leverageBoardStepsLink.after}
+        </Reveal>
+      </Section>
       <Section tone="muted" border>
         <Reveal className="max-w-2xl">
           <Eyebrow>{whenBuild.eyebrow}</Eyebrow>

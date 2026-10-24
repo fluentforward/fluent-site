@@ -14,18 +14,33 @@ export function faqAnswerText(answer: FaqAnswer): string {
   return `${answer.before}${answer.link.label}${answer.after}`
 }
 
+export const meta = {
+  title: 'How it works',
+  description:
+    'From the free AI Readiness and Governance Audit to AI that works: a review call to pick your starting point, fixed-scope build, and code your firm owns.',
+} as const
+
 export const hero = {
-  eyebrow: 'How the Board works',
-  heading: 'Audit, judgement, quarters, compounding.',
+  eyebrow: 'How it works',
+  heading: 'From Audit to AI that works.',
   lede:
-    'The Leverage Board is a membership seat, not a build retainer. You start with the Audit and a free Audit review call, then quarter one settles strategy before any build. Each quarter after, re-score, plug gaps and decide ship or hold.',
+    "For agencies, consultancies and professional services firms of 20 to 200 people. You start with the free Audit and a review call that picks the right route, then we fix the first problem with your team or for you, and your firm owns the result.",
 }
 
+export const leverageBoardStepsLink = {
+  before: 'On the Leverage Board? ',
+  link: {
+    label: "Here's how the Board works",
+    href: '/leverage-board#how-the-board-works',
+  },
+  after: '',
+} as const
+
 export const whenBuild = {
-  eyebrow: 'When the Board says build',
-  heading: 'Impact Build is a later decision',
+  eyebrow: 'When you build',
+  heading: 'Fixed scope, agreed in writing',
   body:
-    'When the operation is ready and judgement says ship, Impact Build is scoped as a fixed engagement under Board oversight. Your own developers build it, trained in AI-driven development, or your existing vendor does. Either way, your firm owns the code. The Board plans and governs the method.',
+    'Every build is fixed scope and agreed in writing before work starts, whether it is done by your developers, a developer we help you place, your existing vendor, or us. Your firm owns the code either way.',
 }
 
 export const reassurance = {
@@ -33,9 +48,9 @@ export const reassurance = {
   heading: 'What you are agreeing to, in plain terms.',
   items: [
     {
-      title: 'A seat, not hours',
+      title: 'A starting point that fits',
       body:
-        'Leverage Board membership is a seat with a defined rhythm of sessions and office hours, not an hourly retainer or open chat queue.',
+        'The Audit and review call point you to the Leverage Board, Build Partner or AI Quick Start. Each route is scoped before build budget moves.',
     },
     {
       title: 'No lock-in',
@@ -48,9 +63,9 @@ export const reassurance = {
         'There is no rate card, no minimum billable unit, and no invoice that needs decoding at the end of the month.',
     },
     {
-      title: 'Every step is a decision point',
+      title: 'Clear decision points',
       body:
-        'Build only moves when the Board says ship. Stopping is a normal outcome, not a failure.',
+        'You can pause or step off between phases. Stopping is a normal outcome, not a failure.',
     },
   ],
 }
@@ -103,9 +118,9 @@ export const faq = {
 
 export const closingCta = {
   eyebrow: 'Next step',
-  heading: 'Take the Audit or book a call.',
+  heading: 'Start with the Audit or book a call.',
   body:
-    'If growth without headcount is the goal and judgement on AI and operations is the blocker, start with the Audit or talk it through. Terms stay private until they are written down.',
+    'Whether the Leverage Board, Build Partner or AI Quick Start fits, the Audit and review call show you straight. Terms stay private until they are written down.',
   primary: auditCta,
   secondary: boardConversationCta,
 }
