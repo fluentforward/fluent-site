@@ -4,24 +4,26 @@ import { BoardDeveloperSection } from '@/components/sections/BoardDeveloperSecti
 import { FaqSection } from '@/components/sections/FaqSection'
 import { HomeClosingSection } from '@/components/sections/home/HomeClosingSection'
 import { HomeProofSection } from '@/components/sections/home/HomeProofSection'
-import { HomeThreeStepsSection } from '@/components/sections/home/HomeThreeStepsSection'
+import { BoardHowItWorksSection } from '@/components/sections/BoardHowItWorksSection'
 import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
 import { PageHero } from '@/components/sections/PageHero'
 import { ResearchProofStrip } from '@/components/sections/ResearchProofStrip'
 import { Heading } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
+import { ArrowLink } from '@/components/ui/ArrowLink'
 import {
   faq,
   fitLine,
   gartnerProofBoard,
   hero,
-  howItWorksLink,
   meta,
   shipGateImpactBuild,
   summit,
   whatYouGet,
 } from '@/content/leverage-board'
+import { boardConversationCta } from '@/content/board'
+import { leverageBoardAltRoute } from '@/content/routes'
 
 export const metadata: Metadata = {
   title: { absolute: meta.title },
@@ -42,6 +44,16 @@ export default function LeverageBoardPage() {
   return (
     <>
       <PageHero eyebrow={hero.eyebrow} heading={hero.heading} />
+
+      <Section tone="paper" size="compact" border>
+        <Reveal className="max-w-prose text-[0.9375rem] leading-[1.72] text-slate">
+          {leverageBoardAltRoute.before}
+          <ArrowLink href={leverageBoardAltRoute.href}>
+            {leverageBoardAltRoute.linkLabel}
+          </ArrowLink>
+          {leverageBoardAltRoute.after}
+        </Reveal>
+      </Section>
 
       <DefinitionGrid
         heading={whatYouGet.heading}
@@ -75,11 +87,14 @@ export default function LeverageBoardPage() {
 
       <HomeProofSection />
 
-      <HomeThreeStepsSection moreLink={howItWorksLink} />
+      <BoardHowItWorksSection tone="muted" showMembership />
 
       <FaqSection content={faq} />
 
-      <HomeClosingSection fitLine={fitLine} />
+      <HomeClosingSection
+        fitLine={fitLine}
+        secondaryCta={boardConversationCta}
+      />
     </>
   )
 }

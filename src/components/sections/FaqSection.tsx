@@ -1,13 +1,36 @@
+import Link from 'next/link'
+
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Heading } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
-import { faq as defaultFaq } from '@/content/how-it-works'
+import {
+  faq as defaultFaq,
+  type FaqAnswer,
+} from '@/content/how-it-works'
 
 type FaqContent = {
   eyebrow: string
   heading: string
-  items: readonly { question: string; answer: string }[]
+  items: readonly { question: string; answer: FaqAnswer }[]
+}
+
+function FaqAnswerBody({ answer }: { answer: FaqAnswer }) {
+  if (typeof answer === 'string') {
+    return answer
+  }
+  return (
+    <>
+      {answer.before}
+      <Link
+        href={answer.link.href}
+        className="font-medium text-ink underline decoration-line-strong underline-offset-[5px] hover:text-steel"
+      >
+        {answer.link.label}
+      </Link>
+      {answer.after}
+    </>
+  )
 }
 
 export function FaqSection({ content = defaultFaq }: { content?: FaqContent }) {
@@ -43,7 +66,7 @@ export function FaqSection({ content = defaultFaq }: { content?: FaqContent }) {
                   </span>
                 </summary>
                 <p className="max-w-prose pb-8 leading-[1.72] text-slate">
-                  {item.answer}
+                  <FaqAnswerBody answer={item.answer} />
                 </p>
               </details>
             ))}

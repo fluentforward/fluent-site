@@ -3,7 +3,13 @@ export const growthAuditUrl = 'https://client.fluentforward.com/ai-audit'
 export const auditCta = {
   label: 'Take the AI Readiness and Governance Audit',
   href: growthAuditUrl,
-  hint: '10 minutes. See where you stand on AI control and capacity, and your next move.',
+  hint:
+    'Under ten minutes. See where you stand on AI control and capacity, and your next move.',
+} as const
+
+export const reviewCallCta = {
+  label: 'Book your free Audit review call',
+  href: '/contact',
 } as const
 
 export const boardConversationCta = {
