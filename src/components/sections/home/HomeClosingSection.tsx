@@ -5,7 +5,14 @@ import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
 import { closing } from '@/content/home'
 
-export function HomeClosingSection({ fitLine }: { fitLine?: string }) {
+export function HomeClosingSection({
+  fitLine,
+  secondaryCta,
+}: {
+  fitLine?: string
+  secondaryCta?: { label: string; href: string }
+}) {
+  const secondary = secondaryCta ?? closing.secondaryCta
   return (
     <Section tone="ink" size="default">
       <Reveal className="max-w-3xl">
@@ -20,8 +27,8 @@ export function HomeClosingSection({ fitLine }: { fitLine?: string }) {
           <Button href={closing.primaryCta.href} variant="onDark">
             {closing.primaryCta.label}
           </Button>
-          <Button href={closing.secondaryCta.href} variant="onDarkGhost">
-            {closing.secondaryCta.label}
+          <Button href={secondary.href} variant="onDarkGhost">
+            {secondary.label}
           </Button>
         </div>
         <p className="mt-8 text-lede text-mist">{closing.buildLine}</p>

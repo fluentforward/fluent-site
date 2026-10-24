@@ -1,4 +1,4 @@
-import { auditCta, boardConversationCta } from '@/content/board'
+import { auditCta, reviewCallCta } from '@/content/board'
 import { waysWeWorkPath } from '@/content/routes'
 
 export type FaqAnswer =
@@ -65,7 +65,7 @@ export const reassurance = {
     {
       title: 'Clear decision points',
       body:
-        'You can pause or step off between phases. Stopping is a normal outcome, not a failure.',
+        'Nothing is built until the scope is agreed in writing, and every build ends with a handover, so you always know what you have and what comes next.',
     },
   ],
 }
@@ -120,7 +120,7 @@ export const closingCta = {
   eyebrow: 'Next step',
   heading: 'Start with the Audit or book a call.',
   body:
-    'Whether the Leverage Board, Build Partner or AI Quick Start fits, the Audit and review call show you straight. Terms stay private until they are written down.',
+    'Whether the Leverage Board, Build Partner or AI Quick Start fits, the Audit and review call show you straight. Terms are agreed in writing, never published here.',
   primary: auditCta,
-  secondary: boardConversationCta,
+  secondary: reviewCallCta,
 }

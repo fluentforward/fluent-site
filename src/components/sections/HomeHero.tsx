@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { Heading, Lede } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
+import { auditCta } from '@/content/board'
 import { hero } from '@/content/home'
 
 export function HomeHero() {
@@ -22,7 +23,7 @@ export function HomeHero() {
               {hero.secondaryCta.label}
             </Button>
           </div>
-          <p className="mt-4 text-sm leading-relaxed text-slate">{hero.auditHint}</p>
+          <p className="mt-4 text-sm leading-relaxed text-slate">{auditCta.hint}</p>
         </Reveal>
       </Container>
     </section>

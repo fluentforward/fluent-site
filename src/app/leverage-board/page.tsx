@@ -22,6 +22,7 @@ import {
   summit,
   whatYouGet,
 } from '@/content/leverage-board'
+import { boardConversationCta } from '@/content/board'
 import { leverageBoardAltRoute } from '@/content/routes'
 
 export const metadata: Metadata = {
@@ -90,7 +91,10 @@ export default function LeverageBoardPage() {
 
       <FaqSection content={faq} />
 
-      <HomeClosingSection fitLine={fitLine} />
+      <HomeClosingSection
+        fitLine={fitLine}
+        secondaryCta={boardConversationCta}
+      />
     </>
   )
 }
