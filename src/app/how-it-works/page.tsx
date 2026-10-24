@@ -12,6 +12,7 @@ import { Section } from '@/components/ui/Section'
 import {
   closingCta,
   faq,
+  faqAnswerText,
   hero,
   reassurance,
   whenBuild,
@@ -34,7 +35,7 @@ const faqStructuredData = {
   mainEntity: faq.items.map((item) => ({
     '@type': 'Question',
     name: item.question,
-    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    acceptedAnswer: { '@type': 'Answer', text: faqAnswerText(item.answer) },
   })),
 }
 

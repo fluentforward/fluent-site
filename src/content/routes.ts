@@ -36,18 +36,18 @@ export const seeAiQuickStartLink =
 export const waysWeWorkMeta = {
   title: 'Ways we work: three starting points | FluentForward',
   description:
-    'Same outcome, three starting points. The free AI Readiness and Governance Audit and Audit review call show which route fits. Your firm owns everything we build or set up.',
+    'Same outcome, three starting points. The free AI Readiness and Governance Audit and Audit review call show which route fits you. Your firm owns everything we build or set up.',
 } as const
 
 export const waysWeWorkHub = {
   eyebrow: 'Ways we work',
   heading: 'Same outcome, three starting points',
   lede:
-    'Every firm starts with the free AI Readiness and Governance Audit, then a free Audit review call that picks the route. Your firm owns the code, the agents and the roadmap.',
-  implementationEyebrow: 'Implementation menu',
-  implementationHeading: 'Fixed scope, you own it',
+    'You start with the free AI Readiness and Governance Audit, then a free Audit review call that picks your route. Your firm owns the code, the agents and the roadmap.',
+  implementationEyebrow: 'On any route',
+  implementationHeading: 'What we can set up or build',
   implementationLede:
-    'Open on any route. Each item is scoped in writing before work starts. You own what we build or set up.',
+    'Each one is scoped in writing before work starts, and your firm owns everything we build or set up.',
 } as const
 
 export type WaysWeWorkRoute = {
@@ -63,21 +63,20 @@ export const waysWeWorkRoutes: readonly WaysWeWorkRoute[] = [
   {
     id: routeAnchors.noTechLead,
     name: routeNames.leverageBoard,
-    summary:
-      'For firms of roughly 50 to 200 people with no senior tech lead. The Board sets direction and governs; build runs through the implementation menu.',
+    summary: 'For firms of roughly 50 to 200 people with no senior tech lead.',
     body:
-      'Senior AI judgement sits on your side of the table. The Board sets what to fix, what to build and how AI stays under your control. When the Board says build, work is scoped from the implementation menu and your firm keeps the code.',
+      'Senior AI judgement on your side of the table. The Board decides what to fix, what to build and how AI stays under your control. When it says build, the work is scoped from the options below, and your firm owns the code.',
     link: { href: routeLinks.leverageBoard, label: seeLeverageBoardLink },
   },
   {
     id: routeAnchors.itLead,
     name: routeNames.buildPartner,
     summary:
-      'For firms with an IT director or similar who owns strategy but has no capacity to build. Your IT director stays in charge; we do not sell the Board on this route.',
+      'For firms with an IT director or tech lead who owns the plan, but nobody to build it. Your IT director stays in charge.',
     body:
-      'We start with a fixed-scope Build Plan mapped to their roadmap. Then comes the build: alongside their team where they have developers, or we build it for you when they have no build capability, always under the IT director\'s direction. Ongoing Support keeps what is running maintained and updated.',
+      'We start with a fixed-scope Build Plan, mapped to your roadmap. Then comes the build: alongside your developers if you have them, or we build it for you if you do not, always under your IT director\'s direction. Ongoing Support keeps what is running maintained and up to date.',
     bullets: [
-      `${routeNames.buildPlan}: scoped against the roadmap before build budget moves.`,
+      'Build Plan: scoped against your roadmap before build budget moves.',
       'The build: fixed scope, your firm owns the code.',
       `${routeNames.ongoingSupport}: monitoring, updates and changes for what was built or set up.`,
     ],
@@ -86,13 +85,13 @@ export const waysWeWorkRoutes: readonly WaysWeWorkRoute[] = [
     id: routeAnchors.smallFirm,
     name: routeNames.aiQuickStart,
     summary:
-      'For firms of around 20 people where the Board is too much and they want something working, not another governance forum.',
+      'For firms of around 20 people who want one thing working with AI, not another programme.',
     body:
-      'A fixed 30 day engagement: take the one constraint the Audit surfaced, set up one or two agents or workflows, train the people who use them, include governance basics, then hand over. Ongoing Support follows, and many firms move up to the Leverage Board as they grow.',
+      'Thirty days, fixed scope. We take the one problem your Audit found, set up one or two agents or workflows for it, train the people who use them, build in the governance basics, and hand it all over. Ongoing Support follows, and you can move up to the Leverage Board as you grow.',
     bullets: [
-      'One problem from the Audit, one working agent or workflow.',
+      'One problem from your Audit, one or two working agents or workflows.',
       'Governance basics included, then handover.',
-      `${routeNames.ongoingSupport} and a path to the ${routeNames.leverageBoard} when the team is ready.`,
+      `${routeNames.ongoingSupport} and a path to the ${routeNames.leverageBoard} when you are ready.`,
     ],
   },
 ] as const
@@ -111,17 +110,17 @@ export const implementationMenu: readonly ImplementationMenuItem[] = [
   {
     title: routeNames.bespokeHarness,
     body:
-      'A custom harness built for one process. Fixed scope; your team runs it when we hand over.',
+      'A custom AI system built around one of your processes. Fixed scope, and your team runs it once we hand over.',
   },
   {
     title: routeNames.developerProgramme,
     body:
-      'Train your developers in AI-driven development on their real backlog, so capability stays inside the firm.',
+      'We train your developers in AI-driven development on your real backlog, so the capability stays in your firm.',
   },
   {
     title: routeNames.placement,
     body:
-      'Help you hire a developer, trained from day one in how your firm builds with AI.',
+      'We help you hire a developer, trained from day one in how your firm builds with AI.',
   },
   {
     title: routeNames.ongoingSupport,

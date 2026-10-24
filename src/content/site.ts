@@ -16,7 +16,6 @@ export const nav = [
   { label: 'Leverage Board', href: '/leverage-board' },
   { label: 'Ways we work', href: '/ways-we-work' },
   { label: 'How it works', href: '/how-it-works' },
-  { label: 'Interaction insights', href: '/strategy-blueprints' },
   { label: 'Practice', href: '/about' },
 ] as const
 
@@ -36,6 +35,7 @@ export const footerNav = {
     links: [
       { label: 'About the practice', href: '/about' },
       { label: 'Track record', href: '/about#background' },
+      { label: 'Interaction insights', href: '/strategy-blueprints' },
       { label: 'Book a call', href: '/contact' },
     ],
   },

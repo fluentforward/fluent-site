@@ -1,6 +1,19 @@
 import { auditCta, boardConversationCta } from '@/content/board'
 import { waysWeWorkPath } from '@/content/routes'
 
+export type FaqAnswer =
+  | string
+  | {
+      before: string
+      link: { href: string; label: string }
+      after: string
+    }
+
+export function faqAnswerText(answer: FaqAnswer): string {
+  if (typeof answer === 'string') return answer
+  return `${answer.before}${answer.link.label}${answer.after}`
+}
+
 export const hero = {
   eyebrow: 'How the Board works',
   heading: 'Audit, judgement, quarters, compounding.',
@@ -53,8 +66,12 @@ export const faq = {
     },
     {
       question: 'Do you build?',
-      answer:
-        `Not as the default. When the Board says build, we work alongside your developers, or help you place one, and train them in AI-driven development, so your firm owns the code and keeps the capability. If you already have a vendor, they can build under Board oversight. Impact Build is always a later Board decision. For the other starting points, see ${waysWeWorkPath}.`,
+      answer: {
+        before:
+          'Not as the default. When the Board says build, we work alongside your developers, or help you place one, and train them in AI-driven development, so your firm owns the code and keeps the capability. If you already have a vendor, they can build under Board oversight. Impact Build is always a later Board decision. For the other starting points, see ',
+        link: { label: 'Ways we work', href: waysWeWorkPath },
+        after: '.',
+      },
     },
     {
       question: 'Are you tied to a vendor?',
