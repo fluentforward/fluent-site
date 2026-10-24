@@ -43,10 +43,13 @@ export function SiteHeader() {
       )}
     >
       <Container>
-        <div className="flex h-[3.75rem] items-center justify-between gap-6 md:h-16">
+        <div className="flex h-[3.75rem] min-w-0 items-center justify-between gap-3 lg:gap-4 md:h-16">
           <Wordmark />
 
-          <nav aria-label="Main" className="hidden items-center gap-9 md:flex">
+          <nav
+            aria-label="Main"
+            className="hidden min-w-0 flex-1 flex-nowrap items-center justify-end gap-4 lg:flex xl:gap-6 2xl:gap-9"
+          >
             {nav.map((item) => {
               const active = pathname === item.href
               return (
@@ -55,7 +58,7 @@ export function SiteHeader() {
                   href={item.href}
                   aria-current={active ? 'page' : undefined}
                   className={clsx(
-                    'text-[0.875rem] font-medium tracking-[-0.01em] transition-colors duration-300',
+                    'shrink-0 whitespace-nowrap text-[0.8125rem] font-medium tracking-[-0.01em] transition-colors duration-300 xl:text-[0.875rem]',
                     active
                       ? 'text-ink'
                       : 'text-slate hover:text-ink',
@@ -67,8 +70,11 @@ export function SiteHeader() {
             })}
           </nav>
 
-          <div className="hidden md:block">
-            <Button href={primaryCta.href} className="px-6 py-2.5 text-sm">
+          <div className="hidden shrink-0 lg:block">
+            <Button
+              href={primaryCta.href}
+              className="whitespace-nowrap px-3 py-2 text-[0.6875rem] leading-none xl:px-5 xl:py-2.5 xl:text-xs 2xl:px-6 2xl:py-2.5 2xl:text-sm"
+            >
               {primaryCta.label}
             </Button>
           </div>
@@ -79,7 +85,7 @@ export function SiteHeader() {
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? 'Close menu' : 'Open menu'}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink transition-colors hover:bg-paper-2 md:hidden"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line text-ink transition-colors hover:bg-paper-2 lg:hidden"
           >
             <svg viewBox="0 0 16 16" aria-hidden="true" className="h-4 w-4">
               {open ? (
@@ -105,7 +111,7 @@ export function SiteHeader() {
       {open && (
         <div
           id="mobile-nav"
-          className="border-t border-line bg-paper/95 backdrop-blur-xl md:hidden"
+          className="border-t border-line bg-paper/95 backdrop-blur-xl lg:hidden"
         >
           <Container className="py-5">
             <nav aria-label="Main" className="flex flex-col">
