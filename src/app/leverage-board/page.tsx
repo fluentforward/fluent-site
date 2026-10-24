@@ -11,6 +11,7 @@ import { ResearchProofStrip } from '@/components/sections/ResearchProofStrip'
 import { Heading } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
+import { ArrowLink } from '@/components/ui/ArrowLink'
 import {
   faq,
   fitLine,
@@ -22,6 +23,7 @@ import {
   summit,
   whatYouGet,
 } from '@/content/leverage-board'
+import { leverageBoardAltRoute } from '@/content/routes'
 
 export const metadata: Metadata = {
   title: { absolute: meta.title },
@@ -42,6 +44,16 @@ export default function LeverageBoardPage() {
   return (
     <>
       <PageHero eyebrow={hero.eyebrow} heading={hero.heading} />
+
+      <Section tone="paper" size="compact" border>
+        <Reveal className="max-w-prose text-[0.9375rem] leading-[1.72] text-slate">
+          {leverageBoardAltRoute.before}
+          <ArrowLink href={leverageBoardAltRoute.href}>
+            {leverageBoardAltRoute.linkLabel}
+          </ArrowLink>
+          {leverageBoardAltRoute.after}
+        </Reveal>
+      </Section>
 
       <DefinitionGrid
         heading={whatYouGet.heading}

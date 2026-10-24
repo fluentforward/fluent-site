@@ -1,4 +1,5 @@
 import { HomeBoardSection } from '@/components/sections/home/HomeBoardSection'
+import { HomeWhereToStartSection } from '@/components/sections/home/HomeWhereToStartSection'
 import { HomeClosingSection } from '@/components/sections/home/HomeClosingSection'
 import { HomeFitSection } from '@/components/sections/home/HomeFitSection'
 import { HomeOutcomesSection } from '@/components/sections/home/HomeOutcomesSection'
@@ -31,6 +32,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <HomeHero />
+      <HomeWhereToStartSection />
       <HomePainSection />
       <HomeWhyFixesFailSection />
       <HomeBoardSection />

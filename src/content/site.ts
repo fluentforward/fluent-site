@@ -14,6 +14,7 @@ export const site = {
 
 export const nav = [
   { label: 'Leverage Board', href: '/leverage-board' },
+  { label: 'Ways we work', href: '/ways-we-work' },
   { label: 'How it works', href: '/how-it-works' },
   { label: 'Interaction insights', href: '/strategy-blueprints' },
   { label: 'Practice', href: '/about' },
@@ -24,6 +25,7 @@ export const footerNav = {
     title: 'The offer',
     links: [
       { label: 'Leverage Board', href: '/leverage-board' },
+      { label: 'Ways we work', href: '/ways-we-work' },
       { label: 'How it works', href: '/how-it-works' },
       { label: 'AI Readiness and Governance Audit', href: auditCta.href },
       { label: 'Common questions', href: '/how-it-works#faq' },

@@ -1,5 +1,14 @@
 import { auditCta, boardConversationCta } from '@/content/board'
 import { gartnerPressReleases } from '@/content/gartner'
+import {
+  routeLinks,
+  routeNames,
+  seeAiQuickStartLink,
+  seeBuildPartnerLink,
+  seeLeverageBoardLink,
+  waysWeWorkPath,
+  routeAnchors,
+} from '@/content/routes'
 
 export const hero = {
   headline:
@@ -10,6 +19,38 @@ export const hero = {
   secondaryCta: boardConversationCta,
   auditHint: auditCta.hint,
 }
+
+export const whereToStart = {
+  heading: 'Where to start',
+  cards: [
+    {
+      title: routeNames.leverageBoard,
+      ifYou:
+        'You run a 50 to 200 person firm and nobody senior owns AI or tech.',
+      outcome:
+        'Senior AI judgement on your side, so every AI and build decision is checked before you spend.',
+      link: { href: routeLinks.leverageBoard, label: seeLeverageBoardLink },
+    },
+    {
+      title: routeNames.buildPartner,
+      ifYou:
+        'You have an IT director, but no one to build what they have planned.',
+      outcome:
+        'Your IT director stays in charge, the build gets a fixed plan and a fixed scope, and your firm owns the code.',
+      link: { href: routeLinks.buildPartner, label: seeBuildPartnerLink },
+    },
+    {
+      title: routeNames.aiQuickStart,
+      ifYou:
+        'You are a firm of around 20 people and want one thing working with AI, not another meeting.',
+      outcome:
+        'In 30 days, the one problem your Audit found is handled by an agent or workflow your people know how to run, and it stays yours.',
+      link: { href: routeLinks.aiQuickStart, label: seeAiQuickStartLink },
+    },
+  ],
+  auditLine:
+    'Not sure which fits? The free AI Readiness and Governance Audit will show you.',
+} as const
 
 export const pain = {
   heading: 'Your best people have become the glue between your systems.',
@@ -58,7 +99,15 @@ export const fit = {
   notForHeading: "The Board isn't for you if:",
   notFor: [
     "You sell software. If SaaS or a product is your core business, you need a product team, not a Board.",
-    "You're under about 20 people. Start with the Audit; the Board pays off once there's a team to multiply.",
+    {
+      before: "You're under about 20 people. ",
+      link: {
+        label: routeNames.aiQuickStart,
+        href: `${waysWeWorkPath}#${routeAnchors.smallFirm}`,
+      },
+      after:
+        ' is the starting point; the Board pays off once there is a team to multiply.',
+    },
     "You want a chatbot or a licence. We don't resell tools.",
     'You want to rent a development team. We build capability inside your firm instead.',
     'You want a multi-year transformation programme. We work in short, visible steps, and you see progress as it happens.',
@@ -79,12 +128,12 @@ export const howItWorks = {
     {
       title: 'Free Audit review call',
       body:
-        'Thirty minutes with the practice to sense-check fit and what would matter first. Straight answers, including when the Board is not the right move.',
+        'Thirty minutes with the practice to sense-check fit and pick the right route. Straight answers, including when the Board is not the right move.',
     },
     {
-      title: 'First 90 days on the Board',
+      title: 'Start on the right route',
       body:
-        'Settle what to fix, what to build, who builds it and how AI is controlled, before build budget moves.',
+        'Settle what to fix, what to build, who builds it and how AI is controlled on the route that fits, before build budget moves.',
     },
   ],
   closing: 'Then we keep re-scoring as you grow.',
