@@ -1,6 +1,6 @@
 import { type Metadata } from 'next'
 
-import { BoardHowItWorksSection } from '@/components/sections/BoardHowItWorksSection'
+import { HomeThreeStepsSection } from '@/components/sections/home/HomeThreeStepsSection'
 import { CtaBand } from '@/components/sections/CtaBand'
 import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
 import { FaqSection } from '@/components/sections/FaqSection'
@@ -51,7 +51,7 @@ export default function HowItWorks() {
         heading={hero.heading}
         lede={hero.lede}
       />
-      <BoardHowItWorksSection tone="paper" showMembership={false} />
+      <HomeThreeStepsSection />
       <Section tone="muted" border>
         <Reveal className="max-w-2xl">
           <Eyebrow>{whenBuild.eyebrow}</Eyebrow>

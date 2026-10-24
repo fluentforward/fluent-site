@@ -6,15 +6,12 @@ import {
   seeAiQuickStartLink,
   seeBuildPartnerLink,
   seeLeverageBoardLink,
-  waysWeWorkPath,
-  routeAnchors,
 } from '@/content/routes'
 
 export const hero = {
-  headline:
-    'Senior AI judgement for services firms that want to grow without adding headcount.',
+  headline: 'Win more client work without hiring more people.',
   lede:
-    'For owner-led agencies, consultancies and professional services firms of 20 to 200 people. We help you decide what to fix, what to build and who should build it, before you spend a penny on build.',
+    "For agencies, consultancies and professional services firms of 20 to 200 people. We find the work that eats your team's time, get AI doing it safely, and your firm owns the result.",
   primaryCta: auditCta,
   secondaryCta: boardConversationCta,
   auditHint: auditCta.hint,
@@ -82,7 +79,7 @@ export const theBoard = {
 }
 
 export const outcomes = {
-  heading: 'What changes when judgement stays with you',
+  heading: 'What changes for your firm',
   items: [
     'AI you control, not AI that happens to you.',
     'A build partner chosen on merit, not on who pitched first.',
@@ -92,58 +89,48 @@ export const outcomes = {
 }
 
 export const fit = {
-  builtForHeading: 'Built for',
+  builtForHeading: 'Built for services firms where people are the glue',
   builtFor:
-    'Owner-led services firms of 20 to 200 people (agencies, consultancies, professional and managed services) where client work runs on people, inboxes and spreadsheets, and the owner wants growth without adding the same again in headcount.',
+    'Agencies, consultancies, professional and managed services firms of around 20 to 200 people, where client work runs on people, inboxes and spreadsheets. Whether you have an IT director, your own developers or nobody technical at all, there is a starting point that fits.',
   lineHeading: 'Where we draw the line',
-  notForHeading: "The Board isn't for you if:",
+  notForHeading: "We're not the right fit if:",
   notFor: [
-    "You sell software. If SaaS or a product is your core business, you need a product team, not a Board.",
-    {
-      before: "You're under about 20 people. ",
-      link: {
-        label: routeNames.aiQuickStart,
-        href: `${waysWeWorkPath}#${routeAnchors.smallFirm}`,
-      },
-      after:
-        ' is the starting point; the Board pays off once there is a team to multiply.',
-    },
+    'You sell software. If SaaS or a product is your core business, you need a product team.',
+    "You're a team of fewer than about 10. The free Audit is still useful, but our work pays off once there is a team to multiply.",
     "You want a chatbot or a licence. We don't resell tools.",
-    'You want to rent a development team. We build capability inside your firm instead.',
+    'You want to rent developers by the day. Every build we do is fixed scope, and your firm owns it.',
     'You want a multi-year transformation programme. We work in short, visible steps, and you see progress as it happens.',
   ],
-  auditLine:
-    'Not sure which side you are on? The Audit will tell you in about ten minutes.',
+  auditLine: 'Not sure? The free Audit will tell you in under ten minutes.',
 }
 
 export const howItWorks = {
   eyebrow: 'How it works',
-  heading: 'Three steps in',
+  heading: 'From Audit to AI that works',
   steps: [
     {
-      title: 'AI Readiness and Governance Audit',
+      title: 'Find where the time goes',
       body:
-        'A short online assessment of where you stand on AI control and capacity, and where leverage is stuck.',
+        'The free AI Readiness and Governance Audit shows where your people are stuck doing the work between systems, how safe your current AI use is, and the one thing to fix first.',
     },
     {
-      title: 'Free Audit review call',
-      body:
-        'Thirty minutes with the practice to sense-check fit and pick the right route. Straight answers, including when the Board is not the right move.',
+      title: 'Pick your starting point',
+      body: `On a free Audit review call we agree the right route for your firm: the ${routeNames.leverageBoard}, ${routeNames.buildPartner} or ${routeNames.aiQuickStart}. Straight answers, including when we are not the right fit.`,
     },
     {
-      title: 'Start on the right route',
+      title: 'Get it working',
       body:
-        'Settle what to fix, what to build, who builds it and how AI is controlled on the route that fits, before build budget moves.',
+        'We fix that first problem with your team, or for you, under your control. Your firm owns the code, the agents and the know-how.',
     },
   ],
-  closing: 'Then we keep re-scoring as you grow.',
+  closing: 'Then we re-score as you grow and take on the next one.',
 }
 
 export const closing = {
   eyebrow: 'Next step',
-  heading: "See if you're a fit.",
+  heading: 'Find your starting point.',
   buildLine:
-    'When the Board says build, we work alongside your developers, or help you place one, and train them in AI-driven development, so your firm owns the code and keeps the capability.',
+    'However you start, your firm owns the code and keeps the capability.',
   primaryCta: auditCta,
   secondaryCta: boardConversationCta,
 }
