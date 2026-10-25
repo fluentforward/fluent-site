@@ -87,9 +87,9 @@ export const waysWeWorkRoutes: readonly WaysWeWorkRoute[] = [
     summary:
       'For firms of around 20 people who want one thing working with AI, not another programme.',
     body:
-      'Thirty days, fixed scope. We take the one problem First AI Move named, set up one or two agents or workflows for it, train the people who use them, build in the governance basics, and hand it all over. Ongoing Support follows, and you can move up to the Leverage Board as you grow.',
+      'Thirty days, fixed scope. We take that first AI move, set up one or two agents or workflows for it, train the people who use them, build in the governance basics, and hand it all over. Ongoing Support follows, and you can move up to the Leverage Board as you grow.',
     bullets: [
-      'One problem from First AI Move, one or two working agents or workflows.',
+      'One first AI move, one or two working agents or workflows.',
       'Governance basics included, then handover.',
       `${routeNames.ongoingSupport} and a path to the ${routeNames.leverageBoard} when you are ready.`,
     ],

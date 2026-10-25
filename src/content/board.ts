@@ -1,10 +1,12 @@
 export const firstAiMoveUrl = 'https://client.fluentforward.com/first-ai-move'
 
+export const firstAiMoveBuyerOneLiner =
+  'Leave with one first AI move for your firm, how it fits the tools you already pay for, and a rough idea of what it could free up, using your own numbers.'
+
 export const auditCta = {
   label: 'Get your first AI move',
   href: firstAiMoveUrl,
-  hint:
-    'A few questions. Leave with one concrete first AI move, how it fits the tools you already pay for, and a rough sense of what it frees.',
+  hint: 'About five minutes. No sales pitch.',
 } as const
 
 export const reviewCallCta = {

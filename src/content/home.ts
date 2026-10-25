@@ -1,4 +1,4 @@
-import { auditCta, reviewCallCta } from '@/content/board'
+import { auditCta, firstAiMoveBuyerOneLiner, reviewCallCta } from '@/content/board'
 import { gartnerPressReleases } from '@/content/gartner'
 import {
   routeLinks,
@@ -40,12 +40,11 @@ export const whereToStart = {
       ifYou:
         'You are a firm of around 20 people and want one thing working with AI, not another meeting.',
       outcome:
-        'In 30 days, the one problem First AI Move named is handled by an agent or workflow your people know how to run, and it stays yours.',
+        'In 30 days, that first AI move is handled by an agent or workflow your people know how to run, and it stays yours.',
       link: { href: routeLinks.aiQuickStart, label: seeAiQuickStartLink },
     },
   ],
-  auditLine:
-    'Not sure which fits? Start with First AI Move. It names the move; on the free Audit review call we agree the route.',
+  auditLine: `Not sure which fits? Start with First AI Move. ${firstAiMoveBuyerOneLiner}`,
 } as const
 
 export const pain = {
@@ -100,7 +99,7 @@ export const fit = {
     'You want to rent developers by the day. Every build we do is fixed scope, and your firm owns it.',
     'You want a multi-year transformation programme. We work in short, visible steps, and you see progress as it happens.',
   ],
-  auditLine: 'Not sure? First AI Move will tell you in a few minutes.',
+  auditLine: 'Not sure? First AI Move takes about five minutes. No sales pitch.',
 }
 
 export const howItWorks = {
@@ -109,8 +108,7 @@ export const howItWorks = {
   steps: [
     {
       title: 'Find your first AI move',
-      body:
-        'First AI Move shows where your people are stuck doing the work between systems, how it fits the tools you already use, and the one thing to fix first, with a rough sense of what it frees.',
+      body: firstAiMoveBuyerOneLiner,
     },
     {
       title: 'Pick your starting point',

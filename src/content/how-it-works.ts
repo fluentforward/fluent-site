@@ -22,7 +22,7 @@ export const meta = {
 
 export const hero = {
   eyebrow: 'How it works',
-  heading: 'From your first AI move to AI that works.',
+  heading: 'From your first AI move to AI that works',
   lede:
     "For agencies, consultancies and professional services firms of 20 to 200 people. You start with First AI Move and a review call that picks the right route, then we fix the first problem with your team or for you, and your firm owns the result.",
 }
@@ -77,7 +77,7 @@ export const faq = {
     {
       question: 'Where do we start?',
       answer:
-        'With First AI Move if you want a fast read on the first thing to fix, or a free Audit review call if you would rather talk first. Both routes end in the same straight conversation about fit and what would matter first.',
+        'With First AI Move if you want a fast read on the first thing to fix, or a free Audit review call if you would rather talk first. Both end in the same straight conversation about fit and what would matter first.',
     },
     {
       question: 'Do you build?',
