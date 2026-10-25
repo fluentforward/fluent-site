@@ -17,14 +17,14 @@ export function faqAnswerText(answer: FaqAnswer): string {
 export const meta = {
   title: 'How it works',
   description:
-    'From the free AI Readiness and Governance Audit to AI that works: a review call to pick your starting point, fixed-scope build, and code your firm owns.',
+    'From First AI Move to AI that works: a review call to pick your starting point, fixed-scope build, and code your firm owns.',
 } as const
 
 export const hero = {
   eyebrow: 'How it works',
-  heading: 'From Audit to AI that works.',
+  heading: 'From your first AI move to AI that works',
   lede:
-    "For agencies, consultancies and professional services firms of 20 to 200 people. You start with the free Audit and a review call that picks the right route, then we fix the first problem with your team or for you, and your firm owns the result.",
+    "For agencies, consultancies and professional services firms of 20 to 200 people. You start with First AI Move and a review call that picks the right route, then we fix the first problem with your team or for you, and your firm owns the result.",
 }
 
 export const leverageBoardStepsLink = {
@@ -50,7 +50,7 @@ export const reassurance = {
     {
       title: 'A starting point that fits',
       body:
-        'The Audit and review call point you to the Leverage Board, Build Partner or AI Quick Start. Each route is scoped before build budget moves.',
+        'First AI Move and the review call point you to the Leverage Board, Build Partner or AI Quick Start. Each route is scoped before build budget moves.',
     },
     {
       title: 'No lock-in',
@@ -77,7 +77,7 @@ export const faq = {
     {
       question: 'Where do we start?',
       answer:
-        'With the AI Readiness and Governance Audit if you want a fast read on stage and gaps, or a free Audit review call if you would rather talk first. Both routes end in the same straight conversation about fit and what would matter first.',
+        'With First AI Move if you want a fast read on the first thing to fix, or a free Audit review call if you would rather talk first. Both end in the same straight conversation about fit and what would matter first.',
     },
     {
       question: 'Do you build?',
@@ -118,9 +118,9 @@ export const faq = {
 
 export const closingCta = {
   eyebrow: 'Next step',
-  heading: 'Start with the Audit or book a call.',
+  heading: 'Find your starting point.',
   body:
-    'Whether the Leverage Board, Build Partner or AI Quick Start fits, the Audit and review call show you straight. Terms are agreed in writing, never published here.',
+    'Whether the Leverage Board, Build Partner or AI Quick Start fits, First AI Move and the review call show you straight. Terms are agreed in writing, never published here.',
   primary: auditCta,
   secondary: reviewCallCta,
 }

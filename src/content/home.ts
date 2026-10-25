@@ -40,12 +40,12 @@ export const whereToStart = {
       ifYou:
         'You are a firm of around 20 people and want one thing working with AI, not another meeting.',
       outcome:
-        'In 30 days, the one problem your Audit found is handled by an agent or workflow your people know how to run, and it stays yours.',
+        'In 30 days, that first AI move is handled by an agent or workflow your people know how to run, and it stays yours.',
       link: { href: routeLinks.aiQuickStart, label: seeAiQuickStartLink },
     },
   ],
   auditLine:
-    'Not sure which fits? The free AI Readiness and Governance Audit will show you.',
+    'Not sure which fits? Start with First AI Move. Leave with one first AI move for your firm, how it fits the tools you already pay for, and a rough idea of what it could free up, using your own numbers.',
 } as const
 
 export const pain = {
@@ -95,22 +95,22 @@ export const fit = {
   notForHeading: "We're not the right fit if:",
   notFor: [
     'You sell software. If SaaS or a product is your core business, you need a product team.',
-    "You're a team of fewer than about 10. The free Audit is still useful, but our work pays off once there is a team to multiply.",
+    "You're a team of fewer than about 10. First AI Move is still useful, but our work pays off once there is a team to multiply.",
     "You want a chatbot or a licence. We don't resell tools.",
     'You want to rent developers by the day. Every build we do is fixed scope, and your firm owns it.',
     'You want a multi-year transformation programme. We work in short, visible steps, and you see progress as it happens.',
   ],
-  auditLine: 'Not sure? The free Audit will tell you in under ten minutes.',
+  auditLine: 'Not sure? First AI Move takes about five minutes. No sales pitch.',
 }
 
 export const howItWorks = {
   eyebrow: 'How it works',
-  heading: 'From Audit to AI that works',
+  heading: 'From your first AI move to AI that works',
   steps: [
     {
-      title: 'Find where the time goes',
+      title: 'Find your first AI move',
       body:
-        'The free AI Readiness and Governance Audit shows where your people are stuck doing the work between systems, how safe your current AI use is, and the one thing to fix first.',
+        'Leave with one first AI move for your firm, how it fits the tools you already pay for, and a rough idea of what it could free up, using your own numbers.',
     },
     {
       title: 'Pick your starting point',
