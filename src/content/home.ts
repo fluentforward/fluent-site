@@ -1,4 +1,4 @@
-import { auditCta, firstAiMoveBuyerOneLiner, reviewCallCta } from '@/content/board'
+import { auditCta, reviewCallCta } from '@/content/board'
 import { gartnerPressReleases } from '@/content/gartner'
 import {
   routeLinks,
@@ -44,7 +44,8 @@ export const whereToStart = {
       link: { href: routeLinks.aiQuickStart, label: seeAiQuickStartLink },
     },
   ],
-  auditLine: `Not sure which fits? Start with First AI Move. ${firstAiMoveBuyerOneLiner}`,
+  auditLine:
+    'Not sure which fits? Start with First AI Move. Leave with one first AI move for your firm, how it fits the tools you already pay for, and a rough idea of what it could free up, using your own numbers.',
 } as const
 
 export const pain = {
@@ -108,7 +109,8 @@ export const howItWorks = {
   steps: [
     {
       title: 'Find your first AI move',
-      body: firstAiMoveBuyerOneLiner,
+      body:
+        'Leave with one first AI move for your firm, how it fits the tools you already pay for, and a rough idea of what it could free up, using your own numbers.',
     },
     {
       title: 'Pick your starting point',
