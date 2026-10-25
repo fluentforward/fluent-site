@@ -74,7 +74,7 @@ export const developerLeverage = {
 } as const
 
 export const fitLine =
-  'Built for owner-led services firms of 20 to 200 people. Not sure? First AI Move tells you.' as const
+  'Built for owner-led services firms of 20 to 200 people. Not sure? First AI Move will tell you.' as const
 
 export const howItWorksLink = {
   label: 'How the Board works',

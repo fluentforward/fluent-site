@@ -22,7 +22,7 @@ export const meta = {
 
 export const hero = {
   eyebrow: 'How it works',
-  heading: 'From First AI Move to AI that works.',
+  heading: 'From your first AI move to AI that works.',
   lede:
     "For agencies, consultancies and professional services firms of 20 to 200 people. You start with First AI Move and a review call that picks the right route, then we fix the first problem with your team or for you, and your firm owns the result.",
 }
@@ -118,7 +118,7 @@ export const faq = {
 
 export const closingCta = {
   eyebrow: 'Next step',
-  heading: 'Start with First AI Move or book a call.',
+  heading: 'Find your starting point.',
   body:
     'Whether the Leverage Board, Build Partner or AI Quick Start fits, First AI Move and the review call show you straight. Terms are agreed in writing, never published here.',
   primary: auditCta,

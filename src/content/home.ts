@@ -100,17 +100,17 @@ export const fit = {
     'You want to rent developers by the day. Every build we do is fixed scope, and your firm owns it.',
     'You want a multi-year transformation programme. We work in short, visible steps, and you see progress as it happens.',
   ],
-  auditLine: 'Not sure? First AI Move will tell you in under ten minutes.',
+  auditLine: 'Not sure? First AI Move will tell you in a few minutes.',
 }
 
 export const howItWorks = {
   eyebrow: 'How it works',
-  heading: 'From First AI Move to AI that works',
+  heading: 'From your first AI move to AI that works',
   steps: [
     {
       title: 'Find your first AI move',
       body:
-        'First AI Move leaves you with one concrete first AI move for your firm, how it fits the tools you already pay for, and a rough sense of what it frees, from your numbers.',
+        'First AI Move shows where your people are stuck doing the work between systems, how it fits the tools you already use, and the one thing to fix first, with a rough sense of what it frees.',
     },
     {
       title: 'Pick your starting point',

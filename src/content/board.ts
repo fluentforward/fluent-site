@@ -4,7 +4,7 @@ export const auditCta = {
   label: 'Get your first AI move',
   href: firstAiMoveUrl,
   hint:
-    'Leave with one concrete first AI move, how it fits the tools you already pay for, and a rough sense of what it frees, from your numbers. Then book a free Audit review call.',
+    'A few questions. Leave with one concrete first AI move, how it fits the tools you already pay for, and a rough sense of what it frees.',
 } as const
 
 export const reviewCallCta = {
@@ -27,13 +27,13 @@ export const howBoardWorks = {
   eyebrow: 'How the Board works',
   heading: 'From First AI Move to compounding',
   lede:
-    'You start with clarity on stage and gaps. The Board then runs a quarterly rhythm of judgement, re-score and peer learning.',
+    'You start with one clear first AI move. The Board then runs a quarterly rhythm of judgement, re-score and peer learning.',
   steps: [
     {
       index: '01',
       title: 'First AI Move',
       body:
-        'A short set of questions: one concrete first AI move for your firm, how it fits the tools you already pay for, and a rough sense of what it frees, from your numbers. It frames the conversation, whether you book an Audit review call next or not.',
+        'A short set of questions: your first AI move, how it fits your stack, and what it could free. It frames the conversation, whether you book an Audit review call next or not.',
     },
     {
       index: '02',
