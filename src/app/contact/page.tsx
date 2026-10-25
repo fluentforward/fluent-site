@@ -9,7 +9,7 @@ import { auditCta } from '@/content/board'
 import { site } from '@/content/site'
 
 const description =
-  'Book a thirty minute call with Matt Todd to work out whether the Leverage Board fits your firm and where to start. Or take the AI Readiness and Governance Audit first.'
+  'Book a thirty minute call with Matt Todd to work out whether the Leverage Board fits your firm and where to start. Or start with First AI Move first.'
 
 export const metadata: Metadata = {
   title: 'Book a call',
@@ -51,7 +51,7 @@ export default function Contact() {
                 href={auditCta.href}
                 className="text-ink underline underline-offset-4 transition-colors duration-300 hover:text-steel"
               >
-                take the Audit
+                get your first AI move
               </a>{' '}
               first.
             </Lede>

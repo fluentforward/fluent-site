@@ -1,10 +1,10 @@
-export const growthAuditUrl = 'https://client.fluentforward.com/ai-audit'
+export const firstAiMoveUrl = 'https://client.fluentforward.com/first-ai-move'
 
 export const auditCta = {
-  label: 'Take the AI Readiness and Governance Audit',
-  href: growthAuditUrl,
+  label: 'Get your first AI move',
+  href: firstAiMoveUrl,
   hint:
-    'Under ten minutes. See where you stand on AI control and capacity, and your next move.',
+    'Leave with one concrete first AI move, how it fits the tools you already pay for, and a rough sense of what it frees, from your numbers. Then book a free Audit review call.',
 } as const
 
 export const reviewCallCta = {
@@ -25,15 +25,15 @@ export type BoardStep = {
 
 export const howBoardWorks = {
   eyebrow: 'How the Board works',
-  heading: 'From Audit to compounding',
+  heading: 'From First AI Move to compounding',
   lede:
     'You start with clarity on stage and gaps. The Board then runs a quarterly rhythm of judgement, re-score and peer learning.',
   steps: [
     {
       index: '01',
-      title: 'AI Readiness and Governance Audit',
+      title: 'First AI Move',
       body:
-        'A short online assessment: your stage, pillar profile and where leverage is stuck. It frames the conversation, whether you book an Audit review call next or not.',
+        'A short set of questions: one concrete first AI move for your firm, how it fits the tools you already pay for, and a rough sense of what it frees, from your numbers. It frames the conversation, whether you book an Audit review call next or not.',
     },
     {
       index: '02',

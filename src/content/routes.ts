@@ -36,14 +36,14 @@ export const seeAiQuickStartLink =
 export const waysWeWorkMeta = {
   title: 'Ways we work: three starting points | FluentForward',
   description:
-    'Same outcome, three starting points. The free AI Readiness and Governance Audit and Audit review call show which route fits you. Your firm owns everything we build or set up.',
+    'Same outcome, three starting points. First AI Move and a free Audit review call show which route fits you. Your firm owns everything we build or set up.',
 } as const
 
 export const waysWeWorkHub = {
   eyebrow: 'Ways we work',
   heading: 'Same outcome, three starting points',
   lede:
-    'You start with the free AI Readiness and Governance Audit, then a free Audit review call that picks your route. Your firm owns the code, the agents and the roadmap.',
+    'You start with First AI Move, then a free Audit review call that picks your route. Your firm owns the code, the agents and the roadmap.',
   implementationEyebrow: 'On any route',
   implementationHeading: 'What we can set up or build',
   implementationLede:
@@ -87,9 +87,9 @@ export const waysWeWorkRoutes: readonly WaysWeWorkRoute[] = [
     summary:
       'For firms of around 20 people who want one thing working with AI, not another programme.',
     body:
-      'Thirty days, fixed scope. We take the one problem your Audit found, set up one or two agents or workflows for it, train the people who use them, build in the governance basics, and hand it all over. Ongoing Support follows, and you can move up to the Leverage Board as you grow.',
+      'Thirty days, fixed scope. We take the one problem First AI Move named, set up one or two agents or workflows for it, train the people who use them, build in the governance basics, and hand it all over. Ongoing Support follows, and you can move up to the Leverage Board as you grow.',
     bullets: [
-      'One problem from your Audit, one or two working agents or workflows.',
+      'One problem from First AI Move, one or two working agents or workflows.',
       'Governance basics included, then handover.',
       `${routeNames.ongoingSupport} and a path to the ${routeNames.leverageBoard} when you are ready.`,
     ],
