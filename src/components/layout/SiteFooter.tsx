@@ -1,7 +1,9 @@
 import Link from 'next/link'
 
 import { CookieSettingsButton } from '@/components/consent/CookieConsentProvider'
+import { MarketingAttributedAnchor } from '@/components/ui/attributed-href'
 import { Button } from '@/components/ui/Button'
+import { isFirstAiMoveMagnetUrl } from '@/content/board'
 import { Container } from '@/components/ui/Container'
 import { footerNav, primaryCta, site } from '@/content/site'
 
@@ -14,6 +16,13 @@ function FooterLink({ href, label }: { href: string; label: string }) {
   const className =
     'text-sm text-paper/60 transition-colors duration-300 hover:text-paper'
   if (external) {
+    if (isFirstAiMoveMagnetUrl(href)) {
+      return (
+        <MarketingAttributedAnchor href={href} className={className}>
+          {label}
+        </MarketingAttributedAnchor>
+      )
+    }
     return (
       <a href={href} className={className}>
         {label}
