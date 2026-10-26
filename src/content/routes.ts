@@ -43,7 +43,7 @@ export const waysWeWorkHub = {
   eyebrow: 'Ways we work',
   heading: 'Same outcome, three starting points',
   lede:
-    'You start with First AI Move, then a free Audit review call that picks your route. Your firm owns the code, the agents and the roadmap.',
+    'The outcome is the same for every route: win more client work without hiring more people. You start with First AI Move, then a free Audit review call that picks your route. Your firm owns the code, the agents and the roadmap.',
   implementationEyebrow: 'On any route',
   implementationHeading: 'What we can set up or build',
   implementationLede:
