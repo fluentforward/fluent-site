@@ -15,7 +15,6 @@ export default function OpengraphImage() {
           width: '100%',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-between',
           background: '#0B0C0E',
           padding: '72px 80px',
         }}
@@ -44,8 +43,10 @@ export default function OpengraphImage() {
 
         <div
           style={{
+            flex: 1,
             display: 'flex',
             flexDirection: 'column',
+            justifyContent: 'center',
             color: '#FFFFFF',
             fontSize: 44,
             lineHeight: 1.15,
@@ -54,23 +55,6 @@ export default function OpengraphImage() {
           }}
         >
           <span>{site.tagline}</span>
-        </div>
-
-        <div
-          style={{
-            display: 'flex',
-            gap: 40,
-            color: '#8A929F',
-            fontSize: 20,
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            borderTop: '1px solid rgba(255,255,255,0.14)',
-            paddingTop: 28,
-          }}
-        >
-          <span>Audit</span>
-          <span>Leverage Board</span>
-          <span>Judgement first</span>
         </div>
       </div>
     ),
