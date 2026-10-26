@@ -1,7 +1,14 @@
+'use client'
+
 import Link from 'next/link'
 import clsx from 'clsx'
 
+import {
+  useFirstAiMoveClickHandler,
+  useMarketingAttributedHref,
+} from '@/components/ui/attributed-href'
 import { cal, calConfigJson } from '@/content/cal'
+import { isFirstAiMoveMagnetUrl } from '@/content/board'
 
 type Variant = 'primary' | 'secondary' | 'onDark' | 'onDarkGhost'
 
@@ -27,6 +34,28 @@ type BaseProps = {
 
 type LinkProps = BaseProps & { href: string; cal?: never }
 type CalProps = BaseProps & { href?: never; cal: true }
+
+function ExternalButton({
+  href,
+  classes,
+  children,
+}: {
+  href: string
+  classes: string
+  children: React.ReactNode
+}) {
+  const externalHref = useMarketingAttributedHref(href)
+  const onExternalClick = useFirstAiMoveClickHandler(href)
+  const attributionClick = isFirstAiMoveMagnetUrl(href)
+    ? onExternalClick
+    : undefined
+
+  return (
+    <a href={externalHref} className={classes} onClick={attributionClick}>
+      {children}
+    </a>
+  )
+}
 
 /** Renders an internal link, an external link, or a Cal.com popup trigger. */
 export function Button({
@@ -54,9 +83,9 @@ export function Button({
 
   if (/^(https?:|mailto:|tel:)/.test(href)) {
     return (
-      <a href={href} className={classes}>
+      <ExternalButton href={href} classes={classes}>
         {children}
-      </a>
+      </ExternalButton>
     )
   }
 

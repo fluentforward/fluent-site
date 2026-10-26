@@ -1,5 +1,6 @@
 import { type Metadata } from 'next'
 
+import { MarketingAttributedAnchor } from '@/components/ui/attributed-href'
 import { CalInline } from '@/components/ui/CalInline'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Heading, Lede } from '@/components/ui/Heading'
@@ -47,12 +48,12 @@ export default function Contact() {
                 {site.email}
               </a>{' '}
               or{' '}
-              <a
+              <MarketingAttributedAnchor
                 href={auditCta.href}
                 className="text-ink underline underline-offset-4 transition-colors duration-300 hover:text-steel"
               >
                 Get your first AI move
-              </a>{' '}
+              </MarketingAttributedAnchor>{' '}
               first.
             </Lede>
 
