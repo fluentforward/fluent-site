@@ -1,7 +1,7 @@
 import { Heading, Lede } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
-import { fit } from '@/content/home'
+import { fit, outcomes } from '@/content/home'
 
 export function HomeFitSection() {
   return (
@@ -9,6 +9,20 @@ export function HomeFitSection() {
       <Reveal className="max-w-3xl">
         <Heading as="h2">{fit.builtForHeading}</Heading>
         <Lede className="mt-8">{fit.builtFor}</Lede>
+
+        <Heading as="h3" size="sub" className="mt-16">
+          {outcomes.heading}
+        </Heading>
+        <ul className="mt-8 space-y-5">
+          {outcomes.items.map((item) => (
+            <li
+              key={item}
+              className="flex gap-3 border-l-2 border-steel pl-6 text-[1.0625rem] leading-[1.72] text-ink"
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
 
         <Heading as="h3" size="sub" className="mt-16">
           {fit.lineHeading}

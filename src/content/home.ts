@@ -48,16 +48,27 @@ export const whereToStart = {
     'Not sure which fits? Start with First AI Move. Leave with one first AI move for your firm, how it fits the tools you already pay for, and a rough idea of what it could free up, using your own numbers.',
 } as const
 
-export const pain = {
-  heading: 'Your best people have become the glue between your systems.',
-  body:
-    'Every new client adds more chasing, copying and checking, so growth means hiring.',
-}
+export const sectorStrip = {
+  eyebrow: "Sectors we've already been inside",
+  heading: 'Services firms where people are the product.',
+  lede:
+    'Anonymised engagements. Same buyer shape: owners and operators who need more client work without a linear headcount climb.',
+  chips: [
+    {
+      label: 'Energy & utilities',
+      line: 'Process owned, not bent around the CRM.',
+    },
+    {
+      label: 'Healthcare',
+      line: 'An owned platform that could match, meet, take payment, and partner.',
+    },
+  ],
+} as const
 
 export const whyFixesFail = {
-  heading: 'Why the usual fixes fail',
+  heading: 'Your best people have become the glue between your systems.',
   intro:
-    'Vendor AI, more licences, chatbots, and agencies selling builds rarely fix the work between systems. They add tools while the firm stays dependent.',
+    "Every new client adds more chasing, copying and checking, so growth means hiring. Vendor AI, more licences, chatbots, and agencies selling builds rarely fix the work between systems. They add tools while the firm stays dependent.",
   gartner: {
     heading: 'Most agentic projects will not survive the forecast',
     body:
