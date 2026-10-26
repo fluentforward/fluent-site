@@ -1,9 +1,7 @@
-import { HomeBoardSection } from '@/components/sections/home/HomeBoardSection'
+import { HomeSectorStripSection } from '@/components/sections/home/HomeSectorStripSection'
 import { HomeWhereToStartSection } from '@/components/sections/home/HomeWhereToStartSection'
 import { HomeClosingSection } from '@/components/sections/home/HomeClosingSection'
 import { HomeFitSection } from '@/components/sections/home/HomeFitSection'
-import { HomeOutcomesSection } from '@/components/sections/home/HomeOutcomesSection'
-import { HomePainSection } from '@/components/sections/home/HomePainSection'
 import { HomeProofSection } from '@/components/sections/home/HomeProofSection'
 import { HomeThreeStepsSection } from '@/components/sections/home/HomeThreeStepsSection'
 import { HomeWhyFixesFailSection } from '@/components/sections/home/HomeWhyFixesFailSection'
@@ -33,10 +31,8 @@ export default function Home() {
       />
       <HomeHero />
       <HomeWhereToStartSection />
-      <HomePainSection />
+      <HomeSectorStripSection />
       <HomeWhyFixesFailSection />
-      <HomeBoardSection />
-      <HomeOutcomesSection />
       <HomeFitSection />
       <HomeThreeStepsSection />
       <HomeProofSection />

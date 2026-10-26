@@ -102,9 +102,29 @@ export function ProofCarousel({ packs }: { packs: readonly ProofPack[] }) {
             <h3 className="mt-5 font-display text-sub text-ink">
               {active.title}
             </h3>
+            {active.resultLine ? (
+              <p className="mt-5 font-mono text-xs leading-relaxed tracking-wide text-mist uppercase">
+                {active.resultLine}
+              </p>
+            ) : null}
             <p className="mt-5 text-[0.9375rem] leading-[1.72] text-slate">
               {active.summary}
             </p>
+            {active.homeFounderLine ? (
+              <p className="mt-5 text-[0.9375rem] leading-[1.72] text-slate">
+                {active.homeFounderLine}
+              </p>
+            ) : null}
+            {active.peerShareLine ? (
+              <div className="mt-5 border-l-2 border-line pl-5">
+                <p className="font-mono text-[0.6875rem] tracking-wide text-mist uppercase">
+                  Peer-share case line
+                </p>
+                <p className="mt-2 text-[0.9375rem] leading-[1.72] text-ink">
+                  {active.peerShareLine}
+                </p>
+              </div>
+            ) : null}
             <div className="mt-8 border-t border-line pt-8">
               <ArrowLink href={active.href} newTab>
                 {active.ctaLabel}
