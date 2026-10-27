@@ -107,14 +107,29 @@ async function main() {
   }
 
   await page.waitForTimeout(1500)
-  const hasGa =
-    process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID &&
-    seenVendors.some((h) => h.includes('googletagmanager'))
-  if (process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID) {
-    if (hasGa) pass('3-vendors', 'GA4 host requested when ID configured')
-    else fail('3-vendors', 'GA4 ID set but no gtm request')
+  const gaId = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID
+  const hasGtmLoader =
+    gaId && seenVendors.some((h) => h.includes('googletagmanager'))
+  const hasGaCollect =
+    gaId &&
+    seenVendors.some(
+      (h) =>
+        h.includes('google-analytics.com') || h.includes('analytics.google.com'),
+    )
+  if (gaId) {
+    if (hasGtmLoader) pass('3-vendors-gtm', 'GA4 gtag.js requested when ID configured')
+    else fail('3-vendors-gtm', 'GA4 ID set but no gtm request')
+    if (hasGaCollect) {
+      pass('3-vendors-collect', 'GA4 collect host requested after consent')
+    } else {
+      fail(
+        '3-vendors-collect',
+        'GA4 ID set but no google-analytics.com collect request (check gtag dataLayer stub)',
+      )
+    }
   } else {
-    pass('3-vendors', 'Skipped vendor load check (no GA4 ID in env)')
+    pass('3-vendors-gtm', 'Skipped vendor load check (no GA4 ID in env)')
+    pass('3-vendors-collect', 'Skipped collect check (no GA4 ID in env)')
   }
 
   await page.evaluate(() => localStorage.clear())

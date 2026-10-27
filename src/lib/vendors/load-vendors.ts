@@ -33,15 +33,17 @@ function loadGa4(measurementId: string): void {
   if (ga4Loaded) return
   ga4Loaded = true
   window.dataLayer = window.dataLayer ?? []
-  window.gtag = function gtag(...args: unknown[]) {
-    window.dataLayer?.push(args)
-  }
-  window.gtag('js', new Date())
+  // gtag.js only processes Arguments-like queue entries (not rest-param Arrays).
+  const gtag = function gtag() {
+    window.dataLayer?.push(arguments)
+  } as (...args: unknown[]) => void
+  window.gtag = gtag
+  gtag('js', new Date())
   injectScript(
     `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`,
     'ff-ga4',
   )
-  window.gtag('config', measurementId)
+  gtag('config', measurementId)
 }
 
 type FbqStub = ((...args: unknown[]) => void) & {
