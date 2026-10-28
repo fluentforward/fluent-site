@@ -3,7 +3,7 @@ import { auditCta } from '@/content/board'
 export const site = {
   name: 'FluentForward',
   legalName: 'FluentForward Limited',
-  url: 'https://fluentforward.com',
+  url: 'https://www.fluentforward.com',
   tagline: 'Win more client work without hiring more people.',
   description:
     "For agencies, consultancies and professional services firms of 20 to 200 people. We find the work that eats your team's time, get AI doing it safely, and your firm owns the result.",
@@ -12,7 +12,7 @@ export const site = {
 } as const
 
 export const nav = [
-  { label: 'Leverage Board', href: '/leverage-board' },
+  { label: 'Client Capacity', href: '/client-capacity' },
   { label: 'Ways we work', href: '/ways-we-work' },
   { label: 'How it works', href: '/how-it-works' },
   { label: 'Practice', href: '/about' },
@@ -22,7 +22,7 @@ export const footerNav = {
   offer: {
     title: 'The offer',
     links: [
-      { label: 'Leverage Board', href: '/leverage-board' },
+      { label: 'Client Capacity', href: '/client-capacity' },
       { label: 'Ways we work', href: '/ways-we-work' },
       { label: 'How it works', href: '/how-it-works' },
       { label: 'First AI Move', href: auditCta.href },

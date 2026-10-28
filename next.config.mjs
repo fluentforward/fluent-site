@@ -7,10 +7,15 @@ const nextConfig = {
       { source: '/pricing', destination: '/how-it-works', statusCode: 301 },
       { source: '/surfaceos', destination: '/', statusCode: 301 },
       { source: '/agentic-platform', destination: '/', statusCode: 301 },
-      { source: '/options', destination: '/leverage-board', statusCode: 301 },
+      { source: '/options', destination: '/client-capacity', statusCode: 301 },
+      {
+        source: '/leverage-board',
+        destination: '/client-capacity',
+        statusCode: 301,
+      },
       {
         source: '/offers/interaction-engine-design.pdf',
-        destination: '/leverage-board',
+        destination: '/client-capacity',
         statusCode: 301,
       },
     ]

@@ -16,7 +16,13 @@ export function HomeHero() {
         </Reveal>
 
         <Reveal delay={120}>
-          <Lede className="mt-6 max-w-prose md:mt-8">{hero.lede}</Lede>
+          <Lede className="mt-6 max-w-prose md:mt-8">{hero.subhead}</Lede>
+          <p className="mt-6 max-w-prose text-[1.0625rem] leading-[1.72] text-slate">
+            {hero.whoFor}
+          </p>
+          <p className="mt-6 max-w-prose text-[1.0625rem] leading-[1.72] text-slate">
+            {hero.buyerLine}
+          </p>
           <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center md:mt-8">
             <Button href={hero.primaryCta.href}>{hero.primaryCta.label}</Button>
             <Button href={hero.secondaryCta.href} variant="secondary">
