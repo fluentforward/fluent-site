@@ -15,11 +15,13 @@ import {
   faq,
   faqAnswerText,
   hero,
-  leverageBoardStepsLink,
+  clientCapacityStepsLink,
   meta,
   reassurance,
+  structuredServiceType,
   whenBuild,
 } from '@/content/how-it-works'
+import { site } from '@/content/site'
 
 const { title, description } = meta
 
@@ -41,12 +43,29 @@ const faqStructuredData = {
   })),
 }
 
+const serviceStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: site.legalName,
+  alternateName: site.name,
+  url: `${site.url}/how-it-works`,
+  description,
+  areaServed: 'GB',
+  serviceType: structuredServiceType,
+}
+
 export default function HowItWorks() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(serviceStructuredData),
+        }}
       />
       <PageHero
         eyebrow={hero.eyebrow}
@@ -56,11 +75,11 @@ export default function HowItWorks() {
       <HomeThreeStepsSection />
       <Section tone="paper" size="compact" border>
         <Reveal className="max-w-prose text-[1.0625rem] leading-[1.72] text-slate">
-          {leverageBoardStepsLink.before}
-          <ArrowLink href={leverageBoardStepsLink.link.href}>
-            {leverageBoardStepsLink.link.label}
+          {clientCapacityStepsLink.before}
+          <ArrowLink href={clientCapacityStepsLink.link.href}>
+            {clientCapacityStepsLink.link.label}
           </ArrowLink>
-          {leverageBoardStepsLink.after}
+          {clientCapacityStepsLink.after}
         </Reveal>
       </Section>
       <Section tone="muted" border>

@@ -1,0 +1,156 @@
+import { type Metadata } from 'next'
+
+import { BoardDeveloperSection } from '@/components/sections/BoardDeveloperSection'
+import { FaqSection } from '@/components/sections/FaqSection'
+import { HomeClosingSection } from '@/components/sections/home/HomeClosingSection'
+import { HomeProofSection } from '@/components/sections/home/HomeProofSection'
+import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
+import { PageHero } from '@/components/sections/PageHero'
+import { ResearchProofStrip } from '@/components/sections/ResearchProofStrip'
+import { Eyebrow } from '@/components/ui/Eyebrow'
+import { Heading, Lede } from '@/components/ui/Heading'
+import { Reveal } from '@/components/ui/Reveal'
+import { Section } from '@/components/ui/Section'
+import { ArrowLink } from '@/components/ui/ArrowLink'
+import {
+  altRoute,
+  faq,
+  fitLine,
+  gartnerProof,
+  governance,
+  hero,
+  meta,
+  modes,
+  process,
+  shipGateDelivery,
+  structuredServiceType,
+} from '@/content/client-capacity'
+import { site } from '@/content/site'
+
+export const metadata: Metadata = {
+  title: { absolute: meta.title },
+  description: meta.description,
+  alternates: { canonical: '/client-capacity' },
+  openGraph: {
+    title: meta.title,
+    description: meta.description,
+    url: '/client-capacity',
+  },
+  twitter: {
+    title: meta.title,
+    description: meta.description,
+  },
+}
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: site.legalName,
+  alternateName: site.name,
+  url: `${site.url}/client-capacity`,
+  description: meta.description,
+  areaServed: 'GB',
+  serviceType: structuredServiceType,
+}
+
+export default function ClientCapacityPage() {
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <PageHero eyebrow={hero.eyebrow} heading={hero.heading} lede={hero.lede} />
+
+      <Section tone="paper" size="compact" border>
+        <Reveal className="max-w-prose text-[0.9375rem] leading-[1.72] text-slate">
+          {altRoute.before}
+          <ArrowLink href={altRoute.href}>{altRoute.linkLabel}</ArrowLink>
+          {altRoute.after}
+        </Reveal>
+      </Section>
+
+      {[modes.partnership, modes.delivery].map((mode, modeIndex) => (
+        <Section
+          key={mode.id}
+          id={mode.id}
+          tone={modeIndex % 2 === 0 ? 'muted' : 'paper'}
+          border
+        >
+          <Reveal className="max-w-3xl">
+            <Eyebrow>{mode.name}</Eyebrow>
+            <Heading as="h2" className="mt-8">
+              {mode.summary}
+            </Heading>
+            <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">
+              {mode.body}
+            </p>
+            <ul className="mt-8 space-y-3">
+              {mode.bullets.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-3 text-[0.9375rem] leading-[1.72] text-slate"
+                >
+                  <span aria-hidden="true" className="shrink-0 text-steel">
+                    &bull;
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </Section>
+      ))}
+
+      <Section tone="paper" border id="how-client-capacity-runs">
+        <Reveal className="max-w-3xl">
+          <Eyebrow>{process.eyebrow}</Eyebrow>
+          <Heading as="h2" className="mt-8">
+            {process.heading}
+          </Heading>
+        </Reveal>
+        <ol className="mt-16 space-y-0 border-t border-line">
+          {process.steps.map((step, index) => (
+            <Reveal key={step} delay={index * 60}>
+              <li className="border-b border-line py-8 md:py-10">
+                <p className="max-w-prose text-[0.9375rem] leading-[1.72] text-slate">
+                  {step}
+                </p>
+              </li>
+            </Reveal>
+          ))}
+        </ol>
+        <Reveal delay={120} className="mt-10 max-w-prose">
+          <Lede>{process.choiceLine}</Lede>
+        </Reveal>
+      </Section>
+
+      <DefinitionGrid
+        heading={governance.heading}
+        lede={governance.intro}
+        items={governance.items}
+        tone="muted"
+        id="governance"
+      />
+
+      <Section tone="paper" border>
+        <Reveal className="max-w-2xl">
+          <Heading as="h2">{shipGateDelivery.heading}</Heading>
+          <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">
+            {shipGateDelivery.body}
+          </p>
+        </Reveal>
+      </Section>
+
+      <BoardDeveloperSection />
+
+      <ResearchProofStrip content={gartnerProof} tone="paper" border />
+
+      <HomeProofSection />
+
+      <FaqSection content={faq} />
+
+      <HomeClosingSection fitLine={fitLine} />
+    </>
+  )
+}

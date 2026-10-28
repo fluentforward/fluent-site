@@ -10,7 +10,7 @@ export const story = {
   paragraphs: [
     'Most AI consulting stops at the recommendation. A report lands, everyone agrees it is sensible, and then it sits there because implementing it needs a skill set the people who wrote it do not have. The business is left holding a document and a problem.',
     'The practice is run by Matt Todd, its principal. Twenty years on the other side of that handover, building and scaling the systems that reports like those describe, and still writing code today. The recommendation you get has already been pressure-tested against the question that matters: whether it can actually be built and run by the team you actually have.',
-    'Vendor-independent positioning is deliberate. We will advise, select build partners and oversee delivery, but we will also say plainly when another firm should build, or when build should wait. The Leverage Board exists so judgement stays with you after the first decision, not only on a one-off project.',
+    'Vendor-independent positioning is deliberate. We will advise, select build partners and oversee delivery, but we will also say plainly when another firm should build, or when build should wait. Client Capacity exists so judgement stays with you after the first decision, not only on a one-off project.',
   ],
 }
 

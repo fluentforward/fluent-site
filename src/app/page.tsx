@@ -17,7 +17,7 @@ const structuredData = {
   email: site.email,
   description: site.description,
   areaServed: 'GB',
-  serviceType: 'AI and operations advisory membership',
+  serviceType: 'Client Capacity advisory for services firms',
   founder: { '@type': 'Person', name: 'Matt Todd' },
   address: { '@type': 'PostalAddress', addressCountry: 'GB' },
 }

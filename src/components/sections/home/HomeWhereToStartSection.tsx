@@ -1,7 +1,8 @@
 import { Button } from '@/components/ui/Button'
 import { ArrowLink } from '@/components/ui/ArrowLink'
 import { Card } from '@/components/ui/Card'
-import { Heading } from '@/components/ui/Heading'
+import { Eyebrow } from '@/components/ui/Eyebrow'
+import { Heading, Lede } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
 import { auditCta } from '@/content/board'
@@ -11,7 +12,11 @@ export function HomeWhereToStartSection() {
   return (
     <Section tone="muted" border id="where-to-start">
       <Reveal className="max-w-3xl">
-        <Heading as="h2">{whereToStart.heading}</Heading>
+        <Eyebrow>{whereToStart.eyebrow}</Eyebrow>
+        <Heading as="h2" className="mt-8">
+          {whereToStart.heading}
+        </Heading>
+        <Lede className="mt-8">{whereToStart.lede}</Lede>
       </Reveal>
 
       <div className="mt-16 grid gap-6 lg:grid-cols-3 lg:gap-8">
@@ -26,7 +31,7 @@ export function HomeWhereToStartSection() {
                 {card.ifYou}
               </p>
               <p className="mt-4 flex-1 text-[0.9375rem] leading-[1.72] text-slate">
-                {card.outcome}
+                {card.body}
               </p>
               <div className="mt-8">
                 <ArrowLink href={card.link.href}>{card.link.label}</ArrowLink>

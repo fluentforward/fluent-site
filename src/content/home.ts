@@ -4,43 +4,50 @@ import {
   routeLinks,
   routeNames,
   seeAiQuickStartLink,
-  seeBuildPartnerLink,
-  seeLeverageBoardLink,
+  seeDeliveryLink,
+  seePartnershipLink,
 } from '@/content/routes'
 
 export const hero = {
   headline: 'Win more client work without hiring more people.',
-  lede:
-    "For agencies, consultancies and professional services firms of 20 to 200 people. We find the work that eats your team's time, get AI doing it safely, and your firm owns the result.",
+  subhead:
+    'More proposals out, fewer handoff failures, and a team that can take the next client without burning out.',
+  whoFor:
+    'For firms stuck between "we\'re busy" and "we can\'t take the next client."',
+  buyerLine:
+    'Services firms know AI will reshape the work, and worry they will be disrupted if they do not move. We give you a safe path to more client capacity: with your team, or we deliver more of it.',
   primaryCta: auditCta,
   secondaryCta: reviewCallCta,
 }
 
 export const whereToStart = {
-  heading: 'Where to start',
+  eyebrow: 'Where to start',
+  heading: 'Client Capacity',
+  lede:
+    'One program. Two modes. Same outcome: win more client work without hiring more people.',
   cards: [
     {
-      title: routeNames.leverageBoard,
+      title: routeNames.clientCapacityPartnership,
       ifYou:
-        'You run a 50 to 200 person firm and nobody senior owns AI or tech.',
-      outcome:
-        'Senior AI judgement on your side, so every AI and build decision is checked before you spend.',
-      link: { href: routeLinks.leverageBoard, label: seeLeverageBoardLink },
+        'You want the process run through your team, and to keep the capability in your firm.',
+      body:
+        'Done with you. Diagnosis, leverage list, first capacity win, operating rhythm, and product-engineer training included.',
+      link: { href: routeLinks.partnership, label: seePartnershipLink },
     },
     {
-      title: routeNames.buildPartner,
+      title: routeNames.clientCapacityDelivery,
       ifYou:
-        'You have an IT director, but no one to build what they have planned.',
-      outcome:
-        'Your IT director stays in charge, the build gets a fixed plan and a fixed scope, and your firm owns the code.',
-      link: { href: routeLinks.buildPartner, label: seeBuildPartnerLink },
+        'You want the same process, with us doing more of the build and ship.',
+      body:
+        'Done for you. Fixed scope, your firm owns the code, and the win still lands in an operating rhythm.',
+      link: { href: routeLinks.delivery, label: seeDeliveryLink },
     },
     {
       title: routeNames.aiQuickStart,
       ifYou:
-        'You are a firm of around 20 people and want one thing working with AI, not another meeting.',
-      outcome:
-        'In 30 days, that first AI move is handled by an agent or workflow your people know how to run, and it stays yours.',
+        'You are around 20 people and want one thing working with AI, not another programme.',
+      body:
+        'Thirty days, fixed scope. Then a path into Client Capacity as you grow.',
       link: { href: routeLinks.aiQuickStart, label: seeAiQuickStartLink },
     },
   ],
@@ -79,29 +86,21 @@ export const whyFixesFail = {
   },
 }
 
-export const theBoard = {
-  eyebrow: 'The Leverage Board',
-  heading: 'Judgement on your side of the table',
-  body:
-    'The Leverage Board puts senior AI and operations judgement on your side of the table, so every AI and build decision makes your firm more productive per head and never more dependent on a vendor.',
-  support:
-    'Between sessions, scheduled portal office hours and the AI advisor help you prepare and recall decisions. The decisions stay with people.',
-}
-
 export const outcomes = {
   heading: 'What changes for your firm',
   items: [
+    'More client capacity without a linear headcount climb.',
     'AI you control, not AI that happens to you.',
-    'A build partner chosen on merit, not on who pitched first.',
     "A roadmap and IP you own, not a vendor's lock-in.",
     'More output per person, not more people.',
   ],
 }
 
 export const fit = {
-  builtForHeading: 'Built for services firms where people are the glue',
+  builtForHeading:
+    'Built for services firms stuck between busy and the next client',
   builtFor:
-    'Agencies, consultancies, professional and managed services firms of around 20 to 200 people, where client work runs on people, inboxes and spreadsheets. Whether you have an IT director, your own developers or nobody technical at all, there is a starting point that fits.',
+    'Agencies, consultancies, professional and managed services firms of around 20 to 200 people, where client work runs on people, inboxes and spreadsheets. Client Capacity gives you a safe path to more capacity: with your team (Partnership), or we deliver more of it (Delivery).',
   lineHeading: 'Where we draw the line',
   notForHeading: "We're not the right fit if:",
   notFor: [
@@ -116,21 +115,22 @@ export const fit = {
 
 export const howItWorks = {
   eyebrow: 'How it works',
-  heading: 'From your first AI move to AI that works',
+  heading: 'From First AI Move to capacity that sticks',
   steps: [
     {
       title: 'Find your first AI move',
       body:
-        'Leave with one first AI move for your firm, how it fits the tools you already pay for, and a rough idea of what it could free up, using your own numbers.',
+        'First AI Move shows where capacity is leaking, how it fits the tools you already pay for, and what a first win could free up, using your own numbers.',
     },
     {
-      title: 'Pick your starting point',
-      body: `On a free Audit review call we agree the right route for your firm: the ${routeNames.leverageBoard}, ${routeNames.buildPartner} or ${routeNames.aiQuickStart}. Straight answers, including when we are not the right fit.`,
-    },
-    {
-      title: 'Get it working',
+      title: 'Pick Partnership or Delivery',
       body:
-        'We fix that first problem with your team, or for you, under your control. Your firm owns the code, the agents and the know-how.',
+        'On a free Audit review call we agree the mode: Client Capacity Partnership (through your team, training included) or Client Capacity Delivery (we ship more of it). Straight answers, including when we are not the right fit.',
+    },
+    {
+      title: 'Ship the first capacity win',
+      body:
+        'Same process either way. We fix that first problem with your team, or we deliver more of it, under your control. Your firm owns the code, the agents and the know-how.',
     },
   ],
   closing: 'Then we re-score as you grow and take on the next one.',

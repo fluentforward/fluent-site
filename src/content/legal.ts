@@ -141,7 +141,7 @@ export const terms = {
       heading: 'Engagements and fees',
       paragraphs: [
         'Nothing on this site is an offer capable of acceptance, and no engagement exists until both parties have signed an agreement setting out scope, fees and timescales.',
-        'For clarity, and consistent with what the site says: Leverage Board membership and any scoped build work are agreed in writing before they start. We do not bill by the hour. Fees are not published here because scope varies materially between clients.',
+        'For clarity, and consistent with what the site says: Client Capacity and any scoped build work are agreed in writing before they start. We do not bill by the hour. Fees are not published here because scope varies materially between clients.',
       ],
     },
     {

@@ -11,8 +11,11 @@ import {
   implementationMenu,
   waysWeWorkHub,
   waysWeWorkMeta,
+  waysWeWorkProcessStrip,
   waysWeWorkRoutes,
+  waysWeWorkStructuredServiceType,
 } from '@/content/routes'
+import { site } from '@/content/site'
 import { ArrowLink } from '@/components/ui/ArrowLink'
 
 const { title, description } = waysWeWorkMeta
@@ -23,6 +26,17 @@ export const metadata: Metadata = {
   alternates: { canonical: '/ways-we-work' },
   openGraph: { title, description, url: '/ways-we-work' },
   twitter: { title, description },
+}
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: site.legalName,
+  alternateName: site.name,
+  url: `${site.url}/ways-we-work`,
+  description,
+  areaServed: 'GB',
+  serviceType: waysWeWorkStructuredServiceType,
 }
 
 function AuditCtaBlock() {
@@ -37,6 +51,10 @@ function AuditCtaBlock() {
 export default function WaysWeWorkPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <PageHero
         eyebrow={waysWeWorkHub.eyebrow}
         heading={waysWeWorkHub.heading}
@@ -81,7 +99,30 @@ export default function WaysWeWorkPage() {
         </Section>
       ))}
 
-      <Section tone="paper" border id="implementation-menu">
+      <Section tone="paper" border id="client-capacity-process">
+        <Reveal className="max-w-3xl">
+          <Eyebrow>{waysWeWorkProcessStrip.eyebrow}</Eyebrow>
+          <Heading as="h2" className="mt-8">
+            {waysWeWorkProcessStrip.heading}
+          </Heading>
+        </Reveal>
+        <ol className="mt-16 space-y-0 border-t border-line">
+          {waysWeWorkProcessStrip.steps.map((step, index) => (
+            <Reveal key={step} delay={index * 60}>
+              <li className="border-b border-line py-8 md:py-10">
+                <p className="max-w-prose text-[0.9375rem] leading-[1.72] text-slate">
+                  {step}
+                </p>
+              </li>
+            </Reveal>
+          ))}
+        </ol>
+        <Reveal delay={120} className="mt-10 max-w-prose">
+          <Lede>{waysWeWorkProcessStrip.choiceLine}</Lede>
+        </Reveal>
+      </Section>
+
+      <Section tone="muted" border id="implementation-menu">
         <Reveal className="max-w-3xl">
           <Eyebrow>{waysWeWorkHub.implementationEyebrow}</Eyebrow>
           <Heading as="h2" className="mt-8">

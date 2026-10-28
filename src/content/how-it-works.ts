@@ -1,5 +1,5 @@
 import { auditCta, reviewCallCta } from '@/content/board'
-import { waysWeWorkPath } from '@/content/routes'
+import { clientCapacityPath, waysWeWorkPath } from '@/content/routes'
 
 export type FaqAnswer =
   | string
@@ -17,21 +17,24 @@ export function faqAnswerText(answer: FaqAnswer): string {
 export const meta = {
   title: 'How it works',
   description:
-    'From First AI Move to AI that works: a review call to pick your starting point, fixed-scope build, and code your firm owns.',
+    'From First AI Move to Client Capacity: a free Audit review call to pick Partnership or Delivery, fixed-scope build when needed, and code your firm owns.',
 } as const
+
+export const structuredServiceType =
+  'Client Capacity advisory and implementation for services firms' as const
 
 export const hero = {
   eyebrow: 'How it works',
-  heading: 'From your first AI move to AI that works',
+  heading: 'From First AI Move to capacity that sticks',
   lede:
-    "For agencies, consultancies and professional services firms of 20 to 200 people. You start with First AI Move and a review call that picks the right route, then we fix the first problem with your team or for you, and your firm owns the result.",
+    'For agencies, consultancies and professional services firms of 20 to 200 people. You start with First AI Move and a free Audit review call that picks Partnership or Delivery, then we ship the first capacity win with your team or for you, and your firm owns the result.',
 }
 
-export const leverageBoardStepsLink = {
-  before: 'On the Leverage Board? ',
+export const clientCapacityStepsLink = {
+  before: 'Want the full Client Capacity picture? ',
   link: {
-    label: "Here's how the Board works",
-    href: '/leverage-board#how-the-board-works',
+    label: 'See how the program runs',
+    href: `${clientCapacityPath}#how-client-capacity-runs`,
   },
   after: '',
 } as const
@@ -40,7 +43,7 @@ export const whenBuild = {
   eyebrow: 'When you build',
   heading: 'Fixed scope, agreed in writing',
   body:
-    'Every build is fixed scope and agreed in writing before work starts, whether it is done by your developers, a developer we help you place, your existing vendor, or us. Your firm owns the code either way.',
+    'Every build is fixed scope and agreed in writing before work starts, whether it is done by your developers, a developer we help you place, your existing vendor, or us under Client Capacity Delivery. Your firm owns the code either way.',
 }
 
 export const reassurance = {
@@ -48,9 +51,9 @@ export const reassurance = {
   heading: 'What you are agreeing to, in plain terms.',
   items: [
     {
-      title: 'A starting point that fits',
+      title: 'A mode that fits',
       body:
-        'First AI Move and the review call point you to the Leverage Board, Build Partner or AI Quick Start. Each route is scoped before build budget moves.',
+        'First AI Move and the review call point you to Client Capacity Partnership, Client Capacity Delivery or AI Quick Start. Each path is scoped before build budget moves.',
     },
     {
       title: 'No lock-in',
@@ -83,7 +86,7 @@ export const faq = {
       question: 'Do you build?',
       answer: {
         before:
-          'Not as the default. When the Board says build, we work alongside your developers, or help you place one, and train them in AI-driven development, so your firm owns the code and keeps the capability. If you already have a vendor, they can build under Board oversight. Impact Build is always a later Board decision. For the other starting points, see ',
+          'Yes, when Client Capacity Delivery is the right mode: fixed scope, agreed in writing, your firm owns the code. On Partnership we work alongside your developers, or help you place one, with product-engineer training included. If you already have a vendor, they can build under your direction. For the full menu, see ',
         link: { label: 'Ways we work', href: waysWeWorkPath },
         after: '.',
       },
@@ -91,12 +94,12 @@ export const faq = {
     {
       question: 'Are you tied to a vendor?',
       answer:
-        'No. We are not reselling anyone\u2019s licences and there is no platform we are obliged to steer you towards. Build-partner choice is independent and on your side of the table.',
+        'No. We are not reselling anyone\u2019s licences and there is no platform we are obliged to steer you towards. Build choice stays on your side of the table.',
     },
     {
       question: 'How do we know it\u2019s working?',
       answer:
-        'Productivity per head, tracked quarter by quarter against the baseline set in quarter one, plus honest ship / don\u2019t ship decisions you can see in the roadmap.',
+        'Productivity per head against the baseline you set at the start, plus honest ship / don\u2019t ship decisions you can see in the roadmap.',
     },
     {
       question: 'What tools do you build with?',
@@ -111,7 +114,7 @@ export const faq = {
     {
       question: 'Why are your prices not on the site?',
       answer:
-        'Because a published number would be wrong for most firms who read it. Membership and any build work are scoped to your stage and constraints. You get fixed terms in writing before anything starts.',
+        'Because a published number would be wrong for most firms who read it. Client Capacity and any scoped build work are agreed in writing before they start. You get fixed terms in writing before anything starts.',
     },
   ],
 }
@@ -120,7 +123,7 @@ export const closingCta = {
   eyebrow: 'Next step',
   heading: 'Find your starting point.',
   body:
-    'Whether the Leverage Board, Build Partner or AI Quick Start fits, First AI Move and the review call show you straight. Terms are agreed in writing, never published here.',
+    'Whether Client Capacity Partnership, Client Capacity Delivery or AI Quick Start fits, First AI Move and the review call show you straight. Terms are agreed in writing, never published here.',
   primary: auditCta,
   secondary: reviewCallCta,
 }
