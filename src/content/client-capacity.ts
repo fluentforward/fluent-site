@@ -29,7 +29,7 @@ export const modes = {
   partnership: {
     id: 'partnership',
     name: 'Client Capacity Partnership',
-    summary: 'Done with you. Matt runs the process through your team.',
+    summary: 'Done with you. We run the process through your team.',
     body:
       'We diagnose where capacity leaks (proposals, handoffs, delivery), prioritise a leverage list, make buy vs build decisions, ship the first capacity win with your people, and install the operating rhythm. Product-engineer training is included: we turn your software developers into product engineers, or help you place one, so the code and the capability stay in your firm.',
     bullets: [
