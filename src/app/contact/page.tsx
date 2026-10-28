@@ -10,7 +10,7 @@ import { auditCta, firstAiMoveBuyerOneLiner } from '@/content/board'
 import { site } from '@/content/site'
 
 const description =
-  'Book a call with Matt Todd to work out whether FluentForward fits and where to start. Or get your first AI move online first.'
+  'Book a call with the practice to work out whether FluentForward fits and where to start. Or get your first AI move online first.'
 
 export const metadata: Metadata = {
   title: 'Book a call',

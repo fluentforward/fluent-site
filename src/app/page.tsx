@@ -18,7 +18,6 @@ const structuredData = {
   description: site.description,
   areaServed: 'GB',
   serviceType: 'Client Capacity advisory for services firms',
-  founder: { '@type': 'Person', name: 'Matt Todd' },
   address: { '@type': 'PostalAddress', addressCountry: 'GB' },
 }
 
