@@ -29,7 +29,7 @@ export const privacy = {
       ],
       list: [
         'Website visitors. Our hosting provider processes standard server logs, including IP address, browser type and the pages requested, to serve the site and keep it secure.',
-        'Site analytics (optional). If you accept analytics cookies, Google Analytics 4 measures aggregate traffic: pages viewed, referrers, device and approximate location. Google processes this on our behalf. It does not load until you consent, and Preview or local copies of the site do not load it.',
+        'Site analytics (optional). If you accept analytics cookies, Google Analytics 4 measures aggregate traffic with storage enabled: pages viewed, referrers, device and approximate location. If you decline or have not decided yet, the tag may still send limited, cookieless measurement pings under Google Consent Mode until you grant analytics storage. Google processes this on our behalf. Preview or local copies of the site do not load it.',
         'Enquiries and calls. If you book a call or email us, we hold your name, email address, any details you choose to share about your business, and our notes from the conversation.',
         'Clients. During an engagement we hold the contact details, correspondence, contractual records and project documentation needed to deliver the work and meet our accounting obligations.',
       ],

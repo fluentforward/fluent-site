@@ -24,7 +24,7 @@ export const cookieInventory: CookieInventoryRow[] = [
     type: 'Third-party script',
     category: 'Analytics',
     purpose:
-      'Measures page views and how visitors move through the site when analytics is enabled.',
+      'Measures page views and how visitors move through the site. With analytics enabled, full measurement cookies apply; if you decline or have not chosen yet, Google may still receive limited, cookieless pings under Consent Mode.',
     retention: 'See Google’s analytics documentation',
   },
   {

@@ -16,9 +16,18 @@ declare global {
   }
 }
 
-let ga4Loaded = false
+let ga4ConsentModeInitialized = false
 let metaLoaded = false
 let linkedInLoaded = false
+
+/** Google Consent Mode v2 defaults — must run before gtag js/config. */
+export const GTAG_CONSENT_DEFAULT_DENIED = {
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  analytics_storage: 'denied',
+  wait_for_update: 500,
+} as const
 
 function injectScript(src: string, id?: string): void {
   if (id && document.getElementById(id)) return
@@ -29,21 +38,50 @@ function injectScript(src: string, id?: string): void {
   document.head.appendChild(script)
 }
 
-function loadGa4(measurementId: string): void {
-  if (ga4Loaded) return
-  ga4Loaded = true
+function ensureGtagStub(): (...args: unknown[]) => void {
   window.dataLayer = window.dataLayer ?? []
+  if (window.gtag) return window.gtag
   // gtag.js only processes Arguments-like queue entries (not rest-param Arrays).
   const gtag = function gtag() {
     window.dataLayer?.push(arguments)
   } as (...args: unknown[]) => void
   window.gtag = gtag
+  return gtag
+}
+
+/** Load GA4 with Consent Mode v2 advanced: default denied, cookieless pings while denied. */
+export function ensureGa4ConsentMode(measurementId: string): void {
+  if (ga4ConsentModeInitialized) return
+  ga4ConsentModeInitialized = true
+
+  const gtag = ensureGtagStub()
+  gtag('consent', 'default', { ...GTAG_CONSENT_DEFAULT_DENIED })
   gtag('js', new Date())
   injectScript(
     `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`,
     'ff-ga4',
   )
   gtag('config', measurementId)
+}
+
+export function gtagConsentStateFromChoice(choice: {
+  analytics: boolean
+  marketing: boolean
+}): Record<string, 'granted' | 'denied'> {
+  return {
+    analytics_storage: choice.analytics ? 'granted' : 'denied',
+    ad_storage: choice.marketing ? 'granted' : 'denied',
+    ad_user_data: choice.marketing ? 'granted' : 'denied',
+    ad_personalization: choice.marketing ? 'granted' : 'denied',
+  }
+}
+
+export function applyGtagConsentUpdate(
+  choice: Pick<StoredCookieConsent, 'analytics' | 'marketing'>,
+): void {
+  const gtag = window.gtag
+  if (!gtag) return
+  gtag('consent', 'update', gtagConsentStateFromChoice(choice))
 }
 
 type FbqStub = ((...args: unknown[]) => void) & {
@@ -97,11 +135,18 @@ export function clearMarketingVendors(): void {
 }
 
 export function applyVendorConsent(consent: StoredCookieConsent | null): void {
-  if (!consent) return
-
-  if (consent.analytics && vendorEnvIds.ga4MeasurementId) {
-    loadGa4(vendorEnvIds.ga4MeasurementId)
+  if (vendorEnvIds.ga4MeasurementId) {
+    ensureGa4ConsentMode(vendorEnvIds.ga4MeasurementId)
+    if (consent) {
+      applyGtagConsentUpdate(consent)
+    }
   }
+
+  if (!consent?.marketing) {
+    clearMarketingVendors()
+  }
+
+  if (!consent) return
 
   if (consent.marketing) {
     if (vendorEnvIds.metaPixelId) {
@@ -111,7 +156,5 @@ export function applyVendorConsent(consent: StoredCookieConsent | null): void {
       loadLinkedInInsight(vendorEnvIds.linkedInPartnerId)
     }
     captureMarketingAttributionFromUrl()
-  } else {
-    clearMarketingVendors()
   }
 }

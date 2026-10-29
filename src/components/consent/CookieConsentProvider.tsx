@@ -5,6 +5,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -52,13 +53,11 @@ export function CookieConsentProvider({
   const modalSourceRef = useRef<OpenModalSource>(null)
   const settingsTriggerRef = useRef<HTMLElement | null>(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const stored = readStoredConsent()
     setConsent(stored)
     setShowBanner(!stored)
-    if (stored) {
-      applyVendorConsent(stored)
-    }
+    applyVendorConsent(stored)
     setHydrated(true)
   }, [])
 

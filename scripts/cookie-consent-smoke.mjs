@@ -63,10 +63,42 @@ async function main() {
     fail('1-banner', 'Banner not visible')
   }
 
-  if (seenVendors.length === 0) {
-    pass('1-no-vendors', 'No vendor hosts before consent click')
+  const marketingHostsBeforeConsent = seenVendors.filter(
+    (h) =>
+      h.includes('connect.facebook.net') || h.includes('snap.licdn.com'),
+  )
+  const gaId = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID
+  const analyticsHostsBeforeConsent = seenVendors.filter(
+    (h) =>
+      h.includes('googletagmanager.com') ||
+      h.includes('google-analytics.com') ||
+      h.includes('analytics.google.com'),
+  )
+  if (marketingHostsBeforeConsent.length === 0) {
+    pass('1-no-marketing-vendors', 'No Meta/LinkedIn before consent click')
   } else {
-    fail('1-no-vendors', `Saw vendors: ${seenVendors.join(', ')}`)
+    fail(
+      '1-no-marketing-vendors',
+      `Saw marketing vendors: ${marketingHostsBeforeConsent.join(', ')}`,
+    )
+  }
+  if (gaId) {
+    if (analyticsHostsBeforeConsent.length > 0) {
+      pass(
+        '1-ga4-consent-mode',
+        'GA4/gtag loads before choice (Consent Mode advanced)',
+      )
+    } else {
+      fail(
+        '1-ga4-consent-mode',
+        'GA4 ID set but no gtag/analytics host before consent choice',
+      )
+    }
+  } else {
+    pass(
+      '1-ga4-consent-mode',
+      'Skipped pre-consent GA4 check (no GA4 ID in env)',
+    )
   }
 
   await page.getByRole('button', { name: 'Reject non-essential' }).click()
@@ -107,7 +139,6 @@ async function main() {
   }
 
   await page.waitForTimeout(1500)
-  const gaId = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID
   const hasGtmLoader =
     gaId && seenVendors.some((h) => h.includes('googletagmanager'))
   const hasGaCollect =
