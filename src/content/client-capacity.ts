@@ -47,9 +47,9 @@ export const oneSystem = {
 } as const
 
 export const servicesImpact = {
-  heading: 'Built for firms where people are the product',
+  heading: 'Built for owners who need profit from growth, not just more people',
   body:
-    'When people are the product, headcount is the default growth lever. Client Capacity attacks what forces that lever: a weak commercial model, a thin pipeline, or delivery that cannot scale. AI is how you move faster, under rules you own, not the product you buy.',
+    'If you need more of the right clients at prices that hold, and delivery that turns that work into margin without a hire for every win, Client Capacity runs offers, demand and delivery as one growth system. AI under rules you own moves you faster; it is not the product you buy.',
 } as const
 
 export const gartnerProof = {

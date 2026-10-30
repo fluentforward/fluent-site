@@ -50,7 +50,7 @@ export const whereToStart = {
   eyebrow: 'Where to start',
   heading: 'Client Capacity',
   lede:
-    'One programme for offers, demand and delivery. Two modes. Same outcome: more client work without a linear headcount climb.',
+    'One programme for offers, demand and delivery. Two modes. Same outcome: more client work without a linear headcount climb, with higher revenue and stronger margins.',
   cards: [
     {
       title: routeNames.clientCapacityPartnership,
