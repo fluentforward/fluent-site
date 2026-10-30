@@ -1,5 +1,5 @@
 import { auditCta, reviewCallCta } from '@/content/board'
-import { clientCapacityPath, waysWeWorkPath } from '@/content/routes'
+import { waysWeWorkPath } from '@/content/routes'
 
 export type FaqAnswer =
   | string
@@ -13,31 +13,6 @@ export function faqAnswerText(answer: FaqAnswer): string {
   if (typeof answer === 'string') return answer
   return `${answer.before}${answer.link.label}${answer.after}`
 }
-
-export const meta = {
-  title: 'How it works',
-  description:
-    'Stuck between busy and the next client? First AI Move and a free Audit review call name what is capping offers, demand or delivery, then Client Capacity Partnership or Delivery with code your firm owns.',
-} as const
-
-export const structuredServiceType =
-  'Client Capacity advisory and implementation for services firms' as const
-
-export const hero = {
-  eyebrow: 'How it works',
-  heading: 'From First AI Move to capacity that sticks',
-  lede:
-    'For agencies, consultancies and professional services firms of 20 to 200 people stuck between busy and the next client. You start with First AI Move and a free Audit review call that names what is stopping you (offers, demand or delivery) and picks Partnership or Delivery, then we ship the first win with your team or for you. Your firm owns the code, agents and roadmap.',
-}
-
-export const clientCapacityStepsLink = {
-  before: 'Want the full Client Capacity picture? ',
-  link: {
-    label: 'See how we run it',
-    href: `${clientCapacityPath}#how-client-capacity-runs`,
-  },
-  after: '',
-} as const
 
 export const whenBuild = {
   eyebrow: 'When you build',
@@ -87,7 +62,10 @@ export const faq = {
       answer: {
         before:
           'Yes, when Client Capacity Delivery is the right mode: fixed scope, agreed in writing, your firm owns the code. On Partnership we work alongside your developers, or help you place one, with owned shipping capability included when the bet needs it. If you already have a vendor, they can build under your direction. For the full menu, see ',
-        link: { label: 'Ways we work', href: waysWeWorkPath },
+        link: {
+          label: 'what we can set up or build',
+          href: `${waysWeWorkPath}#implementation-menu`,
+        },
         after: '.',
       },
     },

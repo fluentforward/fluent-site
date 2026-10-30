@@ -97,7 +97,7 @@ export const process = {
   eyebrow: 'Same cycle either mode',
   heading: 'How we run it',
   steps: [
-    'Diagnose the three walls',
+    'Diagnose the growth constraints',
     'Prioritise the leverage list',
     'Decide buy / build / place',
     'Set AI ownership rules',
