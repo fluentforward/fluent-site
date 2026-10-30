@@ -13,51 +13,51 @@ export const hero = {
   subhead:
     'More proposals out, fewer handoff failures, and a team that can take the next client without burning out.',
   whoFor:
-    'For services firms where "we\'re busy" still means "we can\'t take the next client."',
+    'For services firms stuck between "we\'re busy" and "we can\'t take the next client."',
   buyerLine:
     'Services firms know AI will reshape the work, and worry they will be disrupted if they do not move. We give you a safe path to more client capacity: with your team, or we deliver more of it.',
   primaryCta: auditCta,
   secondaryCta: reviewCallCta,
 }
 
-export const bindingWall = {
-  eyebrow: 'The real problem',
-  heading: 'Busy is not capacity.',
+export const growthLimits = {
+  eyebrow: 'What\u2019s actually stopping you',
+  heading: 'Three places growth dies in a services firm.',
   lede:
-    'In a services firm, growth dies at one wall. Offers (how you package and get paid). Leads (whether enough of the right work comes in). Delivery (whether the team can take the next client). Client Capacity finds the wall that binds now, clears it, and captures the gain so you are not stuck selling more hours.',
+    'Most firms start with tools. Start with what\u2019s capping the next client. Fix one, and the next limit shows up. That is how capacity compounds.',
   items: [
     {
-      title: 'Offers bind',
+      title: 'If your offer is wrong',
       body:
-        'You free time, still sell time, and revenue does not move. Packaging has to capture the capacity you create.',
+        'If you still sell hours or days, every AI win becomes a leaner timesheet, not more revenue. Seniors reinvent the deal. Margin stays stuck. Fix packaging and how you get paid first, so freed time turns into productised offers, retainers or scoped outcomes. Then demand work is worth doing.',
     },
     {
-      title: 'Leads bind',
+      title: 'If your go-to-market is thin',
       body:
-        'The team could take more work. Qualified pipeline is the wall. Demand belongs in the same programme as delivery, after diagnosis.',
+        'If the calendar is not filling with the right conversations, a strong delivery team still starves. Feast and famine. Partners become the pipeline. Fix demand inside the same programme after diagnosis, on a scorecard you own, so new work is real before you scale throughput.',
     },
     {
-      title: 'Delivery bind',
+      title: 'If delivery breaks when you grow',
       body:
-        'Proposals, handoffs and throughput break when you grow. AI without ownership makes the glue people worse.',
+        'If you struggle to get proposals out, hand work cleanly, or take the next client without your best people becoming the glue, growth means hiring. AI without ownership makes the checking worse. Fix throughput and ownership so the team can say yes, then the next limit (offers or demand) becomes obvious.',
     },
   ],
   closing:
-    'Fix one wall and the next becomes the bottleneck. That is the point of the cycle, not a one-off project.',
+    'Client Capacity finds which of these is stopping you now, clears it, and runs the same cycle when the next one shows up.',
 } as const
 
 export const whereToStart = {
   eyebrow: 'Where to start',
   heading: 'Client Capacity',
   lede:
-    'One programme that clears the binding wall across Offers, Leads and Delivery. Two modes. Same outcome: more client work without a linear headcount climb.',
+    'One programme for offers, demand and delivery. Two modes. Same outcome: more client work without a linear headcount climb.',
   cards: [
     {
       title: routeNames.clientCapacityPartnership,
       ifYou:
-        'You want the wall cleared through your team, and the capability left in the firm.',
+        'You want this cleared through your team, and the capability left in the firm.',
       body:
-        'Done with you. We name the binding wall, ship the first win with your people, install the cycle rhythm, and include owned shipping capability when the bet needs it.',
+        'Done with you. We find what\u2019s stopping the next client, ship the first win with your people, install the cycle rhythm, and include owned shipping capability when the bet needs it.',
       link: { href: routeLinks.partnership, label: seePartnershipLink },
     },
     {
@@ -65,7 +65,7 @@ export const whereToStart = {
       ifYou:
         'You want the same clearance, with us doing more of the build and ship.',
       body:
-        'Done for you. Same diagnosis and cycle. Fixed scope, your firm owns the code, win lands in the cycle rhythm.',
+        'Done for you. Same diagnosis and cycle. Fixed scope, your firm owns the code.',
       link: { href: routeLinks.delivery, label: seeDeliveryLink },
     },
     {
@@ -101,7 +101,7 @@ export const sectorStrip = {
 export const whyFixesFail = {
   heading: 'Your best people have become the glue between your systems.',
   intro:
-    'Every new client adds chasing, copying and checking, so "growth" means hiring. More licences and vendor agents rarely clear the wall that actually binds. They add tools while Offers still sells time, Leads still runs dry, or Delivery still breaks on handoffs.',
+    'Every new client adds chasing, copying and checking, so growth means hiring. More licences rarely fix a weak offer, a thin pipeline, or broken handoffs. They add tools while the firm stays dependent on the same people.',
   gartner: {
     heading: 'Most agentic projects will not survive the forecast',
     body:
@@ -115,11 +115,11 @@ export const whyFixesFail = {
 export const outcomes = {
   heading: 'What changes for your firm',
   items: [
-    'A named binding wall: Offers, Leads or Delivery, not a generic AI wishlist.',
-    'A first win on that wall, visible in the business, not a pilot deck.',
-    'A commercial model that captures freed capacity so it does not collapse back into billable hours.',
+    'Clarity on what\u2019s stopping the next client: offers, demand or delivery.',
+    'A first win you can see in the business, not a pilot deck.',
+    'Packaging that captures freed capacity so it does not fall back into billable hours.',
     'AI ownership rules so people own the commercial, the relationship and the quality bar.',
-    'A cycle that re-scores all three walls when one clears.',
+    'A rhythm that re-checks offers, demand and delivery when one limit clears.',
     'Code, agents and roadmap your firm owns.',
   ],
 }
@@ -128,7 +128,7 @@ export const fit = {
   builtForHeading:
     'Built for services firms stuck between busy and the next client',
   builtFor:
-    'Agencies, consultancies, professional and managed services of around 20 to 200 people, where client work runs on people, inboxes and spreadsheets. Client Capacity clears the binding wall across Offers, Leads and Delivery: with your team (Partnership), or we deliver more of it (Delivery).',
+    'Agencies, consultancies, professional and managed services of around 20 to 200 people, where client work runs on people, inboxes and spreadsheets. Client Capacity clears what\u2019s capping growth across offers, demand and delivery: Partnership or Delivery.',
   lineHeading: 'Where we draw the line',
   notForHeading: "We're not the right fit if:",
   notFor: [
@@ -143,7 +143,7 @@ export const fit = {
 
 export const howItWorks = {
   eyebrow: 'How it works',
-  heading: 'Name the wall. Clear it. Repeat.',
+  heading: 'Find what\u2019s stopping you. Clear it. Repeat.',
   steps: [
     {
       title: 'Find where capacity is leaking',
@@ -151,23 +151,23 @@ export const howItWorks = {
         'First AI Move shows where capacity is leaking, how it fits the tools you already pay for, and what a first win could free up, using your own numbers.',
     },
     {
-      title: 'Name the binding wall and the mode',
+      title: 'Name what\u2019s stopping you and how we run it',
       body:
-        'On a free Audit review call we name the binding wall (Offers, Leads or Delivery) and agree the mode: Client Capacity Partnership (through your team, with owned shipping capability when the bet needs it) or Client Capacity Delivery (we ship more of it). Straight answers, including when we are not the right fit.',
+        'On a free Audit review call we name whether offers, demand or delivery is capping you now, and agree the mode: Client Capacity Partnership (through your team, with owned shipping capability when the bet needs it) or Client Capacity Delivery (we ship more of it). Straight answers, including when we are not the right fit.',
     },
     {
-      title: 'Ship the first win, then re-score',
+      title: 'Ship the first win, then re-check',
       body:
-        'Same Tess cycle either way. We clear that wall with your team or deliver more of it under your control, with AI ownership rules and a cycle rhythm that re-scores all three walls. Your firm owns the code, the agents and the know-how.',
+        'Same Tess cycle either way. We clear that limit with your team or deliver more of it under your control, with AI ownership rules and a cycle rhythm that re-checks offers, demand and delivery. Your firm owns the code, the agents and the know-how.',
     },
   ],
   closing:
-    'Fix one wall and the next becomes the bottleneck. That is how capacity compounds.',
+    'Fix one limit and the next becomes obvious. That is how capacity compounds.',
 }
 
 export const closing = {
   eyebrow: 'Next step',
-  heading: 'Find the wall that binds.',
+  heading: 'Find what\u2019s stopping the next client.',
   buildLine:
     'However you start, your firm owns the code and keeps the capability.',
   primaryCta: auditCta,

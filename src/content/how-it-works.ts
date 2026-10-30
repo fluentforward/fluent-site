@@ -17,7 +17,7 @@ export function faqAnswerText(answer: FaqAnswer): string {
 export const meta = {
   title: 'How it works',
   description:
-    'Name the binding wall across Offers, Leads or Delivery. First AI Move and a free Audit review call, then Client Capacity Partnership or Delivery with code your firm owns.',
+    'Stuck between busy and the next client? First AI Move and a free Audit review call name what is capping offers, demand or delivery, then Client Capacity Partnership or Delivery with code your firm owns.',
 } as const
 
 export const structuredServiceType =
@@ -27,13 +27,13 @@ export const hero = {
   eyebrow: 'How it works',
   heading: 'From First AI Move to capacity that sticks',
   lede:
-    'For agencies, consultancies and professional services firms of 20 to 200 people. Busy is not capacity: growth dies at one wall across Offers, Leads or Delivery. You start with First AI Move and a free Audit review call that names the binding wall and picks Partnership or Delivery, then we ship the first win with your team or for you. Your firm owns the code, agents and roadmap.',
+    'For agencies, consultancies and professional services firms of 20 to 200 people stuck between busy and the next client. You start with First AI Move and a free Audit review call that names what is stopping you (offers, demand or delivery) and picks Partnership or Delivery, then we ship the first win with your team or for you. Your firm owns the code, agents and roadmap.',
 }
 
 export const clientCapacityStepsLink = {
   before: 'Want the full Client Capacity picture? ',
   link: {
-    label: 'See how we clear the wall',
+    label: 'See how we run it',
     href: `${clientCapacityPath}#how-client-capacity-runs`,
   },
   after: '',
@@ -121,9 +121,9 @@ export const faq = {
 
 export const closingCta = {
   eyebrow: 'Next step',
-  heading: 'Find the wall that binds.',
+  heading: 'Find what\u2019s stopping the next client.',
   body:
-    'Whether Client Capacity Partnership, Client Capacity Delivery or AI Quick Start fits, First AI Move and the review call name the binding wall and show you straight. Terms are agreed in writing, never published here.',
+    'Whether Client Capacity Partnership, Client Capacity Delivery or AI Quick Start fits, First AI Move and the review call show you straight. Terms are agreed in writing, never published here.',
   primary: auditCta,
   secondary: reviewCallCta,
 }

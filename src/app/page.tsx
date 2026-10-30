@@ -7,7 +7,7 @@ import { HomeProofSection } from '@/components/sections/home/HomeProofSection'
 import { HomeThreeStepsSection } from '@/components/sections/home/HomeThreeStepsSection'
 import { HomeWhyFixesFailSection } from '@/components/sections/home/HomeWhyFixesFailSection'
 import { HomeHero } from '@/components/sections/HomeHero'
-import { bindingWall } from '@/content/home'
+import { growthLimits } from '@/content/home'
 import { site } from '@/content/site'
 
 const structuredData = {
@@ -32,13 +32,13 @@ export default function Home() {
       />
       <HomeHero />
       <DefinitionGrid
-        eyebrow={bindingWall.eyebrow}
-        heading={bindingWall.heading}
-        lede={bindingWall.lede}
-        items={bindingWall.items}
-        closing={bindingWall.closing}
+        eyebrow={growthLimits.eyebrow}
+        heading={growthLimits.heading}
+        lede={growthLimits.lede}
+        items={growthLimits.items}
+        closing={growthLimits.closing}
         tone="paper"
-        id="binding-wall"
+        id="growth-limits"
       />
       <HomeWhereToStartSection />
       <HomeSectorStripSection />

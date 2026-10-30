@@ -41,7 +41,7 @@ export const seeAiQuickStartLink =
 export const waysWeWorkMeta = {
   title: 'Ways we work: Client Capacity | FluentForward',
   description:
-    'Clear the binding wall across Offers, Leads or Delivery. Partnership or Delivery after diagnosis. First AI Move and a free Audit review call show which fits. Your firm owns everything we build or set up.',
+    'Clear what is stopping the next client across offers, demand or delivery. Partnership or Delivery after diagnosis. First AI Move and a free Audit review call show which fits. Your firm owns everything we build or set up.',
 } as const
 
 export const waysWeWorkStructuredServiceType =
@@ -49,9 +49,9 @@ export const waysWeWorkStructuredServiceType =
 
 export const waysWeWorkHub = {
   eyebrow: 'Ways we work',
-  heading: 'One programme. Two ways to clear the wall.',
+  heading: 'One programme. Two ways to clear what is stopping you.',
   lede:
-    'Services firms lose growth at one wall: Offers, Leads or Delivery. Client Capacity names the binding constraint, clears it in a visible first win, and installs a cycle that re-scores all three. Choose Partnership (with your team, owned shipping capability when the bet needs it) or Delivery (we ship more of it) only after diagnosis. Start with First AI Move, then a free Audit review call. Your firm owns the code, the agents and the roadmap.',
+    'For services firms stuck between busy and the next client. Client Capacity finds whether offers, demand or delivery is capping you now, ships a visible first win, and installs a cycle that re-checks all three. Choose Partnership (with your team, owned shipping capability when the bet needs it) or Delivery (we ship more of it) only after diagnosis. Start with First AI Move, then a free Audit review call. Your firm owns the code, the agents and the roadmap.',
   implementationEyebrow: 'On either mode',
   implementationHeading: 'What we can set up or build',
   implementationLede:
