@@ -120,7 +120,7 @@ export const implementationMenu: readonly ImplementationMenuItem[] = [
   {
     title: routeNames.productEngineerPath,
     body:
-      'Included on Client Capacity Partnership. We train your software developers into product engineers on your real backlog, or help you place one, so the capability stays in your firm.',
+      'Included on Client Capacity Partnership when the bet needs it. We train your software developers into product engineers on your real backlog, or help you place one, so the capability stays in your firm. Optional on Delivery.',
   },
   {
     title: routeNames.placement,

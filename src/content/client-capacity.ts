@@ -35,7 +35,7 @@ export const pillars = {
     {
       title: 'Delivery',
       body:
-        'Capacity to do the work: proposals, handoffs, throughput, AI with ownership, and the operating rhythm that makes the win stick.',
+        'Capacity to do the work: proposals, handoffs, throughput, AI with ownership, and the cycle rhythm that makes the win stick.',
     },
   ],
 } as const
@@ -55,13 +55,13 @@ export const modes = {
     name: 'Client Capacity Partnership',
     summary: 'Done with you. We run the process through your team.',
     body:
-      'We diagnose the binding wall across Offers, Leads and Delivery, prioritise a leverage list, make buy vs build decisions, ship the first win with your people (offers, leads or delivery, as diagnosed), and install the operating rhythm. Product-engineer training is included: we turn your software developers into product engineers, or help you place one, so the code and the capability stay in your firm.',
+      'We diagnose the binding wall across Offers, Leads and Delivery, prioritise a leverage list, decide buy / build / place before spend moves, ship the first win with your people (offers, leads or delivery, as diagnosed), and install the cycle rhythm. Owned shipping capability is included when the bet needs it: we turn your software developers into product engineers, or help you place one, so the code and the capability stay in your firm.',
     bullets: [
       'Constraint diagnosis across Offers, Leads and Delivery, plus a prioritised leverage backlog.',
-      'Buy vs build decisions before spend moves.',
+      'Buy / build / place decisions before spend moves.',
       'First win shipped through your team (offers, leads or delivery, as diagnosed).',
-      'Operating rhythm installed.',
-      'Product-engineer training included (train your developers, or help place one).',
+      'Cycle rhythm installed.',
+      'Owned shipping capability included when the bet needs it (train your developers, or help place one).',
     ],
   },
   delivery: {
@@ -69,14 +69,14 @@ export const modes = {
     name: 'Client Capacity Delivery',
     summary: 'Done for you. Same process. We do more of the build and ship.',
     body:
-      'Same diagnosis across Offers, Leads and Delivery, leverage list, buy vs build, first ship and operating rhythm. The difference is who does the heavy lifting: FluentForward ships more of the build under your control, with fixed scope in writing, and your firm still owns the code. When Leads is the wall, demand work may use white-labelled specialists or placed people; FluentForward still owns diagnosis, the relationship and the scorecard. Choose this when you need speed or do not have people to run the build yourselves.',
+      'Same diagnosis across Offers, Leads and Delivery, leverage list, buy / build / place, first ship and cycle rhythm. The difference is who does the heavy lifting: FluentForward ships more of the build under your control, with fixed scope in writing, and your firm still owns the code. When Leads is the wall, demand work may use white-labelled specialists or placed people; FluentForward still owns diagnosis, the relationship and the scorecard. Choose this when you need speed or do not have people to run the build yourselves.',
     bullets: [
       'Same Client Capacity process as Partnership.',
       'We deliver more of the build and ship, fixed scope.',
       'Demand path available when pipeline is the wall; FluentForward owns diagnosis, relationship and scorecard.',
       'Your firm owns the code and the roadmap.',
-      'Operating rhythm installed so the win sticks.',
-      'Product-engineer path available if you have or place a developer (not assumed).',
+      'Cycle rhythm installed so the win sticks.',
+      'Owned shipping capability available when the bet needs it, if you have or place a developer (optional · not assumed).',
     ],
   },
 } as const
@@ -85,18 +85,18 @@ export const process = {
   eyebrow: 'Same process either way',
   heading: 'How Client Capacity runs',
   steps: [
-    'Diagnose Offers, Leads and Delivery (which wall binds)',
-    'Prioritise the leverage list (clear the wall; capture the gain)',
-    'Buy vs build (and what to white-label or place)',
-    'Set AI governance',
-    'Ship the first win (offers, leads or delivery, as diagnosed)',
-    'Install the operating rhythm',
-    'Product-engineer path when you have or place a developer (included on Partnership)',
+    'Diagnose the three walls',
+    'Prioritise the leverage list',
+    'Decide buy / build / place',
+    'Set AI ownership rules',
+    'Ship the first win',
+    'Install the cycle rhythm',
+    'Add owned shipping capability (when the bet needs it)',
   ],
   choiceLine:
     'After diagnosis, one question: do we run this through your people, or do you want us to deliver more of it?',
   compoundingLine:
-    'Fix one wall and the next becomes the bottleneck. The next cycle picks the next high-leverage constraint across Offers, Leads or Delivery, and runs the same steps.',
+    'Fix one wall and the next becomes the bottleneck. The cycle rhythm re-scores all three walls; the next cycle runs the same steps on the new binding constraint.',
 } as const
 
 export const governance = {
@@ -138,12 +138,12 @@ export const shipGateDelivery = {
 } as const
 
 export const productEngineerPath = {
-  eyebrow: 'Product-engineer path',
+  eyebrow: 'Owned shipping capability',
   heading: 'Your team, building with AI.',
   body:
-    'On Partnership, product-engineer training is included. We work alongside your developers and train them in AI-driven development on your real backlog, so your firm owns the code and keeps the capability. No developers? We help you place one and train them from day one.',
+    'On Partnership, owned shipping capability is included when the bet needs it. We work alongside your developers and train them in AI-driven development on your real backlog, so your firm owns the code and keeps the capability. No developers? We help you place one and train them from day one.',
   smallPrint:
-    'Included on Client Capacity Partnership. Details are agreed with you when Client Capacity says build.',
+    'Included on Client Capacity Partnership when the bet needs owned build. Optional on Delivery if you have or place a developer. Details are agreed with you when Client Capacity says build.',
 } as const
 
 export const fitLine =
@@ -156,7 +156,7 @@ export const faq = {
     {
       question: 'Partnership or Delivery?',
       answer:
-        'Same process either way. Partnership runs through your team with product-engineer training included. Delivery is when we ship more of the build under fixed scope. The free Audit review call picks the mode that fits.',
+        'Same process either way. Partnership runs through your team with owned shipping capability included when the bet needs it. Delivery is when we ship more of the build under fixed scope. The free Audit review call picks the mode that fits.',
     },
     {
       question: 'Can we pause or leave?',

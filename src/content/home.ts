@@ -31,7 +31,7 @@ export const whereToStart = {
       ifYou:
         'You want the process run through your team, and to keep the capability in your firm.',
       body:
-        'Done with you. Diagnosis across Offers, Leads and Delivery, leverage list, first win, operating rhythm, and product-engineer training included.',
+        'Done with you. Diagnosis across Offers, Leads and Delivery, leverage list, first win, cycle rhythm, and owned shipping capability included when the bet needs it.',
       link: { href: routeLinks.partnership, label: seePartnershipLink },
     },
     {
@@ -39,7 +39,7 @@ export const whereToStart = {
       ifYou:
         'You want the same process, with us doing more of the build and ship.',
       body:
-        'Done for you. Same process, with us doing more of the build and ship. Fixed scope, your firm owns the code, and the win still lands in an operating rhythm.',
+        'Done for you. Same process, with us doing more of the build and ship. Fixed scope, your firm owns the code, and the win still lands in a cycle rhythm.',
       link: { href: routeLinks.delivery, label: seeDeliveryLink },
     },
     {

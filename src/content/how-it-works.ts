@@ -86,7 +86,7 @@ export const faq = {
       question: 'Do you build?',
       answer: {
         before:
-          'Yes, when Client Capacity Delivery is the right mode: fixed scope, agreed in writing, your firm owns the code. On Partnership we work alongside your developers, or help you place one, with product-engineer training included. If you already have a vendor, they can build under your direction. For the full menu, see ',
+          'Yes, when Client Capacity Delivery is the right mode: fixed scope, agreed in writing, your firm owns the code. On Partnership we work alongside your developers, or help you place one, with owned shipping capability included when the bet needs it. If you already have a vendor, they can build under your direction. For the full menu, see ',
         link: { label: 'Ways we work', href: waysWeWorkPath },
         after: '.',
       },
