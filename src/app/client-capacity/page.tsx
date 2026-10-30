@@ -18,10 +18,11 @@ import {
   fitLine,
   gartnerProof,
   governance,
+  ifYouBeats,
   hero,
   meta,
   modes,
-  pillars,
+  oneSystem,
   process,
   servicesImpact,
   shipGateDelivery,
@@ -65,13 +66,22 @@ export default function ClientCapacityPage() {
       <PageHero eyebrow={hero.eyebrow} heading={hero.heading} lede={hero.lede} />
 
       <DefinitionGrid
-        eyebrow={pillars.eyebrow}
-        heading={pillars.heading}
-        lede={pillars.lede}
-        items={pillars.items}
+        eyebrow={ifYouBeats.eyebrow}
+        heading={ifYouBeats.heading}
+        lede={ifYouBeats.lede}
+        items={ifYouBeats.items}
         tone="muted"
-        id="offers-leads-delivery"
+        id="offers-demand-delivery"
       />
+
+      <Section tone="paper" border>
+        <Reveal className="max-w-2xl">
+          <Heading as="h2">{oneSystem.heading}</Heading>
+          <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">
+            {oneSystem.body}
+          </p>
+        </Reveal>
+      </Section>
 
       <Section tone="paper" border>
         <Reveal className="max-w-2xl">

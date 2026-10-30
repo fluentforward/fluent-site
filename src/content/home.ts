@@ -82,14 +82,14 @@ export const whereToStart = {
 } as const
 
 export const sectorStrip = {
-  eyebrow: "Sectors we've already been inside",
-  heading: 'Services firms where people are the product.',
+  eyebrow: "Firms we\u2019ve already been inside",
+  heading: 'Services businesses that need revenue up without headcount up.',
   lede:
-    'Anonymised engagements. Same buyer shape: owners and operators who need more client work without a linear headcount climb.',
+    'Anonymised engagements. Same shape: owners who need more of the right work at prices that hold, delivered without a linear hire plan.',
   chips: [
     {
       label: 'Energy & utilities',
-      line: 'Process owned, not bent around the CRM.',
+      line: 'Process owned end to end, not bent around the CRM.',
     },
     {
       label: 'Healthcare',
@@ -99,13 +99,18 @@ export const sectorStrip = {
 } as const
 
 export const whyFixesFail = {
-  heading: 'Your best people have become the glue between your systems.',
+  eyebrow: 'Why tools don\u2019t move the P&L',
+  heading: 'Efficiency without a growth system just funds the timesheet.',
   intro:
-    'Every new client adds chasing, copying and checking, so growth means hiring. More licences rarely fix a weak offer, a thin pipeline, or broken handoffs. They add tools while the firm stays dependent on the same people.',
+    'If you only speed delivery, you free hours you still sell by the day. If you only buy leads, weak packaging turns them into discount work. If you only rewrite the offer, thin demand and broken delivery leave revenue on the table. Offers, demand and delivery have to move together or the gain leaks.',
+  body:
+    'Client Capacity is a growth system: package so the right work pays properly, fill the calendar with that work, then use AI and tech in delivery under rules you own so margin actually shows up. Done in the right order, the next win funds the next cycle. The system pays for itself in capacity and commercial capture, not in licence spend.',
+  isolation:
+    'You cannot fix one of the three in isolation. A sharper offer with no demand stays a slide. Demand with a timesheet offer becomes busy discounting. Delivery AI with no packaging and no pipeline is a faster way to stay stuck.',
   gartner: {
-    heading: 'Most agentic projects will not survive the forecast',
+    heading: 'Most AI projects never reach the P&L',
     body:
-      'Gartner forecasts that more than 40% of agentic AI projects will be cancelled by the end of 2027, mostly for cost, unclear value, or weak risk controls. Strategy has to come before build: decide what to fix, what to build, who builds it and how AI stays under your control.',
+      'Gartner forecasts that more than 40% of agentic AI projects will be cancelled by the end of 2027, mostly for cost, unclear value or weak risk controls. Strategy before spend: decide what is capping revenue and profit, then build under your ownership.',
     attribution:
       'Source: Gartner press release, 25 June 2025. Not an endorsement of FluentForward.',
     sourceUrl: gartnerPressReleases.agenticProjectsCancelled2027,
@@ -115,20 +120,20 @@ export const whyFixesFail = {
 export const outcomes = {
   heading: 'What changes for your firm',
   items: [
-    'Clarity on what\u2019s stopping the next client: offers, demand or delivery.',
-    'A first win you can see in the business, not a pilot deck.',
-    'Packaging that captures freed capacity so it does not fall back into billable hours.',
-    'AI ownership rules so people own the commercial, the relationship and the quality bar.',
-    'A rhythm that re-checks offers, demand and delivery when one limit clears.',
+    'Clarity on whether offers, demand or delivery is capping revenue now.',
+    'Packaging that turns freed capacity into priced outcomes, not more billable hours.',
+    'Demand aimed at work that fits the offer and the margin you want.',
+    'Delivery (with AI under ownership) that protects profit as volume rises.',
+    'A cycle that re-checks all three so the next limit does not quietly kill growth.',
     'Code, agents and roadmap your firm owns.',
   ],
 }
 
 export const fit = {
   builtForHeading:
-    'Built for services firms stuck between busy and the next client',
+    'Built for owners who need profit from growth, not just more people',
   builtFor:
-    'Agencies, consultancies, professional and managed services of around 20 to 200 people, where client work runs on people, inboxes and spreadsheets. Client Capacity clears what\u2019s capping growth across offers, demand and delivery: Partnership or Delivery.',
+    'Agencies, consultancies, professional and managed services of around 20 to 200 people. If you need more of the right clients at prices that hold, and delivery that turns that work into margin without a hire for every win, Client Capacity runs offers, demand and delivery as one system: with your team (Partnership), or we deliver more of it (Delivery).',
   lineHeading: 'Where we draw the line',
   notForHeading: "We're not the right fit if:",
   notFor: [

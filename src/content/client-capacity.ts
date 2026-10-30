@@ -16,7 +16,7 @@ export const hero = {
     'If the offer is wrong, demand is thin, or delivery breaks when you grow, hiring is the default lever. We find which of those is capping you now, ship one visible win, install a cycle that re-checks all three, and choose Partnership or Delivery only after that. Your firm owns the code, the agents and the roadmap.',
 } as const
 
-export const pillars = {
+export const ifYouBeats = {
   eyebrow: 'Offers. Demand. Delivery.',
   heading: 'Talk to the limit that is capping you.',
   lede:
@@ -38,6 +38,12 @@ export const pillars = {
         'Proposals, handoffs and throughput break when you grow. AI without ownership makes the checking worse. Fix throughput and ownership, install the cycle rhythm that makes the win stick, and the next limit (offers or demand) becomes obvious.',
     },
   ],
+} as const
+
+export const oneSystem = {
+  heading: 'One system. Not three side projects.',
+  body:
+    'Offers without demand is a brochure. Demand without packaging is discount volume. Delivery AI without both is busywork. Client Capacity sequences what is capping you now, then re-checks the other two so the gain shows up as revenue and profit, not a leaner timesheet.',
 } as const
 
 export const servicesImpact = {
