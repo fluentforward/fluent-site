@@ -1,5 +1,5 @@
 import { auditCta, reviewCallCta } from '@/content/board'
-import { clientCapacityPath, waysWeWorkPath } from '@/content/routes'
+import { waysWeWorkPath } from '@/content/routes'
 
 export type FaqAnswer =
   | string
@@ -13,31 +13,6 @@ export function faqAnswerText(answer: FaqAnswer): string {
   if (typeof answer === 'string') return answer
   return `${answer.before}${answer.link.label}${answer.after}`
 }
-
-export const meta = {
-  title: 'How it works',
-  description:
-    'From First AI Move to Client Capacity: a free Audit review call to pick Partnership or Delivery, fixed-scope build when needed, and code your firm owns.',
-} as const
-
-export const structuredServiceType =
-  'Client Capacity advisory and implementation for services firms' as const
-
-export const hero = {
-  eyebrow: 'How it works',
-  heading: 'From First AI Move to capacity that sticks',
-  lede:
-    'For agencies, consultancies and professional services firms of 20 to 200 people. You start with First AI Move and a free Audit review call that picks Partnership or Delivery, then we ship the first capacity win with your team or for you, and your firm owns the result.',
-}
-
-export const clientCapacityStepsLink = {
-  before: 'Want the full Client Capacity picture? ',
-  link: {
-    label: 'See how the program runs',
-    href: `${clientCapacityPath}#how-client-capacity-runs`,
-  },
-  after: '',
-} as const
 
 export const whenBuild = {
   eyebrow: 'When you build',
@@ -86,8 +61,11 @@ export const faq = {
       question: 'Do you build?',
       answer: {
         before:
-          'Yes, when Client Capacity Delivery is the right mode: fixed scope, agreed in writing, your firm owns the code. On Partnership we work alongside your developers, or help you place one, with product-engineer training included. If you already have a vendor, they can build under your direction. For the full menu, see ',
-        link: { label: 'Ways we work', href: waysWeWorkPath },
+          'Yes, when Client Capacity Delivery is the right mode: fixed scope, agreed in writing, your firm owns the code. On Partnership we work alongside your developers, or help you place one, with owned shipping capability included when the bet needs it. If you already have a vendor, they can build under your direction. For the full menu, see ',
+        link: {
+          label: 'what we can set up or build',
+          href: `${waysWeWorkPath}#implementation-menu`,
+        },
         after: '.',
       },
     },
@@ -99,7 +77,7 @@ export const faq = {
     {
       question: 'How do we know it\u2019s working?',
       answer:
-        'Productivity per head against the baseline you set at the start, plus honest ship / don\u2019t ship decisions you can see in the roadmap.',
+        'You set a baseline for revenue, margin on the work you want more of, and capacity to take the next client. We track movement against that baseline, plus honest ship / do not ship decisions you can see in the roadmap. No invented proof points.',
     },
     {
       question: 'What tools do you build with?',
@@ -121,7 +99,7 @@ export const faq = {
 
 export const closingCta = {
   eyebrow: 'Next step',
-  heading: 'Find your starting point.',
+  heading: 'Find what\u2019s stopping the next client.',
   body:
     'Whether Client Capacity Partnership, Client Capacity Delivery or AI Quick Start fits, First AI Move and the review call show you straight. Terms are agreed in writing, never published here.',
   primary: auditCta,

@@ -12,11 +12,11 @@ export default function NotFound() {
           That page is not here.
         </Heading>
         <Lede className="mt-6">
-          It may have moved, or it may never have existed. Either way, the three
-          pages that matter are the offer, the practice, and a way to reach us.
+          It may have moved, or it may never have existed. Start with Client
+          Capacity, Ways we work, or a way to reach us.
         </Lede>
         <div className="mt-9 flex flex-wrap gap-4">
-          <Button href="/how-it-works">How it works</Button>
+          <Button href="/ways-we-work">Ways we work</Button>
           <Button href="/" variant="secondary">
             Back to home
           </Button>

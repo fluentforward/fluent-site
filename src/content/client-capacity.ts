@@ -3,7 +3,7 @@ import { gartnerPressReleases } from '@/content/gartner'
 export const meta = {
   title: 'Client Capacity | FluentForward',
   description:
-    'One program across Offers, Leads and Delivery. Win more client work without hiring more people. Partnership through your team, or Delivery when we ship more of it. Your firm owns what we build.',
+    'Clear what\u2019s stopping the next client: offers, demand or delivery. Client Capacity for services firms: Partnership or Delivery after diagnosis. Your firm owns what we build.',
 } as const
 
 export const structuredServiceType =
@@ -11,33 +11,45 @@ export const structuredServiceType =
 
 export const hero = {
   eyebrow: 'Client Capacity',
-  heading: 'More client work without hiring more people',
+  heading: 'Clear what\u2019s stopping the next client.',
   lede:
-    'One program across Offers, Leads and Delivery. After First AI Move and a free Audit review call, we name the binding wall, then you choose Partnership (done with you) or Delivery (done for you). Your firm owns the code, the agents and the roadmap.',
+    'If the offer is wrong, demand is thin, or delivery breaks when you grow, hiring is the default lever. We find which of those is capping you now, ship one visible win, install a cycle that re-checks all three, and choose Partnership or Delivery only after that. Your firm owns the code, the agents and the roadmap.',
 } as const
 
-export const pillars = {
-  eyebrow: 'What the program clears',
-  heading: 'Offers · Leads · Delivery',
+export const ifYouBeats = {
+  eyebrow: 'Offers. Demand. Delivery.',
+  heading: 'Talk to the limit that is capping you.',
   lede:
-    'Most firms guess at AI. We start with the binding wall: how you package and get paid, whether enough qualified work is coming in, or whether the team can take the next client without burning out. Fix one and the next becomes the bottleneck. The same program sequences whatever is next.',
+    'Start with what\u2019s true in the business, not with a tool wishlist. Fix one, and the next limit shows up. The same programme sequences whatever comes next.',
   items: [
     {
-      title: 'Offers',
+      title: 'If your offer is wrong',
       body:
-        'How you package and get paid. Free up hours but keep selling hours or days and you get a leaner timesheet, not more revenue. Packaging sits here, not as a later optional module.',
+        'How you package and get paid. Free up hours but keep selling hours or days and you get a leaner timesheet, not more revenue. Seniors reinvent the deal; margin stays stuck. Packaging sits in the trunk, not as a later optional module. Fix how you get paid first so freed time turns into productised offers, retainers or scoped outcomes. Then demand work is worth doing.',
     },
     {
-      title: 'Leads',
+      title: 'If your go-to-market is thin',
       body:
-        'Demand and sales when pipeline is the wall. First-class when the constraint is not enough qualified work coming in. Demand work runs inside the program after diagnosis, not as a separate lead-gen shop.',
+        'If the calendar is not filling with the right conversations, a strong delivery team still starves. Demand work runs inside the programme after diagnosis, not as a separate lead-gen shop. FluentForward owns diagnosis, the relationship and the scorecard. We are not a cold lead-gen agency.',
     },
     {
-      title: 'Delivery',
+      title: 'If you struggle to take the next client',
       body:
-        'Capacity to do the work: proposals, handoffs, throughput, AI with ownership, and the operating rhythm that makes the win stick.',
+        'Proposals, handoffs and throughput break when you grow. AI without ownership makes the checking worse. Fix throughput and ownership, install the cycle rhythm that makes the win stick, and the next limit (offers or demand) becomes obvious.',
     },
   ],
+} as const
+
+export const oneSystem = {
+  heading: 'One system. Not three side projects.',
+  body:
+    'Offers without demand is a brochure. Demand without packaging is discount volume. Delivery AI without both is busywork. Client Capacity sequences what is capping you now, then re-checks the other two so the gain shows up as revenue and profit, not a leaner timesheet.',
+} as const
+
+export const servicesImpact = {
+  heading: 'Built for owners who need profit from growth, not just more people',
+  body:
+    'If you need more of the right clients at prices that hold, and delivery that turns that work into margin without a hire for every win, Client Capacity runs offers, demand and delivery as one growth system. AI under rules you own moves you faster; it is not the product you buy.',
 } as const
 
 export const gartnerProof = {
@@ -53,50 +65,50 @@ export const modes = {
   partnership: {
     id: 'partnership',
     name: 'Client Capacity Partnership',
-    summary: 'Done with you. We run the process through your team.',
+    summary: 'Done with you. Clear what\u2019s stopping you through your team.',
     body:
-      'We diagnose the binding wall across Offers, Leads and Delivery, prioritise a leverage list, make buy vs build decisions, ship the first win with your people (offers, leads or delivery, as diagnosed), and install the operating rhythm. Product-engineer training is included: we turn your software developers into product engineers, or help you place one, so the code and the capability stay in your firm.',
+      'We find whether offers, demand or delivery is capping you now, prioritise a leverage list, decide buy / build / place before spend moves, ship the first win with your people, and install the cycle rhythm. Owned shipping capability is included when the bet needs it: we turn your software developers into product engineers, or help you place one, so the code and the capability stay in your firm.',
     bullets: [
-      'Constraint diagnosis across Offers, Leads and Delivery, plus a prioritised leverage backlog.',
-      'Buy vs build decisions before spend moves.',
-      'First win shipped through your team (offers, leads or delivery, as diagnosed).',
-      'Operating rhythm installed.',
-      'Product-engineer training included (train your developers, or help place one).',
+      'Clarity on offers, demand or delivery, plus a prioritised leverage backlog.',
+      'Buy / build / place decisions before spend moves.',
+      'First win shipped through your team on what is capping you now.',
+      'Cycle rhythm installed.',
+      'Owned shipping capability included when the bet needs it (train your developers, or help place one).',
     ],
   },
   delivery: {
     id: 'delivery',
     name: 'Client Capacity Delivery',
-    summary: 'Done for you. Same process. We do more of the build and ship.',
+    summary: 'Done for you. Same clearance. We do more of the build and ship.',
     body:
-      'Same diagnosis across Offers, Leads and Delivery, leverage list, buy vs build, first ship and operating rhythm. The difference is who does the heavy lifting: FluentForward ships more of the build under your control, with fixed scope in writing, and your firm still owns the code. When Leads is the wall, demand work may use white-labelled specialists or placed people; FluentForward still owns diagnosis, the relationship and the scorecard. Choose this when you need speed or do not have people to run the build yourselves.',
+      'Same diagnosis and cycle. We find what is stopping the next client, run the same steps, and do more of the build and ship under fixed scope in writing. Your firm still owns the code. When go-to-market is thin, demand work may use white-labelled specialists or placed people; FluentForward still owns diagnosis, the relationship and the scorecard. Choose this when you need speed or do not have people to run the build yourselves.',
     bullets: [
-      'Same Client Capacity process as Partnership.',
+      'Same Client Capacity cycle as Partnership.',
       'We deliver more of the build and ship, fixed scope.',
-      'Demand path available when pipeline is the wall; FluentForward owns diagnosis, relationship and scorecard.',
+      'Demand path when go-to-market is thin; FluentForward owns diagnosis, relationship and scorecard.',
       'Your firm owns the code and the roadmap.',
-      'Operating rhythm installed so the win sticks.',
-      'Product-engineer path available if you have or place a developer (not assumed).',
+      'Cycle rhythm installed so the win sticks.',
+      'Owned shipping capability available when the bet needs it, if you have or place a developer (optional · not assumed).',
     ],
   },
 } as const
 
 export const process = {
-  eyebrow: 'Same process either way',
-  heading: 'How Client Capacity runs',
+  eyebrow: 'Same cycle either mode',
+  heading: 'How we run it',
   steps: [
-    'Diagnose Offers, Leads and Delivery (which wall binds)',
-    'Prioritise the leverage list (clear the wall; capture the gain)',
-    'Buy vs build (and what to white-label or place)',
-    'Set AI governance',
-    'Ship the first win (offers, leads or delivery, as diagnosed)',
-    'Install the operating rhythm',
-    'Product-engineer path when you have or place a developer (included on Partnership)',
+    'Diagnose the growth constraints',
+    'Prioritise the leverage list',
+    'Decide buy / build / place',
+    'Set AI ownership rules',
+    'Ship the first win',
+    'Install the cycle rhythm',
+    'Add owned shipping capability (when the bet needs it)',
   ],
   choiceLine:
-    'After diagnosis, one question: do we run this through your people, or do you want us to deliver more of it?',
+    'After we know what\u2019s stopping you, one question: do we run this through your people, or do you want us to deliver more of it?',
   compoundingLine:
-    'Fix one wall and the next becomes the bottleneck. The next cycle picks the next high-leverage constraint across Offers, Leads or Delivery, and runs the same steps.',
+    'Fix one limit and the next becomes obvious. The cycle rhythm re-checks offers, demand and delivery; the next cycle runs the same steps on what is capping you now.',
 } as const
 
 export const governance = {
@@ -138,25 +150,30 @@ export const shipGateDelivery = {
 } as const
 
 export const productEngineerPath = {
-  eyebrow: 'Product-engineer path',
+  eyebrow: 'Owned shipping capability',
   heading: 'Your team, building with AI.',
   body:
-    'On Partnership, product-engineer training is included. We work alongside your developers and train them in AI-driven development on your real backlog, so your firm owns the code and keeps the capability. No developers? We help you place one and train them from day one.',
+    'On Partnership, owned shipping capability is included when the bet needs it. We work alongside your developers and train them in AI-driven development on your real backlog, so your firm owns the code and keeps the capability. No developers? We help you place one and train them from day one.',
   smallPrint:
-    'Included on Client Capacity Partnership. Details are agreed with you when Client Capacity says build.',
+    'Included on Client Capacity Partnership when the bet needs owned build. Optional on Delivery if you have or place a developer. Details are agreed with you when Client Capacity says build.',
 } as const
 
 export const fitLine =
-  'Built for owner-led services firms of 20 to 200 people where Offers, Leads or Delivery is the wall. Not sure? First AI Move will tell you.' as const
+  'Built for owner-led services firms of 20 to 200 people where offers, demand or delivery is capping growth. Not sure? First AI Move will tell you.' as const
 
 export const faq = {
   eyebrow: 'Common questions',
   heading: 'Client Capacity in practice',
   items: [
     {
+      question: 'Do you only fix delivery?',
+      answer:
+        'No. Offers (packaging and how you get paid), demand (qualified pipeline and sales), and delivery (proposals, handoffs, throughput) can each stop the next client. We start with whichever is capping you now.',
+    },
+    {
       question: 'Partnership or Delivery?',
       answer:
-        'Same process either way. Partnership runs through your team with product-engineer training included. Delivery is when we ship more of the build under fixed scope. The free Audit review call picks the mode that fits.',
+        'Same cycle either way. Partnership runs through your team with owned shipping capability included when the bet needs it. Delivery is when we ship more of the build under fixed scope. The free Audit review call picks the mode that fits.',
     },
     {
       question: 'Can we pause or leave?',
@@ -170,7 +187,7 @@ export const faq = {
     {
       question: 'What if the problem is leads, not delivery?',
       answer:
-        'Then Leads is the binding wall. After diagnosis we run demand work inside Client Capacity: FluentForward owns diagnosis, the relationship and the scorecard. Where useful we white-label specialists or place people. We are not a cold lead-gen agency.',
+        'Then demand is the limit. After diagnosis we run demand work inside Client Capacity: FluentForward owns diagnosis, the relationship and the scorecard. Where useful we white-label specialists or place people. We are not a cold lead-gen agency.',
     },
   ],
 } as const

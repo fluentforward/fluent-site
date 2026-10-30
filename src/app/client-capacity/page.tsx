@@ -18,11 +18,13 @@ import {
   fitLine,
   gartnerProof,
   governance,
+  ifYouBeats,
   hero,
   meta,
   modes,
-  pillars,
+  oneSystem,
   process,
+  servicesImpact,
   shipGateDelivery,
   structuredServiceType,
 } from '@/content/client-capacity'
@@ -64,13 +66,30 @@ export default function ClientCapacityPage() {
       <PageHero eyebrow={hero.eyebrow} heading={hero.heading} lede={hero.lede} />
 
       <DefinitionGrid
-        eyebrow={pillars.eyebrow}
-        heading={pillars.heading}
-        lede={pillars.lede}
-        items={pillars.items}
+        eyebrow={ifYouBeats.eyebrow}
+        heading={ifYouBeats.heading}
+        lede={ifYouBeats.lede}
+        items={ifYouBeats.items}
         tone="muted"
-        id="offers-leads-delivery"
+        id="offers-demand-delivery"
+        size="compact"
+        dense
       />
+
+      <Section tone="paper" border size="compact">
+        <Reveal className="max-w-2xl">
+          <Heading as="h2">{oneSystem.heading}</Heading>
+          <p className="mt-6 text-[1.0625rem] leading-[1.72] text-slate">
+            {oneSystem.body}
+          </p>
+          <Heading as="h2" className="mt-10">
+            {servicesImpact.heading}
+          </Heading>
+          <p className="mt-6 text-[1.0625rem] leading-[1.72] text-slate">
+            {servicesImpact.body}
+          </p>
+        </Reveal>
+      </Section>
 
       <Section tone="paper" size="compact" border>
         <Reveal className="max-w-prose text-[0.9375rem] leading-[1.72] text-slate">
@@ -86,16 +105,17 @@ export default function ClientCapacityPage() {
           id={mode.id}
           tone={modeIndex % 2 === 0 ? 'muted' : 'paper'}
           border
+          size="compact"
         >
           <Reveal className="max-w-3xl">
             <Eyebrow>{mode.name}</Eyebrow>
-            <Heading as="h2" className="mt-8">
+            <Heading as="h2" className="mt-6">
               {mode.summary}
             </Heading>
-            <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">
+            <p className="mt-6 text-[1.0625rem] leading-[1.72] text-slate">
               {mode.body}
             </p>
-            <ul className="mt-8 space-y-3">
+            <ul className="mt-6 space-y-3">
               {mode.bullets.map((item) => (
                 <li
                   key={item}
@@ -112,17 +132,17 @@ export default function ClientCapacityPage() {
         </Section>
       ))}
 
-      <Section tone="paper" border id="how-client-capacity-runs">
+      <Section tone="paper" border id="how-client-capacity-runs" size="compact">
         <Reveal className="max-w-3xl">
           <Eyebrow>{process.eyebrow}</Eyebrow>
-          <Heading as="h2" className="mt-8">
+          <Heading as="h2" className="mt-6">
             {process.heading}
           </Heading>
         </Reveal>
-        <ol className="mt-16 space-y-0 border-t border-line">
+        <ol className="mt-12 space-y-0 border-t border-line">
           {process.steps.map((step, index) => (
             <Reveal key={step} delay={index * 60}>
-              <li className="border-b border-line py-8 md:py-10">
+              <li className="border-b border-line py-6 md:py-8">
                 <p className="max-w-prose text-[0.9375rem] leading-[1.72] text-slate">
                   {step}
                 </p>
@@ -130,10 +150,10 @@ export default function ClientCapacityPage() {
             </Reveal>
           ))}
         </ol>
-        <Reveal delay={120} className="mt-10 max-w-prose">
+        <Reveal delay={120} className="mt-8 max-w-prose">
           <Lede>{process.choiceLine}</Lede>
         </Reveal>
-        <Reveal delay={160} className="mt-8 max-w-prose">
+        <Reveal delay={160} className="mt-6 max-w-prose">
           <p className="text-[1.0625rem] leading-[1.72] text-slate">
             {process.compoundingLine}
           </p>
@@ -146,12 +166,14 @@ export default function ClientCapacityPage() {
         items={governance.items}
         tone="muted"
         id="governance"
+        size="compact"
+        dense
       />
 
-      <Section tone="paper" border>
+      <Section tone="paper" border size="compact">
         <Reveal className="max-w-2xl">
           <Heading as="h2">{shipGateDelivery.heading}</Heading>
-          <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">
+          <p className="mt-6 text-[1.0625rem] leading-[1.72] text-slate">
             {shipGateDelivery.body}
           </p>
         </Reveal>
@@ -159,11 +181,11 @@ export default function ClientCapacityPage() {
 
       <BoardDeveloperSection />
 
-      <ResearchProofStrip content={gartnerProof} tone="paper" border />
+      <ResearchProofStrip content={gartnerProof} tone="paper" border size="compact" />
 
-      <HomeProofSection />
+      <HomeProofSection size="compact" />
 
-      <FaqSection content={faq} />
+      <FaqSection content={faq} size="compact" />
 
       <HomeClosingSection fitLine={fitLine} />
     </>

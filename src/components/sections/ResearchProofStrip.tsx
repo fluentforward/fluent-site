@@ -16,14 +16,16 @@ export function ResearchProofStrip({
   tone = 'paper',
   border = true,
   headingAs = 'h2',
+  size = 'default',
 }: {
   content: ResearchProofContent
   tone?: 'paper' | 'muted'
   border?: boolean
   headingAs?: 'h2' | 'h3'
+  size?: 'default' | 'compact'
 }) {
   return (
-    <Section tone={tone} border={border}>
+    <Section tone={tone} border={border} size={size}>
       <Reveal className="max-w-3xl">
         <Heading as={headingAs}>{content.heading}</Heading>
         <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">

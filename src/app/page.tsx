@@ -1,4 +1,4 @@
-import { HomeSectorStripSection } from '@/components/sections/home/HomeSectorStripSection'
+import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
 import { HomeWhereToStartSection } from '@/components/sections/home/HomeWhereToStartSection'
 import { HomeClosingSection } from '@/components/sections/home/HomeClosingSection'
 import { HomeFitSection } from '@/components/sections/home/HomeFitSection'
@@ -6,6 +6,7 @@ import { HomeProofSection } from '@/components/sections/home/HomeProofSection'
 import { HomeThreeStepsSection } from '@/components/sections/home/HomeThreeStepsSection'
 import { HomeWhyFixesFailSection } from '@/components/sections/home/HomeWhyFixesFailSection'
 import { HomeHero } from '@/components/sections/HomeHero'
+import { growthLimits } from '@/content/home'
 import { site } from '@/content/site'
 
 const structuredData = {
@@ -29,12 +30,22 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <HomeHero />
+      <DefinitionGrid
+        eyebrow={growthLimits.eyebrow}
+        heading={growthLimits.heading}
+        lede={growthLimits.lede}
+        items={growthLimits.items}
+        closing={growthLimits.closing}
+        tone="paper"
+        id="growth-limits"
+        size="compact"
+        dense
+      />
       <HomeWhereToStartSection />
-      <HomeSectorStripSection />
       <HomeWhyFixesFailSection />
       <HomeFitSection />
       <HomeThreeStepsSection />
-      <HomeProofSection />
+      <HomeProofSection size="compact" />
       <HomeClosingSection />
     </>
   )

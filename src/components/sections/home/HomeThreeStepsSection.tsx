@@ -11,16 +11,16 @@ export function HomeThreeStepsSection({
   moreLink?: { href: string; label: string }
 }) {
   return (
-    <Section tone="muted" border id="how-it-works">
+    <Section tone="muted" border id="how-it-works" size="compact">
       <Reveal className="max-w-3xl">
         <Eyebrow>{howItWorks.eyebrow}</Eyebrow>
         <Heading as="h2" className="mt-8">{howItWorks.heading}</Heading>
       </Reveal>
 
-      <ol className="mt-16 space-y-0 border-t border-line">
+      <ol className="mt-12 space-y-0 border-t border-line">
         {howItWorks.steps.map((step, index) => (
           <Reveal key={step.title} delay={index * 60}>
-            <li className="border-b border-line py-10 md:py-12">
+            <li className="border-b border-line py-8 md:py-10">
               <h3 className="max-w-[32ch] text-balance font-display text-[1.125rem] font-medium tracking-[-0.015em] text-ink">
                 {step.title}
               </h3>

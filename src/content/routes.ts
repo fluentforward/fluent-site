@@ -10,7 +10,7 @@ export const routeNames = {
   buildPlan: 'Build Plan',
   agentSetup: 'Agent Setup',
   bespokeHarness: 'Bespoke Harness',
-  productEngineerPath: 'Product-engineer path',
+  productEngineerPath: 'Owned shipping capability',
   placement: 'Placement',
   ongoingSupport: 'Ongoing Support',
 } as const
@@ -39,9 +39,9 @@ export const seeAiQuickStartLink =
   `See how ${routeNames.aiQuickStart} works` as const
 
 export const waysWeWorkMeta = {
-  title: 'Ways we work: Client Capacity | FluentForward',
+  title: 'Ways we work | FluentForward',
   description:
-    'One program across Offers, Leads and Delivery. Partnership or Delivery. First AI Move and a free Audit review call show which fits. Your firm owns everything we build or set up.',
+    'Win the next client without hiring your way out. Start with First AI Move or a free Audit review call, then Client Capacity Partnership or Delivery. Your firm owns what we build.',
 } as const
 
 export const waysWeWorkStructuredServiceType =
@@ -49,14 +49,34 @@ export const waysWeWorkStructuredServiceType =
 
 export const waysWeWorkHub = {
   eyebrow: 'Ways we work',
-  heading: 'One program. Two ways to get capacity.',
+  heading: 'Win the next client without hiring your way out.',
   lede:
-    'Services firms know AI will reshape the work, and worry they will be disrupted if they do not move. We give you a safe path to more client capacity across Offers, Leads and Delivery: with your team, or we deliver more of it. You start with First AI Move, then a free Audit review call. Your firm owns the code, the agents and the roadmap.',
+    'If you are stuck between busy and the next client, the limit is usually the offer, demand or delivery. We find which, clear it as a growth system that pays for itself, and only then pick Partnership (with your team) or Delivery (we ship more of it). Start with First AI Move or a free Audit review call. Your firm owns the code, the agents and the roadmap.',
   implementationEyebrow: 'On either mode',
   implementationHeading: 'What we can set up or build',
   implementationLede:
     'Each one is scoped in writing before work starts, and your firm owns everything we build or set up.',
 } as const
+
+export const waysWeWorkStartingPoints = {
+  eyebrow: 'Where to start',
+  heading: 'Two ways into the same conversation',
+  lede:
+    'Both end in a straight read on fit and what would matter first for your firm.',
+  firstAiMove: {
+    title: 'First AI Move',
+    body:
+      'A fast self-serve read on where capacity is leaking and what a first win could free up, using your own numbers.',
+  },
+  reviewCall: {
+    title: 'Free Audit review call',
+    body:
+      'Talk first if you would rather name what is stopping the next client before you commit to a path.',
+  },
+} as const
+
+export const waysWeWorkModeOutcome =
+  'Same outcome: more client work without a linear headcount climb, with higher revenue and stronger margins.' as const
 
 export const waysWeWorkProcessStrip = clientCapacityProcess
 
@@ -73,18 +93,18 @@ export const waysWeWorkRoutes: readonly WaysWeWorkRoute[] = [
   {
     id: routeAnchors.partnership,
     name: routeNames.clientCapacityPartnership,
-    summary: 'Done with you. We run the process through your team.',
-    body: clientCapacityModes.partnership.body,
-    bullets: clientCapacityModes.partnership.bullets,
-    link: { href: routeLinks.partnership, label: seePartnershipLink },
+    summary: clientCapacityModes.partnership.summary,
+    body:
+      'Done with you. We find what\u2019s stopping the next client, ship the first win with your people, install the cycle rhythm, and include owned shipping capability when the bet needs it.',
+    link: { href: clientCapacityPath, label: seeClientCapacityLink },
   },
   {
     id: routeAnchors.delivery,
     name: routeNames.clientCapacityDelivery,
-    summary: 'Done for you. Same process. We do more of the build and ship.',
-    body: clientCapacityModes.delivery.body,
-    bullets: clientCapacityModes.delivery.bullets,
-    link: { href: routeLinks.delivery, label: seeDeliveryLink },
+    summary: clientCapacityModes.delivery.summary,
+    body:
+      'Done for you. Same diagnosis and cycle. Fixed scope, your firm owns the code, win lands in the cycle rhythm.',
+    link: { href: clientCapacityPath, label: seeClientCapacityLink },
   },
   {
     id: routeAnchors.smallFirm,
@@ -120,7 +140,7 @@ export const implementationMenu: readonly ImplementationMenuItem[] = [
   {
     title: routeNames.productEngineerPath,
     body:
-      'Included on Client Capacity Partnership. We train your software developers into product engineers on your real backlog, or help you place one, so the capability stays in your firm.',
+      'Included on Client Capacity Partnership when the bet needs it. We train your software developers into product engineers on your real backlog, or help you place one, so the capability stays in your firm. Optional on Delivery.',
   },
   {
     title: routeNames.placement,

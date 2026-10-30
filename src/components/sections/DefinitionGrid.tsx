@@ -1,3 +1,5 @@
+import clsx from 'clsx'
+
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Heading, Lede } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
@@ -13,6 +15,8 @@ export function DefinitionGrid({
   closing,
   tone = 'paper',
   id,
+  size = 'default',
+  dense = false,
 }: {
   eyebrow?: string
   heading: string
@@ -22,9 +26,11 @@ export function DefinitionGrid({
   closing?: string
   tone?: 'paper' | 'muted'
   id?: string
+  size?: 'default' | 'compact'
+  dense?: boolean
 }) {
   return (
-    <Section tone={tone} id={id}>
+    <Section tone={tone} id={id} size={size}>
       <Reveal className="max-w-3xl">
         {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
         <Heading as="h2" className={eyebrow ? 'mt-8' : undefined}>
@@ -38,7 +44,12 @@ export function DefinitionGrid({
         )}
       </Reveal>
 
-      <dl className="mt-20 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+      <dl
+        className={clsx(
+          'grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6',
+          dense ? 'mt-12' : 'mt-20',
+        )}
+      >
         {items.map((item, index) => (
           <Reveal
             key={item.title}
@@ -56,7 +67,7 @@ export function DefinitionGrid({
       </dl>
 
       {closing ? (
-        <Reveal delay={120} className="mt-12 max-w-prose">
+        <Reveal delay={120} className={dense ? 'mt-8 max-w-prose' : 'mt-12 max-w-prose'}>
           <p className="text-[1.0625rem] leading-[1.72] text-slate">{closing}</p>
         </Reveal>
       ) : null}

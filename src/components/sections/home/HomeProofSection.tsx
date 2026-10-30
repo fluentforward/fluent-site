@@ -5,9 +5,9 @@ import { Section } from '@/components/ui/Section'
 import { ProofCarousel } from '@/components/sections/ProofCarousel'
 import { proofPacksHome, proofSection } from '@/content/proof'
 
-export function HomeProofSection() {
+export function HomeProofSection({ size = 'default' }: { size?: 'default' | 'compact' }) {
   return (
-    <Section id="proof" tone="paper" border>
+    <Section id="proof" tone="paper" border size={size}>
       <Reveal className="max-w-3xl">
         <Eyebrow>{proofSection.eyebrow}</Eyebrow>
         <Heading as="h2" className="mt-8">{proofSection.heading}</Heading>
@@ -15,7 +15,10 @@ export function HomeProofSection() {
       </Reveal>
 
       <Reveal delay={100}>
-        <ProofCarousel packs={proofPacksHome} />
+        <ProofCarousel
+          packs={proofPacksHome}
+          offset={size === 'compact' ? 'compact' : 'default'}
+        />
       </Reveal>
     </Section>
   )

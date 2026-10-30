@@ -57,7 +57,13 @@ function CarouselNavButton({
   )
 }
 
-export function ProofCarousel({ packs }: { packs: readonly ProofPack[] }) {
+export function ProofCarousel({
+  packs,
+  offset = 'default',
+}: {
+  packs: readonly ProofPack[]
+  offset?: 'default' | 'compact'
+}) {
   const [index, setIndex] = useState(0)
   const count = packs.length
   const active = packs[index]
@@ -79,7 +85,7 @@ export function ProofCarousel({ packs }: { packs: readonly ProofPack[] }) {
   const navDisabled = count <= 1
 
   return (
-    <div className="mt-16">
+    <div className={offset === 'compact' ? 'mt-12' : 'mt-16'}>
       <div
         role="region"
         aria-roledescription="carousel"
