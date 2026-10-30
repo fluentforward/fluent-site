@@ -17,7 +17,7 @@ export const hero = {
 } as const
 
 export const ifYouBeats = {
-  eyebrow: 'Offers. Demand. Delivery.',
+  eyebrow: 'Offers · Demand · Delivery',
   heading: 'Talk to the limit that is capping you.',
   lede:
     'Start with what\u2019s true in the business, not with a tool wishlist. Fix one, and the next limit shows up. The same programme sequences whatever comes next.',
@@ -185,7 +185,7 @@ export const faq = {
       answer: 'Pricing is confirmed in writing before work starts.',
     },
     {
-      question: 'What if the problem is leads, not delivery?',
+      question: 'What if the problem is demand, not delivery?',
       answer:
         'Then demand is the limit. After diagnosis we run demand work inside Client Capacity: FluentForward owns diagnosis, the relationship and the scorecard. Where useful we white-label specialists or place people. We are not a cold lead-gen agency.',
     },
