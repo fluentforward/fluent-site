@@ -120,6 +120,11 @@ export default function WaysWeWorkPage() {
         <Reveal delay={120} className="mt-10 max-w-prose">
           <Lede>{waysWeWorkProcessStrip.choiceLine}</Lede>
         </Reveal>
+        <Reveal delay={160} className="mt-8 max-w-prose">
+          <p className="text-[1.0625rem] leading-[1.72] text-slate">
+            {waysWeWorkProcessStrip.compoundingLine}
+          </p>
+        </Reveal>
       </Section>
 
       <Section tone="muted" border id="implementation-menu">
