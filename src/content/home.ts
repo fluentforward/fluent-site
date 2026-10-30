@@ -13,33 +13,59 @@ export const hero = {
   subhead:
     'More proposals out, fewer handoff failures, and a team that can take the next client without burning out.',
   whoFor:
-    'For firms stuck between "we\'re busy" and "we can\'t take the next client."',
+    'For services firms where "we\'re busy" still means "we can\'t take the next client."',
   buyerLine:
     'Services firms know AI will reshape the work, and worry they will be disrupted if they do not move. We give you a safe path to more client capacity: with your team, or we deliver more of it.',
   primaryCta: auditCta,
   secondaryCta: reviewCallCta,
 }
 
+export const bindingWall = {
+  eyebrow: 'The real problem',
+  heading: 'Busy is not capacity.',
+  lede:
+    'In a services firm, growth dies at one wall. Offers (how you package and get paid). Leads (whether enough of the right work comes in). Delivery (whether the team can take the next client). Client Capacity finds the wall that binds now, clears it, and captures the gain so you are not stuck selling more hours.',
+  items: [
+    {
+      title: 'Offers bind',
+      body:
+        'You free time, still sell time, and revenue does not move. Packaging has to capture the capacity you create.',
+    },
+    {
+      title: 'Leads bind',
+      body:
+        'The team could take more work. Qualified pipeline is the wall. Demand belongs in the same programme as delivery, after diagnosis.',
+    },
+    {
+      title: 'Delivery bind',
+      body:
+        'Proposals, handoffs and throughput break when you grow. AI without ownership makes the glue people worse.',
+    },
+  ],
+  closing:
+    'Fix one wall and the next becomes the bottleneck. That is the point of the cycle, not a one-off project.',
+} as const
+
 export const whereToStart = {
   eyebrow: 'Where to start',
   heading: 'Client Capacity',
   lede:
-    'One program across Offers, Leads and Delivery. Two modes. Same outcome: win more client work without hiring more people.',
+    'One programme that clears the binding wall across Offers, Leads and Delivery. Two modes. Same outcome: more client work without a linear headcount climb.',
   cards: [
     {
       title: routeNames.clientCapacityPartnership,
       ifYou:
-        'You want the process run through your team, and to keep the capability in your firm.',
+        'You want the wall cleared through your team, and the capability left in the firm.',
       body:
-        'Done with you. Diagnosis across Offers, Leads and Delivery, leverage list, first win, cycle rhythm, and owned shipping capability included when the bet needs it.',
+        'Done with you. We name the binding wall, ship the first win with your people, install the cycle rhythm, and include owned shipping capability when the bet needs it.',
       link: { href: routeLinks.partnership, label: seePartnershipLink },
     },
     {
       title: routeNames.clientCapacityDelivery,
       ifYou:
-        'You want the same process, with us doing more of the build and ship.',
+        'You want the same clearance, with us doing more of the build and ship.',
       body:
-        'Done for you. Same process, with us doing more of the build and ship. Fixed scope, your firm owns the code, and the win still lands in a cycle rhythm.',
+        'Done for you. Same diagnosis and cycle. Fixed scope, your firm owns the code, win lands in the cycle rhythm.',
       link: { href: routeLinks.delivery, label: seeDeliveryLink },
     },
     {
@@ -75,7 +101,7 @@ export const sectorStrip = {
 export const whyFixesFail = {
   heading: 'Your best people have become the glue between your systems.',
   intro:
-    "Every new client adds more chasing, copying and checking, so growth means hiring. Vendor AI, more licences, chatbots, and agencies selling builds rarely fix the work between systems. They add tools while the firm stays dependent.",
+    'Every new client adds chasing, copying and checking, so "growth" means hiring. More licences and vendor agents rarely clear the wall that actually binds. They add tools while Offers still sells time, Leads still runs dry, or Delivery still breaks on handoffs.',
   gartner: {
     heading: 'Most agentic projects will not survive the forecast',
     body:
@@ -89,12 +115,12 @@ export const whyFixesFail = {
 export const outcomes = {
   heading: 'What changes for your firm',
   items: [
-    'A clear read of the binding constraint: Offers, Leads or Delivery.',
-    'More client capacity without a linear headcount climb.',
-    'A commercial model that captures the capacity you free.',
-    'AI you control, not AI that happens to you.',
-    "A roadmap and IP you own, not a vendor's lock-in.",
-    'More output per person, not more people.',
+    'A named binding wall: Offers, Leads or Delivery, not a generic AI wishlist.',
+    'A first win on that wall, visible in the business, not a pilot deck.',
+    'A commercial model that captures freed capacity so it does not collapse back into billable hours.',
+    'AI ownership rules so people own the commercial, the relationship and the quality bar.',
+    'A cycle that re-scores all three walls when one clears.',
+    'Code, agents and roadmap your firm owns.',
   ],
 }
 
@@ -102,7 +128,7 @@ export const fit = {
   builtForHeading:
     'Built for services firms stuck between busy and the next client',
   builtFor:
-    'Agencies, consultancies, professional and managed services firms of around 20 to 200 people, where client work runs on people, inboxes and spreadsheets. Client Capacity clears the binding wall across Offers, Leads and Delivery: with your team (Partnership), or we deliver more of it (Delivery).',
+    'Agencies, consultancies, professional and managed services of around 20 to 200 people, where client work runs on people, inboxes and spreadsheets. Client Capacity clears the binding wall across Offers, Leads and Delivery: with your team (Partnership), or we deliver more of it (Delivery).',
   lineHeading: 'Where we draw the line',
   notForHeading: "We're not the right fit if:",
   notFor: [
@@ -117,31 +143,31 @@ export const fit = {
 
 export const howItWorks = {
   eyebrow: 'How it works',
-  heading: 'From First AI Move to capacity that sticks',
+  heading: 'Name the wall. Clear it. Repeat.',
   steps: [
     {
-      title: 'Find your first AI move',
+      title: 'Find where capacity is leaking',
       body:
         'First AI Move shows where capacity is leaking, how it fits the tools you already pay for, and what a first win could free up, using your own numbers.',
     },
     {
-      title: 'Pick Partnership or Delivery',
+      title: 'Name the binding wall and the mode',
       body:
-        'On a free Audit review call we name the binding wall (Offers, Leads or Delivery) and agree the mode: Client Capacity Partnership (through your team, training included) or Client Capacity Delivery (we ship more of it). Straight answers, including when we are not the right fit.',
+        'On a free Audit review call we name the binding wall (Offers, Leads or Delivery) and agree the mode: Client Capacity Partnership (through your team, with owned shipping capability when the bet needs it) or Client Capacity Delivery (we ship more of it). Straight answers, including when we are not the right fit.',
     },
     {
-      title: 'Ship the first win',
+      title: 'Ship the first win, then re-score',
       body:
-        'Same process either way. We clear that first wall with your team, or we deliver more of it, under your control. Your firm owns the code, the agents and the know-how.',
+        'Same Tess cycle either way. We clear that wall with your team or deliver more of it under your control, with AI ownership rules and a cycle rhythm that re-scores all three walls. Your firm owns the code, the agents and the know-how.',
     },
   ],
   closing:
-    'Then we re-score as you grow. Fix one wall and the next becomes the bottleneck.',
+    'Fix one wall and the next becomes the bottleneck. That is how capacity compounds.',
 }
 
 export const closing = {
   eyebrow: 'Next step',
-  heading: 'Find your starting point.',
+  heading: 'Find the wall that binds.',
   buildLine:
     'However you start, your firm owns the code and keeps the capability.',
   primaryCta: auditCta,

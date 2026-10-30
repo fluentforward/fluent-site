@@ -10,7 +10,7 @@ export const routeNames = {
   buildPlan: 'Build Plan',
   agentSetup: 'Agent Setup',
   bespokeHarness: 'Bespoke Harness',
-  productEngineerPath: 'Product-engineer path',
+  productEngineerPath: 'Owned shipping capability',
   placement: 'Placement',
   ongoingSupport: 'Ongoing Support',
 } as const
@@ -41,7 +41,7 @@ export const seeAiQuickStartLink =
 export const waysWeWorkMeta = {
   title: 'Ways we work: Client Capacity | FluentForward',
   description:
-    'One program across Offers, Leads and Delivery. Partnership or Delivery. First AI Move and a free Audit review call show which fits. Your firm owns everything we build or set up.',
+    'Clear the binding wall across Offers, Leads or Delivery. Partnership or Delivery after diagnosis. First AI Move and a free Audit review call show which fits. Your firm owns everything we build or set up.',
 } as const
 
 export const waysWeWorkStructuredServiceType =
@@ -49,9 +49,9 @@ export const waysWeWorkStructuredServiceType =
 
 export const waysWeWorkHub = {
   eyebrow: 'Ways we work',
-  heading: 'One program. Two ways to get capacity.',
+  heading: 'One programme. Two ways to clear the wall.',
   lede:
-    'Services firms know AI will reshape the work, and worry they will be disrupted if they do not move. We give you a safe path to more client capacity across Offers, Leads and Delivery: with your team, or we deliver more of it. You start with First AI Move, then a free Audit review call. Your firm owns the code, the agents and the roadmap.',
+    'Services firms lose growth at one wall: Offers, Leads or Delivery. Client Capacity names the binding constraint, clears it in a visible first win, and installs a cycle that re-scores all three. Choose Partnership (with your team, owned shipping capability when the bet needs it) or Delivery (we ship more of it) only after diagnosis. Start with First AI Move, then a free Audit review call. Your firm owns the code, the agents and the roadmap.',
   implementationEyebrow: 'On either mode',
   implementationHeading: 'What we can set up or build',
   implementationLede:
@@ -73,7 +73,7 @@ export const waysWeWorkRoutes: readonly WaysWeWorkRoute[] = [
   {
     id: routeAnchors.partnership,
     name: routeNames.clientCapacityPartnership,
-    summary: 'Done with you. We run the process through your team.',
+    summary: clientCapacityModes.partnership.summary,
     body: clientCapacityModes.partnership.body,
     bullets: clientCapacityModes.partnership.bullets,
     link: { href: routeLinks.partnership, label: seePartnershipLink },
@@ -81,7 +81,7 @@ export const waysWeWorkRoutes: readonly WaysWeWorkRoute[] = [
   {
     id: routeAnchors.delivery,
     name: routeNames.clientCapacityDelivery,
-    summary: 'Done for you. Same process. We do more of the build and ship.',
+    summary: clientCapacityModes.delivery.summary,
     body: clientCapacityModes.delivery.body,
     bullets: clientCapacityModes.delivery.bullets,
     link: { href: routeLinks.delivery, label: seeDeliveryLink },

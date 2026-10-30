@@ -1,3 +1,4 @@
+import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
 import { HomeSectorStripSection } from '@/components/sections/home/HomeSectorStripSection'
 import { HomeWhereToStartSection } from '@/components/sections/home/HomeWhereToStartSection'
 import { HomeClosingSection } from '@/components/sections/home/HomeClosingSection'
@@ -6,6 +7,7 @@ import { HomeProofSection } from '@/components/sections/home/HomeProofSection'
 import { HomeThreeStepsSection } from '@/components/sections/home/HomeThreeStepsSection'
 import { HomeWhyFixesFailSection } from '@/components/sections/home/HomeWhyFixesFailSection'
 import { HomeHero } from '@/components/sections/HomeHero'
+import { bindingWall } from '@/content/home'
 import { site } from '@/content/site'
 
 const structuredData = {
@@ -29,6 +31,15 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <HomeHero />
+      <DefinitionGrid
+        eyebrow={bindingWall.eyebrow}
+        heading={bindingWall.heading}
+        lede={bindingWall.lede}
+        items={bindingWall.items}
+        closing={bindingWall.closing}
+        tone="paper"
+        id="binding-wall"
+      />
       <HomeWhereToStartSection />
       <HomeSectorStripSection />
       <HomeWhyFixesFailSection />

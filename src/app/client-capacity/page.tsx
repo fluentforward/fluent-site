@@ -23,6 +23,7 @@ import {
   modes,
   pillars,
   process,
+  servicesImpact,
   shipGateDelivery,
   structuredServiceType,
 } from '@/content/client-capacity'
@@ -71,6 +72,15 @@ export default function ClientCapacityPage() {
         tone="muted"
         id="offers-leads-delivery"
       />
+
+      <Section tone="paper" border>
+        <Reveal className="max-w-2xl">
+          <Heading as="h2">{servicesImpact.heading}</Heading>
+          <p className="mt-8 text-[1.0625rem] leading-[1.72] text-slate">
+            {servicesImpact.body}
+          </p>
+        </Reveal>
+      </Section>
 
       <Section tone="paper" size="compact" border>
         <Reveal className="max-w-prose text-[0.9375rem] leading-[1.72] text-slate">
