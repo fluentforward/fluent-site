@@ -14,8 +14,6 @@ export const site = {
 export const nav = [
   { label: 'Client Capacity', href: '/client-capacity' },
   { label: 'Ways we work', href: '/ways-we-work' },
-  { label: 'How it works', href: '/how-it-works' },
-  { label: 'Practice', href: '/about' },
 ] as const
 
 export const footerNav = {
@@ -24,16 +22,13 @@ export const footerNav = {
     links: [
       { label: 'Client Capacity', href: '/client-capacity' },
       { label: 'Ways we work', href: '/ways-we-work' },
-      { label: 'How it works', href: '/how-it-works' },
       { label: 'First AI Move', href: auditCta.href },
-      { label: 'Common questions', href: '/how-it-works#faq' },
+      { label: 'Common questions', href: '/ways-we-work#faq' },
     ],
   },
   company: {
-    title: 'Practice',
+    title: 'Company',
     links: [
-      { label: 'About the practice', href: '/about' },
-      { label: 'Track record', href: '/about#background' },
       { label: 'Interaction insights', href: '/strategy-blueprints' },
       { label: 'Book a call', href: '/contact' },
     ],

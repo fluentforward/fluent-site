@@ -39,9 +39,9 @@ export const seeAiQuickStartLink =
   `See how ${routeNames.aiQuickStart} works` as const
 
 export const waysWeWorkMeta = {
-  title: 'Ways we work: Client Capacity | FluentForward',
+  title: 'Ways we work | FluentForward',
   description:
-    'Clear what is stopping the next client across offers, demand or delivery. Partnership or Delivery after diagnosis. First AI Move and a free Audit review call show which fits. Your firm owns everything we build or set up.',
+    'Win the next client without hiring your way out. Start with First AI Move or a free Audit review call, then Client Capacity Partnership or Delivery. Your firm owns what we build.',
 } as const
 
 export const waysWeWorkStructuredServiceType =
@@ -49,14 +49,34 @@ export const waysWeWorkStructuredServiceType =
 
 export const waysWeWorkHub = {
   eyebrow: 'Ways we work',
-  heading: 'One programme. Two ways to clear what is stopping you.',
+  heading: 'Win the next client without hiring your way out.',
   lede:
-    'For services firms stuck between busy and the next client. Client Capacity finds whether offers, demand or delivery is capping you now, ships a visible first win, and installs a cycle that re-checks all three. Choose Partnership (with your team, owned shipping capability when the bet needs it) or Delivery (we ship more of it) only after diagnosis. Start with First AI Move, then a free Audit review call. Your firm owns the code, the agents and the roadmap.',
+    'If you are stuck between busy and the next client, the limit is usually the offer, demand or delivery. We find which, clear it as a growth system that pays for itself, and only then pick Partnership (with your team) or Delivery (we ship more of it). Start with First AI Move or a free Audit review call. Your firm owns the code, the agents and the roadmap.',
   implementationEyebrow: 'On either mode',
   implementationHeading: 'What we can set up or build',
   implementationLede:
     'Each one is scoped in writing before work starts, and your firm owns everything we build or set up.',
 } as const
+
+export const waysWeWorkStartingPoints = {
+  eyebrow: 'Where to start',
+  heading: 'Two ways into the same conversation',
+  lede:
+    'Both end in a straight read on fit and what would matter first for your firm.',
+  firstAiMove: {
+    title: 'First AI Move',
+    body:
+      'A fast self-serve read on where capacity is leaking and what a first win could free up, using your own numbers.',
+  },
+  reviewCall: {
+    title: 'Free Audit review call',
+    body:
+      'Talk first if you would rather name what is stopping the next client before you commit to a path.',
+  },
+} as const
+
+export const waysWeWorkModeOutcome =
+  'Same outcome: more client work without a linear headcount climb, with higher revenue and stronger margins.' as const
 
 export const waysWeWorkProcessStrip = clientCapacityProcess
 
@@ -74,17 +94,17 @@ export const waysWeWorkRoutes: readonly WaysWeWorkRoute[] = [
     id: routeAnchors.partnership,
     name: routeNames.clientCapacityPartnership,
     summary: clientCapacityModes.partnership.summary,
-    body: clientCapacityModes.partnership.body,
-    bullets: clientCapacityModes.partnership.bullets,
-    link: { href: routeLinks.partnership, label: seePartnershipLink },
+    body:
+      'Done with you. We find what\u2019s stopping the next client, ship the first win with your people, install the cycle rhythm, and include owned shipping capability when the bet needs it.',
+    link: { href: clientCapacityPath, label: seeClientCapacityLink },
   },
   {
     id: routeAnchors.delivery,
     name: routeNames.clientCapacityDelivery,
     summary: clientCapacityModes.delivery.summary,
-    body: clientCapacityModes.delivery.body,
-    bullets: clientCapacityModes.delivery.bullets,
-    link: { href: routeLinks.delivery, label: seeDeliveryLink },
+    body:
+      'Done for you. Same diagnosis and cycle. Fixed scope, your firm owns the code, win lands in the cycle rhythm.',
+    link: { href: clientCapacityPath, label: seeClientCapacityLink },
   },
   {
     id: routeAnchors.smallFirm,

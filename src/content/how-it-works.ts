@@ -99,7 +99,7 @@ export const faq = {
     {
       question: 'How do we know it\u2019s working?',
       answer:
-        'Productivity per head against the baseline you set at the start, plus honest ship / don\u2019t ship decisions you can see in the roadmap.',
+        'You set a baseline for revenue, margin on the work you want more of, and capacity to take the next client. We track movement against that baseline, plus honest ship / do not ship decisions you can see in the roadmap. No invented proof points.',
     },
     {
       question: 'What tools do you build with?',
