@@ -5,12 +5,12 @@ import { fit, outcomes } from '@/content/home'
 
 export function HomeFitSection() {
   return (
-    <Section tone="paper" border>
+    <Section tone="paper" border size="compact">
       <Reveal className="max-w-3xl">
         <Heading as="h2">{fit.builtForHeading}</Heading>
         <Lede className="mt-8">{fit.builtFor}</Lede>
 
-        <Heading as="h3" size="sub" className="mt-16">
+        <Heading as="h3" size="sub" className="mt-12">
           {outcomes.heading}
         </Heading>
         <ul className="mt-8 space-y-5">
@@ -24,7 +24,7 @@ export function HomeFitSection() {
           ))}
         </ul>
 
-        <Heading as="h3" size="sub" className="mt-16">
+        <Heading as="h3" size="sub" className="mt-12">
           {fit.lineHeading}
         </Heading>
         <p className="mt-6 font-display text-[1.0625rem] font-medium tracking-[-0.01em] text-ink">

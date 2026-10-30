@@ -1,5 +1,4 @@
 import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
-import { HomeSectorStripSection } from '@/components/sections/home/HomeSectorStripSection'
 import { HomeWhereToStartSection } from '@/components/sections/home/HomeWhereToStartSection'
 import { HomeClosingSection } from '@/components/sections/home/HomeClosingSection'
 import { HomeFitSection } from '@/components/sections/home/HomeFitSection'
@@ -39,13 +38,14 @@ export default function Home() {
         closing={growthLimits.closing}
         tone="paper"
         id="growth-limits"
+        size="compact"
+        dense
       />
       <HomeWhereToStartSection />
-      <HomeSectorStripSection />
       <HomeWhyFixesFailSection />
       <HomeFitSection />
       <HomeThreeStepsSection />
-      <HomeProofSection />
+      <HomeProofSection size="compact" />
       <HomeClosingSection />
     </>
   )

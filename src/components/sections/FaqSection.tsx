@@ -33,10 +33,16 @@ function FaqAnswerBody({ answer }: { answer: FaqAnswer }) {
   )
 }
 
-export function FaqSection({ content = defaultFaq }: { content?: FaqContent }) {
+export function FaqSection({
+  content = defaultFaq,
+  size = 'default',
+}: {
+  content?: FaqContent
+  size?: 'default' | 'compact'
+}) {
   const faq = content
   return (
-    <Section tone="paper" id="faq">
+    <Section tone="paper" id="faq" size={size}>
       <div className="grid gap-12 lg:grid-cols-[16rem_1fr] lg:gap-20">
         <Reveal>
           <div className="lg:sticky lg:top-32">

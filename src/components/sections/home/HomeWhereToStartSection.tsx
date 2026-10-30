@@ -10,7 +10,7 @@ import { whereToStart } from '@/content/home'
 
 export function HomeWhereToStartSection() {
   return (
-    <Section tone="muted" border id="where-to-start">
+    <Section tone="muted" border id="where-to-start" size="compact">
       <Reveal className="max-w-3xl">
         <Eyebrow>{whereToStart.eyebrow}</Eyebrow>
         <Heading as="h2" className="mt-8">
@@ -19,7 +19,7 @@ export function HomeWhereToStartSection() {
         <Lede className="mt-8">{whereToStart.lede}</Lede>
       </Reveal>
 
-      <div className="mt-16 grid gap-6 lg:grid-cols-3 lg:gap-8">
+      <div className="mt-12 grid gap-6 lg:grid-cols-3 lg:gap-8">
         {whereToStart.cards.map((card, index) => (
           <Reveal key={card.title} delay={index * 80}>
             <Card hover className="flex h-full flex-col">
@@ -41,7 +41,7 @@ export function HomeWhereToStartSection() {
         ))}
       </div>
 
-      <Reveal delay={200} className="mt-16 max-w-prose">
+      <Reveal delay={200} className="mt-12 max-w-prose">
         <p className="text-[1.0625rem] leading-[1.72] text-slate">
           {whereToStart.auditLine}
         </p>

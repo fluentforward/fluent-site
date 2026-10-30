@@ -81,23 +81,6 @@ export const whereToStart = {
     'Not sure which fits? Start with First AI Move. Leave with one first AI move for your firm, how it fits the tools you already pay for, and a rough idea of what it could free up, using your own numbers.',
 } as const
 
-export const sectorStrip = {
-  eyebrow: "Firms we\u2019ve already been inside",
-  heading: 'Services businesses that need revenue up without headcount up.',
-  lede:
-    'Anonymised engagements. Same shape: owners who need more of the right work at prices that hold, delivered without a linear hire plan.',
-  chips: [
-    {
-      label: 'Energy & utilities',
-      line: 'Process owned end to end, not bent around the CRM.',
-    },
-    {
-      label: 'Healthcare',
-      line: 'An owned platform that could match, meet, take payment, and partner.',
-    },
-  ],
-} as const
-
 export const whyFixesFail = {
   eyebrow: 'Why tools don\u2019t move the P&L',
   heading: 'Efficiency without a growth system just funds the timesheet.',

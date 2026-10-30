@@ -8,7 +8,7 @@ import { whyFixesFail } from '@/content/home'
 export function HomeWhyFixesFailSection() {
   return (
     <>
-      <Section tone="paper" border>
+      <Section tone="paper" border size="compact">
         <Reveal className="max-w-3xl">
           <Eyebrow>{whyFixesFail.eyebrow}</Eyebrow>
           <Heading as="h2" className="mt-8">
@@ -30,6 +30,7 @@ export function HomeWhyFixesFailSection() {
         tone="muted"
         border
         headingAs="h3"
+        size="compact"
       />
     </>
   )
