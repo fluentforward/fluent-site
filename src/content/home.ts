@@ -24,14 +24,14 @@ export const whereToStart = {
   eyebrow: 'Where to start',
   heading: 'Client Capacity',
   lede:
-    'One program. Two modes. Same outcome: win more client work without hiring more people.',
+    'One program across Offers, Leads and Delivery. Two modes. Same outcome: win more client work without hiring more people.',
   cards: [
     {
       title: routeNames.clientCapacityPartnership,
       ifYou:
         'You want the process run through your team, and to keep the capability in your firm.',
       body:
-        'Done with you. Diagnosis, leverage list, first capacity win, operating rhythm, and product-engineer training included.',
+        'Done with you. Diagnosis across Offers, Leads and Delivery, leverage list, first win, operating rhythm, and product-engineer training included.',
       link: { href: routeLinks.partnership, label: seePartnershipLink },
     },
     {
@@ -39,7 +39,7 @@ export const whereToStart = {
       ifYou:
         'You want the same process, with us doing more of the build and ship.',
       body:
-        'Done for you. Fixed scope, your firm owns the code, and the win still lands in an operating rhythm.',
+        'Done for you. Same process, with us doing more of the build and ship. Fixed scope, your firm owns the code, and the win still lands in an operating rhythm.',
       link: { href: routeLinks.delivery, label: seeDeliveryLink },
     },
     {
@@ -89,7 +89,9 @@ export const whyFixesFail = {
 export const outcomes = {
   heading: 'What changes for your firm',
   items: [
+    'A clear read of the binding constraint: Offers, Leads or Delivery.',
     'More client capacity without a linear headcount climb.',
+    'A commercial model that captures the capacity you free.',
     'AI you control, not AI that happens to you.',
     "A roadmap and IP you own, not a vendor's lock-in.",
     'More output per person, not more people.',
@@ -100,7 +102,7 @@ export const fit = {
   builtForHeading:
     'Built for services firms stuck between busy and the next client',
   builtFor:
-    'Agencies, consultancies, professional and managed services firms of around 20 to 200 people, where client work runs on people, inboxes and spreadsheets. Client Capacity gives you a safe path to more capacity: with your team (Partnership), or we deliver more of it (Delivery).',
+    'Agencies, consultancies, professional and managed services firms of around 20 to 200 people, where client work runs on people, inboxes and spreadsheets. Client Capacity clears the binding wall across Offers, Leads and Delivery: with your team (Partnership), or we deliver more of it (Delivery).',
   lineHeading: 'Where we draw the line',
   notForHeading: "We're not the right fit if:",
   notFor: [
@@ -125,15 +127,16 @@ export const howItWorks = {
     {
       title: 'Pick Partnership or Delivery',
       body:
-        'On a free Audit review call we agree the mode: Client Capacity Partnership (through your team, training included) or Client Capacity Delivery (we ship more of it). Straight answers, including when we are not the right fit.',
+        'On a free Audit review call we name the binding wall (Offers, Leads or Delivery) and agree the mode: Client Capacity Partnership (through your team, training included) or Client Capacity Delivery (we ship more of it). Straight answers, including when we are not the right fit.',
     },
     {
-      title: 'Ship the first capacity win',
+      title: 'Ship the first win',
       body:
-        'Same process either way. We fix that first problem with your team, or we deliver more of it, under your control. Your firm owns the code, the agents and the know-how.',
+        'Same process either way. We clear that first wall with your team, or we deliver more of it, under your control. Your firm owns the code, the agents and the know-how.',
     },
   ],
-  closing: 'Then we re-score as you grow and take on the next one.',
+  closing:
+    'Then we re-score as you grow. Fix one wall and the next becomes the bottleneck.',
 }
 
 export const closing = {

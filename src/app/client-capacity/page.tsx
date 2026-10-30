@@ -21,6 +21,7 @@ import {
   hero,
   meta,
   modes,
+  pillars,
   process,
   shipGateDelivery,
   structuredServiceType,
@@ -61,6 +62,15 @@ export default function ClientCapacityPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <PageHero eyebrow={hero.eyebrow} heading={hero.heading} lede={hero.lede} />
+
+      <DefinitionGrid
+        eyebrow={pillars.eyebrow}
+        heading={pillars.heading}
+        lede={pillars.lede}
+        items={pillars.items}
+        tone="muted"
+        id="offers-leads-delivery"
+      />
 
       <Section tone="paper" size="compact" border>
         <Reveal className="max-w-prose text-[0.9375rem] leading-[1.72] text-slate">
@@ -122,6 +132,11 @@ export default function ClientCapacityPage() {
         </ol>
         <Reveal delay={120} className="mt-10 max-w-prose">
           <Lede>{process.choiceLine}</Lede>
+        </Reveal>
+        <Reveal delay={160} className="mt-8 max-w-prose">
+          <p className="text-[1.0625rem] leading-[1.72] text-slate">
+            {process.compoundingLine}
+          </p>
         </Reveal>
       </Section>
 

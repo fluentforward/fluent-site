@@ -1,5 +1,7 @@
 /** Single source for route and offer names, anchors, and ways-we-work hub copy. */
 
+import { modes as clientCapacityModes, process as clientCapacityProcess } from '@/content/client-capacity'
+
 export const routeNames = {
   clientCapacity: 'Client Capacity',
   clientCapacityPartnership: 'Client Capacity Partnership',
@@ -39,7 +41,7 @@ export const seeAiQuickStartLink =
 export const waysWeWorkMeta = {
   title: 'Ways we work: Client Capacity | FluentForward',
   description:
-    'One program, two modes. Client Capacity Partnership or Client Capacity Delivery. First AI Move and a free Audit review call show which fits. Your firm owns everything we build or set up.',
+    'One program across Offers, Leads and Delivery. Partnership or Delivery. First AI Move and a free Audit review call show which fits. Your firm owns everything we build or set up.',
 } as const
 
 export const waysWeWorkStructuredServiceType =
@@ -49,27 +51,14 @@ export const waysWeWorkHub = {
   eyebrow: 'Ways we work',
   heading: 'One program. Two ways to get capacity.',
   lede:
-    'Services firms know AI will reshape the work, and worry they will be disrupted if they do not move. We give you a safe path to more client capacity: with your team, or we deliver more of it. You start with First AI Move, then a free Audit review call. Your firm owns the code, the agents and the roadmap.',
+    'Services firms know AI will reshape the work, and worry they will be disrupted if they do not move. We give you a safe path to more client capacity across Offers, Leads and Delivery: with your team, or we deliver more of it. You start with First AI Move, then a free Audit review call. Your firm owns the code, the agents and the roadmap.',
   implementationEyebrow: 'On either mode',
   implementationHeading: 'What we can set up or build',
   implementationLede:
     'Each one is scoped in writing before work starts, and your firm owns everything we build or set up.',
 } as const
 
-export const waysWeWorkProcessStrip = {
-  eyebrow: 'Same process either way',
-  heading: 'How Client Capacity runs',
-  steps: [
-    'Diagnose capacity (proposals, handoffs, delivery leak)',
-    'Prioritise the leverage list (billable capacity)',
-    'Buy vs build decisions',
-    'Ship the first capacity win',
-    'Install the operating rhythm',
-    'Product-engineer path when you have or place a developer (included on Partnership)',
-  ],
-  choiceLine:
-    'After diagnosis, one question: do we run this through your people, or do you want us to deliver more of it?',
-} as const
+export const waysWeWorkProcessStrip = clientCapacityProcess
 
 export type WaysWeWorkRoute = {
   id: string
@@ -85,30 +74,16 @@ export const waysWeWorkRoutes: readonly WaysWeWorkRoute[] = [
     id: routeAnchors.partnership,
     name: routeNames.clientCapacityPartnership,
     summary: 'Done with you. We run the process through your team.',
-    body:
-      'We diagnose where capacity leaks (proposals, handoffs, delivery), prioritise a leverage list, make buy vs build decisions, ship the first capacity win with your people, and install the operating rhythm. Product-engineer training is included: we turn your software developers into product engineers, or help you place one, so the code and the capability stay in your firm.',
-    bullets: [
-      'Capacity diagnosis and a prioritised leverage backlog.',
-      'Buy vs build decisions before spend moves.',
-      'First capacity win shipped through your team.',
-      'Operating rhythm installed.',
-      'Product-engineer training included (train your developers, or help place one).',
-    ],
+    body: clientCapacityModes.partnership.body,
+    bullets: clientCapacityModes.partnership.bullets,
     link: { href: routeLinks.partnership, label: seePartnershipLink },
   },
   {
     id: routeAnchors.delivery,
     name: routeNames.clientCapacityDelivery,
     summary: 'Done for you. Same process. We do more of the build and ship.',
-    body:
-      'Same diagnosis, leverage list, buy vs build, first ship and operating rhythm. The difference is who does the heavy lifting: FluentForward ships more of the build under your control, with fixed scope in writing, and your firm still owns the code. Choose this when you need speed or do not have people to run the build yourselves.',
-    bullets: [
-      'Same Client Capacity process as Partnership.',
-      'We deliver more of the build and ship, fixed scope.',
-      'Your firm owns the code and the roadmap.',
-      'Operating rhythm installed so the win sticks.',
-      'Product-engineer path available if you have or place a developer (not assumed).',
-    ],
+    body: clientCapacityModes.delivery.body,
+    bullets: clientCapacityModes.delivery.bullets,
     link: { href: routeLinks.delivery, label: seeDeliveryLink },
   },
   {
