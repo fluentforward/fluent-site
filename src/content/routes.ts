@@ -66,7 +66,7 @@ export const waysWeWorkStartingPoints = {
   capacityScalingRoadmap: {
     title: 'Capacity Scaling Roadmap',
     body:
-      'In a few minutes, see which of offers, demand or delivery to run first, and what that means for higher revenue and firmer margins with the team you already have. Results before any call.',
+      'In a few minutes, see which of Offers, Demand, or Delivery to run first, and what that means for higher revenue and firmer margins with the team you already have. Results before any call.',
   },
   reviewCall: {
     title: 'Capacity Constraint review call',

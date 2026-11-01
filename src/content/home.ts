@@ -134,9 +134,9 @@ export const howItWorks = {
   heading: 'Find what\u2019s stopping you. Clear it. Repeat.',
   steps: [
     {
-      title: 'Find where capacity is leaking',
+      title: 'Start your Capacity Scaling Roadmap',
       body:
-        'The Capacity Scaling Roadmap shows which of offers, demand or delivery to run first, and what easing that constraint could mean for revenue and margin with the team you already have. Results before any call.',
+        'The Capacity Scaling Roadmap shows which of Offers, Demand, or Delivery to run first, and what easing that constraint could mean for higher revenue and firmer margins with the team you already have. Results before any call.',
     },
     {
       title: 'Name what\u2019s stopping you and how we run it',
