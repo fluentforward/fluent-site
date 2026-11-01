@@ -2,14 +2,14 @@
 
 import { useCallback, useEffect, useState } from 'react'
 
-import { isFirstAiMoveMagnetUrl } from '@/content/board'
+import { isCapacityScalingRoadmapMagnetUrl } from '@/content/board'
 import { appendMarketingAttributionToUrl } from '@/lib/marketing-attribution'
 
 export function useMarketingAttributedHref(href: string): string {
   const [resolved, setResolved] = useState(href)
 
   useEffect(() => {
-    if (!isFirstAiMoveMagnetUrl(href)) {
+    if (!isCapacityScalingRoadmapMagnetUrl(href)) {
       setResolved(href)
       return
     }
@@ -22,7 +22,7 @@ export function useMarketingAttributedHref(href: string): string {
 export function useFirstAiMoveClickHandler(href: string) {
   return useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>) => {
-      if (!isFirstAiMoveMagnetUrl(href)) return
+      if (!isCapacityScalingRoadmapMagnetUrl(href)) return
       const next = appendMarketingAttributionToUrl(href)
       if (next === event.currentTarget.href) return
       event.preventDefault()

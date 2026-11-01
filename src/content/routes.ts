@@ -41,7 +41,7 @@ export const seeAiQuickStartLink =
 export const waysWeWorkMeta = {
   title: 'Ways we work | FluentForward',
   description:
-    'Win the next client without hiring your way out. Start with First AI Move or a free Audit review call, then Client Capacity Partnership or Delivery. Your firm owns what we build.',
+    'Win the next client without hiring your way out. Start with the Capacity Scaling Roadmap or a free Capacity Constraint review call, then Client Capacity Partnership or Delivery. Your firm owns what we build.',
 } as const
 
 export const waysWeWorkStructuredServiceType =
@@ -51,7 +51,7 @@ export const waysWeWorkHub = {
   eyebrow: 'Ways we work',
   heading: 'Win the next client without hiring your way out.',
   lede:
-    'If you are stuck between busy and the next client, the limit is usually the offer, demand or delivery. We find which, clear it as a growth system that pays for itself, and only then pick Partnership (with your team) or Delivery (we ship more of it). Start with First AI Move or a free Audit review call. Your firm owns the code, the agents and the roadmap.',
+    'If you are stuck between busy and the next client, the limit is usually the offer, demand or delivery. We find which, clear it as a growth system that pays for itself, and only then pick Partnership (with your team) or Delivery (we ship more of it). Start with the Capacity Scaling Roadmap or a free Capacity Constraint review call. Your firm owns the code, the agents and the roadmap.',
   implementationEyebrow: 'On either mode',
   implementationHeading: 'What we can set up or build',
   implementationLede:
@@ -63,13 +63,13 @@ export const waysWeWorkStartingPoints = {
   heading: 'Two ways into the same conversation',
   lede:
     'Both end in a straight read on fit and what would matter first for your firm.',
-  firstAiMove: {
-    title: 'First AI Move',
+  capacityScalingRoadmap: {
+    title: 'Capacity Scaling Roadmap',
     body:
-      'A fast self-serve read on where capacity is leaking and what a first win could free up, using your own numbers.',
+      'In a few minutes, see which of offers, demand or delivery to run first, and what that means for higher revenue and firmer margins with the team you already have. Results before any call.',
   },
   reviewCall: {
-    title: 'Free Audit review call',
+    title: 'Capacity Constraint review call',
     body:
       'Talk first if you would rather name what is stopping the next client before you commit to a path.',
   },

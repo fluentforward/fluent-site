@@ -1,9 +1,10 @@
-export const firstAiMoveUrl = 'https://client.fluentforward.com/first-ai-move'
+export const capacityScalingRoadmapUrl =
+  'https://client.fluentforward.com/capacity-scaling-roadmap'
 
-export function isFirstAiMoveMagnetUrl(href: string): boolean {
+export function isCapacityScalingRoadmapMagnetUrl(href: string): boolean {
   try {
     const target = new URL(href, 'https://fluentforward.com')
-    const base = new URL(firstAiMoveUrl)
+    const base = new URL(capacityScalingRoadmapUrl)
     return (
       target.origin === base.origin && target.pathname === base.pathname
     )
@@ -12,17 +13,17 @@ export function isFirstAiMoveMagnetUrl(href: string): boolean {
   }
 }
 
-export const firstAiMoveBuyerOneLiner =
-  'Leave with one first AI move for your firm, how it fits the tools you already pay for, and a rough idea of what it could free up, using your own numbers.'
+export const capacityScalingRoadmapBuyerOneLiner =
+  'In a few minutes, see which of Offers, Demand, or Delivery to run first, and what that means for higher revenue and firmer margins with the team you already have. Results before any call.'
 
 export const auditCta = {
-  label: 'Get your first AI move',
-  href: firstAiMoveUrl,
-  hint: 'About five minutes. No sales pitch.',
+  label: 'Start your roadmap',
+  href: capacityScalingRoadmapUrl,
+  hint: 'About three to four minutes. No sales pitch.',
 } as const
 
 export const reviewCallCta = {
-  label: 'Book your free Audit review call',
+  label: 'Book your free Capacity Constraint review call',
   href: '/contact',
 } as const
 

@@ -8,7 +8,7 @@ import {
   useMarketingAttributedHref,
 } from '@/components/ui/attributed-href'
 import { cal, calConfigJson } from '@/content/cal'
-import { isFirstAiMoveMagnetUrl } from '@/content/board'
+import { isCapacityScalingRoadmapMagnetUrl } from '@/content/board'
 
 type Variant = 'primary' | 'secondary' | 'onDark' | 'onDarkGhost'
 
@@ -46,7 +46,7 @@ function ExternalButton({
 }) {
   const externalHref = useMarketingAttributedHref(href)
   const onExternalClick = useFirstAiMoveClickHandler(href)
-  const attributionClick = isFirstAiMoveMagnetUrl(href)
+  const attributionClick = isCapacityScalingRoadmapMagnetUrl(href)
     ? onExternalClick
     : undefined
 

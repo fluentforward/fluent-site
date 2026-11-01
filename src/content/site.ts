@@ -22,7 +22,7 @@ export const footerNav = {
     links: [
       { label: 'Client Capacity', href: '/client-capacity' },
       { label: 'Ways we work', href: '/ways-we-work' },
-      { label: 'First AI Move', href: auditCta.href },
+      { label: 'Capacity Scaling Roadmap', href: auditCta.href },
       { label: 'Common questions', href: '/ways-we-work#faq' },
     ],
   },
