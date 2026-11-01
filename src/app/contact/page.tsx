@@ -6,11 +6,11 @@ import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Heading, Lede } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
-import { auditCta, firstAiMoveBuyerOneLiner } from '@/content/board'
+import { auditCta, capacityScalingRoadmapBuyerOneLiner } from '@/content/board'
 import { site } from '@/content/site'
 
 const description =
-  'Book a call with the practice to work out whether FluentForward fits and where to start. Or get your first AI move online first.'
+  'Book a call with the practice to work out whether FluentForward fits and where to start. Or start your Capacity Scaling Roadmap online first.'
 
 export const metadata: Metadata = {
   title: 'Book a call',
@@ -24,7 +24,7 @@ const expectations = [
   'Thirty minutes, and it is a conversation rather than a pitch. No deck.',
   'We talk about where your team\u2019s time actually goes and what you have already tried.',
   'You leave with a straight answer on whether Client Capacity fits and where to start, including if that answer is no.',
-  `Prefer to start online? ${auditCta.hint} ${firstAiMoveBuyerOneLiner}`,
+  `Prefer to start online? ${auditCta.hint} ${capacityScalingRoadmapBuyerOneLiner}`,
   'No follow-up sequence, and nothing added to a mailing list.',
 ]
 
@@ -52,7 +52,7 @@ export default function Contact() {
                 href={auditCta.href}
                 className="text-ink underline underline-offset-4 transition-colors duration-300 hover:text-steel"
               >
-                Get your first AI move
+                {auditCta.label}
               </MarketingAttributedAnchor>{' '}
               first.
             </Lede>

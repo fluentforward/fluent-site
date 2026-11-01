@@ -91,10 +91,10 @@ export default function WaysWeWorkPage() {
           <Reveal delay={60}>
             <Card className="flex h-full flex-col p-8 md:p-9">
               <h3 className="font-display text-[1.125rem] font-medium tracking-[-0.015em] text-ink">
-                {waysWeWorkStartingPoints.firstAiMove.title}
+                {waysWeWorkStartingPoints.capacityScalingRoadmap.title}
               </h3>
               <p className="mt-4 flex-1 text-[0.9375rem] leading-[1.72] text-slate">
-                {waysWeWorkStartingPoints.firstAiMove.body}
+                {waysWeWorkStartingPoints.capacityScalingRoadmap.body}
               </p>
               <div className="mt-8">
                 <Button href={auditCta.href}>{auditCta.label}</Button>

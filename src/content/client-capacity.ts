@@ -159,7 +159,7 @@ export const productEngineerPath = {
 } as const
 
 export const fitLine =
-  'Built for owner-led services firms of 20 to 200 people where offers, demand or delivery is capping growth. Not sure? First AI Move will tell you.' as const
+  'Built for owner-led services firms of 20 to 200 people where offers, demand or delivery is capping growth. Not sure? Start your Capacity Scaling Roadmap.' as const
 
 export const faq = {
   eyebrow: 'Common questions',
@@ -173,7 +173,7 @@ export const faq = {
     {
       question: 'Partnership or Delivery?',
       answer:
-        'Same cycle either way. Partnership runs through your team with owned shipping capability included when the bet needs it. Delivery is when we ship more of the build under fixed scope. The free Audit review call picks the mode that fits.',
+        'Same cycle either way. Partnership runs through your team with owned shipping capability included when the bet needs it. Delivery is when we ship more of the build under fixed scope. The free Capacity Constraint review call picks the mode that fits.',
     },
     {
       question: 'Can we pause or leave?',

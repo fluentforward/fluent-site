@@ -28,7 +28,7 @@ export const reassurance = {
     {
       title: 'A mode that fits',
       body:
-        'First AI Move and the review call point you to Client Capacity Partnership, Client Capacity Delivery or AI Quick Start. Each path is scoped before build budget moves.',
+        'The Capacity Scaling Roadmap and the Capacity Constraint review call point you to Client Capacity Partnership, Client Capacity Delivery or AI Quick Start. Each path is scoped before build budget moves.',
     },
     {
       title: 'No lock-in',
@@ -55,7 +55,7 @@ export const faq = {
     {
       question: 'Where do we start?',
       answer:
-        'With First AI Move if you want a fast read on the first thing to fix, or a free Audit review call if you would rather talk first. Both end in the same straight conversation about fit and what would matter first.',
+        'With the Capacity Scaling Roadmap if you want a fast read on which constraint to run first, or a free Capacity Constraint review call if you would rather talk first. Both end in the same straight conversation about fit and what would matter first.',
     },
     {
       question: 'Do you build?',
@@ -101,7 +101,7 @@ export const closingCta = {
   eyebrow: 'Next step',
   heading: 'Find what\u2019s stopping the next client.',
   body:
-    'Whether Client Capacity Partnership, Client Capacity Delivery or AI Quick Start fits, First AI Move and the review call show you straight. Terms are agreed in writing, never published here.',
+    'Whether Client Capacity Partnership, Client Capacity Delivery or AI Quick Start fits, the Capacity Scaling Roadmap and the Capacity Constraint review call show you straight. Terms are agreed in writing, never published here.',
   primary: auditCta,
   secondary: reviewCallCta,
 }
