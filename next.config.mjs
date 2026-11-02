@@ -30,7 +30,7 @@ const nextConfig = {
       },
       {
         source: '/capacity-scaling-roadmap',
-        destination: 'https://client.fluentforward.com/capacity-scaling-roadmap',
+        destination: 'https://client.fluentforward.com/profit-constraint-score',
         statusCode: 302,
       },
       { source: '/about', destination: '/', statusCode: 301 },

@@ -1,7 +1,7 @@
 export const profitConstraintScoreMagnetUrl =
-  'https://client.fluentforward.com/capacity-scaling-roadmap'
+  'https://client.fluentforward.com/profit-constraint-score'
 
-/** Legacy name for the Score magnet URL (path unchanged for live flow). */
+/** @deprecated Use profitConstraintScoreMagnetUrl */
 export const capacityScalingRoadmapUrl = profitConstraintScoreMagnetUrl
 
 export function isProfitConstraintScoreMagnetUrl(href: string): boolean {
