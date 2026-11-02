@@ -28,7 +28,7 @@ export const reassurance = {
     {
       title: 'A mode that fits',
       body:
-        'The Profit Constraint Score and the Constraint review call point you to Install Partnership, Install Delivery or AI Quick Start. Each path is scoped before build budget moves.',
+        'The Profit Constraint Score and the Constraint review call point you to Install Partnership or Install Delivery. When a full Install is not the right fit today, we may offer Profit Engine Sprint on the call: one scored lever, thirty days, scoped before build budget moves.',
     },
     {
       title: 'No lock-in',
@@ -101,7 +101,7 @@ export const closingCta = {
   eyebrow: 'Next step',
   heading: 'Find your binding constraint.',
   body:
-    'Whether Install Partnership, Install Delivery or AI Quick Start fits, the Profit Constraint Score and the Constraint review call show you straight. Terms are agreed in writing, never published here.',
+    'Install Partnership or Install Delivery is the usual path after the Profit Constraint Score and the Constraint review call. Profit Engine Sprint is there when a full Install is wrong-fit today. Terms are agreed in writing, never published here.',
   primary: scoreCta,
   secondary: reviewCallCta,
 }

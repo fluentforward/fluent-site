@@ -3,9 +3,9 @@ import { gartnerPressReleases } from '@/content/gartner'
 import {
   routeLinks,
   routeNames,
-  seeAiQuickStartLink,
   seeDeliveryLink,
   seePartnershipLink,
+  seeProfitEngineSprintLink,
 } from '@/content/routes'
 import { site } from '@/content/site'
 
@@ -68,15 +68,13 @@ export const whereToStart = {
         'We install for you. Our team does the build. You make the calls; we ship the engine. Minimal drag on billable time.',
       link: { href: routeLinks.delivery, label: seeDeliveryLink },
     },
-    {
-      title: routeNames.aiQuickStart,
-      ifYou:
-        'You want a short, fixed-scope sprint on one lever before a full Install.',
-      body:
-        'Not ready for ninety days? A clean way to prove the case, then move into Install when you are ready.',
-      link: { href: routeLinks.aiQuickStart, label: seeAiQuickStartLink },
-    },
   ],
+  sprintLine:
+    'If a full ninety-day Install is not the right fit today, the Constraint review call may point you to Profit Engine Sprint: thirty days on one scored Offers, Demand or Delivery lever, scoped in writing, then a path to Install when you are ready.',
+  sprintLink: {
+    href: routeLinks.profitEngineSprint,
+    label: seeProfitEngineSprintLink,
+  },
   runLine:
     'After Install comes Run. We can stay on to operate, tune and extend the engine month to month. Run is only for firms who have installed. We do not run engines we did not build.',
   scoreLine:

@@ -6,7 +6,7 @@ export const routeNames = {
   profitEngine: 'Profit Engine',
   installPartnership: 'Install Partnership',
   installDelivery: 'Install Delivery',
-  aiQuickStart: 'AI Quick Start',
+  profitEngineSprint: 'Profit Engine Sprint',
   buildPlan: 'Build Plan',
   agentSetup: 'Agent Setup',
   bespokeHarness: 'Bespoke Harness',
@@ -19,7 +19,9 @@ export const routeNames = {
 export const routeAnchors = {
   partnership: 'partnership',
   delivery: 'delivery',
-  smallFirm: 'small-firm',
+  profitEngineSprint: 'profit-engine-sprint',
+  /** @deprecated Use profitEngineSprint anchor */
+  smallFirm: 'profit-engine-sprint',
 } as const
 
 export const waysWeWorkPath = '/ways-we-work' as const
@@ -32,8 +34,10 @@ export const routeLinks = {
   profitEngine: profitEnginePath,
   partnership: `${profitEnginePath}#${routeAnchors.partnership}`,
   delivery: `${profitEnginePath}#${routeAnchors.delivery}`,
-  aiQuickStart: `${waysWeWorkPath}#${routeAnchors.smallFirm}`,
+  profitEngineSprint: `${waysWeWorkPath}#${routeAnchors.profitEngineSprint}`,
   waysWeWork: waysWeWorkPath,
+  /** Legacy alias */
+  aiQuickStart: `${waysWeWorkPath}#${routeAnchors.profitEngineSprint}`,
   /** Legacy alias */
   clientCapacity: profitEnginePath,
 } as const
@@ -43,8 +47,10 @@ export const seeProfitEngineLink = `See ${routeNames.profitEngine}` as const
 export const seeClientCapacityLink = seeProfitEngineLink
 export const seePartnershipLink = 'See how Install Partnership works' as const
 export const seeDeliveryLink = 'See how Install Delivery works' as const
-export const seeAiQuickStartLink =
-  `See how ${routeNames.aiQuickStart} works` as const
+export const seeProfitEngineSprintLink =
+  `See how ${routeNames.profitEngineSprint} works` as const
+/** @deprecated Use seeProfitEngineSprintLink */
+export const seeAiQuickStartLink = seeProfitEngineSprintLink
 
 export const waysWeWorkMeta = {
   title: 'Ways we work | FluentForward',
@@ -115,17 +121,21 @@ export const waysWeWorkRoutes: readonly WaysWeWorkRoute[] = [
     link: { href: profitEnginePath, label: seeProfitEngineLink },
   },
   {
-    id: routeAnchors.smallFirm,
-    name: routeNames.aiQuickStart,
+    id: routeAnchors.profitEngineSprint,
+    name: routeNames.profitEngineSprint,
     summary:
-      'For firms who want one lever working with AI before a full ninety-day Install.',
+      'When a full Install is not the right fit today: one scored lever in thirty days.',
     body:
-      'Thirty days, fixed scope. One constraint or workflow, one or two agents or automations, governance basics, then handover. Ongoing Support follows, and you can move into Install when you are ready.',
+      'Profit Engine Sprint is offered on the Constraint review call when Install Partnership or Install Delivery is the wrong shape for now. Fixed scope on one binding Offers, Demand or Delivery lever from your Profit Constraint Score, one visible win, governance basics, then handover. It bridges to Install when you are ready. Not a Board or Run product.',
     bullets: [
-      'One binding lever or workflow, one or two working agents or automations.',
-      'Governance basics included, then handover.',
-      `${routeNames.ongoingSupport} and a path to Install when you are ready.`,
+      'One binding lever from your score, fixed in thirty days.',
+      'Scoped in writing before work starts; your firm owns what we build or set up.',
+      'Path to Install Partnership or Install Delivery when timing and fit are right.',
     ],
+    link: {
+      href: routeLinks.profitEngineSprint,
+      label: seeProfitEngineSprintLink,
+    },
   },
 ] as const
 
