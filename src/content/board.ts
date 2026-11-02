@@ -1,29 +1,39 @@
-export const capacityScalingRoadmapUrl =
+export const profitConstraintScoreMagnetUrl =
   'https://client.fluentforward.com/capacity-scaling-roadmap'
 
-export function isCapacityScalingRoadmapMagnetUrl(href: string): boolean {
+/** Legacy name for the Score magnet URL (path unchanged for live flow). */
+export const capacityScalingRoadmapUrl = profitConstraintScoreMagnetUrl
+
+export function isProfitConstraintScoreMagnetUrl(href: string): boolean {
   try {
     const target = new URL(href, 'https://fluentforward.com')
-    const base = new URL(capacityScalingRoadmapUrl)
-    return (
-      target.origin === base.origin && target.pathname === base.pathname
-    )
+    const base = new URL(profitConstraintScoreMagnetUrl)
+    return target.origin === base.origin && target.pathname === base.pathname
   } catch {
     return false
   }
 }
 
-export const capacityScalingRoadmapBuyerOneLiner =
-  'In a few minutes, see which of Offers, Demand, or Delivery to run first, and what that means for higher revenue and firmer margins with the team you already have. Results before any call.'
+/** @deprecated Use isProfitConstraintScoreMagnetUrl */
+export const isCapacityScalingRoadmapMagnetUrl = isProfitConstraintScoreMagnetUrl
 
-export const auditCta = {
-  label: 'Start your roadmap',
-  href: capacityScalingRoadmapUrl,
-  hint: 'About three to four minutes. No sales pitch.',
+export const profitConstraintScoreBuyerOneLiner =
+  'In a few minutes, see which of Offers, Demand, or Delivery is binding you now, and what fixing that constraint could mean for revenue and margin with the team you already have. Results before any call.'
+
+/** @deprecated Use profitConstraintScoreBuyerOneLiner */
+export const capacityScalingRoadmapBuyerOneLiner = profitConstraintScoreBuyerOneLiner
+
+export const scoreCta = {
+  label: 'Get your Profit Constraint Score',
+  href: profitConstraintScoreMagnetUrl,
+  hint: 'About three minutes. No sales pitch.',
 } as const
 
+/** @deprecated Use scoreCta */
+export const auditCta = scoreCta
+
 export const reviewCallCta = {
-  label: 'Book your free Capacity Constraint review call',
+  label: 'Book a free Constraint review call',
   href: '/contact',
 } as const
 

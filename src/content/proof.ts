@@ -1,8 +1,8 @@
 export const proofSection = {
-  eyebrow: 'Proof',
-  heading: 'Judgement before build, in practice.',
+  eyebrow: 'Proof: a real engagement',
+  heading: 'Judgement before build.',
   lede:
-    'Two anonymised engagements. Strategy and partner choice before spend. What we refused to bolt on. The layer the client owns now.',
+    'We do not start by picking a tool. We start with how the work actually moves, then build only what the constraint needs. Anonymised outcomes only. No numbers we cannot stand behind.',
 }
 
 export type ProofPack = {
@@ -54,4 +54,6 @@ export const proofPacks: readonly ProofPack[] = [
   },
 ]
 
-export const proofPacksHome: readonly ProofPack[] = proofPacks
+export const proofPacksHome: readonly ProofPack[] = proofPacks.filter(
+  (pack) => pack.slug === 'energy-utilities',
+)

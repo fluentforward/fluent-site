@@ -11,7 +11,7 @@ import { Heading, Lede } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
 import { ArrowLink } from '@/components/ui/ArrowLink'
-import { auditCta, reviewCallCta } from '@/content/board'
+import { reviewCallCta, scoreCta } from '@/content/board'
 import {
   closingCta,
   faq,
@@ -91,15 +91,15 @@ export default function WaysWeWorkPage() {
           <Reveal delay={60}>
             <Card className="flex h-full flex-col p-8 md:p-9">
               <h3 className="font-display text-[1.125rem] font-medium tracking-[-0.015em] text-ink">
-                {waysWeWorkStartingPoints.capacityScalingRoadmap.title}
+                {waysWeWorkStartingPoints.profitConstraintScore.title}
               </h3>
               <p className="mt-4 flex-1 text-[0.9375rem] leading-[1.72] text-slate">
-                {waysWeWorkStartingPoints.capacityScalingRoadmap.body}
+                {waysWeWorkStartingPoints.profitConstraintScore.body}
               </p>
               <div className="mt-8">
-                <Button href={auditCta.href}>{auditCta.label}</Button>
+                <Button href={scoreCta.href}>{scoreCta.label}</Button>
                 <p className="mt-4 text-sm leading-relaxed text-slate">
-                  {auditCta.hint}
+                  {scoreCta.hint}
                 </p>
               </div>
             </Card>
@@ -165,7 +165,7 @@ export default function WaysWeWorkPage() {
         </Section>
       ))}
 
-      <Section tone="paper" border id="client-capacity-process" size="compact">
+      <Section tone="paper" border id="profit-engine-process" size="compact">
         <Reveal className="max-w-3xl">
           <Eyebrow>{waysWeWorkProcessStrip.eyebrow}</Eyebrow>
           <Heading as="h2" className="mt-6">

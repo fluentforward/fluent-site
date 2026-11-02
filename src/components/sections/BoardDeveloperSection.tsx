@@ -2,7 +2,7 @@ import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Heading, Lede } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
-import { productEngineerPath } from '@/content/client-capacity'
+import { productEngineerPath } from '@/content/profit-engine'
 
 export function BoardDeveloperSection() {
   return (

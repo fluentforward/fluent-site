@@ -5,7 +5,7 @@ import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Heading, Lede } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
-import { auditCta } from '@/content/board'
+import { scoreCta } from '@/content/board'
 import { whereToStart } from '@/content/home'
 
 export function HomeWhereToStartSection() {
@@ -41,12 +41,15 @@ export function HomeWhereToStartSection() {
         ))}
       </div>
 
-      <Reveal delay={200} className="mt-12 max-w-prose">
+      <Reveal delay={200} className="mt-12 max-w-prose space-y-6">
         <p className="text-[1.0625rem] leading-[1.72] text-slate">
-          {whereToStart.auditLine}
+          {whereToStart.runLine}
         </p>
-        <div className="mt-8">
-          <Button href={auditCta.href}>{auditCta.label}</Button>
+        <p className="text-[1.0625rem] leading-[1.72] text-slate">
+          {whereToStart.scoreLine}
+        </p>
+        <div>
+          <Button href={scoreCta.href}>{scoreCta.label}</Button>
         </div>
       </Reveal>
     </Section>

@@ -1,4 +1,4 @@
-import { auditCta, reviewCallCta } from '@/content/board'
+import { scoreCta, reviewCallCta } from '@/content/board'
 import { waysWeWorkPath } from '@/content/routes'
 
 export type FaqAnswer =
@@ -18,7 +18,7 @@ export const whenBuild = {
   eyebrow: 'When you build',
   heading: 'Fixed scope, agreed in writing',
   body:
-    'Every build is fixed scope and agreed in writing before work starts, whether it is done by your developers, a developer we help you place, your existing vendor, or us under Client Capacity Delivery. Your firm owns the code either way.',
+    'Every build is fixed scope and agreed in writing before work starts, whether it is done by your developers, a developer we help you place, your existing vendor, or us under Install Delivery. Your firm owns the code either way.',
 }
 
 export const reassurance = {
@@ -28,12 +28,12 @@ export const reassurance = {
     {
       title: 'A mode that fits',
       body:
-        'The Capacity Scaling Roadmap and the Capacity Constraint review call point you to Client Capacity Partnership, Client Capacity Delivery or AI Quick Start. Each path is scoped before build budget moves.',
+        'The Profit Constraint Score and the Constraint review call point you to Install Partnership, Install Delivery or AI Quick Start. Each path is scoped before build budget moves.',
     },
     {
       title: 'No lock-in',
       body:
-        'Your roadmap and IP stay yours. Pause or leave when you need to; nothing renews by default.',
+        'Your playbooks and IP stay yours. Pause or leave when you need to; nothing renews by default.',
     },
     {
       title: 'No hourly billing',
@@ -55,13 +55,13 @@ export const faq = {
     {
       question: 'Where do we start?',
       answer:
-        'With the Capacity Scaling Roadmap if you want a fast read on which constraint to run first, or a free Capacity Constraint review call if you would rather talk first. Both end in the same straight conversation about fit and what would matter first.',
+        'With the Profit Constraint Score if you want a fast read on which constraint is binding, or a free Constraint review call if you would rather talk first. Both end in the same straight conversation about fit and what would matter first.',
     },
     {
       question: 'Do you build?',
       answer: {
         before:
-          'Yes, when Client Capacity Delivery is the right mode: fixed scope, agreed in writing, your firm owns the code. On Partnership we work alongside your developers, or help you place one, with owned shipping capability included when the bet needs it. If you already have a vendor, they can build under your direction. For the full menu, see ',
+          'Yes, when Install Delivery is the right mode: fixed scope, agreed in writing, your firm owns the code. On Partnership we work alongside your developers, or help you place one, with owned shipping capability included when the bet needs it. If you already have a vendor, they can build under your direction. For the full menu, see ',
         link: {
           label: 'what we can set up or build',
           href: `${waysWeWorkPath}#implementation-menu`,
@@ -77,7 +77,7 @@ export const faq = {
     {
       question: 'How do we know it\u2019s working?',
       answer:
-        'You set a baseline for revenue, margin on the work you want more of, and capacity to take the next client. We track movement against that baseline, plus honest ship / do not ship decisions you can see in the roadmap. No invented proof points.',
+        'You set a baseline for revenue, margin on the work you want more of, and capacity to take the next client. We track movement against that baseline, plus honest ship or do-not-ship decisions you can see in the plan. No invented proof points.',
     },
     {
       question: 'What tools do you build with?',
@@ -92,16 +92,16 @@ export const faq = {
     {
       question: 'Why are your prices not on the site?',
       answer:
-        'Because a published number would be wrong for most firms who read it. Client Capacity and any scoped build work are agreed in writing before they start. You get fixed terms in writing before anything starts.',
+        'Because a published number would be wrong for most firms who read it. Profit Engine and any scoped build work are agreed in writing before they start. You get fixed terms in writing before anything starts.',
     },
   ],
 }
 
 export const closingCta = {
   eyebrow: 'Next step',
-  heading: 'Find what\u2019s stopping the next client.',
+  heading: 'Find your binding constraint.',
   body:
-    'Whether Client Capacity Partnership, Client Capacity Delivery or AI Quick Start fits, the Capacity Scaling Roadmap and the Capacity Constraint review call show you straight. Terms are agreed in writing, never published here.',
-  primary: auditCta,
+    'Whether Install Partnership, Install Delivery or AI Quick Start fits, the Profit Constraint Score and the Constraint review call show you straight. Terms are agreed in writing, never published here.',
+  primary: scoreCta,
   secondary: reviewCallCta,
 }
