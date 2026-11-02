@@ -101,11 +101,14 @@ export function ProofCarousel({
             onClick={() => goTo(index - 1)}
           />
 
-          <Card hover className="min-w-0 flex-1 max-w-3xl">
-            <p className="font-mono text-label uppercase text-mist">
+          <Card
+            hover
+            className="min-w-0 flex-1 max-w-4xl border-line bg-paper-2 p-8 md:p-12"
+          >
+            <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-accent">
               {active.label}
             </p>
-            <h3 className="mt-5 font-display text-sub text-ink">
+            <h3 className="mt-4 font-display text-section text-ink">
               {active.title}
             </h3>
             {active.resultLine ? (

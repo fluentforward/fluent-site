@@ -1,5 +1,5 @@
 import { Eyebrow } from '@/components/ui/Eyebrow'
-import { Heading, Lede } from '@/components/ui/Heading'
+import { AccentPhrase, Heading, Lede } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
 
@@ -14,14 +14,28 @@ export function PageHero({
   lede?: string
   children?: React.ReactNode
 }) {
+  const accentBuild = heading.includes('build.')
   return (
-    <Section tone="paper" className="hero-ambient pt-14 pb-12 md:pt-20 md:pb-16">
-      <Reveal className="max-w-4xl">
-        <Eyebrow>{eyebrow}</Eyebrow>
-        <Heading as="h1" size="display-sm" className="mt-5 md:mt-6">
-          {heading}
+    <Section
+      tone="ink"
+      className="hero-ambient overflow-hidden pt-12 pb-12 md:pt-16 md:pb-16"
+    >
+      <Reveal className="relative max-w-4xl">
+        <Eyebrow tone="dark">{eyebrow}</Eyebrow>
+        <Heading as="h1" size="display-sm" tone="dark" className="mt-5 md:mt-6">
+          {accentBuild ? (
+            <>
+              Judgement before <AccentPhrase>build.</AccentPhrase>
+            </>
+          ) : (
+            heading
+          )}
         </Heading>
-        {lede && <Lede className="mt-6 max-w-prose md:mt-7">{lede}</Lede>}
+        {lede && (
+          <Lede tone="dark" className="mt-6 max-w-prose md:mt-7">
+            {lede}
+          </Lede>
+        )}
         {children}
       </Reveal>
     </Section>

@@ -1,5 +1,5 @@
 import { type Metadata } from 'next'
-import { IBM_Plex_Mono, Instrument_Sans, Inter } from 'next/font/google'
+import { IBM_Plex_Mono, Inter_Tight } from 'next/font/google'
 import clsx from 'clsx'
 
 import { CalBookingInit } from '@/components/consent/CalBookingInit'
@@ -10,26 +10,20 @@ import { site } from '@/content/site'
 
 import '@/styles/tailwind.css'
 
-const inter = Inter({
+const interTight = Inter_Tight({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-inter-tight',
 })
 
-const instrumentSans = Instrument_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-instrument-sans',
-})
-
-const plexMono = IBM_Plex_Mono({
+const geistMono = IBM_Plex_Mono({
   subsets: ['latin'],
   weight: ['400', '500'],
   display: 'swap',
-  variable: '--font-plex-mono',
+  variable: '--font-geist-mono',
 })
 
-const defaultTitle = `FluentForward | ${site.tagline}`
+const defaultTitle = `${site.name} | ${site.tagline}`
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -64,14 +58,9 @@ export default function RootLayout({
   return (
     <html
       lang="en-GB"
-      className={clsx(
-        'h-full antialiased',
-        inter.variable,
-        instrumentSans.variable,
-        plexMono.variable,
-      )}
+      className={clsx('h-full antialiased', interTight.variable, geistMono.variable)}
     >
-      <body className="flex min-h-full flex-col bg-paper font-sans text-slate">
+      <body className="flex min-h-full flex-col bg-ink font-sans text-lede-dark">
         <CookieConsentProvider>
           <SiteHeader />
           <main className="flex-auto">{children}</main>

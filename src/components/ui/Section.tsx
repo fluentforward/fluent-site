@@ -5,9 +5,9 @@ import { Container } from './Container'
 type Tone = 'paper' | 'muted' | 'ink'
 
 const toneClasses: Record<Tone, string> = {
-  paper: 'bg-paper',
-  muted: 'bg-paper-2',
-  ink: 'bg-ink text-mist',
+  paper: 'bg-paper text-ink',
+  muted: 'bg-paper-2 text-ink',
+  ink: 'bg-ink text-lede-dark section-ambient-dark relative overflow-hidden',
 }
 
 export function Section({
@@ -22,7 +22,6 @@ export function Section({
 }: {
   id?: string
   tone?: Tone
-  /** Adds a hairline above the section. Use between two same-tone sections. */
   border?: boolean
   size?: 'default' | 'compact' | 'loose'
   className?: string

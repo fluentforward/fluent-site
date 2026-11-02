@@ -1,83 +1,86 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Typefaces — variables are supplied by next/font in src/app/layout.tsx */
+  /* Typefaces — variables supplied by next/font in src/app/layout.tsx */
   --font-sans:
-    var(--font-inter), ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+    var(--font-inter-tight), ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
     sans-serif;
   --font-display:
-    var(--font-instrument-sans), var(--font-inter), ui-sans-serif, system-ui,
+    var(--font-inter-tight), ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
     sans-serif;
   --font-mono:
-    var(--font-plex-mono), ui-monospace, 'SFMono-Regular', Menlo, monospace;
+    var(--font-geist-mono), ui-monospace, 'SFMono-Regular', Menlo, Consolas,
+    monospace;
 
-  /* Surfaces — softer paper ladder */
-  --color-paper: #ffffff;
-  --color-paper-2: #f8f9fb;
-  --color-paper-3: #f0f2f5;
+  /* Surfaces — Profit Engine preview tokens */
+  --color-paper: #f4f4f1;
+  --color-paper-2: #eaeae6;
+  --color-paper-3: #ffffff;
 
-  --color-ink: #0b0c0e;
-  --color-ink-2: #16181c;
-  --color-ink-3: #24272d;
+  --color-ink: #0a0a0b;
+  --color-ink-2: #121214;
+  --color-ink-3: #1b1b1e;
+
+  --color-accent: #ff4a1c;
+  --color-accent-2: #ff6a3d;
+  /* Legacy alias: steel → accent for existing class names */
+  --color-steel: #ff4a1c;
+  --color-steel-soft: rgba(255, 74, 28, 0.12);
 
   /* Text */
-  --color-slate: #575f6c;
-  --color-mist: #8a929f;
+  --color-slate: #4a4a4f;
+  --color-mist: #8b8b90;
+  --color-mist-d: #5e5e63;
+  --color-lede-dark: #bdbdc2;
+  --color-lede-light: #b9b9be;
 
-  /* The single accent. Used sparingly: rules, numerals, active states, focus. */
-  --color-steel: #2b4c6f;
-  --color-steel-soft: #eef2f6;
+  /* Hairlines */
+  --color-line: rgba(10, 10, 11, 0.12);
+  --color-line-strong: rgba(10, 10, 11, 0.18);
+  --color-line-dark: rgba(255, 255, 255, 0.12);
 
-  /* Hairlines — almost disappear */
-  --color-line: rgba(11, 12, 14, 0.06);
-  --color-line-strong: rgba(11, 12, 14, 0.11);
-  --color-line-dark: rgba(255, 255, 255, 0.1);
+  /* Fluid display scale */
+  --text-display: clamp(3.125rem, 7.4vw, 7.75rem);
+  --text-display--line-height: 0.92;
+  --text-display--letter-spacing: -0.048em;
+  --text-display--font-weight: 600;
 
-  /* Fluid display scale — pushed up, tighter tracking */
-  --text-display: clamp(2.75rem, 6.5vw, 5.25rem);
-  --text-display--line-height: 1.02;
-  --text-display--letter-spacing: -0.038em;
-  --text-display--font-weight: 500;
+  --text-display-sm: clamp(2.5rem, 5.4vw, 5rem);
+  --text-display-sm--line-height: 0.98;
+  --text-display-sm--letter-spacing: -0.035em;
+  --text-display-sm--font-weight: 600;
 
-  --text-display-sm: clamp(2.25rem, 4.5vw, 3.5rem);
-  --text-display-sm--line-height: 1.06;
-  --text-display-sm--letter-spacing: -0.034em;
-  --text-display-sm--font-weight: 500;
-
-  --text-section: clamp(2rem, 3.6vw, 3rem);
-  --text-section--line-height: 1.1;
-  --text-section--letter-spacing: -0.03em;
-  --text-section--font-weight: 500;
+  --text-section: clamp(2.5rem, 5.4vw, 5rem);
+  --text-section--line-height: 0.98;
+  --text-section--letter-spacing: -0.035em;
+  --text-section--font-weight: 600;
 
   --text-sub: clamp(1.35rem, 2.1vw, 1.75rem);
   --text-sub--line-height: 1.22;
   --text-sub--letter-spacing: -0.022em;
-  --text-sub--font-weight: 500;
+  --text-sub--font-weight: 600;
 
-  --text-lede: 1.1875rem;
-  --text-lede--line-height: 1.72;
+  --text-lede: clamp(1.0625rem, 1.45vw, 1.3125rem);
+  --text-lede--line-height: 1.5;
 
   --text-label: 0.75rem;
   --text-label--line-height: 1.2;
-  --text-label--letter-spacing: 0.14em;
+  --text-label--letter-spacing: 0.08em;
 
-  /* Form & surfaces */
-  --radius-btn: 980px;
-  --radius-card: 20px;
-  --shadow-lift:
-    0 1px 2px rgba(11, 12, 14, 0.03), 0 4px 12px rgba(11, 12, 14, 0.04),
-    0 20px 48px rgba(11, 12, 14, 0.06);
+  --radius-btn: 999px;
+  --radius-card: 14px;
+  --shadow-lift: 0 40px 80px -30px rgba(0, 0, 0, 0.8);
   --shadow-card:
-    0 1px 2px rgba(11, 12, 14, 0.02), 0 8px 24px rgba(11, 12, 14, 0.04);
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 40px 80px -30px rgba(0, 0, 0, 0.25);
   --shadow-card-hover:
-    0 2px 4px rgba(11, 12, 14, 0.03), 0 12px 32px rgba(11, 12, 14, 0.07);
+    0 2px 4px rgba(0, 0, 0, 0.08), 0 30px 60px -30px rgba(0, 0, 0, 0.35);
 
-  --container-page: 1200px;
+  --container-page: 1360px;
   --container-prose: 640px;
 
-  /* Motion */
-  --ease-apple: cubic-bezier(0.25, 0.1, 0.25, 1);
-  --ease-apple-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-apple: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --ease-apple-out: cubic-bezier(0.2, 0.7, 0.1, 1);
   --duration-reveal: 0.9s;
 }
 
@@ -90,15 +93,24 @@
   body {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    font-synthesis: none;
+  }
+
+  em,
+  i,
+  cite,
+  q,
+  blockquote {
+    font-style: normal;
   }
 
   ::selection {
-    background: var(--color-ink);
-    color: var(--color-paper);
+    background: var(--color-accent);
+    color: var(--color-ink);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-steel);
+    outline: 2px solid var(--color-accent);
     outline-offset: 3px;
   }
 
@@ -107,14 +119,17 @@
   h3,
   h4 {
     font-family: var(--font-display);
+    font-weight: 600;
     text-wrap: balance;
+  }
+
+  strong,
+  b {
+    font-weight: 600;
   }
 }
 
 @layer components {
-  /* Scroll reveal. Paired with the Reveal component, which adds `.in` when the
-     element enters the viewport. Only active once JS has confirmed it can run,
-     so no-JS visitors get fully visible content. */
   .reveal {
     opacity: 1;
     transform: none;
@@ -133,7 +148,6 @@
     transform: none;
   }
 
-  /* Staggered children inside a reveal group */
   html.js .reveal-stagger > .reveal-child {
     opacity: 0;
     transform: translateY(8px);
@@ -147,44 +161,123 @@
     transform: none;
   }
 
-  /* Hero ambient gradient — cool grey / steel mist */
   .hero-ambient {
-    background:
-      radial-gradient(
-        ellipse 80% 60% at 50% -10%,
-        rgba(43, 76, 111, 0.06) 0%,
-        transparent 70%
-      ),
-      radial-gradient(
-        ellipse 60% 40% at 80% 20%,
-        rgba(138, 146, 159, 0.05) 0%,
-        transparent 60%
-      ),
-      var(--color-paper);
+    position: relative;
+    overflow: hidden;
+    background: var(--color-ink);
+    color: var(--color-paper-3);
   }
 
-  /* Card hover lift */
+  .hero-ambient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      55% 60% at 88% 70%,
+      rgba(255, 74, 28, 0.18),
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  .hero-ambient::after {
+    content: '';
+    position: absolute;
+    top: clamp(7rem, 12vw, 10rem);
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--color-line-dark);
+    pointer-events: none;
+  }
+
+  .section-ambient-dark::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      50% 40% at 50% 55%,
+      rgba(255, 74, 28, 0.1),
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
   .card-lift {
     transition:
-      transform 0.45s var(--ease-apple-out),
-      box-shadow 0.45s var(--ease-apple-out);
+      transform 0.4s var(--ease-apple-out),
+      box-shadow 0.4s var(--ease-apple-out);
   }
 
   .card-lift:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-card-hover);
   }
 
-  /* Header scroll fade */
   .header-scrolled {
-    background-color: rgba(255, 255, 255, 0.82);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom-color: rgba(11, 12, 14, 0.05);
+    background-color: rgba(10, 10, 11, 0.88);
+    backdrop-filter: saturate(1.4) blur(14px);
+    -webkit-backdrop-filter: saturate(1.4) blur(14px);
+    border-bottom-color: var(--color-line-dark);
+  }
+
+  .eyebrow-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow: 0 0 0 4px rgba(255, 74, 28, 0.18);
+  }
+
+  .readout-card {
+    background: linear-gradient(180deg, #17171a, #111113);
+    border: 1px solid var(--color-line-dark);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-lift);
+  }
+
+  .hero-marquee {
+    border-top: 1px solid var(--color-line-dark);
+    border-bottom: 1px solid var(--color-line-dark);
+  }
+
+  .hero-marquee-track {
+    animation: marquee 40s linear infinite;
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .webinar-band {
+    background: var(--color-accent);
+    color: var(--color-ink);
+  }
+
+  .webinar-band::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0 119px,
+      rgba(0, 0, 0, 0.045) 119px 120px
+    );
+    pointer-events: none;
+  }
+
+  .footer-wordmark {
+    font-size: clamp(2.75rem, 12.2vw, 11.25rem);
+    font-weight: 700;
+    letter-spacing: -0.065em;
+    line-height: 0.8;
+    color: #18181b;
+    user-select: none;
   }
 }
 
-/* Cal.com renders its popup full-bleed by default; keep it dialog-sized. */
 cal-modal-box iframe {
   width: min(920px, calc(100vw - 48px)) !important;
   max-width: min(920px, calc(100vw - 48px)) !important;
@@ -193,7 +286,6 @@ cal-modal-box iframe {
   border-radius: var(--radius-card) !important;
 }
 
-/* Room for the fixed cookie banner without covering primary CTAs */
 body.cookie-banner-open {
   padding-bottom: clamp(10rem, 32vh, 14rem);
 }
@@ -213,8 +305,10 @@ body.cookie-banner-open {
   }
 
   .card-lift,
-  .card-lift:hover {
+  .card-lift:hover,
+  .hero-marquee-track {
     transform: none;
     transition: none;
+    animation: none;
   }
 }

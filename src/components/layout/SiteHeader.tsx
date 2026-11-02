@@ -38,33 +38,37 @@ export function SiteHeader() {
   return (
     <header
       className={clsx(
-        'sticky top-0 z-50 border-b border-line bg-paper/75 backdrop-blur-xl transition-[background-color,backdrop-filter,border-color] duration-500',
+        'sticky top-0 z-50 border-b border-transparent bg-ink/72 text-paper backdrop-blur-xl transition-[background-color,backdrop-filter,border-color] duration-300',
         scrolled && 'header-scrolled',
       )}
     >
       <Container>
-        <div className="flex h-[3.75rem] min-w-0 items-center justify-between gap-3 lg:gap-4 md:h-16">
-          <Wordmark />
+        <div className="flex h-[4.5rem] min-w-0 items-center justify-between gap-3 lg:gap-4">
+          <Wordmark tone="dark" />
 
           <nav
             aria-label="Main"
-            className="hidden min-w-0 flex-1 flex-nowrap items-center justify-end gap-4 lg:flex xl:gap-6 2xl:gap-9"
+            className="hidden min-w-0 flex-1 flex-nowrap items-center justify-end gap-5 lg:flex xl:gap-7"
           >
             {nav.map((item) => {
-              const active = pathname === item.href
+              const active = pathname === item.href || pathname.startsWith(`${item.href}/`)
+              const isResources = item.href === '/#webinar'
               return (
                 <Link
                   key={item.href}
                   href={item.href}
                   aria-current={active ? 'page' : undefined}
                   className={clsx(
-                    'shrink-0 whitespace-nowrap text-[0.8125rem] font-medium tracking-[-0.01em] transition-colors duration-300 xl:text-[0.875rem]',
-                    active
-                      ? 'text-ink'
-                      : 'text-slate hover:text-ink',
+                    'inline-flex shrink-0 items-center gap-2 whitespace-nowrap text-[0.9375rem] transition-colors duration-200',
+                    active ? 'text-paper' : 'text-[#cfcfd3] hover:text-paper',
                   )}
                 >
                   {item.label}
+                  {isResources ? (
+                    <span className="rounded-full border border-accent px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-accent">
+                      Webinar
+                    </span>
+                  ) : null}
                 </Link>
               )
             })}
@@ -73,7 +77,7 @@ export function SiteHeader() {
           <div className="hidden shrink-0 lg:block">
             <Button
               href={primaryCta.href}
-              className="whitespace-nowrap px-3 py-2 text-[0.6875rem] leading-none xl:px-5 xl:py-2.5 xl:text-xs 2xl:px-6 2xl:py-2.5 2xl:text-sm"
+              className="whitespace-nowrap px-4 py-2.5 text-sm xl:px-5 xl:text-[0.9375rem]"
             >
               {primaryCta.label}
             </Button>
@@ -85,25 +89,23 @@ export function SiteHeader() {
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? 'Close menu' : 'Open menu'}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line text-ink transition-colors hover:bg-paper-2 lg:hidden"
+            className="relative ml-auto flex h-10 w-10 shrink-0 items-center justify-center lg:hidden"
           >
-            <svg viewBox="0 0 16 16" aria-hidden="true" className="h-4 w-4">
-              {open ? (
-                <path
-                  d="M3 3l10 10M13 3L3 13"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  fill="none"
-                />
-              ) : (
-                <path
-                  d="M1 4h14M1 11h14"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  fill="none"
-                />
+            <span className="sr-only">{open ? 'Close menu' : 'Open menu'}</span>
+            <span
+              aria-hidden="true"
+              className={clsx(
+                'absolute left-2.5 right-2.5 h-0.5 bg-paper transition-transform duration-300',
+                open ? 'top-[19px] rotate-45' : 'top-[15px]',
               )}
-            </svg>
+            />
+            <span
+              aria-hidden="true"
+              className={clsx(
+                'absolute left-2.5 right-2.5 h-0.5 bg-paper transition-transform duration-300',
+                open ? 'top-[19px] -rotate-45' : 'top-[23px]',
+              )}
+            />
           </button>
         </div>
       </Container>
@@ -111,7 +113,7 @@ export function SiteHeader() {
       {open && (
         <div
           id="mobile-nav"
-          className="border-t border-line bg-paper/95 backdrop-blur-xl lg:hidden"
+          className="border-t border-line-dark bg-ink lg:hidden"
         >
           <Container className="py-5">
             <nav aria-label="Main" className="flex flex-col">
@@ -120,20 +122,18 @@ export function SiteHeader() {
                   key={item.href}
                   href={item.href}
                   className={clsx(
-                    'border-b border-line py-4 text-base transition-colors',
-                    pathname === item.href ? 'text-ink' : 'text-slate',
+                    'border-b border-line-dark py-4 text-xl font-semibold tracking-[-0.02em] transition-colors',
+                    pathname === item.href ? 'text-paper' : 'text-[#cfcfd3]',
                   )}
                 >
                   {item.label}
                 </Link>
               ))}
             </nav>
-            <Button href={primaryCta.href} className="mt-6 w-full">
+            <Button href={primaryCta.href} className="mt-6 w-full justify-center">
               {primaryCta.label}
             </Button>
-            <CookieSettingsButton
-              className="mt-4 w-full py-3 text-center text-sm text-slate transition-colors hover:text-ink"
-            >
+            <CookieSettingsButton className="mt-4 w-full py-3 text-center text-sm text-mist transition-colors hover:text-paper">
               Cookie settings
             </CookieSettingsButton>
           </Container>

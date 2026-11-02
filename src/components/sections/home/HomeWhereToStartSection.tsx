@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/Button'
 import { ArrowLink } from '@/components/ui/ArrowLink'
 import { Card } from '@/components/ui/Card'
 import { Eyebrow } from '@/components/ui/Eyebrow'
-import { Heading, Lede } from '@/components/ui/Heading'
+import { AccentPhrase, Heading, Lede } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
 import { scoreCta } from '@/content/board'
@@ -14,7 +14,8 @@ export function HomeWhereToStartSection() {
       <Reveal className="max-w-3xl">
         <Eyebrow>{whereToStart.eyebrow}</Eyebrow>
         <Heading as="h2" className="mt-8">
-          {whereToStart.heading}
+          Two ways to install.{' '}
+          <AccentPhrase>Ninety days either way.</AccentPhrase>
         </Heading>
         <Lede className="mt-8">{whereToStart.lede}</Lede>
       </Reveal>

@@ -1,5 +1,5 @@
 import { Eyebrow } from '@/components/ui/Eyebrow'
-import { Heading } from '@/components/ui/Heading'
+import { AccentPhrase, Heading } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
 import { ArrowLink } from '@/components/ui/ArrowLink'
@@ -14,7 +14,10 @@ export function HomeThreeStepsSection({
     <Section tone="muted" border id="how-it-works" size="compact">
       <Reveal className="max-w-3xl">
         <Eyebrow>{howItWorks.eyebrow}</Eyebrow>
-        <Heading as="h2" className="mt-8">{howItWorks.heading}</Heading>
+        <Heading as="h2" className="mt-8">
+          Fix the one thing that is{' '}
+          <AccentPhrase>holding it back.</AccentPhrase>
+        </Heading>
       </Reveal>
 
       <ol className="mt-12 space-y-0 border-t border-line">
