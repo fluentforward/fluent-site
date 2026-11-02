@@ -27,17 +27,17 @@ import {
   servicesImpact,
   shipGateDelivery,
   structuredServiceType,
-} from '@/content/client-capacity'
+} from '@/content/profit-engine'
 import { site } from '@/content/site'
 
 export const metadata: Metadata = {
   title: { absolute: meta.title },
   description: meta.description,
-  alternates: { canonical: '/client-capacity' },
+  alternates: { canonical: '/profit-engine' },
   openGraph: {
     title: meta.title,
     description: meta.description,
-    url: '/client-capacity',
+    url: '/profit-engine',
   },
   twitter: {
     title: meta.title,
@@ -50,13 +50,13 @@ const structuredData = {
   '@type': 'ProfessionalService',
   name: site.legalName,
   alternateName: site.name,
-  url: `${site.url}/client-capacity`,
+  url: `${site.url}/profit-engine`,
   description: meta.description,
   areaServed: 'GB',
   serviceType: structuredServiceType,
 }
 
-export default function ClientCapacityPage() {
+export default function ProfitEnginePage() {
   return (
     <>
       <script
@@ -132,7 +132,7 @@ export default function ClientCapacityPage() {
         </Section>
       ))}
 
-      <Section tone="paper" border id="how-client-capacity-runs" size="compact">
+      <Section tone="paper" border id="how-profit-engine-runs" size="compact">
         <Reveal className="max-w-3xl">
           <Eyebrow>{process.eyebrow}</Eyebrow>
           <Heading as="h2" className="mt-6">

@@ -44,7 +44,7 @@ export function HomeFitSection() {
           ))}
         </ul>
         <p className="mt-12 text-[1.0625rem] leading-[1.72] text-slate">
-          {fit.auditLine}
+          {fit.scoreLine}
         </p>
       </Reveal>
     </Section>

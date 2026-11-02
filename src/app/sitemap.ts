@@ -5,7 +5,7 @@ import { site } from '@/content/site'
 const routes = [
   { path: '/', priority: 1 },
   { path: '/ways-we-work', priority: 0.9 },
-  { path: '/client-capacity', priority: 0.88 },
+  { path: '/profit-engine', priority: 0.88 },
   { path: '/strategy-blueprints', priority: 0.85 },
   { path: '/contact', priority: 0.8 },
   { path: '/privacy', priority: 0.2 },
