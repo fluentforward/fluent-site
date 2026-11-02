@@ -44,10 +44,7 @@ export function HomeWhereToStartSection() {
 
       <Reveal delay={200} className="mt-12 max-w-prose space-y-6">
         <p className="text-[1.0625rem] leading-[1.72] text-slate">
-          {whereToStart.sprintLine}{' '}
-          <ArrowLink href={whereToStart.sprintLink.href}>
-            {whereToStart.sprintLink.label}
-          </ArrowLink>
+          {whereToStart.sprintLine}
         </p>
         <p className="text-[1.0625rem] leading-[1.72] text-slate">
           {whereToStart.runLine}

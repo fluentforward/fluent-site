@@ -5,7 +5,6 @@ import {
   routeNames,
   seeDeliveryLink,
   seePartnershipLink,
-  seeProfitEngineSprintLink,
 } from '@/content/routes'
 import { site } from '@/content/site'
 
@@ -71,10 +70,6 @@ export const whereToStart = {
   ],
   sprintLine:
     'If a full ninety-day Install is not the right fit today, the Constraint review call may point you to Profit Engine Sprint: thirty days on one scored Offers, Demand or Delivery lever, scoped in writing, then a path to Install when you are ready.',
-  sprintLink: {
-    href: routeLinks.profitEngineSprint,
-    label: seeProfitEngineSprintLink,
-  },
   runLine:
     'After Install comes Run. We can stay on to operate, tune and extend the engine month to month. Run is only for firms who have installed. We do not run engines we did not build.',
   scoreLine:
