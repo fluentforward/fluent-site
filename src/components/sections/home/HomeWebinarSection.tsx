@@ -7,40 +7,41 @@ import { webinar } from '@/content/home'
 
 export function HomeWebinarSection() {
   return (
-    <Section tone="muted" border id="webinar" size="compact">
-      <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
-        <Reveal className="max-w-2xl">
-          <Eyebrow>{webinar.eyebrow}</Eyebrow>
-          <Heading as="h2" className="mt-8">
+    <Section
+      id="webinar"
+      size="compact"
+      className="webinar-band relative overflow-hidden py-20 md:py-28"
+      tone="paper"
+    >
+      <div className="relative z-10 grid gap-12 lg:grid-cols-[1.8fr_1fr] lg:gap-16">
+        <Reveal className="max-w-3xl">
+          <Eyebrow dot={false} tone="light" className="text-black/70">
+            {webinar.eyebrow}
+          </Eyebrow>
+          <Heading as="h2" size="display-sm" className="mt-5 max-w-[16ch] text-ink">
             {webinar.heading}
           </Heading>
-          <Lede className="mt-8">{webinar.subtitle}</Lede>
+          <Lede className="mt-6 max-w-[46ch] text-black/82">{webinar.subtitle}</Lede>
         </Reveal>
 
-        <Reveal delay={100} className="flex flex-col justify-center">
-          <ul className="space-y-4 border-t border-line pt-8">
+        <Reveal delay={100} className="flex flex-col justify-end">
+          <ul className="mb-7 border-t border-black/30">
             {webinar.meta.map((row) => (
               <li
                 key={row.label}
-                className="flex flex-col gap-1 sm:flex-row sm:gap-6 sm:justify-between"
+                className="flex justify-between gap-4 border-b border-black/30 py-3.5 text-xs"
               >
-                <span className="font-mono text-label uppercase text-mist">
+                <span className="font-mono uppercase tracking-[0.06em] text-black/60">
                   {row.label}
                 </span>
-                <span className="text-[0.9375rem] leading-[1.72] text-slate">
-                  {row.value}
-                </span>
+                <span className="text-right text-[0.9375rem] text-ink">{row.value}</span>
               </li>
             ))}
           </ul>
-          <div className="mt-10">
-            <Button href={webinar.ctaHref} variant="secondary">
-              {webinar.ctaLabel}
-            </Button>
-            <p className="mt-4 text-sm leading-relaxed text-slate">
-              {webinar.ctaNote}
-            </p>
-          </div>
+          <Button href={webinar.ctaHref} variant="secondary" className="w-full justify-between bg-ink text-paper hover:bg-ink-3">
+            {webinar.ctaLabel} →
+          </Button>
+          <p className="mt-4 text-sm leading-relaxed text-black/75">{webinar.ctaNote}</p>
         </Reveal>
       </div>
     </Section>

@@ -10,21 +10,23 @@ import {
 import { cal, calConfigJson } from '@/content/cal'
 import { isCapacityScalingRoadmapMagnetUrl } from '@/content/board'
 
-type Variant = 'primary' | 'secondary' | 'onDark' | 'onDarkGhost'
+type Variant = 'primary' | 'secondary' | 'ghost' | 'onDark' | 'onDarkGhost'
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    'bg-ink text-paper hover:bg-ink-3 active:scale-[0.98] active:bg-ink-2',
+    'bg-accent text-ink hover:bg-accent-2 active:scale-[0.98] font-semibold',
   secondary:
-    'border-line-strong text-ink hover:bg-paper-2 active:scale-[0.98] active:bg-paper-3 border bg-transparent',
+    'border-line-strong text-ink hover:bg-paper-2 active:scale-[0.98] border bg-transparent font-semibold',
+  ghost:
+    'border border-white/28 text-paper hover:border-white hover:bg-white/6 active:scale-[0.98] bg-transparent font-semibold',
   onDark:
-    'bg-paper text-ink hover:bg-paper-3 active:scale-[0.98] active:bg-paper-2',
+    'bg-accent text-ink hover:bg-accent-2 active:scale-[0.98] font-semibold',
   onDarkGhost:
-    'border-line-dark text-paper hover:bg-ink-3 active:scale-[0.98] border bg-transparent',
+    'border border-white/28 text-paper hover:border-white hover:bg-white/6 active:scale-[0.98] bg-transparent font-semibold',
 }
 
 const base =
-  'rounded-btn inline-flex items-center justify-center gap-2 px-7 py-3.5 text-[0.9375rem] font-medium transition-[color,background-color,transform,box-shadow] duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]'
+  'rounded-btn inline-flex items-center justify-center gap-3 px-7 py-3.5 text-[0.9375rem] tracking-[-0.005em] transition-[color,background-color,transform,border-color] duration-300 ease-[cubic-bezier(0.2,0.7,0.1,1)]'
 
 type BaseProps = {
   variant?: Variant
@@ -93,5 +95,13 @@ export function Button({
     <Link href={href} className={classes}>
       {children}
     </Link>
+  )
+}
+
+export function ButtonMeta({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="rounded-full bg-black/14 px-2 py-1 font-mono text-[11px] uppercase tracking-[0.06em]">
+      {children}
+    </span>
   )
 }

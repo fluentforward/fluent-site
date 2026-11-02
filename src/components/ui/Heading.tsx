@@ -10,7 +10,6 @@ const sizeClasses: Record<Size, string> = {
   sub: 'text-sub',
 }
 
-/** Character-based max widths for balanced display headings at laptop sizes. */
 const widthClasses: Record<Level, string> = {
   h1: 'max-w-[24ch]',
   h2: 'max-w-[32ch]',
@@ -37,7 +36,7 @@ export function Heading({
     <Tag
       className={clsx(
         sizeClasses[size],
-        'text-balance',
+        'text-balance font-semibold',
         displayWidth,
         tone === 'light' ? 'text-ink' : 'text-paper',
         className,
@@ -46,6 +45,11 @@ export function Heading({
       {children}
     </Tag>
   )
+}
+
+/** Highlight a trailing phrase in accent (preview-style). */
+export function AccentPhrase({ children }: { children: React.ReactNode }) {
+  return <span className="text-accent">{children}</span>
 }
 
 export function Lede({
@@ -61,7 +65,7 @@ export function Lede({
     <p
       className={clsx(
         'text-lede',
-        tone === 'light' ? 'text-slate' : 'text-mist',
+        tone === 'light' ? 'text-slate' : 'text-lede-dark',
         className,
       )}
     >

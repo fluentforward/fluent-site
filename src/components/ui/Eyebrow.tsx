@@ -2,32 +2,25 @@ import clsx from 'clsx'
 
 export function Eyebrow({
   tone = 'light',
-  rule = true,
+  dot = true,
   className,
   children,
 }: {
   tone?: 'light' | 'dark'
-  rule?: boolean
+  /** Orange pulse dot (preview default). Set false for minimal labels. */
+  dot?: boolean
   className?: string
   children: React.ReactNode
 }) {
   return (
     <span
       className={clsx(
-        'flex items-center gap-3 font-mono text-label uppercase',
-        tone === 'light' ? 'text-mist' : 'text-mist',
+        'inline-flex items-center gap-2.5 font-mono text-[12px] uppercase tracking-[0.08em]',
+        tone === 'light' ? 'text-mist-d' : 'text-mist',
         className,
       )}
     >
-      {rule && (
-        <span
-          aria-hidden="true"
-          className={clsx(
-            'h-px w-6 shrink-0',
-            tone === 'light' ? 'bg-steel' : 'bg-mist',
-          )}
-        />
-      )}
+      {dot ? <span aria-hidden="true" className="eyebrow-dot shrink-0" /> : null}
       {children}
     </span>
   )

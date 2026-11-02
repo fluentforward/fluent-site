@@ -37,10 +37,12 @@ export default function Home() {
         lede={growthLimits.lede}
         items={growthLimits.items}
         closing={growthLimits.closing}
+        closingLink={{ href: '/profit-engine', label: 'Become a client' }}
         tone="paper"
         id="growth-limits"
         size="compact"
         dense
+        variant="quotes"
       />
       <HomeWhereToStartSection />
       <HomeWhyFixesFailSection />
