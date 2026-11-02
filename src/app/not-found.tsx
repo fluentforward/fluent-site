@@ -11,15 +11,9 @@ export default function NotFound() {
         <Heading as="h1" size="display-sm" tone="dark" className="mt-6">
           That page is not here.
         </Heading>
-<<<<<<< HEAD
-        <Lede className="mt-6">
+        <Lede tone="dark" className="mt-6">
           It may have moved, or it may never have existed. Start with Profit
           Engine, Ways we work, or a way to reach us.
-=======
-        <Lede tone="dark" className="mt-6">
-          It may have moved, or it may never have existed. Start with Ways we work,
-          the Profit Engine offer, or a way to reach us.
->>>>>>> 248c964 (Port Profit Engine preview visual system to fluent-site)
         </Lede>
         <div className="mt-9 flex flex-wrap gap-4">
           <Button href="/profit-engine">Profit Engine</Button>
