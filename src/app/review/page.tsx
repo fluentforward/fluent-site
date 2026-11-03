@@ -10,7 +10,7 @@ import { scoreCta } from '@/content/board'
 import { site } from '@/content/site'
 
 const description =
-  'Reserved for webinar attendees. Book your Constraint review call — thirty minutes to lock the binding Offers, Demand or Delivery lever and agree what happens next.'
+  'Reserved for webinar attendees. Book your Constraint review call. Thirty minutes to lock the binding Offers, Demand or Delivery lever and agree what happens next.'
 
 export const metadata: Metadata = {
   title: 'Book your Constraint review call',
@@ -28,7 +28,7 @@ const expectations = [
   'You already saw the Profit Engine on the webinar. This call applies it to your firm.',
   'Thirty minutes. Conversation, not a deck replay and not a pitch.',
   'We name which of Offers, Demand or Delivery is binding you now and what fixing it would take with the team you have.',
-  'You leave with a straight read on fit and the next move — including when the answer is no.',
+  'You leave with a straight read on fit and the next move, including when the answer is no.',
   'No follow-up sequence, and nothing added to a mailing list.',
 ]
 
@@ -47,7 +47,7 @@ export default function Review() {
               You&apos;re on the list. Book your Constraint review call.
             </Heading>
             <Lede className="mt-8 max-w-prose">
-              You attended — this is your reserved next step. Pick a time in the
+              You attended. This is your reserved next step. Pick a time in the
               calendar. We use the call to lock the binding lever in Offers,
               Demand or Delivery and agree what happens next for your firm. If
               nothing on the calendar works, email{' '}
