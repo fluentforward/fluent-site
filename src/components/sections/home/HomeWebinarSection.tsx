@@ -38,7 +38,7 @@ export function HomeWebinarSection() {
               </li>
             ))}
           </ul>
-          <Button href={webinar.ctaHref} variant="secondary" className="w-full justify-between bg-ink text-paper hover:bg-ink-3">
+          <Button href={webinar.ctaHref} variant="ink" className="w-full">
             {webinar.ctaLabel} →
           </Button>
           <p className="mt-4 text-sm leading-relaxed text-black/75">{webinar.ctaNote}</p>
