@@ -101,7 +101,7 @@ anything, so content stays visible without JavaScript and honours
 The single call to action is a Cal.com (EU) booking. Configuration lives in
 [src/content/cal.ts](src/content/cal.ts); `CalBookingInit` in the root layout
 powers popup triggers and `CalInline` renders the inline calendar on `/contact`.
-There are no forms and no API routes.
+There are no contact forms elsewhere; webinar registration uses `/api/webinar/register` → Demio event **1021063** when API keys or embed env vars are set (see README).
 
 ## Deployment
 
