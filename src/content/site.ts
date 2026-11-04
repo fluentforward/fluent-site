@@ -31,7 +31,7 @@ export const footerNav = {
   company: {
     title: 'Company',
     links: [
-      { label: 'Webinar', href: '/#webinar' },
+      { label: 'Webinar', href: '/webinar' },
       { label: 'Interaction insights', href: '/strategy-blueprints' },
       { label: 'Constraint review call', href: '/contact' },
     ],

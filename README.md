@@ -28,6 +28,34 @@ Set these on the **Production** environment only (not Preview or Development). S
 | `NEXT_PUBLIC_GA4_MEASUREMENT_ID` | Google Analytics 4 (`G-…`) |
 | `NEXT_PUBLIC_META_PIXEL_ID` | Meta Pixel (optional) |
 | `NEXT_PUBLIC_LINKEDIN_PARTNER_ID` | LinkedIn Insight Tag (optional) |
+| `NEXT_PUBLIC_LINKEDIN_WEBINAR_CONVERSION_ID` | LinkedIn conversion for webinar registration (optional) |
+
+### Profit Engine webinar (`/webinar`)
+
+Demio event **1021063** (Tue 15 Dec 2026 · 11:00 GMT). The site defaults `NEXT_PUBLIC_DEMIO_EVENT_ID` to `1021063`; override only if the event moves.
+
+**Registration wiring (pick one path on Production):**
+
+| Variable | Purpose |
+| --- | --- |
+| `DEMIO_API_KEY` | Demio API key (server only, for branded first-name + email form) |
+| `DEMIO_API_SECRET` | Demio API secret (server only) |
+| `NEXT_PUBLIC_DEMIO_DATE_ID` | Optional session date ID if auto-resolve fails |
+| `NEXT_PUBLIC_DEMIO_EMBED_REF` | Ref token from Demio Share → Embed (unstyled inline embed) |
+| `NEXT_PUBLIC_DEMIO_EMBED_SCRIPT_SRC` | Full embed script URL if Demio changes the path |
+| `NEXT_PUBLIC_DEMIO_EMBED_SRC` | Optional iframe `src` instead of script embed |
+
+Branded form uses Demio `PUT /api/v1/event/register` with event id **1021063**. Demio sends confirmation email, calendar invite and join link. **Do not** surface join URLs on `/webinar` or `/webinar/thanks`.
+
+**Demio room (Webinar ops, not this repo):** Featured Action after the session points to [Constraint review](/review) only. No Score Featured Action.
+
+**Test registration after deploy:**
+
+1. Open the Vercel preview URL for the PR (or Production after merge).
+2. Ensure `DEMIO_API_KEY` + `DEMIO_API_SECRET` **or** `NEXT_PUBLIC_DEMIO_EMBED_REF` is set on that environment.
+3. Submit a test with a real inbox you control.
+4. Confirm the registrant appears in Demio event **1021063** and the Demio confirmation email arrives.
+5. Thank-you page: `/webinar/thanks` (API path redirects here; for embed, set Demio post-registration redirect to `https://www.fluentforward.com/webinar/thanks` if desired).
 
 Redeploy Production after changing public env vars so the client build picks them up.
 

@@ -1,5 +1,6 @@
 import { scoreCta, reviewCallCta } from '@/content/board'
 import { gartnerPressReleases } from '@/content/gartner'
+import { webinarSession, webinarPath } from '@/content/webinar'
 import {
   routeLinks,
   routeNames,
@@ -161,12 +162,12 @@ export const webinar = {
   meta: [
     { label: 'Format', value: 'Live webinar and Q&A' },
     { label: 'Hosted by', value: 'The FluentForward team' },
-    { label: 'Date', value: 'To be announced' },
+    { label: 'Date', value: webinarSession.homeDateLabel },
   ],
-  ctaLabel: 'Register soon',
-  ctaHref: `mailto:${site.email}?subject=Profit%20Engine%20webinar`,
+  ctaLabel: 'Register free',
+  ctaHref: webinarPath,
   ctaNote:
-    'Registration opens soon. Email us if you want a note when the date is set.',
+    'Free live session. Demio sends your confirmation, calendar invite and join link.',
 } as const
 
 export const closing = {
