@@ -22,6 +22,38 @@ type DemioRegisterResponse = {
   hash?: string
   join_link?: string
   messages?: string[]
+  errors?: string[]
+}
+
+/** Demio predefined GDPR field (required on some accounts). String yes/no per live API behaviour. */
+export function demioGdprFromMarketingOptIn(
+  marketingOptIn: boolean,
+): 'yes' | 'no' {
+  return marketingOptIn ? 'yes' : 'no'
+}
+
+export function formatDemioRegistrationError(
+  payload: unknown,
+  status: number,
+): string {
+  if (typeof payload !== 'object' || payload === null) {
+    return `Demio registration failed (${status})`
+  }
+  const record = payload as DemioRegisterResponse
+  const parts: string[] = []
+  if (Array.isArray(record.errors)) {
+    for (const item of record.errors) {
+      if (typeof item === 'string' && item.trim()) parts.push(item.trim())
+    }
+  }
+  if (Array.isArray(record.messages)) {
+    for (const item of record.messages) {
+      if (typeof item === 'string' && item.trim()) parts.push(item.trim())
+    }
+  }
+  return parts.length > 0
+    ? parts.join(', ')
+    : `Demio registration failed (${status})`
 }
 
 type DemioEventDate = {
@@ -98,6 +130,7 @@ export async function registerWebinarAttendee(
     id: eventId,
     name: input.firstName.trim(),
     email: input.email.trim().toLowerCase(),
+    gdpr: demioGdprFromMarketingOptIn(input.marketingOptIn),
   }
 
   if (dateId) {
@@ -107,10 +140,6 @@ export async function registerWebinarAttendee(
   const ref = buildReferrer(input.attribution)
   if (ref) {
     body.ref_url = ref
-  }
-
-  if (input.marketingOptIn) {
-    body.marketing_opt_in = 'yes'
   }
 
   const response = await fetch('https://my.demio.com/api/v1/event/register', {
@@ -125,10 +154,7 @@ export async function registerWebinarAttendee(
     | null
 
   if (!response.ok) {
-    const message =
-      payload?.messages?.join(', ') ||
-      `Demio registration failed (${response.status})`
-    throw new Error(message)
+    throw new Error(formatDemioRegistrationError(payload, response.status))
   }
 
   return { joinUrl: payload?.join_link }

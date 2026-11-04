@@ -45,7 +45,7 @@ Demio event **1021063** (Tue 15 Dec 2026 · 11:00 GMT). The site defaults `NEXT_
 | `NEXT_PUBLIC_DEMIO_EMBED_SCRIPT_SRC` | Full embed script URL if Demio changes the path |
 | `NEXT_PUBLIC_DEMIO_EMBED_SRC` | Optional iframe `src` instead of script embed |
 
-Branded form uses Demio `PUT /api/v1/event/register` with event id **1021063**. Demio sends confirmation email, calendar invite and join link. **Do not** surface join URLs on `/webinar` or `/webinar/thanks`.
+Branded form uses Demio `PUT /api/v1/event/register` with event id **1021063**, session `date_id` from `NEXT_PUBLIC_DEMIO_DATE_ID` when set, and Demio’s predefined **`gdpr`** field (`yes` / `no` from the optional marketing checkbox). Demio sends confirmation email, calendar invite and join link. **Do not** surface join URLs on `/webinar` or `/webinar/thanks`.
 
 **Demio room (Webinar ops, not this repo):** Featured Action after the session points to [Constraint review](/review) only. No Score Featured Action.
 
