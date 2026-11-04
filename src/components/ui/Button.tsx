@@ -10,13 +10,15 @@ import {
 import { cal, calConfigJson } from '@/content/cal'
 import { isCapacityScalingRoadmapMagnetUrl } from '@/content/board'
 
-type Variant = 'primary' | 'secondary' | 'ghost' | 'onDark' | 'onDarkGhost'
+type Variant = 'primary' | 'secondary' | 'ink' | 'ghost' | 'onDark' | 'onDarkGhost'
 
 const variantClasses: Record<Variant, string> = {
   primary:
     'bg-accent text-ink hover:bg-accent-2 active:scale-[0.98] font-semibold',
   secondary:
     'border-line-strong text-ink hover:bg-paper-2 active:scale-[0.98] border bg-transparent font-semibold',
+  ink:
+    'border border-transparent bg-ink text-paper hover:bg-ink-3 active:scale-[0.98] font-semibold',
   ghost:
     'border border-white/28 text-paper hover:border-white hover:bg-white/6 active:scale-[0.98] bg-transparent font-semibold',
   onDark:
