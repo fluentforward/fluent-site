@@ -14,6 +14,7 @@ import { Section } from '@/components/ui/Section'
 import { ArrowLink } from '@/components/ui/ArrowLink'
 import {
   altRoute,
+  buildModes,
   faq,
   fitLine,
   gartnerProof,
@@ -21,7 +22,6 @@ import {
   ifYouBeats,
   hero,
   meta,
-  modes,
   oneSystem,
   process,
   servicesImpact,
@@ -99,7 +99,7 @@ export default function ProfitEnginePage() {
         </Reveal>
       </Section>
 
-      {[modes.partnership, modes.delivery].map((mode, modeIndex) => (
+      {[buildModes.withYourTeam, buildModes.weShipTheBuild].map((mode, modeIndex) => (
         <Section
           key={mode.id}
           id={mode.id}

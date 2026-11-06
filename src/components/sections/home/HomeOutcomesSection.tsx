@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/Button'
 import { Heading } from '@/components/ui/Heading'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
-import { auditCta } from '@/content/board'
+import { scoreCta } from '@/content/board'
 import { outcomes } from '@/content/home'
 
 export function HomeOutcomesSection() {
@@ -21,8 +21,8 @@ export function HomeOutcomesSection() {
           ))}
         </ul>
         <div className="mt-12">
-          <Button href={auditCta.href}>{auditCta.label}</Button>
-          <p className="mt-4 text-sm leading-relaxed text-slate">{auditCta.hint}</p>
+          <Button href={scoreCta.href}>{scoreCta.label}</Button>
+          <p className="mt-4 text-sm leading-relaxed text-slate">{scoreCta.hint}</p>
         </div>
       </Reveal>
     </Section>

@@ -6,6 +6,45 @@ import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
 import { ArrowLink } from '@/components/ui/ArrowLink'
 
+export type DefinitionGridItem = {
+  title: string
+  /** Single block (default). */
+  body?: string
+  /** Multiple paragraphs with spacing (prefer for long card copy). */
+  paragraphs?: readonly string[]
+}
+
+function DefinitionItemBody({
+  item,
+  variant,
+}: {
+  item: DefinitionGridItem
+  variant: 'quotes' | 'cards'
+}) {
+  const paras =
+    item.paragraphs && item.paragraphs.length > 0
+      ? [...item.paragraphs]
+      : item.body
+        ? [item.body]
+        : []
+  if (paras.length === 0) return null
+
+  const pClass =
+    variant === 'quotes'
+      ? 'text-lg leading-snug tracking-[-0.012em] text-ink'
+      : 'text-[0.9375rem] leading-[1.72] text-slate'
+
+  return (
+    <div className="space-y-3">
+      {paras.map((para, i) => (
+        <p key={i} className={pClass}>
+          {para}
+        </p>
+      ))}
+    </div>
+  )
+}
+
 /** Two-column grid of term/definition cards, separated by hairlines. */
 export function DefinitionGrid({
   eyebrow,
@@ -25,7 +64,7 @@ export function DefinitionGrid({
   heading: string
   lede?: string
   plainLine?: string
-  items: readonly { title: string; body: string }[]
+  items: readonly DefinitionGridItem[]
   closing?: string
   closingLink?: { href: string; label: string }
   tone?: 'paper' | 'muted'
@@ -84,8 +123,8 @@ export function DefinitionGrid({
                 </span>
                 {item.title}
               </dt>
-              <dd className="text-lg leading-snug tracking-[-0.012em] text-ink">
-                {item.body}
+              <dd>
+                <DefinitionItemBody item={item} variant="quotes" />
               </dd>
             </Reveal>
           ))}
@@ -106,8 +145,8 @@ export function DefinitionGrid({
               <dt className="font-display text-[1.125rem] font-semibold tracking-[-0.015em] text-ink">
                 {item.title}
               </dt>
-              <dd className="mt-4 text-[0.9375rem] leading-[1.72] text-slate">
-                {item.body}
+              <dd className="mt-4">
+                <DefinitionItemBody item={item} variant="cards" />
               </dd>
             </Reveal>
           ))}

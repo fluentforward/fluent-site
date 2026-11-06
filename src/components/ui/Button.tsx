@@ -4,7 +4,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import {
-  useFirstAiMoveClickHandler,
+  useScoreMagnetAttributionClick,
   useMarketingAttributedHref,
 } from '@/components/ui/attributed-href'
 import { cal, calConfigJson } from '@/content/cal'
@@ -49,7 +49,7 @@ function ExternalButton({
   children: React.ReactNode
 }) {
   const externalHref = useMarketingAttributedHref(href)
-  const onExternalClick = useFirstAiMoveClickHandler(href)
+  const onExternalClick = useScoreMagnetAttributionClick(href)
   const attributionClick = isCapacityScalingRoadmapMagnetUrl(href)
     ? onExternalClick
     : undefined

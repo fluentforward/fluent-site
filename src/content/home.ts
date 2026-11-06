@@ -2,79 +2,116 @@ import { scoreCta, reviewCallCta } from '@/content/board'
 import { gartnerPressReleases } from '@/content/gartner'
 import { webinarSession, webinarPath } from '@/content/webinar'
 import {
+  profitEngineInsightsFootnote,
   routeLinks,
   routeNames,
-  seeDeliveryLink,
-  seePartnershipLink,
+  seeBuildWithYourTeamLink,
+  seeWeShipTheBuildLink,
 } from '@/content/routes'
-import { site } from '@/content/site'
 
+/** Outcome-first hero; product line sits below H1, not inside it. */
 export const hero = {
-  eyebrow:
-    'Profit Engine for agencies, consultancies and professional services firms',
-  headline: 'Busy is not profitable. Install the engine that is.',
+  eyebrow: 'For agencies, consultancies and professional services firms',
+  headlineLead: 'Busy is not profitable.',
+  headlineAccent: 'Growth without margin is a trap.',
+  productLine:
+    'Profit Engine: we deploy a realtime dashboard driven by AI, then we work with you to unblock what holds back growth and margin.',
   subhead:
-    'More people, more tools, more AI just makes the wrong work go faster. We find the one constraint across your Offers, Demand and Delivery that is capping margin, then install the engine that brings in the right clients at the right margin. Without hiring in a straight line.',
+    'Revenue can grow while margin stalls because something in how you win clients, recognise revenue, or deliver work is wrong. We deploy a realtime dashboard driven by AI so you get realtime insights on what it costs to acquire clients, on revenue, and on what it costs to deliver your work. We then work with you to unblock what is holding back growth and margin.',
   primaryCta: scoreCta,
   secondaryCta: reviewCallCta,
-  secondaryWebinar: { label: 'Watch the webinar', href: '/#webinar' },
-}
+} as const
 
 export const growthLimits = {
   eyebrow: 'Sound familiar?',
   heading: 'Three ways a busy firm stays unprofitable.',
   lede:
-    'Different symptoms. One binding constraint. Add people, tools or AI before you fix it and you just get busier.',
+    'Different symptoms. One binding limit. More people, tools, or AI on top of that limit only accelerates the wrong work.',
   items: [
     {
       title: 'Offers',
-      body:
-        'You sell hours, not outcomes. Every proposal is bespoke and every price is a negotiation. Margin gets set by whoever pushes hardest on the call.',
+      paragraphs: [
+        'We deploy a realtime AI dashboard on how you package and price so you get insights on what it costs to acquire clients, on revenue, and on what it costs to deliver your work.',
+        'You see where margin leaks before you sign the next deal and decide how to tighten packaging and pricing around outcomes.',
+        'We then change the process with you, put AI on that offer lever, and select or build only the tech that is needed so the constraint actually moves.',
+        'That lifts realised margin on the work you already chase.',
+      ],
     },
     {
       title: 'Demand',
-      body:
-        'Pipeline is referrals and luck. Great month, dead month. You take the work that turns up, not the work you want.',
+      paragraphs: [
+        'We run the same dashboard view on how demand hits your calendar so you get realtime insights on client acquisition cost, revenue, and delivery cost against the margin you want, not just volume.',
+        'You see where the calendar fills with the wrong work or weak conversations, so you rebalance targeting and qualification.',
+        'We reshape the go-to-market steps with you, add AI where it clears bottlenecks, and connect or build only the routing and workflows that shift quality.',
+        'The pipeline moves toward work that holds margin instead of busy months that do not.',
+      ],
     },
     {
       title: 'Delivery',
-      body:
-        'You are flat out, the team is stretched, and margin still is not there at month end. Growth means hiring, and hiring eats the profit.',
+      paragraphs: [
+        'We use the dashboard to show throughput and delivery cost against margin as volume rises, before the quarter closes.',
+        'You see which handoffs and rules eat profit before month-end pressure hides them.',
+        'We tighten the operating rhythm with you, put AI on the delivery lever under your ownership rules, and change or build systems only where they unlock throughput.',
+        'Margin holds when the team is already flat out.',
+      ],
     },
   ],
   closing:
-    'Profit Engine finds which constraint is binding you now, fixes it in order, and runs the same cycle when the next one shows up.',
+    'The Profit Constraint Score shows which of the three is binding you now so you are not guessing where to start.',
+  closingLink: { href: scoreCta.href, label: scoreCta.label } as const,
 } as const
 
 export const whereToStart = {
-  eyebrow: 'Ways we work',
-  heading: 'Two ways to install. Ninety days either way.',
+  eyebrow: 'How you get there',
+  headingLead: 'Find the ',
+  headingAccent: 'binding constraint',
+  headingTail: ', fix it in weeks, keep profit under control.',
   lede:
-    'Same engine, same outcome. The difference is who does the building. Either way, it is yours when we are done.',
-  cards: [
+    'Most firms start with the Profit Constraint Score, then a short engagement on one lever while the realtime dashboard is live. After that, optional continuity keeps the same dashboard and insights honest as your mix changes.',
+  pathCards: [
     {
-      title: routeNames.installPartnership,
+      pathTitle: 'Find what is binding, then fix it fast',
+      offerLabel: routeNames.profitEngineOnRamp,
       ifYou:
-        'You have people who can build and need direction, pace and a system.',
+        'You want a straight read on what caps margin and a fixed window to move it with a realtime AI dashboard and agents on that lever.',
       body:
-        'We install with your team. Our senior team leads. Your people build alongside us. You come out with a working engine and a team that knows how to drive it.',
-      link: { href: routeLinks.partnership, label: seePartnershipLink },
+        'We map Offers, Demand and Delivery to one scored lever, then deploy the dashboard with automation and agents on that lever. Never advisory-only. Commercial terms are agreed in writing; nothing is priced here.',
+      insightsFootnote: profitEngineInsightsFootnote,
+      link: { href: routeLinks.profitEngine, label: 'How Profit Engine works' },
     },
     {
-      title: routeNames.installDelivery,
+      pathTitle: 'Keep profit honest after the first fix',
+      offerLabel: routeNames.run,
       ifYou:
-        'You are flat out on client work and cannot spare people to build.',
+        'You already worked with us on that first fix and want always-on profit control as volume shifts.',
       body:
-        'We install for you. Our team does the build. You make the calls; we ship the engine. Minimal drag on billable time.',
-      link: { href: routeLinks.delivery, label: seeDeliveryLink },
+        'The same dashboard and realtime insights, with fix-forward on what we built with you. Not a substitute for that first engagement.',
+      insightsFootnote: null,
+      link: { href: routeLinks.waysWeWork, label: 'See ways we work' },
     },
   ],
-  sprintLine:
-    'If a full ninety-day Install is not the right fit today, the Constraint review call may point you to Profit Engine Sprint: thirty days on one scored Offers, Demand or Delivery lever, scoped in writing, then a path to Install when you are ready.',
+  howWorkGetsDoneHeading: 'How the work gets done',
+  buildModeCards: [
+    {
+      title: 'With your team in the lead',
+      ifYou: 'You have people who can build and need direction, pace and a system.',
+      body:
+        'We run alongside your team. Our senior people lead; your people ship with us. You come out with a working rhythm and a team that knows how to drive it.',
+      link: { href: routeLinks.buildWithYourTeam, label: seeBuildWithYourTeamLink },
+    },
+    {
+      title: 'We ship more of the build',
+      ifYou: 'You are flat out on client work and need more of the delivery done for you.',
+      body:
+        'Our team does more of the build. You steer; we ship. Minimal drag on billable time.',
+      link: { href: routeLinks.weShipTheBuild, label: seeWeShipTheBuildLink },
+    },
+  ],
+  customSoftwareLine: 'Bigger custom software is scoped separately when the bet needs it.',
   runLine:
-    'After Install comes Run. We can stay on to operate, tune and extend the engine month to month. Run is only for firms who have installed. We do not run engines we did not build.',
+    'Ongoing continuity is only for firms who already did that first engagement with us.',
   scoreLine:
-    'Not sure which fits? Get your Profit Constraint Score first. Three minutes, instant result, no sales pitch.',
+    'Not sure where to start? Get your Profit Constraint Score first. Three minutes, instant result, no sales pitch.',
 } as const
 
 export const whyFixesFail = {
@@ -99,12 +136,11 @@ export const whyFixesFail = {
 export const outcomes = {
   heading: 'What changes for your firm',
   items: [
-    'Clarity on whether Offers, Demand or Delivery is binding you now.',
-    'Packaging that turns freed capacity into priced outcomes, not more billable hours.',
-    'Demand aimed at work that fits the offer and the margin you want.',
-    'Delivery with AI under ownership that protects profit as volume rises.',
-    'A cycle that re-checks all three so the next limit does not quietly kill growth.',
-    'Code, agents and playbooks your firm owns.',
+    'You name the binding limit across how you win work, fill the calendar, and deliver before it shows up as a bad quarter.',
+    'You move one lever in a few weeks with the realtime dashboard and agents on that lever, not a slide deck.',
+    'You keep margin when volume rises because throughput and pricing stay tied to the work you want.',
+    'You run a weekly rhythm your leadership owns so the next leak surfaces early.',
+    'You own code, agents and playbooks; nothing vital sits in a vendor black box.',
   ],
 }
 
@@ -112,7 +148,9 @@ export const fit = {
   builtForHeading:
     'Built for owners who need profit from growth, not just more people',
   builtFor:
-    'Agencies, consultancies, professional and managed services of around 20 to 200 people. If you need more of the right clients at prices that hold, and delivery that turns that work into margin without a hire for every win, Profit Engine runs Offers, Demand and Delivery as one system: Install Partnership or Install Delivery.',
+    'Agencies, consultancies, professional and managed services of around 20 to 200 people. If you need more of the right clients at prices that hold, and delivery that turns that work into margin without a hire for every win, this work runs Offers, Demand and Delivery as one system.',
+  gartnerLine:
+    'Many agentic AI programmes stall before they reach the P&L. Judgement before build budget moves matters.',
   lineHeading: 'Where we draw the line',
   notForHeading: "We are not the right fit if:",
   notFor: [
@@ -127,31 +165,31 @@ export const fit = {
 
 export const howItWorks = {
   eyebrow: 'How it works',
-  heading: 'Fix the one thing that is holding it back.',
+  heading: 'From a fast read to a rhythm you run.',
   steps: [
     {
       title: 'Score',
       body:
-        'Three minutes. Know what is binding across Offers, Demand and Delivery. Instant result before any call.',
+        'Three minutes. See what is binding across Offers, Demand and Delivery. Instant result before any call.',
     },
     {
       title: 'Constraint review',
       body:
-        'A free call. We test the score against your numbers and agree whether Install Partnership or Install Delivery fits. Straight answers, including when we are not the right fit.',
+        'A free call. We test the read against your numbers and agree what would matter first. Straight answers, including when we are not the right fit.',
     },
     {
-      title: 'Install',
+      title: 'Fix the binding constraint in weeks',
       body:
-        'Ninety days. The fix goes in and stays in. Your firm owns the engine, the code and the playbooks.',
+        'A short engagement on one lever: live dashboards and analytics on all three lenses, agents and automation on the lever that caps margin. Profit Engine on-ramp: your firm owns what we ship.',
     },
     {
-      title: 'Run',
+      title: 'Keep profit under control',
       body:
-        'Optional after Install. We stay on to tune and extend the engine month to month. Run is only for firms who have installed.',
+        'Optional continuity: the same dashboard with fix-forward as mix shifts. Run: only after that first engagement with us.',
     },
   ],
   closing:
-    'Fix one constraint and the next becomes obvious. That is how profit compounds.',
+    'Fix one limit and the next becomes obvious. That is how profit compounds.',
 }
 
 export const webinar = {

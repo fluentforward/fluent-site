@@ -21,11 +21,13 @@ import {
 } from '@/content/how-it-works'
 import {
   implementationMenu,
+  profitEngineInsightsFootnote,
+  routeAnchors,
   waysWeWorkHub,
   waysWeWorkMeta,
   waysWeWorkModeOutcome,
+  waysWeWorkPrimaryRoutes,
   waysWeWorkProcessStrip,
-  waysWeWorkRoutes,
   waysWeWorkStartingPoints,
   waysWeWorkStructuredServiceType,
 } from '@/content/routes'
@@ -79,6 +81,12 @@ export default function WaysWeWorkPage() {
         lede={waysWeWorkHub.lede}
       />
 
+      <Section tone="paper" border size="compact">
+        <Reveal className="max-w-3xl">
+          <p className="text-[1.0625rem] leading-[1.72] text-slate">{waysWeWorkHub.customSoftwareLine}</p>
+        </Reveal>
+      </Section>
+
       <Section tone="muted" border id="starting-points" size="compact">
         <Reveal className="max-w-3xl">
           <Eyebrow>{waysWeWorkStartingPoints.eyebrow}</Eyebrow>
@@ -122,7 +130,7 @@ export default function WaysWeWorkPage() {
         </div>
       </Section>
 
-      {waysWeWorkRoutes.map((route, routeIndex) => (
+      {waysWeWorkPrimaryRoutes.map((route, routeIndex) => (
         <Section
           key={route.id}
           id={route.id}
@@ -160,6 +168,14 @@ export default function WaysWeWorkPage() {
               <div className="mt-8">
                 <ArrowLink href={route.link.href}>{route.link.label}</ArrowLink>
               </div>
+            ) : null}
+            {route.id === routeAnchors.onRamp ? (
+              <p
+                id={routeAnchors.insights}
+                className="mt-10 border-t border-line pt-8 text-[0.9375rem] leading-[1.72] text-slate"
+              >
+                {profitEngineInsightsFootnote}
+              </p>
             ) : null}
           </Reveal>
         </Section>
