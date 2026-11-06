@@ -30,18 +30,25 @@ export const growthLimits = {
   items: [
     {
       title: 'Offers',
-      body:
-        'We deploy a realtime AI dashboard on how you package and price so you get insights on what it costs to acquire clients, on revenue, and on what it costs to deliver your work. You see where margin leaks before you sign the next deal, so you tighten packaging and pricing around outcomes. That lifts realised margin on the work you already chase.',
+      paragraphs: [
+        'We deploy a realtime AI dashboard on how you package and price so you get insights on what it costs to acquire clients, on revenue, and on what it costs to deliver your work.',
+        'You see where margin leaks before you sign the next deal, so you tighten packaging and pricing around outcomes.',
+        'That lifts realised margin on the work you already chase.',
+      ],
     },
     {
       title: 'Demand',
-      body:
-        'We run the same dashboard view on how demand hits your calendar so you get realtime insights on client acquisition cost, revenue, and delivery cost against the margin you want, not just volume. You rebalance targeting and qualification so the pipeline shifts toward work that holds margin instead of busy months that do not.',
+      paragraphs: [
+        'We run the same dashboard view on how demand hits your calendar so you get realtime insights on client acquisition cost, revenue, and delivery cost against the margin you want, not just volume.',
+        'You rebalance targeting and qualification so the pipeline shifts toward work that holds margin instead of busy months that do not.',
+      ],
     },
     {
       title: 'Delivery',
-      body:
-        'We use the dashboard to show throughput and delivery cost against margin as volume rises, before the quarter closes. You fix the handoffs and rules that eat profit so margin holds when the team is already flat out.',
+      paragraphs: [
+        'We use the dashboard to show throughput and delivery cost against margin as volume rises, before the quarter closes.',
+        'You fix the handoffs and rules that eat profit so margin holds when the team is already flat out.',
+      ],
     },
   ],
   closing:
