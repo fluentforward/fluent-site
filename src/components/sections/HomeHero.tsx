@@ -39,11 +39,16 @@ export function HomeHero() {
         <div className="grid items-start gap-10 lg:grid-cols-[1.25fr_1fr] lg:gap-16 xl:gap-28">
           <div>
             <Reveal>
-              <Eyebrow tone="dark">{hero.eyebrow}</Eyebrow>
-              <Heading as="h1" size="display" tone="dark" className="mt-7 max-w-[22ch]">
+              <Heading as="h1" size="display" tone="dark" className="max-w-[22ch]">
                 {hero.headlineLead}{' '}
                 <AccentPhrase>{hero.headlineAccent}</AccentPhrase>
               </Heading>
+              <p className="mt-6 max-w-[52ch] text-[0.9375rem] leading-[1.65] tracking-[-0.01em] text-mist">
+                {hero.eyebrow}
+              </p>
+              <p className="mt-4 max-w-[52ch] text-[0.9375rem] leading-[1.65] text-[#d4d4d8]">
+                {hero.productLine}
+              </p>
             </Reveal>
 
             <Reveal delay={120}>
@@ -57,9 +62,6 @@ export function HomeHero() {
                 </Button>
                 <Button href={reviewCallCta.href} variant="ghost">
                   {reviewCallCta.label} →
-                </Button>
-                <Button href={hero.secondaryWebinar.href} variant="ghost">
-                  {hero.secondaryWebinar.label} →
                 </Button>
               </div>
               <p className="mt-4 text-sm leading-relaxed text-mist">{scoreCta.hint}</p>
