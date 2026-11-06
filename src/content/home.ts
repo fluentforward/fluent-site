@@ -2,6 +2,7 @@ import { scoreCta, reviewCallCta } from '@/content/board'
 import { gartnerPressReleases } from '@/content/gartner'
 import { webinarSession, webinarPath } from '@/content/webinar'
 import {
+  profitEngineInsightsFootnote,
   routeLinks,
   routeNames,
   seeBuildWithYourTeamLink,
@@ -66,7 +67,7 @@ export const whereToStart = {
       ifYou:
         'You have finished an on-ramp with us and want always-on profit control.',
       body:
-        'Continuous sensing and fix-forward on the engine you installed. Not a substitute for the on-ramp.',
+        'Continuous sensing and fix-forward on the engine from your on-ramp with us. Not a substitute for the on-ramp.',
       link: { href: routeLinks.waysWeWork, label: 'See ways we work' },
     },
   ],
@@ -76,19 +77,18 @@ export const whereToStart = {
       title: 'Build with your team',
       ifYou: 'You have people who can build and need direction, pace and a system.',
       body:
-        'We install with your team. Our senior team leads. Your people build alongside us. You come out with a working engine and a team that knows how to drive it.',
+        'We run the on-ramp alongside your team. Our senior people lead; your people build with us. You come out with a working engine and a team that knows how to drive it.',
       link: { href: routeLinks.buildWithYourTeam, label: seeBuildWithYourTeamLink },
     },
     {
       title: 'We ship more of the build',
       ifYou: 'You are flat out on client work and need more of the delivery done for you.',
       body:
-        'We install for you. Our team does more of the build. You steer; we ship. Minimal drag on billable time.',
+        'We run the on-ramp with our team doing more of the build. You steer; we ship. Minimal drag on billable time.',
       link: { href: routeLinks.weShipTheBuild, label: seeWeShipTheBuildLink },
     },
   ],
-  insightsLine:
-    'Profit Engine Insights is call-only qualification when the full on-ramp is not the right move yet. It does not fix the lever. Terms are confirmed on a call.',
+  insightsLine: profitEngineInsightsFootnote,
   customSoftwareLine: 'Bigger custom software is scoped separately.',
   runLine:
     'After the on-ramp, Run keeps the engine honest as volume and mix shift. Run is only for firms who completed an on-ramp with us.',

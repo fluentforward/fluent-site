@@ -39,7 +39,7 @@ export const howItWorksExplainer = {
     {
       title: 'Ship, then rhythm',
       body:
-        'We ship the first visible win, install the weekly rhythm your leadership can run, then hand over playbooks and code your firm owns. After that, Run continues sensing and fix-forward so you are not waiting for a bad number to react.',
+        'We ship the first visible win, establish the weekly rhythm your leadership can run, then hand over playbooks and code your firm owns. After that, Run continues sensing and fix-forward so you are not waiting for a bad number to react.',
     },
     {
       title: 'AI in the engine room',
@@ -63,7 +63,7 @@ export const reassurance = {
     {
       title: 'A path that fits',
       body:
-        'The Profit Constraint Score and Constraint review point you to a six-week Profit Engine on-ramp when that is the right move. Profit Engine Insights is only for qualification when the full on-ramp is wrong-fit for now, and it does not fix the lever. Terms are agreed in writing; nothing is published here.',
+        'The Profit Constraint Score and Constraint review point you to a six-week Profit Engine on-ramp when that is the right move. Profit Engine Insights is call-only when the full on-ramp is wrong-fit for now: we stand up live sensing so both sides see the leak before you commit to the on-ramp. It does not fix the lever. Terms are agreed in writing; nothing is published here.',
     },
     {
       title: 'No lock-in',
@@ -98,7 +98,7 @@ export const faq = {
         before:
           'Yes, when we ship more of the build is the right mode: fixed scope, agreed in writing, your firm owns the code. When we build with your team, we work alongside your developers, or help you place one, with owned shipping capability included when the bet needs it. If you already have a vendor, they can build under your direction. For the full menu, see ',
         link: {
-          label: 'what we can set up or build',
+          label: 'what we can build or stand up',
           href: `${waysWeWorkPath}#implementation-menu`,
         },
         after: '.',

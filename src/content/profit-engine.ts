@@ -36,7 +36,7 @@ export const ifYouBeats = {
     {
       title: 'If Delivery binds you',
       body:
-        'Proposals, handoffs and throughput break when you grow. AI without ownership makes the checking worse. Fix throughput and ownership, install the cycle rhythm that makes the win stick, and the next limit becomes obvious.',
+        'Proposals, handoffs and throughput break when you grow. AI without ownership makes the checking worse. Fix throughput and ownership, embed the cycle rhythm that makes the win stick, and the next limit becomes obvious.',
     },
   ],
 } as const
@@ -59,7 +59,7 @@ export const buildModes = {
     name: 'Build with your team',
     summary: 'We lead. Your people ship alongside us.',
     body:
-      'Our senior team leads. Your people build alongside us. We diagnose the binding constraint, prioritise the work, agree buy versus build before spend moves, ship the first win with your people, and install the cycle rhythm. Owned shipping capability is included when the bet needs it.',
+      'We run the on-ramp alongside your team. Our senior people lead; your people build with us. We diagnose the binding constraint, prioritise the work, agree buy versus build before spend moves, ship the first win with your people, and embed the weekly cycle rhythm. Owned shipping capability is included when the bet needs it.',
     bullets: [
       'Constraint diagnosis across Offers, Demand and Delivery.',
       'Weekly working sessions with your leadership.',
@@ -74,7 +74,7 @@ export const buildModes = {
     name: 'We ship more of the build',
     summary: 'You steer. We do more of the delivery.',
     body:
-      'Our team does more of the build. You make the calls; we ship the engine. Same diagnosis and six-week on-ramp shape. Fixed scope in writing. Your firm still owns the code and playbooks.',
+      'We run the on-ramp with our team doing more of the build. You steer priorities; we ship. Same diagnosis and six-week on-ramp shape. Fixed scope in writing. Your firm still owns the code and playbooks.',
     bullets: [
       'Same programme as build-with-your-team, with our Strategy, Growth, Delivery and Ops leads building hands-on where that is the right split.',
       'Offers, sales assets and campaigns produced by us where needed.',
@@ -102,7 +102,7 @@ export const process = {
     'Ship dashboards and realtime analytics on all three',
     'Stand up AI agents and automation on that lever',
     'Ship the first visible win',
-    'Install the weekly rhythm',
+    'Establish the weekly rhythm',
   ],
   choiceLine:
     'After we know what is binding you, one question: do we run this through your people, or do you want us to ship more of the build?',
@@ -201,7 +201,7 @@ export const faq = {
 } as const
 
 export const altRoute = {
-  before: 'Want the full menu of scoped build and setup items? ',
+  before: 'Want the full menu of scoped build and configuration work? ',
   linkLabel: 'See ways we work',
   href: '/ways-we-work',
   after: '.',
