@@ -32,7 +32,8 @@ export const growthLimits = {
       title: 'Offers',
       paragraphs: [
         'We deploy a realtime AI dashboard on how you package and price so you get insights on what it costs to acquire clients, on revenue, and on what it costs to deliver your work.',
-        'You see where margin leaks before you sign the next deal, so you tighten packaging and pricing around outcomes.',
+        'You see where margin leaks before you sign the next deal and decide how to tighten packaging and pricing around outcomes.',
+        'We then change the process with you, put AI on that offer lever, and select or build only the tech that is needed so the constraint actually moves.',
         'That lifts realised margin on the work you already chase.',
       ],
     },
@@ -40,14 +41,18 @@ export const growthLimits = {
       title: 'Demand',
       paragraphs: [
         'We run the same dashboard view on how demand hits your calendar so you get realtime insights on client acquisition cost, revenue, and delivery cost against the margin you want, not just volume.',
-        'You rebalance targeting and qualification so the pipeline shifts toward work that holds margin instead of busy months that do not.',
+        'You see where the calendar fills with the wrong work or weak conversations, so you rebalance targeting and qualification.',
+        'We reshape the go-to-market steps with you, add AI where it clears bottlenecks, and connect or build only the routing and workflows that shift quality.',
+        'The pipeline moves toward work that holds margin instead of busy months that do not.',
       ],
     },
     {
       title: 'Delivery',
       paragraphs: [
         'We use the dashboard to show throughput and delivery cost against margin as volume rises, before the quarter closes.',
-        'You fix the handoffs and rules that eat profit so margin holds when the team is already flat out.',
+        'You see which handoffs and rules eat profit before month-end pressure hides them.',
+        'We tighten the operating rhythm with you, put AI on the delivery lever under your ownership rules, and change or build systems only where they unlock throughput.',
+        'Margin holds when the team is already flat out.',
       ],
     },
   ],
