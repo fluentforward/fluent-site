@@ -11,7 +11,7 @@ export const routeNames = {
   run: 'Run',
   profitEngineInsights: 'Profit Engine Insights',
   buildPlan: 'Build Plan',
-  agentSetup: 'Agent setup',
+  workflowAgent: 'Workflow agent',
   bespokeHarness: 'Bespoke harness',
   productEngineerPath: 'Owned shipping capability',
   placement: 'Placement',
@@ -168,7 +168,7 @@ export type ImplementationMenuItem = {
 
 export const implementationMenu: readonly ImplementationMenuItem[] = [
   {
-    title: routeNames.agentSetup,
+    title: routeNames.workflowAgent,
     body:
       'One agent on one workflow, with governance included. Scoped in writing; your firm owns what we set up.',
   },
