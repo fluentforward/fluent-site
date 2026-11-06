@@ -3,6 +3,7 @@ import { HomeWhereToStartSection } from '@/components/sections/home/HomeWhereToS
 import { HomeClosingSection } from '@/components/sections/home/HomeClosingSection'
 import { HomeFitSection } from '@/components/sections/home/HomeFitSection'
 import { HomeProofSection } from '@/components/sections/home/HomeProofSection'
+import { HomeOutcomesSection } from '@/components/sections/home/HomeOutcomesSection'
 import { HomeThreeStepsSection } from '@/components/sections/home/HomeThreeStepsSection'
 import { HomeWebinarSection } from '@/components/sections/home/HomeWebinarSection'
 import { HomeWhyFixesFailSection } from '@/components/sections/home/HomeWhyFixesFailSection'
@@ -37,17 +38,20 @@ export default function Home() {
         lede={growthLimits.lede}
         items={growthLimits.items}
         closing={growthLimits.closing}
-        closingLink={{ href: '/profit-engine', label: 'Become a client' }}
+        closingLink={{ href: '/ways-we-work', label: 'See ways we work' }}
         tone="paper"
         id="growth-limits"
         size="compact"
         dense
         variant="quotes"
       />
+      <HomeOutcomesSection />
       <HomeWhereToStartSection />
       <HomeWhyFixesFailSection />
       <HomeFitSection />
-      <HomeThreeStepsSection />
+      <HomeThreeStepsSection
+        moreLink={{ href: '/how-it-works', label: 'How Profit Engine works' }}
+      />
       <HomeProofSection size="compact" />
       <HomeWebinarSection />
       <HomeClosingSection />

@@ -1,61 +1,83 @@
 /** Single source for route and offer names, anchors, and ways-we-work hub copy. */
 
-import { modes as profitEngineModes, process as profitEngineProcess } from '@/content/profit-engine'
+import {
+  buildModes,
+  process as profitEngineProcess,
+} from '@/content/profit-engine'
 
 export const routeNames = {
   profitEngine: 'Profit Engine',
-  installPartnership: 'Install Partnership',
-  installDelivery: 'Install Delivery',
-  profitEngineSprint: 'Profit Engine Sprint',
+  profitEngineOnRamp: 'Profit Engine on-ramp',
+  run: 'Run',
+  profitEngineInsights: 'Profit Engine Insights',
   buildPlan: 'Build Plan',
-  agentSetup: 'Agent Setup',
-  bespokeHarness: 'Bespoke Harness',
+  agentSetup: 'Agent setup',
+  bespokeHarness: 'Bespoke harness',
   productEngineerPath: 'Owned shipping capability',
   placement: 'Placement',
-  ongoingSupport: 'Ongoing Support',
-  run: 'Run',
+  ongoingSupport: 'Ongoing support',
 } as const
 
 export const routeAnchors = {
-  partnership: 'partnership',
-  delivery: 'delivery',
-  profitEngineSprint: 'profit-engine-sprint',
-  /** @deprecated Use profitEngineSprint anchor */
-  smallFirm: 'profit-engine-sprint',
+  onRamp: 'profit-engine-on-ramp',
+  run: 'run',
+  insights: 'profit-engine-insights',
+  buildWithYourTeam: 'build-with-your-team',
+  weShipTheBuild: 'we-ship-the-build',
+  /** @deprecated Legacy anchor; redirected */
+  partnership: 'build-with-your-team',
+  /** @deprecated Legacy anchor; redirected */
+  delivery: 'we-ship-the-build',
+  /** @deprecated Legacy alias */
+  legacySmallEngagement: 'profit-engine-on-ramp',
+  /** @deprecated */
+  smallFirm: 'profit-engine-on-ramp',
 } as const
 
 export const waysWeWorkPath = '/ways-we-work' as const
 export const profitEnginePath = '/profit-engine' as const
+export const howItWorksPath = '/how-it-works' as const
 
 /** @deprecated Use profitEnginePath */
 export const clientCapacityPath = profitEnginePath
 
 export const routeLinks = {
   profitEngine: profitEnginePath,
-  partnership: `${profitEnginePath}#${routeAnchors.partnership}`,
-  delivery: `${profitEnginePath}#${routeAnchors.delivery}`,
-  profitEngineSprint: `${waysWeWorkPath}#${routeAnchors.profitEngineSprint}`,
+  buildWithYourTeam: `${profitEnginePath}#${routeAnchors.buildWithYourTeam}`,
+  weShipTheBuild: `${profitEnginePath}#${routeAnchors.weShipTheBuild}`,
   waysWeWork: waysWeWorkPath,
+  howItWorks: howItWorksPath,
+  onRamp: `${waysWeWorkPath}#${routeAnchors.onRamp}`,
+  run: `${waysWeWorkPath}#${routeAnchors.run}`,
+  insights: `${waysWeWorkPath}#${routeAnchors.insights}`,
   /** Legacy alias */
-  aiQuickStart: `${waysWeWorkPath}#${routeAnchors.profitEngineSprint}`,
+  partnership: `${profitEnginePath}#${routeAnchors.buildWithYourTeam}`,
   /** Legacy alias */
+  delivery: `${profitEnginePath}#${routeAnchors.weShipTheBuild}`,
+  /** Legacy */
+  legacyQuickRoute: `${waysWeWorkPath}#${routeAnchors.onRamp}`,
+  /** @deprecated */
+  legacyHubAnchor: `${waysWeWorkPath}#${routeAnchors.onRamp}`,
   clientCapacity: profitEnginePath,
 } as const
 
-export const seeProfitEngineLink = `See ${routeNames.profitEngine}` as const
+export const seeProfitEngineLink = `How ${routeNames.profitEngine} works` as const
 /** @deprecated Use seeProfitEngineLink */
 export const seeClientCapacityLink = seeProfitEngineLink
-export const seePartnershipLink = 'See how Install Partnership works' as const
-export const seeDeliveryLink = 'See how Install Delivery works' as const
-export const seeProfitEngineSprintLink =
-  `See how ${routeNames.profitEngineSprint} works` as const
-/** @deprecated Use seeProfitEngineSprintLink */
-export const seeAiQuickStartLink = seeProfitEngineSprintLink
+export const seeBuildWithYourTeamLink =
+  `See ${buildModes.withYourTeam.name}` as const
+export const seeWeShipTheBuildLink = `See ${buildModes.weShipTheBuild.name}` as const
+/** @deprecated */
+export const seePartnershipLink = seeBuildWithYourTeamLink
+/** @deprecated */
+export const seeDeliveryLink = seeWeShipTheBuildLink
+/** @deprecated */
+export const seeLegacyEngagementLink = seeProfitEngineLink
 
 export const waysWeWorkMeta = {
   title: 'Ways we work | FluentForward',
   description:
-    'Install a Profit Engine in ninety days: Partnership or Delivery. Start with the Profit Constraint Score or a free Constraint review call. Your firm owns what we build.',
+    'Profit Engine on-ramp: six weeks, one scored lever, dashboards and realtime analytics, AI agents on that lever. Then Run for always-on profit control. Start with the Profit Constraint Score or book a Constraint review.',
 } as const
 
 export const waysWeWorkStructuredServiceType =
@@ -63,29 +85,31 @@ export const waysWeWorkStructuredServiceType =
 
 export const waysWeWorkHub = {
   eyebrow: 'Ways we work',
-  heading: 'Two ways to install. Ninety days either way.',
+  heading: 'Profit Engine on-ramp first. Run after.',
   lede:
-    'If you are stuck between busy and unprofitable, the limit is usually Offers, Demand or Delivery. We find which constraint is binding, install the engine that fixes it, and choose Partnership or Delivery only after diagnosis. Start with the Profit Constraint Score or a free Constraint review call. Your firm owns the code, the agents and the playbooks.',
-  implementationEyebrow: 'On either mode',
+    'Six weeks. One scored lever across Offers, Demand and Delivery. You get dashboards and realtime analytics on all three, plus AI agents and automation shipped on the binding lever. After the on-ramp, Run is always-on profit control: continuous sensing and fix-forward, not a quarterly board rhythm. Start with the Profit Constraint Score or a free Constraint review call. Commercial terms are agreed in writing; nothing is priced on this site.',
+  customSoftwareLine:
+    'Bigger custom software is scoped separately when the bet needs it.',
+  implementationEyebrow: 'Inside an on-ramp or Run engagement',
   implementationHeading: 'What we can set up or build',
   implementationLede:
-    'Each one is scoped in writing before work starts, and your firm owns everything we build or set up.',
+    'Each item is scoped in writing before work starts, and your firm owns everything we build or set up.',
 } as const
 
 export const waysWeWorkStartingPoints = {
   eyebrow: 'Where to start',
-  heading: 'Two ways into the same conversation',
+  heading: 'Score first, or talk first',
   lede:
-    'Both end in a straight read on fit and what would matter first for your firm.',
+    'Both end in the same straight conversation: fit, the binding lever, and whether a six-week on-ramp is the right move.',
   profitConstraintScore: {
     title: 'Profit Constraint Score',
     body:
       'In a few minutes, see which of Offers, Demand, or Delivery is binding you now, and what fixing that constraint could mean for revenue and margin with the team you already have. Results before any call.',
   },
   reviewCall: {
-    title: 'Constraint review call',
+    title: 'Constraint review',
     body:
-      'Talk first if you would rather test the score against your numbers before you commit to an Install path.',
+      'Book a free call to test the score against your numbers and align on next steps, including when we are not the right fit.',
   },
 } as const
 
@@ -105,37 +129,35 @@ export type WaysWeWorkRoute = {
 
 export const waysWeWorkRoutes: readonly WaysWeWorkRoute[] = [
   {
-    id: routeAnchors.partnership,
-    name: routeNames.installPartnership,
-    summary: profitEngineModes.partnership.summary,
-    body: profitEngineModes.partnership.body,
-    bullets: profitEngineModes.partnership.bullets,
-    link: { href: profitEnginePath, label: seeProfitEngineLink },
-  },
-  {
-    id: routeAnchors.delivery,
-    name: routeNames.installDelivery,
-    summary: profitEngineModes.delivery.summary,
-    body: profitEngineModes.delivery.body,
-    bullets: profitEngineModes.delivery.bullets,
-    link: { href: profitEnginePath, label: seeProfitEngineLink },
-  },
-  {
-    id: routeAnchors.profitEngineSprint,
-    name: routeNames.profitEngineSprint,
-    summary:
-      'When a full Install is not the right fit today: one scored lever in thirty days.',
+    id: routeAnchors.onRamp,
+    name: routeNames.profitEngineOnRamp,
+    summary: 'Six weeks. One binding lever. Dashboards, realtime analytics, AI agents.',
     body:
-      'Profit Engine Sprint is offered on the Constraint review call when Install Partnership or Install Delivery is the wrong shape for now. Fixed scope on one binding Offers, Demand or Delivery lever from your Profit Constraint Score, one visible win, governance basics, then handover. It bridges to Install when you are ready. Not a Board or Run product.',
+      'Default front door for most firms. We diagnose Offers, Demand and Delivery, agree one scored lever, then ship live dashboards and realtime sensing across all three, with AI agents and automation on that lever. Never tooling-only: there is always a measurable move on margin. Commercial terms are agreed in writing; no public price here.',
     bullets: [
-      'One binding lever from your score, fixed in thirty days.',
-      'Scoped in writing before work starts; your firm owns what we build or set up.',
-      'Path to Install Partnership or Install Delivery when timing and fit are right.',
+      'Realtime visibility across Offers, Demand and Delivery so you see the binding profit leak before a bad quarter.',
+      'AI agents on the scored lever so more of the right work ships at stronger margins without hiring in a straight line.',
+      'First constraint materially moved inside six weeks; then you choose how Run continues the rhythm.',
     ],
-    link: {
-      href: routeLinks.profitEngineSprint,
-      label: seeProfitEngineSprintLink,
-    },
+    link: { href: routeLinks.profitEngine, label: seeProfitEngineLink },
+  },
+  {
+    id: routeAnchors.run,
+    name: routeNames.run,
+    summary: 'Always-on profit control after the on-ramp.',
+    body:
+      'Run is continuity only: continuous sensing and fix-forward on the engine you installed with us. It is not a substitute for the on-ramp and it is never the first engagement.',
+    bullets: [
+      'Keeps the scorecard and agents honest as volume and mix shift.',
+      'Fixes forward on the next binding limit instead of waiting for a bad quarter to appear in the rear-view mirror.',
+    ],
+  },
+  {
+    id: routeAnchors.insights,
+    name: routeNames.profitEngineInsights,
+    summary: 'Call-only qualification. Does not fix the lever.',
+    body:
+      'Sometimes offered when the full on-ramp is not the right move yet. Paid qualification work: live sensing, a scored plan, and a thin starter. It does not deliver the on-ramp fix. No price on the site; terms are confirmed on a call. Never positioned as the win on ads or in the hero.',
   },
 ] as const
 
@@ -158,23 +180,22 @@ export const implementationMenu: readonly ImplementationMenuItem[] = [
   {
     title: routeNames.productEngineerPath,
     body:
-      'Included on Install Partnership when the bet needs it. We train your software developers into product engineers on your real backlog, or help you place one, so the capability stays in your firm. Optional on Delivery.',
+      'When the bet needs owned build, we work alongside your developers on your real backlog, or help you place one, so capability stays in your firm. Optional when we ship more of the build for you.',
   },
   {
     title: routeNames.placement,
     body:
-      'We help you hire a developer, trained from day one in how your firm builds with AI. Default path is inside Partnership.',
+      'We help you hire a developer, trained from day one in how your firm builds with AI, when that is the right move.',
   },
   {
     title: routeNames.ongoingSupport,
-    body:
-      'Monitoring, updates and changes for what was built or set up.',
+    body: 'Monitoring, updates and changes for what was built or set up.',
   },
 ] as const
 
 export const profitEngineAltRoute = {
-  before: 'Not the right fit? ',
-  linkLabel: 'See the other ways we work',
+  before: 'Want the full menu of scoped build and setup items? ',
+  linkLabel: 'See ways we work',
   href: waysWeWorkPath,
   after: '.',
 } as const

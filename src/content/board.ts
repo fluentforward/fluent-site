@@ -33,8 +33,8 @@ export const scoreCta = {
 export const auditCta = scoreCta
 
 export const reviewCallCta = {
-  label: 'Book a free Constraint review call',
-  href: '/contact',
+  label: 'Book a free Constraint review',
+  href: '/review',
 } as const
 
 /** @deprecated Use reviewCallCta */

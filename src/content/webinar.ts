@@ -55,7 +55,7 @@ export const webinarTrust = {
   heading: 'What to expect',
   items: [
     'Free. About 50 minutes plus optional Q&A.',
-    'No price, no Install close, and no pitch on stage.',
+    'No price, no offer close on stage, and no pitch on stage.',
     'After the session you can book a free Constraint review if useful.',
     'Cannot make it live? Register and we will send the replay and join details via Demio.',
   ],

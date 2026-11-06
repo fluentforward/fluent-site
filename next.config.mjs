@@ -35,12 +35,6 @@ const nextConfig = {
       },
       { source: '/about', destination: '/', statusCode: 301 },
       { source: '/about/:path*', destination: '/', statusCode: 301 },
-      { source: '/how-it-works', destination: '/ways-we-work', statusCode: 301 },
-      {
-        source: '/how-it-works/:path*',
-        destination: '/ways-we-work',
-        statusCode: 301,
-      },
     ]
   },
 }

@@ -19,7 +19,7 @@ export function useMarketingAttributedHref(href: string): string {
   return resolved
 }
 
-export function useFirstAiMoveClickHandler(href: string) {
+export function useScoreMagnetAttributionClick(href: string) {
   return useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>) => {
       if (!isCapacityScalingRoadmapMagnetUrl(href)) return
@@ -32,6 +32,9 @@ export function useFirstAiMoveClickHandler(href: string) {
   )
 }
 
+/** @deprecated Use useScoreMagnetAttributionClick */
+export const useFirstAiMoveClickHandler = useScoreMagnetAttributionClick
+
 type AnchorProps = React.ComponentPropsWithoutRef<'a'> & { href: string }
 
 export function MarketingAttributedAnchor({
@@ -40,7 +43,7 @@ export function MarketingAttributedAnchor({
   ...props
 }: AnchorProps) {
   const attributedHref = useMarketingAttributedHref(href)
-  const ensureAttributionOnClick = useFirstAiMoveClickHandler(href)
+  const ensureAttributionOnClick = useScoreMagnetAttributionClick(href)
 
   return (
     <a

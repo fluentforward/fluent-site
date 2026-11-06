@@ -79,6 +79,12 @@ export default function WaysWeWorkPage() {
         lede={waysWeWorkHub.lede}
       />
 
+      <Section tone="paper" border size="compact">
+        <Reveal className="max-w-3xl">
+          <p className="text-[1.0625rem] leading-[1.72] text-slate">{waysWeWorkHub.customSoftwareLine}</p>
+        </Reveal>
+      </Section>
+
       <Section tone="muted" border id="starting-points" size="compact">
         <Reveal className="max-w-3xl">
           <Eyebrow>{waysWeWorkStartingPoints.eyebrow}</Eyebrow>

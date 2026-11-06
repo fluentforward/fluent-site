@@ -4,21 +4,20 @@ import { webinarSession, webinarPath } from '@/content/webinar'
 import {
   routeLinks,
   routeNames,
-  seeDeliveryLink,
-  seePartnershipLink,
+  seeBuildWithYourTeamLink,
+  seeWeShipTheBuildLink,
 } from '@/content/routes'
-import { site } from '@/content/site'
-
 export const hero = {
   eyebrow:
     'Profit Engine for agencies, consultancies and professional services firms',
-  headline: 'Busy is not profitable. Install the engine that is.',
+  headlineLead: 'Busy is not profitable.',
+  headlineAccent: 'Six-week Profit Engine on-ramp, then Run.',
   subhead:
-    'More people, more tools, more AI just makes the wrong work go faster. We find the one constraint across your Offers, Demand and Delivery that is capping margin, then install the engine that brings in the right clients at the right margin. Without hiring in a straight line.',
+    'More people, more tools, more AI just makes the wrong work go faster. Profit Engine on-ramp: six weeks, one scored lever across Offers, Demand and Delivery, with dashboards, realtime analytics on all three, and AI agents on that lever. Then Run for always-on profit control: continuous sensing and fix-forward, not a quarterly board rhythm.',
   primaryCta: scoreCta,
   secondaryCta: reviewCallCta,
   secondaryWebinar: { label: 'Watch the webinar', href: '/#webinar' },
-}
+} as const
 
 export const growthLimits = {
   eyebrow: 'Sound familiar?',
@@ -48,33 +47,53 @@ export const growthLimits = {
 
 export const whereToStart = {
   eyebrow: 'Ways we work',
-  heading: 'Two ways to install. Ninety days either way.',
+  headingLead: 'On-ramp first, then ',
+  headingAccent: 'Run',
+  headingTail: '.',
   lede:
-    'Same engine, same outcome. The difference is who does the building. Either way, it is yours when we are done.',
+    'Most firms start with a six-week Profit Engine on-ramp on one scored lever, then move to Run. How we build depends on whether your team ships alongside us or we ship more of the build for you.',
   cards: [
     {
-      title: routeNames.installPartnership,
+      title: routeNames.profitEngineOnRamp,
       ifYou:
-        'You have people who can build and need direction, pace and a system.',
+        'You want the binding lever fixed in six weeks with dashboards, realtime Offers · Demand · Delivery analytics, and agents on that lever.',
       body:
-        'We install with your team. Our senior team leads. Your people build alongside us. You come out with a working engine and a team that knows how to drive it.',
-      link: { href: routeLinks.partnership, label: seePartnershipLink },
+        'Diagnosis, live sensing, automation and AI agents on one scored lever. Never advisory-only. Commercial terms are agreed in writing; nothing is priced here.',
+      link: { href: routeLinks.profitEngine, label: 'How Profit Engine works' },
     },
     {
-      title: routeNames.installDelivery,
+      title: routeNames.run,
       ifYou:
-        'You are flat out on client work and cannot spare people to build.',
+        'You have finished an on-ramp with us and want always-on profit control.',
       body:
-        'We install for you. Our team does the build. You make the calls; we ship the engine. Minimal drag on billable time.',
-      link: { href: routeLinks.delivery, label: seeDeliveryLink },
+        'Continuous sensing and fix-forward on the engine you installed. Not a substitute for the on-ramp.',
+      link: { href: routeLinks.waysWeWork, label: 'See ways we work' },
     },
   ],
-  sprintLine:
-    'If a full ninety-day Install is not the right fit today, the Constraint review call may point you to Profit Engine Sprint: thirty days on one scored Offers, Demand or Delivery lever, scoped in writing, then a path to Install when you are ready.',
+  buildModesIntro: 'Two ways we build the on-ramp:',
+  buildModeCards: [
+    {
+      title: 'Build with your team',
+      ifYou: 'You have people who can build and need direction, pace and a system.',
+      body:
+        'We install with your team. Our senior team leads. Your people build alongside us. You come out with a working engine and a team that knows how to drive it.',
+      link: { href: routeLinks.buildWithYourTeam, label: seeBuildWithYourTeamLink },
+    },
+    {
+      title: 'We ship more of the build',
+      ifYou: 'You are flat out on client work and need more of the delivery done for you.',
+      body:
+        'We install for you. Our team does more of the build. You steer; we ship. Minimal drag on billable time.',
+      link: { href: routeLinks.weShipTheBuild, label: seeWeShipTheBuildLink },
+    },
+  ],
+  insightsLine:
+    'Profit Engine Insights is call-only qualification when the full on-ramp is not the right move yet. It does not fix the lever. Terms are confirmed on a call.',
+  customSoftwareLine: 'Bigger custom software is scoped separately.',
   runLine:
-    'After Install comes Run. We can stay on to operate, tune and extend the engine month to month. Run is only for firms who have installed. We do not run engines we did not build.',
+    'After the on-ramp, Run keeps the engine honest as volume and mix shift. Run is only for firms who completed an on-ramp with us.',
   scoreLine:
-    'Not sure which fits? Get your Profit Constraint Score first. Three minutes, instant result, no sales pitch.',
+    'Not sure where to start? Get your Profit Constraint Score first. Three minutes, instant result, no sales pitch.',
 } as const
 
 export const whyFixesFail = {
@@ -99,11 +118,13 @@ export const whyFixesFail = {
 export const outcomes = {
   heading: 'What changes for your firm',
   items: [
+    'See the binding profit leak across Offers, Demand and Delivery in realtime before it shows up as a bad quarter.',
+    'AI agents on the scored lever so more of the right work ships at stronger margins without linear headcount.',
     'Clarity on whether Offers, Demand or Delivery is binding you now.',
     'Packaging that turns freed capacity into priced outcomes, not more billable hours.',
     'Demand aimed at work that fits the offer and the margin you want.',
     'Delivery with AI under ownership that protects profit as volume rises.',
-    'A cycle that re-checks all three so the next limit does not quietly kill growth.',
+    'A weekly rhythm that re-checks all three so the next limit does not quietly kill growth.',
     'Code, agents and playbooks your firm owns.',
   ],
 }
@@ -112,7 +133,7 @@ export const fit = {
   builtForHeading:
     'Built for owners who need profit from growth, not just more people',
   builtFor:
-    'Agencies, consultancies, professional and managed services of around 20 to 200 people. If you need more of the right clients at prices that hold, and delivery that turns that work into margin without a hire for every win, Profit Engine runs Offers, Demand and Delivery as one system: Install Partnership or Install Delivery.',
+    'Agencies, consultancies, professional and managed services of around 20 to 200 people. If you need more of the right clients at prices that hold, and delivery that turns that work into margin without a hire for every win, Profit Engine runs Offers, Demand and Delivery as one system with a six-week on-ramp, then Run.',
   lineHeading: 'Where we draw the line',
   notForHeading: "We are not the right fit if:",
   notFor: [
@@ -127,7 +148,7 @@ export const fit = {
 
 export const howItWorks = {
   eyebrow: 'How it works',
-  heading: 'Fix the one thing that is holding it back.',
+  heading: 'Spot the leak. Fix one lever. Ship the rhythm.',
   steps: [
     {
       title: 'Score',
@@ -137,17 +158,17 @@ export const howItWorks = {
     {
       title: 'Constraint review',
       body:
-        'A free call. We test the score against your numbers and agree whether Install Partnership or Install Delivery fits. Straight answers, including when we are not the right fit.',
+        'A free call. We test the score against your numbers and agree whether a six-week on-ramp fits. Straight answers, including when we are not the right fit.',
     },
     {
-      title: 'Install',
+      title: 'On-ramp',
       body:
-        'Ninety days. The fix goes in and stays in. Your firm owns the engine, the code and the playbooks.',
+        'Six weeks on one scored lever: dashboards and realtime analytics on Offers, Demand and Delivery, plus AI agents and automation on that lever. Your firm owns what we ship.',
     },
     {
       title: 'Run',
       body:
-        'Optional after Install. We stay on to tune and extend the engine month to month. Run is only for firms who have installed.',
+        'Optional after the on-ramp. Always-on profit control: continuous sensing and fix-forward. Only for firms who completed an on-ramp with us.',
     },
   ],
   closing:

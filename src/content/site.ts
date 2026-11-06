@@ -1,4 +1,5 @@
 import { scoreCta } from '@/content/board'
+import { howItWorksPath } from '@/content/routes'
 
 export const site = {
   name: 'FluentForward',
@@ -6,14 +7,14 @@ export const site = {
   url: 'https://www.fluentforward.com',
   tagline: 'Install a Profit Engine. Busy is not profitable.',
   description:
-    'FluentForward installs Profit Engines in agencies, consultancies and professional and managed services firms: the right clients, stronger margins, without linear headcount.',
+    'FluentForward runs Profit Engine for agencies, consultancies and professional services firms: six-week on-ramp on one scored lever with realtime Offers · Demand · Delivery insight and AI agents, then Run for always-on profit control.',
   email: 'hello@fluentforward.com',
   privacyEmail: 'privacy@fluentforward.com',
 } as const
 
 export const nav = [
   { label: 'Ways we work', href: '/ways-we-work' },
-  { label: 'How it works', href: '/#how-it-works' },
+  { label: 'How it works', href: howItWorksPath },
   { label: 'Proof', href: '/#proof' },
   { label: 'Resources', href: '/#webinar' },
 ] as const
@@ -24,6 +25,7 @@ export const footerNav = {
     links: [
       { label: 'Profit Engine', href: '/profit-engine' },
       { label: 'Ways we work', href: '/ways-we-work' },
+      { label: 'How it works', href: howItWorksPath },
       { label: 'Profit Constraint Score', href: scoreCta.href },
       { label: 'Common questions', href: '/ways-we-work#faq' },
     ],
@@ -33,7 +35,8 @@ export const footerNav = {
     links: [
       { label: 'Webinar', href: '/webinar' },
       { label: 'Interaction insights', href: '/strategy-blueprints' },
-      { label: 'Constraint review call', href: '/contact' },
+      { label: 'Constraint review', href: '/review' },
+      { label: 'Contact', href: '/contact' },
     ],
   },
   legal: {
