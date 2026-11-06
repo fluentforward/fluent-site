@@ -14,7 +14,7 @@ export const hero = {
   eyebrow: 'Profit Engine',
   heading: 'Six weeks on one lever. Then always-on profit control.',
   lede:
-    'If Offers, Demand or Delivery is wrong, hiring and AI just make you busier. We find the binding constraint, fix it in a six-week on-ramp with live dashboards, realtime sensing across all three lenses, and AI agents on that lever, then move you to Run for continuous fix-forward. Your firm owns the code, the agents and the playbooks.',
+    'If Offers, Demand or Delivery is wrong, hiring and AI just make you busier. We find the binding constraint, fix it in a six-week on-ramp with a realtime AI dashboard and insights across all three lenses, and AI agents on that lever, then move you to Run for continuous fix-forward. Your firm owns the code, the agents and the playbooks.',
 } as const
 
 export const ifYouBeats = {

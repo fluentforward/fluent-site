@@ -39,7 +39,7 @@ export const howItWorksExplainer = {
     {
       title: 'Ship, then rhythm',
       body:
-        'We ship the first visible win, establish the weekly rhythm your leadership can run, then hand over playbooks and code your firm owns. After that, Run continues sensing and fix-forward so you are not waiting for a bad number to react.',
+        'We ship the first visible win, establish the weekly rhythm your leadership can run, then hand over playbooks and code your firm owns. After that, Run continues with the same realtime dashboard and fix-forward so you are not waiting for a bad number to react.',
     },
     {
       title: 'AI in the engine room',
@@ -63,7 +63,7 @@ export const reassurance = {
     {
       title: 'A path that fits',
       body:
-        'The Profit Constraint Score and Constraint review point you to a six-week Profit Engine on-ramp when that is the right move. Profit Engine Insights is call-only when the full on-ramp is wrong-fit for now: we stand up live sensing so both sides see the leak before you commit to the on-ramp. It does not fix the lever. Terms are agreed in writing; nothing is published here.',
+        'The Profit Constraint Score and Constraint review point you to a six-week Profit Engine on-ramp when that is the right move. Profit Engine Insights is call-only when the full on-ramp is wrong-fit for now: we deploy a thin realtime dashboard so both sides see client acquisition cost, revenue, and delivery cost before you commit to the on-ramp. It does not fix the lever. Terms are agreed in writing; nothing is published here.',
     },
     {
       title: 'No lock-in',

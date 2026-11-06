@@ -76,7 +76,7 @@ export const seeLegacyEngagementLink = seeProfitEngineLink
 
 /** Call-only secondary; same line as homepage where Insights is mentioned. */
 export const profitEngineInsightsFootnote =
-  'Profit Engine Insights is call-only qualification when the full on-ramp is not the right move yet. We stand up live sensing so both sides see the leak before you commit to the on-ramp. It does not fix the lever. Terms are confirmed on a call.' as const
+  'Profit Engine Insights is call-only qualification when the full on-ramp is not the right move yet. We deploy a thin realtime dashboard so both sides see client acquisition cost, revenue, and delivery cost before you commit to the on-ramp. It does not fix the lever. Terms are confirmed on a call.' as const
 
 export const waysWeWorkMeta = {
   title: 'Ways we work | FluentForward',
@@ -91,7 +91,7 @@ export const waysWeWorkHub = {
   eyebrow: 'Ways we work',
   heading: 'Profit Engine on-ramp first. Run after.',
   lede:
-    'Six weeks. One scored lever across Offers, Demand and Delivery. You get dashboards and realtime analytics on all three, plus AI agents and automation shipped on the binding lever. After the on-ramp, Run is always-on profit control: continuous sensing and fix-forward, not a quarterly board rhythm. Start with the Profit Constraint Score or a free Constraint review call. Commercial terms are agreed in writing; nothing is priced on this site.',
+    'Six weeks. One scored lever across Offers, Demand and Delivery. You get a realtime AI dashboard and insights on all three, plus AI agents and automation shipped on the binding lever. After the on-ramp, Run is always-on profit control: the same dashboard with fix-forward, not a quarterly board rhythm. Start with the Profit Constraint Score or a free Constraint review call. Commercial terms are agreed in writing; nothing is priced on this site.',
   customSoftwareLine:
     'Bigger custom software is scoped separately when the bet needs it.',
   implementationEyebrow: 'Inside an on-ramp or Run engagement',
@@ -136,7 +136,7 @@ const onRampRoute: WaysWeWorkRoute = {
   name: routeNames.profitEngineOnRamp,
   summary: 'Six weeks. One binding lever. Dashboards, realtime analytics, AI agents.',
   body:
-    'Default front door for most firms. We diagnose Offers, Demand and Delivery, agree one scored lever, then ship live dashboards and realtime sensing across all three, with AI agents and automation on that lever. Never tooling-only: there is always a measurable move on margin. Commercial terms are agreed in writing; no public price here.',
+    'Default front door for most firms. We diagnose Offers, Demand and Delivery, agree one scored lever, then ship a realtime AI dashboard with insights on client acquisition cost, revenue, and delivery cost across all three, with AI agents and automation on that lever. Never tooling-only: there is always a measurable move on margin. Commercial terms are agreed in writing; no public price here.',
   bullets: [
     'Realtime visibility across Offers, Demand and Delivery so you see the binding profit leak before a bad quarter.',
     'AI agents on the scored lever so more of the right work ships at stronger margins without hiring in a straight line.',
@@ -150,7 +150,7 @@ const runRoute: WaysWeWorkRoute = {
   name: routeNames.run,
   summary: 'Always-on profit control after the on-ramp.',
   body:
-    'Run is continuity only: continuous sensing and fix-forward on the engine from your on-ramp with us. It is not a substitute for the on-ramp and it is never the first engagement.',
+    'Run is continuity only: the same realtime dashboard and insights with fix-forward on the engine from your on-ramp with us. It is not a substitute for the on-ramp and it is never the first engagement.',
   bullets: [
     'Keeps the scorecard and agents honest as volume and mix shift.',
     'Fixes forward on the next binding limit instead of waiting for a bad quarter to appear in the rear-view mirror.',

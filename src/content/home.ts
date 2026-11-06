@@ -14,9 +14,10 @@ export const hero = {
   eyebrow: 'For agencies, consultancies and professional services firms',
   headlineLead: 'Busy is not profitable.',
   headlineAccent: 'Growth without margin is a trap.',
-  productLine: 'Profit Engine: fix the binding constraint in weeks, then keep profit under control.',
+  productLine:
+    'Profit Engine: we deploy a realtime dashboard driven by AI, then we work with you to unblock what holds back growth and margin.',
   subhead:
-    'You see revenue move, but margin lags or vanishes because something in how you win work, fill the calendar, or deliver is capping profit. We put live sensing on that pattern so you decide before you commit spend or headcount.',
+    'Revenue can grow while margin stalls because something in how you win clients, recognise revenue, or deliver work is wrong. We deploy a realtime dashboard driven by AI so you get realtime insights on what it costs to acquire clients, on revenue, and on what it costs to deliver your work. We then work with you to unblock what is holding back growth and margin.',
   primaryCta: scoreCta,
   secondaryCta: reviewCallCta,
 } as const
@@ -30,17 +31,17 @@ export const growthLimits = {
     {
       title: 'Offers',
       body:
-        'We put live sensing on how you package and get paid across Offers, Demand and Delivery so you see where margin leaks before you sign the next deal. You tighten pricing and packaging around outcomes. That lifts realised margin on the work you already chase.',
+        'We deploy a realtime AI dashboard on how you package and price so you get insights on what it costs to acquire clients, on revenue, and on what it costs to deliver your work. You see where margin leaks before you sign the next deal, so you tighten packaging and pricing around outcomes. That lifts realised margin on the work you already chase.',
     },
     {
       title: 'Demand',
       body:
-        'We track how demand flows into the calendar against margin you want, not just volume. You rebalance targeting and qualification. That steers the pipeline toward work that holds margin instead of busy months that do not.',
+        'We run the same dashboard view on how demand hits your calendar so you get realtime insights on client acquisition cost, revenue, and delivery cost against the margin you want, not just volume. You rebalance targeting and qualification so the pipeline shifts toward work that holds margin instead of busy months that do not.',
     },
     {
       title: 'Delivery',
       body:
-        'We surface throughput and rework against margin as volume rises, before the quarter closes. You fix the handoffs and rules that eat profit. That protects margin when the team is already flat out.',
+        'We use the dashboard to show throughput and delivery cost against margin as volume rises, before the quarter closes. You fix the handoffs and rules that eat profit so margin holds when the team is already flat out.',
     },
   ],
   closing:
@@ -54,15 +55,15 @@ export const whereToStart = {
   headingAccent: 'binding constraint',
   headingTail: ', fix it in weeks, keep profit under control.',
   lede:
-    'Most firms start with a fast read on what is binding, then a short engagement to move that lever while the numbers are still live. After that, continuity keeps sensing and fix-forward honest as mix changes.',
+    'Most firms start with the Profit Constraint Score, then a short engagement on one lever while the realtime dashboard is live. After that, optional continuity keeps the same dashboard and insights honest as your mix changes.',
   pathCards: [
     {
       pathTitle: 'Find what is binding, then fix it fast',
       offerLabel: routeNames.profitEngineOnRamp,
       ifYou:
-        'You want a straight read on the lever that caps margin and a fixed window to move it with live dashboards and agents on that lever.',
+        'You want a straight read on what caps margin and a fixed window to move it with a realtime AI dashboard and agents on that lever.',
       body:
-        'Diagnosis and live sensing across Offers, Demand and Delivery, automation and agents on the one lever that matters for margin. Never advisory-only. Commercial terms are agreed in writing; nothing is priced here.',
+        'We map Offers, Demand and Delivery to one scored lever, then deploy the dashboard with automation and agents on that lever. Never advisory-only. Commercial terms are agreed in writing; nothing is priced here.',
       insightsFootnote: profitEngineInsightsFootnote,
       link: { href: routeLinks.profitEngine, label: 'How Profit Engine works' },
     },
@@ -72,7 +73,7 @@ export const whereToStart = {
       ifYou:
         'You already worked with us on that first fix and want always-on profit control as volume shifts.',
       body:
-        'Continuous sensing and fix-forward on what we built with you. Not a substitute for that first engagement.',
+        'The same dashboard and realtime insights, with fix-forward on what we built with you. Not a substitute for that first engagement.',
       insightsFootnote: null,
       link: { href: routeLinks.waysWeWork, label: 'See ways we work' },
     },
@@ -124,7 +125,7 @@ export const outcomes = {
   heading: 'What changes for your firm',
   items: [
     'You name the binding limit across how you win work, fill the calendar, and deliver before it shows up as a bad quarter.',
-    'You move one lever in a few weeks with live sensing and agents on that lever, not a slide deck.',
+    'You move one lever in a few weeks with the realtime dashboard and agents on that lever, not a slide deck.',
     'You keep margin when volume rises because throughput and pricing stay tied to the work you want.',
     'You run a weekly rhythm your leadership owns so the next leak surfaces early.',
     'You own code, agents and playbooks; nothing vital sits in a vendor black box.',
@@ -172,7 +173,7 @@ export const howItWorks = {
     {
       title: 'Keep profit under control',
       body:
-        'Optional continuity: sensing and fix-forward as mix shifts. Run: only after that first engagement with us.',
+        'Optional continuity: the same dashboard with fix-forward as mix shifts. Run: only after that first engagement with us.',
     },
   ],
   closing:
