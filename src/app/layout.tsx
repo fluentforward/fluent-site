@@ -4,8 +4,7 @@ import clsx from 'clsx'
 
 import { CalBookingInit } from '@/components/consent/CalBookingInit'
 import { CookieConsentProvider } from '@/components/consent/CookieConsentProvider'
-import { SiteFooter } from '@/components/layout/SiteFooter'
-import { SiteHeader } from '@/components/layout/SiteHeader'
+import { SiteChrome } from '@/components/layout/SiteChrome'
 import { site } from '@/content/site'
 
 import '@/styles/tailwind.css'
@@ -62,9 +61,7 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col bg-ink font-sans text-lede-dark">
         <CookieConsentProvider>
-          <SiteHeader />
-          <main className="flex-auto">{children}</main>
-          <SiteFooter />
+          <SiteChrome>{children}</SiteChrome>
           <CalBookingInit />
         </CookieConsentProvider>
       </body>

@@ -36,8 +36,8 @@ type BaseProps = {
   children: React.ReactNode
 }
 
-type LinkProps = BaseProps & { href: string; cal?: never }
-type CalProps = BaseProps & { href?: never; cal: true }
+type LinkProps = BaseProps & { href: string; cal?: never; prefetch?: boolean }
+type CalProps = BaseProps & { href?: never; cal: true; prefetch?: never }
 
 function ExternalButton({
   href,
@@ -68,6 +68,7 @@ export function Button({
   variant = 'primary',
   className,
   children,
+  prefetch,
 }: LinkProps | CalProps) {
   const classes = clsx(base, variantClasses[variant], className)
 
@@ -94,7 +95,7 @@ export function Button({
   }
 
   return (
-    <Link href={href} className={classes}>
+    <Link href={href} className={classes} prefetch={prefetch}>
       {children}
     </Link>
   )
