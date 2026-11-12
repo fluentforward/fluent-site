@@ -4,22 +4,22 @@ import { CookieSettingsButton } from '@/components/consent/CookieConsentProvider
 import { Container } from '@/components/ui/Container'
 import { site } from '@/content/site'
 
-/* Section links point at this page while the new inner pages are being built. */
+/* Section links point at the home page while the new inner pages are being built. */
 const columns = [
   {
     title: 'What we do',
     links: [
-      ['How it works', '#how'],
-      ['Agents', '#agents'],
-      ['Agent Care', '#care'],
+      ['How it works', '/#how'],
+      ['Agents', '/#agents'],
+      ['Agent Care', '/#care'],
       ['Agent Planner', '/agent-planner'],
-      ['Security', '#security'],
+      ['Security', '/#security'],
     ],
   },
   {
     title: 'Company',
     links: [
-      ['Proof', '#proof'],
+      ['Proof', '/#proof'],
       ['Resources', '/strategy-blueprints'],
       ['Scope your agent', '/contact'],
     ],
@@ -34,7 +34,7 @@ const columns = [
   },
 ] as const
 
-export function HomeFooter() {
+export function Footer() {
   return (
     <footer className="border-t border-line-dark bg-ink text-mist">
       <Container className="py-16 md:py-24">

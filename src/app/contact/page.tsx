@@ -1,86 +1,89 @@
 import { type Metadata } from 'next'
+import Link from 'next/link'
 
-import { MarketingAttributedAnchor } from '@/components/ui/attributed-href'
-import { CalInline } from '@/components/ui/CalInline'
-import { Eyebrow } from '@/components/ui/Eyebrow'
-import { Heading, Lede } from '@/components/ui/Heading'
-import { Reveal } from '@/components/ui/Reveal'
-import { Section } from '@/components/ui/Section'
-import { profitConstraintScoreBuyerOneLiner, scoreCta } from '@/content/board'
+import { BookingCalendar, BroughtProblem } from '@/components/contact/BookingCalendar'
+import { Eyebrow, FOOTNOTE } from '@/components/home/Mark'
+import { Container } from '@/components/ui/Container'
+import { cal } from '@/content/cal'
 import { site } from '@/content/site'
 
+import '@/components/contact/contact.css'
+
+const title = 'Scope your agent'
 const description =
-  'Book a Constraint review call to work out whether FluentForward fits and where to start. Or get your Profit Constraint Score online first.'
+  'Book a short call to scope your first AI agent. Tell us the problem; we tell you what the agent would do, what it connects to and what stays with a person.'
 
 export const metadata: Metadata = {
-  title: 'Book a Constraint review call',
+  title,
   description,
   alternates: { canonical: '/contact' },
-  openGraph: {
-    title: 'Book a Constraint review call',
-    description,
-    url: '/contact',
-  },
-  twitter: { title: 'Book a Constraint review call', description },
+  openGraph: { title, description, url: '/contact' },
+  twitter: { title, description },
 }
 
-const expectations = [
-  'Thirty minutes, and it is a conversation rather than a pitch. No deck.',
-  'We talk about where margin is leaking and what you have already tried.',
-  'You leave with a straight answer on whether Profit Engine fits and where to start, including if that answer is no.',
-  `Prefer to start online? ${scoreCta.hint} ${profitConstraintScoreBuyerOneLiner}`,
-  'No follow-up sequence, and nothing added to a mailing list.',
+const onTheCall = [
+  'We tell you what the agent would do, what it connects to and what stays with a person.',
+  'We tell you whether 10 working days* is realistic for it.',
+  'If an agent is the wrong answer, we say so.',
 ]
 
 export default function Contact() {
   return (
-    <>
-      <Section tone="paper" className="hero-ambient pt-20 pb-24 md:pt-32 md:pb-36">
-        <div className="grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-24">
-          <Reveal>
-            <Eyebrow>Constraint review call</Eyebrow>
-            <Heading as="h1" size="display-sm" className="mt-8">
-              Straight conversation, no obligation.
-            </Heading>
-            <Lede className="mt-8 max-w-prose">
-              Pick a time that suits you. If nothing on the calendar works, or
-              you would rather write first, email{' '}
-              <a
-                href={`mailto:${site.email}`}
-                className="text-ink underline underline-offset-4 transition-colors duration-300 hover:text-steel"
-              >
-                {site.email}
-              </a>{' '}
-              or{' '}
-              <MarketingAttributedAnchor
-                href={scoreCta.href}
-                className="text-ink underline underline-offset-4 transition-colors duration-300 hover:text-steel"
-              >
-                {scoreCta.label}
-              </MarketingAttributedAnchor>{' '}
-              first.
-            </Lede>
+    <section className="ffc" aria-labelledby="contact-title">
+      <Container className="ffc-inner">
+        <div className="ffc-grid">
+          <div className="ffc-head">
+            <Eyebrow>A short scoping call</Eyebrow>
+            <h1 id="contact-title" className="ffc-h1">
+              Scope your <span className="text-accent">agent.</span>
+            </h1>
+            <p className="ffc-lede">
+              Tell us the problem or process you want an agent to take on. Pick a time that suits
+              you.
+            </p>
+            <BroughtProblem />
+          </div>
 
-            <ul className="mt-12 border-t border-line">
-              {expectations.map((item) => (
-                <li
-                  key={item}
-                  className="flex gap-3 border-b border-line py-5 text-[0.9375rem] leading-[1.72] text-slate"
-                >
-                  <span aria-hidden="true" className="shrink-0 text-steel">
-                    &bull;
-                  </span>
-                  {item}
-                </li>
+          <div className="ffc-cal-col">
+            <BookingCalendar />
+            <p className="ffc-cal-help">
+              Calendar not loading?{' '}
+              <a href={cal.bookingUrl} target="_blank" rel="noopener noreferrer">
+                Open it in a new tab
+              </a>
+              .
+            </p>
+          </div>
+
+          <div className="ffc-details">
+            <p className="ffh-mono text-mist">On the call</p>
+            <ol className="ffc-steps">
+              {onTheCall.map((item) => (
+                <li key={item}>{item}</li>
               ))}
-            </ul>
-          </Reveal>
+            </ol>
 
-          <Reveal delay={120}>
-            <CalInline />
-          </Reveal>
+            <div className="ffc-alt">
+              <p>
+                Rather write first? Email the problem to{' '}
+                <a href={`mailto:${site.email}?subject=${encodeURIComponent('Scoping an agent')}`}>
+                  {site.email}
+                </a>
+                .
+              </p>
+              <p>
+                Not sure what to ask for?{' '}
+                <Link href="/agent-planner" prefetch={false}>
+                  Try the Agent Planner
+                </Link>{' '}
+                and bring the plan to the call.
+              </p>
+            </div>
+
+            <p className="ffh-footnote ffc-footnote">* {FOOTNOTE}</p>
+          </div>
         </div>
-      </Section>
-    </>
+      </Container>
+    </section>
   )
 }

@@ -1,0 +1,174 @@
+/* Shared chrome for pages on the new design: tokens, buttons, tags, header and mobile CTA.
+   Layered so Tailwind utilities (hidden, lg:flex …) still win over these classes. */
+@layer components {
+
+.ffh {
+  --ffh-healthy: #a8c4a4;
+  --ffh-drift: #d4c09a;
+  --ffh-ease: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --ffh-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ffh-inout: cubic-bezier(0.76, 0, 0.24, 1);
+  --ffh-header: 4.5rem;
+}
+
+/* In-page links land below the sticky header, not under it. */
+.ffh main [id] {
+  scroll-margin-top: var(--ffh-header);
+}
+
+.ffh-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ffh-tag {
+  display: inline-flex;
+  align-items: center;
+  border: 1px dashed rgba(255, 255, 255, 0.32);
+  border-radius: 999px;
+  padding: 0.22rem 0.55rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--color-mist);
+  white-space: nowrap;
+}
+
+.ffh-tag-light {
+  border-color: rgba(10, 10, 11, 0.3);
+  color: var(--color-mist-d);
+}
+
+/* Buttons used inside client components (same as the site Button) */
+.ffh-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3rem;
+  border-radius: 999px;
+  padding: 0.8rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  transition:
+    background-color 0.25s var(--ffh-ease),
+    border-color 0.25s var(--ffh-ease),
+    color 0.25s var(--ffh-ease),
+    transform 0.15s var(--ffh-ease);
+}
+
+.ffh-btn:active {
+  transform: scale(0.98);
+}
+
+.ffh-btn-primary {
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+
+.ffh-btn-primary:hover {
+  background: var(--color-accent-2);
+}
+
+.ffh-btn-ghost {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: var(--color-paper);
+}
+
+.ffh-btn-ghost:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.ffh-btn-ink {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.ffh-btn-ink:hover {
+  background: var(--color-ink-3);
+}
+
+/* ───────────────── Header ───────────────── */
+
+.ffh-header {
+  background: rgba(10, 10, 11, 0.72);
+  backdrop-filter: saturate(1.4) blur(24px);
+  -webkit-backdrop-filter: saturate(1.4) blur(24px);
+  border-bottom: 1px solid var(--color-line-dark);
+}
+
+.ffh-navlink {
+  font-size: 0.9375rem;
+  color: #cfcfd3;
+  transition: color 0.2s var(--ffh-ease);
+}
+
+.ffh-navlink:hover {
+  color: var(--color-paper);
+}
+
+.ffh-planner-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 0.95rem;
+  font-size: 0.875rem;
+  color: var(--color-paper);
+  transition:
+    border-color 0.2s var(--ffh-ease),
+    background-color 0.2s var(--ffh-ease);
+}
+
+.ffh-planner-chip:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.ffh-footnote {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+}
+
+/* ───────────────── Mobile CTA ───────────────── */
+
+.ffh-mcta {
+  position: fixed;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: max(0.75rem, env(safe-area-inset-bottom));
+  z-index: 60;
+  display: flex;
+  gap: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-line-dark);
+  background: rgba(10, 10, 11, 0.86);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding: 0.4rem;
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
+  transform: translateY(calc(100% + 1.5rem));
+  transition: transform 0.45s var(--ffh-quint);
+}
+
+.ffh-mcta.is-shown {
+  transform: none;
+}
+
+.ffh-mcta .ffh-btn {
+  min-height: 2.75rem;
+  padding-block: 0.6rem;
+}
+
+}

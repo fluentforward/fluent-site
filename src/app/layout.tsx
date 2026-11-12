@@ -8,6 +8,7 @@ import { SiteChrome } from '@/components/layout/SiteChrome'
 import { site } from '@/content/site'
 
 import '@/styles/tailwind.css'
+import '@/components/layout/chrome.css'
 
 const interTight = Inter_Tight({
   subsets: ['latin'],

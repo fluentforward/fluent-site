@@ -2,16 +2,37 @@
 
 import { usePathname } from 'next/navigation'
 
+import { Footer } from '@/components/layout/Footer'
+import { Header } from '@/components/layout/Header'
 import { SiteFooter } from '@/components/layout/SiteFooter'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 
-/** The home page and review routes bring their own header and footer. Other pages use the site chrome. */
+/** Pages moved to the new design. The rest keep the previous header and footer until they move. */
+const NEW_DESIGN = new Set(['/', '/contact'])
+
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() || '/'
-  const ownChrome =
-    pathname === '/' || pathname.startsWith('/mockup') || pathname.startsWith('/agent-planner')
 
-  if (ownChrome) return children
+  // Review routes bring their own chrome.
+  if (pathname.startsWith('/mockup') || pathname.startsWith('/agent-planner')) return children
+
+  if (NEW_DESIGN.has(pathname)) {
+    return (
+      <div className="ffh flex min-h-full flex-1 flex-col bg-ink text-paper">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[80] focus:bg-paper focus:px-3 focus:py-2 focus:text-ink"
+        >
+          Skip to content
+        </a>
+        <Header />
+        <main id="main" className="flex-auto">
+          {children}
+        </main>
+        <Footer />
+      </div>
+    )
+  }
 
   return (
     <>

@@ -1,11 +1,10 @@
 import { Asks } from '@/components/home/Asks'
 import { CareSection } from '@/components/home/CareScene'
-import { HomeFooter } from '@/components/home/Footer'
-import { HomeHeader, MobileCta } from '@/components/home/Header'
 import { Hero } from '@/components/home/Hero'
 import { PlannerSection } from '@/components/home/PlannerScene'
 import { Close, ProofAndFit, Security, Terms } from '@/components/home/Sections'
 import { TenDays } from '@/components/home/TenDays'
+import { MobileCta } from '@/components/layout/Header'
 import { site } from '@/content/site'
 
 import '@/components/home/home.css'
@@ -23,34 +22,24 @@ const structuredData = {
   address: { '@type': 'PostalAddress', addressCountry: 'GB' },
 }
 
-/* The home page brings its own header and footer (see SiteChrome). Other pages keep the site chrome. */
+/* Header, footer and <main> come from SiteChrome. */
 export default function Home() {
   return (
-    <div className="ffh flex min-h-full flex-1 flex-col bg-ink text-paper">
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[80] focus:bg-paper focus:px-3 focus:py-2 focus:text-ink"
-      >
-        Skip to content
-      </a>
-      <HomeHeader />
-      <main id="main" className="flex-auto">
-        <Hero />
-        <Asks />
-        <TenDays />
-        <CareSection />
-        <Terms />
-        <PlannerSection />
-        <Security />
-        <ProofAndFit />
-        <Close />
-      </main>
-      <HomeFooter />
+      <Hero />
+      <Asks />
+      <TenDays />
+      <CareSection />
+      <Terms />
+      <PlannerSection />
+      <Security />
+      <ProofAndFit />
+      <Close />
       <MobileCta />
-    </div>
+    </>
   )
 }

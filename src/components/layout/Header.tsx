@@ -2,16 +2,18 @@
 
 import clsx from 'clsx'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
-import { Chevron } from './Mark'
+import { Chevron } from '@/components/home/Mark'
 
+/* Sections of the home page until the new inner pages exist. Absolute, so they work from any page. */
 const links = [
-  { href: '#how', label: 'How it works' },
-  { href: '#agents', label: 'Agents' },
-  { href: '#care', label: 'Agent Care' },
-  { href: '#security', label: 'Security' },
-  { href: '#proof', label: 'Proof' },
+  { href: '/#how', label: 'How it works' },
+  { href: '/#agents', label: 'Agents' },
+  { href: '/#care', label: 'Agent Care' },
+  { href: '/#security', label: 'Security' },
+  { href: '/#proof', label: 'Proof' },
   { href: '/strategy-blueprints', label: 'Resources' },
 ] as const
 
@@ -30,8 +32,10 @@ function Logo() {
   )
 }
 
-export function HomeHeader() {
+export function Header() {
   const [open, setOpen] = useState(false)
+  const pathname = usePathname()
+  const onContact = pathname === '/contact'
 
   useEffect(() => {
     if (!open) return
@@ -62,6 +66,7 @@ export function HomeHeader() {
             <Link
               href="/contact"
               prefetch={false}
+              aria-current={onContact ? 'page' : undefined}
               className="ffh-btn ffh-btn-primary hidden !min-h-0 !px-5 !py-2.5 !text-sm lg:inline-flex"
             >
               Scope your agent
