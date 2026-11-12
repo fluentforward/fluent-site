@@ -57,7 +57,10 @@ export function loadCal() {
       push(instance, args)
     }
 
-  window.Cal('init', cal.namespace, { origin: cal.origin })
+  // Initialise once. Re-initialising makes Cal forget its open popup and build a new one each time.
+  if (!window.Cal.ns?.[cal.namespace]) {
+    window.Cal('init', cal.namespace, { origin: cal.origin })
+  }
 
   return window.Cal.ns?.[cal.namespace]
 }

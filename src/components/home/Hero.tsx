@@ -1,4 +1,6 @@
+import { ScopeLink } from '@/components/booking/ScopeLink'
 import { Button } from '@/components/ui/Button'
+import { buttonClasses } from '@/components/ui/button-classes'
 import { Container } from '@/components/ui/Container'
 
 import { HeroConsole } from './HeroConsole'
@@ -26,9 +28,7 @@ export function Hero() {
               every month.
             </p>
             <div className="mt-[clamp(1rem,2.6vh,1.75rem)] flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Button href="/contact" prefetch={false}>
-                Scope your agent
-              </Button>
+              <ScopeLink className={buttonClasses('primary')}>Scope your agent</ScopeLink>
               <Button href="/agent-planner" prefetch={false} variant="ghost">
                 Try the Agent Planner →
               </Button>

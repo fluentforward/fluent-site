@@ -13,6 +13,8 @@ import {
   type CSSProperties,
 } from 'react'
 
+import { rememberProblem } from '@/components/booking/ScopeLink'
+
 import { useReducedMotion } from './hooks'
 import { Chevron, Tag } from './Mark'
 import { EXAMPLES, sketchFrom, toolsIn, type Sketch, type Term, type TermKind } from './sketch'
@@ -320,6 +322,11 @@ export function HeroConsole() {
     // signature captures every visible change in the sketch
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [signature, owner])
+
+  // Whatever the visitor typed goes with them into the booking popup.
+  useEffect(() => {
+    if (owner === 'visitor') rememberProblem(text)
+  }, [owner, text])
 
   const takeOver = () => {
     if (owner === 'visitor') return

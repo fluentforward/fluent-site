@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
+import { ScopeLink } from '@/components/booking/ScopeLink'
 import { Chevron } from '@/components/home/Mark'
 
 /* Sections of the home page until the new inner pages exist. Absolute, so they work from any page. */
@@ -63,14 +64,12 @@ export function Header() {
               <span aria-hidden="true" className="eyebrow-dot !h-1.5 !w-1.5" />
               Agent Planner
             </Link>
-            <Link
-              href="/contact"
-              prefetch={false}
+            <ScopeLink
               aria-current={onContact ? 'page' : undefined}
               className="ffh-btn ffh-btn-primary hidden !min-h-0 !px-5 !py-2.5 !text-sm lg:inline-flex"
             >
               Scope your agent
-            </Link>
+            </ScopeLink>
             <button
               type="button"
               className="relative h-11 w-11 xl:hidden"
@@ -119,9 +118,9 @@ export function Header() {
             >
               Agent Planner
             </Link>
-            <Link href="/contact" prefetch={false} className="ffh-btn ffh-btn-primary mt-5">
+            <ScopeLink className="ffh-btn ffh-btn-primary mt-5" onOpen={() => setOpen(false)}>
               Scope your agent
-            </Link>
+            </ScopeLink>
           </div>
         </nav>
       ) : null}
@@ -159,9 +158,7 @@ export function MobileCta() {
 
   return (
     <div ref={barRef} className={clsx('ffh-mcta lg:hidden', show && 'is-shown')}>
-      <Link href="/contact" prefetch={false} className="ffh-btn ffh-btn-primary flex-1">
-        Scope your agent
-      </Link>
+      <ScopeLink className="ffh-btn ffh-btn-primary flex-1">Scope your agent</ScopeLink>
       <Link href="/agent-planner" prefetch={false} className="ffh-btn ffh-btn-ghost">
         Planner
       </Link>

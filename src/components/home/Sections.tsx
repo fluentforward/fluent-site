@@ -1,6 +1,8 @@
 import Link from 'next/link'
 
+import { ScopeLink } from '@/components/booking/ScopeLink'
 import { Button } from '@/components/ui/Button'
+import { buttonClasses } from '@/components/ui/button-classes'
 import { Container } from '@/components/ui/Container'
 
 import { Eyebrow, FOOTNOTE, OWNERSHIP } from './Mark'
@@ -184,9 +186,7 @@ export function Close() {
               Got a problem an agent should <span className="text-accent">solve?</span>
             </h2>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <Button href="/contact" prefetch={false}>
-                Scope your agent
-              </Button>
+              <ScopeLink className={buttonClasses('primary')}>Scope your agent</ScopeLink>
               <Button href="/agent-planner" prefetch={false} variant="ghost">
                 Try the Agent Planner →
               </Button>
