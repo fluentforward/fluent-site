@@ -5,12 +5,13 @@ import { usePathname } from 'next/navigation'
 import { SiteFooter } from '@/components/layout/SiteFooter'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 
-/** Hides the live header and footer on review routes only. Live pages are unchanged. */
+/** The home page and review routes bring their own header and footer. Other pages use the site chrome. */
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() || '/'
-  const preview = pathname.startsWith('/mockup') || pathname.startsWith('/agent-planner')
+  const ownChrome =
+    pathname === '/' || pathname.startsWith('/mockup') || pathname.startsWith('/agent-planner')
 
-  if (preview) return children
+  if (ownChrome) return children
 
   return (
     <>

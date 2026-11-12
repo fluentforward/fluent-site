@@ -159,14 +159,12 @@ export function Asks() {
                   data-index={index}
                   className={clsx('ffh-ask', active === index && 'is-active')}
                 >
-                  <Link href={`/agents#${item.id}`} prefetch={false} className="ffh-ask-link">
-                    <span className="ffh-ask-quote">
-                      <span aria-hidden="true" className="ffh-ask-mark">
-                        “
-                      </span>
-                      {item.ask}
+                  <p className="ffh-ask-quote">
+                    <span aria-hidden="true" className="ffh-ask-mark">
+                      “
                     </span>
-                  </Link>
+                    {item.ask}
+                  </p>
                   <div className="ffh-ask-agent">
                     <p className="ffh-mono text-mist-d">
                       <span aria-hidden="true" className="ffh-ask-arrow">
@@ -175,10 +173,15 @@ export function Asks() {
                       {item.fn}
                     </p>
                     <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-slate">{item.does}</p>
+                    <Link
+                      href={planner(item.ask)}
+                      prefetch={false}
+                      className="ffh-ask-plan"
+                      onFocus={() => setActive(index)}
+                    >
+                      Plan one like this
+                    </Link>
                   </div>
-                  <Link href={planner(item.ask)} prefetch={false} className="ffh-ask-plan lg:hidden">
-                    Plan one like this
-                  </Link>
                 </li>
               ))}
             </ol>

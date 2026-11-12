@@ -83,7 +83,7 @@ export function Security() {
               <p>{OWNERSHIP}</p>
             </blockquote>
             <Link
-              href="/security"
+              href="/privacy"
               prefetch={false}
               className="mt-8 inline-flex w-fit items-center gap-2 text-paper underline decoration-white/30 underline-offset-[6px] transition-colors hover:decoration-white"
             >

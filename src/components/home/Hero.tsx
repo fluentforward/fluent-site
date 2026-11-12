@@ -1,33 +1,10 @@
-import type { Metadata } from 'next'
-
-import { MockupFooter } from '@/components/mockup/chrome'
-import { HomeHeader, MobileCta } from '@/components/mockup-home/Header'
-import { HeroConsole } from '@/components/mockup-home/HeroConsole'
-import { Eyebrow, FOOTNOTE } from '@/components/mockup-home/Mark'
-import { Asks } from '@/components/mockup-home/Asks'
-import { CareSection } from '@/components/mockup-home/CareScene'
-import { PlannerSection } from '@/components/mockup-home/PlannerScene'
-import { Close, ProofAndFit, Security, Terms } from '@/components/mockup-home/Sections'
-import { TenDays } from '@/components/mockup-home/TenDays'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 
-import '@/components/mockup-home/home.css'
+import { HeroConsole } from './HeroConsole'
+import { Eyebrow, FOOTNOTE } from './Mark'
 
-const meta = {
-  title: 'Home mockup',
-  description: 'Review mockup of the FluentForward home page. Not the live site.',
-}
-
-export const metadata: Metadata = {
-  ...meta,
-  robots: { index: false, follow: false },
-  alternates: { canonical: '/mockup/home' },
-  openGraph: meta,
-  twitter: meta,
-}
-
-function Hero() {
+export function Hero() {
   return (
     <section className="ffh-hero" aria-labelledby="hero-title">
       <Container className="ffh-hero-inner">
@@ -67,32 +44,5 @@ function Hero() {
         </div>
       </Container>
     </section>
-  )
-}
-
-export default function HomeMockupPage() {
-  return (
-    <div className="ffh flex min-h-full flex-1 flex-col bg-ink text-paper">
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[80] focus:bg-paper focus:px-3 focus:py-2 focus:text-ink"
-      >
-        Skip to content
-      </a>
-      <HomeHeader />
-      <main id="main" className="flex-auto">
-        <Hero />
-        <Asks />
-        <TenDays />
-        <CareSection />
-        <Terms />
-        <PlannerSection />
-        <Security />
-        <ProofAndFit />
-        <Close />
-      </main>
-      <MockupFooter />
-      <MobileCta />
-    </div>
   )
 }

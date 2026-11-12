@@ -1,14 +1,14 @@
-import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
-import { HomeWhereToStartSection } from '@/components/sections/home/HomeWhereToStartSection'
-import { HomeClosingSection } from '@/components/sections/home/HomeClosingSection'
-import { HomeFitSection } from '@/components/sections/home/HomeFitSection'
-import { HomeProofSection } from '@/components/sections/home/HomeProofSection'
-import { HomeOutcomesSection } from '@/components/sections/home/HomeOutcomesSection'
-import { HomeThreeStepsSection } from '@/components/sections/home/HomeThreeStepsSection'
-import { HomeWebinarSection } from '@/components/sections/home/HomeWebinarSection'
-import { HomeHero } from '@/components/sections/HomeHero'
-import { growthLimits } from '@/content/home'
+import { Asks } from '@/components/home/Asks'
+import { CareSection } from '@/components/home/CareScene'
+import { HomeFooter } from '@/components/home/Footer'
+import { HomeHeader, MobileCta } from '@/components/home/Header'
+import { Hero } from '@/components/home/Hero'
+import { PlannerSection } from '@/components/home/PlannerScene'
+import { Close, ProofAndFit, Security, Terms } from '@/components/home/Sections'
+import { TenDays } from '@/components/home/TenDays'
 import { site } from '@/content/site'
+
+import '@/components/home/home.css'
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -19,40 +19,38 @@ const structuredData = {
   email: site.email,
   description: site.description,
   areaServed: 'GB',
-  serviceType: 'Profit Engine advisory and implementation for services firms',
+  serviceType: 'AI agents built, hosted and looked after for services firms',
   address: { '@type': 'PostalAddress', addressCountry: 'GB' },
 }
 
+/* The home page brings its own header and footer (see SiteChrome). Other pages keep the site chrome. */
 export default function Home() {
   return (
-    <>
+    <div className="ffh flex min-h-full flex-1 flex-col bg-ink text-paper">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <HomeHero />
-      <DefinitionGrid
-        eyebrow={growthLimits.eyebrow}
-        heading={growthLimits.heading}
-        lede={growthLimits.lede}
-        items={growthLimits.items}
-        closing={growthLimits.closing}
-        closingLink={growthLimits.closingLink}
-        tone="paper"
-        id="growth-limits"
-        size="compact"
-        dense
-        variant="quotes"
-      />
-      <HomeOutcomesSection />
-      <HomeWhereToStartSection />
-      <HomeFitSection />
-      <HomeThreeStepsSection
-        moreLink={{ href: '/how-it-works', label: 'How Profit Engine works' }}
-      />
-      <HomeProofSection size="compact" />
-      <HomeWebinarSection />
-      <HomeClosingSection />
-    </>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[80] focus:bg-paper focus:px-3 focus:py-2 focus:text-ink"
+      >
+        Skip to content
+      </a>
+      <HomeHeader />
+      <main id="main" className="flex-auto">
+        <Hero />
+        <Asks />
+        <TenDays />
+        <CareSection />
+        <Terms />
+        <PlannerSection />
+        <Security />
+        <ProofAndFit />
+        <Close />
+      </main>
+      <HomeFooter />
+      <MobileCta />
+    </div>
   )
 }

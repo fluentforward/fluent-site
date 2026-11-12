@@ -18,7 +18,7 @@ const links = [
 function Logo() {
   return (
     <Link
-      href="/mockup/home"
+      href="/"
       className="inline-flex items-center gap-2.5 transition-opacity duration-300 hover:opacity-85"
       aria-label="FluentForward home"
     >
