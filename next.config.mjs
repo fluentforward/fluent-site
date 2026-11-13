@@ -1,9 +1,39 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverComponentsExternalPackages: ['@react-pdf/renderer'],
+  },
   async headers() {
     return [
       {
         source: '/guides/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow',
+          },
+        ],
+      },
+      {
+        source: '/mockup/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow',
+          },
+        ],
+      },
+      {
+        source: '/agent-planner',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow',
+          },
+        ],
+      },
+      {
+        source: '/internal/:path*',
         headers: [
           {
             key: 'X-Robots-Tag',
@@ -46,6 +76,7 @@ const nextConfig = {
         destination: 'https://client.fluentforward.com/profit-constraint-score',
         statusCode: 302,
       },
+      { source: '/mockup/home', destination: '/', statusCode: 302 },
       { source: '/about', destination: '/', statusCode: 301 },
       { source: '/about/:path*', destination: '/', statusCode: 301 },
     ]

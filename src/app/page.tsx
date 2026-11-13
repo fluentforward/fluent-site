@@ -1,14 +1,13 @@
-import { DefinitionGrid } from '@/components/sections/DefinitionGrid'
-import { HomeWhereToStartSection } from '@/components/sections/home/HomeWhereToStartSection'
-import { HomeClosingSection } from '@/components/sections/home/HomeClosingSection'
-import { HomeFitSection } from '@/components/sections/home/HomeFitSection'
-import { HomeProofSection } from '@/components/sections/home/HomeProofSection'
-import { HomeOutcomesSection } from '@/components/sections/home/HomeOutcomesSection'
-import { HomeThreeStepsSection } from '@/components/sections/home/HomeThreeStepsSection'
-import { HomeWebinarSection } from '@/components/sections/home/HomeWebinarSection'
-import { HomeHero } from '@/components/sections/HomeHero'
-import { growthLimits } from '@/content/home'
+import { Asks } from '@/components/home/Asks'
+import { CareSection } from '@/components/home/CareScene'
+import { Hero } from '@/components/home/Hero'
+import { PlannerSection } from '@/components/home/PlannerScene'
+import { Close, ProofAndFit, Security, Terms } from '@/components/home/Sections'
+import { TenDays } from '@/components/home/TenDays'
+import { MobileCta } from '@/components/layout/Header'
 import { site } from '@/content/site'
+
+import '@/components/home/home.css'
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -19,10 +18,11 @@ const structuredData = {
   email: site.email,
   description: site.description,
   areaServed: 'GB',
-  serviceType: 'Profit Engine advisory and implementation for services firms',
+  serviceType: 'AI agents built, hosted and looked after for services firms',
   address: { '@type': 'PostalAddress', addressCountry: 'GB' },
 }
 
+/* Header, footer and <main> come from SiteChrome. */
 export default function Home() {
   return (
     <>
@@ -30,29 +30,16 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <HomeHero />
-      <DefinitionGrid
-        eyebrow={growthLimits.eyebrow}
-        heading={growthLimits.heading}
-        lede={growthLimits.lede}
-        items={growthLimits.items}
-        closing={growthLimits.closing}
-        closingLink={growthLimits.closingLink}
-        tone="paper"
-        id="growth-limits"
-        size="compact"
-        dense
-        variant="quotes"
-      />
-      <HomeOutcomesSection />
-      <HomeWhereToStartSection />
-      <HomeFitSection />
-      <HomeThreeStepsSection
-        moreLink={{ href: '/how-it-works', label: 'How Profit Engine works' }}
-      />
-      <HomeProofSection size="compact" />
-      <HomeWebinarSection />
-      <HomeClosingSection />
+      <Hero />
+      <Asks />
+      <TenDays />
+      <CareSection />
+      <Terms />
+      <PlannerSection />
+      <Security />
+      <ProofAndFit />
+      <Close />
+      <MobileCta />
     </>
   )
 }

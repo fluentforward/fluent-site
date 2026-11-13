@@ -1,0 +1,220 @@
+/* Contact page (/contact). Classes are prefixed ffc-. Layered so Tailwind utilities still win. */
+@layer components {
+
+.ffc {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background: var(--color-ink);
+  color: var(--color-lede-dark);
+}
+
+.ffc::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(45% 55% at 78% 70%, rgba(255, 74, 28, 0.14), transparent 70%);
+  pointer-events: none;
+}
+
+.ffc-inner {
+  padding-top: clamp(1.5rem, 4vh, 3.5rem);
+  padding-bottom: clamp(3.5rem, 9vh, 6rem);
+}
+
+/*
+  Small screens: heading, then the calendar, then the details, so the booking comes early.
+  Desktop: copy in a narrow left column, the calendar wide on the right. The calendar column
+  never drops below ~49rem, the width at which Cal switches to its short side-by-side layout.
+*/
+.ffc-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    'head'
+    'cal'
+    'details';
+  gap: 2rem;
+}
+
+.ffc-head {
+  grid-area: head;
+}
+
+.ffc-cal-col {
+  grid-area: cal;
+  min-width: 0;
+}
+
+.ffc-details {
+  grid-area: details;
+}
+
+@media (min-width: 1280px) {
+  .ffc-grid {
+    grid-template-columns: minmax(18rem, 1fr) minmax(49rem, 56rem);
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      'head cal'
+      'details cal';
+    column-gap: clamp(2.5rem, 4vw, 4.5rem);
+    row-gap: clamp(1.5rem, 4vh, 2.5rem);
+    align-items: start;
+  }
+}
+
+.ffc-h1 {
+  margin-top: clamp(0.85rem, 2.2vh, 1.5rem);
+  font-size: clamp(2.75rem, min(5.2vw, 8.4vh), 5.25rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  color: #fff;
+  text-wrap: balance;
+}
+
+.ffc-lede {
+  margin-top: clamp(0.9rem, 2.4vh, 1.5rem);
+  max-width: 36ch;
+  font-size: clamp(1.0625rem, min(1.45vw, 2.5vh), 1.3125rem);
+  line-height: 1.5;
+}
+
+.ffc-brought {
+  margin-top: 1.5rem;
+  max-width: 40ch;
+  border-left: 2px solid var(--color-accent);
+  padding: 0.25rem 0 0.25rem 1rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+/* The calendar card. Cal's own booking card sits on a paper panel. */
+.ffc-cal {
+  position: relative;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--color-paper);
+  overflow: hidden;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 50px 100px -40px rgba(0, 0, 0, 0.9);
+  /* Reserve the height Cal will take, so nothing jumps as it loads. */
+  min-height: 40rem;
+}
+
+@media (min-width: 820px) {
+  .ffc-cal {
+    min-height: 33.5rem;
+  }
+}
+
+.ffc-cal-frame {
+  position: relative;
+  z-index: 1;
+}
+
+.ffc-cal-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background: var(--color-paper);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-mist-d);
+  transition: opacity 0.4s var(--ffh-ease);
+}
+
+.ffc-cal-loading.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ffc-cal-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(255, 74, 28, 0.18);
+  animation: ffc-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes ffc-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.ffc-cal-help {
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--color-mist);
+}
+
+.ffc-cal-help a,
+.ffc-alt a {
+  color: var(--color-paper);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.35);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s var(--ffh-ease);
+}
+
+.ffc-cal-help a:hover,
+.ffc-alt a:hover {
+  text-decoration-color: #fff;
+}
+
+.ffc-steps {
+  counter-reset: call;
+  margin-top: 0.75rem;
+  border-top: 1px solid var(--color-line-dark);
+}
+
+.ffc-steps li {
+  counter-increment: call;
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  padding: clamp(0.7rem, 1.8vh, 1rem) 0;
+  border-bottom: 1px solid var(--color-line-dark);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--color-paper);
+}
+
+.ffc-steps li::before {
+  content: counter(call, decimal-leading-zero);
+  padding-top: 0.2rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--color-mist);
+}
+
+.ffc-alt {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: clamp(1rem, 2.6vh, 1.5rem);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.ffc-footnote {
+  margin-top: clamp(1rem, 2.6vh, 1.5rem);
+  max-width: 46ch;
+  color: var(--color-mist);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ffc-cal-pulse {
+    animation: none;
+  }
+}
+
+}

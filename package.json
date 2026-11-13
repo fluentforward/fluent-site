@@ -7,26 +7,39 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "node --test scripts/ga4-gtag-stub.test.mjs scripts/gtag-consent-mode.test.mjs scripts/demio-register-payload.test.mjs"
+    "test": "node --import tsx --test scripts/ga4-gtag-stub.test.mjs scripts/gtag-consent-mode.test.mjs scripts/demio-register-payload.test.mjs scripts/planner-redact.test.mjs scripts/planner-guardrails.test.mjs scripts/planner-loops-payload.test.mjs scripts/planner-schema.test.mjs scripts/planner-levers.test.mjs scripts/planner-hook.test.mjs",
+    "db:push": "drizzle-kit push"
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
+    "@ai-sdk/anthropic": "^2.0.115",
+    "@neondatabase/serverless": "^1.2.0",
+    "@react-pdf/renderer": "^4.9.0",
     "@tailwindcss/postcss": "^4.1.4",
     "@types/node": "^20.10.8",
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18.2.18",
+    "@vercel/blob": "^2.9.0",
+    "@vercel/functions": "^3.11.2",
+    "ai": "^5.0.289",
     "clsx": "^2.1.0",
+    "drizzle-orm": "^0.45.4",
+    "motion": "^12.43.0",
     "next": "^14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tailwindcss": "^4.1.4",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
+    "drizzle-kit": "^0.31.11",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.0.4",
+    "playwright-core": "^1.58.2",
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "sharp": "^0.35.3"
+    "sharp": "^0.35.3",
+    "tsx": "^4.23.15"
   }
 }

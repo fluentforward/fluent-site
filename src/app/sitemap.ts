@@ -2,6 +2,7 @@ import { type MetadataRoute } from 'next'
 
 import { site } from '@/content/site'
 
+// /mockup/motion and the Agent Planner stub are omitted on purpose.
 const routes = [
   { path: '/', priority: 1 },
   { path: '/ways-we-work', priority: 0.9 },

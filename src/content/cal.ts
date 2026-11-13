@@ -4,6 +4,8 @@ export const cal = {
   scriptSrc: 'https://app.cal.eu/embed/embed.js',
   namespace: '30min',
   link: 'matthew-todd/30min',
+  /** Public booking page, for when the embed is blocked or fails to load. */
+  bookingUrl: 'https://cal.eu/matthew-todd/30min',
   config: {
     layout: 'month_view',
     useSlotsViewOnSmallScreen: 'true',

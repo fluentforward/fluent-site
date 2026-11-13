@@ -5,9 +5,9 @@ export const site = {
   name: 'FluentForward',
   legalName: 'FluentForward Limited',
   url: 'https://www.fluentforward.com',
-  tagline: 'Busy is not profitable. Six-week Profit Engine on-ramp, then Run.',
+  tagline: 'AI agents for UK services firms',
   description:
-    'FluentForward runs Profit Engine for agencies, consultancies and professional services firms: six-week on-ramp on one scored lever with realtime Offers · Demand · Delivery insight and AI agents, then Run for always-on profit control.',
+    'We build, host and look after AI agents for UK services firms. Bring us a problem: we build the agent at a fixed price and keep it working under Agent Care.',
   email: 'hello@fluentforward.com',
   privacyEmail: 'privacy@fluentforward.com',
 } as const
