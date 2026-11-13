@@ -8,13 +8,13 @@ import { SiteFooter } from '@/components/layout/SiteFooter'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 
 /** Pages moved to the new design. The rest keep the previous header and footer until they move. */
-const NEW_DESIGN = new Set(['/', '/contact'])
+const NEW_DESIGN = new Set(['/', '/contact', '/agent-planner'])
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() || '/'
 
-  // Review routes bring their own chrome.
-  if (pathname.startsWith('/mockup') || pathname.startsWith('/agent-planner')) return children
+  // Review routes and the internal lead list bring their own chrome.
+  if (pathname.startsWith('/mockup') || pathname.startsWith('/internal')) return children
 
   if (NEW_DESIGN.has(pathname)) {
     return (

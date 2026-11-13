@@ -8,5 +8,5 @@ export function middleware(_request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/mockup/:path*', '/agent-planner'],
+  matcher: ['/mockup/:path*', '/agent-planner', '/internal/:path*'],
 }

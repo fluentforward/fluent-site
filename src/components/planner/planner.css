@@ -1,0 +1,207 @@
+.ffp-card {
+  border-radius: 14px;
+  border: 1px solid var(--color-line-strong);
+  background: var(--color-paper-3);
+  color: var(--color-ink);
+  padding: 1.25rem 1.25rem 1.35rem;
+  box-shadow: 0 20px 40px -30px rgba(0, 0, 0, 0.35);
+}
+
+.ffp-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-mist-d);
+}
+
+.ffp-field {
+  margin-top: 0.7rem;
+  border-radius: 14px;
+  border: 1px solid var(--color-line-strong);
+  background: var(--color-paper);
+  padding: 0.85rem 1rem;
+}
+
+.ffp-field:focus-within {
+  border-color: var(--color-ink);
+  box-shadow: 0 0 0 3px rgba(255, 74, 28, 0.22);
+}
+
+.ffp-field textarea,
+.ffp-field input {
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 1.0625rem;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+.ffp-field textarea {
+  resize: vertical;
+  min-height: 7.5rem;
+}
+
+.ffp-field textarea::placeholder,
+.ffp-field input::placeholder {
+  color: var(--color-mist-d);
+}
+
+.ffp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.ffp-note {
+  margin-top: 0.85rem;
+  max-width: 46rem;
+  color: var(--color-mist);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.ffp-note a {
+  color: var(--color-paper);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ffp-card .ffp-note,
+.ffp-card .ffp-note a {
+  color: var(--color-slate);
+}
+
+.ffp-card .ffp-note a {
+  color: var(--color-ink);
+}
+
+.ffp-warning {
+  margin-top: 0.85rem;
+  border-left: 2px solid var(--color-accent);
+  padding-left: 0.8rem;
+  color: var(--color-ink);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+.ffp-on-dark {
+  color: var(--color-paper);
+}
+
+.ffp-plan {
+  min-height: 16rem;
+}
+
+.ffp-plan h2 {
+  margin-top: 0.35rem;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+.ffp-steps {
+  margin: 0.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ffp-steps li {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  gap: 0.35rem;
+  padding: 0.45rem 0;
+  border-top: 1px solid var(--color-line);
+  color: var(--color-slate);
+}
+
+.ffp-steps strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.ffp-status {
+  margin-top: 0.8rem;
+  color: var(--color-mist-d);
+  font-size: 0.875rem;
+}
+
+.ffp-example {
+  border-radius: 14px;
+  border: 1px solid var(--color-line);
+  background: var(--color-paper-3);
+  padding: 1.5rem;
+}
+
+.ffp-faq {
+  border-top: 1px solid var(--color-line);
+  padding: 1rem 0;
+}
+
+.ffp-faq summary {
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.ffp-faq summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+.ffp-faq p {
+  margin-top: 0.6rem;
+  max-width: 62ch;
+  color: var(--color-slate);
+}
+
+.ffp-admin {
+  padding: 2.5rem 1.5rem 4rem;
+  color: var(--color-paper);
+}
+
+.ffp-admin table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.ffp-admin th,
+.ffp-admin td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.55rem 0.6rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.ffp-admin th {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-mist);
+  font-weight: 500;
+}
+
+.ffp-admin input {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: transparent;
+  color: var(--color-paper);
+  padding: 0.7rem 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ffp-plan,
+  .ffp-plan * {
+    transition: none;
+  }
+}

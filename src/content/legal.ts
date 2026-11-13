@@ -9,7 +9,7 @@ export type LegalSection = {
 
 export const privacy = {
   title: 'Privacy',
-  lastUpdated: 'October 2026',
+  lastUpdated: 'November 2026',
   intro:
     'This notice explains what personal information FluentForward Limited collects, why, and what you can do about it. It is written to be read rather than to be technically survivable.',
   sections: [
@@ -31,6 +31,7 @@ export const privacy = {
         'Website visitors. Our hosting provider processes standard server logs, including IP address, browser type and the pages requested, to serve the site and keep it secure.',
         'Site analytics (optional). If you accept analytics cookies, Google Analytics 4 measures aggregate traffic with storage enabled: pages viewed, referrers, device and approximate location. If you decline or have not decided yet, the tag may still send limited, cookieless measurement pings under Google Consent Mode until you grant analytics storage. Google processes this on our behalf. Preview or local copies of the site do not load it.',
         'Enquiries and calls. If you book a call or email us, we hold your name, email address, any details you choose to share about your business, and our notes from the conversation.',
+        'Agent Planner. If you use the planner, we store the problem you describe, your answers, the plan we generate, and, if you ask for the full plan by email, your name and email address. We keep a record of each plan so we can send it and see what was requested.',
         'Clients. During an engagement we hold the contact details, correspondence, contractual records and project documentation needed to deliver the work and meet our accounting obligations.',
       ],
     },
@@ -39,13 +40,15 @@ export const privacy = {
       heading: 'Why we use it, and on what basis',
       list: [
         'To respond to enquiries and hold scheduled calls. Our legitimate interest in answering people who contact us.',
+        'To generate the Agent Planner plan you ask for, and to email that plan to you. Steps we take at your request.',
+        'To send a short follow-up about that plan, unless you book a call or unsubscribe. You can unsubscribe from any of those emails.',
         'To deliver an engagement, invoice for it and support it afterwards. Performance of our contract with you.',
         'To keep the website available, functional and secure. Our legitimate interest in operating the site.',
         'To understand how the live site is used so we can improve it. Consent, via the cookie banner or cookie settings, for optional analytics.',
         'To meet statutory obligations, including tax and company record keeping. Legal obligation.',
       ],
       after: [
-        'We do not send marketing sequences and we do not add people to a mailing list because they booked a call.',
+        'Booking a scoping call does not add you to a mailing list. If you ask the Agent Planner to email you a plan, we send that plan and a short follow-up about it. You can unsubscribe from the follow-up at any time. We do not send any other marketing sequences.',
       ],
     },
     {
@@ -56,8 +59,10 @@ export const privacy = {
       ],
       list: [
         'Cal.com for scheduling calls. If you use the booking calendar on this site, the details you enter are processed by Cal.com to create the booking.',
+        'Anthropic, to generate an Agent Planner plan from the description you type. We remove email addresses, phone numbers and web addresses from that description before it is sent. Anthropic processes it to produce the plan and, under our API terms, does not use those requests to train their models.',
+        'Loops, to email you the plan and the short follow-up, and to honour unsubscribe requests.',
         'Google, if you consent to analytics, to provide Google Analytics 4 on the live site.',
-        'Our hosting and email providers, to serve this website and carry our correspondence.',
+        'Our hosting provider, to serve this website and to store the plan and its PDF.',
         'Our accountant and, where legally required, HMRC or another regulator.',
       ],
       after: [
@@ -77,6 +82,8 @@ export const privacy = {
       heading: 'How long we keep it',
       list: [
         'Enquiries that do not become engagements: up to twelve months, then deleted.',
+        'Agent Planner sessions you do not claim with an email: the description and answers are deleted after 30 days.',
+        'Agent Planner plans you ask us to email: kept for up to twelve months, with other enquiries.',
         'Engagement records and correspondence: for the duration of the engagement and six years afterwards, to meet contractual and tax requirements.',
         'Access to client systems and any working copies of client data: removed on completion of the work, unless the engagement agreement requires otherwise.',
       ],
@@ -92,7 +99,7 @@ export const privacy = {
       id: 'cookies',
       heading: 'Cookies and analytics',
       paragraphs: [
-        'Strictly necessary storage remembers your cookie choices and keeps the site working. Optional analytics (Google Analytics 4 on the live production site) and marketing tags load only after you accept them in the cookie banner or settings.',
+        'Strictly necessary storage remembers your cookie choices, keeps an Agent Planner session for 14 days so you can refresh the page, and keeps the site working. Optional analytics (Google Analytics 4 on the live production site) and marketing tags load only after you accept them in the cookie banner or settings.',
         'The booking calendar is separate. When you open it, the Cal.com embed loads and may set cookies necessary for the booking to work. If you would rather not load it at all, email us instead and we will arrange a time by hand.',
         'Full inventory, retention and controls are on the cookie notice at /cookies. You can change your mind at any time via Cookie settings in the footer.',
       ],

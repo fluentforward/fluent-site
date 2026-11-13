@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverComponentsExternalPackages: ['@react-pdf/renderer'],
+  },
   async headers() {
     return [
       {
@@ -22,6 +25,15 @@ const nextConfig = {
       },
       {
         source: '/agent-planner',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow',
+          },
+        ],
+      },
+      {
+        source: '/internal/:path*',
         headers: [
           {
             key: 'X-Robots-Tag',

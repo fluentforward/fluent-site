@@ -20,6 +20,13 @@ export const cookieInventory: CookieInventoryRow[] = [
     retention: '12 months, or until you clear site data',
   },
   {
+    name: 'ff_planner',
+    type: 'Cookie',
+    category: 'Necessary',
+    purpose: 'Keeps your Agent Planner session so a refresh does not lose the plan you are building.',
+    retention: '14 days',
+  },
+  {
     name: 'Google Analytics 4 (gtag.js)',
     type: 'Third-party script',
     category: 'Analytics',
@@ -84,7 +91,7 @@ export const cookieInventory: CookieInventoryRow[] = [
 
 export const cookiesPage = {
   title: 'Cookie notice',
-  lastUpdated: 'October 2026',
+  lastUpdated: 'November 2026',
   intro:
     'This notice lists the cookies, browser storage and third-party scripts used on fluentforward.com, and how you can control optional ones.',
   policyVersionLabel: `Policy version ${COOKIE_POLICY_VERSION}`,
