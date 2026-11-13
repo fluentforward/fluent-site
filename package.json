@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "node --import tsx --test scripts/ga4-gtag-stub.test.mjs scripts/gtag-consent-mode.test.mjs scripts/demio-register-payload.test.mjs scripts/planner-redact.test.mjs scripts/planner-guardrails.test.mjs scripts/planner-loops-payload.test.mjs scripts/planner-schema.test.mjs",
+    "test": "node --import tsx --test scripts/ga4-gtag-stub.test.mjs scripts/gtag-consent-mode.test.mjs scripts/demio-register-payload.test.mjs scripts/planner-redact.test.mjs scripts/planner-guardrails.test.mjs scripts/planner-loops-payload.test.mjs scripts/planner-schema.test.mjs scripts/planner-levers.test.mjs scripts/planner-hook.test.mjs",
     "db:push": "drizzle-kit push"
   },
   "browserslist": "defaults, not ie <= 11",

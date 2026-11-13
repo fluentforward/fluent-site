@@ -1,16 +1,19 @@
+import { waitUntil } from '@vercel/functions'
+
 import { openPlanStream, planModelId } from '@/lib/planner/anthropic'
+import { deliverPlan } from '@/lib/planner/deliver'
 import { plannerCookieHeader } from '@/lib/planner/ids'
 import { interpretPlanResult } from '@/lib/planner/guardrails'
 import { PLAN_PROMPT_VERSION, PLAN_SYSTEM, promptHash } from '@/lib/planner/prompts'
-import { toPartialPlan } from '@/lib/planner/plan-schema'
-import { assertRunRate, logEvent, logRun, saveGeneratedPlan, saveRefusal } from '@/lib/planner/store'
-import { SCRIPTED_REFUSAL, type PlanStep } from '@/lib/planner/types'
+import { assertRunRate, claimSession, logEvent, logRun, saveGeneratedPlan, saveRefusal } from '@/lib/planner/store'
+import { SCRIPTED_REFUSAL } from '@/lib/planner/types'
 import type { PlannerSessionRow } from '@/db/schema'
 
 export function planStreamResponse(input: {
   session: PlannerSessionRow
   prompt: string
   cookie?: string
+  claim?: { name: string; email: string }
 }): Response {
   const encoder = new TextEncoder()
   const stream = new ReadableStream({
@@ -21,18 +24,9 @@ export function planStreamResponse(input: {
       try {
         await assertRunRate(input.session.id)
         const { result, started } = openPlanStream(input.prompt)
-        for await (const partial of result.partialObjectStream) {
-          if (partial.refusal) continue
-          send({
-            type: 'partial',
-            title: partial.title || '',
-            problem: partial.problem || '',
-            steps: visibleSteps(partial.steps),
-          })
-        }
         const finalObject = await result.object
         const usage = await result.usage
-        const interpreted = interpretPlanResult(finalObject)
+        const interpreted = interpretPlanResult(finalObject, input.prompt)
         await logRun({
           sessionId: input.session.id,
           slot: 'plan',
@@ -52,11 +46,26 @@ export function planStreamResponse(input: {
           return
         }
         const saved = await saveGeneratedPlan(input.session, interpreted.plan)
-        await logEvent(saved.id, 'partial_shown')
+        const claimed = input.claim ? await claimSession(saved, input.claim.name, input.claim.email) : saved
+        if (input.claim && !input.session.claimedAt) await logEvent(claimed.id, 'email_captured')
+        await logEvent(claimed.id, 'plan_shown')
+        if (input.claim && !claimed.emailedAt) {
+          const work = deliverPlan(claimed.id).catch((error) => {
+            console.error('[planner] deliver', claimed.id, error)
+          })
+          try {
+            waitUntil(work)
+          } catch {
+            void work
+          }
+        }
         send({
           type: 'done',
-          publicId: saved.publicId,
-          partial: toPartialPlan(interpreted.plan),
+          publicId: claimed.publicId,
+          full: interpreted.plan,
+          email: input.claim?.email ?? claimed.email ?? '',
+          name: input.claim?.name ?? claimed.name ?? '',
+          emailed: false,
         })
       } catch (error) {
         console.error('[planner] plan', input.session.id, error)
@@ -89,16 +98,3 @@ export function planStreamResponse(input: {
   return new Response(stream, { headers })
 }
 
-function visibleSteps(steps: unknown): PlanStep[] {
-  if (!Array.isArray(steps)) return []
-  return steps
-    .map((step, index) => {
-      const text =
-        step && typeof step === 'object' && 'text' in step && typeof step.text === 'string'
-          ? step.text.trim()
-          : ''
-      return { n: index + 1, text }
-    })
-    .filter((step) => step.text.length > 0)
-    .slice(0, 2)
-}

@@ -1,6 +1,6 @@
 import { boolean, index, integer, jsonb, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core'
 
-import type { FollowUp, FullPlan, PartialPlan, PlannerAttribution } from '@/lib/planner/types'
+import type { AwaitingDetails, FollowUp, FullPlan, PartialPlan, PlannerAttribution } from '@/lib/planner/types'
 
 export const plannerSessions = pgTable(
   'planner_sessions',
@@ -12,7 +12,7 @@ export const plannerSessions = pgTable(
     problem: text('problem').notNull(),
     followUps: jsonb('follow_ups').$type<FollowUp[]>().notNull(),
     pendingQuestion: text('pending_question'),
-    partialPlan: jsonb('partial_plan').$type<PartialPlan | null>(),
+    partialPlan: jsonb('partial_plan').$type<PartialPlan | AwaitingDetails | null>(),
     fullPlan: jsonb('full_plan').$type<FullPlan | null>(),
     refusal: text('refusal'),
     sensitiveHold: boolean('sensitive_hold').notNull().default(false),

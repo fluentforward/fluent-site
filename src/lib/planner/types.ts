@@ -9,25 +9,81 @@ export type FollowUp = {
 
 export type PlanStep = {
   n: number
+  actor: 'agent' | 'you'
+  title: string
   text: string
 }
 
-/** Shown before the visitor gives an email. Job and first steps only. */
+export type PlanShift = {
+  today: string
+  withAgent: string
+}
+
+export type PlanReason = {
+  title: string
+  text: string
+}
+
+/** Kept for older sessions. The planner no longer shows this before the email. */
 export type PartialPlan = {
   title: string
   problem: string
-  steps: PlanStep[]
+  steps: { n: number; text: string }[]
 }
 
-/** The one-page plan. Tools, human steps and the estimate stay here until claim. */
+export type PlanHook = {
+  thanks: string
+  agent: string
+  benefit: string
+}
+
+export type AwaitingDetails = PlanHook & { awaitingDetails: true }
+
+export const LEVER_IDS = ['cash', 'capacity', 'working_capital', 'revenue'] as const
+export type LeverId = (typeof LEVER_IDS)[number]
+export type LeverImpact = 'high' | 'medium' | 'low' | 'none'
+export type LeverPath = 'direct' | 'via_decisions'
+
+export type LeverScore = {
+  lever: LeverId
+  impact: LeverImpact
+  path: LeverPath
+  why: string
+  baseline?: string
+  /** The same measure, taken again at the review. */
+  check?: string
+  ownerRole?: string
+  reviewAt?: '30 days' | '90 days'
+  /** Why the score is capped, or what would change it. */
+  note?: string
+}
+
+/**
+ * The first-agent plan. Static method copy (how the four levers are scored,
+ * the build promise, the commercials) is not stored here.
+ */
 export type FullPlan = {
   title: string
-  problem: string
+  /** What changes, under the title. */
+  outcome: string
+  /** Their situation, in their words. */
+  quote: string
+  /** Two sentences: the opening of the case. */
+  opportunity: string
+  shifts: PlanShift[]
+  reasons: PlanReason[]
+  /** Which levers move, in plain language. Not a total. */
+  scoreIntro: string
   steps: PlanStep[]
   tools: string[]
   human: string[]
-  timeSaved: string
-  tenDayIncludes: string
+  alsoGet: string[]
+  /** What the fixed 10-day build covers. */
+  includes: string[]
+  /** The day-10 line on the timeline. */
+  firstRun: string
+  levers: LeverScore[]
+  betterFirst: string | null
 }
 
 export type PlannerAttribution = MarketingAttribution & {

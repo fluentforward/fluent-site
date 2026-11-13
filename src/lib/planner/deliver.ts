@@ -10,7 +10,7 @@ import {
   staffTransactionalBody,
 } from '@/lib/planner/loops-payload'
 import { renderPlanPdf } from '@/lib/planner/pdf'
-import { parseStoredPlan } from '@/lib/planner/plan-schema'
+import { adaptLegacyPlan, parseStoredPlan } from '@/lib/planner/plan-schema'
 import {
   getSessionById,
   incrementDeliveryAttempts,
@@ -24,7 +24,7 @@ export async function deliverPlan(sessionId: string): Promise<void> {
   const session = await getSessionById(sessionId)
   if (!session?.email || !session.fullPlan || session.emailedAt || session.phase === 'emailed') return
   if (session.deliveryAttempts >= 8) return
-  const plan = parseStoredPlan(session.fullPlan)
+  const plan = parseStoredPlan(session.fullPlan) ?? adaptLegacyPlan(session.fullPlan)
   if (!plan || !session.name) return
 
   await incrementDeliveryAttempts(session.id)

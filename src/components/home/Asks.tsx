@@ -2,7 +2,10 @@
 
 import clsx from 'clsx'
 import Link from 'next/link'
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
+import { useRouter } from 'next/navigation'
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent } from 'react'
+
+import { stashPlannerDraft } from '@/lib/planner/draft'
 
 import { Container } from '@/components/ui/Container'
 
@@ -11,6 +14,17 @@ import { Chevron, Eyebrow, Tag } from './Mark'
 import { sketchFrom } from './sketch'
 
 const planner = (q: string) => `/agent-planner?q=${encodeURIComponent(q)}`
+
+function openPlanner(
+  event: MouseEvent<HTMLAnchorElement>,
+  problem: string,
+  router: { push: (href: string) => void },
+) {
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return
+  event.preventDefault()
+  stashPlannerDraft(problem)
+  router.push('/agent-planner')
+}
 
 const ASKS = [
   {
@@ -115,6 +129,7 @@ function AgentCard({ index, animate }: { index: number; animate: boolean }) {
 }
 
 export function Asks() {
+  const router = useRouter()
   const reduced = useReducedMotion()
   const [active, setActive] = useState(0)
   const [tracking, setTracking] = useState(false)
@@ -178,6 +193,7 @@ export function Asks() {
                       prefetch={false}
                       className="ffh-ask-plan"
                       onFocus={() => setActive(index)}
+                      onClick={(event) => openPlanner(event, item.ask, router)}
                     >
                       Plan one like this
                     </Link>

@@ -5,7 +5,7 @@ import { plannerEvents, plannerRuns, plannerSessions, type PlannerSessionRow } f
 
 export type { PlannerSessionRow }
 import { toPartialPlan } from '@/lib/planner/plan-schema'
-import type { FollowUp, FullPlan, PlannerAttribution } from '@/lib/planner/types'
+import type { FollowUp, FullPlan, PlanHook, PlannerAttribution } from '@/lib/planner/types'
 
 const HOUR_MS = 60 * 60 * 1000
 const DAY_MS = 24 * 60 * 60 * 1000
@@ -129,15 +129,50 @@ export async function saveRefusal(session: PlannerSessionRow, message: string): 
   })
 }
 
+export async function markAwaitingDetails(
+  session: PlannerSessionRow,
+  hook: PlanHook,
+): Promise<PlannerSessionRow> {
+  return updateSession(session.id, {
+    pendingQuestion: null,
+    partialPlan: { awaitingDetails: true, ...hook },
+    sensitiveHold: false,
+    refusal: null,
+  })
+}
+
+export async function markWriting(session: PlannerSessionRow): Promise<PlannerSessionRow> {
+  const partial = session.partialPlan
+  if (partial && typeof partial === 'object' && 'awaitingDetails' in partial && partial.awaitingDetails === true) {
+    return session
+  }
+  return updateSession(session.id, {
+    pendingQuestion: null,
+    partialPlan: { awaitingDetails: true, thanks: '', agent: '', benefit: '' },
+  })
+}
+
 export async function saveGeneratedPlan(session: PlannerSessionRow, plan: FullPlan): Promise<PlannerSessionRow> {
   return updateSession(session.id, {
     phase: 'partial',
-    partialPlan: toPartialPlan(plan),
+    partialPlan: isStoredHook(session.partialPlan) ? session.partialPlan : toPartialPlan(plan),
     fullPlan: plan,
     refusal: null,
     pendingQuestion: null,
     sensitiveHold: false,
   })
+}
+
+function isStoredHook(partial: PlannerSessionRow['partialPlan']): boolean {
+  return Boolean(
+    partial &&
+      typeof partial === 'object' &&
+      'awaitingDetails' in partial &&
+      partial.awaitingDetails === true &&
+      'agent' in partial &&
+      typeof partial.agent === 'string' &&
+      partial.agent.length >= 12,
+  )
 }
 
 export async function claimSession(
@@ -202,7 +237,7 @@ export async function markScopingBooked(session: PlannerSessionRow): Promise<Pla
 
 export async function logRun(input: {
   sessionId: string
-  slot: 'follow_up' | 'plan'
+  slot: 'follow_up' | 'hook' | 'plan'
   model: string | null
   promptVersion: string
   promptHash: string
@@ -286,8 +321,9 @@ export async function getPlanSummary(publicId: string): Promise<{
     if (!row) return null
     const partial = row.partialPlan
     const full = row.fullPlan
-    const title = partial?.title || full?.title
-    const problem = partial?.problem || full?.problem
+    const title = (partial && 'title' in partial ? partial.title : undefined) || full?.title
+    const quote = full && 'quote' in full ? full.quote : undefined
+    const problem = (partial && 'problem' in partial ? partial.problem : undefined) || quote
     if (!title || !problem) return null
     return { publicId: row.publicId, title, problem }
   } catch (error) {

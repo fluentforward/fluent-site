@@ -2,9 +2,11 @@
 
 import clsx from 'clsx'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
 import { Container } from '@/components/ui/Container'
+import { stashPlannerDraft } from '@/lib/planner/draft'
 
 import { usePinnedProgress, useReducedMotion } from './hooks'
 import { Chevron, Eyebrow, Tag } from './Mark'
@@ -138,6 +140,7 @@ function PlanSheet({ revealed, pinned }: { revealed: number; pinned: boolean }) 
 }
 
 export function PlannerSection() {
+  const router = useRouter()
   const reduced = useReducedMotion()
   const [ref, p, pinned] = usePinnedProgress<HTMLDivElement>(reduced === false)
   const revealed = Math.floor(p * (PIECES + 1.6))
@@ -158,7 +161,18 @@ export function PlannerSection() {
                   minutes you’ll see what an agent would do, what it connects to, and what stays with
                   your team.
                 </p>
-                <form action="/agent-planner" method="get" className="mt-[clamp(1.25rem,3.5vh,2.25rem)] max-w-[36rem]">
+                <form
+                  action="/agent-planner"
+                  method="get"
+                  className="mt-[clamp(1.25rem,3.5vh,2.25rem)] max-w-[36rem]"
+                  onSubmit={(event) => {
+                    event.preventDefault()
+                    const field = event.currentTarget.elements.namedItem('q')
+                    const typed = field instanceof HTMLTextAreaElement ? field.value.trim() : ''
+                    if (typed) stashPlannerDraft(typed)
+                    router.push('/agent-planner')
+                  }}
+                >
                   <label htmlFor="planner-q" className="ffh-mono text-mist-d">
                     The problem or process
                   </label>

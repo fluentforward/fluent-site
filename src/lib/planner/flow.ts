@@ -1,13 +1,18 @@
 import { cookies } from 'next/headers'
 
-import { isAnthropicConfigured, askFollowUp, planModelId } from '@/lib/planner/anthropic'
+import { isAnthropicConfigured, askFollowUp, askPlan, planModelId } from '@/lib/planner/anthropic'
+import { interpretPlanResult } from '@/lib/planner/guardrails'
+import { fallbackHook, prepareHook, readPlanHook, withHook } from '@/lib/planner/hook'
+import { impactLine } from '@/lib/planner/levers'
 import { hashIp, clientIp, newSecret, hashSecret } from '@/lib/planner/ids'
 import { MARKETING_ATTRIBUTION_QUERY_PARAMS, type MarketingAttribution } from '@/lib/marketing-attribution'
-import { parseStoredPlan, type FollowUpResult as FollowUpModel } from '@/lib/planner/plan-schema'
+import { adaptLegacyPlan, parseStoredPlan, type FollowUpResult as FollowUpModel } from '@/lib/planner/plan-schema'
 import {
   dataBlock,
   FOLLOW_UP_PROMPT_VERSION,
   FOLLOW_UP_SYSTEM,
+  PLAN_PROMPT_VERSION,
+  PLAN_SYSTEM,
   promptHash,
 } from '@/lib/planner/prompts'
 import { isEmptiedByRedaction, redactFreeText } from '@/lib/planner/redact'
@@ -22,8 +27,11 @@ import {
   loadSessionFromToken,
   logEvent,
   logRun,
+  markAwaitingDetails,
   markScopingBooked,
   markScopingClicked,
+  markWriting,
+  saveGeneratedPlan,
   PlannerError,
   popLastAnswer,
   saveRefusal,
@@ -35,9 +43,9 @@ import {
 import {
   FALLBACK_QUESTIONS,
   PLANNER_COOKIE,
+  SCRIPTED_REFUSAL,
   SENSITIVE_MESSAGE,
   type FullPlan,
-  type PartialPlan,
   type PlannerAttribution,
 } from '@/lib/planner/types'
 
@@ -46,8 +54,16 @@ type SessionRow = PlannerSessionRow
 export type PublicState =
   | { state: 'empty' }
   | { state: 'sensitive'; message: string; problem: string }
-  | { state: 'question'; question: string; step: number; problem: string; warning?: string }
-  | { state: 'partial'; publicId: string; partial: PartialPlan; problem: string }
+  | { state: 'question'; question: string; problem: string; warning?: string }
+  | { state: 'writing'; problem: string }
+  | {
+      state: 'details'
+      problem: string
+      thanks: string
+      agent: string
+      benefit: string
+      preview: { steps: string; impact: string } | null
+    }
   | { state: 'refusal'; message: string }
   | { state: 'sent'; publicId: string; full: FullPlan; email: string; name: string; emailed: boolean }
   | { state: 'rate_limited'; message: string }
@@ -55,7 +71,9 @@ export type PublicState =
 
 export type FlowResult =
   | { kind: 'json'; status: number; body: PublicState; cookie?: string; clearCookie?: boolean; deliverId?: string }
-  | { kind: 'stream'; session: SessionRow; prompt: string; cookie?: string }
+  | { kind: 'stream'; session: SessionRow; prompt: string; cookie?: string; claim?: { name: string; email: string } }
+
+const MAX_FOLLOW_UPS = 4
 
 export function readPlannerToken(): string | undefined {
   return cookies().get(PLANNER_COOKIE)?.value
@@ -67,7 +85,7 @@ export function toPublicState(session: SessionRow | null, warning?: string): Pub
     return { state: 'sensitive', message: SENSITIVE_MESSAGE, problem: session.problem }
   }
   if ((session.phase === 'claimed' || session.phase === 'emailed') && session.fullPlan) {
-    const full = parseStoredPlan(session.fullPlan)
+    const full = parseStoredPlan(session.fullPlan) ?? adaptLegacyPlan(session.fullPlan)
     if (full && session.email && session.name) {
       return {
         state: 'sent',
@@ -79,29 +97,133 @@ export function toPublicState(session: SessionRow | null, warning?: string): Pub
       }
     }
   }
-  if (session.phase === 'partial' && session.partialPlan) {
-    const partial = session.partialPlan
-    if (partial.title && partial.problem) {
-      return { state: 'partial', publicId: session.publicId, partial, problem: session.problem }
-    }
-  }
-  if (session.refusal) return { state: 'refusal', message: session.refusal }
+  if (session.refusal && !planMiss(session)) return { state: 'refusal', message: session.refusal }
   if (session.pendingQuestion) {
     return {
       state: 'question',
       question: session.pendingQuestion,
-      step: asFollowUps(session).length + 1,
       problem: session.problem,
       warning,
+    }
+  }
+  if (needsPlan(session)) return { state: 'writing', problem: session.problem }
+  if (awaitingDetails(session) || asFollowUps(session).length > 0 || parseStoredPlan(session.fullPlan)) {
+    const hook = readPlanHook(session.partialPlan) ?? fallbackHook(session.problem)
+    const plan = parseStoredPlan(session.fullPlan)
+    return {
+      state: 'details',
+      problem: session.problem,
+      ...hook,
+      preview: plan
+        ? { steps: plan.steps.slice(0, 2).map((step) => step.text).join(' '), impact: impactLine(plan.levers) }
+        : null,
     }
   }
   return { state: 'empty' }
 }
 
+/** A plan that failed its checks after real answers. Refresh should write it again, not show a dead end. */
+function planMiss(session: SessionRow): boolean {
+  return session.refusal === SCRIPTED_REFUSAL && asFollowUps(session).length > 0 && !session.pendingQuestion
+}
+
+function needsPlan(session: SessionRow): boolean {
+  if (session.freeTextPurgedAt || session.sensitiveHold || session.pendingQuestion) return false
+  if (session.refusal && !planMiss(session)) return false
+  if (session.phase === 'claimed' || session.phase === 'emailed') return false
+  if (parseStoredPlan(session.fullPlan)) return false
+  return awaitingDetails(session) || asFollowUps(session).length > 0
+}
+
+function needsHook(session: SessionRow): boolean {
+  if (session.freeTextPurgedAt || session.sensitiveHold || session.refusal || session.pendingQuestion) return false
+  if (session.phase === 'claimed' || session.phase === 'emailed') return false
+  if (readPlanHook(session.partialPlan)) return false
+  return awaitingDetails(session) || asFollowUps(session).length > 0 || Boolean(parseStoredPlan(session.fullPlan))
+}
+
+async function presentWriting(session: SessionRow, cookie?: string): Promise<FlowResult> {
+  const marked = await markWriting(session)
+  return { kind: 'json', status: 200, body: { state: 'writing', problem: marked.problem }, cookie }
+}
+
+async function ensurePlan(session: SessionRow): Promise<SessionRow> {
+  if (parseStoredPlan(session.fullPlan)) return session
+  const prompt = dataBlock(session.problem, asFollowUps(session))
+  try {
+    await assertRunRate(session.id)
+    const result = await askPlan(prompt)
+    const interpreted = interpretPlanResult(result.object, prompt)
+    await logRun({
+      sessionId: session.id,
+      slot: 'plan',
+      model: result.model || planModelId(),
+      promptVersion: PLAN_PROMPT_VERSION,
+      promptHash: promptHash(PLAN_SYSTEM),
+      input: { prompt },
+      output: result.object,
+      inputTokens: result.usage.inputTokens,
+      outputTokens: result.usage.outputTokens,
+      latencyMs: result.latencyMs,
+      degraded: interpreted.kind !== 'plan',
+    })
+    if (interpreted.kind === 'refusal') {
+      if (asFollowUps(session).length > 0) {
+        throw new PlannerError('The plan did not come together. Please try again.', 503, 'plan')
+      }
+      return saveRefusal(session, interpreted.message || SCRIPTED_REFUSAL)
+    }
+    return saveGeneratedPlan(session, interpreted.plan)
+  } catch (error) {
+    console.error('[planner] plan', session.id, error)
+    await logRun({
+      sessionId: session.id,
+      slot: 'plan',
+      model: planModelId(),
+      promptVersion: PLAN_PROMPT_VERSION,
+      promptHash: promptHash(PLAN_SYSTEM),
+      input: { prompt },
+      output: { error: error instanceof Error ? error.message : 'plan failed' },
+      degraded: true,
+    }).catch(() => undefined)
+    if (error instanceof PlannerError) throw error
+    throw new PlannerError('The plan did not come together. Please try again.', 503, 'plan')
+  }
+}
+
+function awaitingDetails(session: SessionRow): boolean {
+  const partial = session.partialPlan
+  return Boolean(
+    partial && typeof partial === 'object' && 'awaitingDetails' in partial && partial.awaitingDetails === true,
+  )
+}
+
 export async function handleGet(): Promise<FlowResult> {
   if (!databaseReady()) return { kind: 'json', status: 200, body: { state: 'empty' } }
-  const session = await loadSessionFromToken(readPlannerToken())
+  let session = await loadSessionFromToken(readPlannerToken())
+  if (session && needsPlan(session)) {
+    return { kind: 'json', status: 200, body: { state: 'writing', problem: session.problem } }
+  }
+  if (session && needsHook(session)) session = await withHook(session)
   return { kind: 'json', status: 200, body: toPublicState(session) }
+}
+
+export async function handlePrepare(): Promise<FlowResult> {
+  requireReady()
+  const session = await requireSession()
+  if (session.pendingQuestion) throw new PlannerError('Answer the question first.', 400, 'invalid')
+  if (
+    session.sensitiveHold ||
+    (session.refusal && !planMiss(session)) ||
+    session.phase === 'claimed' ||
+    session.phase === 'emailed'
+  ) {
+    return { kind: 'json', status: 200, body: toPublicState(session) }
+  }
+  const marked = await markWriting(session)
+  const [ready, hook] = await Promise.all([ensurePlan(marked), prepareHook(marked)])
+  const saved = readPlanHook(ready.partialPlan) ? ready : await markAwaitingDetails(ready, hook)
+  return { kind: 'json', status: 200, body: toPublicState(saved) }
 }
 
 export async function handleReset(): Promise<FlowResult> {
@@ -185,9 +307,18 @@ export async function handleClaim(body: unknown): Promise<FlowResult> {
   if (!email || email.length > 200 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     throw new PlannerError('Enter a valid work email.', 400, 'invalid')
   }
-  const session = await requireSession()
+  let session = await requireSession()
+  if (session.pendingQuestion) {
+    throw new PlannerError('Answer the question first.', 400, 'invalid')
+  }
   if (!parseStoredPlan(session.fullPlan)) {
-    throw new PlannerError('The plan is not ready yet.', 400, 'invalid')
+    if (session.phase === 'claimed' || session.phase === 'emailed') {
+      return { kind: 'json', status: 200, body: toPublicState(session) }
+    }
+    session = await ensurePlan(await withHook(await markWriting(session)))
+  }
+  if (session.refusal || !parseStoredPlan(session.fullPlan)) {
+    return { kind: 'json', status: 200, body: toPublicState(session) }
   }
   const claimed = await claimSession(session, name, email)
   if (!session.claimedAt) await logEvent(claimed.id, 'email_captured')
@@ -245,9 +376,7 @@ export async function handleBooked(body: unknown): Promise<void> {
 async function continueAfterAnswers(session: SessionRow, cookie?: string): Promise<FlowResult> {
   const answers = asFollowUps(session)
   const prompt = dataBlock(session.problem, answers)
-  if (answers.length >= 3) {
-    return { kind: 'stream', session, prompt, cookie }
-  }
+  if (answers.length >= MAX_FOLLOW_UPS) return presentWriting(session, cookie)
 
   await assertRunRate(session.id)
   try {
@@ -279,8 +408,9 @@ async function continueAfterAnswers(session: SessionRow, cookie?: string): Promi
       const refused = await saveRefusal(session, next.message)
       return { kind: 'json', status: 200, body: toPublicState(refused), cookie }
     }
-    if (next.kind === 'done') return { kind: 'stream', session, prompt, cookie }
+    if (next.kind === 'done') return presentWriting(session, cookie)
     if (next.kind === 'question') {
+      if (answers.some((item) => item.question === next.question)) return presentWriting(session, cookie)
       const asked = await setPending(session, next.question)
       return { kind: 'json', status: 200, body: toPublicState(asked), cookie }
     }
@@ -300,7 +430,7 @@ async function continueAfterAnswers(session: SessionRow, cookie?: string): Promi
   }
 
   const fallback = nextFallback(answers)
-  if (!fallback) return { kind: 'stream', session, prompt, cookie }
+  if (!fallback) return presentWriting(session, cookie)
   const asked = await setPending(session, fallback)
   return { kind: 'json', status: 200, body: toPublicState(asked), cookie }
 }

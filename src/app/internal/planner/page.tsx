@@ -123,7 +123,8 @@ export default async function PlannerAdminPage({
           </thead>
           <tbody>
             {sessions.map((session) => {
-              const title = session.partialPlan?.title || session.fullPlan?.title || session.refusal || ''
+              const partialTitle = session.partialPlan && 'title' in session.partialPlan ? session.partialPlan.title : ''
+              const title = partialTitle || session.fullPlan?.title || session.refusal || ''
               return (
                 <tr key={session.id}>
                   <td>{stamp(session.createdAt)}</td>

@@ -53,17 +53,19 @@ export function ScopeLink({
   className,
   children,
   onOpen,
+  href = '/contact',
   ...rest
 }: {
   className?: string
   children: ReactNode
+  href?: string
   /** Called after the popup opens, for example to close a mobile menu. */
   onOpen?: () => void
   'aria-current'?: 'page'
 }) {
   return (
     <Link
-      href="/contact"
+      href={href}
       prefetch={false}
       aria-haspopup="dialog"
       className={className}

@@ -18,7 +18,7 @@ const interTight = Inter_Tight({
 
 const geistMono = IBM_Plex_Mono({
   subsets: ['latin'],
-  weight: ['400', '500'],
+  weight: ['400', '500', '600'],
   display: 'swap',
   variable: '--font-geist-mono',
 })

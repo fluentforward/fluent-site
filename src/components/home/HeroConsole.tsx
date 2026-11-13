@@ -2,6 +2,7 @@
 
 import clsx from 'clsx'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import {
   useCallback,
   useEffect,
@@ -14,6 +15,7 @@ import {
 } from 'react'
 
 import { rememberProblem } from '@/components/booking/ScopeLink'
+import { stashPlannerDraft } from '@/lib/planner/draft'
 
 import { useReducedMotion } from './hooks'
 import { Chevron, Tag } from './Mark'
@@ -123,6 +125,7 @@ function AgentPane({
 }
 
 export function HeroConsole() {
+  const router = useRouter()
   const reduced = useReducedMotion()
   const animate = reduced === false
   const [text, setText] = useState<string>(EXAMPLES[0].text)
@@ -386,7 +389,21 @@ export function HeroConsole() {
             ))}
           </svg>
         ) : null}
-        <form action="/agent-planner" method="get" className="ffh-pane-in">
+        <form
+          action="/agent-planner"
+          method="get"
+          className="ffh-pane-in"
+          onSubmit={(event) => {
+            event.preventDefault()
+            const typed = text.trim()
+            const canned = EXAMPLES.some((example) => example.text === typed)
+            if (owner === 'visitor' && typed && !canned) {
+              rememberProblem(typed)
+              stashPlannerDraft(typed)
+            }
+            router.push('/agent-planner')
+          }}
+        >
           <label htmlFor={`${id}-q`} className="ffh-mono text-mist">
             Tell us the problem
           </label>
