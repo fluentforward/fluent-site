@@ -17,6 +17,11 @@ import {
 } from '@/lib/planner/prompts'
 import { isEmptiedByRedaction, redactFreeText } from '@/lib/planner/redact'
 import {
+  isPlanOnlyTeamSize,
+  normalizeTeamSizeParam,
+  type PlannerTeamSize,
+} from '@/lib/planner/entry-params'
+import {
   appendAnswer,
   asFollowUps,
   assertRunRate,
@@ -31,6 +36,7 @@ import {
   markScopingBooked,
   markScopingClicked,
   markWriting,
+  mergeSessionEntry,
   saveGeneratedPlan,
   PlannerError,
   popLastAnswer,
@@ -63,15 +69,33 @@ export type PublicState =
       agent: string
       benefit: string
       preview: { steps: string; impact: string } | null
+      planOnly: boolean
+      name?: string
+      email?: string
+      company?: string
     }
   | { state: 'refusal'; message: string }
-  | { state: 'sent'; publicId: string; full: FullPlan; email: string; name: string; emailed: boolean }
+  | {
+      state: 'sent'
+      publicId: string
+      full: FullPlan
+      email: string
+      name: string
+      emailed: boolean
+      planOnly: boolean
+    }
   | { state: 'rate_limited'; message: string }
   | { state: 'error'; message: string }
 
 export type FlowResult =
   | { kind: 'json'; status: number; body: PublicState; cookie?: string; clearCookie?: boolean; deliverId?: string }
-  | { kind: 'stream'; session: SessionRow; prompt: string; cookie?: string; claim?: { name: string; email: string } }
+  | {
+      kind: 'stream'
+      session: SessionRow
+      prompt: string
+      cookie?: string
+      claim?: { name: string; email: string; company?: string }
+    }
 
 const MAX_FOLLOW_UPS = 4
 
@@ -94,6 +118,7 @@ export function toPublicState(session: SessionRow | null, warning?: string): Pub
         email: session.email,
         name: session.name,
         emailed: session.phase === 'emailed',
+        planOnly: isPlanOnlyTeamSize(session.teamSize as PlannerTeamSize | null),
       }
     }
   }
@@ -117,6 +142,10 @@ export function toPublicState(session: SessionRow | null, warning?: string): Pub
       preview: plan
         ? { steps: plan.steps.slice(0, 2).map((step) => step.text).join(' '), impact: impactLine(plan.levers) }
         : null,
+      planOnly: isPlanOnlyTeamSize(session.teamSize as PlannerTeamSize | null),
+      name: session.name || undefined,
+      email: session.email || undefined,
+      company: session.company || undefined,
     }
   }
   return { state: 'empty' }
@@ -238,9 +267,10 @@ export async function handleStart(request: Request, body: unknown): Promise<Flow
     throw new PlannerError('Describe the process in a sentence or two.', 400, 'invalid')
   }
   const attribution = parseAttribution(record.attribution)
+  const entry = parseSessionEntry(asRecord(record.entry ?? record))
   const ipHash = ipOf(request)
   const existing = await loadSessionFromToken(readPlannerToken())
-  const reusable = existing && !existing.email && !existing.freeTextPurgedAt
+  const reusable = existing && !existing.claimedAt && !existing.freeTextPurgedAt
 
   let session: SessionRow
   let cookie: string | undefined
@@ -253,10 +283,21 @@ export async function handleStart(request: Request, body: unknown): Promise<Flow
       problem,
       attribution,
       ipHash,
+      teamSize: entry.teamSize,
+      metaLeadId: entry.metaLeadId,
+      company: entry.company,
+      leadEmail: entry.leadEmail,
     })
     await logEvent(session.id, 'planner_start')
   } else {
     session = await updateProblem(existing, problem, attribution)
+    session = await mergeSessionEntry(session, {
+      teamSize: entry.teamSize,
+      metaLeadId: entry.metaLeadId,
+      company: entry.company,
+      leadEmail: entry.leadEmail,
+      attribution,
+    })
   }
 
   if (isEmptiedByRedaction(problem, redactFreeText(problem))) {
@@ -266,6 +307,22 @@ export async function handleStart(request: Request, body: unknown): Promise<Flow
 
   session = await setSensitive(session, false)
   return continueAfterAnswers(session, cookie)
+}
+
+export async function handleEntry(body: unknown): Promise<FlowResult> {
+  requireReady()
+  const session = await loadSessionFromToken(readPlannerToken())
+  if (!session || session.freeTextPurgedAt) {
+    return { kind: 'json', status: 200, body: { state: 'empty' } }
+  }
+  const record = asRecord(body)
+  const entry = parseSessionEntry(record)
+  const attribution = record.attribution ? parseAttribution(record.attribution) : undefined
+  const merged = await mergeSessionEntry(session, {
+    ...entry,
+    attribution,
+  })
+  return { kind: 'json', status: 200, body: toPublicState(merged) }
 }
 
 export async function handleAnswer(body: unknown): Promise<FlowResult> {
@@ -303,7 +360,9 @@ export async function handleClaim(body: unknown): Promise<FlowResult> {
   const record = asRecord(body)
   const name = typeof record.name === 'string' ? record.name.trim().replace(/\s+/g, ' ') : ''
   const email = typeof record.email === 'string' ? record.email.trim() : ''
-  if (!name || name.length > 80) throw new PlannerError('Enter your name.', 400, 'invalid')
+  const company =
+    typeof record.company === 'string' ? record.company.trim().replace(/\s+/g, ' ').slice(0, 120) : ''
+  if (!name || name.length > 120) throw new PlannerError('Enter your name.', 400, 'invalid')
   if (!email || email.length > 200 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     throw new PlannerError('Enter a valid work email.', 400, 'invalid')
   }
@@ -320,7 +379,7 @@ export async function handleClaim(body: unknown): Promise<FlowResult> {
   if (session.refusal || !parseStoredPlan(session.fullPlan)) {
     return { kind: 'json', status: 200, body: toPublicState(session) }
   }
-  const claimed = await claimSession(session, name, email)
+  const claimed = await claimSession(session, name, email, company || null)
   if (!session.claimedAt) await logEvent(claimed.id, 'email_captured')
   const state = toPublicState(claimed)
   return {
@@ -473,6 +532,33 @@ function ipOf(request: Request): string | null {
 
 function asRecord(value: unknown): Record<string, unknown> {
   return value && typeof value === 'object' ? (value as Record<string, unknown>) : {}
+}
+
+function parseSessionEntry(record: Record<string, unknown>): {
+  teamSize: PlannerTeamSize | null
+  metaLeadId: string | null
+  company: string | null
+  leadEmail: string | null
+} {
+  const sizeRaw =
+    (typeof record.teamSize === 'string' && record.teamSize) ||
+    (typeof record.size === 'string' && record.size) ||
+    null
+  const teamSize = normalizeTeamSizeParam(sizeRaw)
+  const metaRaw = typeof record.metaLeadId === 'string' ? record.metaLeadId : record.meta_lead_id
+  const metaLeadId =
+    typeof metaRaw === 'string' && /^[A-Za-z0-9]{1,64}$/.test(metaRaw.trim()) ? metaRaw.trim() : null
+  const company =
+    typeof record.company === 'string' ? record.company.trim().replace(/\s+/g, ' ').slice(0, 120) : null
+  const emailRaw = typeof record.email === 'string' ? record.email.trim().toLowerCase() : ''
+  const leadEmail =
+    emailRaw && emailRaw.length <= 200 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailRaw) ? emailRaw : null
+  return {
+    teamSize,
+    metaLeadId,
+    company: company || null,
+    leadEmail,
+  }
 }
 
 export function parseAttribution(value: unknown): PlannerAttribution {

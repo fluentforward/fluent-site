@@ -1,6 +1,7 @@
 import { put } from '@vercel/blob'
 
 import { site } from '@/content/site'
+import { isPlanOnlyTeamSize, type PlannerTeamSize } from '@/lib/planner/entry-params'
 import { signPdfLink } from '@/lib/planner/ids'
 import { loopsClientFromEnv } from '@/lib/planner/loops'
 import {
@@ -28,11 +29,12 @@ export async function deliverPlan(sessionId: string): Promise<void> {
   if (!plan || !session.name) return
 
   await incrementDeliveryAttempts(session.id)
+  const planOnly = isPlanOnlyTeamSize(session.teamSize as PlannerTeamSize | null)
   const scopingUrl = `${site.url}/contact?plan=${encodeURIComponent(session.publicId)}`
   const firstName = session.name.trim().split(/\s+/)[0] || 'there'
 
   try {
-    const pdf = await renderPlanPdf({ plan, name: session.name, scopingUrl })
+    const pdf = await renderPlanPdf({ plan, name: session.name, scopingUrl, planOnly })
     let storedPath: string | null = session.pdfPathname
     if (!storedPath) {
       const stored = await put(`planner/${session.publicId}.pdf`, pdf, {
@@ -51,6 +53,7 @@ export async function deliverPlan(sessionId: string): Promise<void> {
 
     const loops = loopsClientFromEnv()
     const attribution = (session.attribution || { variant: 'agent_planner' }) as PlannerAttribution
+    const loopsSource = attribution.utm_medium === 'instant_form' ? 'meta_form' : 'agent_planner'
     const hasKey = Boolean(process.env.LOOPS_API_KEY?.trim())
     const transactionalId = process.env.LOOPS_PLAN_TRANSACTIONAL_ID?.trim()
     const staffId = process.env.LOOPS_STAFF_TRANSACTIONAL_ID?.trim()
@@ -67,6 +70,10 @@ export async function deliverPlan(sessionId: string): Promise<void> {
           userId: session.id,
           firstName,
           scopingCallBooked: Boolean(session.scopingBookedAt),
+          teamSize: session.teamSize,
+          metaLeadId: session.metaLeadId,
+          source: loopsSource,
+          planOnly,
         }),
       )
     } catch (error) {
@@ -97,6 +104,9 @@ export async function deliverPlan(sessionId: string): Promise<void> {
           planTitle: plan.title,
           scopingUrl,
           attribution,
+          teamSize: session.teamSize,
+          metaLeadId: session.metaLeadId,
+          planOnly,
         }),
         `${session.id}:event`,
       )

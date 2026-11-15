@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import { EXAMPLES } from '@/components/home/sketch'
 import { Planner } from '@/components/planner/Planner'
+import { parsePlannerProblemParam } from '@/lib/planner/entry-params'
 
 import '@/components/planner/planner.css'
 
@@ -20,17 +21,14 @@ export const metadata: Metadata = {
 
 const CANNED = new Set<string>(EXAMPLES.map((example) => example.text))
 
-function first(value: string | string[] | undefined) {
-  return Array.isArray(value) ? value[0] : value
-}
-
 export default function AgentPlannerPage({
   searchParams,
 }: {
-  searchParams: { q?: string | string[] }
+  searchParams: { q?: string | string[]; problem?: string | string[] }
 }) {
-  const query = (first(searchParams.q) || '').trim().slice(0, 2000)
+  const query = parsePlannerProblemParam(searchParams.q, searchParams.problem)
   const initialProblem = CANNED.has(query) ? '' : query
+  const seedFromUrl = Boolean(query)
 
-  return <Planner initialProblem={initialProblem} />
+  return <Planner initialProblem={initialProblem} seedFromUrl={seedFromUrl} />
 }

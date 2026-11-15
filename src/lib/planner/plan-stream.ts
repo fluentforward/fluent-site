@@ -5,6 +5,7 @@ import { deliverPlan } from '@/lib/planner/deliver'
 import { plannerCookieHeader } from '@/lib/planner/ids'
 import { interpretPlanResult } from '@/lib/planner/guardrails'
 import { PLAN_PROMPT_VERSION, PLAN_SYSTEM, promptHash } from '@/lib/planner/prompts'
+import { isPlanOnlyTeamSize, type PlannerTeamSize } from '@/lib/planner/entry-params'
 import { assertRunRate, claimSession, logEvent, logRun, saveGeneratedPlan, saveRefusal } from '@/lib/planner/store'
 import { SCRIPTED_REFUSAL } from '@/lib/planner/types'
 import type { PlannerSessionRow } from '@/db/schema'
@@ -13,7 +14,7 @@ export function planStreamResponse(input: {
   session: PlannerSessionRow
   prompt: string
   cookie?: string
-  claim?: { name: string; email: string }
+  claim?: { name: string; email: string; company?: string }
 }): Response {
   const encoder = new TextEncoder()
   const stream = new ReadableStream({
@@ -46,7 +47,9 @@ export function planStreamResponse(input: {
           return
         }
         const saved = await saveGeneratedPlan(input.session, interpreted.plan)
-        const claimed = input.claim ? await claimSession(saved, input.claim.name, input.claim.email) : saved
+        const claimed = input.claim
+          ? await claimSession(saved, input.claim.name, input.claim.email, input.claim.company)
+          : saved
         if (input.claim && !input.session.claimedAt) await logEvent(claimed.id, 'email_captured')
         await logEvent(claimed.id, 'plan_shown')
         if (input.claim && !claimed.emailedAt) {
@@ -66,6 +69,7 @@ export function planStreamResponse(input: {
           email: input.claim?.email ?? claimed.email ?? '',
           name: input.claim?.name ?? claimed.name ?? '',
           emailed: false,
+          planOnly: isPlanOnlyTeamSize(claimed.teamSize as PlannerTeamSize | null),
         })
       } catch (error) {
         console.error('[planner] plan', input.session.id, error)

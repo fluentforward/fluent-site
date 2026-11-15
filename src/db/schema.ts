@@ -23,6 +23,9 @@ export const plannerSessions = pgTable(
     emailedAt: timestamp('emailed_at', { withTimezone: true }),
     pdfPathname: text('pdf_pathname'),
     attribution: jsonb('attribution').$type<PlannerAttribution>().notNull(),
+    teamSize: text('team_size'),
+    metaLeadId: text('meta_lead_id'),
+    company: text('company'),
     loopsPlanSentAt: timestamp('loops_plan_sent_at', { withTimezone: true }),
     loopsEventSentAt: timestamp('loops_event_sent_at', { withTimezone: true }),
     loopsStaffSentAt: timestamp('loops_staff_sent_at', { withTimezone: true }),
@@ -40,6 +43,7 @@ export const plannerSessions = pgTable(
     emailIdx: index('planner_sessions_email_idx').on(table.emailNormalized),
     ipCreatedIdx: index('planner_sessions_ip_created_idx').on(table.ipHash, table.createdAt),
     phaseClaimedIdx: index('planner_sessions_phase_idx').on(table.phase, table.emailedAt),
+    metaLeadIdx: index('planner_sessions_meta_lead_idx').on(table.metaLeadId),
   }),
 )
 

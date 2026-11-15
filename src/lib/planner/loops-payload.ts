@@ -39,14 +39,22 @@ export function contactUpdateBody(input: {
   userId: string
   firstName: string
   scopingCallBooked: boolean
+  teamSize?: string | null
+  metaLeadId?: string | null
+  source?: string
+  planOnly?: boolean
 }): Record<string, unknown> {
-  return {
+  const body: Record<string, unknown> = {
     email: input.email,
     userId: input.userId,
     firstName: input.firstName,
-    source: 'agent_planner',
+    source: input.source || 'agent_planner',
     scopingCallBooked: input.scopingCallBooked,
   }
+  if (input.teamSize) body.teamSize = input.teamSize
+  if (input.metaLeadId) body.metaLeadId = input.metaLeadId
+  if (typeof input.planOnly === 'boolean') body.planOnly = input.planOnly
+  return body
 }
 
 export function planCompletedEvent(input: {
@@ -56,19 +64,26 @@ export function planCompletedEvent(input: {
   planTitle: string
   scopingUrl: string
   attribution: PlannerAttribution
+  teamSize?: string | null
+  metaLeadId?: string | null
+  planOnly?: boolean
 }): Record<string, unknown> {
+  const eventProperties: Record<string, unknown> = {
+    sessionId: input.userId,
+    planId: input.planId,
+    planTitle: input.planTitle,
+    scopingUrl: input.scopingUrl,
+    variant: input.attribution.variant || 'agent_planner',
+    ...utmProperties(input.attribution),
+  }
+  if (input.teamSize) eventProperties.teamSize = input.teamSize
+  if (input.metaLeadId) eventProperties.metaLeadId = input.metaLeadId
+  if (typeof input.planOnly === 'boolean') eventProperties.planOnly = input.planOnly
   return {
     email: input.email,
     userId: input.userId,
     eventName: 'plan_completed',
-    eventProperties: {
-      sessionId: input.userId,
-      planId: input.planId,
-      planTitle: input.planTitle,
-      scopingUrl: input.scopingUrl,
-      variant: input.attribution.variant || 'agent_planner',
-      ...utmProperties(input.attribution),
-    },
+    eventProperties,
   }
 }
 

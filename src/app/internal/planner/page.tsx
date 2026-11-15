@@ -114,8 +114,12 @@ export default async function PlannerAdminPage({
             <tr>
               <th>When</th>
               <th>Phase</th>
+              <th>Team size</th>
+              <th>Meta lead</th>
               <th>Name</th>
+              <th>Company</th>
               <th>Email</th>
+              <th>UTM medium</th>
               <th>Plan</th>
               <th>Problem</th>
               <th>Email sent</th>
@@ -125,12 +129,20 @@ export default async function PlannerAdminPage({
             {sessions.map((session) => {
               const partialTitle = session.partialPlan && 'title' in session.partialPlan ? session.partialPlan.title : ''
               const title = partialTitle || session.fullPlan?.title || session.refusal || ''
+              const attribution =
+                session.attribution && typeof session.attribution === 'object'
+                  ? (session.attribution as Record<string, string>)
+                  : {}
               return (
                 <tr key={session.id}>
                   <td>{stamp(session.createdAt)}</td>
                   <td>{session.phase}</td>
+                  <td>{session.teamSize || ''}</td>
+                  <td>{session.metaLeadId || ''}</td>
                   <td>{session.name || ''}</td>
+                  <td>{session.company || ''}</td>
                   <td>{session.email || ''}</td>
+                  <td>{attribution.utm_medium || ''}</td>
                   <td>{title}</td>
                   <td>{session.problem.slice(0, 240)}</td>
                   <td>{session.emailedAt ? 'Yes' : session.deliveryError || ''}</td>
