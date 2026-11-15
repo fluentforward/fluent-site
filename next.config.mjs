@@ -1,7 +1,18 @@
 /** @type {import('next').NextConfig} */
+const pdfkitTraceIncludes = [
+  './node_modules/pdfkit/js/standard-fonts/**',
+  './node_modules/pdfkit/js/data/**',
+]
+
 const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ['@react-pdf/renderer'],
+    outputFileTracingIncludes: {
+      '/api/cron/planner': pdfkitTraceIncludes,
+      '/api/agent-planner/sessions': pdfkitTraceIncludes,
+      '/api/agent-planner/answers': pdfkitTraceIncludes,
+      '/api/agent-planner/claim': pdfkitTraceIncludes,
+    },
   },
   async headers() {
     return [
