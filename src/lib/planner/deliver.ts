@@ -1,11 +1,18 @@
 import { put } from '@vercel/blob'
 
 import { site } from '@/content/site'
+import {
+  loopsSourceFromAttribution,
+  sessionIsPlanOnly,
+  shouldSendPlanCompletedEvent,
+  type PlannerTeamSize,
+} from '@/lib/planner/entry-params'
 import { signPdfLink } from '@/lib/planner/ids'
 import { loopsClientFromEnv } from '@/lib/planner/loops'
 import {
   contactUpdateBody,
   planCompletedEvent,
+  planOnlyTransactionalBody,
   planTransactionalBody,
   staffTransactionalBody,
 } from '@/lib/planner/loops-payload'
@@ -28,11 +35,17 @@ export async function deliverPlan(sessionId: string): Promise<void> {
   if (!plan || !session.name) return
 
   await incrementDeliveryAttempts(session.id)
+  const attribution = (session.attribution || { variant: 'agent_planner' }) as PlannerAttribution
+  const loopsSource = loopsSourceFromAttribution(attribution.utm_medium)
+  const planOnly = sessionIsPlanOnly({
+    teamSize: session.teamSize as PlannerTeamSize | null,
+    leadSource: loopsSource,
+  })
   const scopingUrl = `${site.url}/contact?plan=${encodeURIComponent(session.publicId)}`
   const firstName = session.name.trim().split(/\s+/)[0] || 'there'
 
   try {
-    const pdf = await renderPlanPdf({ plan, name: session.name, scopingUrl })
+    const pdf = await renderPlanPdf({ plan, name: session.name, scopingUrl, planOnly })
     let storedPath: string | null = session.pdfPathname
     if (!storedPath) {
       const stored = await put(`planner/${session.publicId}.pdf`, pdf, {
@@ -50,13 +63,16 @@ export async function deliverPlan(sessionId: string): Promise<void> {
     }
 
     const loops = loopsClientFromEnv()
-    const attribution = (session.attribution || { variant: 'agent_planner' }) as PlannerAttribution
     const hasKey = Boolean(process.env.LOOPS_API_KEY?.trim())
     const transactionalId = process.env.LOOPS_PLAN_TRANSACTIONAL_ID?.trim()
+    const planOnlyTransactionalId = process.env.LOOPS_PLAN_ONLY_TRANSACTIONAL_ID?.trim()
     const staffId = process.env.LOOPS_STAFF_TRANSACTIONAL_ID?.trim()
     const notifyEmail = process.env.PLANNER_NOTIFY_EMAIL?.trim()
 
-    if (hasKey && !transactionalId) {
+    if (hasKey && planOnly && !planOnlyTransactionalId) {
+      throw new Error('LOOPS_PLAN_ONLY_TRANSACTIONAL_ID is not set')
+    }
+    if (hasKey && !planOnly && !transactionalId) {
       throw new Error('LOOPS_PLAN_TRANSACTIONAL_ID is not set')
     }
 
@@ -67,39 +83,62 @@ export async function deliverPlan(sessionId: string): Promise<void> {
           userId: session.id,
           firstName,
           scopingCallBooked: Boolean(session.scopingBookedAt),
+          teamSize: session.teamSize,
+          metaLeadId: session.metaLeadId,
+          source: loopsSource,
+          planOnly,
         }),
       )
     } catch (error) {
       console.error('[planner] loops contact', session.id, error)
+      throw error
     }
 
     if (!session.loopsPlanSentAt) {
-      await loops.sendTransactional(
-        planTransactionalBody({
-          email: session.email,
-          transactionalId: transactionalId || 'local-log',
-          firstName,
-          planTitle: plan.title,
-          scopingUrl,
-          downloadUrl,
-        }),
-        `${session.id}:plan`,
-      )
+      if (planOnly) {
+        await loops.sendTransactional(
+          planOnlyTransactionalBody({
+            email: session.email,
+            transactionalId: planOnlyTransactionalId || 'local-log',
+            firstName,
+            planTitle: plan.title,
+            downloadUrl,
+          }),
+          `${session.id}:plan-only`,
+        )
+      } else {
+        await loops.sendTransactional(
+          planTransactionalBody({
+            email: session.email,
+            transactionalId: transactionalId || 'local-log',
+            firstName,
+            planTitle: plan.title,
+            scopingUrl,
+            downloadUrl,
+          }),
+          `${session.id}:plan`,
+        )
+      }
       await markDeliveryField(session.id, { loopsPlanSentAt: new Date() })
     }
 
     if (!session.loopsEventSentAt) {
-      await loops.sendEvent(
-        planCompletedEvent({
-          email: session.email,
-          userId: session.id,
-          planId: session.publicId,
-          planTitle: plan.title,
-          scopingUrl,
-          attribution,
-        }),
-        `${session.id}:event`,
-      )
+      if (shouldSendPlanCompletedEvent(planOnly)) {
+        await loops.sendEvent(
+          planCompletedEvent({
+            email: session.email,
+            userId: session.id,
+            planId: session.publicId,
+            planTitle: plan.title,
+            scopingUrl,
+            attribution,
+            teamSize: session.teamSize,
+            metaLeadId: session.metaLeadId,
+            planOnly: false,
+          }),
+          `${session.id}:event`,
+        )
+      }
       await markDeliveryField(session.id, { loopsEventSentAt: new Date() })
     }
 

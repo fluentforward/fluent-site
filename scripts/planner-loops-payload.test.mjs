@@ -4,7 +4,9 @@ import { test } from 'node:test'
 
 import {
   assertLoopsPayloadSafe,
+  contactUpdateBody,
   planCompletedEvent,
+  planOnlyTransactionalBody,
   planTransactionalBody,
 } from '../src/lib/planner/loops-payload.ts'
 import { verifyLoopsWebhook, LoopsWebhookVerificationError } from '../src/lib/planner/loops.ts'
@@ -32,14 +34,64 @@ test('plan_completed carries the title and the link, not the answers', () => {
     planTitle: 'Monthly client report agent',
     scopingUrl: 'https://www.fluentforward.com/contact?plan=plan-1',
     attribution: { variant: 'agent_planner', utm_source: 'linkedin' },
+    teamSize: '10-49',
+    metaLeadId: 'lead123',
+    planOnly: false,
   })
   assert.doesNotThrow(() => assertLoopsPayloadSafe(payload))
   assert.equal(payload.eventName, 'plan_completed')
   const properties = payload.eventProperties
   assert.equal(properties.planTitle, 'Monthly client report agent')
   assert.equal(properties.utm_source, 'linkedin')
+  assert.equal(properties.teamSize, '10-49')
+  assert.equal(properties.metaLeadId, 'lead123')
+  assert.equal(properties.planOnly, false)
   assert.equal('problem' in properties, false)
   assert.equal('answers' in properties, false)
+})
+
+test('plan-only transactional omits scopingUrl', () => {
+  const payload = planOnlyTransactionalBody({
+    email: 'sam@firm.co.uk',
+    transactionalId: 'cmwhjolly0joz0j00um9nuu6z',
+    firstName: 'Sam',
+    planTitle: 'Invoice matching agent',
+    downloadUrl: 'https://www.fluentforward.com/api/agent-planner/pdf?plan=plan-2&sig=abc',
+  })
+  assert.doesNotThrow(() => assertLoopsPayloadSafe(payload))
+  assert.equal(payload.addToAudience, true)
+  assert.equal('scopingUrl' in payload.dataVariables, false)
+  assert.equal(payload.dataVariables.firstName, 'Sam')
+})
+
+test('contact update always includes planOnly and scopingCallBooked', () => {
+  const payload = contactUpdateBody({
+    email: 'sam@firm.co.uk',
+    userId: 'session-2',
+    firstName: 'Sam',
+    scopingCallBooked: false,
+    planOnly: true,
+    teamSize: '1-9',
+    source: 'meta_form',
+  })
+  assert.equal(payload.planOnly, true)
+  assert.equal(payload.scopingCallBooked, false)
+  assert.equal(payload.source, 'meta_form')
+})
+
+test('plan_completed can flag plan-only leads for Loops filters', () => {
+  const payload = planCompletedEvent({
+    email: 'sam@firm.co.uk',
+    userId: 'session-2',
+    planId: 'plan-2',
+    planTitle: 'Weekly sales follow-up agent',
+    scopingUrl: 'https://www.fluentforward.com/contact?plan=plan-2',
+    attribution: { variant: 'agent_planner', utm_medium: 'instant_form' },
+    teamSize: '1-9',
+    planOnly: true,
+  })
+  assert.equal(payload.eventProperties.planOnly, true)
+  assert.equal(payload.eventProperties.teamSize, '1-9')
 })
 
 test('a payload that includes the plan body is refused', () => {

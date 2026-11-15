@@ -51,3 +51,4 @@ next-env.d.ts
 ehthumbs.db
 Thumbs.db 
 .env*
+!.env.example

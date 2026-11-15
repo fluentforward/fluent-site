@@ -39,14 +39,22 @@ export function contactUpdateBody(input: {
   userId: string
   firstName: string
   scopingCallBooked: boolean
+  teamSize?: string | null
+  metaLeadId?: string | null
+  source?: string
+  planOnly: boolean
 }): Record<string, unknown> {
-  return {
+  const body: Record<string, unknown> = {
     email: input.email,
     userId: input.userId,
     firstName: input.firstName,
-    source: 'agent_planner',
+    source: input.source || 'agent_planner',
     scopingCallBooked: input.scopingCallBooked,
+    planOnly: input.planOnly,
   }
+  if (input.teamSize) body.teamSize = input.teamSize
+  if (input.metaLeadId) body.metaLeadId = input.metaLeadId
+  return body
 }
 
 export function planCompletedEvent(input: {
@@ -56,19 +64,26 @@ export function planCompletedEvent(input: {
   planTitle: string
   scopingUrl: string
   attribution: PlannerAttribution
+  teamSize?: string | null
+  metaLeadId?: string | null
+  planOnly?: boolean
 }): Record<string, unknown> {
+  const eventProperties: Record<string, unknown> = {
+    sessionId: input.userId,
+    planId: input.planId,
+    planTitle: input.planTitle,
+    scopingUrl: input.scopingUrl,
+    variant: input.attribution.variant || 'agent_planner',
+    ...utmProperties(input.attribution),
+  }
+  if (input.teamSize) eventProperties.teamSize = input.teamSize
+  if (input.metaLeadId) eventProperties.metaLeadId = input.metaLeadId
+  if (typeof input.planOnly === 'boolean') eventProperties.planOnly = input.planOnly
   return {
     email: input.email,
     userId: input.userId,
     eventName: 'plan_completed',
-    eventProperties: {
-      sessionId: input.userId,
-      planId: input.planId,
-      planTitle: input.planTitle,
-      scopingUrl: input.scopingUrl,
-      variant: input.attribution.variant || 'agent_planner',
-      ...utmProperties(input.attribution),
-    },
+    eventProperties,
   }
 }
 
@@ -104,6 +119,25 @@ export function planTransactionalBody(input: {
       firstName: input.firstName,
       planTitle: input.planTitle,
       scopingUrl: input.scopingUrl,
+      downloadUrl: input.downloadUrl,
+    },
+  }
+}
+
+export function planOnlyTransactionalBody(input: {
+  email: string
+  transactionalId: string
+  firstName: string
+  planTitle: string
+  downloadUrl: string
+}): Record<string, unknown> {
+  return {
+    email: input.email,
+    transactionalId: input.transactionalId,
+    addToAudience: true,
+    dataVariables: {
+      firstName: input.firstName,
+      planTitle: input.planTitle,
       downloadUrl: input.downloadUrl,
     },
   }

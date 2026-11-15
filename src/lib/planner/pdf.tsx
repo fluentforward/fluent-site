@@ -25,6 +25,10 @@ import {
   stepIntro,
   WONT_DO,
 } from '@/lib/planner/plan-view'
+import {
+  PLANNER_PLAN_ONLY_FOLLOW_UP,
+  PLANNER_PLAN_ONLY_PDF_HEADING,
+} from '@/lib/planner/plan-only-copy'
 import type { FullPlan, LeverImpact, LeverScore } from '@/lib/planner/types'
 
 const ink = '#0a0a0b'
@@ -117,7 +121,12 @@ const styles = StyleSheet.create({
   },
 })
 
-export function renderPlanPdf(input: { plan: FullPlan; name: string | null; scopingUrl: string }): Promise<Buffer> {
+export function renderPlanPdf(input: {
+  plan: FullPlan
+  name: string | null
+  scopingUrl: string
+  planOnly?: boolean
+}): Promise<Buffer> {
   const plan = input.plan
   const who = preparedFor(input.name || '')
   const levers = rankedLevers(plan.levers)
@@ -387,17 +396,24 @@ export function renderPlanPdf(input: { plan: FullPlan; name: string | null; scop
             <Text style={[styles.muted, { marginTop: 6 }]}>Both are confirmed on the scoping call.</Text>
           </View>
         </View>
-        <View style={{ marginTop: 10, borderRadius: 12, backgroundColor: ink, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-          <View style={{ flex: 1 }}>
-            <Text style={{ color: white, fontWeight: 600, fontSize: 14 }}>Book a 20-minute scoping call</Text>
-            <Text style={{ color: '#c8c8c4', marginTop: 4, fontSize: 8.5 }}>{BOOK_LINE}</Text>
+        {input.planOnly ? (
+          <View style={{ marginTop: 10, borderRadius: 12, backgroundColor: card, borderWidth: 1, borderColor: line, padding: 14 }}>
+            <Text style={{ fontWeight: 600, fontSize: 10 }}>{PLANNER_PLAN_ONLY_PDF_HEADING}</Text>
+            <Text style={[styles.muted, { marginTop: 6 }]}>{PLANNER_PLAN_ONLY_FOLLOW_UP}</Text>
           </View>
-          <Link src={input.scopingUrl}>
-            <View style={{ backgroundColor: accent, borderRadius: 20, paddingVertical: 8, paddingHorizontal: 12 }}>
-              <Text style={{ color: ink, fontWeight: 600, fontSize: 9 }}>Book my call</Text>
+        ) : (
+          <View style={{ marginTop: 10, borderRadius: 12, backgroundColor: ink, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+            <View style={{ flex: 1 }}>
+              <Text style={{ color: white, fontWeight: 600, fontSize: 14 }}>Book a 20-minute scoping call</Text>
+              <Text style={{ color: '#c8c8c4', marginTop: 4, fontSize: 8.5 }}>{BOOK_LINE}</Text>
             </View>
-          </Link>
-        </View>
+            <Link src={input.scopingUrl}>
+              <View style={{ backgroundColor: accent, borderRadius: 20, paddingVertical: 8, paddingHorizontal: 12 }}>
+                <Text style={{ color: ink, fontWeight: 600, fontSize: 9 }}>Scope your agent</Text>
+              </View>
+            </Link>
+          </View>
+        )}
         <Text style={{ marginTop: 8, color: mist, fontSize: 7, lineHeight: 1.35 }}>* {PLAN_FOOTNOTE}</Text>
         <Footer who={who} page="06" />
       </Page>

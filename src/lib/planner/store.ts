@@ -49,7 +49,12 @@ export async function insertSession(input: {
   problem: string
   attribution: PlannerAttribution
   ipHash: string | null
+  teamSize?: string | null
+  metaLeadId?: string | null
+  company?: string | null
+  leadEmail?: string | null
 }): Promise<PlannerSessionRow> {
+  const leadEmail = input.leadEmail?.trim().toLowerCase() || null
   const rows = await getDb()
     .insert(plannerSessions)
     .values({
@@ -59,6 +64,11 @@ export async function insertSession(input: {
       followUps: [],
       attribution: input.attribution,
       ipHash: input.ipHash,
+      teamSize: input.teamSize ?? null,
+      metaLeadId: input.metaLeadId ?? null,
+      company: input.company ?? null,
+      email: leadEmail,
+      emailNormalized: leadEmail,
       phase: 'anonymous',
       sensitiveHold: false,
       deliveryAttempts: 0,
@@ -179,18 +189,49 @@ export async function claimSession(
   session: PlannerSessionRow,
   name: string,
   email: string,
+  company?: string | null,
 ): Promise<PlannerSessionRow> {
   const emailNormalized = email.trim().toLowerCase()
+  const companyValue = company?.trim() ? company.trim().slice(0, 120) : session.company
   if (session.claimedAt) {
-    return updateSession(session.id, { name, email: email.trim(), emailNormalized })
+    return updateSession(session.id, {
+      name,
+      email: email.trim(),
+      emailNormalized,
+      company: companyValue,
+    })
   }
   return updateSession(session.id, {
     phase: 'claimed',
     name,
     email: email.trim(),
     emailNormalized,
+    company: companyValue,
     claimedAt: new Date(),
   })
+}
+
+export async function mergeSessionEntry(
+  session: PlannerSessionRow,
+  entry: {
+    teamSize?: string | null
+    metaLeadId?: string | null
+    company?: string | null
+    leadEmail?: string | null
+    attribution?: PlannerAttribution
+  },
+): Promise<PlannerSessionRow> {
+  const patch: Partial<typeof plannerSessions.$inferInsert> = {}
+  if (entry.teamSize !== undefined) patch.teamSize = entry.teamSize
+  if (entry.metaLeadId) patch.metaLeadId = entry.metaLeadId
+  if (entry.company) patch.company = entry.company.slice(0, 120)
+  if (entry.attribution) patch.attribution = entry.attribution
+  if (entry.leadEmail && !session.claimedAt) {
+    patch.email = entry.leadEmail
+    patch.emailNormalized = entry.leadEmail
+  }
+  if (Object.keys(patch).length === 0) return session
+  return updateSession(session.id, patch)
 }
 
 export async function markEmailed(sessionId: string): Promise<void> {

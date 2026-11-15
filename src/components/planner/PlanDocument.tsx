@@ -29,6 +29,10 @@ import {
   stepIntro,
   WONT_DO,
 } from '@/lib/planner/plan-view'
+import {
+  PLANNER_PLAN_ONLY_FOLLOW_UP,
+  PLANNER_PLAN_ONLY_READY,
+} from '@/lib/planner/plan-only-copy'
 import type { FullPlan, LeverImpact } from '@/lib/planner/types'
 
 export function PlanDocument({
@@ -37,12 +41,14 @@ export function PlanDocument({
   email,
   emailed,
   publicId,
+  planOnly,
 }: {
   plan: FullPlan
   name: string
   email: string
   emailed: boolean
   publicId: string
+  planOnly: boolean
 }) {
   const who = preparedFor(name)
   const [opening, openingRest] = headlineLines(plan.opportunity)
@@ -343,22 +349,30 @@ export function PlanDocument({
                 {item.body}
               </p>
             ))}
-            <p>Both are confirmed on the scoping call.</p>
+            {!planOnly ? <p>Both are confirmed on the scoping call.</p> : null}
           </div>
         </div>
-        <div className="ffp-plan-book">
-          <div>
-            <h2>Book a 20-minute scoping call</h2>
-            <p>{BOOK_LINE}</p>
+        {planOnly ? (
+          <section className="ffp-plan-close">
+            <h2>What happens next</h2>
+            <p>{PLANNER_PLAN_ONLY_READY}</p>
+            <p>{PLANNER_PLAN_ONLY_FOLLOW_UP}</p>
+          </section>
+        ) : (
+          <div className="ffp-plan-book">
+            <div>
+              <h2>Book a 20-minute scoping call</h2>
+              <p>{BOOK_LINE}</p>
+            </div>
+            <ScopeLink
+              className={buttonClasses('primary')}
+              href={`/contact?plan=${encodeURIComponent(publicId)}`}
+              onOpen={book}
+            >
+              Scope your agent
+            </ScopeLink>
           </div>
-          <ScopeLink
-            className={buttonClasses('primary')}
-            href={`/contact?plan=${encodeURIComponent(publicId)}`}
-            onOpen={book}
-          >
-            Book my call
-          </ScopeLink>
-        </div>
+        )}
         <p className="ffp-plan-foot">* {PLAN_FOOTNOTE}</p>
       </section>
     </article>

@@ -1,12 +1,20 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent } from 'react'
 
 import { rememberProblem, ScopeLink } from '@/components/booking/ScopeLink'
 import { Chevron } from '@/components/home/Mark'
 import { buttonClasses } from '@/components/ui/button-classes'
-import { getOutboundMarketingAttributionParams } from '@/lib/marketing-attribution'
+import { getMarketingAttributionFromCurrentUrl } from '@/lib/marketing-attribution'
+import { parsePlannerEntryFromSearch, stripPlannerPiiFromUrl } from '@/lib/planner/entry-params'
+import {
+  clearPlannerEntryPrefill,
+  readLandingAttribution,
+  readPlannerEntryPrefill,
+  stashLandingAttribution,
+  stashPlannerEntryPrefill,
+} from '@/lib/planner/entry-storage'
 import { trackPlannerEvent, trackPlannerLead } from '@/lib/vendors/track-planner'
 import { clearPlannerDraft, readPlannerDraft, stashPlannerDraft } from '@/lib/planner/draft'
 import { PlanDocument } from '@/components/planner/PlanDocument'
@@ -27,9 +35,19 @@ type View =
       preview: { steps: string; impact: string } | null
       name: string
       email: string
+      company: string
+      planOnly: boolean
       error?: string
     }
-  | { kind: 'sent'; publicId: string; full: FullPlan; email: string; name: string; emailed: boolean }
+  | {
+      kind: 'sent'
+      publicId: string
+      full: FullPlan
+      email: string
+      name: string
+      emailed: boolean
+      planOnly: boolean
+    }
   | { kind: 'refusal'; message: string }
   | { kind: 'rate'; message: string }
   | { kind: 'error'; message: string }
@@ -37,7 +55,13 @@ type View =
 const PLACEHOLDER =
   'e.g. Every month two people spend three days building client reports from Xero, our CRM and a spreadsheet.'
 
-export function Planner({ initialProblem }: { initialProblem: string }) {
+export function Planner({
+  initialProblem,
+  seedFromUrl = false,
+}: {
+  initialProblem: string
+  seedFromUrl?: boolean
+}) {
   const [view, setView] = useState<View>({ kind: 'loading' })
   const [status, setStatus] = useState('Loading the planner')
   const desktop = useDesktop()
@@ -45,6 +69,42 @@ export function Planner({ initialProblem }: { initialProblem: string }) {
   const answerRef = useRef<HTMLTextAreaElement>(null)
   const nameRef = useRef<HTMLInputElement>(null)
   const preparing = useRef(false)
+  const seededStart = useRef(false)
+  const entryBootstrapped = useRef(false)
+
+  useLayoutEffect(() => {
+    if (entryBootstrapped.current || typeof window === 'undefined') return
+    entryBootstrapped.current = true
+    const entry = parsePlannerEntryFromSearch(new URL(window.location.href).searchParams)
+    const landingAttribution = getMarketingAttributionFromCurrentUrl()
+    if (entry.problem) stashPlannerDraft(entry.problem)
+    stashPlannerEntryPrefill({
+      name: entry.name,
+      email: entry.email,
+      company: entry.company,
+      teamSize: entry.teamSize,
+      metaLeadId: entry.metaLeadId,
+    })
+    stashLandingAttribution(landingAttribution)
+    const next = stripPlannerPiiFromUrl(window.location.href)
+    const current = `${window.location.pathname}${window.location.search}${window.location.hash}`
+    if (next !== current) {
+      window.history.replaceState(null, '', next)
+    }
+    const prefill = readPlannerEntryPrefill()
+    void fetch('/api/agent-planner/entry', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      referrerPolicy: 'no-referrer',
+      body: JSON.stringify({
+        size: prefill.teamSize,
+        metaLeadId: prefill.metaLeadId,
+        company: prefill.company,
+        email: prefill.email,
+        attribution: landingAttribution,
+      }),
+    })
+  }, [])
 
   useEffect(() => {
     let cancelled = false
@@ -52,9 +112,22 @@ export function Planner({ initialProblem }: { initialProblem: string }) {
       .then((response) => response.json())
       .then((body: unknown) => {
         if (cancelled) return
-        const next = viewFromBody(body, initialProblem || readPlannerDraft())
+        const record = body && typeof body === 'object' ? (body as Record<string, unknown>) : {}
+        const fallback = initialProblem || readPlannerDraft()
+        const next = viewFromBody(body, fallback)
         if (next.kind === 'writing') {
           void writePlan(next.problem)
+          return
+        }
+        if (
+          !seededStart.current &&
+          seedFromUrl &&
+          fallback.length >= 20 &&
+          record.state === 'empty' &&
+          next.kind === 'compose'
+        ) {
+          seededStart.current = true
+          void start(fallback)
           return
         }
         setView(next)
@@ -62,24 +135,21 @@ export function Planner({ initialProblem }: { initialProblem: string }) {
       })
       .catch(() => {
         if (cancelled) return
-        setView({ kind: 'compose', problem: initialProblem || readPlannerDraft() })
+        const fallback = initialProblem || readPlannerDraft()
+        if (!seededStart.current && seedFromUrl && fallback.length >= 20) {
+          seededStart.current = true
+          void start(fallback)
+          return
+        }
+        setView({ kind: 'compose', problem: fallback })
         setStatus('')
       })
     return () => {
       cancelled = true
     }
-  }, [initialProblem])
-
-  useEffect(() => {
-    const url = new URL(window.location.href)
-    if (!url.searchParams.has('q') && !url.searchParams.has('problem')) return
-    const seeded = (url.searchParams.get('q') || url.searchParams.get('problem') || '').trim()
-    if (seeded) stashPlannerDraft(seeded)
-    url.searchParams.delete('q')
-    url.searchParams.delete('problem')
-    const query = url.searchParams.toString()
-    window.history.replaceState(null, '', `${url.pathname}${query ? `?${query}` : ''}${url.hash}`)
-  }, [])
+    // start is intentionally omitted: seeded auto-start must run only once on mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- see above
+  }, [initialProblem, seedFromUrl])
 
   useEffect(() => {
     if (!desktop) return
@@ -97,9 +167,19 @@ export function Planner({ initialProblem }: { initialProblem: string }) {
     clearPlannerDraft()
     setView({ kind: 'working', problem, label: 'Reading that.' })
     setStatus('Reading that.')
+    const prefill = readPlannerEntryPrefill()
     const ok = await post(
       '/api/agent-planner/sessions',
-      { problem, attribution: getOutboundMarketingAttributionParams() },
+      {
+        problem,
+        attribution: readLandingAttribution(),
+        entry: {
+          size: prefill.teamSize,
+          metaLeadId: prefill.metaLeadId,
+          company: prefill.company,
+          email: prefill.email,
+        },
+      },
       problem,
     )
     if (ok) trackPlannerEvent('planner_start')
@@ -152,7 +232,7 @@ export function Planner({ initialProblem }: { initialProblem: string }) {
     const response = await fetch('/api/agent-planner/claim', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ name: current.name, email: current.email }),
+      body: JSON.stringify({ name: current.name, email: current.email, company: current.company }),
     })
     const type = response.headers.get('content-type') || ''
     if (type.includes('ndjson') && response.body) {
@@ -180,7 +260,10 @@ export function Planner({ initialProblem }: { initialProblem: string }) {
     setView({ ...current, error: 'The plan was not sent. Please try again.' })
   }
 
-  function showPlan(body: Record<string, unknown>, current: { name: string; email: string }) {
+  function showPlan(
+    body: Record<string, unknown>,
+    current: { name: string; email: string; planOnly?: boolean },
+  ) {
     if (!isFull(body.full)) return
     setView({
       kind: 'sent',
@@ -189,6 +272,7 @@ export function Planner({ initialProblem }: { initialProblem: string }) {
       email: String(body.email || current.email),
       name: String(body.name || current.name),
       emailed: body.emailed === true,
+      planOnly: body.planOnly === true || current.planOnly === true,
     })
     setStatus('The plan is ready, and a copy is on its way by email.')
     trackPlannerLead()
@@ -255,7 +339,7 @@ export function Planner({ initialProblem }: { initialProblem: string }) {
           continue
         }
         if (event.type === 'done' && isFull(event.full)) {
-          showPlan(event, details ?? { name: '', email: '' })
+          showPlan(event, details ?? { name: '', email: '', planOnly: false })
         } else if (event.type === 'refusal') {
           const message = String(event.message || 'We cannot plan that from here.')
           setView({ kind: 'refusal', message })
@@ -271,6 +355,7 @@ export function Planner({ initialProblem }: { initialProblem: string }) {
 
   async function startAgain() {
     clearPlannerDraft()
+    clearPlannerEntryPrefill()
     await fetch('/api/agent-planner/reset', { method: 'POST' })
     setView({ kind: 'compose', problem: '' })
     setStatus('')
@@ -471,10 +556,24 @@ export function Planner({ initialProblem }: { initialProblem: string }) {
                     name="name"
                     autoComplete="name"
                     required
-                    maxLength={80}
+                    maxLength={120}
                     placeholder="Your name"
                     value={view.name}
                     onChange={(event) => setView({ ...view, name: event.target.value, error: undefined })}
+                  />
+                </div>
+                <label className="ffp-gate-fieldlabel" htmlFor="planner-company">
+                  Company (optional)
+                </label>
+                <div className="ffp-field">
+                  <input
+                    id="planner-company"
+                    name="company"
+                    autoComplete="organization"
+                    maxLength={120}
+                    placeholder="Your company"
+                    value={view.company}
+                    onChange={(event) => setView({ ...view, company: event.target.value, error: undefined })}
                   />
                 </div>
                 <label className="ffp-gate-fieldlabel" htmlFor="planner-email">
@@ -498,18 +597,20 @@ export function Planner({ initialProblem }: { initialProblem: string }) {
                   Show my plan
                 </button>
                 <p className="ffp-note">You will see the plan here. A copy arrives by email. Unsubscribe any time.</p>
-                <p className="ffp-gate-book">
-                  Ready to build it?{' '}
-                  <ScopeLink
-                    className="ffp-gate-booklink"
-                    onOpen={() => {
-                      void fetch('/api/agent-planner/cta', { method: 'POST', keepalive: true })
-                      trackPlannerEvent('planner_cta_clicked')
-                    }}
-                  >
-                    Book a call
-                  </ScopeLink>
-                </p>
+                {view.planOnly ? null : (
+                  <p className="ffp-gate-book">
+                    Ready to build this agent?{' '}
+                    <ScopeLink
+                      className="ffp-gate-booklink"
+                      onOpen={() => {
+                        void fetch('/api/agent-planner/cta', { method: 'POST', keepalive: true })
+                        trackPlannerEvent('planner_cta_clicked')
+                      }}
+                    >
+                      Scope your agent
+                    </ScopeLink>
+                  </p>
+                )}
               </aside>
             </form>
           ) : null}
@@ -521,6 +622,7 @@ export function Planner({ initialProblem }: { initialProblem: string }) {
               email={view.email}
               emailed={view.emailed}
               publicId={view.publicId}
+              planOnly={view.planOnly}
             />
           ) : null}
 
@@ -615,6 +717,7 @@ function viewFromBody(body: unknown, fallbackProblem: string): View {
     }
   }
   if (record.state === 'details') {
+    const prefill = typeof window !== 'undefined' ? readPlannerEntryPrefill() : { name: '', email: '', company: '' }
     return {
       kind: 'details',
       problem,
@@ -625,8 +728,10 @@ function viewFromBody(body: unknown, fallbackProblem: string): View {
           ? record.benefit
           : 'The plan will show what it does, what stays with your team, and the result worth measuring.',
       preview: readPreview(record.preview),
-      name: '',
-      email: '',
+      name: typeof record.name === 'string' && record.name ? record.name : prefill.name,
+      email: typeof record.email === 'string' && record.email ? record.email : prefill.email,
+      company: typeof record.company === 'string' && record.company ? record.company : prefill.company,
+      planOnly: record.planOnly === true,
     }
   }
   if (record.state === 'writing') return { kind: 'writing', problem }
@@ -638,6 +743,7 @@ function viewFromBody(body: unknown, fallbackProblem: string): View {
       email: typeof record.email === 'string' ? record.email : '',
       name: typeof record.name === 'string' ? record.name : '',
       emailed: record.emailed === true,
+      planOnly: record.planOnly === true,
     }
   }
   if (record.state === 'refusal' && typeof record.message === 'string') {
