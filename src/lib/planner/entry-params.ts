@@ -36,7 +36,17 @@ export function normalizeTeamSizeParam(raw: string | null | undefined): PlannerT
   const value = (raw || '').trim()
   if (!value) return null
   const lowered = value.toLowerCase()
-  if (lowered === '200plus' || lowered === '200+' || value === '200%2B') return '200+'
+  const compact = lowered.replace(/\s+/g, '')
+  // Unencoded size=200+ is parsed as "200 " (plus is a space in query strings).
+  if (
+    compact === '200plus' ||
+    compact === '200+' ||
+    compact === '200' ||
+    value === '200%2B' ||
+    value === '200 '
+  ) {
+    return '200+'
+  }
   if (value === '1-9' || value === '10-49' || value === '50-199') return value as PlannerTeamSize
   return null
 }
@@ -108,6 +118,10 @@ export function sessionIsPlanOnly(input: PlannerPlanOnlyInput): boolean {
   return missingTeamSizeUsesPlanOnly(input)
 }
 
+export function shouldSendPlanCompletedEvent(planOnly: boolean): boolean {
+  return !planOnly
+}
+
 export function isPlanOnlyTeamSize(
   teamSize: PlannerTeamSize | null,
   leadSource?: PlannerPlanOnlyLeadSource | null,
@@ -116,7 +130,11 @@ export function isPlanOnlyTeamSize(
 }
 
 export function plannerLeadSourceFromUtm(utmMedium: string | undefined): PlannerPlanOnlyLeadSource {
-  return utmMedium === 'instant_form' ? 'meta_form' : 'agent_planner'
+  return utmMedium?.trim().toLowerCase() === 'instant_form' ? 'meta_form' : 'agent_planner'
+}
+
+export function loopsSourceFromAttribution(utmMedium: string | undefined): 'meta_form' | 'agent_planner' {
+  return utmMedium?.trim().toLowerCase() === 'instant_form' ? 'meta_form' : 'agent_planner'
 }
 
 export function sessionPlanOnlyFromAttribution(

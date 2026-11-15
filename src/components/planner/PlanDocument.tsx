@@ -31,7 +31,7 @@ import {
 } from '@/lib/planner/plan-view'
 import {
   PLANNER_PLAN_ONLY_FOLLOW_UP,
-  PLANNER_PLAN_ONLY_THANKS,
+  PLANNER_PLAN_ONLY_READY,
 } from '@/lib/planner/plan-only-copy'
 import type { FullPlan, LeverImpact } from '@/lib/planner/types'
 
@@ -355,7 +355,7 @@ export function PlanDocument({
         {planOnly ? (
           <section className="ffp-plan-close">
             <h2>What happens next</h2>
-            <p>{PLANNER_PLAN_ONLY_THANKS}</p>
+            <p>{PLANNER_PLAN_ONLY_READY}</p>
             <p>{PLANNER_PLAN_ONLY_FOLLOW_UP}</p>
           </section>
         ) : (

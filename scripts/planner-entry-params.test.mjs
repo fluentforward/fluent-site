@@ -8,6 +8,7 @@ import {
   parsePlannerEntryFromSearch,
   parsePlannerProblemParam,
   sessionIsPlanOnly,
+  plannerLeadSourceFromUtm,
   stripPlannerPiiFromUrl,
   teamSizeShowsScopingCta,
 } from '../src/lib/planner/entry-params.ts'
@@ -27,6 +28,8 @@ test('team size normalisation', () => {
   assert.equal(normalizeTeamSizeParam('200PLUS'), '200+')
   assert.equal(normalizeTeamSizeParam('11-20'), null)
   assert.equal(normalizeTeamSizeParam(''), null)
+  const unencoded = new URLSearchParams('size=200+')
+  assert.equal(normalizeTeamSizeParam(unencoded.get('size')), '200+')
 })
 
 test('entry parsing caps and validates fields', () => {
@@ -74,6 +77,13 @@ test('plan-only routing: organic missing size keeps scoping; Meta missing is pla
   assert.equal(isPlanOnlyTeamSize('1-9', 'meta_form'), true)
   assert.equal(sessionIsPlanOnly({ teamSize: '10-49', leadSource: 'agent_planner' }), false)
   assert.equal(sessionIsPlanOnly({ teamSize: '10-49', leadSource: 'meta_form' }), false)
+})
+
+test('instant_form utm_medium is matched case-insensitively for plan-only source', () => {
+  assert.equal(plannerLeadSourceFromUtm('instant_form'), 'meta_form')
+  assert.equal(plannerLeadSourceFromUtm('INSTANT_FORM'), 'meta_form')
+  assert.equal(plannerLeadSourceFromUtm('Instant_Form'), 'meta_form')
+  assert.equal(plannerLeadSourceFromUtm('linkedin'), 'agent_planner')
 })
 
 test('stripPlannerPiiFromUrl removes PII and problem keys but keeps UTMs', () => {

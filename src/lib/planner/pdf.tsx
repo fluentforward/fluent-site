@@ -25,6 +25,10 @@ import {
   stepIntro,
   WONT_DO,
 } from '@/lib/planner/plan-view'
+import {
+  PLANNER_PLAN_ONLY_FOLLOW_UP,
+  PLANNER_PLAN_ONLY_PDF_HEADING,
+} from '@/lib/planner/plan-only-copy'
 import type { FullPlan, LeverImpact, LeverScore } from '@/lib/planner/types'
 
 const ink = '#0a0a0b'
@@ -394,11 +398,8 @@ export function renderPlanPdf(input: {
         </View>
         {input.planOnly ? (
           <View style={{ marginTop: 10, borderRadius: 12, backgroundColor: card, borderWidth: 1, borderColor: line, padding: 14 }}>
-            <Text style={{ fontWeight: 600, fontSize: 10 }}>Your plan is ready</Text>
-            <Text style={[styles.muted, { marginTop: 6 }]}>
-              If you would like to talk through what you have seen, reply to the email we sent and we will come back to
-              you.
-            </Text>
+            <Text style={{ fontWeight: 600, fontSize: 10 }}>{PLANNER_PLAN_ONLY_PDF_HEADING}</Text>
+            <Text style={[styles.muted, { marginTop: 6 }]}>{PLANNER_PLAN_ONLY_FOLLOW_UP}</Text>
           </View>
         ) : (
           <View style={{ marginTop: 10, borderRadius: 12, backgroundColor: ink, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 12 }}>

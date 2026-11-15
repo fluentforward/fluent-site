@@ -1,3 +1,4 @@
+import type { MarketingAttribution } from '@/lib/marketing-attribution'
 import type { PlannerTeamSize } from '@/lib/planner/entry-params'
 
 const NAME_KEY = 'ff_planner_entry_name'
@@ -5,6 +6,7 @@ const EMAIL_KEY = 'ff_planner_entry_email'
 const COMPANY_KEY = 'ff_planner_entry_company'
 const TEAM_SIZE_KEY = 'ff_planner_entry_team_size'
 const META_LEAD_KEY = 'ff_planner_entry_meta_lead_id'
+const LANDING_ATTRIBUTION_KEY = 'ff_planner_landing_attribution'
 
 function write(key: string, value: string) {
   if (typeof window === 'undefined' || !value) return
@@ -59,10 +61,33 @@ export function readPlannerEntryPrefill(): {
   }
 }
 
+export function stashLandingAttribution(attribution: MarketingAttribution) {
+  if (typeof window === 'undefined') return
+  if (Object.keys(attribution).length === 0) return
+  try {
+    sessionStorage.setItem(LANDING_ATTRIBUTION_KEY, JSON.stringify(attribution))
+  } catch {
+    /* ignore */
+  }
+}
+
+export function readLandingAttribution(): MarketingAttribution {
+  if (typeof window === 'undefined') return {}
+  try {
+    const raw = sessionStorage.getItem(LANDING_ATTRIBUTION_KEY)
+    if (!raw) return {}
+    const parsed: unknown = JSON.parse(raw)
+    if (typeof parsed !== 'object' || parsed === null) return {}
+    return parsed as MarketingAttribution
+  } catch {
+    return {}
+  }
+}
+
 export function clearPlannerEntryPrefill() {
   if (typeof window === 'undefined') return
   try {
-    for (const key of [NAME_KEY, EMAIL_KEY, COMPANY_KEY, TEAM_SIZE_KEY, META_LEAD_KEY]) {
+    for (const key of [NAME_KEY, EMAIL_KEY, COMPANY_KEY, TEAM_SIZE_KEY, META_LEAD_KEY, LANDING_ATTRIBUTION_KEY]) {
       sessionStorage.removeItem(key)
     }
   } catch {

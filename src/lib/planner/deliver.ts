@@ -2,8 +2,9 @@ import { put } from '@vercel/blob'
 
 import { site } from '@/content/site'
 import {
-  plannerLeadSourceFromUtm,
+  loopsSourceFromAttribution,
   sessionIsPlanOnly,
+  shouldSendPlanCompletedEvent,
   type PlannerTeamSize,
 } from '@/lib/planner/entry-params'
 import { signPdfLink } from '@/lib/planner/ids'
@@ -35,7 +36,7 @@ export async function deliverPlan(sessionId: string): Promise<void> {
 
   await incrementDeliveryAttempts(session.id)
   const attribution = (session.attribution || { variant: 'agent_planner' }) as PlannerAttribution
-  const loopsSource = plannerLeadSourceFromUtm(attribution.utm_medium)
+  const loopsSource = loopsSourceFromAttribution(attribution.utm_medium)
   const planOnly = sessionIsPlanOnly({
     teamSize: session.teamSize as PlannerTeamSize | null,
     leadSource: loopsSource,
@@ -122,20 +123,22 @@ export async function deliverPlan(sessionId: string): Promise<void> {
     }
 
     if (!session.loopsEventSentAt) {
-      await loops.sendEvent(
-        planCompletedEvent({
-          email: session.email,
-          userId: session.id,
-          planId: session.publicId,
-          planTitle: plan.title,
-          scopingUrl,
-          attribution,
-          teamSize: session.teamSize,
-          metaLeadId: session.metaLeadId,
-          planOnly,
-        }),
-        `${session.id}:event`,
-      )
+      if (shouldSendPlanCompletedEvent(planOnly)) {
+        await loops.sendEvent(
+          planCompletedEvent({
+            email: session.email,
+            userId: session.id,
+            planId: session.publicId,
+            planTitle: plan.title,
+            scopingUrl,
+            attribution,
+            teamSize: session.teamSize,
+            metaLeadId: session.metaLeadId,
+            planOnly: false,
+          }),
+          `${session.id}:event`,
+        )
+      }
       await markDeliveryField(session.id, { loopsEventSentAt: new Date() })
     }
 

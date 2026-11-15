@@ -1,5 +1,7 @@
-export const PLANNER_PLAN_ONLY_THANKS =
-  'Thank you for using the Agent Planner. Your plan is ready to read and download below.'
+export const PLANNER_PLAN_ONLY_READY =
+  'Your plan is ready. Read it below, or download a copy to share with your team.'
 
 export const PLANNER_PLAN_ONLY_FOLLOW_UP =
-  'If you would like to talk through what you have seen, reply to the email we sent and we will come back to you.'
+  "Want to talk it through? Reply to the email we sent and we'll get back to you."
+
+export const PLANNER_PLAN_ONLY_PDF_HEADING = 'Your first agent plan'

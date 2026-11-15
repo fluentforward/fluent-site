@@ -100,7 +100,7 @@ export const SENSITIVE_MESSAGE =
   'Please do not include personal, client or confidential data. Describe the process, not the people, and try again.'
 
 export const SCRIPTED_REFUSAL =
-  'We cannot turn that into a first-agent plan from what was sent. Describe a work process, or book a scoping call and we will tell you straight if an agent is the right answer.'
+  "We cannot turn that into a first-agent plan from what was sent. Describe a work process, or book a scoping call and we'll tell you straight if an agent is the right answer."
 
 export const PLANNER_COOKIE = 'ff_planner'
 export const PLANNER_COOKIE_MAX_AGE = 14 * 24 * 60 * 60

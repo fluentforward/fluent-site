@@ -49,6 +49,19 @@ function ensureGtagStub(): (...args: unknown[]) => void {
   return gtag
 }
 
+function agentPlannerGa4Config(measurementId: string): void {
+  const gtag = ensureGtagStub()
+  const origin = typeof window !== 'undefined' ? window.location.origin : ''
+  gtag('config', measurementId, {
+    page_path: '/agent-planner',
+    page_location: `${origin}/agent-planner`,
+  })
+}
+
+function isAgentPlannerRoute(): boolean {
+  return typeof window !== 'undefined' && window.location.pathname === '/agent-planner'
+}
+
 /** Load GA4 with Consent Mode v2 advanced: default denied, cookieless pings while denied. */
 export function ensureGa4ConsentMode(measurementId: string): void {
   if (ga4ConsentModeInitialized) return
@@ -61,7 +74,19 @@ export function ensureGa4ConsentMode(measurementId: string): void {
     `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`,
     'ff-ga4',
   )
-  gtag('config', measurementId)
+  if (isAgentPlannerRoute()) {
+    agentPlannerGa4Config(measurementId)
+  } else {
+    gtag('config', measurementId)
+  }
+}
+
+/** Consent-gated page view for Agent Planner (path only, never the query string). */
+export function sendAgentPlannerGa4PageView(measurementId: string): void {
+  if (!measurementId || typeof window === 'undefined') return
+  if (!isAgentPlannerRoute()) return
+  ensureGa4ConsentMode(measurementId)
+  agentPlannerGa4Config(measurementId)
 }
 
 export function gtagConsentStateFromChoice(choice: {
@@ -139,6 +164,9 @@ export function applyVendorConsent(consent: StoredCookieConsent | null): void {
     ensureGa4ConsentMode(vendorEnvIds.ga4MeasurementId)
     if (consent) {
       applyGtagConsentUpdate(consent)
+    }
+    if (consent?.analytics) {
+      sendAgentPlannerGa4PageView(vendorEnvIds.ga4MeasurementId)
     }
   }
 

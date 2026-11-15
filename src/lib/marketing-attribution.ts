@@ -67,6 +67,18 @@ export function clearMarketingAttribution(): void {
   }
 }
 
+/** UTMs and click ids from the current page URL only (no localStorage). */
+export function getMarketingAttributionFromCurrentUrl(): MarketingAttribution {
+  if (typeof window === 'undefined') return {}
+  const params = new URLSearchParams(window.location.search)
+  const merged: MarketingAttribution = {}
+  for (const key of MARKETING_ATTRIBUTION_QUERY_PARAMS) {
+    const value = params.get(key)
+    if (value) merged[key] = value
+  }
+  return merged
+}
+
 /** UTMs and click ids from the current page URL, with stored values as fallback. */
 export function getOutboundMarketingAttributionParams(): MarketingAttribution {
   if (typeof window === 'undefined') return {}

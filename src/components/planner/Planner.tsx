@@ -6,12 +6,13 @@ import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent } from
 import { rememberProblem, ScopeLink } from '@/components/booking/ScopeLink'
 import { Chevron } from '@/components/home/Mark'
 import { buttonClasses } from '@/components/ui/button-classes'
-import { getOutboundMarketingAttributionParams } from '@/lib/marketing-attribution'
+import { getMarketingAttributionFromCurrentUrl } from '@/lib/marketing-attribution'
 import { parsePlannerEntryFromSearch, stripPlannerPiiFromUrl } from '@/lib/planner/entry-params'
-import { vendorEnvIds } from '@/lib/vendors/env-ids'
 import {
   clearPlannerEntryPrefill,
+  readLandingAttribution,
   readPlannerEntryPrefill,
+  stashLandingAttribution,
   stashPlannerEntryPrefill,
 } from '@/lib/planner/entry-storage'
 import { trackPlannerEvent, trackPlannerLead } from '@/lib/vendors/track-planner'
@@ -75,6 +76,7 @@ export function Planner({
     if (entryBootstrapped.current || typeof window === 'undefined') return
     entryBootstrapped.current = true
     const entry = parsePlannerEntryFromSearch(new URL(window.location.href).searchParams)
+    const landingAttribution = getMarketingAttributionFromCurrentUrl()
     if (entry.problem) stashPlannerDraft(entry.problem)
     stashPlannerEntryPrefill({
       name: entry.name,
@@ -83,27 +85,25 @@ export function Planner({
       teamSize: entry.teamSize,
       metaLeadId: entry.metaLeadId,
     })
-    const prefill = readPlannerEntryPrefill()
-    void fetch('/api/agent-planner/entry', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({
-        size: prefill.teamSize,
-        metaLeadId: prefill.metaLeadId,
-        company: prefill.company,
-        email: prefill.email,
-        attribution: getOutboundMarketingAttributionParams(),
-      }),
-    })
+    stashLandingAttribution(landingAttribution)
     const next = stripPlannerPiiFromUrl(window.location.href)
     const current = `${window.location.pathname}${window.location.search}${window.location.hash}`
     if (next !== current) {
       window.history.replaceState(null, '', next)
     }
-    const measurementId = vendorEnvIds.ga4MeasurementId
-    if (measurementId && window.gtag) {
-      window.gtag('config', measurementId, { page_path: '/agent-planner' })
-    }
+    const prefill = readPlannerEntryPrefill()
+    void fetch('/api/agent-planner/entry', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      referrerPolicy: 'no-referrer',
+      body: JSON.stringify({
+        size: prefill.teamSize,
+        metaLeadId: prefill.metaLeadId,
+        company: prefill.company,
+        email: prefill.email,
+        attribution: landingAttribution,
+      }),
+    })
   }, [])
 
   useEffect(() => {
@@ -172,7 +172,7 @@ export function Planner({
       '/api/agent-planner/sessions',
       {
         problem,
-        attribution: getOutboundMarketingAttributionParams(),
+        attribution: readLandingAttribution(),
         entry: {
           size: prefill.teamSize,
           metaLeadId: prefill.metaLeadId,
@@ -599,7 +599,7 @@ export function Planner({
                 <p className="ffp-note">You will see the plan here. A copy arrives by email. Unsubscribe any time.</p>
                 {view.planOnly ? null : (
                   <p className="ffp-gate-book">
-                    Ready to build it?{' '}
+                    Ready to build this agent?{' '}
                     <ScopeLink
                       className="ffp-gate-booklink"
                       onOpen={() => {
