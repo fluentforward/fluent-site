@@ -88,8 +88,45 @@ export function teamSizeShowsScopingCta(teamSize: PlannerTeamSize | null): boole
   return min >= PLANNER_SCOPING_CTA_MIN_TEAM_SIZE
 }
 
-export function isPlanOnlyTeamSize(teamSize: PlannerTeamSize | null): boolean {
-  return !teamSizeShowsScopingCta(teamSize)
+export type PlannerPlanOnlyLeadSource = 'meta_form' | 'agent_planner'
+
+export type PlannerPlanOnlyInput = {
+  teamSize: PlannerTeamSize | null
+  /** When Matt narrows missing-size plan-only to Meta, pass lead source here. */
+  leadSource?: PlannerPlanOnlyLeadSource | null
+}
+
+/** When team size is absent, plan-only applies only to Meta instant form leads. */
+function missingTeamSizeUsesPlanOnly(input: PlannerPlanOnlyInput): boolean {
+  return input.leadSource === 'meta_form'
+}
+
+export function sessionIsPlanOnly(input: PlannerPlanOnlyInput): boolean {
+  if (input.teamSize) {
+    return !teamSizeShowsScopingCta(input.teamSize)
+  }
+  return missingTeamSizeUsesPlanOnly(input)
+}
+
+export function isPlanOnlyTeamSize(
+  teamSize: PlannerTeamSize | null,
+  leadSource?: PlannerPlanOnlyLeadSource | null,
+): boolean {
+  return sessionIsPlanOnly({ teamSize, leadSource })
+}
+
+export function plannerLeadSourceFromUtm(utmMedium: string | undefined): PlannerPlanOnlyLeadSource {
+  return utmMedium === 'instant_form' ? 'meta_form' : 'agent_planner'
+}
+
+export function sessionPlanOnlyFromAttribution(
+  teamSize: PlannerTeamSize | null,
+  attribution: { utm_medium?: string } | null | undefined,
+): boolean {
+  return sessionIsPlanOnly({
+    teamSize,
+    leadSource: plannerLeadSourceFromUtm(attribution?.utm_medium),
+  })
 }
 
 export function stripPlannerPiiFromUrl(href: string): string {

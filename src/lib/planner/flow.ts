@@ -17,8 +17,8 @@ import {
 } from '@/lib/planner/prompts'
 import { isEmptiedByRedaction, redactFreeText } from '@/lib/planner/redact'
 import {
-  isPlanOnlyTeamSize,
   normalizeTeamSizeParam,
+  sessionPlanOnlyFromAttribution,
   type PlannerTeamSize,
 } from '@/lib/planner/entry-params'
 import {
@@ -118,7 +118,7 @@ export function toPublicState(session: SessionRow | null, warning?: string): Pub
         email: session.email,
         name: session.name,
         emailed: session.phase === 'emailed',
-        planOnly: isPlanOnlyTeamSize(session.teamSize as PlannerTeamSize | null),
+        planOnly: sessionPlanOnlyFromAttribution(session.teamSize as PlannerTeamSize | null, session.attribution),
       }
     }
   }
@@ -142,7 +142,7 @@ export function toPublicState(session: SessionRow | null, warning?: string): Pub
       preview: plan
         ? { steps: plan.steps.slice(0, 2).map((step) => step.text).join(' '), impact: impactLine(plan.levers) }
         : null,
-      planOnly: isPlanOnlyTeamSize(session.teamSize as PlannerTeamSize | null),
+      planOnly: sessionPlanOnlyFromAttribution(session.teamSize as PlannerTeamSize | null, session.attribution),
       name: session.name || undefined,
       email: session.email || undefined,
       company: session.company || undefined,
@@ -417,6 +417,10 @@ export async function handleBooked(body: unknown): Promise<void> {
         userId: booked.id,
         firstName,
         scopingCallBooked: true,
+        planOnly: sessionPlanOnlyFromAttribution(
+          booked.teamSize as PlannerTeamSize | null,
+          booked.attribution,
+        ),
       }),
     )
     await loops.sendEvent(

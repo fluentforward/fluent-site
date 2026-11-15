@@ -7,6 +7,7 @@ import {
   normalizeTeamSizeParam,
   parsePlannerEntryFromSearch,
   parsePlannerProblemParam,
+  sessionIsPlanOnly,
   stripPlannerPiiFromUrl,
   teamSizeShowsScopingCta,
 } from '../src/lib/planner/entry-params.ts'
@@ -60,11 +61,19 @@ test('scoping CTA routing uses the named minimum team size', () => {
   assert.equal(PLANNER_SCOPING_CTA_MIN_TEAM_SIZE, 10)
   assert.equal(teamSizeShowsScopingCta(null), false)
   assert.equal(teamSizeShowsScopingCta('1-9'), false)
-  assert.equal(isPlanOnlyTeamSize('1-9'), true)
-  assert.equal(isPlanOnlyTeamSize(null), true)
   assert.equal(teamSizeShowsScopingCta('10-49'), true)
   assert.equal(teamSizeShowsScopingCta('50-199'), true)
   assert.equal(teamSizeShowsScopingCta('200+'), true)
+})
+
+test('plan-only routing: organic missing size keeps scoping; Meta missing is plan-only; 1-9 always plan-only', () => {
+  assert.equal(sessionIsPlanOnly({ teamSize: null, leadSource: 'agent_planner' }), false)
+  assert.equal(sessionIsPlanOnly({ teamSize: null, leadSource: 'meta_form' }), true)
+  assert.equal(sessionIsPlanOnly({ teamSize: null }), false)
+  assert.equal(isPlanOnlyTeamSize('1-9', 'agent_planner'), true)
+  assert.equal(isPlanOnlyTeamSize('1-9', 'meta_form'), true)
+  assert.equal(sessionIsPlanOnly({ teamSize: '10-49', leadSource: 'agent_planner' }), false)
+  assert.equal(sessionIsPlanOnly({ teamSize: '10-49', leadSource: 'meta_form' }), false)
 })
 
 test('stripPlannerPiiFromUrl removes PII and problem keys but keeps UTMs', () => {

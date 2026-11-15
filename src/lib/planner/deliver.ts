@@ -1,12 +1,17 @@
 import { put } from '@vercel/blob'
 
 import { site } from '@/content/site'
-import { isPlanOnlyTeamSize, type PlannerTeamSize } from '@/lib/planner/entry-params'
+import {
+  plannerLeadSourceFromUtm,
+  sessionIsPlanOnly,
+  type PlannerTeamSize,
+} from '@/lib/planner/entry-params'
 import { signPdfLink } from '@/lib/planner/ids'
 import { loopsClientFromEnv } from '@/lib/planner/loops'
 import {
   contactUpdateBody,
   planCompletedEvent,
+  planOnlyTransactionalBody,
   planTransactionalBody,
   staffTransactionalBody,
 } from '@/lib/planner/loops-payload'
@@ -29,7 +34,12 @@ export async function deliverPlan(sessionId: string): Promise<void> {
   if (!plan || !session.name) return
 
   await incrementDeliveryAttempts(session.id)
-  const planOnly = isPlanOnlyTeamSize(session.teamSize as PlannerTeamSize | null)
+  const attribution = (session.attribution || { variant: 'agent_planner' }) as PlannerAttribution
+  const loopsSource = plannerLeadSourceFromUtm(attribution.utm_medium)
+  const planOnly = sessionIsPlanOnly({
+    teamSize: session.teamSize as PlannerTeamSize | null,
+    leadSource: loopsSource,
+  })
   const scopingUrl = `${site.url}/contact?plan=${encodeURIComponent(session.publicId)}`
   const firstName = session.name.trim().split(/\s+/)[0] || 'there'
 
@@ -52,14 +62,16 @@ export async function deliverPlan(sessionId: string): Promise<void> {
     }
 
     const loops = loopsClientFromEnv()
-    const attribution = (session.attribution || { variant: 'agent_planner' }) as PlannerAttribution
-    const loopsSource = attribution.utm_medium === 'instant_form' ? 'meta_form' : 'agent_planner'
     const hasKey = Boolean(process.env.LOOPS_API_KEY?.trim())
     const transactionalId = process.env.LOOPS_PLAN_TRANSACTIONAL_ID?.trim()
+    const planOnlyTransactionalId = process.env.LOOPS_PLAN_ONLY_TRANSACTIONAL_ID?.trim()
     const staffId = process.env.LOOPS_STAFF_TRANSACTIONAL_ID?.trim()
     const notifyEmail = process.env.PLANNER_NOTIFY_EMAIL?.trim()
 
-    if (hasKey && !transactionalId) {
+    if (hasKey && planOnly && !planOnlyTransactionalId) {
+      throw new Error('LOOPS_PLAN_ONLY_TRANSACTIONAL_ID is not set')
+    }
+    if (hasKey && !planOnly && !transactionalId) {
       throw new Error('LOOPS_PLAN_TRANSACTIONAL_ID is not set')
     }
 
@@ -78,20 +90,34 @@ export async function deliverPlan(sessionId: string): Promise<void> {
       )
     } catch (error) {
       console.error('[planner] loops contact', session.id, error)
+      throw error
     }
 
     if (!session.loopsPlanSentAt) {
-      await loops.sendTransactional(
-        planTransactionalBody({
-          email: session.email,
-          transactionalId: transactionalId || 'local-log',
-          firstName,
-          planTitle: plan.title,
-          scopingUrl,
-          downloadUrl,
-        }),
-        `${session.id}:plan`,
-      )
+      if (planOnly) {
+        await loops.sendTransactional(
+          planOnlyTransactionalBody({
+            email: session.email,
+            transactionalId: planOnlyTransactionalId || 'local-log',
+            firstName,
+            planTitle: plan.title,
+            downloadUrl,
+          }),
+          `${session.id}:plan-only`,
+        )
+      } else {
+        await loops.sendTransactional(
+          planTransactionalBody({
+            email: session.email,
+            transactionalId: transactionalId || 'local-log',
+            firstName,
+            planTitle: plan.title,
+            scopingUrl,
+            downloadUrl,
+          }),
+          `${session.id}:plan`,
+        )
+      }
       await markDeliveryField(session.id, { loopsPlanSentAt: new Date() })
     }
 

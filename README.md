@@ -59,6 +59,21 @@ Branded form uses Demio `PUT /api/v1/event/register` with event id **1021063**, 
 
 Redeploy Production after changing public env vars so the client build picks them up.
 
+### Agent Planner (`/agent-planner`)
+
+Full-plan and nurture email run through Loops when `LOOPS_API_KEY` is set. Copy `.env.example` for local reference.
+
+| Variable | Purpose |
+| --- | --- |
+| `LOOPS_API_KEY` | Loops API key (server only) |
+| `LOOPS_PLAN_TRANSACTIONAL_ID` | Transactional email with scoping CTA (`scopingUrl` + `downloadUrl`) |
+| `LOOPS_PLAN_ONLY_TRANSACTIONAL_ID` | Plan-only transactional (`cmwhjolly0joz0j00um9nuu6z`); `downloadUrl` only, no scoping button |
+| `LOOPS_STAFF_TRANSACTIONAL_ID` | Internal notify when a plan is claimed (optional) |
+| `PLANNER_NOTIFY_EMAIL` | Inbox for staff transactional |
+| `PLANNER_PDF_SIGNING_SECRET` | HMAC secret for signed PDF download links |
+| `PLANNER_ADMIN_TOKEN` | Password for `/internal/planner` |
+| `DATABASE_URL` | Postgres (Neon) for planner sessions |
+
 ## Structure
 
 ```

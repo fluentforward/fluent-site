@@ -42,7 +42,7 @@ export function contactUpdateBody(input: {
   teamSize?: string | null
   metaLeadId?: string | null
   source?: string
-  planOnly?: boolean
+  planOnly: boolean
 }): Record<string, unknown> {
   const body: Record<string, unknown> = {
     email: input.email,
@@ -50,10 +50,10 @@ export function contactUpdateBody(input: {
     firstName: input.firstName,
     source: input.source || 'agent_planner',
     scopingCallBooked: input.scopingCallBooked,
+    planOnly: input.planOnly,
   }
   if (input.teamSize) body.teamSize = input.teamSize
   if (input.metaLeadId) body.metaLeadId = input.metaLeadId
-  if (typeof input.planOnly === 'boolean') body.planOnly = input.planOnly
   return body
 }
 
@@ -119,6 +119,25 @@ export function planTransactionalBody(input: {
       firstName: input.firstName,
       planTitle: input.planTitle,
       scopingUrl: input.scopingUrl,
+      downloadUrl: input.downloadUrl,
+    },
+  }
+}
+
+export function planOnlyTransactionalBody(input: {
+  email: string
+  transactionalId: string
+  firstName: string
+  planTitle: string
+  downloadUrl: string
+}): Record<string, unknown> {
+  return {
+    email: input.email,
+    transactionalId: input.transactionalId,
+    addToAudience: true,
+    dataVariables: {
+      firstName: input.firstName,
+      planTitle: input.planTitle,
       downloadUrl: input.downloadUrl,
     },
   }
