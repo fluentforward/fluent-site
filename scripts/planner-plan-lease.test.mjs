@@ -60,3 +60,12 @@ test('starting a plan reuses the cookie session only for the tab that started it
   assert.equal(canReuseSessionForStart({ ...open, freeTextPurgedAt: new Date() }, open.publicId), false)
   assert.equal(canReuseSessionForStart(null, open.publicId), false)
 })
+
+test('only a tab with its own session ref waits for the session check on load', async () => {
+  const { needsSessionCheck, SESSION_CHECK_TIMEOUT_MS } = await import('../src/lib/planner/session-ref.ts')
+  assert.equal(needsSessionCheck(''), false, 'a new tab shows the form straight away')
+  assert.equal(needsSessionCheck(null), false)
+  assert.equal(needsSessionCheck('bad ref!'), false)
+  assert.equal(needsSessionCheck('Dd6GOnAbCdEf1234'), true)
+  assert.ok(SESSION_CHECK_TIMEOUT_MS > 0 && SESSION_CHECK_TIMEOUT_MS <= 10_000)
+})

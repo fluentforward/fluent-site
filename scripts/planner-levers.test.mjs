@@ -233,3 +233,53 @@ test('the score intro must not name a lever scored none', () => {
   assert.equal(scoreIntroFits('Capacity is scored high.', levers), false)
   assert.equal(defaultScoreIntro(levers), 'The strongest lever is capacity. The agent does that work itself.')
 })
+
+test('a chasing agent whose plan mentions a dashboard keeps capacity direct (Rachel, 16 Nov)', () => {
+  const source =
+    'New matters at our Leeds law firm stall while paralegals chase ID, engagement letters and source of funds. It takes one to two weeks per matter.'
+  const levers = [
+    { lever: 'cash', impact: 'low', path: 'direct', why: 'No temps or contractors were mentioned.' },
+    {
+      lever: 'capacity',
+      impact: 'medium',
+      path: 'via_decisions',
+      why: 'Paralegals spend one to two weeks per matter chasing; the agent absorbs that routine work.',
+      baseline: 'Days from matter open to intake complete, last month',
+      check: 'The same figure after the agent has run',
+      ownerRole: 'Head of operations',
+    },
+    { lever: 'working_capital', impact: 'none', path: 'via_decisions', why: 'x' },
+    { lever: 'revenue', impact: 'low', path: 'direct', why: 'No growth constraint was described.' },
+  ]
+  const outcome =
+    'When a new matter opens in Clio, the agent sends and chases all intake requests, then surfaces an outstanding-items dashboard for each matter.'
+  const result = applyLeverRules({
+    levers,
+    source,
+    title: 'Matter Intake Chasing Agent',
+    problem: `${outcome}\n${source}`,
+    betterFirst: null,
+  })
+  const capacity = byId(result, 'capacity')
+  assert.equal(capacity.path, 'direct')
+  assert.equal(capacity.impact, 'medium')
+  assert.equal(capacity.reviewAt, '30 days')
+  assert.equal(byId(result, 'cash').path, 'direct', 'the dashboard does not turn the plan into a reporting agent')
+})
+
+test('a reporting agent that sends a briefing is still via decisions', () => {
+  const source = "Partners can't see what is happening across matters. We want a weekly management report."
+  const result = applyLeverRules({
+    levers: [
+      { lever: 'cash', impact: 'none', path: 'direct', why: 'x' },
+      { lever: 'capacity', impact: 'high', path: 'direct', why: 'Two days a month go on the report.' },
+      { lever: 'working_capital', impact: 'none', path: 'direct', why: 'x' },
+      { lever: 'revenue', impact: 'none', path: 'direct', why: 'x' },
+    ],
+    source,
+    title: 'Weekly Partner Briefing Agent',
+    problem: `The agent collects the figures, drafts a summary and sends partners a weekly briefing.\n${source}`,
+    betterFirst: null,
+  })
+  assert.equal(byId(result, 'capacity').path, 'via_decisions')
+})

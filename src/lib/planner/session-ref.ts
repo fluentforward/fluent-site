@@ -42,3 +42,14 @@ export function clearPlannerSessionRef() {
     /* ignore */
   }
 }
+
+/** How long a resuming tab waits for the session check before showing the start form. */
+export const SESSION_CHECK_TIMEOUT_MS = 8_000
+
+/**
+ * Whether the page needs to ask the server for this tab's session on load. The server only
+ * resumes the session matching the tab's ref, so a tab without one would always get "empty".
+ */
+export function needsSessionCheck(ref: string | null | undefined): boolean {
+  return Boolean(normalizePlannerSessionRef(ref))
+}
