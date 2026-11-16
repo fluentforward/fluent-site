@@ -4,43 +4,38 @@ import { test } from 'node:test'
 import {
   commercialsNote,
   gaveUpContact,
+  gaveUpCopyForSession,
   plannerGaveUpCopy,
   showsBookCall,
 } from '../src/lib/planner/plan-only-copy.ts'
 
 test('teams of 10 or more are offered a call when the plan gives up', () => {
-  for (const emailed of [true, false]) {
-    const copy = plannerGaveUpCopy({ planOnly: false, emailed })
-    assert.equal(copy.message, "The plan didn't come together this time. Book a call and we'll work through it with you.")
-    assert.equal(copy.contact, 'book')
-    assert.equal(showsBookCall(copy.contact), true)
-  }
+  const copy = plannerGaveUpCopy({ planOnly: false })
+  assert.equal(copy.message, "The plan didn't come together this time. Book a call and we'll work through it with you.")
+  assert.equal(copy.contact, 'book')
+  assert.equal(showsBookCall(copy.contact), true)
 })
 
-test('plan-only visitors we have emailed are asked to reply, with no call button', () => {
-  const copy = plannerGaveUpCopy({ planOnly: true, emailed: true })
-  assert.equal(
-    copy.message,
-    "The plan didn't come together this time. Try describing a different process, or reply to our email and we'll help.",
-  )
-  assert.equal(copy.contact, 'reply')
-  assert.equal(showsBookCall(copy.contact), false)
-})
-
-test('plan-only visitors with no email from us get our address, with no call button', () => {
-  const copy = plannerGaveUpCopy({ planOnly: true, emailed: false })
+test('plan-only visitors always get our address, with no call button', () => {
+  const copy = plannerGaveUpCopy({ planOnly: true })
   assert.equal(
     copy.message,
     "The plan didn't come together this time. Try describing a different process, or email us at hello@fluentforward.com and we'll help.",
   )
   assert.equal(copy.contact, 'mailto')
   assert.equal(showsBookCall(copy.contact), false)
+  assert.ok(!copy.message.includes('reply to our email'))
+})
+
+test('the session copy follows team size and the plan-only route', () => {
+  assert.equal(gaveUpCopyForSession({ teamSize: '1-9', attribution: {} }).contact, 'mailto')
+  assert.equal(gaveUpCopyForSession({ teamSize: '10-49', attribution: {} }).contact, 'book')
 })
 
 test('ordinary errors keep the call button, and unknown contacts fall back to the address', () => {
   assert.equal(showsBookCall(undefined), true)
-  assert.equal(gaveUpContact('reply'), 'reply')
-  assert.equal(gaveUpContact('nonsense'), 'mailto')
+  assert.equal(gaveUpContact('book'), 'book')
+  assert.equal(gaveUpContact('reply'), 'mailto')
   assert.equal(gaveUpContact(undefined), 'mailto')
 })
 
@@ -51,7 +46,7 @@ test('the PDF commercials note depends on the route', () => {
 
 test('the copy has no em dashes', () => {
   const lines = [
-    ...[true, false].flatMap((planOnly) => [true, false].map((emailed) => plannerGaveUpCopy({ planOnly, emailed }).message)),
+    ...[true, false].map((planOnly) => plannerGaveUpCopy({ planOnly }).message),
     commercialsNote(true),
     commercialsNote(false),
   ]

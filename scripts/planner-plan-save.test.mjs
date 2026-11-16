@@ -8,10 +8,10 @@ import { drizzle } from 'drizzle-orm/pglite'
 import { setDatabaseForTests } from '../src/db/index.ts'
 import * as schema from '../src/db/schema.ts'
 import { PLAN_LEASE_MS } from '../src/lib/planner/plan-lease.ts'
+import { gaveUpCopyForSession } from '../src/lib/planner/plan-only-copy.ts'
 import {
   acquirePlanLease,
   getSessionById,
-  hasRecordedPlanEmail,
   insertSession,
   markDeliveryField,
   mergeSessionEntry,
@@ -115,16 +115,17 @@ test('a failed job releases its lock and counts the failure, and the next lock k
   assert.equal(again.partialPlan.planFailures, 1)
 })
 
-test('an email counts as sent only once a plan email to that address is recorded', async () => {
+test('a plan-only session that gives up gets the mailto line, even if its address had a plan email elsewhere', async () => {
   const address = `lead-${Date.now()}@example.com`
-  assert.equal(await hasRecordedPlanEmail(address), false)
-  assert.equal(await hasRecordedPlanEmail(null), false)
-  const known = await mergeSessionEntry(await fresh(), { leadEmail: address })
-  assert.equal(await hasRecordedPlanEmail(address), false, 'knowing the address is not a send')
-  await markDeliveryField(known.id, { loopsEventSentAt: new Date() })
-  assert.equal(await hasRecordedPlanEmail(address), false, 'a Loops event alone is not an email')
-  await markDeliveryField(known.id, { loopsPlanSentAt: new Date() })
-  assert.equal(await hasRecordedPlanEmail(address), true)
-  assert.equal(await hasRecordedPlanEmail(`  ${address.toUpperCase()} `), true, 'matching ignores case and spaces')
-  assert.equal(await hasRecordedPlanEmail('someone-else@example.com'), false)
+  const planOnly = { teamSize: '1-9' }
+  const earlier = await mergeSessionEntry(await fresh(), { leadEmail: address, ...planOnly })
+  await markDeliveryField(earlier.id, { loopsPlanSentAt: new Date(), loopsEventSentAt: new Date() })
+  const now = await mergeSessionEntry(await fresh(), { leadEmail: address, ...planOnly })
+  const reread = await getSessionById(now.id)
+  assert.equal(reread.email, address)
+  const copy = gaveUpCopyForSession(reread)
+  assert.equal(copy.contact, 'mailto')
+  assert.match(copy.message, /email us at hello@fluentforward\.com/)
+  // Even the session that did get the email shows the same line, so the page reveals nothing about an address.
+  assert.deepEqual(gaveUpCopyForSession(await getSessionById(earlier.id)), copy)
 })

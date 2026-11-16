@@ -44,27 +44,6 @@ export async function getSessionById(id: string): Promise<PlannerSessionRow | nu
   return rows[0] ?? null
 }
 
-/**
- * True when Loops has accepted a plan email to this address from us: a planner session
- * with the same email has loops_plan_sent_at set. That column is written only after the
- * Loops transactional API call succeeds, so it is a recorded send, not just a known address.
- */
-export async function hasRecordedPlanEmail(email: string | null | undefined): Promise<boolean> {
-  const normalized = email?.trim().toLowerCase()
-  if (!normalized) return false
-  const rows = await getDb()
-    .select({ id: plannerSessions.id })
-    .from(plannerSessions)
-    .where(
-      and(
-        sql`lower(${plannerSessions.emailNormalized}) = ${normalized}`,
-        isNotNull(plannerSessions.loopsPlanSentAt),
-      ),
-    )
-    .limit(1)
-  return rows.length > 0
-}
-
 export async function insertSession(input: {
   tokenHash: string
   publicId: string

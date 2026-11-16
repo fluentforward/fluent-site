@@ -1,3 +1,5 @@
+import { sessionPlanOnlyFromAttribution, type PlannerTeamSize } from '@/lib/planner/entry-params'
+
 export const PLANNER_PLAN_ONLY_READY =
   'Your plan is ready. Read it below, or download a copy to share with your team.'
 
@@ -16,14 +18,14 @@ export function commercialsNote(planOnly: boolean): string {
 
 export const PLANNER_CONTACT_EMAIL = 'hello@fluentforward.com'
 
-/** How the gave-up page offers help: a call (10+), a reply to our email, or a mailto link. */
-export type PlannerGaveUpContact = 'book' | 'reply' | 'mailto'
+/** How the gave-up page offers help: a call (10 or more) or a mailto link (plan-only, 1 to 9). */
+export type PlannerGaveUpContact = 'book' | 'mailto'
 
 /**
- * Copy for the page after the retry cap. `emailed` must come from a recorded send
- * (see hasRecordedPlanEmail), never from merely knowing the visitor's address.
+ * Copy for the page after the retry cap. It depends only on the route (team size), never on
+ * whether an address has had email from us, so the page cannot be used to probe addresses.
  */
-export function plannerGaveUpCopy(input: { planOnly: boolean; emailed: boolean }): {
+export function plannerGaveUpCopy(input: { planOnly: boolean }): {
   message: string
   contact: PlannerGaveUpContact
 } {
@@ -33,22 +35,25 @@ export function plannerGaveUpCopy(input: { planOnly: boolean; emailed: boolean }
       contact: 'book',
     }
   }
-  if (input.emailed) {
-    return {
-      message:
-        "The plan didn't come together this time. Try describing a different process, or reply to our email and we'll help.",
-      contact: 'reply',
-    }
-  }
   return {
     message: `The plan didn't come together this time. Try describing a different process, or email us at ${PLANNER_CONTACT_EMAIL} and we'll help.`,
     contact: 'mailto',
   }
 }
 
+/** The gave-up copy for a stored session, using the same plan-only rule as the rest of the planner. */
+export function gaveUpCopyForSession(session: {
+  teamSize: string | null
+  attribution: { utm_medium?: string } | null | undefined
+}) {
+  return plannerGaveUpCopy({
+    planOnly: sessionPlanOnlyFromAttribution(session.teamSize as PlannerTeamSize | null, session.attribution),
+  })
+}
+
 /** Reads the contact the server chose for the gave-up page. Unknown values fall back to the mailto line. */
 export function gaveUpContact(value: unknown): PlannerGaveUpContact {
-  return value === 'book' || value === 'reply' || value === 'mailto' ? value : 'mailto'
+  return value === 'book' ? 'book' : 'mailto'
 }
 
 /** Book a call shows on ordinary errors (no contact set) and for teams of 10 or more. */
