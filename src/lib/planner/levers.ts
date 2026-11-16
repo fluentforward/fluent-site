@@ -22,6 +22,14 @@ const OPERATIONAL = /\b(take-?off|invoice match|accounts payable|cost plans?)\b/
 
 const INSIGHTS = /\b(insights?|briefings?|dashboards?|management reports?|can(?:not|'t) see what)\b/i
 
+/**
+ * The agent carries out the task itself (chasing, booking, drafting, matching and so on).
+ * Such an agent is not a reporting agent, even if its plan mentions a dashboard of what it did.
+ * "Sends", "collects" or "drafts" alone are not enough: a reporting agent collects figures and drafts a briefing.
+ */
+const DOES_WORK =
+  /\b(chas(?:e|es|ed|ing)|chasers?|follows? up|following up|reminders?|books? (?:in |the )?(?:calls?|meetings?|appointments?|slots?)|booking|drafts? (?:the )?(?:replies|responses|letters|emails|invoices)|reconcil\w*|filing|matching|requests? (?:documents?|information|signatures?|ID)|takes? (?:on|over) the)\b/i
+
 const SPECIFIC =
   /\b(xero|sage|salesforce|hubspot|crm|spreadsheet|invoice|take-?off|cost plan|accounts payable)\b/i
 
@@ -140,7 +148,11 @@ export function applyLeverRules(input: {
   betterFirst?: string | null
 }): { levers: LeverScore[]; betterFirst: string | null } {
   const blob = `${input.title}\n${input.problem}\n${input.source}`
-  const reporting = isReporting(blob)
+  // Whether this is a reporting agent comes from the visitor's own words and the agent's name,
+  // not from incidental mentions in the plan (an onboarding chaser that "surfaces a dashboard").
+  // Only the visitor's words and the agent's name count, never the model's own quote or outcome.
+  const doesWork = DOES_WORK.test(`${input.title}\n${input.source}`)
+  const reporting = isReporting(`${input.title}\n${input.source}`) && !doesWork
   const growth = GROWTH_OR_HIRE.test(blob)
   const timeOrCost = TIME_OR_COST.test(blob)
   const billing = BILLING.test(blob)
@@ -156,6 +168,9 @@ export function applyLeverRules(input: {
     if (reporting) {
       path = 'via_decisions'
       impact = cap(impact, 'medium')
+    } else if (id === 'capacity' && doesWork) {
+      // Capacity comes from the work the agent takes on, so an agent doing the task is direct.
+      path = 'direct'
     }
     if (id === 'working_capital' && !billing) {
       impact = 'none'

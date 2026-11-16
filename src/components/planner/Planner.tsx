@@ -26,7 +26,10 @@ import {
 } from '@/lib/planner/plan-only-copy'
 import {
   clearPlannerSessionRef,
+  needsSessionCheck,
   normalizePlannerSessionRef,
+  SESSION_CHECK_TIMEOUT_MS,
+  shouldShowLateSession,
   readPlannerSessionRef,
   stashPlannerSessionRef,
 } from '@/lib/planner/session-ref'
@@ -86,8 +89,10 @@ export function Planner({
   initialProblem: string
   seedFromUrl?: boolean
 }) {
-  const [view, setView] = useState<View>({ kind: 'loading' })
-  const [status, setStatus] = useState('Loading the planner')
+  // The start form renders straight away, in the server HTML too. Only a tab that already has a
+  // session (a reload mid-plan) waits for the session check, and that check has a deadline.
+  const [view, setView] = useState<View>({ kind: 'compose', problem: initialProblem })
+  const [status, setStatus] = useState('')
   const desktop = useDesktop()
   const problemRef = useRef<HTMLTextAreaElement>(null)
   const answerRef = useRef<HTMLTextAreaElement>(null)
@@ -117,6 +122,8 @@ export function Planner({
   }
 
   const seededStart = useRef(false)
+  /** Set once the visitor types or starts anything, so a late session check never replaces their work. */
+  const visitorActed = useRef(false)
   const entryBootstrapped = useRef(false)
 
   useLayoutEffect(() => {
@@ -154,45 +161,78 @@ export function Planner({
     })
   }, [])
 
+  useLayoutEffect(() => {
+    // A tab resuming its own session shows the wait line instead of the form while it checks.
+    if (needsSessionCheck(currentRef())) setView({ kind: 'loading' })
+    // currentRef reads sessionStorage, which only exists after mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- run once on mount
+  }, [])
+
   useEffect(() => {
     let cancelled = false
-    fetch(sessionUrl(), { cache: 'no-store' })
+    const fallback = initialProblem || readPlannerDraft()
+    const compose = () => {
+      if (!seededStart.current && seedFromUrl && fallback.length >= 20) {
+        seededStart.current = true
+        void start(fallback)
+        return
+      }
+      setView({ kind: 'compose', problem: fallback })
+      setStatus('')
+    }
+    if (!needsSessionCheck(currentRef())) {
+      // A new tab has no session to resume (the server only resumes the tab's own ref), so skip the round trip.
+      compose()
+      return () => {
+        cancelled = true
+      }
+    }
+    fetch(sessionUrl(), { cache: 'no-store', signal: AbortSignal.timeout(SESSION_CHECK_TIMEOUT_MS) })
       .then((response) => response.json())
       .then((body: unknown) => {
         if (cancelled) return
         rememberRefFrom(body)
         const record = body && typeof body === 'object' ? (body as Record<string, unknown>) : {}
-        const fallback = initialProblem || readPlannerDraft()
         const next = viewFromBody(body, fallback)
         if (next.kind === 'writing') {
           void writePlan(next.problem)
           return
         }
-        if (
-          !seededStart.current &&
-          seedFromUrl &&
-          fallback.length >= 20 &&
-          record.state === 'empty' &&
-          next.kind === 'compose'
-        ) {
-          seededStart.current = true
-          void start(fallback)
+        if (record.state === 'empty' && next.kind === 'compose') {
+          compose()
           return
         }
         setView(next)
         setStatus(statusFor(next))
       })
       .catch(() => {
+        // A slow or failed check must not leave the visitor on the wait line.
         if (cancelled) return
-        const fallback = initialProblem || readPlannerDraft()
-        if (!seededStart.current && seedFromUrl && fallback.length >= 20) {
-          seededStart.current = true
-          void start(fallback)
+        compose()
+        if (!seededStart.current) void recheck()
+      })
+    /**
+     * One more look after the timeout. A plan that was still being written (or finished late)
+     * for this tab is shown, unless the visitor has already typed or started something.
+     */
+    const recheck = async () => {
+      try {
+        const response = await fetch(sessionUrl(), { cache: 'no-store', signal: AbortSignal.timeout(15_000) })
+        const body = (await response.json()) as unknown
+        if (cancelled || visitorActed.current) return
+        const next = viewFromBody(body, fallback)
+        if (!shouldShowLateSession(next.kind)) return
+        rememberRefFrom(body)
+        if (next.kind === 'writing') {
+          void writePlan(next.problem)
           return
         }
-        setView({ kind: 'compose', problem: fallback })
-        setStatus('')
-      })
+        setView(next)
+        setStatus(statusFor(next))
+      } catch {
+        /* The form is already showing. */
+      }
+    }
     return () => {
       cancelled = true
     }
@@ -213,6 +253,7 @@ export function Planner({
   }, [gateProblem])
 
   async function start(problem: string) {
+    visitorActed.current = true
     clearPlannerDraft()
     setView({ kind: 'working', problem, label: 'Reading that.' })
     setStatus('Reading that.')
@@ -412,6 +453,7 @@ export function Planner({
   }
 
   async function startAgain() {
+    visitorActed.current = true
     clearPlannerDraft()
     clearPlannerSessionRef()
     tabRef.current = ''
@@ -481,9 +523,10 @@ export function Planner({
                   value={view.problem}
                   placeholder={PLACEHOLDER}
                   aria-describedby="planner-privacy"
-                  onChange={(event) =>
+                  onChange={(event) => {
+                    visitorActed.current = true
                     setView({ kind: 'compose', problem: event.target.value, warning: undefined })
-                  }
+                  }}
                   onKeyDown={submitOnShortcut}
                 />
               </div>

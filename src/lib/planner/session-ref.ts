@@ -42,3 +42,23 @@ export function clearPlannerSessionRef() {
     /* ignore */
   }
 }
+
+/** How long a resuming tab waits for the session check before showing the start form. */
+export const SESSION_CHECK_TIMEOUT_MS = 8_000
+
+/**
+ * Whether the page needs to ask the server for this tab's session on load. The server only
+ * resumes the session matching the tab's ref, so a tab without one would always get "empty".
+ */
+export function needsSessionCheck(ref: string | null | undefined): boolean {
+  return Boolean(normalizePlannerSessionRef(ref))
+}
+
+/**
+ * After the session check timed out and the start form is showing, a second check may still
+ * find this tab's session. Only states worth replacing the form with are shown: a plan being
+ * written, a question, the email gate, a finished plan, or a refusal. "empty" keeps the form.
+ */
+export function shouldShowLateSession(kind: string): boolean {
+  return kind === 'writing' || kind === 'question' || kind === 'details' || kind === 'sent' || kind === 'refusal'
+}
