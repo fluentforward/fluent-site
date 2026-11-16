@@ -23,6 +23,7 @@ import {
   sessionPlanOnlyFromAttribution,
   type PlannerTeamSize,
 } from '@/lib/planner/entry-params'
+import { plannerGaveUpCopy, type PlannerGaveUpContact } from '@/lib/planner/plan-only-copy'
 import {
   acquirePlanLease,
   appendAnswer,
@@ -32,6 +33,7 @@ import {
   claimSession,
   databaseReady,
   getSessionById,
+  hasRecordedPlanEmail,
   insertSession,
   loadSessionFromToken,
   logEvent,
@@ -91,7 +93,7 @@ export type PublicState = (
       planOnly: boolean
     }
   | { state: 'rate_limited'; message: string }
-  | { state: 'error'; message: string }
+  | { state: 'error'; message: string; gaveUp?: boolean; contact?: PlannerGaveUpContact }
 ) & { ref?: string }
 
 export type FlowResult =
@@ -110,16 +112,30 @@ export function toPublicState(session: SessionRow | null, warning?: string): Pub
   return { ...state, ref: session.publicId }
 }
 
-const PLAN_GAVE_UP =
-  'The plan did not come together this time. Book a call and we will work through it with you.'
+function gaveUp(session: SessionRow): boolean {
+  return !planLeaseLive(session.partialPlan) && planFailures(session.partialPlan) >= MAX_PLAN_FAILURES
+}
 
-/** A session waiting for its plan. After MAX_PLAN_FAILURES failed jobs, the page stops retrying. */
-function writingState(session: SessionRow): PublicState {
-  const active = planLeaseLive(session.partialPlan)
-  if (!active && planFailures(session.partialPlan) >= MAX_PLAN_FAILURES) {
-    return { state: 'error', message: PLAN_GAVE_UP, ref: session.publicId }
+function sessionPlanOnly(session: SessionRow): boolean {
+  return sessionPlanOnlyFromAttribution(session.teamSize as PlannerTeamSize | null, session.attribution)
+}
+
+/**
+ * A session waiting for its plan. After MAX_PLAN_FAILURES failed jobs, the page stops retrying.
+ * `emailed` says whether we have a recorded plan email to this address (hasRecordedPlanEmail).
+ */
+function writingState(session: SessionRow, emailed = false): PublicState {
+  if (gaveUp(session)) {
+    const copy = plannerGaveUpCopy({ planOnly: sessionPlanOnly(session), emailed })
+    return { state: 'error', message: copy.message, gaveUp: true, contact: copy.contact, ref: session.publicId }
   }
-  return { state: 'writing', problem: session.problem, active, ref: session.publicId }
+  return { state: 'writing', problem: session.problem, active: planLeaseLive(session.partialPlan), ref: session.publicId }
+}
+
+/** writingState, with the recorded-send lookup done when the session has given up. */
+async function resolvedWritingState(session: SessionRow): Promise<PublicState> {
+  if (!gaveUp(session)) return writingState(session)
+  return writingState(session, await hasRecordedPlanEmail(session.email))
 }
 
 function baseState(session: SessionRow | null, warning?: string): PublicState {
@@ -317,7 +333,7 @@ export async function handleGet(ref?: string | null): Promise<FlowResult> {
   if (!session || !canResumeSession(session.publicId, ref)) {
     return { kind: 'json', status: 200, body: { state: 'empty' } }
   }
-  if (needsPlan(session)) return { kind: 'json', status: 200, body: writingState(session) }
+  if (needsPlan(session)) return { kind: 'json', status: 200, body: await resolvedWritingState(session) }
   if (session && needsHook(session)) session = await withHook(session)
   return { kind: 'json', status: 200, body: toPublicState(session) }
 }
@@ -338,15 +354,19 @@ export async function handlePrepare(): Promise<FlowResult> {
     const ready = readPlanHook(session.partialPlan) ? session : await withHook(session)
     return { kind: 'json', status: 200, body: toPublicState(ready) }
   }
-  if (!planLeaseLive(session.partialPlan) && planFailures(session.partialPlan) >= MAX_PLAN_FAILURES) {
+  if (gaveUp(session)) {
     // Several jobs have already failed for this session. Stop spending model calls on it.
-    return { kind: 'json', status: 200, body: writingState(session) }
+    return { kind: 'json', status: 200, body: await resolvedWritingState(session) }
   }
   const leased = await acquirePlanLease(session)
   if (!leased) {
     // Another request is already writing this plan (a browser retry, a second tab), or it just finished.
     const current = (await getSessionById(session.id)) ?? session
-    return { kind: 'json', status: needsPlan(current) ? 202 : 200, body: toPublicState(current) }
+    if (needsPlan(current)) {
+      const body = await resolvedWritingState(current)
+      return { kind: 'json', status: body.state === 'writing' ? 202 : 200, body }
+    }
+    return { kind: 'json', status: 200, body: toPublicState(current) }
   }
   // The plan is written in the background and the page polls the session. A long, silent
   // request is easy to lose on the way (proxies, mobile networks), and the page cannot tell

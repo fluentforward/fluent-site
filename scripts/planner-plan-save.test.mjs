@@ -11,7 +11,10 @@ import { PLAN_LEASE_MS } from '../src/lib/planner/plan-lease.ts'
 import {
   acquirePlanLease,
   getSessionById,
+  hasRecordedPlanEmail,
   insertSession,
+  markDeliveryField,
+  mergeSessionEntry,
   releasePlanLease,
   saveGeneratedPlanWithHook,
   saveRefusalWithLease,
@@ -110,4 +113,18 @@ test('a failed job releases its lock and counts the failure, and the next lock k
   assert.equal(released.partialPlan.planFailures, 1)
   const again = await acquirePlanLease(released)
   assert.equal(again.partialPlan.planFailures, 1)
+})
+
+test('an email counts as sent only once a plan email to that address is recorded', async () => {
+  const address = `lead-${Date.now()}@example.com`
+  assert.equal(await hasRecordedPlanEmail(address), false)
+  assert.equal(await hasRecordedPlanEmail(null), false)
+  const known = await mergeSessionEntry(await fresh(), { leadEmail: address })
+  assert.equal(await hasRecordedPlanEmail(address), false, 'knowing the address is not a send')
+  await markDeliveryField(known.id, { loopsEventSentAt: new Date() })
+  assert.equal(await hasRecordedPlanEmail(address), false, 'a Loops event alone is not an email')
+  await markDeliveryField(known.id, { loopsPlanSentAt: new Date() })
+  assert.equal(await hasRecordedPlanEmail(address), true)
+  assert.equal(await hasRecordedPlanEmail(`  ${address.toUpperCase()} `), true, 'matching ignores case and spaces')
+  assert.equal(await hasRecordedPlanEmail('someone-else@example.com'), false)
 })

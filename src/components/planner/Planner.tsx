@@ -19,6 +19,12 @@ import { trackPlannerEvent, trackPlannerLead } from '@/lib/vendors/track-planner
 import { clearPlannerDraft, readPlannerDraft, stashPlannerDraft } from '@/lib/planner/draft'
 import { nextPlanPollAction } from '@/lib/planner/plan-lease'
 import {
+  gaveUpContact,
+  PLANNER_CONTACT_EMAIL,
+  showsBookCall,
+  type PlannerGaveUpContact,
+} from '@/lib/planner/plan-only-copy'
+import {
   clearPlannerSessionRef,
   normalizePlannerSessionRef,
   readPlannerSessionRef,
@@ -57,7 +63,7 @@ type View =
     }
   | { kind: 'refusal'; message: string }
   | { kind: 'rate'; message: string }
-  | { kind: 'error'; message: string; retryProblem?: string }
+  | { kind: 'error'; message: string; retryProblem?: string; contact?: PlannerGaveUpContact }
 
 /** How long the page waits for a plan before it shows the error. Plans take 30 to 45 seconds. */
 const PLAN_WAIT_MS = 300_000
@@ -260,7 +266,14 @@ export function Planner({
         return true
       }
       if (body.state === 'error') {
-        fail(typeof body.message === 'string' ? body.message : PLAN_FAILED)
+        const message = typeof body.message === 'string' ? body.message : PLAN_FAILED
+        if (body.gaveUp === true) {
+          // The server has stopped retrying this session, so there is nothing for Try again to do.
+          setView({ kind: 'error', message, contact: gaveUpContact(body.contact) })
+          setStatus(message)
+        } else {
+          fail(message)
+        }
         return true
       }
       if (nextPlanPollAction(body).kind !== 'done') return false
@@ -676,7 +689,7 @@ export function Planner({
           {view.kind === 'refusal' || view.kind === 'rate' || view.kind === 'error' ? (
             <div className="ffp-compose">
               <h1>{view.kind === 'refusal' ? 'We cannot plan that from here.' : 'The planner stopped.'}</h1>
-              <p className="ffp-lede">{view.message}</p>
+              <p className="ffp-lede">{view.kind === 'error' ? <ErrorMessage message={view.message} contact={view.contact} /> : view.message}</p>
               <div className="ffp-actions">
                 {view.kind === 'error' && view.retryProblem ? (
                   <button
@@ -694,9 +707,11 @@ export function Planner({
                 >
                   Describe a process
                 </button>
-                <Link href="/contact" className={buttonClasses('secondary')}>
-                  Book a call
-                </Link>
+                {view.kind !== 'error' || showsBookCall(view.contact) ? (
+                  <Link href="/contact" className={buttonClasses('secondary')}>
+                    Book a call
+                  </Link>
+                ) : null}
               </div>
             </div>
           ) : null}
@@ -813,7 +828,7 @@ function viewFromBody(body: unknown, fallbackProblem: string): View {
     return { kind: 'rate', message: record.message }
   }
   if (record.state === 'error' && typeof record.message === 'string') {
-    return { kind: 'error', message: record.message }
+    return { kind: 'error', message: record.message, contact: record.gaveUp === true ? gaveUpContact(record.contact) : undefined }
   }
   return { kind: 'compose', problem: fallbackProblem }
 }
@@ -847,4 +862,17 @@ function statusFor(view: View): string {
   if (view.kind === 'refusal' || view.kind === 'rate' || view.kind === 'error') return view.message
   if (view.kind === 'compose' && view.warning) return view.warning
   return ''
+}
+
+/** The gave-up copy names our address for plan-only visitors with no email from us yet; make it a mailto link. */
+function ErrorMessage({ message, contact }: { message: string; contact?: PlannerGaveUpContact }) {
+  const at = contact === 'mailto' ? message.indexOf(PLANNER_CONTACT_EMAIL) : -1
+  if (at < 0) return <>{message}</>
+  return (
+    <>
+      {message.slice(0, at)}
+      <a href={`mailto:${PLANNER_CONTACT_EMAIL}`}>{PLANNER_CONTACT_EMAIL}</a>
+      {message.slice(at + PLANNER_CONTACT_EMAIL.length)}
+    </>
+  )
 }
