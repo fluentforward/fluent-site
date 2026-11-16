@@ -105,7 +105,7 @@ function fallbackWhy(lever: LeverScore): string {
  * A match there only swaps in the standard intro, so a false positive is harmless.
  */
 export const MONEY_FRAMING =
-  /\blevers?\b|\bprofit\b|\bmargins?\b|\b(?:moves?|moving) the money\b|\bwhere the money\b|\bscor(?:e|es|ed|ing)\b|\bcash\b|\bworking[\s-]capital\b|\brevenue\b|\bdebtor days\b|\bROI\b/i
+  /\blevers?\b|\bprofit\b|\bmargins?\b|\b(?:moves?|moving) the money\b|\bwhere the money\b|\bscor(?:e|es|ed|ing)\b|\bcash\b|\bworking[\s-]capital\b|\brevenue\b|\bdebtor days\b|\bROI\b|\bpay(?:s|ing)? back\b|\bpayback\b|\bpaid (?:off|for itself)\b|\bworth it\b/i
 
 /** Order the areas are shown in when their ratings tie (plan page and PDF). */
 export const AREA_DISPLAY_TIE: Record<LeverId, number> = {

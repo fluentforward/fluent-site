@@ -27,7 +27,7 @@ export const PLAN_FOOTNOTE =
   'Live in 10 working days once we have access to your systems and the data the agent needs, and scope is agreed in writing. Ratings are based only on what you told us in the Agent Planner. They are a starting point to test, not a guaranteed saving.'
 
 export const SCORE_INTRO =
-  'We look at the work the agent takes on and where that change shows up for your team, and we rate each area separately against what you told us. Any time saved is reported as an estimated range against the baseline you capture, never as a promised figure.'
+  'We look at the work the agent takes on and where that change shows up for your team, and we rate each area separately against what you told us. Any time saved is shown as an estimated range against the baseline you capture, never as a promised figure.'
 
 export const WONT_DO =
   'We won’t add the areas into a single “total saving”, and we won’t multiply hours by an hourly rate. Every rating comes with a baseline you capture now and a date to check it, so the result is measured, not promised.'

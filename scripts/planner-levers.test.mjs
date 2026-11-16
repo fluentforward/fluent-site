@@ -291,10 +291,10 @@ test('model text uses rate and area wording, and the tie order follows the page'
 
 test('the banned buyer words are caught in a model intro but ordinary words are not', async () => {
   const { MONEY_FRAMING } = await import('../src/lib/planner/levers.ts')
-  for (const bad of ['Cash comes in sooner.', 'Working capital improves.', 'More revenue.', 'Fewer debtor days.', 'A strong ROI.', 'It scores medium.']) {
+  for (const bad of ['Cash comes in sooner.', 'Working capital improves.', 'More revenue.', 'Fewer debtor days.', 'A strong ROI.', 'It scores medium.', 'It pays back in a month.', 'A quick payback.', 'The agent paid for itself.', 'Well worth it.']) {
     assert.equal(MONEY_FRAMING.test(bad), true, bad)
   }
-  for (const ok of ['The agent chases clients for documents.', 'Team capacity is rated medium.', 'Invoices go out sooner.', 'Cashier rota and the scoreboard.']) {
+  for (const ok of ['The agent chases clients for documents.', 'Team capacity is rated medium.', 'Invoices go out sooner.', 'Cashier rota and the scoreboard.', 'The agent pays suppliers and logs it.']) {
     assert.equal(MONEY_FRAMING.test(ok), false, ok)
   }
 })
