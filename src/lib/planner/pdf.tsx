@@ -28,6 +28,7 @@ import {
 import {
   PLANNER_PLAN_ONLY_FOLLOW_UP,
   PLANNER_PLAN_ONLY_PDF_HEADING,
+  commercialsNote,
 } from '@/lib/planner/plan-only-copy'
 import type { FullPlan, LeverImpact, LeverScore } from '@/lib/planner/types'
 
@@ -393,7 +394,7 @@ export function renderPlanPdf(input: {
                 <Text style={styles.muted}>{item.body}</Text>
               </Text>
             ))}
-            <Text style={[styles.muted, { marginTop: 6 }]}>Both are confirmed on the scoping call.</Text>
+            <Text style={[styles.muted, { marginTop: 6 }]}>{commercialsNote(Boolean(input.planOnly))}</Text>
           </View>
         </View>
         {input.planOnly ? (

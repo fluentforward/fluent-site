@@ -8,10 +8,13 @@ import { drizzle } from 'drizzle-orm/pglite'
 import { setDatabaseForTests } from '../src/db/index.ts'
 import * as schema from '../src/db/schema.ts'
 import { PLAN_LEASE_MS } from '../src/lib/planner/plan-lease.ts'
+import { gaveUpCopyForSession } from '../src/lib/planner/plan-only-copy.ts'
 import {
   acquirePlanLease,
   getSessionById,
   insertSession,
+  markDeliveryField,
+  mergeSessionEntry,
   releasePlanLease,
   saveGeneratedPlanWithHook,
   saveRefusalWithLease,
@@ -110,4 +113,19 @@ test('a failed job releases its lock and counts the failure, and the next lock k
   assert.equal(released.partialPlan.planFailures, 1)
   const again = await acquirePlanLease(released)
   assert.equal(again.partialPlan.planFailures, 1)
+})
+
+test('a plan-only session that gives up gets the mailto line, even if its address had a plan email elsewhere', async () => {
+  const address = `lead-${Date.now()}@example.com`
+  const planOnly = { teamSize: '1-9' }
+  const earlier = await mergeSessionEntry(await fresh(), { leadEmail: address, ...planOnly })
+  await markDeliveryField(earlier.id, { loopsPlanSentAt: new Date(), loopsEventSentAt: new Date() })
+  const now = await mergeSessionEntry(await fresh(), { leadEmail: address, ...planOnly })
+  const reread = await getSessionById(now.id)
+  assert.equal(reread.email, address)
+  const copy = gaveUpCopyForSession(reread)
+  assert.equal(copy.contact, 'mailto')
+  assert.match(copy.message, /email us at hello@fluentforward\.com/)
+  // Even the session that did get the email shows the same line, so the page reveals nothing about an address.
+  assert.deepEqual(gaveUpCopyForSession(await getSessionById(earlier.id)), copy)
 })
