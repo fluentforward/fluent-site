@@ -52,7 +52,6 @@ export function SiteHeader() {
           >
             {nav.map((item) => {
               const active = pathname === item.href || pathname.startsWith(`${item.href}/`)
-              const isResources = item.href === '/#webinar'
               return (
                 <Link
                   key={item.href}
@@ -64,11 +63,6 @@ export function SiteHeader() {
                   )}
                 >
                   {item.label}
-                  {isResources ? (
-                    <span className="rounded-full border border-accent px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-accent">
-                      Webinar
-                    </span>
-                  ) : null}
                 </Link>
               )
             })}

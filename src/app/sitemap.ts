@@ -9,7 +9,6 @@ const routes = [
   { path: '/how-it-works', priority: 0.89 },
   { path: '/profit-engine', priority: 0.88 },
   { path: '/strategy-blueprints', priority: 0.85 },
-  { path: '/webinar', priority: 0.86 },
   { path: '/review', priority: 0.82 },
   { path: '/contact', priority: 0.8 },
   { path: '/privacy', priority: 0.2 },
