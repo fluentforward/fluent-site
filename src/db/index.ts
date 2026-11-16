@@ -22,3 +22,8 @@ export function getDb() {
 }
 
 export type Database = ReturnType<typeof getDb>
+
+/** Tests only: point the store at another drizzle database (an in-memory PGlite). */
+export function setDatabaseForTests(db: unknown) {
+  database = db as ReturnType<typeof createDb>
+}

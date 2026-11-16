@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 import type { FullPlan, PartialPlan } from '@/lib/planner/types'
+import { defaultScoreIntro, reconcileLeverText, scoreIntroFits } from '@/lib/planner/levers'
 
 const stepSchema = z.object({
   n: z.number().int().min(1).max(6),
@@ -124,7 +125,14 @@ export function toPartialPlan(plan: FullPlan): PartialPlan {
 
 export function parseStoredPlan(value: unknown): FullPlan | null {
   const parsed = fullPlanSchema.safeParse(value)
-  return parsed.success ? parsed.data : null
+  return parsed.success ? reconcileStoredPlan(parsed.data) : null
+}
+
+/** Plans saved before the score check can say "Scored medium" beside a None. Fix that on read. */
+function reconcileStoredPlan(plan: FullPlan): FullPlan {
+  const levers = plan.levers.map((lever) => reconcileLeverText(lever))
+  const scoreIntro = scoreIntroFits(plan.scoreIntro, levers) ? plan.scoreIntro : defaultScoreIntro(levers)
+  return { ...plan, levers, scoreIntro }
 }
 
 /** Older one-page plans, so a plan already sent still opens. New plans are not stored in this shape. */

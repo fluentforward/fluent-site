@@ -1,4 +1,4 @@
-import { applyLeverRules } from '@/lib/planner/levers'
+import { applyLeverRules, defaultScoreIntro, scoreIntroFits } from '@/lib/planner/levers'
 import { fullPlanSchema } from '@/lib/planner/plan-schema'
 import { SCRIPTED_REFUSAL, type FullPlan, type LeverId, type LeverImpact, type LeverPath, type LeverScore } from '@/lib/planner/types'
 import type { PlanResult } from '@/lib/planner/plan-schema'
@@ -90,7 +90,7 @@ export function interpretPlanResult(
       .map((reason) => ({ title: scrub(clip(reason.title, 70)), text: scrub(clip(reason.text, 220)) }))
       .filter((reason) => reason.title.length >= 3 && reason.text.length >= 8)
       .slice(0, 3),
-    scoreIntro: scrub(clip(raw.scoreIntro, 320)) || 'Each lever is scored on its own, from what you described.',
+    scoreIntro: fittedScoreIntro(scrub(clip(raw.scoreIntro, 320)), scored.levers),
     steps,
     tools: (raw.tools ?? []).map((item) => scrub(clip(item, 80))).filter((item) => item.length > 0).slice(0, 6),
     human: (raw.human ?? []).map((item) => scrub(clip(item, 200))).filter((item) => item.length > 0).slice(0, 4),
@@ -208,4 +208,8 @@ function asImpact(value: string | null): LeverImpact | null {
 function asPath(value: string | null): LeverPath | null {
   if (value === 'direct' || value === 'via_decisions') return value
   return null
+}
+
+function fittedScoreIntro(intro: string, levers: LeverScore[]): string {
+  return intro && scoreIntroFits(intro, levers) ? intro : defaultScoreIntro(levers)
 }

@@ -17,6 +17,13 @@ import {
 } from '@/lib/planner/entry-storage'
 import { trackPlannerEvent, trackPlannerLead } from '@/lib/vendors/track-planner'
 import { clearPlannerDraft, readPlannerDraft, stashPlannerDraft } from '@/lib/planner/draft'
+import { nextPlanPollAction } from '@/lib/planner/plan-lease'
+import {
+  clearPlannerSessionRef,
+  normalizePlannerSessionRef,
+  readPlannerSessionRef,
+  stashPlannerSessionRef,
+} from '@/lib/planner/session-ref'
 import { PlanDocument } from '@/components/planner/PlanDocument'
 import type { FullPlan } from '@/lib/planner/types'
 
@@ -50,7 +57,18 @@ type View =
     }
   | { kind: 'refusal'; message: string }
   | { kind: 'rate'; message: string }
-  | { kind: 'error'; message: string }
+  | { kind: 'error'; message: string; retryProblem?: string }
+
+/** How long the page waits for a plan before it shows the error. Plans take 30 to 45 seconds. */
+const PLAN_WAIT_MS = 300_000
+const PLAN_POLL_MS = 2_500
+/** Times the page restarts a plan job that stopped, before it shows the error. */
+const PLAN_MAX_KICKS = 2
+const PLAN_FAILED = 'The plan did not come together. Please try again.'
+
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
 
 const PLACEHOLDER =
   'e.g. Every month two people spend three days building client reports from Xero, our CRM and a spreadsheet.'
@@ -69,6 +87,29 @@ export function Planner({
   const answerRef = useRef<HTMLTextAreaElement>(null)
   const nameRef = useRef<HTMLInputElement>(null)
   const preparing = useRef(false)
+  /** This tab's session id. Kept in memory too, so a browser that blocks sessionStorage still resumes. */
+  const tabRef = useRef('')
+
+  function currentRef(): string {
+    return readPlannerSessionRef() || tabRef.current
+  }
+
+  function rememberRef(value: unknown) {
+    const ref = normalizePlannerSessionRef(value)
+    if (!ref) return
+    tabRef.current = ref
+    stashPlannerSessionRef(ref)
+  }
+
+  function rememberRefFrom(body: unknown) {
+    if (body && typeof body === 'object') rememberRef((body as Record<string, unknown>).ref)
+  }
+
+  function sessionUrl(): string {
+    const ref = currentRef()
+    return ref ? `/api/agent-planner/session?ref=${encodeURIComponent(ref)}` : '/api/agent-planner/session'
+  }
+
   const seededStart = useRef(false)
   const entryBootstrapped = useRef(false)
 
@@ -102,16 +143,18 @@ export function Planner({
         company: prefill.company,
         email: prefill.email,
         attribution: landingAttribution,
+        ref: currentRef(),
       }),
     })
   }, [])
 
   useEffect(() => {
     let cancelled = false
-    fetch('/api/agent-planner/session')
+    fetch(sessionUrl(), { cache: 'no-store' })
       .then((response) => response.json())
       .then((body: unknown) => {
         if (cancelled) return
+        rememberRefFrom(body)
         const record = body && typeof body === 'object' ? (body as Record<string, unknown>) : {}
         const fallback = initialProblem || readPlannerDraft()
         const next = viewFromBody(body, fallback)
@@ -172,6 +215,7 @@ export function Planner({
       '/api/agent-planner/sessions',
       {
         problem,
+        ref: currentRef(),
         attribution: readLandingAttribution(),
         entry: {
           size: prefill.teamSize,
@@ -192,35 +236,84 @@ export function Planner({
     if (ok) trackPlannerEvent('planner_follow_up')
   }
 
+  /**
+   * Start the plan and wait for it. The server writes the plan in the background and the page
+   * polls the session, so a dropped connection or a slow model call does not end the visit.
+   * A job that stopped is restarted before the visitor sees an error.
+   */
   async function writePlan(problem: string) {
     if (preparing.current) return
     preparing.current = true
     setView({ kind: 'working', problem, label: 'Writing the plan.' })
     setStatus('Writing the plan.')
-    try {
-      const response = await fetch('/api/agent-planner/plan', {
-        method: 'POST',
-        signal: AbortSignal.timeout(70_000),
-      })
-      const body = (await response.json().catch(() => ({}))) as Record<string, unknown>
-      if (response.status === 429 || body.state === 'rate_limited') {
+    const deadline = Date.now() + PLAN_WAIT_MS
+    const fail = (message = PLAN_FAILED) => {
+      setView({ kind: 'error', message, retryProblem: problem })
+      setStatus(message)
+    }
+    /** Show a final state. Returns false while the plan is still being written. */
+    const settle = (body: Record<string, unknown>, status: number): boolean => {
+      if (status === 429 || body.state === 'rate_limited') {
         const message = typeof body.message === 'string' ? body.message : 'Please wait a little while and try again.'
         setView({ kind: 'rate', message })
         setStatus(message)
-        return
+        return true
       }
-      if (!response.ok || body.state === 'error' || body.state === 'writing') {
-        const message = typeof body.message === 'string' ? body.message : 'The plan did not come together. Please try again.'
-        setView({ kind: 'error', message })
-        setStatus(message)
-        return
+      if (body.state === 'error') {
+        fail(typeof body.message === 'string' ? body.message : PLAN_FAILED)
+        return true
       }
+      if (nextPlanPollAction(body).kind !== 'done') return false
       const next = viewFromBody(body, problem)
       setView(next)
       setStatus(statusFor(next))
-    } catch {
-      setView({ kind: 'error', message: 'The plan did not come together. Please try again.' })
-      setStatus('The plan did not come together. Please try again.')
+      return true
+    }
+    const kick = async (): Promise<{ body: Record<string, unknown>; status: number } | null> => {
+      try {
+        const response = await fetch('/api/agent-planner/plan', { method: 'POST', signal: AbortSignal.timeout(30_000) })
+        const body = (await response.json().catch(() => ({}))) as Record<string, unknown>
+        rememberRefFrom(body)
+        // A server error here is treated like a lost response: the poll below finds out what happened.
+        if (response.status >= 500 && body.state !== 'rate_limited') return null
+        return { body, status: response.status }
+      } catch {
+        return null
+      }
+    }
+    const poll = async (): Promise<{ body: Record<string, unknown>; status: number } | null> => {
+      try {
+        const response = await fetch(sessionUrl(), { cache: 'no-store', signal: AbortSignal.timeout(15_000) })
+        if (!response.ok) return null
+        const body = (await response.json().catch(() => null)) as Record<string, unknown> | null
+        return body ? { body, status: response.status } : null
+      } catch {
+        return null
+      }
+    }
+    try {
+      let kicks = 1
+      let result = await kick()
+      for (;;) {
+        if (result) {
+          if (settle(result.body, result.status)) return
+          if (nextPlanPollAction(result.body).kind === 'kick') {
+            if (kicks > PLAN_MAX_KICKS) {
+              fail()
+              return
+            }
+            kicks += 1
+            result = await kick()
+            continue
+          }
+        }
+        if (Date.now() > deadline) {
+          fail()
+          return
+        }
+        await sleep(PLAN_POLL_MS)
+        result = await poll()
+      }
     } finally {
       preparing.current = false
     }
@@ -234,12 +327,8 @@ export function Planner({
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ name: current.name, email: current.email, company: current.company }),
     })
-    const type = response.headers.get('content-type') || ''
-    if (type.includes('ndjson') && response.body) {
-      await readStream(response, current.problem, current)
-      return
-    }
     const body = (await response.json().catch(() => ({}))) as Record<string, unknown>
+    rememberRefFrom(body)
     if (body.state === 'refusal' && typeof body.message === 'string') {
       setView({ kind: 'refusal', message: body.message })
       setStatus(body.message)
@@ -265,6 +354,7 @@ export function Planner({
     current: { name: string; email: string; planOnly?: boolean },
   ) {
     if (!isFull(body.full)) return
+    rememberRef(body.publicId)
     setView({
       kind: 'sent',
       publicId: String(body.publicId || ''),
@@ -284,12 +374,8 @@ export function Planner({
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(payload),
     })
-    const type = response.headers.get('content-type') || ''
-    if (type.includes('ndjson') && response.body) {
-      await readStream(response, problem)
-      return response.ok
-    }
     const body = (await response.json().catch(() => ({}))) as Record<string, unknown>
+    rememberRefFrom(body)
     if (response.status === 429 || body.state === 'rate_limited') {
       const message = typeof body.message === 'string' ? body.message : 'Please wait a little while and try again.'
       setView({ kind: 'rate', message })
@@ -312,49 +398,10 @@ export function Planner({
     return next.kind !== 'error' && next.kind !== 'rate'
   }
 
-  async function readStream(
-    response: Response,
-    problem: string,
-    details?: Extract<View, { kind: 'details' }>,
-  ) {
-    const reader = response.body?.getReader()
-    if (!reader) {
-      setView({ kind: 'error', message: 'The plan did not come together. Please try again.' })
-      return
-    }
-    const decoder = new TextDecoder()
-    let buffer = ''
-    for (;;) {
-      const { done, value } = await reader.read()
-      if (done) break
-      buffer += decoder.decode(value, { stream: true })
-      const lines = buffer.split('\n')
-      buffer = lines.pop() || ''
-      for (const line of lines) {
-        if (!line.trim()) continue
-        let event: Record<string, unknown>
-        try {
-          event = JSON.parse(line) as Record<string, unknown>
-        } catch {
-          continue
-        }
-        if (event.type === 'done' && isFull(event.full)) {
-          showPlan(event, details ?? { name: '', email: '', planOnly: false })
-        } else if (event.type === 'refusal') {
-          const message = String(event.message || 'We cannot plan that from here.')
-          setView({ kind: 'refusal', message })
-          setStatus(message)
-        } else if (event.type === 'error') {
-          const message = String(event.message || 'The plan did not come together. Please try again.')
-          setView({ kind: 'error', message })
-          setStatus(message)
-        }
-      }
-    }
-  }
-
   async function startAgain() {
     clearPlannerDraft()
+    clearPlannerSessionRef()
+    tabRef.current = ''
     clearPlannerEntryPrefill()
     await fetch('/api/agent-planner/reset', { method: 'POST' })
     setView({ kind: 'compose', problem: '' })
@@ -631,7 +678,20 @@ export function Planner({
               <h1>{view.kind === 'refusal' ? 'We cannot plan that from here.' : 'The planner stopped.'}</h1>
               <p className="ffp-lede">{view.message}</p>
               <div className="ffp-actions">
-                <button type="button" className={buttonClasses('ink')} onClick={() => void startAgain()}>
+                {view.kind === 'error' && view.retryProblem ? (
+                  <button
+                    type="button"
+                    className={buttonClasses('ink')}
+                    onClick={() => void writePlan(view.retryProblem as string)}
+                  >
+                    Try again
+                  </button>
+                ) : null}
+                <button
+                  type="button"
+                  className={buttonClasses(view.kind === 'error' && view.retryProblem ? 'secondary' : 'ink')}
+                  onClick={() => void startAgain()}
+                >
                   Describe a process
                 </button>
                 <Link href="/contact" className={buttonClasses('secondary')}>

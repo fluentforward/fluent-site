@@ -4,6 +4,7 @@ import { getDb, isDatabaseConfigured } from '@/db'
 import { plannerEvents, plannerRuns, plannerSessions, type PlannerSessionRow } from '@/db/schema'
 
 export type { PlannerSessionRow }
+import { PLAN_LEASE_MS } from '@/lib/planner/plan-lease'
 import { toPartialPlan } from '@/lib/planner/plan-schema'
 import type { FollowUp, FullPlan, PlanHook, PlannerAttribution } from '@/lib/planner/types'
 
@@ -183,6 +184,114 @@ function isStoredHook(partial: PlannerSessionRow['partialPlan']): boolean {
       typeof partial.agent === 'string' &&
       partial.agent.length >= 12,
   )
+}
+
+/**
+ * Mark the session as writing and take the single-writer lease for its plan (see plan-lease.ts),
+ * in one atomic UPDATE, so marking can never wipe a lease another request has just taken.
+ * Keeps an existing awaiting-details record (and its failure count); anything else becomes the
+ * empty writing placeholder. Returns the updated row, or null when another request holds a live
+ * lease or the plan already exists.
+ */
+export async function acquirePlanLease(
+  session: Pick<PlannerSessionRow, 'id'>,
+  nowMs = Date.now(),
+): Promise<PlannerSessionRow | null> {
+  const now = new Date(nowMs)
+  const cutoff = new Date(nowMs - PLAN_LEASE_MS).toISOString()
+  const at = now.toISOString()
+  const partial = plannerSessions.partialPlan
+  const rows = await getDb()
+    .update(plannerSessions)
+    .set({
+      partialPlan: sql`jsonb_set(case when jsonb_typeof(${partial}) = 'object' and ${partial}->>'awaitingDetails' = 'true' then ${partial} else '{"awaitingDetails": true, "thanks": "", "agent": "", "benefit": ""}'::jsonb end, '{planWritingAt}', to_jsonb(${at}::text))`,
+      pendingQuestion: null,
+      updatedAt: now,
+    })
+    .where(
+      and(
+        eq(plannerSessions.id, session.id),
+        isNull(plannerSessions.fullPlan),
+        sql`(${partial}->>'planWritingAt' is null or (${partial}->>'planWritingAt')::timestamptz < ${cutoff}::timestamptz)`,
+      ),
+    )
+    .returning()
+  return rows[0] ?? null
+}
+
+/** Give the lease back after a failed generation, so the next request can start again. */
+export async function releasePlanLease(sessionId: string, leaseAt: string): Promise<void> {
+  const partial = plannerSessions.partialPlan
+  await getDb()
+    .update(plannerSessions)
+    .set({
+      partialPlan: sql`(${partial} - 'planWritingAt') || jsonb_build_object('planFailures', coalesce((${partial}->>'planFailures')::int, 0) + 1)`,
+      updatedAt: new Date(),
+    })
+    .where(leaseHeld(sessionId, leaseAt))
+}
+
+/** Only the job that still holds the lease may write the result, and never over an existing plan. */
+function leaseHeld(sessionId: string, leaseAt: string) {
+  const partial = plannerSessions.partialPlan
+  return and(
+    eq(plannerSessions.id, sessionId),
+    isNull(plannerSessions.fullPlan),
+    sql`jsonb_typeof(${partial}) = 'object'`,
+    sql`${partial}->>'planWritingAt' = ${leaseAt}`,
+  )
+}
+
+/**
+ * Save the plan and the gate line in one write. The page polls the session while the plan is
+ * written, so it must never see a plan without its gate line, or a released lease without a plan.
+ *
+ * Conditional on this job's lease: if the session was restarted with a new problem, reset, or
+ * taken over by another writer while the model was running, nothing is written and this returns
+ * null, so an old plan can never land in a newer session.
+ */
+export async function saveGeneratedPlanWithHook(
+  session: Pick<PlannerSessionRow, 'id'>,
+  leaseAt: string,
+  plan: FullPlan,
+  hook: PlanHook,
+): Promise<PlannerSessionRow | null> {
+  const rows = await getDb()
+    .update(plannerSessions)
+    .set({
+      phase: 'partial',
+      partialPlan: { awaitingDetails: true, ...hook },
+      fullPlan: plan,
+      refusal: null,
+      pendingQuestion: null,
+      sensitiveHold: false,
+      updatedAt: new Date(),
+    })
+    .where(leaseHeld(session.id, leaseAt))
+    .returning()
+  return rows[0] ?? null
+}
+
+/** The refusal counterpart of saveGeneratedPlanWithHook, with the same lease condition. */
+export async function saveRefusalWithLease(
+  session: Pick<PlannerSessionRow, 'id'>,
+  leaseAt: string,
+  message: string,
+): Promise<PlannerSessionRow | null> {
+  const rows = await getDb()
+    .update(plannerSessions)
+    .set({
+      refusal: message,
+      pendingQuestion: null,
+      sensitiveHold: false,
+      partialPlan: null,
+      fullPlan: null,
+      phase: 'anonymous',
+      updatedAt: new Date(),
+    })
+    .where(leaseHeld(session.id, leaseAt))
+    .returning()
+  return rows[0] ?? null
 }
 
 export async function claimSession(

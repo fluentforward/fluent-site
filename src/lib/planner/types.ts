@@ -37,7 +37,13 @@ export type PlanHook = {
   benefit: string
 }
 
-export type AwaitingDetails = PlanHook & { awaitingDetails: true }
+export type AwaitingDetails = PlanHook & {
+  awaitingDetails: true
+  /** ISO time a plan generation took the lease. See plan-lease.ts. */
+  planWritingAt?: string
+  /** Generations that failed in a row for this session. */
+  planFailures?: number
+}
 
 export const LEVER_IDS = ['cash', 'capacity', 'working_capital', 'revenue'] as const
 export type LeverId = (typeof LEVER_IDS)[number]

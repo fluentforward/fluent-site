@@ -1,5 +1,5 @@
 import { anthropic } from '@ai-sdk/anthropic'
-import { generateObject, streamObject } from 'ai'
+import { generateObject } from 'ai'
 
 import { followUpSchema, hookSchema, planResultSchema } from '@/lib/planner/plan-schema'
 import { FOLLOW_UP_SYSTEM, HOOK_SYSTEM, PLAN_SYSTEM } from '@/lib/planner/prompts'
@@ -48,7 +48,8 @@ export async function askHook(prompt: string) {
   }
 }
 
-export async function askPlan(prompt: string) {
+/** One model call for the plan. Retries live in flow.ts, so each attempt has its own deadline. */
+export async function askPlan(prompt: string, options: { timeoutMs?: number } = {}) {
   const started = Date.now()
   const result = await generateObject({
     model: anthropic(planModelId()),
@@ -58,7 +59,7 @@ export async function askPlan(prompt: string) {
     prompt,
     maxOutputTokens: 3200,
     temperature: 0.2,
-    abortSignal: AbortSignal.timeout(50_000),
+    abortSignal: AbortSignal.timeout(options.timeoutMs ?? 75_000),
     maxRetries: 0,
   })
   return {
@@ -67,17 +68,4 @@ export async function askPlan(prompt: string) {
     latencyMs: Date.now() - started,
     model: planModelId(),
   }
-}
-
-export function openPlanStream(prompt: string) {
-  const started = Date.now()
-  const result = streamObject({
-    model: anthropic(planModelId()),
-    schema: planResultSchema,
-    schemaName: 'FirstAgentPlan',
-    system: PLAN_SYSTEM,
-    prompt,
-    maxOutputTokens: 2200,
-  })
-  return { result, started }
 }
