@@ -55,7 +55,7 @@ test('cost plan take-off keeps capacity high and revenue medium', () => {
   assert.equal(byId(result, 'revenue').impact, 'medium')
   assert.equal(byId(result, 'cash').impact, 'none')
   assert.equal(byId(result, 'working_capital').impact, 'none')
-  assert.match(impactLine(result.levers), /Capacity \(High, direct\), Revenue \(Medium, direct\)/)
+  assert.match(impactLine(result.levers), /Team capacity \(High, direct\), Client work \(Medium, direct\)/)
   assert.equal(result.betterFirst, null)
 })
 
@@ -151,7 +151,7 @@ test('a vague marketing wish scores low and names a better first agent', () => {
   for (const lever of result.levers) {
     assert.ok(lever.impact === 'low' || lever.impact === 'none')
   }
-  assert.match(impactLine(result.levers), /low across these levers/)
+  assert.match(impactLine(result.levers), /low in every area/)
   assert.ok(result.betterFirst)
 })
 
@@ -228,8 +228,29 @@ test('the score intro must not name a lever scored none', () => {
     { lever: 'working_capital', impact: 'none', path: 'via_decisions', why: 'x' },
     { lever: 'revenue', impact: 'low', path: 'via_decisions', why: 'x' },
   ]
-  assert.equal(scoreIntroFits('The strongest lever is capacity: the agent absorbs the chasing.', levers), true)
+  assert.equal(scoreIntroFits('The biggest change is in team capacity: the agent takes on the chasing.', levers), true)
+  assert.equal(scoreIntroFits('The strongest lever is capacity: the agent absorbs the chasing.', levers), false, 'lever wording is replaced')
   assert.equal(scoreIntroFits('Capacity and working capital both move.', levers), false)
   assert.equal(scoreIntroFits('Capacity is scored high.', levers), false)
-  assert.equal(defaultScoreIntro(levers), 'The strongest lever is capacity. The agent does that work itself.')
+  assert.equal(defaultScoreIntro(levers), 'The biggest change is in team capacity. The agent does that work itself.')
+  assert.equal(scoreIntroFits('Billing and collections improve too.', levers), false, 'the new area names count as mentions')
+})
+
+test('buyer copy drops lever and money framing', async () => {
+  const view = await import('../src/lib/planner/plan-view.ts')
+  const { LEVER_LABEL, MONEY_FRAMING } = await import('../src/lib/planner/levers.ts')
+  const lines = [
+    view.SCORE_INTRO,
+    view.WONT_DO,
+    ...view.LEVER_GUIDE.flatMap((item) => [item.body, item.shows]),
+    ...view.IMPACT_GUIDE.map((item) => item.body),
+    ...Object.values(LEVER_LABEL),
+    defaultScoreIntro([{ lever: 'cash', impact: 'none', path: 'direct', why: 'x' }]),
+  ]
+  for (const line of lines) {
+    assert.ok(!MONEY_FRAMING.test(line), line)
+    assert.ok(!/P&L|\u2014/.test(line), line)
+  }
+  assert.equal(MONEY_FRAMING.test('Where this agent moves the money.'), true)
+  assert.equal(MONEY_FRAMING.test('The four money levers this agent could move.'), true)
 })

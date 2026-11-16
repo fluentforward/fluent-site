@@ -89,7 +89,7 @@ export function PlanDocument({
             <dd>{firstReviewLabel(plan)}</dd>
           </div>
         </dl>
-        <p className="ffp-plan-kicker">At a glance · the four money levers this agent could move</p>
+        <p className="ffp-plan-kicker">At a glance · what this agent takes off your team</p>
         <ul className="ffp-plan-glance">
           {levers.map((lever) => (
             <li key={lever.lever} className={lever.impact === 'high' || lever.impact === 'medium' ? 'is-strong' : undefined}>
@@ -101,8 +101,8 @@ export function PlanDocument({
           ))}
         </ul>
         <p className="ffp-plan-aside">
-          We score each lever on its own and never add them together. The next sections explain every score, and how
-          we prove it.
+          We look at each area on its own and never add them together. The next sections explain each one, and how
+          we check it.
         </p>
         {plan.betterFirst ? <p className="ffp-plan-aside">{plan.betterFirst}</p> : null}
         <p className="ffp-plan-aside">
@@ -151,13 +151,13 @@ export function PlanDocument({
       </section>
 
       <section className="ffp-plan-section">
-        <p className="ffp-plan-label">How we score impact</p>
-        <h2>An agent only pays back through one of four levers.</h2>
+        <p className="ffp-plan-label">How we judge the change</p>
+        <h2>We look at four places the work shows up.</h2>
         <p className="ffp-plan-lead">{SCORE_INTRO}</p>
         <ul className="ffp-plan-guide">
           {LEVER_GUIDE.map((item) => (
             <li key={item.id}>
-              <p className="ffp-plan-label">Lever {LEVER_NO[item.id]}</p>
+              <p className="ffp-plan-label">Area {LEVER_NO[item.id]}</p>
               <h3>{LEVER_LABEL[item.id]}</h3>
               <p>{item.body}</p>
               <p>{item.shows}</p>
@@ -178,14 +178,14 @@ export function PlanDocument({
             </ul>
           </div>
           <div>
-            <h3>Path to the money</h3>
+            <h3>How the change happens</h3>
             <p>
               <strong>Direct.</strong> The agent does the work itself. We review at 30 days.
             </p>
             <p>
               <strong>Via decisions.</strong> The agent informs a person, who then acts. We review at 90 days.
             </p>
-            <p>Each lever also names an owner: the person who has to act for the money to show up.</p>
+            <p>Each area also names an owner: the person who acts on what the agent does.</p>
           </div>
         </div>
         <div className="ffp-plan-wont">
@@ -195,8 +195,8 @@ export function PlanDocument({
       </section>
 
       <section className="ffp-plan-section">
-        <p className="ffp-plan-label">Your lever scores</p>
-        <h2>Where this agent moves the money.</h2>
+        <p className="ffp-plan-label">What changes when it runs</p>
+        <h2>What this agent takes off your team.</h2>
         <p className="ffp-plan-lead">{plan.scoreIntro}</p>
         <ul className="ffp-plan-scores">
           {levers.map((lever) => (
@@ -207,7 +207,7 @@ export function PlanDocument({
               }
             >
               <div>
-                <p className="ffp-plan-label">Lever {LEVER_NO[lever.lever]}</p>
+                <p className="ffp-plan-label">Area {LEVER_NO[lever.lever]}</p>
                 <h3>{LEVER_LABEL[lever.lever]}</h3>
                 <p className="ffp-plan-score">{IMPACT_LABEL[lever.impact]}</p>
                 <Pips impact={lever.impact} />
@@ -295,7 +295,7 @@ export function PlanDocument({
         {rows.length ? (
           <div className="ffp-plan-proof" role="table">
             <div role="row">
-              <p role="columnheader">Lever</p>
+              <p role="columnheader">Area</p>
               <p role="columnheader">Capture from last month</p>
               <p role="columnheader">Check at review</p>
               <p role="columnheader">Who acts</p>
@@ -329,7 +329,7 @@ export function PlanDocument({
           <li>
             <p>{firstReviewLabel(plan).replace(' after go-live', '')} after go-live</p>
             <h3>Review</h3>
-            <p>Compare against your baselines, lever by lever</p>
+            <p>Compare against your baselines, area by area</p>
           </li>
         </ol>
         <div className="ffp-plan-split">

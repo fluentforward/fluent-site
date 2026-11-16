@@ -33,10 +33,10 @@ const NONE_WHY: Record<LeverId, string> = {
 }
 
 export const LEVER_LABEL: Record<LeverId, string> = {
-  cash: 'Cash',
-  capacity: 'Capacity',
-  working_capital: 'Working capital',
-  revenue: 'Revenue',
+  cash: 'Outside help',
+  capacity: 'Team capacity',
+  working_capital: 'Billing and collections',
+  revenue: 'Client work',
 }
 
 export const IMPACT_LABEL: Record<LeverImpact, string> = {
@@ -99,11 +99,14 @@ function fallbackWhy(lever: LeverScore): string {
   return lever.impact === 'none' ? NONE_WHY[lever.lever] : `Scored ${IMPACT_LABEL[lever.impact].toLowerCase()} from what you described.`
 }
 
+/** Lever and profit wording that buyer-facing copy no longer uses. */
+export const MONEY_FRAMING = /\blevers?\b|\bprofit\b|\bmargins?\b|\b(?:moves?|moving) the money\b|\bwhere the money\b/i
+
 const LEVER_MENTION: Record<LeverId, RegExp> = {
-  cash: /\bcash\b(?!\s+(?:in|flow|sooner|comes))/i,
+  cash: /\bcash\b(?!\s+(?:in|flow|sooner|comes))|\boutside help\b/i,
   capacity: /\bcapacity\b/i,
-  working_capital: /\bworking[\s-]capital\b/i,
-  revenue: /\brevenue\b/i,
+  working_capital: /\bworking[\s-]capital\b|\bbilling and collections\b/i,
+  revenue: /\brevenue\b|\bclient work\b/i,
 }
 
 /**
@@ -113,6 +116,8 @@ const LEVER_MENTION: Record<LeverId, RegExp> = {
 export function scoreIntroFits(intro: string, levers: LeverScore[]): boolean {
   const text = clean(intro)
   if (!text) return false
+  // Buyer copy talks about the job the agent takes on, not money levers (Matt, 12 Nov).
+  if (MONEY_FRAMING.test(text)) return false
   for (const lever of levers) {
     if (lever.impact === 'none' && LEVER_MENTION[lever.lever].test(text)) return false
   }
@@ -123,10 +128,10 @@ export function scoreIntroFits(intro: string, levers: LeverScore[]): boolean {
 export function defaultScoreIntro(levers: LeverScore[]): string {
   const ranked = [...levers].filter((lever) => lever.impact !== 'none').sort((a, b) => RANK[b.impact] - RANK[a.impact])
   const top = ranked[0]
-  if (!top) return 'Each lever is scored on its own, from what you described.'
+  if (!top) return 'Each area is rated on its own, from what you described.'
   const how =
     top.path === 'direct' ? 'The agent does that work itself.' : 'The agent informs a person, who then acts.'
-  return `The strongest lever is ${LEVER_LABEL[top.lever].toLowerCase()}. ${how}`
+  return `The biggest change is in ${LEVER_LABEL[top.lever].toLowerCase()}. ${how}`
 }
 
 const BETTER_FIRST =
@@ -207,7 +212,7 @@ export function applyLeverRules(input: {
 
 export function impactLine(levers: LeverScore[]): string {
   const shown = levers.filter((item) => item.impact === 'high' || item.impact === 'medium')
-  if (shown.length === 0) return 'Likely impact: low across these levers.'
+  if (shown.length === 0) return 'Likely impact: low in every area.'
   const parts = shown.map(
     (item) => `${LEVER_LABEL[item.lever]} (${IMPACT_LABEL[item.impact]}, ${PATH_LABEL[item.path]})`,
   )

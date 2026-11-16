@@ -18,7 +18,7 @@ const TIE: Record<LeverId, number> = {
 const RANK: Record<LeverImpact, number> = { high: 0, medium: 1, low: 2, none: 3 }
 
 const NONE_GLANCE: Record<LeverId, string> = {
-  cash: 'No external cost described',
+  cash: 'No outside help described',
   capacity: 'No growth or hire described',
   working_capital: 'Not a billing process',
   revenue: 'No growth held back by headcount',
@@ -32,10 +32,10 @@ export const PLAN_FOOTNOTE =
   'Live in 10 working days once we have access to your systems and the data the agent needs, and scope is agreed in writing. Impact scores are based only on what you told us in the Agent Planner. They are a starting point to test, not a guaranteed saving.'
 
 export const SCORE_INTRO =
-  '“Hours saved” is a hard figure to bank. We look at where the money actually shows up in your business, and we score each lever separately against what you told us.'
+  '“Hours saved” is hard to pin down. We look at the work the agent takes on and where that change shows up for your team, and we rate each area separately against what you told us.'
 
 export const WONT_DO =
-  'We won’t add the levers into a single “total saving”. We won’t multiply hours by an hourly rate, and we won’t quote an ROI multiple. Every score comes with a baseline you capture now and a date to check it, so the result is measured, not promised.'
+  'We won’t add the areas into a single “total saving”. We won’t multiply hours by an hourly rate, and we won’t quote an ROI multiple. Every rating comes with a baseline you capture now and a date to check it, so the result is measured, not promised.'
 
 export const COMMERCIALS = [
   { title: 'Fixed price to build', body: 'No day rates and no open-ended scope.' },
@@ -51,31 +51,31 @@ export const BOOK_LINE =
 export const LEVER_GUIDE: { id: LeverId; body: string; shows: string }[] = [
   {
     id: 'cash',
-    body: 'The agent stops a cost you pay today, such as temps, overtime, contractors or outsourced work.',
-    shows: 'Shows up as: a line on your P&L that gets smaller or disappears.',
+    body: 'The agent takes on work you pay outside help for today, such as temps, overtime, contractors or outsourcing.',
+    shows: 'Shows up as: less outside help booked for this work.',
   },
   {
     id: 'capacity',
-    body: 'The agent absorbs growth without a planned hire, or lets a role go unfilled when someone leaves.',
-    shows: 'Shows up as: a hire you don’t make, or a vacancy you don’t backfill.',
+    body: 'The agent takes on work your team does today, so you can grow without a planned hire, or leave a role unfilled when someone leaves.',
+    shows: 'Shows up as: a hire you don’t need to make, or a vacancy you don’t backfill.',
   },
   {
     id: 'working_capital',
-    body: 'The agent brings cash in sooner through faster billing, collections or payment processing.',
-    shows: 'Shows up as: lower debtor days. This is a one-off gain to your bank balance and never counts as margin.',
+    body: 'The agent takes on billing, collections or payment work, so invoices go out and get paid sooner.',
+    shows: 'Shows up as: fewer debtor days. This is a one-off change in timing, not an ongoing saving.',
   },
   {
     id: 'revenue',
-    body: 'Freed time goes into work customers pay for, so you deliver more without adding people.',
-    shows: 'Shows up as: more billable hours or projects from the same team.',
+    body: 'The time the agent frees goes into work your clients pay for, so you deliver more with the same people.',
+    shows: 'Shows up as: more client work from the same team.',
   },
 ]
 
 export const IMPACT_GUIDE: { impact: LeverImpact; body: string }[] = [
-  { impact: 'high', body: 'A clear cost or time sink you described' },
+  { impact: 'high', body: 'A clear time sink or outside cost you described' },
   { impact: 'medium', body: 'A real effect, capped by what we know' },
   { impact: 'low', body: 'Possible, but not why you’d build it' },
-  { impact: 'none', body: 'This agent won’t move this lever' },
+  { impact: 'none', body: 'This agent won’t change this area' },
 ]
 
 export function planDate(date = new Date()): string {
