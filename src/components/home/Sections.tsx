@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 import { ScopeLink } from '@/components/booking/ScopeLink'
-import { Button } from '@/components/ui/Button'
 import { buttonClasses } from '@/components/ui/button-classes'
 import { Container } from '@/components/ui/Container'
 
@@ -187,12 +186,9 @@ export function Close() {
             </h2>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <ScopeLink className={buttonClasses('primary')}>Scope your agent</ScopeLink>
-              <Button href="/agent-planner" prefetch={false} variant="ghost">
-                Try the Agent Planner →
-              </Button>
             </div>
             <p className="mt-5 max-w-[40ch] text-mist">
-              If an agent is the wrong answer, we will tell you on the call.
+              If an agent is the wrong answer, we&apos;ll tell you on the call.
             </p>
           </div>
           <div className="ffh-call">
