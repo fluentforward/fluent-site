@@ -9,6 +9,9 @@
  */
 export const PLAN_LEASE_MS = 210_000
 
+/** Failed plan jobs (each up to three model attempts) before the page stops retrying a session. */
+export const MAX_PLAN_FAILURES = 3
+
 function record(partial: unknown): Record<string, unknown> | null {
   return partial && typeof partial === 'object' ? (partial as Record<string, unknown>) : null
 }
@@ -40,6 +43,18 @@ export function planFailures(partial: unknown): number {
 export function canResumeSession(publicId: string | null | undefined, ref: string | null | undefined): boolean {
   const want = typeof ref === 'string' ? ref.trim() : ''
   return Boolean(publicId && want && want === publicId)
+}
+
+/**
+ * Whether starting a plan may reuse the session behind the cookie. Only an open session
+ * (not claimed, not purged) that this tab started. Everything else starts a new session.
+ */
+export function canReuseSessionForStart(
+  existing: { publicId: string; claimedAt: Date | string | null; freeTextPurgedAt: Date | string | null } | null | undefined,
+  ref: string | null | undefined,
+): boolean {
+  if (!existing || existing.claimedAt || existing.freeTextPurgedAt) return false
+  return canResumeSession(existing.publicId, ref)
 }
 
 export type PlanPollAction =

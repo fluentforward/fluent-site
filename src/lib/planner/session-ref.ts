@@ -16,10 +16,17 @@ export function readPlannerSessionRef(): string {
   }
 }
 
-export function stashPlannerSessionRef(value: unknown) {
-  if (typeof window === 'undefined' || typeof value !== 'string') return
+/** A session public id, or '' when the value is not one. */
+export function normalizePlannerSessionRef(value: unknown): string {
+  if (typeof value !== 'string') return ''
   const ref = value.trim()
-  if (!/^[A-Za-z0-9_-]{8,64}$/.test(ref)) return
+  return /^[A-Za-z0-9_-]{8,64}$/.test(ref) ? ref : ''
+}
+
+export function stashPlannerSessionRef(value: unknown) {
+  if (typeof window === 'undefined') return
+  const ref = normalizePlannerSessionRef(value)
+  if (!ref) return
   try {
     sessionStorage.setItem(KEY, ref)
   } catch {

@@ -5,7 +5,7 @@ import { isAnthropicConfigured, askFollowUp, askPlan, planModelId } from '@/lib/
 import { interpretPlanResult } from '@/lib/planner/guardrails'
 import { fallbackHook, prepareHook, readPlanHook, withHook } from '@/lib/planner/hook'
 import { impactLine } from '@/lib/planner/levers'
-import { canResumeSession, planLeaseLive } from '@/lib/planner/plan-lease'
+import { MAX_PLAN_FAILURES, canResumeSession, canReuseSessionForStart, planFailures, planLeaseLive } from '@/lib/planner/plan-lease'
 import { hashIp, clientIp, newSecret, hashSecret } from '@/lib/planner/ids'
 import { MARKETING_ATTRIBUTION_QUERY_PARAMS, type MarketingAttribution } from '@/lib/marketing-attribution'
 import { adaptLegacyPlan, parseStoredPlan, type FollowUpResult as FollowUpModel } from '@/lib/planner/plan-schema'
@@ -44,6 +44,7 @@ import {
   popLastAnswer,
   releasePlanLease,
   saveGeneratedPlanWithHook,
+  saveRefusalWithLease,
   saveRefusal,
   setPending,
   setSensitive,
@@ -95,13 +96,6 @@ export type PublicState = (
 
 export type FlowResult =
   | { kind: 'json'; status: number; body: PublicState; cookie?: string; clearCookie?: boolean; deliverId?: string }
-  | {
-      kind: 'stream'
-      session: SessionRow
-      prompt: string
-      cookie?: string
-      claim?: { name: string; email: string; company?: string }
-    }
 
 const MAX_FOLLOW_UPS = 4
 
@@ -112,8 +106,20 @@ export function readPlannerToken(): string | undefined {
 export function toPublicState(session: SessionRow | null, warning?: string): PublicState {
   const state = baseState(session, warning)
   if (!session || state.state === 'empty') return state
-  if (state.state === 'writing') return { ...state, active: planLeaseLive(session.partialPlan), ref: session.publicId }
+  if (state.state === 'writing') return writingState(session)
   return { ...state, ref: session.publicId }
+}
+
+const PLAN_GAVE_UP =
+  'The plan did not come together this time. Book a call and we will work through it with you.'
+
+/** A session waiting for its plan. After MAX_PLAN_FAILURES failed jobs, the page stops retrying. */
+function writingState(session: SessionRow): PublicState {
+  const active = planLeaseLive(session.partialPlan)
+  if (!active && planFailures(session.partialPlan) >= MAX_PLAN_FAILURES) {
+    return { state: 'error', message: PLAN_GAVE_UP, ref: session.publicId }
+  }
+  return { state: 'writing', problem: session.problem, active, ref: session.publicId }
 }
 
 function baseState(session: SessionRow | null, warning?: string): PublicState {
@@ -186,12 +192,7 @@ function needsHook(session: SessionRow): boolean {
 
 async function presentWriting(session: SessionRow, cookie?: string): Promise<FlowResult> {
   const marked = await markWriting(session)
-  return {
-    kind: 'json',
-    status: 200,
-    body: { state: 'writing', problem: marked.problem, active: planLeaseLive(marked.partialPlan), ref: marked.publicId },
-    cookie,
-  }
+  return { kind: 'json', status: 200, body: writingState(marked), cookie }
 }
 
 /** Whole budget for one plan job, inside the plan route's maxDuration. */
@@ -256,15 +257,22 @@ async function generatePlan(session: SessionRow, prompt: string, deadline: numbe
  * plan with its gate line in one write. On failure the lease is released so a retry can start.
  */
 async function runPlanJob(leased: SessionRow, deadline: number): Promise<SessionRow> {
-  const leaseAt = (leased.partialPlan as Record<string, unknown> | null)?.planWritingAt as string
+  const leaseAt = String((leased.partialPlan as Record<string, unknown> | null)?.planWritingAt ?? '')
   const prompt = dataBlock(leased.problem, asFollowUps(leased))
   try {
     const [outcome, hook] = await Promise.all([
       generatePlan(leased, prompt, deadline),
       prepareHook(leased).catch(() => fallbackHook(leased.problem)),
     ])
-    if (outcome.kind === 'refusal') return await saveRefusal(leased, outcome.message || SCRIPTED_REFUSAL)
-    return await saveGeneratedPlanWithHook(leased, outcome.plan, hook)
+    const saved =
+      outcome.kind === 'refusal'
+        ? await saveRefusalWithLease(leased, leaseAt, outcome.message || SCRIPTED_REFUSAL)
+        : await saveGeneratedPlanWithHook(leased, leaseAt, outcome.plan, hook)
+    if (saved) return saved
+    // The lease was lost while the model ran (the session was restarted, reset or taken over).
+    // This result belongs to an older state of the session, so it is dropped, not saved.
+    console.warn('[planner] plan job lost its lease; result dropped', leased.id)
+    return (await getSessionById(leased.id)) ?? leased
   } catch (error) {
     if (leaseAt) await releasePlanLease(leased.id, leaseAt).catch(() => undefined)
     throw error
@@ -286,8 +294,7 @@ async function waitForPlanJob(sessionId: string, deadline: number): Promise<Sess
 async function ensurePlan(session: SessionRow): Promise<SessionRow> {
   if (parseStoredPlan(session.fullPlan)) return session
   const deadline = Date.now() + PLAN_BUDGET_MS
-  const marked = await markWriting(session)
-  const leased = await acquirePlanLease(marked)
+  const leased = await acquirePlanLease(session)
   if (leased) return runPlanJob(leased, deadline)
   const joined = await waitForPlanJob(session.id, deadline)
   if (joined && parseStoredPlan(joined.fullPlan)) return joined
@@ -310,13 +317,7 @@ export async function handleGet(ref?: string | null): Promise<FlowResult> {
   if (!session || !canResumeSession(session.publicId, ref)) {
     return { kind: 'json', status: 200, body: { state: 'empty' } }
   }
-  if (needsPlan(session)) {
-    return {
-      kind: 'json',
-      status: 200,
-      body: { state: 'writing', problem: session.problem, active: planLeaseLive(session.partialPlan), ref: session.publicId },
-    }
-  }
+  if (needsPlan(session)) return { kind: 'json', status: 200, body: writingState(session) }
   if (session && needsHook(session)) session = await withHook(session)
   return { kind: 'json', status: 200, body: toPublicState(session) }
 }
@@ -337,11 +338,14 @@ export async function handlePrepare(): Promise<FlowResult> {
     const ready = readPlanHook(session.partialPlan) ? session : await withHook(session)
     return { kind: 'json', status: 200, body: toPublicState(ready) }
   }
-  const marked = await markWriting(session)
-  const leased = await acquirePlanLease(marked)
+  if (!planLeaseLive(session.partialPlan) && planFailures(session.partialPlan) >= MAX_PLAN_FAILURES) {
+    // Several jobs have already failed for this session. Stop spending model calls on it.
+    return { kind: 'json', status: 200, body: writingState(session) }
+  }
+  const leased = await acquirePlanLease(session)
   if (!leased) {
     // Another request is already writing this plan (a browser retry, a second tab), or it just finished.
-    const current = (await getSessionById(session.id)) ?? marked
+    const current = (await getSessionById(session.id)) ?? session
     return { kind: 'json', status: needsPlan(current) ? 202 : 200, body: toPublicState(current) }
   }
   // The plan is written in the background and the page polls the session. A long, silent
@@ -377,11 +381,14 @@ export async function handleStart(request: Request, body: unknown): Promise<Flow
   const entry = parseSessionEntry(asRecord(record.entry ?? record))
   const ipHash = ipOf(request)
   const existing = await loadSessionFromToken(readPlannerToken())
-  const reusable = existing && !existing.claimedAt && !existing.freeTextPurgedAt
+  // Reuse the cookie's session only for the tab that started it. Any other tab, or a new visit,
+  // gets a new session, so an older visit's answers, lead id, company or email never carry over.
+  const ref = typeof record.ref === 'string' ? record.ref : null
+  const reusable = canReuseSessionForStart(existing, ref)
 
   let session: SessionRow
   let cookie: string | undefined
-  if (!reusable) {
+  if (!reusable || !existing) {
     await assertSessionRate(ipHash)
     cookie = newSecret()
     session = await insertSession({

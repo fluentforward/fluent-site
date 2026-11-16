@@ -4,6 +4,7 @@ import { test } from 'node:test'
 import {
   PLAN_LEASE_MS,
   canResumeSession,
+  canReuseSessionForStart,
   nextPlanPollAction,
   planFailures,
   planLeaseLive,
@@ -46,4 +47,16 @@ test('the page keeps waiting while a writer is live, restarts a stopped job, and
   assert.deepEqual(nextPlanPollAction({ state: 'details' }), { kind: 'done' })
   assert.deepEqual(nextPlanPollAction({ state: 'error', message: 'x' }), { kind: 'done' })
   assert.deepEqual(nextPlanPollAction(null), { kind: 'done' })
+})
+
+test('starting a plan reuses the cookie session only for the tab that started it', () => {
+  const open = { publicId: 'IW9b22z72GvFpJuwWw33eg', claimedAt: null, freeTextPurgedAt: null }
+  assert.equal(canReuseSessionForStart(open, 'IW9b22z72GvFpJuwWw33eg'), true)
+  // Another tab, or a new visit, starts a new session so an older lead id, company or email cannot carry over.
+  assert.equal(canReuseSessionForStart(open, 'e3cb34b3xxxxxxxxxxxxxx'), false)
+  assert.equal(canReuseSessionForStart(open, ''), false)
+  assert.equal(canReuseSessionForStart(open, null), false)
+  assert.equal(canReuseSessionForStart({ ...open, claimedAt: new Date() }, open.publicId), false)
+  assert.equal(canReuseSessionForStart({ ...open, freeTextPurgedAt: new Date() }, open.publicId), false)
+  assert.equal(canReuseSessionForStart(null, open.publicId), false)
 })

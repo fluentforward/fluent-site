@@ -13,9 +13,6 @@ export async function readJson(request: Request): Promise<unknown> {
 }
 
 export function flowResponse(result: FlowResult): Response {
-  if (result.kind === 'stream') {
-    throw new Error('stream results are returned by planStreamResponse')
-  }
   const response = NextResponse.json(result.body, { status: result.status })
   if (result.cookie) response.headers.append('Set-Cookie', plannerCookieHeader(result.cookie))
   if (result.clearCookie) response.headers.append('Set-Cookie', clearPlannerCookieHeader())
