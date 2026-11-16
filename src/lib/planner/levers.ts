@@ -51,6 +51,84 @@ export const PATH_LABEL: Record<LeverPath, string> = {
   via_decisions: 'via decisions',
 }
 
+/**
+ * A sentence that states a score, such as "Scored medium because…" or "Score is high".
+ * "Could rescore to medium" is advice, not a claim, and does not match.
+ */
+const SCORE_CLAIM =
+  /\b(?:scored|scores?|scoring|rated|rating)\s+(?:is\s+|as\s+|at\s+|of\s+)?(?:a\s+)?(high|medium|low|none|zero)\b|\b(high|medium|low)\s+(?:score|rating)\b/gi
+
+/** The score levels a piece of text claims, normalised to LeverImpact. */
+export function claimedScores(text: string | null | undefined): LeverImpact[] {
+  const found: LeverImpact[] = []
+  for (const match of (text ?? '').matchAll(SCORE_CLAIM)) {
+    const level = (match[1] || match[2] || '').toLowerCase()
+    found.push(level === 'zero' ? 'none' : (level as LeverImpact))
+  }
+  return found
+}
+
+/** Drop any sentence that claims a score other than the final one. */
+export function withoutStaleScore(text: string | null | undefined, impact: LeverImpact): string {
+  const value = clean(text)
+  if (!value) return ''
+  const sentences = value.split(/(?<=[.!?])\s+/)
+  return sentences
+    .filter((sentence) => claimedScores(sentence).every((level) => level === impact))
+    .join(' ')
+    .trim()
+}
+
+/**
+ * The model writes `why` and `note` for the score it chose. The rules below can change that
+ * score, so the text is reconciled with the final score: a sentence that states another score is
+ * dropped, and when the rules move the score the model's note (which explains the old score) goes.
+ * Also used on stored plans, so plans written before this check render consistently.
+ */
+export function reconcileLeverText(lever: LeverScore, modelImpact?: LeverImpact): LeverScore {
+  const moved = modelImpact !== undefined && modelImpact !== lever.impact
+  const why = withoutStaleScore(lever.why, lever.impact)
+  const note = moved ? '' : withoutStaleScore(lever.note, lever.impact)
+  const next: LeverScore = { ...lever, why: why.length >= 3 ? why : fallbackWhy(lever) }
+  if (note) next.note = note
+  else delete next.note
+  return next
+}
+
+function fallbackWhy(lever: LeverScore): string {
+  return lever.impact === 'none' ? NONE_WHY[lever.lever] : `Scored ${IMPACT_LABEL[lever.impact].toLowerCase()} from what you described.`
+}
+
+const LEVER_MENTION: Record<LeverId, RegExp> = {
+  cash: /\bcash\b(?!\s+(?:in|flow|sooner|comes))/i,
+  capacity: /\bcapacity\b/i,
+  working_capital: /\bworking[\s-]capital\b/i,
+  revenue: /\brevenue\b/i,
+}
+
+/**
+ * The score intro is model prose. If it names a lever the final score puts at none, or states a
+ * score that no lever has, it no longer matches the scores on the page and is replaced.
+ */
+export function scoreIntroFits(intro: string, levers: LeverScore[]): boolean {
+  const text = clean(intro)
+  if (!text) return false
+  for (const lever of levers) {
+    if (lever.impact === 'none' && LEVER_MENTION[lever.lever].test(text)) return false
+  }
+  const present = new Set(levers.map((lever) => lever.impact))
+  return claimedScores(text).every((level) => present.has(level))
+}
+
+export function defaultScoreIntro(levers: LeverScore[]): string {
+  const ranked = [...levers].filter((lever) => lever.impact !== 'none').sort((a, b) => RANK[b.impact] - RANK[a.impact])
+  const top = ranked[0]
+  if (!top) return 'Each lever is scored on its own, from what you described.'
+  const how =
+    top.path === 'direct' ? 'The agent does that work itself.' : 'The agent informs a person, who then acts.'
+  return `The strongest lever is ${LEVER_LABEL[top.lever].toLowerCase()}. ${how}`
+}
+
 const BETTER_FIRST =
   'Name one process, and the time or cost it takes. That is a better first agent than a general brief.'
 
@@ -90,27 +168,34 @@ export function applyLeverRules(input: {
     if (impact === 'high' && !timeOrCost) impact = 'medium'
     if (!specific) impact = cap(impact, 'low')
     const note = clean(found?.note) || undefined
+    const modelImpact = found?.impact ?? 'none'
     if (impact === 'none') {
-      return {
+      return reconcileLeverText(
+        {
+          lever: id,
+          impact,
+          path,
+          why: id === 'working_capital' && !billing ? why : clean(found?.why) || NONE_WHY[id],
+          note,
+        },
+        modelImpact,
+      )
+    }
+
+    return reconcileLeverText(
+      {
         lever: id,
         impact,
         path,
-        why: id === 'working_capital' && !billing ? why : clean(found?.why) || NONE_WHY[id],
+        why,
+        baseline: clean(found?.baseline) || undefined,
+        check: clean(found?.check) || undefined,
+        ownerRole: clean(found?.ownerRole) || undefined,
+        reviewAt: path === 'direct' ? ('30 days' as const) : ('90 days' as const),
         note,
-      }
-    }
-
-    return {
-      lever: id,
-      impact,
-      path,
-      why,
-      baseline: clean(found?.baseline) || undefined,
-      check: clean(found?.check) || undefined,
-      ownerRole: clean(found?.ownerRole) || undefined,
-      reviewAt: path === 'direct' ? ('30 days' as const) : ('90 days' as const),
-      note,
-    }
+      },
+      modelImpact,
+    )
   })
 
   const weak = levers.every((item) => item.impact === 'low' || item.impact === 'none')

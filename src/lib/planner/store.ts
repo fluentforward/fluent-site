@@ -4,6 +4,7 @@ import { getDb, isDatabaseConfigured } from '@/db'
 import { plannerEvents, plannerRuns, plannerSessions, type PlannerSessionRow } from '@/db/schema'
 
 export type { PlannerSessionRow }
+import { PLAN_LEASE_MS } from '@/lib/planner/plan-lease'
 import { toPartialPlan } from '@/lib/planner/plan-schema'
 import type { FollowUp, FullPlan, PlanHook, PlannerAttribution } from '@/lib/planner/types'
 
@@ -183,6 +184,71 @@ function isStoredHook(partial: PlannerSessionRow['partialPlan']): boolean {
       typeof partial.agent === 'string' &&
       partial.agent.length >= 12,
   )
+}
+
+/**
+ * Take the single-writer lease for this session's plan (see plan-lease.ts).
+ * Returns the updated row, or null when another request is already writing the plan
+ * or the plan already exists.
+ */
+export async function acquirePlanLease(session: PlannerSessionRow): Promise<PlannerSessionRow | null> {
+  const now = new Date()
+  const cutoff = new Date(now.getTime() - PLAN_LEASE_MS).toISOString()
+  const at = now.toISOString()
+  const partial = plannerSessions.partialPlan
+  const rows = await getDb()
+    .update(plannerSessions)
+    .set({
+      partialPlan: sql`jsonb_set(case when jsonb_typeof(${partial}) = 'object' then ${partial} else '{}'::jsonb end, '{planWritingAt}', to_jsonb(${at}::text))`,
+      updatedAt: now,
+    })
+    .where(
+      and(
+        eq(plannerSessions.id, session.id),
+        isNull(plannerSessions.fullPlan),
+        sql`(${partial}->>'planWritingAt' is null or (${partial}->>'planWritingAt')::timestamptz < ${cutoff}::timestamptz)`,
+      ),
+    )
+    .returning()
+  return rows[0] ?? null
+}
+
+/** Give the lease back after a failed generation, so the next request can start again. */
+export async function releasePlanLease(sessionId: string, leaseAt: string): Promise<void> {
+  const partial = plannerSessions.partialPlan
+  await getDb()
+    .update(plannerSessions)
+    .set({
+      partialPlan: sql`(${partial} - 'planWritingAt') || jsonb_build_object('planFailures', coalesce((${partial}->>'planFailures')::int, 0) + 1)`,
+      updatedAt: new Date(),
+    })
+    .where(
+      and(
+        eq(plannerSessions.id, sessionId),
+        isNull(plannerSessions.fullPlan),
+        sql`jsonb_typeof(${partial}) = 'object'`,
+        sql`${partial}->>'planWritingAt' = ${leaseAt}`,
+      ),
+    )
+}
+
+/**
+ * Save the plan and the gate line in one write. The page polls the session while the plan is
+ * written, so it must never see a plan without its gate line, or a released lease without a plan.
+ */
+export async function saveGeneratedPlanWithHook(
+  session: PlannerSessionRow,
+  plan: FullPlan,
+  hook: PlanHook,
+): Promise<PlannerSessionRow> {
+  return updateSession(session.id, {
+    phase: 'partial',
+    partialPlan: { awaitingDetails: true, ...hook },
+    fullPlan: plan,
+    refusal: null,
+    pendingQuestion: null,
+    sensitiveHold: false,
+  })
 }
 
 export async function claimSession(

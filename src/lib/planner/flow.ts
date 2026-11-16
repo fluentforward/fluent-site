@@ -1,9 +1,11 @@
+import { waitUntil } from '@vercel/functions'
 import { cookies } from 'next/headers'
 
 import { isAnthropicConfigured, askFollowUp, askPlan, planModelId } from '@/lib/planner/anthropic'
 import { interpretPlanResult } from '@/lib/planner/guardrails'
 import { fallbackHook, prepareHook, readPlanHook, withHook } from '@/lib/planner/hook'
 import { impactLine } from '@/lib/planner/levers'
+import { canResumeSession, planLeaseLive } from '@/lib/planner/plan-lease'
 import { hashIp, clientIp, newSecret, hashSecret } from '@/lib/planner/ids'
 import { MARKETING_ATTRIBUTION_QUERY_PARAMS, type MarketingAttribution } from '@/lib/marketing-attribution'
 import { adaptLegacyPlan, parseStoredPlan, type FollowUpResult as FollowUpModel } from '@/lib/planner/plan-schema'
@@ -22,24 +24,26 @@ import {
   type PlannerTeamSize,
 } from '@/lib/planner/entry-params'
 import {
+  acquirePlanLease,
   appendAnswer,
   asFollowUps,
   assertRunRate,
   assertSessionRate,
   claimSession,
   databaseReady,
+  getSessionById,
   insertSession,
   loadSessionFromToken,
   logEvent,
   logRun,
-  markAwaitingDetails,
   markScopingBooked,
   markScopingClicked,
   markWriting,
   mergeSessionEntry,
-  saveGeneratedPlan,
   PlannerError,
   popLastAnswer,
+  releasePlanLease,
+  saveGeneratedPlanWithHook,
   saveRefusal,
   setPending,
   setSensitive,
@@ -57,11 +61,12 @@ import {
 
 type SessionRow = PlannerSessionRow
 
-export type PublicState =
+/** Every non-empty state carries `ref`, the session's public id, so the tab can resume only its own session. */
+export type PublicState = (
   | { state: 'empty' }
   | { state: 'sensitive'; message: string; problem: string }
   | { state: 'question'; question: string; problem: string; warning?: string }
-  | { state: 'writing'; problem: string }
+  | { state: 'writing'; problem: string; active?: boolean }
   | {
       state: 'details'
       problem: string
@@ -86,6 +91,7 @@ export type PublicState =
     }
   | { state: 'rate_limited'; message: string }
   | { state: 'error'; message: string }
+) & { ref?: string }
 
 export type FlowResult =
   | { kind: 'json'; status: number; body: PublicState; cookie?: string; clearCookie?: boolean; deliverId?: string }
@@ -104,6 +110,13 @@ export function readPlannerToken(): string | undefined {
 }
 
 export function toPublicState(session: SessionRow | null, warning?: string): PublicState {
+  const state = baseState(session, warning)
+  if (!session || state.state === 'empty') return state
+  if (state.state === 'writing') return { ...state, active: planLeaseLive(session.partialPlan), ref: session.publicId }
+  return { ...state, ref: session.publicId }
+}
+
+function baseState(session: SessionRow | null, warning?: string): PublicState {
   if (!session || session.freeTextPurgedAt) return { state: 'empty' }
   if (session.sensitiveHold) {
     return { state: 'sensitive', message: SENSITIVE_MESSAGE, problem: session.problem }
@@ -173,51 +186,113 @@ function needsHook(session: SessionRow): boolean {
 
 async function presentWriting(session: SessionRow, cookie?: string): Promise<FlowResult> {
   const marked = await markWriting(session)
-  return { kind: 'json', status: 200, body: { state: 'writing', problem: marked.problem }, cookie }
+  return {
+    kind: 'json',
+    status: 200,
+    body: { state: 'writing', problem: marked.problem, active: planLeaseLive(marked.partialPlan), ref: marked.publicId },
+    cookie,
+  }
 }
 
+/** Whole budget for one plan job, inside the plan route's maxDuration. */
+const PLAN_BUDGET_MS = 200_000
+/** One model call. Plans take 30 to 45 seconds today. */
+const PLAN_ATTEMPT_MS = 70_000
+/** Do not start another attempt with less time than this left. */
+const PLAN_MIN_ATTEMPT_MS = 45_000
+const PLAN_MAX_ATTEMPTS = 3
+const PLAN_FAILED = 'The plan did not come together. Please try again.'
+
+type PlanOutcome = { kind: 'plan'; plan: FullPlan } | { kind: 'refusal'; message: string }
+
+/**
+ * Write the plan, retrying on a timeout, an API error or a plan that fails its checks.
+ * A refusal is only final before any follow-up answers. After real answers the plan is retried.
+ */
+async function generatePlan(session: SessionRow, prompt: string, deadline: number): Promise<PlanOutcome> {
+  const answered = asFollowUps(session).length > 0
+  for (let attempt = 1; attempt <= PLAN_MAX_ATTEMPTS; attempt += 1) {
+    const remaining = deadline - Date.now()
+    if (attempt > 1 && remaining < PLAN_MIN_ATTEMPT_MS) break
+    try {
+      await assertRunRate(session.id)
+      const result = await askPlan(prompt, { timeoutMs: Math.max(10_000, Math.min(PLAN_ATTEMPT_MS, remaining)) })
+      const interpreted = interpretPlanResult(result.object, prompt)
+      await logRun({
+        sessionId: session.id,
+        slot: 'plan',
+        model: result.model || planModelId(),
+        promptVersion: PLAN_PROMPT_VERSION,
+        promptHash: promptHash(PLAN_SYSTEM),
+        input: { prompt, attempt },
+        output: result.object,
+        inputTokens: result.usage.inputTokens,
+        outputTokens: result.usage.outputTokens,
+        latencyMs: result.latencyMs,
+        degraded: interpreted.kind !== 'plan',
+      }).catch(() => undefined)
+      if (interpreted.kind === 'plan') return interpreted
+      if (!answered) return interpreted
+    } catch (error) {
+      if (error instanceof PlannerError && error.code === 'rate_limited') throw error
+      console.error('[planner] plan attempt', attempt, session.id, error)
+      await logRun({
+        sessionId: session.id,
+        slot: 'plan',
+        model: planModelId(),
+        promptVersion: PLAN_PROMPT_VERSION,
+        promptHash: promptHash(PLAN_SYSTEM),
+        input: { prompt, attempt },
+        output: { error: error instanceof Error ? error.message : 'plan failed' },
+        degraded: true,
+      }).catch(() => undefined)
+    }
+  }
+  throw new PlannerError(PLAN_FAILED, 503, 'plan')
+}
+
+/**
+ * The one place a plan is written. Holds the session's lease for the whole job and saves the
+ * plan with its gate line in one write. On failure the lease is released so a retry can start.
+ */
+async function runPlanJob(leased: SessionRow, deadline: number): Promise<SessionRow> {
+  const leaseAt = (leased.partialPlan as Record<string, unknown> | null)?.planWritingAt as string
+  const prompt = dataBlock(leased.problem, asFollowUps(leased))
+  try {
+    const [outcome, hook] = await Promise.all([
+      generatePlan(leased, prompt, deadline),
+      prepareHook(leased).catch(() => fallbackHook(leased.problem)),
+    ])
+    if (outcome.kind === 'refusal') return await saveRefusal(leased, outcome.message || SCRIPTED_REFUSAL)
+    return await saveGeneratedPlanWithHook(leased, outcome.plan, hook)
+  } catch (error) {
+    if (leaseAt) await releasePlanLease(leased.id, leaseAt).catch(() => undefined)
+    throw error
+  }
+}
+
+/** Wait for a plan another request is writing. Returns the session once it changes, or null at the deadline. */
+async function waitForPlanJob(sessionId: string, deadline: number): Promise<SessionRow | null> {
+  while (Date.now() < deadline) {
+    await new Promise((resolve) => setTimeout(resolve, 1500))
+    const current = await getSessionById(sessionId)
+    if (!current) return null
+    if (!needsPlan(current) || !planLeaseLive(current.partialPlan)) return current
+  }
+  return null
+}
+
+/** Make sure the session has a plan before the claim. Joins a job already running. */
 async function ensurePlan(session: SessionRow): Promise<SessionRow> {
   if (parseStoredPlan(session.fullPlan)) return session
-  const prompt = dataBlock(session.problem, asFollowUps(session))
-  try {
-    await assertRunRate(session.id)
-    const result = await askPlan(prompt)
-    const interpreted = interpretPlanResult(result.object, prompt)
-    await logRun({
-      sessionId: session.id,
-      slot: 'plan',
-      model: result.model || planModelId(),
-      promptVersion: PLAN_PROMPT_VERSION,
-      promptHash: promptHash(PLAN_SYSTEM),
-      input: { prompt },
-      output: result.object,
-      inputTokens: result.usage.inputTokens,
-      outputTokens: result.usage.outputTokens,
-      latencyMs: result.latencyMs,
-      degraded: interpreted.kind !== 'plan',
-    })
-    if (interpreted.kind === 'refusal') {
-      if (asFollowUps(session).length > 0) {
-        throw new PlannerError('The plan did not come together. Please try again.', 503, 'plan')
-      }
-      return saveRefusal(session, interpreted.message || SCRIPTED_REFUSAL)
-    }
-    return saveGeneratedPlan(session, interpreted.plan)
-  } catch (error) {
-    console.error('[planner] plan', session.id, error)
-    await logRun({
-      sessionId: session.id,
-      slot: 'plan',
-      model: planModelId(),
-      promptVersion: PLAN_PROMPT_VERSION,
-      promptHash: promptHash(PLAN_SYSTEM),
-      input: { prompt },
-      output: { error: error instanceof Error ? error.message : 'plan failed' },
-      degraded: true,
-    }).catch(() => undefined)
-    if (error instanceof PlannerError) throw error
-    throw new PlannerError('The plan did not come together. Please try again.', 503, 'plan')
-  }
+  const deadline = Date.now() + PLAN_BUDGET_MS
+  const marked = await markWriting(session)
+  const leased = await acquirePlanLease(marked)
+  if (leased) return runPlanJob(leased, deadline)
+  const joined = await waitForPlanJob(session.id, deadline)
+  if (joined && parseStoredPlan(joined.fullPlan)) return joined
+  if (joined?.refusal && !planMiss(joined)) return joined
+  throw new PlannerError(PLAN_FAILED, 503, 'plan')
 }
 
 function awaitingDetails(session: SessionRow): boolean {
@@ -227,11 +302,20 @@ function awaitingDetails(session: SessionRow): boolean {
   )
 }
 
-export async function handleGet(): Promise<FlowResult> {
+export async function handleGet(ref?: string | null): Promise<FlowResult> {
   if (!databaseReady()) return { kind: 'json', status: 200, body: { state: 'empty' } }
   let session = await loadSessionFromToken(readPlannerToken())
-  if (session && needsPlan(session)) {
-    return { kind: 'json', status: 200, body: { state: 'writing', problem: session.problem } }
+  // Only resume the session this tab started. An older session behind the cookie
+  // (a plan from an earlier visit) must never be shown as this visit's plan.
+  if (!session || !canResumeSession(session.publicId, ref)) {
+    return { kind: 'json', status: 200, body: { state: 'empty' } }
+  }
+  if (needsPlan(session)) {
+    return {
+      kind: 'json',
+      status: 200,
+      body: { state: 'writing', problem: session.problem, active: planLeaseLive(session.partialPlan), ref: session.publicId },
+    }
   }
   if (session && needsHook(session)) session = await withHook(session)
   return { kind: 'json', status: 200, body: toPublicState(session) }
@@ -249,10 +333,33 @@ export async function handlePrepare(): Promise<FlowResult> {
   ) {
     return { kind: 'json', status: 200, body: toPublicState(session) }
   }
+  if (parseStoredPlan(session.fullPlan)) {
+    const ready = readPlanHook(session.partialPlan) ? session : await withHook(session)
+    return { kind: 'json', status: 200, body: toPublicState(ready) }
+  }
   const marked = await markWriting(session)
-  const [ready, hook] = await Promise.all([ensurePlan(marked), prepareHook(marked)])
-  const saved = readPlanHook(ready.partialPlan) ? ready : await markAwaitingDetails(ready, hook)
-  return { kind: 'json', status: 200, body: toPublicState(saved) }
+  const leased = await acquirePlanLease(marked)
+  if (!leased) {
+    // Another request is already writing this plan (a browser retry, a second tab), or it just finished.
+    const current = (await getSessionById(session.id)) ?? marked
+    return { kind: 'json', status: needsPlan(current) ? 202 : 200, body: toPublicState(current) }
+  }
+  // The plan is written in the background and the page polls the session. A long, silent
+  // request is easy to lose on the way (proxies, mobile networks), and the page cannot tell
+  // a lost response from a failed plan.
+  const job = runPlanJob(leased, Date.now() + PLAN_BUDGET_MS).catch((error) => {
+    console.error('[planner] plan job', session.id, error)
+  })
+  try {
+    waitUntil(job)
+  } catch {
+    void job
+  }
+  return {
+    kind: 'json',
+    status: 202,
+    body: { state: 'writing', problem: leased.problem, active: true, ref: leased.publicId },
+  }
 }
 
 export async function handleReset(): Promise<FlowResult> {
@@ -312,10 +419,19 @@ export async function handleStart(request: Request, body: unknown): Promise<Flow
 export async function handleEntry(body: unknown): Promise<FlowResult> {
   requireReady()
   const session = await loadSessionFromToken(readPlannerToken())
-  if (!session || session.freeTextPurgedAt) {
+  const record = asRecord(body)
+  const ref = typeof record.ref === 'string' ? record.ref : null
+  // Entry details belong to the session this tab is on. Never re-attribute an older or finished session.
+  if (
+    !session ||
+    session.freeTextPurgedAt ||
+    session.claimedAt ||
+    session.phase === 'claimed' ||
+    session.phase === 'emailed' ||
+    !canResumeSession(session.publicId, ref)
+  ) {
     return { kind: 'json', status: 200, body: { state: 'empty' } }
   }
-  const record = asRecord(body)
   const entry = parseSessionEntry(record)
   const attribution = record.attribution ? parseAttribution(record.attribution) : undefined
   const merged = await mergeSessionEntry(session, {
@@ -374,7 +490,8 @@ export async function handleClaim(body: unknown): Promise<FlowResult> {
     if (session.phase === 'claimed' || session.phase === 'emailed') {
       return { kind: 'json', status: 200, body: toPublicState(session) }
     }
-    session = await ensurePlan(await withHook(await markWriting(session)))
+    session = await ensurePlan(session)
+    if (!session.refusal && parseStoredPlan(session.fullPlan)) session = await withHook(session)
   }
   if (session.refusal || !parseStoredPlan(session.fullPlan)) {
     return { kind: 'json', status: 200, body: toPublicState(session) }

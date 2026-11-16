@@ -48,7 +48,8 @@ export async function askHook(prompt: string) {
   }
 }
 
-export async function askPlan(prompt: string) {
+/** One model call for the plan. Retries live in flow.ts, so each attempt has its own deadline. */
+export async function askPlan(prompt: string, options: { timeoutMs?: number } = {}) {
   const started = Date.now()
   const result = await generateObject({
     model: anthropic(planModelId()),
@@ -58,7 +59,7 @@ export async function askPlan(prompt: string) {
     prompt,
     maxOutputTokens: 3200,
     temperature: 0.2,
-    abortSignal: AbortSignal.timeout(50_000),
+    abortSignal: AbortSignal.timeout(options.timeoutMs ?? 75_000),
     maxRetries: 0,
   })
   return {

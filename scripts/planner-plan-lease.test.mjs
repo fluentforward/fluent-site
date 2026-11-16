@@ -1,0 +1,49 @@
+import assert from 'node:assert/strict'
+import { test } from 'node:test'
+
+import {
+  PLAN_LEASE_MS,
+  canResumeSession,
+  nextPlanPollAction,
+  planFailures,
+  planLeaseLive,
+} from '../src/lib/planner/plan-lease.ts'
+
+const now = Date.parse('2026-11-16T08:12:05.000Z')
+
+test('a fresh lease is live and an old one has expired', () => {
+  assert.equal(planLeaseLive({ awaitingDetails: true, planWritingAt: '2026-11-16T08:12:00.000Z' }, now), true)
+  const old = new Date(now - PLAN_LEASE_MS - 1).toISOString()
+  assert.equal(planLeaseLive({ awaitingDetails: true, planWritingAt: old }, now), false)
+})
+
+test('no lease, a bad timestamp or a missing plan record is not live', () => {
+  assert.equal(planLeaseLive(null, now), false)
+  assert.equal(planLeaseLive({ awaitingDetails: true }, now), false)
+  assert.equal(planLeaseLive({ planWritingAt: 'not a date' }, now), false)
+  assert.equal(planLeaseLive({ planWritingAt: '2027-01-01T00:00:00.000Z' }, now), false)
+})
+
+test('failures are counted only from a positive number', () => {
+  assert.equal(planFailures({ planFailures: 2 }), 2)
+  assert.equal(planFailures({ planFailures: -1 }), 0)
+  assert.equal(planFailures({}), 0)
+})
+
+test('a tab only resumes the session it started', () => {
+  assert.equal(canResumeSession('IW9b22z72GvFpJuwWw33eg', 'IW9b22z72GvFpJuwWw33eg'), true)
+  // The 16 Nov test: the cookie still pointed at a plan from 15 Nov and the tab had no ref.
+  assert.equal(canResumeSession('cGP0Gfb-ncmdJHs19kP1MQ', ''), false)
+  assert.equal(canResumeSession('cGP0Gfb-ncmdJHs19kP1MQ', null), false)
+  assert.equal(canResumeSession('cGP0Gfb-ncmdJHs19kP1MQ', 'IW9b22z72GvFpJuwWw33eg'), false)
+  assert.equal(canResumeSession(null, 'IW9b22z72GvFpJuwWw33eg'), false)
+})
+
+test('the page keeps waiting while a writer is live, restarts a stopped job, and stops on a result', () => {
+  assert.deepEqual(nextPlanPollAction({ state: 'writing', active: true }), { kind: 'wait' })
+  assert.deepEqual(nextPlanPollAction({ state: 'writing' }), { kind: 'wait' })
+  assert.deepEqual(nextPlanPollAction({ state: 'writing', active: false }), { kind: 'kick' })
+  assert.deepEqual(nextPlanPollAction({ state: 'details' }), { kind: 'done' })
+  assert.deepEqual(nextPlanPollAction({ state: 'error', message: 'x' }), { kind: 'done' })
+  assert.deepEqual(nextPlanPollAction(null), { kind: 'done' })
+})
