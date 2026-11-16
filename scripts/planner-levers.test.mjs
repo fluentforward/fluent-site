@@ -254,3 +254,19 @@ test('buyer copy drops lever and money framing', async () => {
   assert.equal(MONEY_FRAMING.test('Where this agent moves the money.'), true)
   assert.equal(MONEY_FRAMING.test('The four money levers this agent could move.'), true)
 })
+
+test('the cash area is shown to buyers as bought-in work', async () => {
+  const { LEVER_LABEL } = await import('../src/lib/planner/levers.ts')
+  const view = await import('../src/lib/planner/plan-view.ts')
+  assert.equal(LEVER_LABEL.cash, 'Bought-in work')
+  const guide = view.LEVER_GUIDE.find((item) => item.id === 'cash')
+  assert.match(guide.body, /contractor, agency or temp spend/)
+  assert.equal(guide.shows, 'Shows up as: less contractor, agency or temp work bought in for this.')
+  const levers = [
+    { lever: 'cash', impact: 'none', path: 'direct', why: 'x' },
+    { lever: 'capacity', impact: 'medium', path: 'direct', why: 'x' },
+    { lever: 'working_capital', impact: 'none', path: 'direct', why: 'x' },
+    { lever: 'revenue', impact: 'none', path: 'direct', why: 'x' },
+  ]
+  assert.equal(scoreIntroFits('Bought-in work drops too.', levers), false, 'a none area named in the intro is caught')
+})

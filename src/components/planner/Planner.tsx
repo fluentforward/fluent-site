@@ -571,7 +571,7 @@ export function Planner({
                   <div className="ffp-gate-ghost is-fainter" aria-hidden="true">
                     <div>
                       <p>What changes for your team</p>
-                      <p>{view.preview?.impact || 'Outside help, team capacity, billing and client work.'}</p>
+                      <p>{view.preview?.impact || 'Bought-in work, team capacity, billing and client work.'}</p>
                     </div>
                   </div>
                   <p className="ffp-gate-lock">The rest unlocks with your plan</p>

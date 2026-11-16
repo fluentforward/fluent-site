@@ -18,7 +18,7 @@ const TIE: Record<LeverId, number> = {
 const RANK: Record<LeverImpact, number> = { high: 0, medium: 1, low: 2, none: 3 }
 
 const NONE_GLANCE: Record<LeverId, string> = {
-  cash: 'No outside help described',
+  cash: 'No bought-in work described',
   capacity: 'No growth or hire described',
   working_capital: 'Not a billing process',
   revenue: 'No growth held back by headcount',
@@ -51,8 +51,8 @@ export const BOOK_LINE =
 export const LEVER_GUIDE: { id: LeverId; body: string; shows: string }[] = [
   {
     id: 'cash',
-    body: 'The agent takes on work you pay outside help for today, such as temps, overtime, contractors or outsourcing.',
-    shows: 'Shows up as: less outside help booked for this work.',
+    body: 'The agent replaces contractor, agency or temp spend you pay for this work today, including overtime or outsourcing.',
+    shows: 'Shows up as: less contractor, agency or temp work bought in for this.',
   },
   {
     id: 'capacity',
@@ -72,7 +72,7 @@ export const LEVER_GUIDE: { id: LeverId; body: string; shows: string }[] = [
 ]
 
 export const IMPACT_GUIDE: { impact: LeverImpact; body: string }[] = [
-  { impact: 'high', body: 'A clear time sink or outside cost you described' },
+  { impact: 'high', body: 'A clear time sink or bought-in cost you described' },
   { impact: 'medium', body: 'A real effect, capped by what we know' },
   { impact: 'low', body: 'Possible, but not why you’d build it' },
   { impact: 'none', body: 'This agent won’t change this area' },

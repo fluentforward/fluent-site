@@ -26,14 +26,14 @@ const SPECIFIC =
   /\b(xero|sage|salesforce|hubspot|crm|spreadsheet|invoice|take-?off|cost plan|accounts payable)\b/i
 
 const NONE_WHY: Record<LeverId, string> = {
-  cash: 'No outside cost mentioned.',
+  cash: 'No contractor, agency or temp spend mentioned.',
   capacity: 'No growth or unfilled role mentioned.',
   working_capital: 'Not a billing or collections process.',
   revenue: 'Nothing said that growth is held back by headcount.',
 }
 
 export const LEVER_LABEL: Record<LeverId, string> = {
-  cash: 'Outside help',
+  cash: 'Bought-in work',
   capacity: 'Team capacity',
   working_capital: 'Billing and collections',
   revenue: 'Client work',
@@ -103,7 +103,7 @@ function fallbackWhy(lever: LeverScore): string {
 export const MONEY_FRAMING = /\blevers?\b|\bprofit\b|\bmargins?\b|\b(?:moves?|moving) the money\b|\bwhere the money\b/i
 
 const LEVER_MENTION: Record<LeverId, RegExp> = {
-  cash: /\bcash\b(?!\s+(?:in|flow|sooner|comes))|\boutside help\b/i,
+  cash: /\bcash\b(?!\s+(?:in|flow|sooner|comes))|\bbought[\s-]in work\b/i,
   capacity: /\bcapacity\b/i,
   working_capital: /\bworking[\s-]capital\b|\bbilling and collections\b/i,
   revenue: /\brevenue\b|\bclient work\b/i,

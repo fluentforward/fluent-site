@@ -67,7 +67,7 @@ Shape:
 - betterFirst: one sentence naming a better first agent when every lever is low or none. Otherwise null.
 
 Score exactly these four levers, in this order: cash, capacity, working_capital, revenue.
-- cash: stops a cost paid now, such as temps, overtime, contractors or outsourcing.
+- cash (the buyer sees this as Bought-in work): contractor, agency or temp spend the agent replaces, including overtime or outsourcing paid now.
 - capacity: absorbs growth without a planned hire, or lets a role go unfilled when someone leaves.
 - working_capital: brings cash in sooner. One-off. Never treat it as margin. Only for billing, collections or payment.
 - revenue: freed time goes into work customers pay for.
