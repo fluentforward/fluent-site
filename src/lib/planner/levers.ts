@@ -150,7 +150,8 @@ export function applyLeverRules(input: {
   const blob = `${input.title}\n${input.problem}\n${input.source}`
   // Whether this is a reporting agent comes from the visitor's own words and the agent's name,
   // not from incidental mentions in the plan (an onboarding chaser that "surfaces a dashboard").
-  const doesWork = DOES_WORK.test(`${input.title}\n${input.problem}`)
+  // Only the visitor's words and the agent's name count, never the model's own quote or outcome.
+  const doesWork = DOES_WORK.test(`${input.title}\n${input.source}`)
   const reporting = isReporting(`${input.title}\n${input.source}`) && !doesWork
   const growth = GROWTH_OR_HIRE.test(blob)
   const timeOrCost = TIME_OR_COST.test(blob)

@@ -53,3 +53,12 @@ export const SESSION_CHECK_TIMEOUT_MS = 8_000
 export function needsSessionCheck(ref: string | null | undefined): boolean {
   return Boolean(normalizePlannerSessionRef(ref))
 }
+
+/**
+ * After the session check timed out and the start form is showing, a second check may still
+ * find this tab's session. Only states worth replacing the form with are shown: a plan being
+ * written, a question, the email gate, a finished plan, or a refusal. "empty" keeps the form.
+ */
+export function shouldShowLateSession(kind: string): boolean {
+  return kind === 'writing' || kind === 'question' || kind === 'details' || kind === 'sent' || kind === 'refusal'
+}

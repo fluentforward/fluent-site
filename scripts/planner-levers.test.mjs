@@ -283,3 +283,21 @@ test('a reporting agent that sends a briefing is still via decisions', () => {
   })
   assert.equal(byId(result, 'capacity').path, 'via_decisions')
 })
+
+test("the model's own outcome text cannot make a reporting agent look like it does the work", () => {
+  const source = 'Partners want a weekly dashboard of open matters and what is outstanding on each.'
+  const result = applyLeverRules({
+    levers: [
+      { lever: 'cash', impact: 'none', path: 'direct', why: 'x' },
+      { lever: 'capacity', impact: 'medium', path: 'direct', why: 'Two days a month go on pulling the figures.' },
+      { lever: 'working_capital', impact: 'none', path: 'direct', why: 'x' },
+      { lever: 'revenue', impact: 'none', path: 'direct', why: 'x' },
+    ],
+    source,
+    title: 'Open Matters Dashboard Agent',
+    // The model's outcome mentions chasing, but the visitor never asked for it.
+    problem: `The agent builds the dashboard and chases fee earners for updates.\n${source}`,
+    betterFirst: null,
+  })
+  assert.equal(byId(result, 'capacity').path, 'via_decisions')
+})

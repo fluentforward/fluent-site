@@ -23,6 +23,7 @@ import {
   needsSessionCheck,
   normalizePlannerSessionRef,
   SESSION_CHECK_TIMEOUT_MS,
+  shouldShowLateSession,
   readPlannerSessionRef,
   stashPlannerSessionRef,
 } from '@/lib/planner/session-ref'
@@ -115,6 +116,8 @@ export function Planner({
   }
 
   const seededStart = useRef(false)
+  /** Set once the visitor types or starts anything, so a late session check never replaces their work. */
+  const visitorActed = useRef(false)
   const entryBootstrapped = useRef(false)
 
   useLayoutEffect(() => {
@@ -198,8 +201,32 @@ export function Planner({
       })
       .catch(() => {
         // A slow or failed check must not leave the visitor on the wait line.
-        if (!cancelled) compose()
+        if (cancelled) return
+        compose()
+        if (!seededStart.current) void recheck()
       })
+    /**
+     * One more look after the timeout. A plan that was still being written (or finished late)
+     * for this tab is shown, unless the visitor has already typed or started something.
+     */
+    const recheck = async () => {
+      try {
+        const response = await fetch(sessionUrl(), { cache: 'no-store', signal: AbortSignal.timeout(15_000) })
+        const body = (await response.json()) as unknown
+        if (cancelled || visitorActed.current) return
+        const next = viewFromBody(body, fallback)
+        if (!shouldShowLateSession(next.kind)) return
+        rememberRefFrom(body)
+        if (next.kind === 'writing') {
+          void writePlan(next.problem)
+          return
+        }
+        setView(next)
+        setStatus(statusFor(next))
+      } catch {
+        /* The form is already showing. */
+      }
+    }
     return () => {
       cancelled = true
     }
@@ -220,6 +247,7 @@ export function Planner({
   }, [gateProblem])
 
   async function start(problem: string) {
+    visitorActed.current = true
     clearPlannerDraft()
     setView({ kind: 'working', problem, label: 'Reading that.' })
     setStatus('Reading that.')
@@ -412,6 +440,7 @@ export function Planner({
   }
 
   async function startAgain() {
+    visitorActed.current = true
     clearPlannerDraft()
     clearPlannerSessionRef()
     tabRef.current = ''
@@ -481,9 +510,10 @@ export function Planner({
                   value={view.problem}
                   placeholder={PLACEHOLDER}
                   aria-describedby="planner-privacy"
-                  onChange={(event) =>
+                  onChange={(event) => {
+                    visitorActed.current = true
                     setView({ kind: 'compose', problem: event.target.value, warning: undefined })
-                  }
+                  }}
                   onKeyDown={submitOnShortcut}
                 />
               </div>
