@@ -33,10 +33,10 @@ const NONE_WHY: Record<LeverId, string> = {
 }
 
 export const LEVER_LABEL: Record<LeverId, string> = {
-  cash: 'Bought-in work',
+  cash: 'Outsourced work',
   capacity: 'Team capacity',
   working_capital: 'Billing and collections',
-  revenue: 'Client work',
+  revenue: 'Client delivery',
 }
 
 export const IMPACT_LABEL: Record<LeverImpact, string> = {
@@ -87,8 +87,8 @@ export function withoutStaleScore(text: string | null | undefined, impact: Lever
  */
 export function reconcileLeverText(lever: LeverScore, modelImpact?: LeverImpact): LeverScore {
   const moved = modelImpact !== undefined && modelImpact !== lever.impact
-  const why = withoutStaleScore(lever.why, lever.impact)
-  const note = moved ? '' : withoutStaleScore(lever.note, lever.impact)
+  const why = buyerWording(withoutStaleScore(lever.why, lever.impact))
+  const note = moved ? '' : buyerWording(withoutStaleScore(lever.note, lever.impact))
   const next: LeverScore = { ...lever, why: why.length >= 3 ? why : fallbackWhy(lever) }
   if (note) next.note = note
   else delete next.note
@@ -96,17 +96,49 @@ export function reconcileLeverText(lever: LeverScore, modelImpact?: LeverImpact)
 }
 
 function fallbackWhy(lever: LeverScore): string {
-  return lever.impact === 'none' ? NONE_WHY[lever.lever] : `Scored ${IMPACT_LABEL[lever.impact].toLowerCase()} from what you described.`
+  return lever.impact === 'none' ? NONE_WHY[lever.lever] : `Rated ${IMPACT_LABEL[lever.impact].toLowerCase()} from what you described.`
 }
 
-/** Lever and profit wording that buyer-facing copy no longer uses. */
-export const MONEY_FRAMING = /\blevers?\b|\bprofit\b|\bmargins?\b|\b(?:moves?|moving) the money\b|\bwhere the money\b/i
+/**
+ * Lever, score and profit wording that buyer-facing copy no longer uses (Matt, 12 Nov; Alex, 16 Nov).
+ * Only checked against our own copy and the model's score intro, never the visitor's quoted words.
+ * A match there only swaps in the standard intro, so a false positive is harmless.
+ */
+export const MONEY_FRAMING =
+  /\blevers?\b|\bprofit\b|\bmargins?\b|\b(?:moves?|moving) the money\b|\bwhere the money\b|\bscor(?:e|es|ed|ing)\b|\bcash\b|\bworking[\s-]capital\b|\brevenue\b|\bdebtor days\b|\bROI\b/i
+
+/** Order the areas are shown in when their ratings tie (plan page and PDF). */
+export const AREA_DISPLAY_TIE: Record<LeverId, number> = {
+  working_capital: 0,
+  capacity: 1,
+  revenue: 2,
+  cash: 3,
+}
+
+/**
+ * Model-written why and note text: swap score and lever words for the buyer wording.
+ * The visitor's own quote is never passed through this.
+ */
+export function buyerWording(text: string): string {
+  return text
+    .replace(/\bscoring\b/gi, (m) => keepCase(m, 'rating'))
+    .replace(/\bscored\b/gi, (m) => keepCase(m, 'rated'))
+    .replace(/\brescore\b/gi, (m) => keepCase(m, 're-rate'))
+    .replace(/\bscores\b/gi, (m) => keepCase(m, 'ratings'))
+    .replace(/\bscore\b/gi, (m) => keepCase(m, 'rating'))
+    .replace(/\blevers\b/gi, (m) => keepCase(m, 'areas'))
+    .replace(/\blever\b/gi, (m) => keepCase(m, 'area'))
+}
+
+function keepCase(found: string, word: string): string {
+  return found[0] === found[0].toUpperCase() ? word[0].toUpperCase() + word.slice(1) : word
+}
 
 const LEVER_MENTION: Record<LeverId, RegExp> = {
-  cash: /\bcash\b(?!\s+(?:in|flow|sooner|comes))|\bbought[\s-]in work\b/i,
+  cash: /\bcash\b(?!\s+(?:in|flow|sooner|comes))|\boutsourced work\b/i,
   capacity: /\bcapacity\b/i,
   working_capital: /\bworking[\s-]capital\b|\bbilling and collections\b/i,
-  revenue: /\brevenue\b|\bclient work\b/i,
+  revenue: /\brevenue\b|\bclient delivery\b/i,
 }
 
 /**
@@ -126,7 +158,9 @@ export function scoreIntroFits(intro: string, levers: LeverScore[]): boolean {
 }
 
 export function defaultScoreIntro(levers: LeverScore[]): string {
-  const ranked = [...levers].filter((lever) => lever.impact !== 'none').sort((a, b) => RANK[b.impact] - RANK[a.impact])
+  const ranked = [...levers]
+    .filter((lever) => lever.impact !== 'none')
+    .sort((a, b) => RANK[b.impact] - RANK[a.impact] || AREA_DISPLAY_TIE[a.lever] - AREA_DISPLAY_TIE[b.lever])
   const top = ranked[0]
   if (!top) return 'Each area is rated on its own, from what you described.'
   const how =

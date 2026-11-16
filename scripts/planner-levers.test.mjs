@@ -55,7 +55,7 @@ test('cost plan take-off keeps capacity high and revenue medium', () => {
   assert.equal(byId(result, 'revenue').impact, 'medium')
   assert.equal(byId(result, 'cash').impact, 'none')
   assert.equal(byId(result, 'working_capital').impact, 'none')
-  assert.match(impactLine(result.levers), /Team capacity \(High, direct\), Client work \(Medium, direct\)/)
+  assert.match(impactLine(result.levers), /Team capacity \(High, direct\), Client delivery \(Medium, direct\)/)
   assert.equal(result.betterFirst, null)
 })
 
@@ -205,8 +205,9 @@ test('advice to rescore is kept, and a matching score claim is kept', () => {
     why: 'Scored low because no growth constraint was described.',
     note: 'If coordinators turn work away, this could rescore to medium.',
   })
-  assert.equal(unchanged.why, 'Scored low because no growth constraint was described.')
-  assert.equal(unchanged.note, 'If coordinators turn work away, this could rescore to medium.')
+  // The meaning is kept, in the buyer wording: rated and re-rate, never scored or rescore.
+  assert.equal(unchanged.why, 'Rated low because no growth constraint was described.')
+  assert.equal(unchanged.note, 'If coordinators turn work away, this could re-rate to medium.')
 })
 
 test('stored plans are reconciled on read', () => {
@@ -255,18 +256,57 @@ test('buyer copy drops lever and money framing', async () => {
   assert.equal(MONEY_FRAMING.test('The four money levers this agent could move.'), true)
 })
 
-test('the cash area is shown to buyers as bought-in work', async () => {
+test('the cash area is shown to buyers as outsourced work', async () => {
   const { LEVER_LABEL } = await import('../src/lib/planner/levers.ts')
   const view = await import('../src/lib/planner/plan-view.ts')
-  assert.equal(LEVER_LABEL.cash, 'Bought-in work')
+  assert.equal(LEVER_LABEL.cash, 'Outsourced work')
+  assert.equal(LEVER_LABEL.revenue, 'Client delivery')
   const guide = view.LEVER_GUIDE.find((item) => item.id === 'cash')
   assert.match(guide.body, /contractor, agency or temp spend/)
-  assert.equal(guide.shows, 'Shows up as: less contractor, agency or temp work bought in for this.')
+  assert.equal(guide.body, 'The agent replaces contractor, agency or temp spend you pay for this work today, including overtime or outsourcing.')
+  assert.equal(guide.shows, 'What we track: contractor, agency or temp work bought in for this, before and after.')
   const levers = [
     { lever: 'cash', impact: 'none', path: 'direct', why: 'x' },
     { lever: 'capacity', impact: 'medium', path: 'direct', why: 'x' },
     { lever: 'working_capital', impact: 'none', path: 'direct', why: 'x' },
     { lever: 'revenue', impact: 'none', path: 'direct', why: 'x' },
   ]
-  assert.equal(scoreIntroFits('Bought-in work drops too.', levers), false, 'a none area named in the intro is caught')
+  assert.equal(scoreIntroFits('Outsourced work drops too.', levers), false, 'a none area named in the intro is caught')
+})
+
+test('model text uses rate and area wording, and the tie order follows the page', async () => {
+  const { buyerWording, AREA_DISPLAY_TIE } = await import('../src/lib/planner/levers.ts')
+  assert.equal(buyerWording('Scored medium. The score is capped. This lever could rescore.'), 'Rated medium. The rating is capped. This area could re-rate.')
+  assert.equal(buyerWording('Two levers and a scoring rule.'), 'Two areas and a scoring rule.'.replace('scoring', 'rating'))
+  const tied = [
+    { lever: 'cash', impact: 'medium', path: 'direct', why: 'x' },
+    { lever: 'capacity', impact: 'medium', path: 'direct', why: 'x' },
+    { lever: 'working_capital', impact: 'none', path: 'direct', why: 'x' },
+    { lever: 'revenue', impact: 'none', path: 'direct', why: 'x' },
+  ]
+  // The page shows Team capacity before Outsourced work at equal ratings, so the intro names it first.
+  assert.ok(AREA_DISPLAY_TIE.capacity < AREA_DISPLAY_TIE.cash)
+  assert.equal(defaultScoreIntro(tied), 'The biggest change is in team capacity. The agent does that work itself.')
+})
+
+test('the banned buyer words are caught in a model intro but ordinary words are not', async () => {
+  const { MONEY_FRAMING } = await import('../src/lib/planner/levers.ts')
+  for (const bad of ['Cash comes in sooner.', 'Working capital improves.', 'More revenue.', 'Fewer debtor days.', 'A strong ROI.', 'It scores medium.']) {
+    assert.equal(MONEY_FRAMING.test(bad), true, bad)
+  }
+  for (const ok of ['The agent chases clients for documents.', 'Team capacity is rated medium.', 'Invoices go out sooner.', 'Cashier rota and the scoreboard.']) {
+    assert.equal(MONEY_FRAMING.test(ok), false, ok)
+  }
+})
+
+test('a stored plan with no proof text gets the rated fallback intro', async () => {
+  const { adaptLegacyPlan } = await import('../src/lib/planner/plan-schema.ts')
+  const plan = adaptLegacyPlan({
+    title: 'Chase missing client documents',
+    problem: 'We spend two days a month chasing clients for their year-end documents by email.',
+    steps: [{ text: 'Reads the client list and finds who is missing documents.' }, { text: 'Sends a reminder and logs the reply.' }],
+    tenDayIncludes: 'A reminder draft; a review step; a log',
+  })
+  if (plan) assert.equal(plan.scoreIntro, 'Each area is rated on its own, from what was described.')
+  else assert.match(await (await import('node:fs/promises')).readFile('src/lib/planner/plan-schema.ts', 'utf8'), /'Each area is rated on its own, from what was described\.'/)
 })

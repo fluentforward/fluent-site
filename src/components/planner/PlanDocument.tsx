@@ -151,7 +151,7 @@ export function PlanDocument({
       </section>
 
       <section className="ffp-plan-section">
-        <p className="ffp-plan-label">How we judge the change</p>
+        <p className="ffp-plan-label">How we’ll measure it</p>
         <h2>We look at four places the work shows up.</h2>
         <p className="ffp-plan-lead">{SCORE_INTRO}</p>
         <ul className="ffp-plan-guide">
@@ -166,7 +166,7 @@ export function PlanDocument({
         </ul>
         <div className="ffp-plan-scale">
           <div>
-            <h3>Impact</h3>
+            <h3>Rating</h3>
             <ul>
               {IMPACT_GUIDE.map((item) => (
                 <li key={item.impact}>
@@ -178,7 +178,7 @@ export function PlanDocument({
             </ul>
           </div>
           <div>
-            <h3>How the change happens</h3>
+            <h3>How it works, step by step</h3>
             <p>
               <strong>Direct.</strong> The agent does the work itself. We review at 30 days.
             </p>

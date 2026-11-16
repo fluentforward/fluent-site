@@ -172,7 +172,7 @@ export function adaptLegacyPlan(value: unknown): FullPlan | null {
     ],
     scoreIntro: typeof record.proofPlan === 'string' && record.proofPlan.length >= 12
       ? record.proofPlan.slice(0, 320)
-      : 'Each lever is scored on its own, from what was described.',
+      : 'Each area is rated on its own, from what was described.',
     steps,
     tools: Array.isArray(record.tools) ? record.tools.map((item) => String(item)).filter(Boolean) : ['The systems named'],
     human: human.length ? human : ['Approving the result before it goes out.'],

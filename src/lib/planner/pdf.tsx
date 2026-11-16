@@ -206,8 +206,8 @@ export function renderPlanPdf(input: {
       </Page>
 
       <Page size="A4" style={styles.page}>
-        <Running right="02 · How we judge the change" />
-        <Head label="How we judge the change" />
+        <Running right="02 · How we’ll measure it" />
+        <Head label="How we’ll measure it" />
         <Text style={styles.h2}>We look at four places the work shows up.</Text>
         <Text style={[styles.muted, { marginBottom: 10 }]}>{SCORE_INTRO}</Text>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
@@ -222,7 +222,7 @@ export function renderPlanPdf(input: {
         </View>
         <View style={{ flexDirection: 'row', gap: 8, marginTop: 8 }}>
           <View style={{ flex: 1, borderWidth: 1, borderColor: line, borderRadius: 10, backgroundColor: card, padding: 10 }}>
-            <Text style={{ fontWeight: 600, fontSize: 11, marginBottom: 6 }}>Impact</Text>
+            <Text style={{ fontWeight: 600, fontSize: 11, marginBottom: 6 }}>Rating</Text>
             {IMPACT_GUIDE.map((item) => (
               <View key={item.impact} style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
                 <Text style={{ width: 52, fontWeight: 600, fontSize: 8.5 }}>{IMPACT_LABEL[item.impact]}</Text>
@@ -232,7 +232,7 @@ export function renderPlanPdf(input: {
             ))}
           </View>
           <View style={{ flex: 1, borderWidth: 1, borderColor: line, borderRadius: 10, backgroundColor: card, padding: 10 }}>
-            <Text style={{ fontWeight: 600, fontSize: 11, marginBottom: 6 }}>How the change happens</Text>
+            <Text style={{ fontWeight: 600, fontSize: 11, marginBottom: 6 }}>How it works, step by step</Text>
             <Text style={styles.muted}>
               <Text style={{ fontWeight: 600, color: ink }}>Direct. </Text>The agent does the work itself. We review at 30 days.
             </Text>
