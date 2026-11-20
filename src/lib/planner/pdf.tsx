@@ -149,14 +149,14 @@ export function renderPlanPdf(input: {
           <Fact label="First review" value={review} />
         </View>
         <View style={{ flexGrow: 1 }} />
-        <Text style={[styles.kicker, { marginBottom: 8 }]}>At a glance · the four money levers this agent could move</Text>
+        <Text style={[styles.kicker, { marginBottom: 8 }]}>At a glance · what this agent takes off your team</Text>
         <View style={{ flexDirection: 'row', gap: 8 }}>
           {levers.map((lever) => (
             <Glance key={lever.lever} lever={lever} />
           ))}
         </View>
         <Text style={{ marginTop: 10, color: '#9d9d98', fontSize: 8, lineHeight: 1.4 }}>
-          We score each lever on its own and never add them together. Page 4 explains every score, and page 6 shows how we prove it.
+          We look at each area on its own and never add them together. Page 4 explains each one, and page 6 shows how we check it.
         </Text>
       </Page>
 
@@ -207,14 +207,14 @@ export function renderPlanPdf(input: {
       </Page>
 
       <Page size="A4" style={styles.page}>
-        <Running right="02 · How we score impact" />
-        <Head label="How we score impact" />
-        <Text style={styles.h2}>An agent only pays back through one of four levers.</Text>
+        <Running right="02 · How we’ll measure it" />
+        <Head label="How we’ll measure it" />
+        <Text style={styles.h2}>We look at four places the work shows up.</Text>
         <Text style={[styles.muted, { marginBottom: 10 }]}>{SCORE_INTRO}</Text>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
           {LEVER_GUIDE.map((item) => (
             <View key={item.id} style={{ width: '48.5%', borderWidth: 1, borderColor: line, borderRadius: 10, backgroundColor: card, padding: 10 }}>
-              <Text style={[styles.kicker, { color: mist }]}>Lever {LEVER_NO[item.id]}</Text>
+              <Text style={[styles.kicker, { color: mist }]}>Area {LEVER_NO[item.id]}</Text>
               <Text style={{ fontWeight: 600, fontSize: 12, marginTop: 2, marginBottom: 4 }}>{LEVER_LABEL[item.id]}</Text>
               <Text style={styles.muted}>{item.body}</Text>
               <Text style={[styles.muted, { marginTop: 6, paddingTop: 6, borderTopWidth: 1, borderTopColor: line, fontSize: 8 }]}>{item.shows}</Text>
@@ -223,7 +223,7 @@ export function renderPlanPdf(input: {
         </View>
         <View style={{ flexDirection: 'row', gap: 8, marginTop: 8 }}>
           <View style={{ flex: 1, borderWidth: 1, borderColor: line, borderRadius: 10, backgroundColor: card, padding: 10 }}>
-            <Text style={{ fontWeight: 600, fontSize: 11, marginBottom: 6 }}>Impact</Text>
+            <Text style={{ fontWeight: 600, fontSize: 11, marginBottom: 6 }}>Rating</Text>
             {IMPACT_GUIDE.map((item) => (
               <View key={item.impact} style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
                 <Text style={{ width: 52, fontWeight: 600, fontSize: 8.5 }}>{IMPACT_LABEL[item.impact]}</Text>
@@ -233,14 +233,14 @@ export function renderPlanPdf(input: {
             ))}
           </View>
           <View style={{ flex: 1, borderWidth: 1, borderColor: line, borderRadius: 10, backgroundColor: card, padding: 10 }}>
-            <Text style={{ fontWeight: 600, fontSize: 11, marginBottom: 6 }}>Path to the money</Text>
+            <Text style={{ fontWeight: 600, fontSize: 11, marginBottom: 6 }}>How it works, step by step</Text>
             <Text style={styles.muted}>
               <Text style={{ fontWeight: 600, color: ink }}>Direct. </Text>The agent does the work itself. We review at 30 days.
             </Text>
             <Text style={[styles.muted, { marginTop: 4 }]}>
               <Text style={{ fontWeight: 600, color: ink }}>Via decisions. </Text>The agent informs a person, who then acts. We review at 90 days.
             </Text>
-            <Text style={[styles.muted, { marginTop: 6 }]}>Each lever also names an owner: the person who has to act for the money to show up.</Text>
+            <Text style={[styles.muted, { marginTop: 6 }]}>Each area also names an owner: the person who acts on what the agent does.</Text>
           </View>
         </View>
         <View style={{ marginTop: 8, borderRadius: 10, backgroundColor: ink, padding: 12, flexDirection: 'row', gap: 10 }}>
@@ -251,9 +251,9 @@ export function renderPlanPdf(input: {
       </Page>
 
       <Page size="A4" style={styles.page}>
-        <Running right="03 · Your lever scores" />
-        <Head label="Your lever scores" />
-        <Text style={styles.h2}>Where this agent moves the money.</Text>
+        <Running right="03 · What changes when it runs" />
+        <Head label="What changes when it runs" />
+        <Text style={styles.h2}>What this agent takes off your team.</Text>
         <Text style={[styles.muted, { marginBottom: 8 }]}>{plan.scoreIntro}</Text>
         {levers.map((lever) => (
           <ScoreCard key={lever.lever} lever={lever} />
@@ -336,8 +336,8 @@ export function renderPlanPdf(input: {
         {rows.length ? (
           <View style={{ borderWidth: 1, borderColor: line, borderRadius: 10, overflow: 'hidden', marginBottom: 12 }}>
             <View style={{ flexDirection: 'row', backgroundColor: '#ecece8', paddingVertical: 6, paddingHorizontal: 8 }}>
-              {['Lever', 'Capture from last month', 'Check at review', 'Who acts'].map((heading) => (
-                <Text key={heading} style={[styles.kicker, { color: mist, flex: heading === 'Lever' ? 0.8 : 1.1 }]}>
+              {['Area', 'Capture from last month', 'Check at review', 'Who acts'].map((heading) => (
+                <Text key={heading} style={[styles.kicker, { color: mist, flex: heading === 'Area' ? 0.8 : 1.1 }]}>
                   {heading}
                 </Text>
               ))}
@@ -359,7 +359,7 @@ export function renderPlanPdf(input: {
               ['Day 0', 'Scope agreed', 'System access granted, baselines captured'],
               ['Days 1–10', 'Build', 'Mapping, rules, flagging, approval'],
               ['Day 10', 'Live*', plan.firstRun],
-              [review.replace(' after go-live', '') + ' after go-live', 'Review', 'Compare against your baselines, lever by lever'],
+              [review.replace(' after go-live', '') + ' after go-live', 'Review', 'Compare against your baselines, area by area'],
             ].map(([when, title, body], index) => (
               <View key={when} style={{ flex: 1, paddingRight: 8 }}>
                 <View
@@ -531,7 +531,7 @@ function ScoreCard({ lever }: { lever: LeverScore }) {
       }}
     >
       <View style={{ width: 108 }}>
-        <Text style={[styles.kicker, { color: mist }]}>Lever {LEVER_NO[lever.lever]}</Text>
+        <Text style={[styles.kicker, { color: mist }]}>Area {LEVER_NO[lever.lever]}</Text>
         <Text style={{ fontWeight: 600, fontSize: 12, marginTop: 2 }}>{LEVER_LABEL[lever.lever]}</Text>
         <Text style={{ fontWeight: 600, fontSize: 16, marginTop: 2 }}>{IMPACT_LABEL[lever.impact]}</Text>
         <View style={{ marginTop: 5 }}>

@@ -1,4 +1,4 @@
-import { IMPACT_LABEL, LEVER_LABEL } from '@/lib/planner/levers'
+import { AREA_DISPLAY_TIE, IMPACT_LABEL, LEVER_LABEL } from '@/lib/planner/levers'
 import type { FullPlan, LeverId, LeverImpact, LeverScore } from '@/lib/planner/types'
 
 export const LEVER_NO: Record<LeverId, string> = {
@@ -8,17 +8,12 @@ export const LEVER_NO: Record<LeverId, string> = {
   revenue: '04',
 }
 
-const TIE: Record<LeverId, number> = {
-  working_capital: 0,
-  capacity: 1,
-  revenue: 2,
-  cash: 3,
-}
+const TIE = AREA_DISPLAY_TIE
 
 const RANK: Record<LeverImpact, number> = { high: 0, medium: 1, low: 2, none: 3 }
 
 const NONE_GLANCE: Record<LeverId, string> = {
-  cash: 'No external cost described',
+  cash: 'No outsourced work described',
   capacity: 'No growth or hire described',
   working_capital: 'Not a billing process',
   revenue: 'No growth held back by headcount',
@@ -29,13 +24,13 @@ const COUNT = ['none', 'one', 'two', 'three', 'four']
 export const BUILD_LINE = 'Live in 10 working days*'
 
 export const PLAN_FOOTNOTE =
-  'Live in 10 working days once we have access to your systems and the data the agent needs, and scope is agreed in writing. Impact scores are based only on what you told us in the Agent Planner. They are a starting point to test, not a guaranteed saving.'
+  'Live in 10 working days once we have access to your systems and the data the agent needs, and scope is agreed in writing. Ratings are based only on what you told us in the Agent Planner. They are a starting point to test, not a guaranteed saving.'
 
 export const SCORE_INTRO =
-  '“Hours saved” is a hard figure to bank. We look at where the money actually shows up in your business, and we score each lever separately against what you told us.'
+  'We look at the work the agent takes on and where that change shows up for your team, and we rate each area separately against what you told us. Any time saved is shown as an estimated range against the baseline you capture, never as a promised figure.'
 
 export const WONT_DO =
-  'We won’t add the levers into a single “total saving”. We won’t multiply hours by an hourly rate, and we won’t quote an ROI multiple. Every score comes with a baseline you capture now and a date to check it, so the result is measured, not promised.'
+  'We won’t add the areas into a single “total saving”, and we won’t multiply hours by an hourly rate. Every rating comes with a baseline you capture now and a date to check it, so the result is measured, not promised.'
 
 export const COMMERCIALS = [
   { title: 'Fixed price to build', body: 'No day rates and no open-ended scope.' },
@@ -51,31 +46,31 @@ export const BOOK_LINE =
 export const LEVER_GUIDE: { id: LeverId; body: string; shows: string }[] = [
   {
     id: 'cash',
-    body: 'The agent stops a cost you pay today, such as temps, overtime, contractors or outsourced work.',
-    shows: 'Shows up as: a line on your P&L that gets smaller or disappears.',
+    body: 'The agent replaces contractor, agency or temp spend you pay for this work today, including overtime or outsourcing.',
+    shows: 'What we track: contractor, agency or temp work bought in for this, before and after.',
   },
   {
     id: 'capacity',
-    body: 'The agent absorbs growth without a planned hire, or lets a role go unfilled when someone leaves.',
-    shows: 'Shows up as: a hire you don’t make, or a vacancy you don’t backfill.',
+    body: 'The agent takes on work your team does today, so you can grow without a planned hire, or leave a role unfilled when someone leaves.',
+    shows: 'What we track: the hours your team spends on this work, and any hire or backfill planned for it.',
   },
   {
     id: 'working_capital',
-    body: 'The agent brings cash in sooner through faster billing, collections or payment processing.',
-    shows: 'Shows up as: lower debtor days. This is a one-off gain to your bank balance and never counts as margin.',
+    body: 'The agent takes on billing, collections or payment work, so invoices go out sooner.',
+    shows: 'What we track: how long clients take to pay, before and after. Any change is one-off timing, not an ongoing saving.',
   },
   {
     id: 'revenue',
-    body: 'Freed time goes into work customers pay for, so you deliver more without adding people.',
-    shows: 'Shows up as: more billable hours or projects from the same team.',
+    body: 'The time the agent frees goes into work your clients pay for, so you deliver more with the same people.',
+    shows: 'What we track: the client work your team delivers in the time the agent frees.',
   },
 ]
 
 export const IMPACT_GUIDE: { impact: LeverImpact; body: string }[] = [
-  { impact: 'high', body: 'A clear cost or time sink you described' },
+  { impact: 'high', body: 'A clear time sink or outsourced cost you described' },
   { impact: 'medium', body: 'A real effect, capped by what we know' },
   { impact: 'low', body: 'Possible, but not why you’d build it' },
-  { impact: 'none', body: 'This agent won’t move this lever' },
+  { impact: 'none', body: 'This agent won’t change this area' },
 ]
 
 export function planDate(date = new Date()): string {

@@ -626,8 +626,8 @@ export function Planner({
                   </div>
                   <div className="ffp-gate-ghost is-fainter" aria-hidden="true">
                     <div>
-                      <p>Where the money shows up</p>
-                      <p>{view.preview?.impact || 'Cash, capacity, working capital and revenue.'}</p>
+                      <p>What changes for your team</p>
+                      <p>{view.preview?.impact || 'Outsourced work, team capacity, billing and collections, and client delivery.'}</p>
                     </div>
                   </div>
                   <p className="ffp-gate-lock">The rest unlocks with your plan</p>
@@ -642,7 +642,7 @@ export function Planner({
                   </li>
                   <li>
                     <span aria-hidden="true">✓</span>
-                    The steps, what stays with your team, and where the money shows up
+                    The steps, what stays with your team, and what changes when it runs
                   </li>
                   <li>
                     <span aria-hidden="true">✓</span>

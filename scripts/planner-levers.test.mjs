@@ -55,7 +55,7 @@ test('cost plan take-off keeps capacity high and revenue medium', () => {
   assert.equal(byId(result, 'revenue').impact, 'medium')
   assert.equal(byId(result, 'cash').impact, 'none')
   assert.equal(byId(result, 'working_capital').impact, 'none')
-  assert.match(impactLine(result.levers), /Capacity \(High, direct\), Revenue \(Medium, direct\)/)
+  assert.match(impactLine(result.levers), /Team capacity \(High, direct\), Client delivery \(Medium, direct\)/)
   assert.equal(result.betterFirst, null)
 })
 
@@ -151,7 +151,7 @@ test('a vague marketing wish scores low and names a better first agent', () => {
   for (const lever of result.levers) {
     assert.ok(lever.impact === 'low' || lever.impact === 'none')
   }
-  assert.match(impactLine(result.levers), /low across these levers/)
+  assert.match(impactLine(result.levers), /low in every area/)
   assert.ok(result.betterFirst)
 })
 
@@ -205,8 +205,9 @@ test('advice to rescore is kept, and a matching score claim is kept', () => {
     why: 'Scored low because no growth constraint was described.',
     note: 'If coordinators turn work away, this could rescore to medium.',
   })
-  assert.equal(unchanged.why, 'Scored low because no growth constraint was described.')
-  assert.equal(unchanged.note, 'If coordinators turn work away, this could rescore to medium.')
+  // The meaning is kept, in the buyer wording: rated and re-rate, never scored or rescore.
+  assert.equal(unchanged.why, 'Rated low because no growth constraint was described.')
+  assert.equal(unchanged.note, 'If coordinators turn work away, this could re-rate to medium.')
 })
 
 test('stored plans are reconciled on read', () => {
@@ -228,10 +229,86 @@ test('the score intro must not name a lever scored none', () => {
     { lever: 'working_capital', impact: 'none', path: 'via_decisions', why: 'x' },
     { lever: 'revenue', impact: 'low', path: 'via_decisions', why: 'x' },
   ]
-  assert.equal(scoreIntroFits('The strongest lever is capacity: the agent absorbs the chasing.', levers), true)
+  assert.equal(scoreIntroFits('The biggest change is in team capacity: the agent takes on the chasing.', levers), true)
+  assert.equal(scoreIntroFits('The strongest lever is capacity: the agent absorbs the chasing.', levers), false, 'lever wording is replaced')
   assert.equal(scoreIntroFits('Capacity and working capital both move.', levers), false)
   assert.equal(scoreIntroFits('Capacity is scored high.', levers), false)
-  assert.equal(defaultScoreIntro(levers), 'The strongest lever is capacity. The agent does that work itself.')
+  assert.equal(defaultScoreIntro(levers), 'The biggest change is in team capacity. The agent does that work itself.')
+  assert.equal(scoreIntroFits('Billing and collections improve too.', levers), false, 'the new area names count as mentions')
+})
+
+test('buyer copy drops lever and money framing', async () => {
+  const view = await import('../src/lib/planner/plan-view.ts')
+  const { LEVER_LABEL, MONEY_FRAMING } = await import('../src/lib/planner/levers.ts')
+  const lines = [
+    view.SCORE_INTRO,
+    view.WONT_DO,
+    ...view.LEVER_GUIDE.flatMap((item) => [item.body, item.shows]),
+    ...view.IMPACT_GUIDE.map((item) => item.body),
+    ...Object.values(LEVER_LABEL),
+    defaultScoreIntro([{ lever: 'cash', impact: 'none', path: 'direct', why: 'x' }]),
+  ]
+  for (const line of lines) {
+    assert.ok(!MONEY_FRAMING.test(line), line)
+    assert.ok(!/P&L|\u2014/.test(line), line)
+  }
+  assert.equal(MONEY_FRAMING.test('Where this agent moves the money.'), true)
+  assert.equal(MONEY_FRAMING.test('The four money levers this agent could move.'), true)
+})
+
+test('the cash area is shown to buyers as outsourced work', async () => {
+  const { LEVER_LABEL } = await import('../src/lib/planner/levers.ts')
+  const view = await import('../src/lib/planner/plan-view.ts')
+  assert.equal(LEVER_LABEL.cash, 'Outsourced work')
+  assert.equal(LEVER_LABEL.revenue, 'Client delivery')
+  const guide = view.LEVER_GUIDE.find((item) => item.id === 'cash')
+  assert.match(guide.body, /contractor, agency or temp spend/)
+  assert.equal(guide.body, 'The agent replaces contractor, agency or temp spend you pay for this work today, including overtime or outsourcing.')
+  assert.equal(guide.shows, 'What we track: contractor, agency or temp work bought in for this, before and after.')
+  const levers = [
+    { lever: 'cash', impact: 'none', path: 'direct', why: 'x' },
+    { lever: 'capacity', impact: 'medium', path: 'direct', why: 'x' },
+    { lever: 'working_capital', impact: 'none', path: 'direct', why: 'x' },
+    { lever: 'revenue', impact: 'none', path: 'direct', why: 'x' },
+  ]
+  assert.equal(scoreIntroFits('Outsourced work drops too.', levers), false, 'a none area named in the intro is caught')
+})
+
+test('model text uses rate and area wording, and the tie order follows the page', async () => {
+  const { buyerWording, AREA_DISPLAY_TIE } = await import('../src/lib/planner/levers.ts')
+  assert.equal(buyerWording('Scored medium. The score is capped. This lever could rescore.'), 'Rated medium. The rating is capped. This area could re-rate.')
+  assert.equal(buyerWording('Two levers and a scoring rule.'), 'Two areas and a scoring rule.'.replace('scoring', 'rating'))
+  const tied = [
+    { lever: 'cash', impact: 'medium', path: 'direct', why: 'x' },
+    { lever: 'capacity', impact: 'medium', path: 'direct', why: 'x' },
+    { lever: 'working_capital', impact: 'none', path: 'direct', why: 'x' },
+    { lever: 'revenue', impact: 'none', path: 'direct', why: 'x' },
+  ]
+  // The page shows Team capacity before Outsourced work at equal ratings, so the intro names it first.
+  assert.ok(AREA_DISPLAY_TIE.capacity < AREA_DISPLAY_TIE.cash)
+  assert.equal(defaultScoreIntro(tied), 'The biggest change is in team capacity. The agent does that work itself.')
+})
+
+test('the banned buyer words are caught in a model intro but ordinary words are not', async () => {
+  const { MONEY_FRAMING } = await import('../src/lib/planner/levers.ts')
+  for (const bad of ['Cash comes in sooner.', 'Working capital improves.', 'More revenue.', 'Fewer debtor days.', 'A strong ROI.', 'It scores medium.', 'It pays back in a month.', 'A quick payback.', 'The agent paid for itself.', 'Well worth it.']) {
+    assert.equal(MONEY_FRAMING.test(bad), true, bad)
+  }
+  for (const ok of ['The agent chases clients for documents.', 'Team capacity is rated medium.', 'Invoices go out sooner.', 'Cashier rota and the scoreboard.', 'The agent pays suppliers and logs it.']) {
+    assert.equal(MONEY_FRAMING.test(ok), false, ok)
+  }
+})
+
+test('a stored plan with no proof text gets the rated fallback intro', async () => {
+  const { adaptLegacyPlan } = await import('../src/lib/planner/plan-schema.ts')
+  const plan = adaptLegacyPlan({
+    title: 'Chase missing client documents',
+    problem: 'We spend two days a month chasing clients for their year-end documents by email.',
+    steps: [{ text: 'Reads the client list and finds who is missing documents.' }, { text: 'Sends a reminder and logs the reply.' }],
+    tenDayIncludes: 'A reminder draft; a review step; a log',
+  })
+  if (plan) assert.equal(plan.scoreIntro, 'Each area is rated on its own, from what was described.')
+  else assert.match(await (await import('node:fs/promises')).readFile('src/lib/planner/plan-schema.ts', 'utf8'), /'Each area is rated on its own, from what was described\.'/)
 })
 
 test('a chasing agent whose plan mentions a dashboard keeps capacity direct (Rachel, 16 Nov)', () => {
