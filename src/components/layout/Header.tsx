@@ -136,18 +136,22 @@ export function MobileCta() {
   useEffect(() => {
     const hero = document.getElementById('hero-ctas')
     const close = document.getElementById('close')
+    const footer = document.querySelector('footer')
     if (!hero) return
     let heroGone = false
     let closeIn = false
+    let footerIn = false
     const observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         if (entry.target === hero) heroGone = !entry.isIntersecting && entry.boundingClientRect.top < 0
         if (entry.target === close) closeIn = entry.isIntersecting
+        if (entry.target === footer) footerIn = entry.isIntersecting
       }
-      setShow(heroGone && !closeIn)
+      setShow(heroGone && !closeIn && !footerIn)
     })
     observer.observe(hero)
     if (close) observer.observe(close)
+    if (footer) observer.observe(footer)
     return () => observer.disconnect()
   }, [])
 

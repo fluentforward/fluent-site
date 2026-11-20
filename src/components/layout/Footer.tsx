@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import { CookieSettingsButton } from '@/components/consent/CookieConsentProvider'
+import { CyberEssentialsBadge } from '@/components/layout/CyberEssentialsBadge'
 import { Container } from '@/components/ui/Container'
 import { site } from '@/content/site'
 
@@ -63,13 +64,16 @@ export function Footer() {
         <p aria-hidden="true" className="footer-wordmark mt-16 overflow-hidden whitespace-nowrap md:mt-24">
           {site.name}
         </p>
-        <div className="mt-8 flex flex-col gap-3 border-t border-line-dark pt-6 text-[11px] sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-6 border-t border-line-dark pt-6 text-[11px] sm:flex-row sm:items-end sm:justify-between">
           <p>{`© ${new Date().getFullYear()} ${site.legalName}. All rights reserved.`}</p>
-          <div className="flex flex-col gap-2 sm:items-end">
-            <CookieSettingsButton className="text-left text-[11px] text-[#cfcfd3] underline underline-offset-4 sm:text-right">
-              Cookie settings
-            </CookieSettingsButton>
-            <p>Registered in England and Wales.</p>
+          <div className="flex max-w-full flex-col gap-6 sm:flex-row sm:items-end sm:gap-8">
+            <CyberEssentialsBadge className="shrink-0" />
+            <div className="flex flex-col gap-2 sm:items-end">
+              <CookieSettingsButton className="text-left text-[11px] text-[#cfcfd3] underline underline-offset-4 sm:text-right">
+                Cookie settings
+              </CookieSettingsButton>
+              <p>Registered in England and Wales.</p>
+            </div>
           </div>
         </div>
       </Container>
