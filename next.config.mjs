@@ -91,6 +91,8 @@ const nextConfig = {
         destination: 'https://client.fluentforward.com/profit-constraint-score',
         statusCode: 302,
       },
+      { source: '/webinar', destination: '/', permanent: false },
+      { source: '/webinar/thanks', destination: '/', permanent: false },
       { source: '/mockup/home', destination: '/', statusCode: 302 },
       { source: '/about', destination: '/', statusCode: 301 },
       { source: '/about/:path*', destination: '/', statusCode: 301 },

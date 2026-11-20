@@ -1,5 +1,4 @@
 import { ScopeLink } from '@/components/booking/ScopeLink'
-import { Button } from '@/components/ui/Button'
 import { buttonClasses } from '@/components/ui/button-classes'
 import { Container } from '@/components/ui/Container'
 
@@ -15,7 +14,7 @@ export function Hero() {
             <Eyebrow>AI agents for UK services firms</Eyebrow>
             <h1 id="hero-title" className="ffh-h1 mt-[clamp(0.85rem,2.2vh,1.5rem)] text-balance">
               <span className="xl:block">Tell us the problem.</span>{' '}
-              <span className="xl:block">We’ll build the agent</span>{' '}
+              <span className="xl:block">We&apos;ll build the agent</span>{' '}
               <span className="xl:block">
                 that <span className="text-accent">fixes it.</span>
               </span>
@@ -29,13 +28,7 @@ export function Hero() {
             </p>
             <div className="mt-[clamp(1rem,2.6vh,1.75rem)] flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ScopeLink className={buttonClasses('primary')}>Scope your agent</ScopeLink>
-              <Button href="/agent-planner" prefetch={false} variant="ghost">
-                Try the Agent Planner →
-              </Button>
             </div>
-            <p className="mt-3 max-w-[62ch] text-sm leading-relaxed text-mist">
-              Describe a problem. See your first agent in under three minutes.
-            </p>
             <p className="ffh-footnote mt-2.5 max-w-[50ch] text-mist">* {FOOTNOTE}</p>
           </div>
         </div>

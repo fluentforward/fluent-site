@@ -1,7 +1,6 @@
 import { Asks } from '@/components/home/Asks'
 import { CareSection } from '@/components/home/CareScene'
 import { Hero } from '@/components/home/Hero'
-import { PlannerSection } from '@/components/home/PlannerScene'
 import { Close, ProofAndFit, Security, Terms } from '@/components/home/Sections'
 import { TenDays } from '@/components/home/TenDays'
 import { MobileCta } from '@/components/layout/Header'
@@ -35,7 +34,6 @@ export default function Home() {
       <TenDays />
       <CareSection />
       <Terms />
-      <PlannerSection />
       <Security />
       <ProofAndFit />
       <Close />

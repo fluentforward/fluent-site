@@ -1,10 +1,10 @@
 import Link from 'next/link'
 
 import { ScopeLink } from '@/components/booking/ScopeLink'
-import { Button } from '@/components/ui/Button'
 import { buttonClasses } from '@/components/ui/button-classes'
 import { Container } from '@/components/ui/Container'
 
+import { HOME_PROOF_ENABLED } from './flags'
 import { Eyebrow, FOOTNOTE, OWNERSHIP } from './Mark'
 import { Strike } from './Strike'
 
@@ -65,10 +65,9 @@ export function Terms() {
 
 const SPEC = [
   ['Ownership', 'Your data, processes and outputs are yours.'],
-  ['Hosting', 'We host and run your agents on our platform so we can monitor and improve them. [HOSTING REGION PLACEHOLDER]'],
+  ['Hosting', 'We host and run your agents on our platform so we can monitor and improve them.'],
   ['Separation', 'Your data is kept separate from every other client.'],
   ['Leaving', 'Your data, processes and outputs are exportable when you leave.'],
-  ['Certification', '[CERTIFICATION PLACEHOLDER]'],
 ] as const
 
 export function Security() {
@@ -96,7 +95,7 @@ export function Security() {
             {SPEC.map(([key, value]) => (
               <div key={key}>
                 <dt className="ffh-mono">{key}</dt>
-                <dd className={value.startsWith('[') ? 'ffh-placeholder' : undefined}>{value}</dd>
+                <dd>{value}</dd>
               </div>
             ))}
           </dl>
@@ -108,65 +107,89 @@ export function Security() {
 
 /* ───────────── Proof and fit ───────────── */
 
+function HomeFit() {
+  return (
+    <div id="fit">
+      <Eyebrow tone="light">Who it is for</Eyebrow>
+      <h3 id="fit-title" className="text-sub mt-5 max-w-[22ch]">
+        Owner-led services firms of about 20 to 200 people. UK first.
+      </h3>
+      <ul className="ffh-fit mt-6">
+        <li>Agencies and consultancies</li>
+        <li>Professional and managed services firms</li>
+        <li>Legal and finance, including trusts and regulated professional services</li>
+      </ul>
+      <h3 className="mt-12 text-[1.125rem] font-semibold tracking-[-0.015em]">Where we draw the line</h3>
+      <ul className="ffh-fit is-not mt-4">
+        <li>SaaS or product-core businesses</li>
+        <li>Teams under about 10 people</li>
+        <li>Anyone buying a chatbot licence or day-rate developers</li>
+      </ul>
+    </div>
+  )
+}
+
+/** Draft case study. Not rendered until {@link HOME_PROOF_ENABLED} is true. */
+function HomeProofCase() {
+  return (
+    <div>
+      <Eyebrow tone="light">Proof</Eyebrow>
+      <h2 id="proof-title" className="text-section mt-5 max-w-[12ch]">
+        Proof, not <span className="text-accent">promises.</span>
+      </h2>
+      <p className="text-lede mt-6 max-w-[40ch] text-slate">
+        Anonymised where clients ask. Only results we can stand behind.
+      </p>
+      <article className="ffh-case mt-10">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <span className="ffh-mono text-mist-d">UK trust · anonymised</span>
+          <span className="ffh-tag ffh-tag-light">Placeholder · needs client consent</span>
+        </div>
+        <p className="mt-5 text-[1.5rem] font-semibold leading-tight tracking-[-0.025em]">
+          An AI insights agent for a UK trust
+        </p>
+        <dl className="ffh-case-grid">
+          <div>
+            <dt>The problem they brought</dt>
+            <dd className="ffh-placeholder">[TBC]</dd>
+          </div>
+          <div>
+            <dt>The agent</dt>
+            <dd>AI insights agent</dd>
+          </div>
+          <div>
+            <dt>Time to live</dt>
+            <dd className="ffh-placeholder">[TBC]</dd>
+          </div>
+          <div>
+            <dt>What changed</dt>
+            <dd className="ffh-placeholder">[RESULT TBC]</dd>
+          </div>
+        </dl>
+        <p className="ffh-case-quote ffh-placeholder">[QUOTE TBC, real and approved only]</p>
+      </article>
+    </div>
+  )
+}
+
 export function ProofAndFit() {
+  if (!HOME_PROOF_ENABLED) {
+    return (
+      <section id="proof" className="ffh-section-pad bg-paper text-ink" aria-labelledby="fit-title">
+        <Container>
+          <HomeFit />
+        </Container>
+      </section>
+    )
+  }
+
   return (
     <section id="proof" className="ffh-section-pad bg-paper text-ink" aria-labelledby="proof-title">
       <Container>
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:gap-20">
-          <div>
-            <Eyebrow tone="light">Proof</Eyebrow>
-            <h2 id="proof-title" className="text-section mt-5 max-w-[12ch]">
-              Proof, not <span className="text-accent">promises.</span>
-            </h2>
-            <p className="text-lede mt-6 max-w-[40ch] text-slate">
-              Anonymised where clients ask. Only results we can stand behind.
-            </p>
-            <article className="ffh-case mt-10">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <span className="ffh-mono text-mist-d">UK trust · anonymised</span>
-                <span className="ffh-tag ffh-tag-light">Placeholder · needs client consent</span>
-              </div>
-              <p className="mt-5 text-[1.5rem] font-semibold leading-tight tracking-[-0.025em]">
-                An AI insights agent for a UK trust
-              </p>
-              <dl className="ffh-case-grid">
-                <div>
-                  <dt>The problem they brought</dt>
-                  <dd className="ffh-placeholder">[TBC]</dd>
-                </div>
-                <div>
-                  <dt>The agent</dt>
-                  <dd>AI insights agent</dd>
-                </div>
-                <div>
-                  <dt>Time to live</dt>
-                  <dd className="ffh-placeholder">[TBC]</dd>
-                </div>
-                <div>
-                  <dt>What changed</dt>
-                  <dd className="ffh-placeholder">[RESULT TBC]</dd>
-                </div>
-              </dl>
-              <p className="ffh-case-quote ffh-placeholder">[QUOTE TBC, real and approved only]</p>
-            </article>
-          </div>
-
-          <div id="fit" className="lg:pt-3">
-            <Eyebrow tone="light">Who it is for</Eyebrow>
-            <h3 className="text-sub mt-5 max-w-[22ch]">
-              Owner-led services firms of about 20 to 200 people. UK first.
-            </h3>
-            <ul className="ffh-fit mt-6">
-              <li>Agencies and consultancies</li>
-              <li>Professional and managed services firms</li>
-              <li>Legal and finance, including trusts and regulated professional services</li>
-            </ul>
-            <h3 className="mt-12 text-[1.125rem] font-semibold tracking-[-0.015em]">Where we draw the line</h3>
-            <ul className="ffh-fit is-not mt-4">
-              <li>SaaS or product-core businesses</li>
-              <li>Teams under about 10 people</li>
-              <li>Anyone buying a chatbot licence or day-rate developers</li>
-            </ul>
+          <HomeProofCase />
+          <div className="lg:pt-3">
+            <HomeFit />
           </div>
         </div>
       </Container>
@@ -187,12 +210,9 @@ export function Close() {
             </h2>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <ScopeLink className={buttonClasses('primary')}>Scope your agent</ScopeLink>
-              <Button href="/agent-planner" prefetch={false} variant="ghost">
-                Try the Agent Planner →
-              </Button>
             </div>
             <p className="mt-5 max-w-[40ch] text-mist">
-              If an agent is the wrong answer, we will tell you on the call.
+              If an agent is the wrong answer, we&apos;ll tell you on the call.
             </p>
           </div>
           <div className="ffh-call">

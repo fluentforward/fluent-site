@@ -162,10 +162,7 @@ export function MobileCta() {
 
   return (
     <div ref={barRef} className={clsx('ffh-mcta lg:hidden', show && 'is-shown')}>
-      <ScopeLink className="ffh-btn ffh-btn-primary flex-1">Scope your agent</ScopeLink>
-      <Link href="/agent-planner" prefetch={false} className="ffh-btn ffh-btn-ghost">
-        Planner
-      </Link>
+      <ScopeLink className="ffh-btn ffh-btn-primary w-full">Scope your agent</ScopeLink>
     </div>
   )
 }

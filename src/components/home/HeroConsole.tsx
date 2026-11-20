@@ -14,8 +14,7 @@ import {
   type CSSProperties,
 } from 'react'
 
-import { rememberProblem } from '@/components/booking/ScopeLink'
-import { stashPlannerDraft } from '@/lib/planner/draft'
+import { openBooking, rememberProblem } from '@/components/booking/ScopeLink'
 
 import { useReducedMotion } from './hooks'
 import { Chevron, Tag } from './Mark'
@@ -390,7 +389,7 @@ export function HeroConsole() {
           </svg>
         ) : null}
         <form
-          action="/agent-planner"
+          action="/contact"
           method="get"
           className="ffh-pane-in"
           onSubmit={(event) => {
@@ -399,9 +398,8 @@ export function HeroConsole() {
             const canned = EXAMPLES.some((example) => example.text === typed)
             if (owner === 'visitor' && typed && !canned) {
               rememberProblem(typed)
-              stashPlannerDraft(typed)
             }
-            router.push('/agent-planner')
+            if (!openBooking()) router.push('/contact')
           }}
         >
           <label htmlFor={`${id}-q`} className="ffh-mono text-mist">
@@ -437,9 +435,9 @@ export function HeroConsole() {
 
           <div className="ffh-pane-actions">
             <button type="submit" className="ffh-btn ffh-btn-primary">
-              Plan my agent
+              Scope your agent
             </button>
-            <span className="text-sm text-mist">Full plan by email.</span>
+            <span className="text-sm text-mist">Book a scoping call.</span>
           </div>
 
           <p id={`${id}-privacy`} className="ffh-privacy">

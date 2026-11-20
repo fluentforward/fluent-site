@@ -16,7 +16,7 @@ export const nav = [
   { label: 'Ways we work', href: '/ways-we-work' },
   { label: 'How it works', href: howItWorksPath },
   { label: 'Proof', href: '/#proof' },
-  { label: 'Resources', href: '/#webinar' },
+  { label: 'Resources', href: '/strategy-blueprints' },
 ] as const
 
 export const footerNav = {
@@ -33,7 +33,6 @@ export const footerNav = {
   company: {
     title: 'Company',
     links: [
-      { label: 'Webinar', href: '/webinar' },
       { label: 'Interaction insights', href: '/strategy-blueprints' },
       { label: 'Constraint review', href: '/review' },
       { label: 'Contact', href: '/contact' },

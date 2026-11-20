@@ -32,22 +32,6 @@ const RUN = [
 /* Timed playback, in ms after the run comes into view */
 const CUE = { log: [250, 700, 1150], drift: 1500, waiting: 1750, fixed: 3900 } as const
 
-/* 30 days of quality-check results, with one dip that was caught and fixed. */
-const EVALS = [
-  97, 98, 97, 99, 98, 98, 99, 97, 98, 99, 98, 99, 98, 97, 99, 98, 99, 98, 99, 98, 99, 98, 88, 84,
-  96, 99, 98, 99, 98, 99,
-]
-
-function sparkPath(values: number[], width: number, height: number) {
-  return values
-    .map((value, index) => {
-      const x = (index / (values.length - 1)) * width
-      const y = height - ((value - 80) / 20) * height
-      return `${index ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)}`
-    })
-    .join(' ')
-}
-
 function Status({ tone, children }: { tone: 'healthy' | 'drift' | 'build'; children: React.ReactNode }) {
   return (
     <span className={clsx('ffh-status', `is-${tone}`)}>
@@ -152,7 +136,9 @@ export function CareConsole({ scene: driven }: { scene?: CareScene }) {
             </span>
             <span>
               <span className="block font-medium text-paper">Your next agent</span>
-              <span className="block text-[0.8125rem] text-mist">Scope it when the first one earns its keep</span>
+              <span className="block text-[0.8125rem] text-mist">
+                Scope it once your first one is live and settled.
+              </span>
             </span>
           </Link>
         </aside>
@@ -237,28 +223,7 @@ export function CareConsole({ scene: driven }: { scene?: CareScene }) {
               <p className="ffh-mono text-mist">Quality checks</p>
               <Status tone="healthy">Passing</Status>
             </div>
-            <svg
-              viewBox="0 0 240 64"
-              className="ffh-spark"
-              aria-hidden="true"
-              data-run={animate && !driven && inView ? 'on' : undefined}
-            >
-              <line x1="0" x2="240" y1="22" y2="22" className="ffh-spark-bar" />
-              <path
-                d={sparkPath(EVALS, 240, 64)}
-                pathLength={1}
-                className="ffh-spark-line"
-                style={driven ? { strokeDashoffset: 1 - scene.evals } : undefined}
-              />
-              <circle
-                cx={(23 / 29) * 240}
-                cy={64 - ((84 - 80) / 20) * 64}
-                r="3.5"
-                className="ffh-spark-dip"
-                style={driven ? { opacity: scene.evals > 0.8 ? 1 : 0 } : undefined}
-              />
-            </svg>
-            <p className="mt-1.5 text-[0.8125rem] text-mist">One dip in 30 days, fixed the same day.</p>
+            <p className="mt-1.5 text-[0.8125rem] text-mist">We watch it every day and fix what drifts.</p>
             <ul className="ffh-checks mt-3 space-y-1.5 text-[0.875rem] text-lede-dark">
               {['Figures match the source systems', 'Follows your report template', 'Flags anything it cannot match'].map(
                 (check) => (

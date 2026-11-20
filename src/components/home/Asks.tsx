@@ -1,30 +1,15 @@
 'use client'
 
 import clsx from 'clsx'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 
-import { stashPlannerDraft } from '@/lib/planner/draft'
-
+import { ScopeLink } from '@/components/booking/ScopeLink'
+import { buttonClasses } from '@/components/ui/button-classes'
 import { Container } from '@/components/ui/Container'
 
 import { useReducedMotion } from './hooks'
 import { Chevron, Eyebrow, Tag } from './Mark'
 import { sketchFrom } from './sketch'
-
-const planner = (q: string) => `/agent-planner?q=${encodeURIComponent(q)}`
-
-function openPlanner(
-  event: MouseEvent<HTMLAnchorElement>,
-  problem: string,
-  router: { push: (href: string) => void },
-) {
-  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return
-  event.preventDefault()
-  stashPlannerDraft(problem)
-  router.push('/agent-planner')
-}
 
 const ASKS = [
   {
@@ -120,16 +105,13 @@ function AgentCard({ index, animate }: { index: number; animate: boolean }) {
             <p className="mt-2.5 text-[0.9375rem] leading-snug text-paper">Looked after under Agent Care</p>
           </div>
         </div>
-        <Link href={planner(item.ask)} prefetch={false} className="ffh-btn ffh-btn-primary mt-6 self-start">
-          Plan an agent like this
-        </Link>
+        <ScopeLink className={`${buttonClasses('primary')} mt-6 self-start`}>Scope your agent</ScopeLink>
       </div>
     </div>
   )
 }
 
 export function Asks() {
-  const router = useRouter()
   const reduced = useReducedMotion()
   const [active, setActive] = useState(0)
   const [tracking, setTracking] = useState(false)
@@ -173,6 +155,7 @@ export function Asks() {
                   }}
                   data-index={index}
                   className={clsx('ffh-ask', active === index && 'is-active')}
+                  onFocusCapture={() => setActive(index)}
                 >
                   <p className="ffh-ask-quote">
                     <span aria-hidden="true" className="ffh-ask-mark">
@@ -188,15 +171,9 @@ export function Asks() {
                       {item.fn}
                     </p>
                     <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-slate">{item.does}</p>
-                    <Link
-                      href={planner(item.ask)}
-                      prefetch={false}
-                      className="ffh-ask-plan"
-                      onFocus={() => setActive(index)}
-                      onClick={(event) => openPlanner(event, item.ask, router)}
-                    >
-                      Plan one like this
-                    </Link>
+                    <ScopeLink className="ffh-ask-plan" href="/contact">
+                      Scope your agent
+                    </ScopeLink>
                   </div>
                 </li>
               ))}
